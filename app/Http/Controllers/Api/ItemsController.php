@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Item;
 
 class ItemsController extends Controller
 {
@@ -14,7 +15,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        //
+        return Item::all();
     }
 
     /**
@@ -35,7 +36,9 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item;
+        $item->fill($request->all())->save();
+        return $item;
     }
 
     /**
@@ -46,7 +49,7 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+        return Item::find($id);
     }
 
     /**
@@ -69,7 +72,9 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::find($id);
+        $item->fill($request->all())->save();
+        return $item;
     }
 
     /**
@@ -80,6 +85,6 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::find($id)->delete();
     }
 }

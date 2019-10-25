@@ -8,7 +8,7 @@ class State extends Model
 {
     protected $guarded = array('id','created_at','updated_at');
     
-    public function tasksStates(){
-        return $this->belongsToMany('App\Task','task_state_logs');
+    public function statesTasks(){
+        return $this->belongsToMany('App\Task','state_task');
     }
 }

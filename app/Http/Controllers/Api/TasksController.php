@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Task;
 
 class TasksController extends Controller
 {
@@ -14,7 +15,10 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        return Task::with([
+                        'items',
+                        'statesTasks'
+                    ])->get();
     }
 
     /**
@@ -35,7 +39,9 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task;
+        $task->fill($request->all())->save();
+        return $task;
     }
 
     /**
@@ -46,7 +52,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        //
+        return Task::find($id);
     }
 
     /**
@@ -69,7 +75,9 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        $task->fill($request->all())->save();
+        return $task;
     }
 
     /**
@@ -80,6 +88,12 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::find($id)->delete();
+    }
+    
+    //state_taskに対する操作
+    public function insertStateTask(Request $request){
+        $task = Task::find($request->task_id);
+        $task->statesTasks()->attach($request->state_id);
     }
 }

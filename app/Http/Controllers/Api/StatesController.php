@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\State;
 
 class StatesController extends Controller
 {
@@ -14,7 +15,7 @@ class StatesController extends Controller
      */
     public function index()
     {
-        //
+        return State::all();
     }
 
     /**
@@ -35,7 +36,9 @@ class StatesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $state = new State;
+        $state->fill($request->all())->save();
+        return $state;
     }
 
     /**
@@ -46,7 +49,7 @@ class StatesController extends Controller
      */
     public function show($id)
     {
-        //
+        return State::find($id);
     }
 
     /**
@@ -69,7 +72,9 @@ class StatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $state = State::find($id);
+        $state->fill($request->all())->save();
+        return $state;
     }
 
     /**
@@ -80,6 +85,6 @@ class StatesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        State::find($id)->delete();
     }
 }

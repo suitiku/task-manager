@@ -12,7 +12,7 @@ class Task extends Model
         return $this->hasMany('App\Item');
     }
     
-    public function tasksStates(){
-        return $this->belongsToMany('App\State','task_state_logs');
+    public function statesTasks(){
+        return $this->belongsToMany('App\State','state_task');
     }
 }
