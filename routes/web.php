@@ -17,8 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/vue',function(){
-    return view('vue');
+//ホーム画面（タスク一覧、
+Route::get('/home',function(){
+    return view('home');
 });
