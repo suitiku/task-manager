@@ -49251,7 +49251,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\nli span {\n    font-size:50%;\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n", ""]);
 
 // exports
 
@@ -49611,8 +49611,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -50473,50 +50471,54 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c(
-        "div",
-        { staticClass: "col-md-8" },
-        _vm._l(_vm.tasks, function(task) {
-          return _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("タスク")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(task.name))
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(task.overview))]),
-              _vm._v(" "),
-              _c("div", { staticClass: "items" }, [
-                _c(
-                  "ul",
-                  _vm._l(task.items, function(item) {
-                    return _c("li", [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(item.name) +
-                          " -- "
-                      ),
-                      _c("span", [_vm._v(_vm._s(item.memo))])
-                    ])
-                  }),
-                  0
-                )
-              ])
+    _c(
+      "div",
+      { staticClass: "row justify-content-start align-items-baseline" },
+      _vm._l(_vm.tasks, function(task) {
+        return _c("div", { staticClass: "card card-default col-md-3 m-2" }, [
+          _vm._m(0, true),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("h4", { staticClass: "card-title" }, [
+              _vm._v(_vm._s(task.name))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _vm._v("締切：" + _vm._s(task.dead_line))
-            ])
+            _c("p", [_vm._v(_vm._s(task.overview))]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "items" },
+              _vm._l(task.items, function(item) {
+                return _c("p", [
+                  _c("input", { attrs: { type: "checkbox" } }),
+                  _vm._v(" " + _vm._s(item.name) + " -- "),
+                  _c("span", [_vm._v(_vm._s(item.memo))])
+                ])
+              }),
+              0
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" }, [
+            _vm._v("締切：" + _vm._s(task.dead_line))
           ])
-        }),
-        0
-      )
-    ])
+        ])
+      }),
+      0
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("input", { attrs: { type: "checkbox" } }),
+      _vm._v("　//カテゴリとか//")
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
