@@ -92,8 +92,14 @@ class TasksController extends Controller
     }
     
     //state_taskに対する操作
+    //成功すると状態が変化したtask_idが返ってくる
     public function insertStateTask(Request $request){
         $task = Task::find($request->task_id);
-        $task->statesTasks()->attach($request->state_id);
+        try{
+            $task->statesTasks()->attach($request->state_id);
+            return $request->task_id;
+        }catch(Exception $e){
+            return $e;
+        }
     }
 }

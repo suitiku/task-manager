@@ -49251,7 +49251,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n.card-wrapper{\n    overflow:hidden;\n}\n.completed {\n    width:110%;\n    height:100%;\n    position:absolute;\n    left:-10%;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n}\n.completed-mark {\n    padding:0.5em;\n    color:red;\n    position:absolute;\n    top:50%;\n    left:25%;\n    /*left:5%;*/\n    border:solid white 2px;\n    background-color:white;\n    border-radius:0.3em;\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform:rotate(10deg);\n            transform:rotate(10deg);\n    font-weight:bold;\n}\n", ""]);
 
 // exports
 
@@ -49637,7 +49637,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            test: '',
+            checkboxes: [],
             tasks: []
         };
     },
@@ -49677,6 +49677,44 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return fetchTasks;
+        }(),
+        checkTask: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
+                var postObject, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                if (!(event.target.checked == true)) {
+                                    _context2.next = 6;
+                                    break;
+                                }
+
+                                postObject = {
+                                    task_id: taskId,
+                                    state_id: 3
+                                };
+                                _context2.next = 4;
+                                return axios.post('/api/state_task', postObject);
+
+                            case 4:
+                                result = _context2.sent;
+
+                                console.log(result.data);
+
+                            case 6:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function checkTask(_x) {
+                return _ref2.apply(this, arguments);
+            }
+
+            return checkTask;
         }()
     }
 });
@@ -50474,51 +50512,120 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row justify-content-start align-items-baseline" },
-      _vm._l(_vm.tasks, function(task) {
-        return _c("div", { staticClass: "card card-default col-md-3 m-2" }, [
-          _vm._m(0, true),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _c("h4", { staticClass: "card-title" }, [
-              _vm._v(_vm._s(task.name))
-            ]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(task.overview))]),
+      _vm._l(_vm.tasks, function(task, index) {
+        return _c(
+          "div",
+          { staticClass: "card-wrapper card card-default col-md-3 m-2" },
+          [
+            _c("div", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.checkboxes[index],
+                  expression: "checkboxes[index]"
+                }
+              ],
+              staticClass: "completed"
+            }),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "items" },
-              _vm._l(task.items, function(item) {
-                return _c("p", [
-                  _c("input", { attrs: { type: "checkbox" } }),
-                  _vm._v(" " + _vm._s(item.name) + " -- "),
-                  _c("span", [_vm._v(_vm._s(item.memo))])
-                ])
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.checkboxes[index],
+                    expression: "checkboxes[index]"
+                  }
+                ],
+                staticClass: "completed-mark"
+              },
+              [_vm._v("completed!")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-header" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.checkboxes[index],
+                    expression: "checkboxes[index]"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.checkboxes[index])
+                    ? _vm._i(_vm.checkboxes[index], null) > -1
+                    : _vm.checkboxes[index]
+                },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$a = _vm.checkboxes[index],
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.checkboxes, index, $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.checkboxes,
+                              index,
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.checkboxes, index, $$c)
+                      }
+                    },
+                    function($event) {
+                      return _vm.checkTask(task.id)
+                    }
+                  ]
+                }
               }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }, [
-            _vm._v("締切：" + _vm._s(task.dead_line))
-          ])
-        ])
+              _vm._v("　//カテゴリとか//")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("h4", { staticClass: "card-title" }, [
+                _vm._v(_vm._s(task.name))
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(task.overview))]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "items" },
+                _vm._l(task.items, function(item) {
+                  return _c("p", [
+                    _c("input", { attrs: { type: "checkbox" } }),
+                    _vm._v(" " + _vm._s(item.name) + " -- "),
+                    _c("span", [_vm._v(_vm._s(item.memo))])
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _vm._v("締切：" + _vm._s(task.dead_line))
+            ])
+          ]
+        )
       }),
       0
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("input", { attrs: { type: "checkbox" } }),
-      _vm._v("　//カテゴリとか//")
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
