@@ -15,4 +15,5 @@ class Task extends Model
     public function statesTasks(){
         return $this->belongsToMany('App\State','state_task')->withTimestamps();
     }
+    
 }

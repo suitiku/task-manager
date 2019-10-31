@@ -38,6 +38,13 @@
             fetchTasks: async function(){
                 let result = await axios.get('/api/tasks')
                 this.tasks = result.data
+                for(let index of Object.keys(this.tasks)){
+                    let stateIndex = this.tasks[index].states_tasks.length - 1
+                    let stateId = this.tasks[index].states_tasks[stateIndex].id
+                    let check = stateId == 3 ? true : false
+                    this.checkboxes.push(check)
+                }
+                console.log(this.tasks)
             },
             checkTask:async function(taskId){
                 if(event.target.checked == true){
