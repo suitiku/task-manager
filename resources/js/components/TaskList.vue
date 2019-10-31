@@ -4,7 +4,7 @@
             <div class="card-wrapper card card-default col-md-3 m-2" v-for="(task,index) in tasks">
                 <div class="completed" v-show="checkboxes[index]"></div>
                 <div class="completed-mark" v-show="checkboxes[index]">completed!</div>
-                <div class="card-header"><input type="checkbox" v-model="checkboxes[index]" v-on:change="checkTask(task.id)">　//カテゴリとか//</div>
+                <div class="card-header"><input type="checkbox" v-on:change="checkTask(task.id,index)">　//カテゴリとか//</div>
                 <div class="card-body">
                     <h4 class="card-title">{{task.name}}</h4>
                     <p>{{task.overview}}</p>
@@ -46,14 +46,16 @@
                 }
                 console.log(this.tasks)
             },
-            checkTask:async function(taskId){
+            checkTask:async function(taskId,index){
                 if(event.target.checked == true){
                     let postObject = {
                         task_id:taskId,
                         state_id:3
                     }
                     let result = await axios.post('/api/state_task',postObject)
-                    console.log(result.data)
+                    if(result.data){
+                        this.checkboxes.splice(index,1,true)
+                    }
                 }
             }
         }

@@ -49727,7 +49727,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return fetchTasks;
         }(),
         checkTask: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId, index) {
                 var postObject, result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
@@ -49748,7 +49748,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context2.sent;
 
-                                console.log(result.data);
+                                if (result.data) {
+                                    this.checkboxes.splice(index, 1, true);
+                                }
 
                             case 6:
                             case 'end':
@@ -49758,7 +49760,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function checkTask(_x) {
+            function checkTask(_x, _x2) {
                 return _ref2.apply(this, arguments);
             }
 
@@ -50595,48 +50597,11 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "card-header" }, [
               _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.checkboxes[index],
-                    expression: "checkboxes[index]"
-                  }
-                ],
                 attrs: { type: "checkbox" },
-                domProps: {
-                  checked: Array.isArray(_vm.checkboxes[index])
-                    ? _vm._i(_vm.checkboxes[index], null) > -1
-                    : _vm.checkboxes[index]
-                },
                 on: {
-                  change: [
-                    function($event) {
-                      var $$a = _vm.checkboxes[index],
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(_vm.checkboxes, index, $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.checkboxes,
-                              index,
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
-                        }
-                      } else {
-                        _vm.$set(_vm.checkboxes, index, $$c)
-                      }
-                    },
-                    function($event) {
-                      return _vm.checkTask(task.id)
-                    }
-                  ]
+                  change: function($event) {
+                    return _vm.checkTask(task.id, index)
+                  }
                 }
               }),
               _vm._v("　//カテゴリとか//")
