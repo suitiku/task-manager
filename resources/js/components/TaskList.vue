@@ -76,6 +76,15 @@
         z-index:2;
         background-color:grey;
         opacity:0.5;
+        animation:completed 0.3s ease 0s 1;
+    }
+    @keyframes completed {
+        0% {
+            height:0%;
+        }
+        100% {
+           height:100%; 
+        }
     }
     .completed-mark {
         padding:0.5em;
@@ -91,5 +100,22 @@
         opacity:1.0;
         transform:rotate(10deg);
         font-weight:bold;
+        animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;
+    }
+    @keyframes completed-mark-before {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:0;
+        }
+    }
+    @keyframes completed-mark {
+        0% {
+            opacity:0;
+        }
+        100% {
+            opacity:1.0;
+        }
     }
 </style>
