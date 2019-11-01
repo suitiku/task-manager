@@ -17,6 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//テーブル情報取得
+Route::get('table_info/{table}','Api\TableInfoController@getTableInfo');
+
+//各マスターテーブル
 Route::resource('tasks','Api\TasksController');
 Route::post('state_task','Api\TasksController@insertStateTask');
 Route::resource('states','Api\StatesController');
