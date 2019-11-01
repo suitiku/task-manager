@@ -49251,7 +49251,7 @@ exports = module.exports = __webpack_require__(46)(false);
 
 
 // module
-exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n.card-wrapper{\n    overflow:hidden;\n}\n.completed {\n    width:110%;\n    height:100%;\n    position:absolute;\n    left:-10%;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n@keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n.completed-mark {\n    padding:0.5em;\n    color:red;\n    position:absolute;\n    top:50%;\n    left:25%;\n    /*left:5%;*/\n    border:solid white 2px;\n    background-color:white;\n    border-radius:0.3em;\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform:rotate(10deg);\n            transform:rotate(10deg);\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n.card-wrapper{\n    overflow:hidden;\n}\n.completed {\n    width:110%;\n    height:100%;\n    position:absolute;\n    left:-10%;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n@keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n.completed-mark {\n    padding:0.5em;\n    color:red;\n    position:absolute;\n    top:50%;\n    left:25%;\n    /*left:5%;*/\n    border:solid white 2px;\n    background-color:white;\n    border-radius:0.3em;\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform:rotate(10deg);\n            transform:rotate(10deg);\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -49765,7 +49765,50 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return checkTask;
-        }()
+        }(),
+        checkItem: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(itemId) {
+                var el, modifyData, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                console.log(event);
+                                el = event;
+                                modifyData = { is_checked: true };
+                                _context3.next = 5;
+                                return axios.put('/api/items/' + itemId, modifyData);
+
+                            case 5:
+                                result = _context3.sent;
+
+                                if (result.data) {
+                                    el.target.disabled = true;
+                                    el.target.parentElement.className = 'item-completed';
+                                    console.log(el.target.parentElement);
+                                }
+                                console.log(result.data);
+
+                            case 8:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function checkItem(_x3) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return checkItem;
+        }(),
+        setItemDisabled: function setItemDisabled(is_checked) {
+            return is_checked || false;
+        },
+        setItemClass: function setItemClass(is_checked) {
+            return is_checked == true ? 'item-completed' : '';
+        }
     }
 });
 
@@ -50618,8 +50661,19 @@ var render = function() {
                 "div",
                 { staticClass: "items" },
                 _vm._l(task.items, function(item) {
-                  return _c("p", [
-                    _c("input", { attrs: { type: "checkbox" } }),
+                  return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        disabled: _vm.setItemDisabled(item.is_checked)
+                      },
+                      domProps: { checked: item.is_checked },
+                      on: {
+                        change: function($event) {
+                          return _vm.checkItem(item.id)
+                        }
+                      }
+                    }),
                     _vm._v(" " + _vm._s(item.name) + " -- "),
                     _c("span", [_vm._v(_vm._s(item.memo))])
                   ])

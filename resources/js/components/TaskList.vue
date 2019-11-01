@@ -9,8 +9,8 @@
                     <h4 class="card-title">{{task.name}}</h4>
                     <p>{{task.overview}}</p>
                     <div class="items">
-                        <p v-for="item in task.items">
-                            <input type="checkbox"> {{item.name}} -- <span>{{item.memo}}</span>
+                        <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)">
+                            <input type="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
                         </p> 
                     </div>
                 </div>
@@ -57,6 +57,21 @@
                         this.checkboxes.splice(index,1,true)
                     }
                 }
+            },
+            checkItem:async function(itemId){
+                let el = event
+                let modifyData = {is_checked:true}
+                let result = await axios.put('/api/items/' + itemId,modifyData)
+                if(result.data){
+                    el.target.disabled = true
+                    el.target.parentElement.className = 'item-completed'
+                }
+            },
+            setItemDisabled:function(is_checked){
+                return is_checked || false
+            },
+            setItemClass:function(is_checked){
+                return is_checked == true ? 'item-completed' : ''
             }
         }
     }
@@ -117,5 +132,8 @@
         100% {
             opacity:1.0;
         }
+    }
+    .item-completed {
+        text-decoration:line-through;
     }
 </style>
