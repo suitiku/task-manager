@@ -23,3 +23,9 @@ Auth::routes();
 Route::get('/home',function(){
     return view('home');
 });
+
+
+//テストコンポーネント用test.blade.php
+Route::get('/test',function(){
+    return view('test');
+});

@@ -17,6 +17,8 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('task-list', require('./components/TaskList.vue'));
+Vue.component('versatile-form', require('./components/VersatileForm.vue'));
+Vue.component('test', require('./components/Test.vue'));
 
 const app = new Vue({
     el: '#app'
