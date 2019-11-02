@@ -29,7 +29,6 @@
             }  
         },
         mounted() {
-            console.log('Component mounted.')
         },
         created() {
             this.fetchTasks();

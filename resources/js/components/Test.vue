@@ -1,6 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
-    <versatile-form />
+    <div style="width:50%;">
+        <versatile-form table="tasks" />
+    </div>
 </template>
 
 <script>

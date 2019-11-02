@@ -1,27 +1,99 @@
 <!--万能フォーム生成コンポーネント-->
 <!--テーブル名から入力フォームを生成する-->
 <!--新規作成と編集-->
+<!--今後の改修-->
+<!--①UIコンポーネントから生成する-->
+<!--②バリデーションの追加-->
+<!--③editRecordの追加-->
+<!--④処理成功ダイアログ追加-->
+<!--⑤外部キーの値選択処理追加-->
 <template>
-    
+    <div class="container">
+        <div class="forms">
+            <div v-for="(column,index) in columns" v-bind:key="index">
+                <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
+                <input v-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
+                <input v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" type="range" min="1" max="5">
+                <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
+                <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
+            </div>
+        </div>
+        <button v-if="id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createRecord">登録</button>
+        <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editRecord">編集</button>
+    </div>
 </template>
 
 <script>
     export default {
         data:function(){
             return {
+                id:'', //編集用id
+                columns:[],
+                postObject:{}, //送信用
+                
+                //除外リスト
+                whiteList:['id','created_at','updated_at'],
+                
+                //form種別判定用配列
+                inputColumns:['int','varchar','datetime'],
+                textareaColumns:['text'],
+                labelColumns:['tinyint','datetime']
+            }  
+        },
+        props: {
+            table: {
+                Type:String,
+                default:'',
+                required:true
             }  
         },
         mounted() {
-            
+            this.init()
         },
         created() {
+            this.init()
         },
         methods: {
-            init:function(){
+            init:async function(){
+                let result = await axios.get('/api/table_info/' + this.table)
+                this.columns = result.data
+                for(let index of Object.keys(result.data)){
+                    if(this.whiteList.indexOf(result.data[index].COLUMN_NAME) == -1){
+                        this.$set(this.postObject,result.data[index].COLUMN_NAME,'')
+                    }
+                }
                 
-            }
+            },
+            setInputType:function(dataType){
+                switch(dataType){
+                    case 'int':
+                        return 'number'
+                    case 'varchar':
+                        return 'text'
+                    case 'datetime':
+                        return 'date'
+                }
+            },
+            setPlaceholder:function(column){
+                return column.COLUMN_COMMENT || column.COLUMN_NAME  
+            },
+            createRecord: async function(){
+                let result = await axios.post('/api/' + this.table,this.postObject)
+                console.log(result.data)
+            },
+            editRecord: async function(){
+                
+            },
         },
     }
 </script>
 <style>
+    .forms input,textarea {
+        width:100%;
+        display:block;
+        margin:0.5em;
+        padding:0.3em;
+        border:1px solid grey;
+        border-radius:0.3em;
+    }
 </style>
