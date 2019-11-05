@@ -19,6 +19,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('task-list', require('./components/TaskList.vue'));
 Vue.component('versatile-form', require('./components/VersatileForm.vue'));
 Vue.component('test', require('./components/Test.vue'));
+Vue.component('modal', require('./components/Modal.vue'));
 
 const app = new Vue({
     el: '#app'
