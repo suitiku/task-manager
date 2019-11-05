@@ -49604,7 +49604,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nspan {\n    font-size:50%;\n}\n.card-wrapper{\n    overflow:hidden;\n}\n.completed {\n    width:110%;\n    height:100%;\n    position:absolute;\n    left:-10%;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n@keyframes completed {\n0% {\n        height:0%;\n}\n100% {\n       height:100%;\n}\n}\n.completed-mark {\n    padding:0.5em;\n    color:red;\n    position:absolute;\n    top:50%;\n    left:25%;\n    /*left:5%;*/\n    border:solid white 2px;\n    background-color:white;\n    border-radius:0.3em;\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform:rotate(10deg);\n            transform:rotate(10deg);\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.task-wrapper {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    margin:0.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:max-height 1s;\n    transition:max-height 1s;\n}\n.task {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.headline {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail {\n    width:100%;\n    /*height:100%;*/\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active {\n    max-height:1000px;\n}\n.completed {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -49643,12 +49643,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             checkboxes: [],
-            tasks: []
+            tasks: [],
+            details: [],
+            wrapperClass: []
         };
     },
     mounted: function mounted() {},
@@ -49683,6 +49702,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     check = stateId == 3 ? true : false;
 
                                     this.checkboxes.push(check);
+                                    this.details.push(false);
+                                    this.wrapperClass.push('task-wrapper');
                                 }
                                 _context.next = 15;
                                 break;
@@ -49734,6 +49755,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTasks;
         }(),
+        openDetail: function openDetail(index) {
+            this.wrapperClass[index] = this.details[index] ? 'task-wrapper' : 'task-wrapper detail-active';
+            this.details.splice(index, 1, !this.details[index]);
+        },
         checkTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId, index) {
                 var postObject, result;
@@ -50599,96 +50624,130 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "row justify-content-start align-items-baseline" },
-      _vm._l(_vm.tasks, function(task, index) {
-        return _c(
+  return _c(
+    "div",
+    { staticClass: "container" },
+    _vm._l(_vm.tasks, function(task, index) {
+      return _c("div", { class: _vm.wrapperClass[index] }, [
+        _c("div", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.checkboxes[index],
+              expression: "checkboxes[index]"
+            }
+          ],
+          staticClass: "completed"
+        }),
+        _vm._v(" "),
+        _c(
           "div",
-          { staticClass: "card-wrapper card card-default col-md-3 m-2" },
-          [
-            _c("div", {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.checkboxes[index],
-                  expression: "checkboxes[index]"
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.checkboxes[index],
+                expression: "checkboxes[index]"
+              }
+            ],
+            staticClass: "completed-mark"
+          },
+          [_vm._v("completed!")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "task" }, [
+          _c("span", [
+            _c("input", {
+              attrs: { type: "checkbox" },
+              on: {
+                change: function($event) {
+                  return _vm.checkTask(task.id, index)
                 }
-              ],
-              staticClass: "completed"
+              }
             }),
             _vm._v(" "),
             _c(
-              "div",
+              "span",
               {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.checkboxes[index],
-                    expression: "checkboxes[index]"
-                  }
-                ],
-                staticClass: "completed-mark"
-              },
-              [_vm._v("completed!")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-header" }, [
-              _c("input", {
-                attrs: { type: "checkbox" },
+                staticClass: "headline",
                 on: {
-                  change: function($event) {
-                    return _vm.checkTask(task.id, index)
+                  click: function($event) {
+                    return _vm.openDetail(index)
                   }
                 }
+              },
+              [_vm._v(_vm._s(task.name))]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            [
+              _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+              _vm._v(" "),
+              _vm._l(task.priority, function(p) {
+                return _c("i", { staticClass: "fas fa-star" })
               }),
-              _vm._v("　//カテゴリとか//")
-            ]),
+              _vm._v(" "),
+              _vm._l(5 - task.priority, function(np) {
+                return _c("i", { staticClass: "far fa-star" })
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "label" }, [_vm._v("締切")]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(task.dead_line))])
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.details[index],
+                expression: "details[index]"
+              }
+            ],
+            staticClass: "detail"
+          },
+          [
+            _c("p", [_vm._v(_vm._s(task.overview))]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(task.name))
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(task.overview))]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "items" },
-                _vm._l(task.items, function(item) {
-                  return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-                    _c("input", {
-                      attrs: {
-                        type: "checkbox",
-                        disabled: _vm.setItemDisabled(item.is_checked)
-                      },
-                      domProps: { checked: item.is_checked },
-                      on: {
-                        change: function($event) {
-                          return _vm.checkItem(item.id)
-                        }
+            _c(
+              "div",
+              { staticClass: "items" },
+              _vm._l(task.items, function(item) {
+                return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                  _c("input", {
+                    attrs: {
+                      type: "checkbox",
+                      disabled: _vm.setItemDisabled(item.is_checked)
+                    },
+                    domProps: { checked: item.is_checked },
+                    on: {
+                      change: function($event) {
+                        return _vm.checkItem(item.id)
                       }
-                    }),
-                    _vm._v(" " + _vm._s(item.name) + " -- "),
-                    _c("span", [_vm._v(_vm._s(item.memo))])
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _vm._v("締切：" + _vm._s(task.dead_line))
-            ])
+                    }
+                  }),
+                  _vm._v(" " + _vm._s(item.name) + " -- "),
+                  _c("span", [_vm._v(_vm._s(item.memo))])
+                ])
+              }),
+              0
+            )
           ]
         )
-      }),
-      0
-    )
-  ])
+      ])
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50803,6 +50862,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -51011,220 +51073,213 @@ var render = function() {
       "div",
       { staticClass: "forms" },
       _vm._l(_vm.columns, function(column, index) {
-        return _c("div", { key: index }, [
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
-                  expression: "labelColumns.indexOf(column.DATA_TYPE) != -1"
-                }
-              ]
-            },
-            [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
-          ),
-          _vm._v(" "),
-          _vm.setInputType(column.DATA_TYPE) === "checkbox" &&
-          (column.COLUMN_KEY == "" &&
-            _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-            ? _c("input", {
+        return _c(
+          "div",
+          { key: index },
+          [
+            _c(
+              "span",
+              {
                 directives: [
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    expression: "postObject[column.COLUMN_NAME]"
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
+                    expression: "labelColumns.indexOf(column.DATA_TYPE) != -1"
                   }
-                ],
-                attrs: {
-                  placeholder: _vm.setPlaceholder(column),
-                  type: "checkbox"
-                },
-                domProps: {
-                  checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                    ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                    : _vm.postObject[column.COLUMN_NAME]
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.postObject[column.COLUMN_NAME],
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            $$a.concat([$$v])
-                          )
+                ]
+              },
+              [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+            ),
+            _vm._v(" "),
+            _vm.setInputType(column.DATA_TYPE) === "checkbox" &&
+            (column.COLUMN_KEY == "" &&
+              _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      expression: "postObject[column.COLUMN_NAME]"
+                    }
+                  ],
+                  attrs: {
+                    placeholder: _vm.setPlaceholder(column),
+                    type: "checkbox"
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
+                      ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
+                      : _vm.postObject[column.COLUMN_NAME]
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.postObject[column.COLUMN_NAME],
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.postObject,
+                              column.COLUMN_NAME,
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.postObject,
+                              column.COLUMN_NAME,
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
                       } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
+                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                       }
-                    } else {
-                      _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                     }
                   }
-                }
-              })
-            : _vm.setInputType(column.DATA_TYPE) === "radio" &&
-              (column.COLUMN_KEY == "" &&
-                _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-            ? _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    expression: "postObject[column.COLUMN_NAME]"
-                  }
-                ],
-                attrs: {
-                  placeholder: _vm.setPlaceholder(column),
-                  type: "radio"
-                },
-                domProps: {
-                  checked: _vm._q(_vm.postObject[column.COLUMN_NAME], null)
-                },
-                on: {
-                  change: function($event) {
-                    return _vm.$set(_vm.postObject, column.COLUMN_NAME, null)
-                  }
-                }
-              })
-            : column.COLUMN_KEY == "" &&
-              _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
-            ? _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    expression: "postObject[column.COLUMN_NAME]"
-                  }
-                ],
-                attrs: {
-                  placeholder: _vm.setPlaceholder(column),
-                  type: _vm.setInputType(column.DATA_TYPE)
-                },
-                domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                })
+              : _vm.setInputType(column.DATA_TYPE) === "radio" &&
+                (column.COLUMN_KEY == "" &&
+                  _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      expression: "postObject[column.COLUMN_NAME]"
                     }
-                    _vm.$set(
-                      _vm.postObject,
-                      column.COLUMN_NAME,
-                      $event.target.value
-                    )
+                  ],
+                  attrs: {
+                    placeholder: _vm.setPlaceholder(column),
+                    type: "radio"
+                  },
+                  domProps: {
+                    checked: _vm._q(_vm.postObject[column.COLUMN_NAME], null)
+                  },
+                  on: {
+                    change: function($event) {
+                      return _vm.$set(_vm.postObject, column.COLUMN_NAME, null)
+                    }
                   }
-                }
-              })
-            : column.COLUMN_TYPE == "tinyint(4)"
-            ? _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
+                })
+              : column.COLUMN_KEY == "" &&
+                _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      expression: "postObject[column.COLUMN_NAME]"
+                    }
+                  ],
+                  attrs: {
+                    placeholder: _vm.setPlaceholder(column),
+                    type: _vm.setInputType(column.DATA_TYPE)
+                  },
+                  domProps: { value: _vm.postObject[column.COLUMN_NAME] },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.postObject,
+                        column.COLUMN_NAME,
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              : column.COLUMN_TYPE == "tinyint(4)"
+              ? _c("star-range", {
+                  model: {
                     value: _vm.postObject[column.COLUMN_NAME],
+                    callback: function($$v) {
+                      _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                    },
                     expression: "postObject[column.COLUMN_NAME]"
                   }
-                ],
-                attrs: { type: "range", min: "1", max: "5" },
-                domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                on: {
-                  __r: function($event) {
-                    return _vm.$set(
-                      _vm.postObject,
-                      column.COLUMN_NAME,
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            : column.COLUMN_TYPE == "tinyint(1)"
-            ? _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    expression: "postObject[column.COLUMN_NAME]"
-                  }
-                ],
-                attrs: { type: "checkbox" },
-                domProps: {
-                  checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                    ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                    : _vm.postObject[column.COLUMN_NAME]
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.postObject[column.COLUMN_NAME],
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 &&
-                          _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            $$a.concat([$$v])
-                          )
+                })
+              : column.COLUMN_TYPE == "tinyint(1)"
+              ? _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      expression: "postObject[column.COLUMN_NAME]"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
+                      ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
+                      : _vm.postObject[column.COLUMN_NAME]
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.postObject[column.COLUMN_NAME],
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.postObject,
+                              column.COLUMN_NAME,
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.postObject,
+                              column.COLUMN_NAME,
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
                       } else {
-                        $$i > -1 &&
-                          _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                          )
+                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                       }
-                    } else {
-                      _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                     }
                   }
-                }
-              })
-            : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
-            ? _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    expression: "postObject[column.COLUMN_NAME]"
-                  }
-                ],
-                attrs: { placeholder: _vm.setPlaceholder(column) },
-                domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                })
+              : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
+              ? _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      expression: "postObject[column.COLUMN_NAME]"
                     }
-                    _vm.$set(
-                      _vm.postObject,
-                      column.COLUMN_NAME,
-                      $event.target.value
-                    )
+                  ],
+                  attrs: { placeholder: _vm.setPlaceholder(column) },
+                  domProps: { value: _vm.postObject[column.COLUMN_NAME] },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.postObject,
+                        column.COLUMN_NAME,
+                        $event.target.value
+                      )
+                    }
                   }
-                }
-              })
-            : _vm._e()
-        ])
+                })
+              : _vm._e()
+          ],
+          1
+        )
       }),
       0
     ),
@@ -51346,7 +51401,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51357,7 +51412,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -51391,7 +51445,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("star-range")], 1)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "modal",
+        { ref: "modal" },
+        [_c("versatile-form", { attrs: { table: "tasks" } })],
+        1
+      ),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.openModal } }, [_vm._v("modal")])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

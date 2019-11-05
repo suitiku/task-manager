@@ -1,19 +1,22 @@
 <!--万能フォーム生成コンポーネント-->
 <!--テーブル名から入力フォームを生成する-->
 <!--新規作成と編集-->
+
 <!--今後の改修-->
-<!--①UIコンポーネントから生成する-->
-<!--②バリデーションの追加-->
-<!--③editRecordの追加-->
-<!--④処理成功ダイアログ追加-->
-<!--⑤外部キーの値選択処理追加-->
+<!--1 UIコンポーネントから生成する-->
+<!--2 バリデーションの追加-->
+<!--3 editRecordの追加-->
+<!--4 処理成功ダイアログ追加-->
+<!--5 外部キーの値選択処理追加-->
+<!--6 項目リセット（リセットボタンとリセットメソッド-->
+
 <template>
     <div class="container">
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
                 <input v-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
-                <input v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" type="range" min="1" max="5">
+                <star-range v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" />
                 <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
                 <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
             </div>

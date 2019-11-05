@@ -1,11 +1,10 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <star-range />
-        <!--<modal ref="modal">-->
-        <!--    <versatile-form table="tasks" />-->
-        <!--</modal>-->
-        <!--<button v-on:click="openModal">modal</button>-->
+        <modal ref="modal">
+            <versatile-form table="tasks" />
+        </modal>
+        <button v-on:click="openModal">modal</button>
     </div>
 </template>
 

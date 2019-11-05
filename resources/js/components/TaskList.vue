@@ -1,22 +1,39 @@
+<!--タスク一覧-->
+
+<!--今後の改修ポイント-->
+<!--1 並び替え（優先度、難易度、締切）-->
+<!--2 詳細ボタン-->
+<!--3 編集ボタン-->
+<!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
+<!--5 アニメーション周りを見直し-->
 <template>
     <div class="container">
-        <div class="row justify-content-start align-items-baseline">
-            <div class="card-wrapper card card-default col-md-3 m-2" v-for="(task,index) in tasks">
-                <div class="completed" v-show="checkboxes[index]"></div>
-                <div class="completed-mark" v-show="checkboxes[index]">completed!</div>
-                <div class="card-header"><input type="checkbox" v-on:change="checkTask(task.id,index)">　//カテゴリとか//</div>
-                <div class="card-body">
-                    <h4 class="card-title">{{task.name}}</h4>
-                    <p>{{task.overview}}</p>
-                    <div class="items">
-                        <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)">
-                            <input type="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
-                        </p> 
-                    </div>
+        <div v-for="(task,index) in tasks" v-bind:class="wrapperClass[index]">
+            <div class="completed" v-show="checkboxes[index]"></div>
+            <div class="completed-mark" v-show="checkboxes[index]">completed!</div>
+            <div class="task">
+                <span>
+                    <input type="checkbox" v-on:change="checkTask(task.id,index)">
+                    <span class="headline" v-on:click="openDetail(index)">{{task.name}}</span>
+                </span>
+                <span>
+                    <span class="label">優先度</span>
+                    <i class="fas fa-star" v-for="p in task.priority"></i>
+                    <i class="far fa-star" v-for="np in (5 - task.priority)"></i>
+                    <span class="label">締切</span>
+                    <span>{{task.dead_line}}</span>
+                </span>
+            </div>
+            <div v-show="details[index]" class="detail">
+                <p>{{task.overview}}</p>
+                <div class="items">
+                    <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)">
+                        <input type="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
+                    </p>
                 </div>
-                <div class="card-footer">締切：{{task.dead_line}}</div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -26,6 +43,8 @@
             return {
                 checkboxes:[],
                 tasks:[],
+                details:[],
+                wrapperClass:[]
             }  
         },
         mounted() {
@@ -42,8 +61,15 @@
                     let stateId = this.tasks[index].states_tasks[stateIndex].id
                     let check = stateId == 3 ? true : false
                     this.checkboxes.push(check)
+                    this.details.push(false)
+                    this.wrapperClass.push('task-wrapper')
                 }
                 console.log(this.tasks)
+            },
+            openDetail:function(index){
+                this.wrapperClass[index] = this.details[index] ? 'task-wrapper' : 'task-wrapper detail-active'
+                this.details.splice(index,1,!this.details[index])
+                
             },
             checkTask:async function(taskId,index){
                 if(event.target.checked == true){
@@ -76,17 +102,46 @@
     }
 </script>
 <style>
-    span {
-        font-size:50%;
-    }
-    .card-wrapper{
+    .task-wrapper {
+        position:relative;
+        width:100%;
+        max-height:2.5em;
+        margin:0.5em;
         overflow:hidden;
+        border:1px solid black;
+        border-radius:0.2em;
+        transition:max-height 1s;
     }
+    .task {
+        padding:0.5em;
+        display:flex;
+        justify-content:space-between;
+    }
+    .headline {
+        font-weight:bold;
+        cursor:pointer;
+    }
+    .label {
+        font-size:50%;
+        border-radius:0.2em;
+        background-color:gainsboro;
+        padding:0.1em;
+        margin:0 0.2em;
+    }
+    .detail {
+        width:100%;
+        /*height:100%;*/
+        padding:2em;
+        background-color:gainsboro;
+    }
+    .detail-active {
+        max-height:1000px;
+    }
+    
     .completed {
-        width:110%;
-        height:100%;
+        width:120%;
+        height:120%;
         position:absolute;
-        left:-10%;
         z-index:2;
         background-color:grey;
         opacity:0.5;
@@ -94,25 +149,24 @@
     }
     @keyframes completed {
         0% {
-            height:0%;
+            width:0%;
         }
         100% {
-           height:100%; 
+            width:100%; 
         }
     }
     .completed-mark {
-        padding:0.5em;
+        padding:0.4em;
         color:red;
         position:absolute;
-        top:50%;
-        left:25%;
-        /*left:5%;*/
+        /*top:50%;*/
+        left:calc(50% - 2em);
         border:solid white 2px;
         background-color:white;
-        border-radius:0.3em;
+        /*border-radius:0.3em;*/
         z-index:3;
         opacity:1.0;
-        transform:rotate(10deg);
+        /*transform:rotate(10deg);*/
         font-weight:bold;
         animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;
     }
