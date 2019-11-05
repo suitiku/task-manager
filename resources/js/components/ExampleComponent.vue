@@ -26,3 +26,6 @@
         }
     }
 </script>
+<style scoped>
+    
+</style>
