@@ -49685,6 +49685,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         newTask: function newTask(newVal, oldVal) {
             if (newVal.id) {
                 this.tasks.push(newVal);
+                this.wrapperClass.push('task-wrapper');
             }
         }
     },

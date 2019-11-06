@@ -12,7 +12,6 @@
 
 <template>
     <div class="container">
-        {{postObject}}
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>

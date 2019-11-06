@@ -62,6 +62,7 @@
             newTask:function(newVal,oldVal){
                 if(newVal.id){
                     this.tasks.push(newVal)
+                    this.wrapperClass.push('task-wrapper')
                 }
             }  
         },
