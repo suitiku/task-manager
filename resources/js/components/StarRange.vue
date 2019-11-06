@@ -21,7 +21,11 @@
             }
         },
         watch:{
-            
+            value:function(){
+                if(this.value == ''){
+                    this.stared = 1
+                }
+            }
         },
         created(){
             this.init()
@@ -34,7 +38,6 @@
                 this.stared = 1
             },
             updateValue:function(index){
-                console.log(index)
                 this.stared = index
                 this.$emit('input',index)
             }

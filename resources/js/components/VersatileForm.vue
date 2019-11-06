@@ -12,6 +12,7 @@
 
 <template>
     <div class="container">
+        {{postObject}}
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
@@ -21,8 +22,11 @@
                 <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
             </div>
         </div>
-        <button v-if="id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createRecord">登録</button>
-        <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editRecord">編集</button>
+        <div class="buttons">
+            <button v-if="id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createRecord">登録</button>
+            <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editRecord">編集</button>
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="resetForm">項目をリセット</button>
+        </div>
     </div>
 </template>
 
@@ -77,6 +81,11 @@
                         return 'date'
                 }
             },
+            resetForm:function(){
+                for(let key of Object.keys(this.postObject)){
+                    this.$set(this.postObject,key,'')
+                }
+            },
             setPlaceholder:function(column){
                 return column.COLUMN_COMMENT || column.COLUMN_NAME  
             },
@@ -98,5 +107,9 @@
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
+    }
+    .buttons {
+        display:flex;
+        justify-content:space-around;
     }
 </style>

@@ -110,7 +110,7 @@
         overflow:hidden;
         border:1px solid black;
         border-radius:0.2em;
-        transition:max-height 1s;
+        transition:max-height 2s ease;
     }
     .task {
         padding:0.5em;
@@ -130,7 +130,6 @@
     }
     .detail {
         width:100%;
-        /*height:100%;*/
         padding:2em;
         background-color:gainsboro;
     }

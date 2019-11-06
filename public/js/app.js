@@ -49604,7 +49604,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.container {\n    width:80%;\n}\n.task-wrapper {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    margin:0.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:max-height 1s;\n    transition:max-height 1s;\n}\n.task {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.headline {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail {\n    width:100%;\n    /*height:100%;*/\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active {\n    max-height:1000px;\n}\n.completed {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.task-wrapper {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    margin:0.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:max-height 2s ease;\n    transition:max-height 2s ease;\n}\n.task {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.headline {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active {\n    max-height:1000px;\n}\n.completed {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed 0.3s ease 0s 1;\n            animation:completed 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n            animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -50845,7 +50845,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n", ""]);
 
 // exports
 
@@ -50862,6 +50862,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -51006,6 +51010,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return 'date';
             }
         },
+        resetForm: function resetForm() {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = Object.keys(this.postObject)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var key = _step2.value;
+
+                    this.$set(this.postObject, key, '');
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        },
         setPlaceholder: function setPlaceholder(column) {
             return column.COLUMN_COMMENT || column.COLUMN_NAME;
         },
@@ -51069,6 +51099,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm._v("\n    " + _vm._s(_vm.postObject) + "\n    "),
     _c(
       "div",
       { staticClass: "forms" },
@@ -51284,25 +51315,36 @@ var render = function() {
       0
     ),
     _vm._v(" "),
-    _vm.id == ""
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-primary mx-auto d-block",
-            attrs: { type: "button" },
-            on: { click: _vm.createRecord }
-          },
-          [_vm._v("登録")]
-        )
-      : _c(
-          "button",
-          {
-            staticClass: "btn btn-outline-primary mx-auto d-block",
-            attrs: { type: "button" },
-            on: { click: _vm.editRecord }
-          },
-          [_vm._v("編集")]
-        )
+    _c("div", { staticClass: "buttons" }, [
+      _vm.id == ""
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary mx-auto d-block",
+              attrs: { type: "button" },
+              on: { click: _vm.createRecord }
+            },
+            [_vm._v("登録")]
+          )
+        : _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary mx-auto d-block",
+              attrs: { type: "button" },
+              on: { click: _vm.editRecord }
+            },
+            [_vm._v("編集")]
+          ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-primary mx-auto d-block",
+          on: { click: _vm.resetForm }
+        },
+        [_vm._v("項目をリセット")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -51766,7 +51808,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: false
         }
     },
-    watch: {},
+    watch: {
+        value: function value() {
+            if (this.value == '') {
+                this.stared = 0;
+            }
+        }
+    },
     created: function created() {
         this.init();
     },
@@ -51779,7 +51827,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.stared = 1;
         },
         updateValue: function updateValue(index) {
-            console.log(index);
             this.stared = index;
             this.$emit('input', index);
         }
