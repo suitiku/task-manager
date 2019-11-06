@@ -24,6 +24,7 @@
             value:function(){
                 if(this.value == ''){
                     this.stared = 1
+                    this.$emit('input',1)
                 }
             }
         },
@@ -36,6 +37,7 @@
         methods: {
             init:function(){
                 this.stared = 1
+                this.$emit('input',1)
             },
             updateValue:function(index){
                 this.stared = index

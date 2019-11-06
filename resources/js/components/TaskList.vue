@@ -8,6 +8,10 @@
 <!--5 アニメーション周りを見直し-->
 <template>
     <div class="container">
+        <modal ref="modal" v-model="modal">
+            <versatile-form v-model="newTask" ref="form" table="tasks" />
+        </modal>
+        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
         <div v-for="(task,index) in tasks" v-bind:class="wrapperClass[index]">
             <div class="completed" v-show="checkboxes[index]"></div>
             <div class="completed-mark" v-show="checkboxes[index]">completed!</div>
@@ -41,16 +45,25 @@
     export default {
         data:function(){
             return {
+                modal:false,
                 checkboxes:[],
                 tasks:[],
                 details:[],
-                wrapperClass:[]
+                wrapperClass:[],
+                newTask:{},
             }  
         },
         mounted() {
         },
         created() {
             this.fetchTasks();
+        },
+        watch: {
+            newTask:function(newVal,oldVal){
+                if(newVal.id){
+                    this.tasks.push(newVal)
+                }
+            }  
         },
         methods: {
             fetchTasks: async function(){
@@ -97,6 +110,10 @@
             },
             setItemClass:function(is_checked){
                 return is_checked == true ? 'item-completed' : ''
+            },
+            addTask:function(){
+                this.$refs.form.resetForm()
+                this.$refs.modal.openModal()
             }
         }
     }

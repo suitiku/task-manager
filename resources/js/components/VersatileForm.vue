@@ -92,6 +92,7 @@
             createRecord: async function(){
                 let result = await axios.post('/api/' + this.table,this.postObject)
                 console.log(result.data)
+                this.$emit('input',result.data) //挿入したデータを送出
             },
             editRecord: async function(){
                 

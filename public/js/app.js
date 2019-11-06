@@ -49660,14 +49660,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            modal: false,
             checkboxes: [],
             tasks: [],
             details: [],
-            wrapperClass: []
+            wrapperClass: [],
+            newTask: {}
         };
     },
     mounted: function mounted() {},
@@ -49675,6 +49681,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         this.fetchTasks();
     },
 
+    watch: {
+        newTask: function newTask(newVal, oldVal) {
+            if (newVal.id) {
+                this.tasks.push(newVal);
+            }
+        }
+    },
     methods: {
         fetchTasks: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -49838,6 +49851,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         setItemClass: function setItemClass(is_checked) {
             return is_checked == true ? 'item-completed' : '';
+        },
+        addTask: function addTask() {
+            this.$refs.form.resetForm();
+            this.$refs.modal.openModal();
         }
     }
 });
@@ -50627,23 +50644,47 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.tasks, function(task, index) {
-      return _c("div", { class: _vm.wrapperClass[index] }, [
-        _c("div", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.checkboxes[index],
-              expression: "checkboxes[index]"
+    [
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [
+          _c("versatile-form", {
+            ref: "form",
+            attrs: { table: "tasks" },
+            model: {
+              value: _vm.newTask,
+              callback: function($$v) {
+                _vm.newTask = $$v
+              },
+              expression: "newTask"
             }
-          ],
-          staticClass: "completed"
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-primary mx-auto d-block",
+          on: { click: _vm.addTask }
+        },
+        [_vm._v("タスクを追加")]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.tasks, function(task, index) {
+        return _c("div", { class: _vm.wrapperClass[index] }, [
+          _c("div", {
             directives: [
               {
                 name: "show",
@@ -50652,101 +50693,116 @@ var render = function() {
                 expression: "checkboxes[index]"
               }
             ],
-            staticClass: "completed-mark"
-          },
-          [_vm._v("completed!")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "task" }, [
-          _c("span", [
-            _c("input", {
-              attrs: { type: "checkbox" },
-              on: {
-                change: function($event) {
-                  return _vm.checkTask(task.id, index)
+            staticClass: "completed"
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.checkboxes[index],
+                  expression: "checkboxes[index]"
                 }
-              }
-            }),
+              ],
+              staticClass: "completed-mark"
+            },
+            [_vm._v("completed!")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "task" }, [
+            _c("span", [
+              _c("input", {
+                attrs: { type: "checkbox" },
+                on: {
+                  change: function($event) {
+                    return _vm.checkTask(task.id, index)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  staticClass: "headline",
+                  on: {
+                    click: function($event) {
+                      return _vm.openDetail(index)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(task.name))]
+              )
+            ]),
             _vm._v(" "),
             _c(
               "span",
-              {
-                staticClass: "headline",
-                on: {
-                  click: function($event) {
-                    return _vm.openDetail(index)
-                  }
-                }
-              },
-              [_vm._v(_vm._s(task.name))]
+              [
+                _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+                _vm._v(" "),
+                _vm._l(task.priority, function(p) {
+                  return _c("i", { staticClass: "fas fa-star" })
+                }),
+                _vm._v(" "),
+                _vm._l(5 - task.priority, function(np) {
+                  return _c("i", { staticClass: "far fa-star" })
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "label" }, [_vm._v("締切")]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(task.dead_line))])
+              ],
+              2
             )
           ]),
           _vm._v(" "),
           _c(
-            "span",
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.details[index],
+                  expression: "details[index]"
+                }
+              ],
+              staticClass: "detail"
+            },
             [
-              _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+              _c("p", [_vm._v(_vm._s(task.overview))]),
               _vm._v(" "),
-              _vm._l(task.priority, function(p) {
-                return _c("i", { staticClass: "fas fa-star" })
-              }),
-              _vm._v(" "),
-              _vm._l(5 - task.priority, function(np) {
-                return _c("i", { staticClass: "far fa-star" })
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "label" }, [_vm._v("締切")]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(task.dead_line))])
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.details[index],
-                expression: "details[index]"
-              }
-            ],
-            staticClass: "detail"
-          },
-          [
-            _c("p", [_vm._v(_vm._s(task.overview))]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "items" },
-              _vm._l(task.items, function(item) {
-                return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-                  _c("input", {
-                    attrs: {
-                      type: "checkbox",
-                      disabled: _vm.setItemDisabled(item.is_checked)
-                    },
-                    domProps: { checked: item.is_checked },
-                    on: {
-                      change: function($event) {
-                        return _vm.checkItem(item.id)
+              _c(
+                "div",
+                { staticClass: "items" },
+                _vm._l(task.items, function(item) {
+                  return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                    _c("input", {
+                      attrs: {
+                        type: "checkbox",
+                        disabled: _vm.setItemDisabled(item.is_checked)
+                      },
+                      domProps: { checked: item.is_checked },
+                      on: {
+                        change: function($event) {
+                          return _vm.checkItem(item.id)
+                        }
                       }
-                    }
-                  }),
-                  _vm._v(" " + _vm._s(item.name) + " -- "),
-                  _c("span", [_vm._v(_vm._s(item.memo))])
-                ])
-              }),
-              0
-            )
-          ]
-        )
-      ])
-    }),
-    0
+                    }),
+                    _vm._v(" " + _vm._s(item.name) + " -- "),
+                    _c("span", [_vm._v(_vm._s(item.memo))])
+                  ])
+                }),
+                0
+              )
+            ]
+          )
+        ])
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -51053,8 +51109,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context2.sent;
 
                                 console.log(result.data);
+                                this.$emit('input', result.data); //挿入したデータを送出
 
-                            case 4:
+                            case 5:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -51599,7 +51656,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.wrapper[data-v-53ab54d2] {\n    -webkit-transition:opacity 0.5s,visibility 0.5s;\n    transition:opacity 0.5s,visibility 0.5s;\n    opacity:0;\n    visibility:hidden;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(50% + 0.5em);\n    top:-0.5em;\n    width:2em;\n    height:2em;\n    /*border:3px solid brack;*/\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:50%;\n    z-index:10;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    left:-50%;\n    top:-50%;\n    width:200%;\n    height:150%;\n    z-index:5;\n    background-color:grey;\n    opacity:0.5;\n}\n", ""]);
+exports.push([module.i, "\n.wrapper[data-v-53ab54d2] {\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(50% + 0.5em);\n    top:-0.5em;\n    width:2em;\n    height:2em;\n    /*border:3px solid brack;*/\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:50%;\n    z-index:10;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    left:-50%;\n    top:-50%;\n    width:200%;\n    height:150%;\n    z-index:5;\n    background-color:grey;\n    opacity:0.5;\n}\n", ""]);
 
 // exports
 
@@ -51636,9 +51693,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         openModal: function openModal() {
             this.modalClass = 'wrapper modal-active';
+            this.$emit('input', true);
         },
         closeModal: function closeModal() {
             this.modalClass = 'wrapper';
+            this.$emit('input', false);
         }
     }
 });
@@ -51811,7 +51870,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         value: function value() {
             if (this.value == '') {
-                this.stared = 0;
+                this.stared = 1;
+                this.$emit('input', 1);
             }
         }
     },
@@ -51825,6 +51885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         init: function init() {
             this.stared = 1;
+            this.$emit('input', 1);
         },
         updateValue: function updateValue(index) {
             this.stared = index;

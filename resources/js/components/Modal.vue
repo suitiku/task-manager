@@ -28,16 +28,18 @@
         methods: {
             openModal:function(){
                 this.modalClass = 'wrapper modal-active'
+                this.$emit('input',true)
             },
             closeModal:function(){
                 this.modalClass = 'wrapper'
+                this.$emit('input',false)
             }
         }
     }
 </script>
 <style scoped>
     .wrapper {
-        transition:opacity 0.5s,visibility 0.5s;
+        transition:opacity 0.3s,visibility 0.3s;
         opacity:0;
         visibility:hidden;
         display:flex;
