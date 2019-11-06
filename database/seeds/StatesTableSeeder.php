@@ -12,10 +12,13 @@ class StatesTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => '実行中','overview' => 'アクティブな状態'],
-            ['name' => '対応待ち','overview' => '他者からの反応を待っている状態'],
-            ['name' => '完了','overview' => 'タスクが完了した状態'],
-            ['name' => 'タスク移動','overview' => '他の人に投げた状態'],
+            ['name' => '作成','overview' => '作成された直後'], //1
+            ['name' => '実行中','overview' => 'アクティブな状態'], //2
+            ['name' => '対応待ち','overview' => '他者からの反応を待っている状態'], //3
+            ['name' => '完了','overview' => 'タスクが完了した状態'], //4
+            ['name' => 'タスク移動','overview' => '他の人に投げた状態'], //5
+            ['name' => '未完了','overview' => '完了できずに終了'], //6
+            ['name' => '編集','overview' => 'タスクの内容を変更'], //7
         ];
         
         foreach($data as $value){

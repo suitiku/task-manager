@@ -41,6 +41,7 @@ class TasksController extends Controller
     {
         $task = new Task;
         $task->fill($request->all())->save();
+        $task->statesTasks()->attach(1); //作成直後の状態を添付
         return $task;
     }
 
@@ -77,6 +78,7 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
         $task->fill($request->all())->save();
+        $task->statesTasks()->attach(7); //編集状態を記録
         return $task;
     }
 
