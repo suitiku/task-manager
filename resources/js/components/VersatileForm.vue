@@ -8,7 +8,6 @@
 <!--3 editRecordの追加-->
 <!--4 処理成功ダイアログ追加-->
 <!--5 外部キーの値選択処理追加-->
-<!--6 項目リセット（リセットボタンとリセットメソッド-->
 
 <template>
     <div class="container">
@@ -33,7 +32,7 @@
     export default {
         data:function(){
             return {
-                id:'', //編集用id
+                id:this.id_props, //編集用id
                 columns:[],
                 postObject:{}, //送信用
                 
@@ -48,10 +47,15 @@
         },
         props: {
             table: {
-                Type:String,
+                type:String,
                 default:'',
                 required:true
-            }  
+            },
+            id_props: { //親コンポーネントから編集対象レコードを指定するためのid
+                type:[Number,String],
+                default:'',
+                required:false
+            }
         },
         mounted() {
             this.init()
@@ -90,11 +94,18 @@
             },
             createRecord: async function(){
                 let result = await axios.post('/api/' + this.table,this.postObject)
-                console.log(result.data)
-                this.$emit('input',result.data) //挿入したデータを送出
+                if(result.data){
+                    console.log(result.data)
+                    this.$emit('input',result.data) //挿入したデータを送出
+                    this.id = result.data.id //編集用idをセット
+                }
             },
             editRecord: async function(){
-                
+                let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
+                if(result.data){
+                    console.log(result.data)
+                    this.$emit('input',result.data)
+                }
             },
         },
     }

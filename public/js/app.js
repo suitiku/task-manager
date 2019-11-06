@@ -49664,6 +49664,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49673,7 +49674,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tasks: [],
             details: [],
             wrapperClass: [],
-            newTask: {}
+            newTask: {},
+            ids: [] //編集確認用のtask.idの配列
         };
     },
     mounted: function mounted() {},
@@ -49683,9 +49685,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     watch: {
         newTask: function newTask(newVal, oldVal) {
-            if (newVal.id) {
+            if (!newVal.id) {
+                return;
+            } //newValにidがなければ終了
+            if (this.ids.indexOf(newVal.id) == -1) {
+                //新規登録
                 this.tasks.push(newVal);
                 this.wrapperClass.push('task-wrapper');
+                this.ids.push(newVal.id);
+            } else {
+                //編集->更新
+                var index = this.tasks.findIndex(function (task) {
+                    return task.id == newVal.id;
+                });
+                this.tasks.splice(index, 1, newVal);
             }
         }
     },
@@ -49718,6 +49731,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.checkboxes.push(check);
                                     this.details.push(false);
                                     this.wrapperClass.push('task-wrapper');
+                                    this.ids.push(this.tasks[index].id);
                                 }
                                 _context.next = 15;
                                 break;
@@ -50646,6 +50660,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _vm._v("\n    " + _vm._s(_vm.ids) + "\n    "),
       _c(
         "modal",
         {
@@ -50949,13 +50964,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            id: '', //編集用id
+            id: this.id_props, //編集用id
             columns: [],
             postObject: {}, //送信用
 
@@ -50970,9 +50983,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     props: {
         table: {
-            Type: String,
+            type: String,
             default: '',
             required: true
+        },
+        id_props: { //親コンポーネントから編集対象レコードを指定するためのid
+            type: [Number, String],
+            default: '',
+            required: false
         }
     },
     mounted: function mounted() {
@@ -51109,10 +51127,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 result = _context2.sent;
 
-                                console.log(result.data);
-                                this.$emit('input', result.data); //挿入したデータを送出
+                                if (result.data) {
+                                    console.log(result.data);
+                                    this.$emit('input', result.data); //挿入したデータを送出
+                                    this.id = result.data.id; //編集用idをセット
+                                }
 
-                            case 5:
+                            case 4:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -51128,10 +51149,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         editRecord: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
+                                _context3.next = 2;
+                                return axios.put('/api/' + this.table + '/' + this.id, this.postObject);
+
+                            case 2:
+                                result = _context3.sent;
+
+                                if (result.data) {
+                                    console.log(result.data);
+                                    this.$emit('input', result.data);
+                                }
+
+                            case 4:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -51157,7 +51191,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    " + _vm._s(_vm.postObject) + "\n    "),
     _c(
       "div",
       { staticClass: "forms" },

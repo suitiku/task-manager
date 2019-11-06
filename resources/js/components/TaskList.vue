@@ -8,6 +8,7 @@
 <!--5 アニメーション周りを見直し-->
 <template>
     <div class="container">
+        {{ids}}
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="form" table="tasks" />
         </modal>
@@ -51,6 +52,7 @@
                 details:[],
                 wrapperClass:[],
                 newTask:{},
+                ids:[] //編集確認用のtask.idの配列
             }  
         },
         mounted() {
@@ -60,9 +62,16 @@
         },
         watch: {
             newTask:function(newVal,oldVal){
-                if(newVal.id){
+                if(!newVal.id){return } //newValにidがなければ終了
+                if(this.ids.indexOf(newVal.id) == -1){ //新規登録
                     this.tasks.push(newVal)
                     this.wrapperClass.push('task-wrapper')
+                    this.ids.push(newVal.id)
+                }else{                                 //編集->更新
+                    let index = this.tasks.findIndex((task) => {
+                        return (task.id == newVal.id)
+                    })
+                    this.tasks.splice(index,1,newVal)
                 }
             }  
         },
@@ -77,6 +86,7 @@
                     this.checkboxes.push(check)
                     this.details.push(false)
                     this.wrapperClass.push('task-wrapper')
+                    this.ids.push(this.tasks[index].id)
                 }
                 console.log(this.tasks)
             },
