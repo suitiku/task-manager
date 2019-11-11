@@ -8,7 +8,6 @@
 <!--5 アニメーション周りを見直し-->
 <template>
     <div class="container">
-        {{ids}}
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="form" table="tasks" />
         </modal>

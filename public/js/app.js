@@ -14605,7 +14605,7 @@ module.exports = __webpack_require__(53);
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(76);
+module.exports = __webpack_require__(81);
 
 
 /***/ }),
@@ -14635,6 +14635,7 @@ Vue.component('versatile-form', __webpack_require__(56));
 Vue.component('test', __webpack_require__(61));
 Vue.component('modal', __webpack_require__(66));
 Vue.component('star-range', __webpack_require__(71));
+Vue.component('check-box', __webpack_require__(76));
 
 var app = new Vue({
   el: '#app'
@@ -49664,7 +49665,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50660,7 +50660,6 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.ids) + "\n    "),
       _c(
         "modal",
         {
@@ -51534,7 +51533,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51555,10 +51554,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            test: false
+        };
     },
     mounted: function mounted() {},
     created: function created() {},
@@ -51582,14 +51585,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c(
-        "modal",
-        { ref: "modal" },
-        [_c("versatile-form", { attrs: { table: "tasks" } })],
-        1
-      ),
-      _vm._v(" "),
-      _c("button", { on: { click: _vm.openModal } }, [_vm._v("modal")])
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("check-box", {
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      })
     ],
     1
   )
@@ -51977,6 +51982,183 @@ if (false) {
 
 /***/ }),
 /* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(77)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(79)
+/* template */
+var __vue_template__ = __webpack_require__(80)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1ae12f8e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CheckBox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1ae12f8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1ae12f8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(78);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("11fe089e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1ae12f8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CheckBox.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1ae12f8e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CheckBox.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.checkbox[data-v-1ae12f8e] {\n    position:relative;\n    z-index:5;\n    visibility:hidden;\n    background-color:white;\n    width:1.2em;\n    height:1.2em;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 4s;\n    transition:all 4s;\n}\n.checked[data-v-1ae12f8e] {\n    background-color:grey;\n    border-radius:50%;\n}\n.progress[data-v-1ae12f8e] {\n    position:relative;\n    width:2.0em;\n    height:2.0em;\n    /*top:-1.8em;*/\n    /*left:-3px;*/\n    /*border:solid 0.5em black;*/\n    background-color:black;\n    border-radius:50%;\n    /*background-color:rgba(0,0,0,0);*/\n    overflow:hidden;\n    z-index:1;\n}\n.progress[data-v-1ae12f8e]::before {\n    content:'';\n    display:block;\n    position:absolute;\n    top:0;\n    left:-1em;\n    width:2.0em;\n    height:2.0em;\n    background-color:#999;\n    -webkit-transform-origin:right 1em;\n            transform-origin:right 1em;\n    z-index:2;\n    -webkit-animation: rotate-circle-left-data-v-1ae12f8e 2s linear forwards;\n            animation: rotate-circle-left-data-v-1ae12f8e 2s linear forwards;\n}\n@-webkit-keyframes rotate-circle-left-data-v-1ae12f8e {\n0%   { -webkit-transform: rotate(0deg); transform: rotate(0deg);\n}\n50%  { -webkit-transform: rotate(0deg); transform: rotate(0deg);\n}\n100% { -webkit-transform: rotate(180deg); transform: rotate(180deg);\n}\n}\n@keyframes rotate-circle-left-data-v-1ae12f8e {\n0%   { -webkit-transform: rotate(0deg); transform: rotate(0deg);\n}\n50%  { -webkit-transform: rotate(0deg); transform: rotate(0deg);\n}\n100% { -webkit-transform: rotate(180deg); transform: rotate(180deg);\n}\n}\n/*.progress {*/\n/*    animation:progress 4s linear 1;*/\n/*}*/\n/*@keyframes progress {*/\n/*    0% {*/\n/*        width:1.5em;*/\n/*        height:1.5em;*/\n/*        border-radius:50%;*/\n/*        border:none;*/\n/*    }*/\n/*    25% {*/\n/*        border-bottom:1px solid black;*/\n/*    }*/\n/*    50% {*/\n/*        border-bottom:1px solid black;*/\n/*        border-left:1px solid black;*/\n/*    }*/\n/*    75% {*/\n/*        border-bottom:1px solid black;*/\n/*        border-left:1px solid black;*/\n/*        border-top:1px solid black;*/\n/*    }*/\n/*    100% {*/\n/*        border-bottom:1px solid black;*/\n/*        border-left:1px solid black;*/\n/*        border-top:1px solid black;*/\n/*        border-right:1px solid black;*/\n/*        border:1px solid black;*/\n/*        width:1em;*/\n/*        height:1em;*/\n/*        border-radius:0.2em;*/\n    /*}*/\n/*}*/\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            checked: false,
+            boxClass: 'checkbox',
+            checkCount: 0
+        };
+    },
+    watch: {
+        checkCount: function checkCount() {
+            if (this.checkCount == 4) {
+                this.checked = !this.checked;
+                this.$emit('input', this.checked);
+                clearInterval(this.timer);
+                this.checkCount = 0;
+            }
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+
+    methods: {
+        mouseDown: function mouseDown() {
+            var vm = this;
+            this.timer = setInterval(function () {
+                vm.countMinute();
+            }, 1000);
+            this.boxClass = 'checkbox progress checked';
+        },
+        mouseUp: function mouseUp() {
+            this.checkCount = 0; //離すとリセット
+            clearInterval(this.timer);
+            this.boxClass = this.checked ? 'checkbox checked' : 'checkbox';
+        },
+        countMinute: function countMinute() {
+            this.checkCount += 1;
+        }
+    }
+});
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container" }, [
+      _c("div", [_c("div", { staticClass: "progress" })])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1ae12f8e", module.exports)
+  }
+}
+
+/***/ }),
+/* 81 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

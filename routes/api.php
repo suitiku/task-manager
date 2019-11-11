@@ -25,3 +25,4 @@ Route::resource('tasks','Api\TasksController');
 Route::post('state_task','Api\TasksController@insertStateTask');
 Route::resource('states','Api\StatesController');
 Route::resource('items','Api\ItemsController');
+Route::resource('projects','Api\ProjectsController');

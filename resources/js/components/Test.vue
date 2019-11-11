@@ -1,10 +1,12 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <modal ref="modal">
-            <versatile-form table="tasks" />
-        </modal>
-        <button v-on:click="openModal">modal</button>
+        {{test}}
+        <check-box v-model="test"/>
+        <!--<modal ref="modal">-->
+        <!--    <versatile-form table="tasks" />-->
+        <!--</modal>-->
+        <!--<button v-on:click="openModal">modal</button>-->
     </div>
 </template>
 
@@ -12,6 +14,7 @@
     export default {
         data:function(){
             return {
+                test:false
             }  
         },
         mounted() {
