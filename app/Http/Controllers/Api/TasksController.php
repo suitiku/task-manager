@@ -16,6 +16,7 @@ class TasksController extends Controller
     public function index()
     {
         return Task::with([
+                        'project',
                         'items',
                         'statesTasks'
                     ])->get();
@@ -53,7 +54,11 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::find($id);
+        return Task::with([
+                        'project',
+                        'items',
+                        'statesTasks'
+                    ])->find($id);
     }
 
     /**
