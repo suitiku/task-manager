@@ -8,6 +8,11 @@
             <versatile-form v-model="newTask" ref="form" table="tasks" />
         </modal>
         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
+        <div class="sortBox">
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('dead_line')">締切</button>
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>
+        </div>
         <task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index" />
     </div>
 </template>
@@ -50,10 +55,19 @@
             addTask:function(){
                 this.$refs.form.resetForm()
                 this.$refs.modal.openModal()
-            }
+            },
+            sortTask:function(key){
+                this.tasks.sort((a,b) => {
+                    return (a[key] < b[key]) ? -1 : 1
+                })
+            },
         }
     }
 </script>
 <style scoped>
-
+    .sortBox {
+        margin:1em;
+        display:flex;
+        justify-content:center;
+    }
 </style>

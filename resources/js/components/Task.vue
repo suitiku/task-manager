@@ -49,15 +49,15 @@
             }
         },
         watch:{
-            
+            task:function(){
+                this.updateData()
+            }
         },
         created:async function(){
             
         },
         mounted() {
-            let stateIndex = this.task.states_tasks.length - 1
-            let stateId = this.task.states_tasks[stateIndex].id
-            this.checkbox = stateId == 4 ? true : false
+            this.updateData()
         },
         computed:{
             
@@ -94,6 +94,11 @@
                     el.target.parentElement.className = 'item-completed'
                 }
             },
+            updateData:function(){
+                let stateIndex = this.task.states_tasks.length - 1
+                let stateId = this.task.states_tasks[stateIndex].id
+                this.checkbox = stateId == 4 ? true : false
+            }
         }
     }
 </script>

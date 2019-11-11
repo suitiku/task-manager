@@ -50559,7 +50559,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.task-wrapper[data-v-0afd8bae] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    margin:0.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:max-height 2s ease;\n    transition:max-height 2s ease;\n}\n.task[data-v-0afd8bae] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.headline[data-v-0afd8bae] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-0afd8bae] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-0afd8bae] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-0afd8bae] {\n    max-height:1000px;\n}\n.completed[data-v-0afd8bae] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-0afd8bae 0.3s ease 0s 1;\n            animation:completed-data-v-0afd8bae 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-0afd8bae {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-0afd8bae {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-0afd8bae] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-0afd8bae 1s linear 0s 1,completed-mark-data-v-0afd8bae 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-0afd8bae 1s linear 0s 1,completed-mark-data-v-0afd8bae 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-0afd8bae {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-0afd8bae {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-0afd8bae {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-0afd8bae {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-0afd8bae] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n", ""]);
 
 // exports
 
@@ -50595,40 +50595,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
-            checkboxes: [],
             tasks: [],
-            details: [],
-            wrapperClass: [],
             newTask: {},
             ids: [] //編集確認用のtask.idの配列
         };
@@ -50672,16 +50644,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context.sent;
 
                                 this.tasks = result.data;
-                                // for(let index of Object.keys(this.tasks)){
-                                //     let stateIndex = this.tasks[index].states_tasks.length - 1
-                                //     let stateId = this.tasks[index].states_tasks[stateIndex].id
-                                //     let check = stateId == 3 ? true : false
-                                //     this.checkboxes.push(check)
-                                //     this.details.push(false)
-                                //     this.wrapperClass.push('task-wrapper')
-                                //     this.ids.push(this.tasks[index].id)
-                                // }
-                                // console.log(this.tasks)
 
                             case 4:
                             case 'end':
@@ -50697,41 +50659,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTasks;
         }(),
-        // openDetail:function(index){
-        //     this.wrapperClass[index] = this.details[index] ? 'task-wrapper' : 'task-wrapper detail-active'
-        //     this.details.splice(index,1,!this.details[index])
-
-        // },
-        // checkTask:async function(taskId,index){
-        //     if(event.target.checked == true){
-        //         let postObject = {
-        //             task_id:taskId,
-        //             state_id:3
-        //         }
-        //         let result = await axios.post('/api/state_task',postObject)
-        //         if(result.data){
-        //             this.checkboxes.splice(index,1,true)
-        //         }
-        //     }
-        // },
-        // checkItem:async function(itemId){
-        //     let el = event
-        //     let modifyData = {is_checked:true}
-        //     let result = await axios.put('/api/items/' + itemId,modifyData)
-        //     if(result.data){
-        //         el.target.disabled = true
-        //         el.target.parentElement.className = 'item-completed'
-        //     }
-        // },
-        // setItemDisabled:function(is_checked){
-        //     return is_checked || false
-        // },
-        // setItemClass:function(is_checked){
-        //     return is_checked == true ? 'item-completed' : ''
-        // },
         addTask: function addTask() {
             this.$refs.form.resetForm();
             this.$refs.modal.openModal();
+        },
+        sortTask: function sortTask(key) {
+            this.tasks.sort(function (a, b) {
+                return a[key] < b[key] ? -1 : 1;
+            });
         }
     }
 });
@@ -50784,6 +50719,47 @@ var render = function() {
         },
         [_vm._v("タスクを追加")]
       ),
+      _vm._v(" "),
+      _c("div", { staticClass: "sortBox" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mx-auto d-block",
+            on: {
+              click: function($event) {
+                return _vm.sortTask("dead_line")
+              }
+            }
+          },
+          [_vm._v("締切")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mx-auto d-block",
+            on: {
+              click: function($event) {
+                return _vm.sortTask("priority")
+              }
+            }
+          },
+          [_vm._v("優先度")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mx-auto d-block",
+            on: {
+              click: function($event) {
+                return _vm.sortTask("difficulty")
+              }
+            }
+          },
+          [_vm._v("難易度")]
+        )
+      ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
         return _c("task", { key: index, attrs: { task: task } })
@@ -50936,11 +50912,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            // task:{},
             wrapper: 'task-wrapper',
             checkbox: false,
             detail: false
@@ -50953,7 +50931,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: true
         }
     },
-    watch: {},
+    watch: {
+        task: function task() {
+            this.updateData();
+        }
+    },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -50974,9 +50956,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return created;
     }(),
     mounted: function mounted() {
-        var stateIndex = this.task.states_tasks.length - 1;
-        var stateId = this.task.states_tasks[stateIndex].id;
-        this.checkbox = stateId == 4 ? true : false;
+        this.updateData();
     },
 
     computed: {},
@@ -51064,7 +51044,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return checkItem;
-        }()
+        }(),
+        updateData: function updateData() {
+            var stateIndex = this.task.states_tasks.length - 1;
+            var stateId = this.task.states_tasks[stateIndex].id;
+            this.checkbox = stateId == 4 ? true : false;
+        }
     }
 });
 
