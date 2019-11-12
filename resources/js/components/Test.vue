@@ -1,10 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <task-list />
-        <!--<project-list />-->
-        <!--<versatile-form ref="form" table="tasks" v-bind:column_override="override" />-->
-        <!--<project v-bind:project="project" />-->
+        <progress-bar v-bind:denominotor=100 v-bind:numerator="Number(range)" />
+        <input type="range" min=0 max=100 v-model="range">
     </div>
 </template>
 
@@ -12,6 +10,7 @@
     export default {
         data:function(){
             return {
+                range:0,
                 project: {},
                 override:[{project_id:3}]
             }  

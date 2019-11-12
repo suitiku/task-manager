@@ -14605,7 +14605,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(96);
+module.exports = __webpack_require__(101);
 
 
 /***/ }),
@@ -14638,7 +14638,8 @@ Vue.component('versatile-form', __webpack_require__(71));
 Vue.component('test', __webpack_require__(76));
 Vue.component('modal', __webpack_require__(81));
 Vue.component('star-range', __webpack_require__(86));
-Vue.component('check-box', __webpack_require__(91));
+Vue.component('check-box', __webpack_require__(91)); //未実装
+Vue.component('progress-bar', __webpack_require__(96));
 
 var app = new Vue({
   el: '#app'
@@ -52313,7 +52314,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52338,12 +52339,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            range: 0,
             project: {},
             override: [{ project_id: 3 }]
         };
@@ -52390,7 +52390,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("task-list")], 1)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("progress-bar", {
+        attrs: { denominotor: 100, numerator: Number(_vm.range) }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.range,
+            expression: "range"
+          }
+        ],
+        attrs: { type: "range", min: "0", max: "100" },
+        domProps: { value: _vm.range },
+        on: {
+          __r: function($event) {
+            _vm.range = $event.target.value
+          }
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52953,6 +52980,192 @@ if (false) {
 
 /***/ }),
 /* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(97)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(99)
+/* template */
+var __vue_template__ = __webpack_require__(100)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-d4a6a2ea"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ProgressBar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d4a6a2ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-d4a6a2ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(98);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("ceb894f2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d4a6a2ea\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProgressBar.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d4a6a2ea\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ProgressBar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid black;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:black;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {
+        //分母
+        denominotor: {
+            type: Number,
+            default: 0,
+            required: true
+        },
+        //分子
+        numerator: {
+            type: Number,
+            default: 0,
+            required: true
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {
+        console.log(this.numerator / this.denominotor);
+    },
+
+    computed: {
+        width: function width() {
+            return Math.floor(this.numerator / this.denominotor * 100) + '%';
+        },
+        char: function char() {
+            var style = {};
+            if (this.numerator / this.denominotor * 100 < 90) {
+                var width = Math.floor(this.numerator / this.denominotor * 100 + 2) + '%';
+                console.log(width);
+                style = {
+                    left: String(width)
+                };
+            } else {
+                style = {
+                    left: '80%',
+                    color: 'white'
+                };
+            }
+            return style;
+        }
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "bar-wrapper" }, [
+      _c("div", { staticClass: "bar", style: { width: _vm.width } }),
+      _vm._v(" "),
+      _c("span", { staticClass: "char", style: _vm.char }, [
+        _vm._v(_vm._s(_vm.width))
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d4a6a2ea", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
