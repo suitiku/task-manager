@@ -107,7 +107,7 @@
         position:relative;
         width:100%;
         max-height:2.5em;
-        margin:0.5em;
+        /*margin:0.5em;*/
         overflow:hidden;
         border:1px solid black;
         border-radius:0.2em;

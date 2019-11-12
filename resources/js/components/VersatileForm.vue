@@ -5,9 +5,9 @@
 <!--今後の改修-->
 <!--1 UIコンポーネントから生成する-->
 <!--2 バリデーションの追加-->
-<!--3 editRecordの追加-->
 <!--4 処理成功ダイアログ追加-->
 <!--5 外部キーの値選択処理追加-->
+<!--6 外部書き換えpropsの追加-->
 
 <template>
     <div class="container">
@@ -55,13 +55,19 @@
                 type:[Number,String],
                 default:'',
                 required:false
+            },
+            //key:value配列の形式で上書きする。外部キーの設定などに利用
+            column_override: {
+                type:Array,
+                default:{},
+                required:false
             }
         },
         mounted() {
             this.init()
         },
         created() {
-            this.init()
+            // this.init()
         },
         methods: {
             init:async function(){
@@ -72,6 +78,14 @@
                         this.$set(this.postObject,result.data[index].COLUMN_NAME,'')
                     }
                 }
+                //上書き処理がある場合
+                if(this.column_override){
+                    for(let value of this.column_override){
+                        let key = Object.keys(value)
+                        this.$set(this.postObject,key,value[key])
+                    }
+                }
+                console.log(this.postObject)
                 
             },
             setInputType:function(dataType){
@@ -87,6 +101,13 @@
             resetForm:function(){
                 for(let key of Object.keys(this.postObject)){
                     this.$set(this.postObject,key,'')
+                }
+                //上書き処理がある場合
+                if(this.column_override){
+                    for(let value of this.column_override){
+                        let key = Object.keys(value)
+                        this.$set(this.postObject,key,value[key])
+                    }
                 }
             },
             setPlaceholder:function(column){

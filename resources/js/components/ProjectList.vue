@@ -1,7 +1,7 @@
 <!--プロジェクト一覧ページ-->
 <template>
     <div class="container">
-        {{projects}}
+       <project v-for="(project,index) in projects" v-bind:project="project" v-bind:key="index" />
     </div>
 </template>
 

@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('project-list', require('./components/ProjectList.vue'));
+Vue.component('project', require('./components/Project.vue'));
 Vue.component('task-list', require('./components/TaskList.vue'));
 Vue.component('task', require('./components/Task.vue'));
 Vue.component('versatile-form', require('./components/VersatileForm.vue'));

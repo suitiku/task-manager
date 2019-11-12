@@ -51,6 +51,9 @@
             fetchTasks: async function(){
                 let result = await axios.get('/api/tasks')
                 this.tasks = result.data
+                for(let index of Object.keys(this.tasks)){
+                    this.ids.push(this.tasks[index].id)
+                }
             },
             addTask:function(){
                 this.$refs.form.resetForm()

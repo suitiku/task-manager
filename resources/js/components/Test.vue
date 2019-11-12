@@ -1,14 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <task v-bind:task="task" />
-        <!--<project-list />-->
-        <!--{{test}}-->
-        <!--<check-box v-model="test"/>-->
-        <!--<modal ref="modal">-->
-        <!--    <versatile-form table="tasks" />-->
-        <!--</modal>-->
-        <!--<button v-on:click="openModal">modal</button>-->
+        <project-list />
+        <!--<versatile-form ref="form" table="tasks" v-bind:column_override="override" />-->
+        <!--<project v-bind:project="project" />-->
     </div>
 </template>
 
@@ -16,27 +11,17 @@
     export default {
         data:function(){
             return {
-                task: {
-                     id: 1,
-                    project_id: 1,
-                    name: "メール処理",
-                    overview: " ",
-                    priority: 1,
-                    difficulty: 1,
-                    dead_line: "2022-05-01 19:00:00",
-                    created_at: "2019-11-11 13:13:19",
-                    updated_at: "2019-11-11 13:13:19"
-                }
+                project: {},
+                override:[{project_id:3}]
             }  
         },
         mounted() {
         },
-        created() {
+        created:async function() {
+            let result = await axios.get('/api/projects/3')
+            this.project = result.data
         },
         methods: {
-            openModal:function(){
-                this.$refs.modal.openModal()
-            }
         },
     }
 </script>
