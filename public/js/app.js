@@ -50858,7 +50858,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n", ""]);
+exports.push([module.i, "\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.task[data-v-0afd8bae] {\n    margin-bottom:0.2em;\n}\n", ""]);
 
 // exports
 
@@ -51103,7 +51103,11 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
-        return _c("task", { key: index, attrs: { task: task } })
+        return _c("task", {
+          key: index,
+          staticClass: "task",
+          attrs: { task: task }
+        })
       })
     ],
     2
@@ -51205,7 +51209,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    /*margin:0.5em;*/\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.completed[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-e9a53c20] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:-0.3em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.completed[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-e9a53c20] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -51222,6 +51226,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -51403,6 +51408,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "project-label" }, [
+      _vm._v(_vm._s(_vm.task.project.name))
+    ]),
+    _vm._v(" "),
     _c("div", { class: _vm.wrapper }, [
       _c("div", {
         directives: [
@@ -51678,7 +51687,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         //key:value配列の形式で上書きする。外部キーの設定などに利用
         column_override: {
             type: Array,
-            default: {},
             required: false
         }
     },
@@ -52305,7 +52313,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52322,6 +52330,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -52381,7 +52390,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("project-list")], 1)
+  return _c("div", { staticClass: "container" }, [_c("task-list")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true

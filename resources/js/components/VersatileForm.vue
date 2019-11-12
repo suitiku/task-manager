@@ -59,7 +59,6 @@
             //key:value配列の形式で上書きする。外部キーの設定などに利用
             column_override: {
                 type:Array,
-                default:{},
                 required:false
             }
         },

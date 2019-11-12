@@ -4,6 +4,7 @@
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
 <template>
     <div class="container">
+        <div class="project-label">{{task.project.name}}</div>
         <div v-bind:class="wrapper">
             <div class="completed" v-show="checkbox"></div>
             <div class="completed-mark" v-show="checkbox">completed!</div>
@@ -103,11 +104,14 @@
     }
 </script>
 <style scoped>
+    .container {
+        position:relative;
+        width:100%;
+    }
     .task-wrapper {
         position:relative;
         width:100%;
         max-height:2.5em;
-        /*margin:0.5em;*/
         overflow:hidden;
         border:1px solid black;
         border-radius:0.2em;
@@ -117,6 +121,19 @@
         padding:0.5em;
         display:flex;
         justify-content:space-between;
+    }
+    .project-label {
+        position:absolute;
+        z-index:2;
+        height:1.5em;
+        top:-0.3em;
+        left:0.2em;
+        padding:0em 0.2em;
+        background:burlywood;
+        border-radius:0.3em;
+        font-size:30%;
+        overflow:hidden;
+        
     }
     .headline {
         font-weight:bold;

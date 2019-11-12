@@ -1,7 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <project-list />
+        <task-list />
+        <!--<project-list />-->
         <!--<versatile-form ref="form" table="tasks" v-bind:column_override="override" />-->
         <!--<project v-bind:project="project" />-->
     </div>
