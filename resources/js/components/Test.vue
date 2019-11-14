@@ -1,8 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <progress-bar v-bind:denominotor=100 v-bind:numerator="Number(range)" />
-        <input type="range" min=0 max=100 v-model="range">
+        <list-box v-model="range" table="projects" v-bind:columns="columns" is_multiple />
+        {{range}}
     </div>
 </template>
 
@@ -10,9 +10,10 @@
     export default {
         data:function(){
             return {
-                range:0,
+                range:'',
                 project: {},
-                override:[{project_id:3}]
+                override:[{project_id:3}],
+                columns: ['name','dead_line']
             }  
         },
         mounted() {
