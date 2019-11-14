@@ -1,16 +1,14 @@
 <!--モーダル表示コンポーネント-->
 <!--今後の改修ポイント-->
-<!--１．スクロール追従-->
-<!--２．データ追加等でdocumentのheightが変更した場合を検知する-->
 <template>
-    <div v-bind:class="modalClass" v-bind:style="documentHeight">
+    <div v-bind:class="modalClass">
         <div class="modal-wrapper">
             <div class="content-wrapper">
                 <div v-on:click="closeModal()" class="close-button"><i class="fa-2x far fa-times-circle"></i></div>
                 <div class="modal-content"><slot></slot></div>
             </div>
         </div>
-        <div v-on:click="closeModal()" class="modal-background" v-bind:style="documentHeight"></div>
+        <div v-on:click="closeModal()" class="modal-background"></div>
     </div>
 </template>
 
@@ -19,8 +17,8 @@
         data:function(){
             return {
                 modal:true,
-                modalClass:'wrapper',
-                height:0
+                modalClass:'modal-root',
+                width:0
             }  
         },
         watch:{
@@ -32,29 +30,26 @@
         mounted() {
         },
         computed:{
-            documentHeight:function(){
-                let height = this.height + 'px'
-                return {height:height}
-            }  
         },
         methods: {
             openModal:function(){
-                this.height = document.documentElement.scrollHeight
-                this.modalClass = 'wrapper modal-active'
+                this.modalClass = 'modal-root modal-active'
                 this.$emit('input',true)
             },
             closeModal:function(){
-                this.modalClass = 'wrapper'
+                this.modalClass = 'modal-root'
                 this.$emit('input',false)
             }
         }
     }
 </script>
 <style scoped>
-    .wrapper {
-        position:absolute;
+    .modal-root {
+        position:fixed;
         top:0;
         left:0;
+        z-index:5;
+        height:100%;
         width:100%;
         transition:opacity 0.3s,visibility 0.3s;
         opacity:0;
@@ -73,7 +68,7 @@
         align-items:center;
     }
     .content-wrapper {
-        
+        width:50%;
     }
     .close-button {
         position:relative;
@@ -88,13 +83,14 @@
     .modal-content {
         position:relative;
         width:100%;
-        z-index:10;
+        z-index:14;
         padding:1em;
     }
     .modal-background {
         position:absolute;
+        height:100%;
         width:100%;
-        z-index:5;
+        z-index:13;
         background-color:grey;
         opacity:0.5;
     }

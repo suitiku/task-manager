@@ -49610,7 +49610,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49634,11 +49634,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            projects: []
+            modal: false,
+            projects: [],
+            newProject: {}
         };
     },
     watch: {},
@@ -49676,7 +49682,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return fetchProjects;
-        }()
+        }(),
+        addProject: function addProject() {
+            this.$refs.form.resetForm();
+            this.$refs.modal.openModal();
+        }
     }
 });
 
@@ -50465,10 +50475,49 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.projects, function(project, index) {
-      return _c("project", { key: index, attrs: { project: project } })
-    }),
-    1
+    [
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [
+          _c("versatile-form", {
+            ref: "form",
+            attrs: { table: "projects" },
+            model: {
+              value: _vm.newProject,
+              callback: function($$v) {
+                _vm.newProject = $$v
+              },
+              expression: "newProject"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-outline-primary mx-auto d-block",
+          on: { click: _vm.addProject }
+        },
+        [_vm._v("プロジェクトを追加")]
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.projects, function(project, index) {
+        return _c("project", { key: index, attrs: { project: project } })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -51453,9 +51502,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "project-label" }, [
-      _vm._v(_vm._s(_vm.task.project.name))
-    ]),
+    _vm.task.project
+      ? _c("div", { staticClass: "project-label" }, [
+          _vm._v(_vm._s(_vm.task.project.name))
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { class: _vm.wrapper }, [
       _c("div", {
@@ -51917,9 +51968,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            this.$refs.foreigns.forEach(function (foreign) {
-                foreign.resetValue();
-            });
+            if (this.foreign_keys) {
+                this.$refs.foreigns.forEach(function (foreign) {
+                    foreign.resetValue();
+                });
+            }
             //上書き処理がある場合
             if (this.column_override) {
                 var _iteratorNormalCompletion4 = true;
@@ -52472,7 +52525,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52496,41 +52549,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            range: '',
-            project: {},
-            override: [{ project_id: 3 }],
-            columns: ['name', 'dead_line'],
-            foreign_keys: [{ project_id: {
-                    table: 'projects',
-                    columns: ['name', 'dead_line'],
-                    comment: '所属するプロジェクトを選択してください。'
-                }
-            }]
-        };
+        return {};
     },
     mounted: function mounted() {},
 
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var result;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            _context.next = 2;
-                            return axios.get('/api/projects/3');
-
-                        case 2:
-                            result = _context.sent;
-
-                            this.project = result.data;
-
-                        case 4:
-                        case 'end':
+                        case "end":
                             return _context.stop();
                     }
                 }
@@ -52554,16 +52587,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("versatile-form", {
-        attrs: { table: "tasks", foreign_keys: _vm.foreign_keys }
-      })
-    ],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [_c("project-list")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52661,7 +52685,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.wrapper[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:10;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    z-index:5;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
 
 // exports
 
@@ -52686,35 +52710,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: true,
-            modalClass: 'wrapper',
-            height: 0
+            modalClass: 'modal-root',
+            width: 0
         };
     },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
 
-    computed: {
-        documentHeight: function documentHeight() {
-            var height = this.height + 'px';
-            return { height: height };
-        }
-    },
+    computed: {},
     methods: {
         openModal: function openModal() {
-            this.height = document.documentElement.scrollHeight;
-            this.modalClass = 'wrapper modal-active';
+            this.modalClass = 'modal-root modal-active';
             this.$emit('input', true);
         },
         closeModal: function closeModal() {
-            this.modalClass = 'wrapper';
+            this.modalClass = 'modal-root';
             this.$emit('input', false);
         }
     }
@@ -52728,7 +52744,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.modalClass, style: _vm.documentHeight }, [
+  return _c("div", { class: _vm.modalClass }, [
     _c("div", { staticClass: "modal-wrapper" }, [
       _c("div", { staticClass: "content-wrapper" }, [
         _c(
@@ -52750,7 +52766,6 @@ var render = function() {
     _vm._v(" "),
     _c("div", {
       staticClass: "modal-background",
-      style: _vm.documentHeight,
       on: {
         click: function($event) {
           return _vm.closeModal()

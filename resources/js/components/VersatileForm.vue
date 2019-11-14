@@ -112,9 +112,11 @@
                     this.$set(this.postObject,key,'')
                 }
                 //外部キー要素（list-box）を初期化
-                this.$refs.foreigns.forEach(foreign => {
-                    foreign.resetValue()
-                })
+                if(this.foreign_keys){
+                    this.$refs.foreigns.forEach(foreign => {
+                        foreign.resetValue()
+                    })
+                }
                 //上書き処理がある場合
                 if(this.column_override){
                     for(let value of this.column_override){

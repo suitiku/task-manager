@@ -4,7 +4,7 @@
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
 <template>
     <div class="container">
-        <div class="project-label">{{task.project.name}}</div>
+        <div v-if="task.project" class="project-label">{{task.project.name}}</div>
         <div v-bind:class="wrapper">
             <div class="completed" v-show="checkbox"></div>
             <div class="completed-mark" v-show="checkbox">completed!</div>
