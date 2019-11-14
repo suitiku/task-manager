@@ -85,7 +85,6 @@
             resetValue:function(){
                 this.ids = []
                 let els = document.getElementsByClassName('item selected')
-                console.log(els)
                 if(els.length > 0){
                     for(let index in Object.keys(els)){
                         els[index].className = 'item'

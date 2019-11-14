@@ -52661,7 +52661,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.wrapper[data-v-53ab54d2] {\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(50% + 0.5em);\n    top:-0.5em;\n    width:2em;\n    height:2em;\n    /*border:3px solid brack;*/\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:50%;\n    z-index:10;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    left:-50%;\n    top:-50%;\n    width:200%;\n    height:150%;\n    z-index:5;\n    background-color:grey;\n    opacity:0.5;\n}\n", ""]);
+exports.push([module.i, "\n.wrapper[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:10;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    z-index:5;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
 
 // exports
 
@@ -52683,20 +52683,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: true,
-            modalClass: 'wrapper'
+            modalClass: 'wrapper',
+            height: 0
         };
     },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
 
+    computed: {
+        documentHeight: function documentHeight() {
+            var height = this.height + 'px';
+            return { height: height };
+        }
+    },
     methods: {
         openModal: function openModal() {
+            this.height = document.documentElement.scrollHeight;
             this.modalClass = 'wrapper modal-active';
             this.$emit('input', true);
         },
@@ -52715,26 +52728,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.modalClass }, [
+  return _c("div", { class: _vm.modalClass, style: _vm.documentHeight }, [
     _c("div", { staticClass: "modal-wrapper" }, [
-      _c(
-        "div",
-        {
-          staticClass: "close-button",
-          on: {
-            click: function($event) {
-              return _vm.closeModal()
+      _c("div", { staticClass: "content-wrapper" }, [
+        _c(
+          "div",
+          {
+            staticClass: "close-button",
+            on: {
+              click: function($event) {
+                return _vm.closeModal()
+              }
             }
-          }
-        },
-        [_c("i", { staticClass: "fa-2x far fa-times-circle" })]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
+          },
+          [_c("i", { staticClass: "fa-2x far fa-times-circle" })]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
+      ])
     ]),
     _vm._v(" "),
     _c("div", {
       staticClass: "modal-background",
+      style: _vm.documentHeight,
       on: {
         click: function($event) {
           return _vm.closeModal()
@@ -53527,7 +53543,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         resetValue: function resetValue() {
             this.ids = [];
             var els = document.getElementsByClassName('item selected');
-            console.log(els);
             if (els.length > 0) {
                 for (var index in Object.keys(els)) {
                     els[index].className = 'item';
