@@ -50894,7 +50894,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51707,8 +51706,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52088,7 +52085,6 @@ var render = function() {
       "div",
       { staticClass: "forms" },
       [
-        _vm._v("\n        " + _vm._s(_vm.postObject) + "\n        "),
         _vm._l(_vm.columns, function(column, index) {
           return _c(
             "div",

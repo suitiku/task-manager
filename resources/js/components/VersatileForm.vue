@@ -6,12 +6,10 @@
 <!--1 UIコンポーネントから生成する-->
 <!--2 バリデーションの追加-->
 <!--4 処理成功ダイアログ追加-->
-<!--5 外部キーの値選択処理追加-->
 
 <template>
     <div class="container">
         <div class="forms">
-            {{postObject}}
             <div v-for="(column,index) in columns" v-bind:key="index">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
                 <input v-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
