@@ -7,17 +7,24 @@
 <!--2 バリデーションの追加-->
 <!--4 処理成功ダイアログ追加-->
 <!--5 外部キーの値選択処理追加-->
-<!--6 外部書き換えpropsの追加-->
 
 <template>
     <div class="container">
         <div class="forms">
+            {{postObject}}
             <div v-for="(column,index) in columns" v-bind:key="index">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
                 <input v-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
                 <star-range v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" />
                 <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
                 <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
+            </div>
+            <!--外部キー値の設定-->
+            <div v-if="foreign_keys" class="foreign">
+                <div v-for="(foreign_key,index) in foreign_keys">
+                    <p>{{foreign_key[Object.keys(foreign_key)[0]].comment}}</p>
+                    <list-box ref="foreigns" v-model="postObject[Object.keys(foreign_key)[0]]" v-bind:table="foreign_key[Object.keys(foreign_key)[0]].table" v-bind:columns="foreign_key[Object.keys(foreign_key)[0]].columns" />
+                </div>
             </div>
         </div>
         <div class="buttons">
@@ -58,6 +65,11 @@
             },
             //key:value配列の形式で上書きする。外部キーの設定などに利用
             column_override: {
+                type:Array,
+                required:false
+            },
+            // 外部キーの設定。foreign_key:table形式の配列。この設定を元にlist-boxを生成する
+            foreign_keys: {
                 type:Array,
                 required:false
             }
@@ -101,6 +113,10 @@
                 for(let key of Object.keys(this.postObject)){
                     this.$set(this.postObject,key,'')
                 }
+                //外部キー要素（list-box）を初期化
+                this.$refs.foreigns.forEach(foreign => {
+                    foreign.resetValue()
+                })
                 //上書き処理がある場合
                 if(this.column_override){
                     for(let value of this.column_override){
@@ -113,6 +129,13 @@
                 return column.COLUMN_COMMENT || column.COLUMN_NAME  
             },
             createRecord: async function(){
+                //Validation
+                //配列要素を変換
+                //空要素をkeyごと削除
+                for(let key of Object.keys(this.postObject)){
+                    if(this.postObject[key] == ''){delete this.postObject[key]}
+                    if(this.postObject[key] && Array.isArray(this.postObject[key])){this.postObject[key] = this.postObject[key][0]}
+                }
                 let result = await axios.post('/api/' + this.table,this.postObject)
                 if(result.data){
                     console.log(result.data)
@@ -138,6 +161,9 @@
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
+    }
+    .foreign {
+        margin:1em 0;
     }
     .buttons {
         display:flex;

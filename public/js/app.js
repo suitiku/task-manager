@@ -50895,7 +50895,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50903,7 +50902,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             tasks: [],
             newTask: {},
-            ids: [] //編集確認用のtask.idの配列
+            ids: [], //編集確認用のtask.idの配列
+            foreign_keys: [{ project_id: {
+                    table: 'projects',
+                    columns: ['name', 'dead_line'],
+                    comment: '所属するプロジェクトを選択してください。'
+                }
+            }]
         };
     },
     mounted: function mounted() {},
@@ -50912,92 +50917,131 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     watch: {
-        newTask: function newTask(newVal, oldVal) {
-            if (!newVal.id) {
-                return;
-            } //newValにidがなければ終了
-            if (this.ids.indexOf(newVal.id) == -1) {
-                //新規登録
-                this.tasks.push(newVal);
-                this.wrapperClass.push('task-wrapper');
-                this.ids.push(newVal.id);
-            } else {
-                //編集->更新
-                var index = this.tasks.findIndex(function (task) {
-                    return task.id == newVal.id;
-                });
-                this.tasks.splice(index, 1, newVal);
-            }
-        }
-    },
-    methods: {
-        fetchTasks: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index;
-
+        newTask: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                var result, index;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                result = void 0;
+
+                                if (newVal.id) {
+                                    _context.next = 3;
+                                    break;
+                                }
+
+                                return _context.abrupt('return');
+
+                            case 3:
+                                if (!(this.ids.indexOf(newVal.id) == -1)) {
+                                    _context.next = 11;
+                                    break;
+                                }
+
+                                //新規登録
+                                this.ids.push(newVal.id);
+                                _context.next = 7;
+                                return axios.get('/api/tasks/' + newVal.id);
+
+                            case 7:
+                                result = _context.sent;
+
+                                this.tasks.push(result.data);
+                                _context.next = 13;
+                                break;
+
+                            case 11:
+                                //編集->更新
+                                index = this.tasks.findIndex(function (task) {
+                                    return task.id == newVal.id;
+                                });
+
+                                this.tasks.splice(index, 1, newVal);
+
+                            case 13:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function newTask(_x, _x2) {
+                return _ref.apply(this, arguments);
+            }
+
+            return newTask;
+        }()
+    },
+    methods: {
+        fetchTasks: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
                                 return axios.get('/api/tasks');
 
                             case 2:
-                                result = _context.sent;
+                                result = _context2.sent;
 
                                 this.tasks = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context.prev = 7;
+                                _context2.prev = 7;
                                 for (_iterator = Object.keys(this.tasks)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
                                     this.ids.push(this.tasks[index].id);
                                 }
-                                _context.next = 15;
+                                _context2.next = 15;
                                 break;
 
                             case 11:
-                                _context.prev = 11;
-                                _context.t0 = _context['catch'](7);
+                                _context2.prev = 11;
+                                _context2.t0 = _context2['catch'](7);
                                 _didIteratorError = true;
-                                _iteratorError = _context.t0;
+                                _iteratorError = _context2.t0;
 
                             case 15:
-                                _context.prev = 15;
-                                _context.prev = 16;
+                                _context2.prev = 15;
+                                _context2.prev = 16;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 18:
-                                _context.prev = 18;
+                                _context2.prev = 18;
 
                                 if (!_didIteratorError) {
-                                    _context.next = 21;
+                                    _context2.next = 21;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 21:
-                                return _context.finish(18);
+                                return _context2.finish(18);
 
                             case 22:
-                                return _context.finish(15);
+                                return _context2.finish(15);
 
                             case 23:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+                }, _callee2, this, [[7, 11, 15, 23], [16,, 18, 22]]);
             }));
 
             function fetchTasks() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return fetchTasks;
@@ -51041,7 +51085,7 @@ var render = function() {
         [
           _c("versatile-form", {
             ref: "form",
-            attrs: { table: "tasks" },
+            attrs: { table: "tasks", foreign_keys: _vm.foreign_keys },
             model: {
               value: _vm.newTask,
               callback: function($$v) {
@@ -51611,7 +51655,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n", ""]);
+exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n", ""]);
 
 // exports
 
@@ -51628,6 +51672,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51688,6 +51739,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         //key:value配列の形式で上書きする。外部キーの設定などに利用
         column_override: {
+            type: Array,
+            required: false
+        },
+        // 外部キーの設定。foreign_key:table形式の配列。この設定を元にlist-boxを生成する
+        foreign_keys: {
             type: Array,
             required: false
         }
@@ -51848,7 +51904,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                     this.$set(this.postObject, key, '');
                 }
-                //上書き処理がある場合
+                //外部キー要素（list-box）を初期化
             } catch (err) {
                 _didIteratorError3 = true;
                 _iteratorError3 = err;
@@ -51864,6 +51920,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
+            this.$refs.foreigns.forEach(function (foreign) {
+                foreign.resetValue();
+            });
+            //上書き処理がある場合
             if (this.column_override) {
                 var _iteratorNormalCompletion4 = true;
                 var _didIteratorError4 = false;
@@ -51897,15 +51957,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         createRecord: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result;
+                var _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, key, result;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context2.next = 2;
+                                //Validation
+                                //配列要素を変換
+                                //空要素をkeyごと削除
+                                _iteratorNormalCompletion5 = true;
+                                _didIteratorError5 = false;
+                                _iteratorError5 = undefined;
+                                _context2.prev = 3;
+                                for (_iterator5 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                    key = _step5.value;
+
+                                    if (this.postObject[key] == '') {
+                                        delete this.postObject[key];
+                                    }
+                                    if (this.postObject[key] && Array.isArray(this.postObject[key])) {
+                                        this.postObject[key] = this.postObject[key][0];
+                                    }
+                                }
+                                _context2.next = 11;
+                                break;
+
+                            case 7:
+                                _context2.prev = 7;
+                                _context2.t0 = _context2['catch'](3);
+                                _didIteratorError5 = true;
+                                _iteratorError5 = _context2.t0;
+
+                            case 11:
+                                _context2.prev = 11;
+                                _context2.prev = 12;
+
+                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                    _iterator5.return();
+                                }
+
+                            case 14:
+                                _context2.prev = 14;
+
+                                if (!_didIteratorError5) {
+                                    _context2.next = 17;
+                                    break;
+                                }
+
+                                throw _iteratorError5;
+
+                            case 17:
+                                return _context2.finish(14);
+
+                            case 18:
+                                return _context2.finish(11);
+
+                            case 19:
+                                _context2.next = 21;
                                 return axios.post('/api/' + this.table, this.postObject);
 
-                            case 2:
+                            case 21:
                                 result = _context2.sent;
 
                                 if (result.data) {
@@ -51914,12 +52026,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.id = result.data.id; //編集用idをセット
                                 }
 
-                            case 4:
+                            case 23:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee2, this, [[3, 7, 11, 19], [12,, 14, 18]]);
             }));
 
             function createRecord() {
@@ -51975,216 +52087,265 @@ var render = function() {
     _c(
       "div",
       { staticClass: "forms" },
-      _vm._l(_vm.columns, function(column, index) {
-        return _c(
-          "div",
-          { key: index },
-          [
-            _c(
-              "span",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
-                    expression: "labelColumns.indexOf(column.DATA_TYPE) != -1"
-                  }
-                ]
-              },
-              [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
-            ),
-            _vm._v(" "),
-            _vm.setInputType(column.DATA_TYPE) === "checkbox" &&
-            (column.COLUMN_KEY == "" &&
-              _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-              ? _c("input", {
+      [
+        _vm._v("\n        " + _vm._s(_vm.postObject) + "\n        "),
+        _vm._l(_vm.columns, function(column, index) {
+          return _c(
+            "div",
+            { key: index },
+            [
+              _c(
+                "span",
+                {
                   directives: [
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      expression: "postObject[column.COLUMN_NAME]"
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
+                      expression: "labelColumns.indexOf(column.DATA_TYPE) != -1"
                     }
-                  ],
-                  attrs: {
-                    placeholder: _vm.setPlaceholder(column),
-                    type: "checkbox"
-                  },
-                  domProps: {
-                    checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                      ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                      : _vm.postObject[column.COLUMN_NAME]
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.postObject[column.COLUMN_NAME],
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.postObject,
-                              column.COLUMN_NAME,
-                              $$a.concat([$$v])
-                            )
-                        } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.postObject,
-                              column.COLUMN_NAME,
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
-                        }
-                      } else {
-                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
+                  ]
+                },
+                [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+              ),
+              _vm._v(" "),
+              _vm.setInputType(column.DATA_TYPE) === "checkbox" &&
+              (column.COLUMN_KEY == "" &&
+                _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        expression: "postObject[column.COLUMN_NAME]"
                       }
-                    }
-                  }
-                })
-              : _vm.setInputType(column.DATA_TYPE) === "radio" &&
-                (column.COLUMN_KEY == "" &&
-                  _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      expression: "postObject[column.COLUMN_NAME]"
-                    }
-                  ],
-                  attrs: {
-                    placeholder: _vm.setPlaceholder(column),
-                    type: "radio"
-                  },
-                  domProps: {
-                    checked: _vm._q(_vm.postObject[column.COLUMN_NAME], null)
-                  },
-                  on: {
-                    change: function($event) {
-                      return _vm.$set(_vm.postObject, column.COLUMN_NAME, null)
-                    }
-                  }
-                })
-              : column.COLUMN_KEY == "" &&
-                _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      expression: "postObject[column.COLUMN_NAME]"
-                    }
-                  ],
-                  attrs: {
-                    placeholder: _vm.setPlaceholder(column),
-                    type: _vm.setInputType(column.DATA_TYPE)
-                  },
-                  domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.postObject,
-                        column.COLUMN_NAME,
-                        $event.target.value
-                      )
-                    }
-                  }
-                })
-              : column.COLUMN_TYPE == "tinyint(4)"
-              ? _c("star-range", {
-                  model: {
-                    value: _vm.postObject[column.COLUMN_NAME],
-                    callback: function($$v) {
-                      _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                    ],
+                    attrs: {
+                      placeholder: _vm.setPlaceholder(column),
+                      type: "checkbox"
                     },
-                    expression: "postObject[column.COLUMN_NAME]"
-                  }
-                })
-              : column.COLUMN_TYPE == "tinyint(1)"
-              ? _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      expression: "postObject[column.COLUMN_NAME]"
-                    }
-                  ],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                      ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                      : _vm.postObject[column.COLUMN_NAME]
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.postObject[column.COLUMN_NAME],
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.postObject,
-                              column.COLUMN_NAME,
-                              $$a.concat([$$v])
-                            )
+                    domProps: {
+                      checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
+                        ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
+                        : _vm.postObject[column.COLUMN_NAME]
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.postObject[column.COLUMN_NAME],
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.postObject,
+                                column.COLUMN_NAME,
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.postObject,
+                                column.COLUMN_NAME,
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
                         } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.postObject,
-                              column.COLUMN_NAME,
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
+                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                         }
-                      } else {
-                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
                       }
                     }
-                  }
-                })
-              : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
-              ? _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
+                  })
+                : _vm.setInputType(column.DATA_TYPE) === "radio" &&
+                  (column.COLUMN_KEY == "" &&
+                    _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        expression: "postObject[column.COLUMN_NAME]"
+                      }
+                    ],
+                    attrs: {
+                      placeholder: _vm.setPlaceholder(column),
+                      type: "radio"
+                    },
+                    domProps: {
+                      checked: _vm._q(_vm.postObject[column.COLUMN_NAME], null)
+                    },
+                    on: {
+                      change: function($event) {
+                        return _vm.$set(
+                          _vm.postObject,
+                          column.COLUMN_NAME,
+                          null
+                        )
+                      }
+                    }
+                  })
+                : column.COLUMN_KEY == "" &&
+                  _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        expression: "postObject[column.COLUMN_NAME]"
+                      }
+                    ],
+                    attrs: {
+                      placeholder: _vm.setPlaceholder(column),
+                      type: _vm.setInputType(column.DATA_TYPE)
+                    },
+                    domProps: { value: _vm.postObject[column.COLUMN_NAME] },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.postObject,
+                          column.COLUMN_NAME,
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                : column.COLUMN_TYPE == "tinyint(4)"
+                ? _c("star-range", {
+                    model: {
                       value: _vm.postObject[column.COLUMN_NAME],
+                      callback: function($$v) {
+                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                      },
                       expression: "postObject[column.COLUMN_NAME]"
                     }
-                  ],
-                  attrs: { placeholder: _vm.setPlaceholder(column) },
-                  domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                  })
+                : column.COLUMN_TYPE == "tinyint(1)"
+                ? _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        expression: "postObject[column.COLUMN_NAME]"
                       }
-                      _vm.$set(
-                        _vm.postObject,
-                        column.COLUMN_NAME,
-                        $event.target.value
-                      )
+                    ],
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
+                        ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
+                        : _vm.postObject[column.COLUMN_NAME]
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.postObject[column.COLUMN_NAME],
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.postObject,
+                                column.COLUMN_NAME,
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.postObject,
+                                column.COLUMN_NAME,
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
+                        }
+                      }
                     }
-                  }
-                })
-              : _vm._e()
-          ],
-          1
-        )
-      }),
-      0
+                  })
+                : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
+                ? _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        expression: "postObject[column.COLUMN_NAME]"
+                      }
+                    ],
+                    attrs: { placeholder: _vm.setPlaceholder(column) },
+                    domProps: { value: _vm.postObject[column.COLUMN_NAME] },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.postObject,
+                          column.COLUMN_NAME,
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          )
+        }),
+        _vm._v(" "),
+        _vm.foreign_keys
+          ? _c(
+              "div",
+              { staticClass: "foreign" },
+              _vm._l(_vm.foreign_keys, function(foreign_key, index) {
+                return _c(
+                  "div",
+                  [
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(foreign_key[Object.keys(foreign_key)[0]].comment)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("list-box", {
+                      ref: "foreigns",
+                      refInFor: true,
+                      attrs: {
+                        table: foreign_key[Object.keys(foreign_key)[0]].table,
+                        columns:
+                          foreign_key[Object.keys(foreign_key)[0]].columns
+                      },
+                      model: {
+                        value: _vm.postObject[Object.keys(foreign_key)[0]],
+                        callback: function($$v) {
+                          _vm.$set(
+                            _vm.postObject,
+                            Object.keys(foreign_key)[0],
+                            $$v
+                          )
+                        },
+                        expression: "postObject[Object.keys(foreign_key)[0]]"
+                      }
+                    })
+                  ],
+                  1
+                )
+              }),
+              0
+            )
+          : _vm._e()
+      ],
+      2
     ),
     _vm._v(" "),
     _c("div", { staticClass: "buttons" }, [
@@ -52315,7 +52476,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52339,7 +52500,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52347,7 +52507,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             range: '',
             project: {},
             override: [{ project_id: 3 }],
-            columns: ['name', 'dead_line']
+            columns: ['name', 'dead_line'],
+            foreign_keys: [{ project_id: {
+                    table: 'projects',
+                    columns: ['name', 'dead_line'],
+                    comment: '所属するプロジェクトを選択してください。'
+                }
+            }]
         };
     },
     mounted: function mounted() {},
@@ -52396,17 +52562,9 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("list-box", {
-        attrs: { table: "projects", columns: _vm.columns, is_multiple: "" },
-        model: {
-          value: _vm.range,
-          callback: function($$v) {
-            _vm.range = $$v
-          },
-          expression: "range"
-        }
-      }),
-      _vm._v("\n    " + _vm._s(_vm.range) + "\n")
+      _c("versatile-form", {
+        attrs: { table: "tasks", foreign_keys: _vm.foreign_keys }
+      })
     ],
     1
   )
@@ -53242,7 +53400,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.wrapper[data-v-2333399c] {\n    position:relative;\n    border:1px solid black;\n    border-radius:0.5em;\n    overflow:hidden;\n}\n.item-wrapper[data-v-2333399c] {\n    position:relative;\n    width:100%;\n    /*height:2em;*/\n    overflow:hidden;\n    border-top:1px solid black;\n    border-left:1px solid black;\n    border-right:1px solid black;\n}\n.item-wrapper[data-v-2333399c]:last-of-type {\n    border-bottom:1px solid black;\n}\n.item[data-v-2333399c] {\n    width:100%;\n    height:100%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.column-wrapper[data-v-2333399c] {\n    padding:0.3em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.selected[data-v-2333399c] {\n    background:grey;\n    opacity:0.5;\n}\n.column-label[data-v-2333399c] {\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n}\n", ""]);
+exports.push([module.i, "\n.wrapper[data-v-2333399c] {\n    border:2px solid grey;\n    padding:1em;\n    max-height:200px;\n    overflow:auto;\n}\n.item-wrapper[data-v-2333399c] {\n    position:relative;\n    width:100%;\n    /*height:2em;*/\n    overflow:hidden;\n    border-top:1px solid black;\n    border-left:1px solid black;\n    border-right:1px solid black;\n}\n.item-wrapper[data-v-2333399c]:last-of-type {\n    border-bottom:1px solid black;\n}\n.item[data-v-2333399c] {\n    width:100%;\n    height:100%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.column-wrapper[data-v-2333399c] {\n    padding:0.3em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.selected[data-v-2333399c] {\n    background:grey;\n    opacity:0.5;\n}\n.column-label[data-v-2333399c] {\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n}\n", ""]);
 
 // exports
 
@@ -53278,6 +53436,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53294,7 +53455,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         columns: {
             type: Array,
-            default: ['name'],
+            default: function _default() {
+                return ['name'];
+            },
             required: false
         },
         is_multiple: {
@@ -53364,6 +53527,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
             this.$emit('input', this.ids);
+        },
+        resetValue: function resetValue() {
+            this.ids = [];
+            var els = document.getElementsByClassName('item selected');
+            console.log(els);
+            if (els.length > 0) {
+                for (var index in Object.keys(els)) {
+                    els[index].className = 'item';
+                }
+            }
         }
     }
 });

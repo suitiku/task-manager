@@ -1,8 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <list-box v-model="range" table="projects" v-bind:columns="columns" is_multiple />
-        {{range}}
+        <versatile-form table="tasks" v-bind:foreign_keys="foreign_keys" />
     </div>
 </template>
 
@@ -13,7 +12,16 @@
                 range:'',
                 project: {},
                 override:[{project_id:3}],
-                columns: ['name','dead_line']
+                columns: ['name','dead_line'],
+                foreign_keys:[
+                    {project_id:
+                        {
+                            table:'projects',
+                            columns:['name','dead_line'],
+                            comment:'所属するプロジェクトを選択してください。'
+                        }
+                    }
+                ]
             }  
         },
         mounted() {

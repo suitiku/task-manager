@@ -1,11 +1,10 @@
 <!--タスク一覧-->
 
 <!--今後の改修ポイント-->
-<!--1 並び替え（優先度、難易度、締切）-->
 <template>
     <div class="container">
         <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" ref="form" table="tasks" />
+            <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:foreign_keys="foreign_keys"/>
         </modal>
         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
         <div class="sortBox">
@@ -24,7 +23,16 @@
                 modal:false,
                 tasks:[],
                 newTask:{},
-                ids:[] //編集確認用のtask.idの配列
+                ids:[], //編集確認用のtask.idの配列
+                foreign_keys:[
+                    {project_id:
+                        {
+                            table:'projects',
+                            columns:['name','dead_line'],
+                            comment:'所属するプロジェクトを選択してください。'
+                        }
+                    }
+                ]
             }  
         },
         mounted() {
@@ -33,12 +41,13 @@
             this.fetchTasks();
         },
         watch: {
-            newTask:function(newVal,oldVal){
+            newTask:async function(newVal,oldVal){
+                let result
                 if(!newVal.id){return } //newValにidがなければ終了
                 if(this.ids.indexOf(newVal.id) == -1){ //新規登録
-                    this.tasks.push(newVal)
-                    this.wrapperClass.push('task-wrapper')
                     this.ids.push(newVal.id)
+                    result = await axios.get('/api/tasks/' + newVal.id)
+                    this.tasks.push(result.data)
                 }else{                                 //編集->更新
                     let index = this.tasks.findIndex((task) => {
                         return (task.id == newVal.id)

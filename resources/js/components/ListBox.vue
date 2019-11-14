@@ -3,6 +3,7 @@
 <!--返り値：選択されたもののid配列-->
 <!--今後の改修ポイント-->
 <!--１．検索／絞り込み機能-->
+<!--２．アニメーション付きのチェックボックス-->
 <template>
     <div class="container">
         <div class="wrapper">
@@ -35,7 +36,7 @@
               },
               columns: {
                     type:Array,
-                    default:['name'],
+                    default:() => (['name']),
                     required:false
               },
               is_multiple:{
@@ -45,7 +46,6 @@
               }
         },
         watch:{
-            
         },
         created(){
             
@@ -81,12 +81,26 @@
                     }
                 }
                 this.$emit('input',this.ids)
+            },
+            resetValue:function(){
+                this.ids = []
+                let els = document.getElementsByClassName('item selected')
+                console.log(els)
+                if(els.length > 0){
+                    for(let index in Object.keys(els)){
+                        els[index].className = 'item'
+                    }
+                }
             }
         }
     }
 </script>
 <style scoped>
     .wrapper {
+        border:2px solid grey;
+        padding:1em;
+        max-height:200px;
+        overflow:auto;
     }
     .item-wrapper {
         position:relative;
