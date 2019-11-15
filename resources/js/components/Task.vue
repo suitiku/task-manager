@@ -1,4 +1,5 @@
 <!--タスク単体を表示するデザインコンポーネント-->
+<!--編集、状態の変化で上部に送出-->
 <!--2 詳細ボタン-->
 <!--3 編集ボタン-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
@@ -77,6 +78,9 @@
                     let result = await axios.post('/api/state_task',postObject)
                     if(result.data){
                         this.checkbox = true
+                        //状態が変化したらtasks/idを再取得して送出
+                        let taskResult = await axios.get('/api/tasks/' + taskId)
+                        this.$emit('input',taskResult.data)
                     }
                 }
             },

@@ -9,11 +9,12 @@
         <div class="project-wrapper">
             <div>
                 <h3>{{project.name}}</h3>
+                <progress-bar v-bind:denominotor="denominotor" v-bind:numerator="numerator" />
                 <div class="info">最終締切　{{project.dead_line}}</div>
                 <div class="overview">{{project.overview}}</div>
                 <div class="tasks">
                     <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
-                    <task v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" class="task" />
+                    <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" class="task" />
                     <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
                 </div>
             </div>
@@ -27,6 +28,8 @@
             return {
                 modal:false,
                 newTask:{},
+                denominotor:0,
+                numerator:0
             }  
         },
         props: {
@@ -37,16 +40,29 @@
             }  
         },
         watch:{
-             newTask:async function(newVal,oldVal){
+            newTask:async function(newVal,oldVal){
                 if(!newVal.id){return } //newValにidがなければ終了
                 let result = await axios.get('/api/tasks/' + newVal.id)
+                delete result.data.project
                 this.project.tasks.push(result.data)
-            } 
+            },
+            'project.tasks': {
+                handler: function(newVal,oldVal){
+                    // プロジェクトラベルの削除
+                    for(let value of this.project.tasks){
+                        delete value.project
+                    }
+                    //プログレスバーの設定
+                    this.setProgress() 
+                },
+                deep:true
+            }
         },
         created(){
             
         },
         mounted() {
+            
         },
         computed:{
             override:function(){
@@ -58,6 +74,17 @@
                 this.$refs.form.resetForm()
                 this.$refs.modal.openModal()
             },
+            setProgress:function(){
+                this.denominotor = this.project.tasks.length
+                let numerator = 0
+                for(let value of this.project.tasks){
+                    let stateIndex = value.states_tasks.length - 1
+                    if(value.states_tasks[stateIndex].id == 4){
+                        numerator ++
+                    }
+                }
+                this.numerator = numerator
+            }
         }
     }
 </script>

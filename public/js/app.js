@@ -50706,12 +50706,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
-            newTask: {}
+            newTask: {},
+            denominotor: 0,
+            numerator: 0
         };
     },
     props: {
@@ -50743,9 +50746,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context.sent;
 
+                                delete result.data.project;
                                 this.project.tasks.push(result.data);
 
-                            case 6:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -50758,7 +50762,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return newTask;
-        }()
+        }(),
+        'project.tasks': {
+            handler: function handler(newVal, oldVal) {
+                // プロジェクトラベルの削除
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = this.project.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var value = _step.value;
+
+                        delete value.project;
+                    }
+                    //プログレスバーの設定
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                this.setProgress();
+            },
+            deep: true
+        }
     },
     created: function created() {},
     mounted: function mounted() {},
@@ -50772,6 +50809,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         addTask: function addTask() {
             this.$refs.form.resetForm();
             this.$refs.modal.openModal();
+        },
+        setProgress: function setProgress() {
+            this.denominotor = this.project.tasks.length;
+            var numerator = 0;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.project.tasks[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var value = _step2.value;
+
+                    var stateIndex = value.states_tasks.length - 1;
+                    if (value.states_tasks[stateIndex].id == 4) {
+                        numerator++;
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            this.numerator = numerator;
         }
     }
 });
@@ -50817,47 +50887,62 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "project-wrapper" }, [
-        _c("div", [
-          _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
-          _vm._v(" "),
-          _c("div", { staticClass: "info" }, [
-            _vm._v("最終締切　" + _vm._s(_vm.project.dead_line))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "overview" }, [
-            _vm._v(_vm._s(_vm.project.overview))
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "tasks" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary mx-auto d-block",
-                  on: { click: _vm.addTask }
-                },
-                [_vm._v("プロジェクトにタスクを追加")]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.project.tasks, function(task, index) {
-                return _c("task", {
-                  key: index,
-                  staticClass: "task",
-                  attrs: { task: task }
-                })
-              }),
-              _vm._v(" "),
-              _vm.project.tasks == ""
-                ? _c("p", { staticClass: "task" }, [
-                    _vm._v("タスクが登録されていません！")
-                  ])
-                : _vm._e()
-            ],
-            2
-          )
-        ])
+        _c(
+          "div",
+          [
+            _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
+            _vm._v(" "),
+            _c("progress-bar", {
+              attrs: { denominotor: _vm.denominotor, numerator: _vm.numerator }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "info" }, [
+              _vm._v("最終締切　" + _vm._s(_vm.project.dead_line))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "overview" }, [
+              _vm._v(_vm._s(_vm.project.overview))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tasks" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary mx-auto d-block",
+                    on: { click: _vm.addTask }
+                  },
+                  [_vm._v("プロジェクトにタスクを追加")]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.project.tasks, function(task, index) {
+                  return _c("task", {
+                    key: index,
+                    staticClass: "task",
+                    attrs: { task: task },
+                    model: {
+                      value: _vm.project.tasks[index],
+                      callback: function($$v) {
+                        _vm.$set(_vm.project.tasks, index, $$v)
+                      },
+                      expression: "project.tasks[index]"
+                    }
+                  })
+                }),
+                _vm._v(" "),
+                _vm.project.tasks == ""
+                  ? _c("p", { staticClass: "task" }, [
+                      _vm._v("タスクが登録されていません！")
+                    ])
+                  : _vm._e()
+              ],
+              2
+            )
+          ],
+          1
+        )
       ])
     ],
     1
@@ -51405,6 +51490,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51457,13 +51543,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         checkTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
-                var postObject, result;
+                var postObject, result, taskResult;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!(event.target.checked == true)) {
-                                    _context2.next = 6;
+                                    _context2.next = 11;
                                     break;
                                 }
 
@@ -51477,11 +51563,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context2.sent;
 
-                                if (result.data) {
-                                    this.checkbox = true;
+                                if (!result.data) {
+                                    _context2.next = 11;
+                                    break;
                                 }
 
-                            case 6:
+                                this.checkbox = true;
+                                //状態が変化したらtasks/idを再取得して送出
+                                _context2.next = 9;
+                                return axios.get('/api/tasks/' + taskId);
+
+                            case 9:
+                                taskResult = _context2.sent;
+
+                                this.$emit('input', taskResult.data);
+
+                            case 11:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -52575,7 +52672,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52602,17 +52699,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            project: {}
+        };
     },
     mounted: function mounted() {},
 
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var result;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                        case "end":
+                            _context.next = 2;
+                            return axios.get('/api/projects/2');
+
+                        case 2:
+                            result = _context.sent;
+
+                            this.project = result.data;
+
+                        case 4:
+                        case 'end':
                             return _context.stop();
                     }
                 }
@@ -52636,7 +52745,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [_c("project", { attrs: { project: _vm.project } })],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53290,7 +53404,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid black;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:black;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
+exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid mediumspringgreen;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:mediumspringgreen;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
 
 // exports
 
@@ -53301,6 +53415,7 @@ exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relativ
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -53335,7 +53450,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {},
     created: function created() {},
     mounted: function mounted() {
-        console.log(this.numerator / this.denominotor);
+        // console.log(this.numerator / this.denominotor)
     },
 
     computed: {
@@ -53346,7 +53461,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var style = {};
             if (this.numerator / this.denominotor * 100 < 90) {
                 var width = Math.floor(this.numerator / this.denominotor * 100 + 2) + '%';
-                console.log(width);
+                // console.log(width)
                 style = {
                     left: String(width)
                 };

@@ -1,6 +1,7 @@
 <!--プログレスバーコンポーネント-->
 <!--今後の改修ポイント-->
 <!--１．色の変更-->
+<!--２．パーセンテージによって色を変える-->
 <template>
     <div class="container">
         <div class="bar-wrapper">
@@ -37,7 +38,7 @@
             
         },
         mounted() {
-            console.log(this.numerator / this.denominotor)
+            // console.log(this.numerator / this.denominotor)
         },
         computed:{
             width:function(){
@@ -47,7 +48,7 @@
                 let style = {}
                 if(((this.numerator / this.denominotor) * 100) < 90 ){
                     let width = Math.floor(((this.numerator / this.denominotor) * 100 + 2)) + '%'
-                    console.log(width)
+                    // console.log(width)
                     style = {
                         left: String(width)
                     }
@@ -70,13 +71,13 @@
         position:relative;
         width:100%;
         height:2em;
-        border:1px solid black;
+        border:1px solid mediumspringgreen;
         border-radius:1em;
         overflow:hidden;
     }
     .bar {
         height:2em;
-        background:black;
+        background:mediumspringgreen;
         transition:all 1s;
     }
     .char {
