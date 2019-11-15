@@ -62,7 +62,7 @@
             
         },
         mounted() {
-            
+            this.setProgress() 
         },
         computed:{
             override:function(){
@@ -75,6 +75,12 @@
                 this.$refs.modal.openModal()
             },
             setProgress:function(){
+                //タスクが登録されていない場合は終了
+                if(this.project.tasks.length == 0){
+                    this.denominotor = 0
+                    return
+                }
+                
                 this.denominotor = this.project.tasks.length
                 let numerator = 0
                 for(let value of this.project.tasks){

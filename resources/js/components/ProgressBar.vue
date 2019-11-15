@@ -42,15 +42,18 @@
         },
         computed:{
             width:function(){
+                // 母数が0の場合は終了
+                if(this.denominotor == 0){
+                    return '0%'
+                }
                 return Math.floor(((this.numerator / this.denominotor) * 100)) + '%'
             },
             char:function(){
                 let style = {}
                 if(((this.numerator / this.denominotor) * 100) < 90 ){
-                    let width = Math.floor(((this.numerator / this.denominotor) * 100 + 2)) + '%'
-                    // console.log(width)
+                    let left = Math.floor(((this.numerator / this.denominotor) * 100 + 2)) + '%'
                     style = {
-                        left: String(width)
+                        left: String(left)
                     }
                 }else{
                     style = {
@@ -58,6 +61,7 @@
                         color:'white'
                     }
                 }
+                if(this.denominotor == 0){ style = {left:'2%'}}
                 return style
             }
         },

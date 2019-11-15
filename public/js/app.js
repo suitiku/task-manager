@@ -50798,7 +50798,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.setProgress();
+    },
 
     computed: {
         override: function override() {
@@ -50811,6 +50813,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.modal.openModal();
         },
         setProgress: function setProgress() {
+            //タスクが登録されていない場合は終了
+            if (this.project.tasks.length == 0) {
+                this.denominotor = 0;
+                return;
+            }
+
             this.denominotor = this.project.tasks.length;
             var numerator = 0;
             var _iteratorNormalCompletion2 = true;
@@ -53455,21 +53463,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         width: function width() {
+            // 母数が0の場合は終了
+            if (this.denominotor == 0) {
+                return '0%';
+            }
             return Math.floor(this.numerator / this.denominotor * 100) + '%';
         },
         char: function char() {
             var style = {};
             if (this.numerator / this.denominotor * 100 < 90) {
-                var width = Math.floor(this.numerator / this.denominotor * 100 + 2) + '%';
-                // console.log(width)
+                var left = Math.floor(this.numerator / this.denominotor * 100 + 2) + '%';
                 style = {
-                    left: String(width)
+                    left: String(left)
                 };
             } else {
                 style = {
                     left: '80%',
                     color: 'white'
                 };
+            }
+            if (this.denominotor == 0) {
+                style = { left: '2%' };
             }
             return style;
         }
