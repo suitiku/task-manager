@@ -50666,7 +50666,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    border:3px solid grey;\n    border-radius:0.2em;\n    padding:1em;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin:0.5em 0em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n.task[data-v-c10f8004] {\n    margin-top:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n.task[data-v-c10f8004] {\n    margin-top:0.2em;\n}\nbutton[data-v-c10f8004] {\n    margin-top:0.5em;\n}\n", ""]);
 
 // exports
 
@@ -50707,6 +50707,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50714,7 +50719,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             newTask: {},
             denominotor: 0,
-            numerator: 0
+            numerator: 0,
+            detail: 'project-detail-close'
         };
     },
     props: {
@@ -50812,6 +50818,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.form.resetForm();
             this.$refs.modal.openModal();
         },
+        openDetail: function openDetail() {
+            this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close';
+        },
         setProgress: function setProgress() {
             //タスクが登録されていない場合は終了
             if (this.project.tasks.length == 0) {
@@ -50895,8 +50904,13 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "project-wrapper" }, [
+        _c("div", { staticClass: "info" }, [
+          _vm._v("最終締切　" + _vm._s(_vm.project.dead_line))
+        ]),
+        _vm._v(" "),
         _c(
           "div",
+          { staticClass: "project-content-wrapper" },
           [
             _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
             _vm._v(" "),
@@ -50904,50 +50918,61 @@ var render = function() {
               attrs: { denominotor: _vm.denominotor, numerator: _vm.numerator }
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "info" }, [
-              _vm._v("最終締切　" + _vm._s(_vm.project.dead_line))
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "overview" }, [
-              _vm._v(_vm._s(_vm.project.overview))
-            ]),
-            _vm._v(" "),
             _c(
-              "div",
-              { staticClass: "tasks" },
+              "button",
+              {
+                staticClass: "btn btn-outline-primary mx-auto d-block",
+                on: { click: _vm.openDetail }
+              },
               [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-outline-primary mx-auto d-block",
-                    on: { click: _vm.addTask }
-                  },
-                  [_vm._v("プロジェクトにタスクを追加")]
-                ),
-                _vm._v(" "),
-                _vm._l(_vm.project.tasks, function(task, index) {
-                  return _c("task", {
-                    key: index,
-                    staticClass: "task",
-                    attrs: { task: task },
-                    model: {
-                      value: _vm.project.tasks[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.project.tasks, index, $$v)
-                      },
-                      expression: "project.tasks[index]"
-                    }
-                  })
-                }),
-                _vm._v(" "),
-                _vm.project.tasks == ""
-                  ? _c("p", { staticClass: "task" }, [
-                      _vm._v("タスクが登録されていません！")
-                    ])
-                  : _vm._e()
-              ],
-              2
-            )
+                _vm.detail == "project-detail-close"
+                  ? _c("span", [_vm._v("プロジェクト詳細を表示する")])
+                  : _c("span", [_vm._v("詳細を隠す")])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { class: _vm.detail }, [
+              _c("div", { staticClass: "overview" }, [
+                _vm._v(_vm._s(_vm.project.overview))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "tasks" },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-primary mx-auto d-block",
+                      on: { click: _vm.addTask }
+                    },
+                    [_vm._v("プロジェクトにタスクを追加")]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.project.tasks, function(task, index) {
+                    return _c("task", {
+                      key: index,
+                      staticClass: "task",
+                      attrs: { task: task },
+                      model: {
+                        value: _vm.project.tasks[index],
+                        callback: function($$v) {
+                          _vm.$set(_vm.project.tasks, index, $$v)
+                        },
+                        expression: "project.tasks[index]"
+                      }
+                    })
+                  }),
+                  _vm._v(" "),
+                  _vm.project.tasks == ""
+                    ? _c("p", { staticClass: "task" }, [
+                        _vm._v("タスクが登録されていません！")
+                      ])
+                    : _vm._e()
+                ],
+                2
+              )
+            ])
           ],
           1
         )

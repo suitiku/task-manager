@@ -1,21 +1,26 @@
 <!--プロジェクト単体表示コンポーネント-->
 <!--今後の改修ポイント-->
-<!--１．進捗度メーター-->
 <template>
     <div class="container">
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:column_override="override" />
         </modal>
         <div class="project-wrapper">
-            <div>
+            <div class="info">最終締切　{{project.dead_line}}</div>
+            <div class="project-content-wrapper">
                 <h3>{{project.name}}</h3>
                 <progress-bar v-bind:denominotor="denominotor" v-bind:numerator="numerator" />
-                <div class="info">最終締切　{{project.dead_line}}</div>
-                <div class="overview">{{project.overview}}</div>
-                <div class="tasks">
-                    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
-                    <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" class="task" />
-                    <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
+                <button class="btn btn-outline-primary mx-auto d-block" v-on:click="openDetail">
+                    <span v-if="detail == 'project-detail-close'">プロジェクト詳細を表示する</span>
+                    <span v-else>詳細を隠す</span>
+                </button>
+                <div v-bind:class="detail">
+                    <div class="overview">{{project.overview}}</div>
+                    <div class="tasks">
+                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
+                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" class="task" />
+                        <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,7 +34,8 @@
                 modal:false,
                 newTask:{},
                 denominotor:0,
-                numerator:0
+                numerator:0,
+                detail:'project-detail-close'
             }  
         },
         props: {
@@ -74,6 +80,9 @@
                 this.$refs.form.resetForm()
                 this.$refs.modal.openModal()
             },
+            openDetail:function(){
+                this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
+            },
             setProgress:function(){
                 //タスクが登録されていない場合は終了
                 if(this.project.tasks.length == 0){
@@ -96,17 +105,29 @@
 </script>
 <style scoped>
     .project-wrapper {
+        width:100%;
         border:3px solid grey;
         border-radius:0.2em;
+    }
+    .project-content-wrapper {
         padding:1em;
+        overflow:hidden;
     }
     .info {
         width:100%;
-        margin:0.5em 0em;
+        margin-bottom:0.5em;
         padding:0.1em 2em;
         background:orange;
         color:white;
         font-size:60%;
+    }
+    .project-detail-close {
+        max-height:0;
+        transition:all 0.3s;
+    }
+    .project-detail-open {
+        max-height:500px;
+        transition:all 0.3s;
     }
     .overview {
         margin:0.5em 1em;
@@ -119,5 +140,8 @@
     }
     .task {
         margin-top:0.2em;
+    }
+    button {
+        margin-top:0.5em;
     }
 </style>
