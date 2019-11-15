@@ -2,7 +2,6 @@
 <template>
     <div class="container">
         
-        <project-list />
     </div>
 </template>
 

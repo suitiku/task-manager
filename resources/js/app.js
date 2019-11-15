@@ -27,6 +27,7 @@ Vue.component('star-range', require('./components/StarRange.vue'));
 Vue.component('check-box', require('./components/CheckBox.vue')); //未実装
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
+Vue.component('lists', require('./components/Lists.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <task-list />
+    <lists />
 </div>
 @endsection

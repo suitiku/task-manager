@@ -9,17 +9,20 @@
     export default {
         data:function(){
             return {
-                test:''
+
             }  
+        },
+        props: {
+            
         },
         watch:{
             
         },
-        created(){
+        created:function(){
             
         },
-        mounted() {
-            console.log('Component mounted.')
+        mounted:function(){
+            
         },
         methods: {
             
