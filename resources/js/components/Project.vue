@@ -6,8 +6,8 @@
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:column_override="override" />
         </modal>
-        <div class="wrapper">
-            <div class="project">
+        <div class="project-wrapper">
+            <div>
                 <h3>{{project.name}}</h3>
                 <div class="info">最終締切　{{project.dead_line}}</div>
                 <div class="overview">{{project.overview}}</div>
@@ -62,7 +62,7 @@
     }
 </script>
 <style scoped>
-    .wrapper {
+    .project-wrapper {
         border:3px solid grey;
         border-radius:0.2em;
         padding:1em;

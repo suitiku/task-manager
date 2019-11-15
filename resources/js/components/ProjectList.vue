@@ -5,7 +5,9 @@
             <versatile-form v-model="newProject" ref="form" table="projects" />
         </modal>
         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addProject">プロジェクトを追加</button>
-        <project v-for="(project,index) in projects" v-bind:project="project" v-bind:key="index" />
+        <div v-for="(project,index) in projects" v-bind:key="index" class="project">
+            <project v-if="project.id != 1" v-bind:project="project" />
+        </div>
     </div>
 </template>
 
@@ -19,15 +21,28 @@
             }  
         },
         watch:{
-            
+            newProject:async function(newVal,oldVal){
+                if(newVal.id){
+                    let result = await axios.get('/api/projects/' + newVal.id)
+                    let index = this.projects.findIndex((project) => {
+                        return (project.id == newVal.id)
+                    })
+                    if(index != -1){
+                        this.projects.splice(index,1,result.data)
+                    }else{
+                        this.projects.push(result.data)
+                    }
+                }
+            }
         },
         created(){
-            this.fetchProjects()
+            
         },
         mounted() {
+            this.init()
         },
         methods: {
-            fetchProjects: async function(){
+            init: async function(){
                 let result = await axios.get('/api/projects')
                 this.projects = result.data
             },
@@ -39,5 +54,7 @@
     }
 </script>
 <style scoped>
-    
+    .project {
+        margin-top:0.5em;
+    }
 </style>

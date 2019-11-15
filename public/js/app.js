@@ -49610,7 +49610,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.project[data-v-236eb2bc] {\n    margin-top:0.5em;\n}\n", ""]);
 
 // exports
 
@@ -49638,6 +49638,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -49647,29 +49649,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             newProject: {}
         };
     },
-    watch: {},
-    created: function created() {
-        this.fetchProjects();
-    },
-    mounted: function mounted() {},
-
-    methods: {
-        fetchProjects: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var result;
+    watch: {
+        newProject: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                var result, index;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
-                                return axios.get('/api/projects');
+                                if (!newVal.id) {
+                                    _context.next = 6;
+                                    break;
+                                }
 
-                            case 2:
+                                _context.next = 3;
+                                return axios.get('/api/projects/' + newVal.id);
+
+                            case 3:
                                 result = _context.sent;
+                                index = this.projects.findIndex(function (project) {
+                                    return project.id == newVal.id;
+                                });
 
-                                this.projects = result.data;
+                                if (index != -1) {
+                                    this.projects.splice(index, 1, result.data);
+                                } else {
+                                    this.projects.push(result.data);
+                                }
 
-                            case 4:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -49677,11 +49685,47 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function fetchProjects() {
+            function newProject(_x, _x2) {
                 return _ref.apply(this, arguments);
             }
 
-            return fetchProjects;
+            return newProject;
+        }()
+    },
+    created: function created() {},
+    mounted: function mounted() {
+        this.init();
+    },
+
+    methods: {
+        init: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return axios.get('/api/projects');
+
+                            case 2:
+                                result = _context2.sent;
+
+                                this.projects = result.data;
+
+                            case 4:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function init() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return init;
         }(),
         addProject: function addProject() {
             this.$refs.form.resetForm();
@@ -50514,7 +50558,16 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.projects, function(project, index) {
-        return _c("project", { key: index, attrs: { project: project } })
+        return _c(
+          "div",
+          { key: index, staticClass: "project" },
+          [
+            project.id != 1
+              ? _c("project", { attrs: { project: project } })
+              : _vm._e()
+          ],
+          1
+        )
       })
     ],
     2
@@ -50616,7 +50669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.wrapper[data-v-c10f8004] {\n    border:3px solid grey;\n    border-radius:0.2em;\n    padding:1em;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin:0.5em 0em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n.task[data-v-c10f8004] {\n    margin-top:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    border:3px solid grey;\n    border-radius:0.2em;\n    padding:1em;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin:0.5em 0em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n.task[data-v-c10f8004] {\n    margin-top:0.2em;\n}\n", ""]);
 
 // exports
 
@@ -50766,8 +50819,8 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "wrapper" }, [
-        _c("div", { staticClass: "project" }, [
+      _c("div", { staticClass: "project-wrapper" }, [
+        _c("div", [
           _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
           _vm._v(" "),
           _c("div", { staticClass: "info" }, [
