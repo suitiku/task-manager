@@ -51887,7 +51887,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n", ""]);
+exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.5em 0;\n}\n", ""]);
 
 // exports
 
@@ -51904,6 +51904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -52323,7 +52324,7 @@ var render = function() {
         _vm._l(_vm.columns, function(column, index) {
           return _c(
             "div",
-            { key: index },
+            { key: index, staticClass: "column" },
             [
               _c(
                 "span",
@@ -52340,114 +52341,126 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
               ),
               _vm._v(" "),
-              _vm.setInputType(column.DATA_TYPE) === "checkbox" &&
-              (column.COLUMN_KEY == "" &&
-                _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    ],
-                    attrs: {
-                      placeholder: _vm.setPlaceholder(column),
-                      type: "checkbox"
-                    },
-                    domProps: {
-                      checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                        ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                        : _vm.postObject[column.COLUMN_NAME]
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.postObject[column.COLUMN_NAME],
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.postObject,
-                                column.COLUMN_NAME,
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.postObject,
-                                column.COLUMN_NAME,
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
-                        }
-                      }
-                    }
-                  })
-                : _vm.setInputType(column.DATA_TYPE) === "radio" &&
-                  (column.COLUMN_KEY == "" &&
-                    _vm.inputColumns.indexOf(column.DATA_TYPE) != -1)
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    ],
-                    attrs: {
-                      placeholder: _vm.setPlaceholder(column),
-                      type: "radio"
-                    },
-                    domProps: {
-                      checked: _vm._q(_vm.postObject[column.COLUMN_NAME], null)
-                    },
-                    on: {
-                      change: function($event) {
-                        return _vm.$set(
-                          _vm.postObject,
-                          column.COLUMN_NAME,
-                          null
-                        )
-                      }
+              column.COLUMN_NAME == "dead_line"
+                ? _c("dead-line", {
+                    model: {
+                      value: _vm.postObject[column.COLUMN_NAME],
+                      callback: function($$v) {
+                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                      },
+                      expression: "postObject[column.COLUMN_NAME]"
                     }
                   })
                 : column.COLUMN_KEY == "" &&
                   _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    ],
-                    attrs: {
-                      placeholder: _vm.setPlaceholder(column),
-                      type: _vm.setInputType(column.DATA_TYPE)
-                    },
-                    domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                ? _vm.setInputType(column.DATA_TYPE) === "checkbox"
+                  ? _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.postObject[column.COLUMN_NAME],
+                          expression: "postObject[column.COLUMN_NAME]"
                         }
-                        _vm.$set(
-                          _vm.postObject,
-                          column.COLUMN_NAME,
-                          $event.target.value
+                      ],
+                      attrs: {
+                        placeholder: _vm.setPlaceholder(column),
+                        type: "checkbox"
+                      },
+                      domProps: {
+                        checked: Array.isArray(
+                          _vm.postObject[column.COLUMN_NAME]
                         )
+                          ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) >
+                            -1
+                          : _vm.postObject[column.COLUMN_NAME]
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.postObject[column.COLUMN_NAME],
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
+                          }
+                        }
                       }
-                    }
-                  })
+                    })
+                  : _vm.setInputType(column.DATA_TYPE) === "radio"
+                  ? _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.postObject[column.COLUMN_NAME],
+                          expression: "postObject[column.COLUMN_NAME]"
+                        }
+                      ],
+                      attrs: {
+                        placeholder: _vm.setPlaceholder(column),
+                        type: "radio"
+                      },
+                      domProps: {
+                        checked: _vm._q(
+                          _vm.postObject[column.COLUMN_NAME],
+                          null
+                        )
+                      },
+                      on: {
+                        change: function($event) {
+                          return _vm.$set(
+                            _vm.postObject,
+                            column.COLUMN_NAME,
+                            null
+                          )
+                        }
+                      }
+                    })
+                  : _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.postObject[column.COLUMN_NAME],
+                          expression: "postObject[column.COLUMN_NAME]"
+                        }
+                      ],
+                      attrs: {
+                        placeholder: _vm.setPlaceholder(column),
+                        type: _vm.setInputType(column.DATA_TYPE)
+                      },
+                      domProps: { value: _vm.postObject[column.COLUMN_NAME] },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.postObject,
+                            column.COLUMN_NAME,
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
                 : column.COLUMN_TYPE == "tinyint(4)"
                 ? _c("star-range", {
                     model: {
@@ -52707,7 +52720,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52731,13 +52744,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            test: '',
-            options: [{ label: '1時間後', value: '1' }, { label: '1日後', value: '2' }, { label: '1週間後', value: '3' }, { label: '1ヶ月後', value: '3' }, { label: '3ヶ月後', value: '3' }, { label: '6ヶ月後', value: '3' }, { label: '1年後', value: '3' }, { label: '2年後', value: '3' }, { label: '5年後', value: '3' }, { label: '10年後', value: '3' }]
+            test: ''
         };
     },
     mounted: function mounted() {},
@@ -52785,19 +52796,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [
-      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
-      _c("tag-cloud", {
-        attrs: { options: _vm.options },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      })
-    ],
+    [_c("versatile-form", { attrs: { table: "tasks" } })],
     1
   )
 }
@@ -52897,7 +52896,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n    overflow:scroll;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
 
 // exports
 
@@ -52908,6 +52907,7 @@ exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -54143,7 +54143,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nselect[data-v-c1dd303a] {\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -54162,28 +54162,64 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: [{ label: '1時間後', value: '0000-00-00 01:00:00' }, { label: '1日後', value: '0000-00-01 00:00:00' }, { label: '1週間後', value: '0000-00-07 01:00:00' }],
-            baseDateTime: '',
-            resultDateTime: '',
-            year: '',
-            month: '',
-            day: ''
+            options: [{ label: '1時間後', value: '0000-00-00 01:00:00' }, { label: '6時間後', value: '0000-00-00 06:00:00' }, { label: '12時間後', value: '0000-00-00 12:00:00' }, { label: '24時間後', value: '0000-00-00 24:00:00' }],
+            selectedOption: '',
+            spanOption: ''
         };
     },
     props: {},
-    watch: {},
+    watch: {
+        selectedOption: function selectedOption() {
+            //リセット
+            if (this.selectedOption == '') {
+                this.$emit('input', '');
+                return;
+            }
+            var baseDateTime = new Date();
+            var text = this.selectedOption[0];
+            var regex = /(\d{4})-(\d{2})-(\d{2})\s{1}(\d{2}):(\d{2}):(\d{2})/;
+            var regexResult = text.match(regex);
+            var year = Number(regexResult[1]) + baseDateTime.getFullYear();
+            var month = Number(regexResult[2]) + baseDateTime.getMonth();
+            var day = Number(regexResult[3]) + baseDateTime.getDate();
+            var hour = Number(regexResult[4]) + baseDateTime.getHours();
+            var minute = Number(regexResult[5]) + baseDateTime.getMinutes();
+            var second = Number(regexResult[6]) + baseDateTime.getSeconds();
+            var resultDateTime = new Date(year, month, day, hour, minute, second);
+            var resultText = resultDateTime.getFullYear() + '-' + (resultDateTime.getMonth() + 1) + '-' + resultDateTime.getDate() + ' ' + resultDateTime.getHours() + ':' + resultDateTime.getMinutes() + ':' + resultDateTime.getSeconds();
+            this.$emit('input', resultText);
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        selectOption: function selectOption(value) {
-            this.baseDateTime = new Date(); //現在時刻を取得
+        selectSpanOption: function selectSpanOption() {
+            this.$refs.tagCloud.resetForm();
+            switch (this.spanOption) {
+                case 0:
+                    this.options = [{ label: '1時間後', value: '0000-00-00 01:00:00' }, { label: '6時間後', value: '0000-00-00 06:00:00' }, { label: '12時間後', value: '0000-00-00 12:00:00' }, { label: '24時間後', value: '0000-00-00 24:00:00' }];
+                    break;
+                case 1:
+                    this.options = [{ label: '1日後', value: '0000-00-01 00:00:00' }, { label: '3日後', value: '0000-00-03 00:00:00' }, { label: '5日後', value: '0000-00-05 00:00:00' }, { label: '7日後', value: '0000-00-07 00:00:00' }];
+                    break;
+                case 2:
+                    this.options = [{ label: '1週間後', value: '0000-00-07 00:00:00' }, { label: '2週間後', value: '0000-00-14 00:00:00' }, { label: '3週間後', value: '0000-00-21 00:00:00' }, { label: '4週間後', value: '0000-01-00 00:00:00' }];
+                    break;
+                case 3:
+                    this.options = [{ label: '1ヶ月後', value: '0000-01-00 00:00:00' }, { label: '3ヶ月後', value: '0000-03-00 00:00:00' }, { label: '6ヶ月後', value: '0000-06-00 00:00:00' }, { label: '9ヶ月後', value: '0000-09-00 00:00:00' }, { label: '12ヶ月後', value: '0001-00-00 00:00:00' }];
+                    break;
 
-
-            console.log();
+            }
         }
     }
 });
@@ -54196,7 +54232,73 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "select",
+        {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.spanOption,
+              expression: "spanOption"
+            }
+          ],
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.spanOption = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              _vm.selectSpanOption
+            ]
+          }
+        },
+        [
+          _c("option", { attrs: { selected: "" }, domProps: { value: 0 } }, [
+            _vm._v("超短期スパン（1日まで）")
+          ]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 1 } }, [
+            _vm._v("短期スパン（1週間まで）")
+          ]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 2 } }, [
+            _vm._v("中期スパン（1ヶ月まで）")
+          ]),
+          _vm._v(" "),
+          _c("option", { domProps: { value: 3 } }, [
+            _vm._v("長期スパン（1年まで）")
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("tag-cloud", {
+        ref: "tagCloud",
+        attrs: { options: _vm.options },
+        model: {
+          value: _vm.selectedOption,
+          callback: function($$v) {
+            _vm.selectedOption = $$v
+          },
+          expression: "selectedOption"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54315,6 +54417,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54361,6 +54465,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.result.push(value);
             this.$emit('input', this.result);
             event.target.className = 'option selected';
+        },
+        resetForm: function resetForm() {
+            this.result = [];
+            this.$emit('input', '');
+            var els = document.getElementsByClassName('selected');
+            if (els[0]) {
+                els[0].className = 'option';
+            }
         }
     }
 });

@@ -10,9 +10,10 @@
 <template>
     <div class="container">
         <div class="forms">
-            <div v-for="(column,index) in columns" v-bind:key="index">
+            <div v-for="(column,index) in columns" v-bind:key="index" class="column">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
-                <input v-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
+                <dead-line v-if="column.COLUMN_NAME == 'dead_line'" v-model="postObject[column.COLUMN_NAME]" />
+                <input v-else-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
                 <star-range v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" />
                 <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
                 <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
@@ -168,5 +169,8 @@
     .buttons {
         display:flex;
         justify-content:space-around;
+    }
+    .column {
+        margin:0.8em 0;
     }
 </style>

@@ -62,6 +62,14 @@
                 this.result.push(value)
                 this.$emit('input',this.result)
                 event.target.className = 'option selected'
+            },
+            resetForm:function(){
+                this.result = []
+                this.$emit('input','')
+                let els = document.getElementsByClassName('selected')
+                if(els[0]){
+                    els[0].className = 'option'
+                }
             }
         }
     }

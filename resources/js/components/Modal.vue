@@ -1,5 +1,6 @@
 <!--モーダル表示コンポーネント-->
 <!--今後の改修ポイント-->
+<!--１．コンテンツが見切れる場合の処理-->
 <template>
     <div v-bind:class="modalClass">
         <div class="modal-wrapper">
