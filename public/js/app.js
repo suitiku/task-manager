@@ -51113,12 +51113,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
-            tasks: [],
+            allTasks: [], //データベースから取得したリスト全体
+            tasks: [], //表示用タスクリスト
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
             foreign_keys: [{ project_id: {
@@ -51126,7 +51129,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     columns: ['name', 'dead_line'],
                     comment: '所属するプロジェクトを選択してください。'
                 }
-            }]
+            }],
+            taskFilter: 'incomplete'
         };
     },
     mounted: function mounted() {},
@@ -51190,7 +51194,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return newTask;
-        }()
+        }(),
+        taskFilter: function taskFilter() {
+            this.filterTasks(this.taskFilter);
+        }
     },
     methods: {
         fetchTasks: function () {
@@ -51207,15 +51214,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 result = _context2.sent;
 
-                                this.tasks = result.data;
+                                this.allTasks = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
                                 _context2.prev = 7;
-                                for (_iterator = Object.keys(this.tasks)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                for (_iterator = Object.keys(this.allTasks)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
-                                    this.ids.push(this.tasks[index].id);
+                                    this.ids.push(this.allTasks[index].id);
                                 }
                                 _context2.next = 15;
                                 break;
@@ -51251,6 +51258,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context2.finish(15);
 
                             case 23:
+                                this.filterTasks('incomplete');
+
+                            case 24:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -51272,6 +51282,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.tasks.sort(function (a, b) {
                 return a[key] < b[key] ? -1 : 1;
             });
+        },
+        filterTasks: function filterTasks(state) {
+            switch (state) {
+                case 'all':
+                    this.tasks = this.allTasks;
+                    break;
+                case 'incomplete':
+                    //初期表示タスクは未完了分のみ
+                    this.tasks = this.allTasks.filter(function (task) {
+                        var index = task.states_tasks.length - 1;
+                        return task.states_tasks[index].id != 4;
+                    });
+                    break;
+            }
+        },
+        showAllTasks: function showAllTasks() {
+            console.log(event);
+            this.taskFilter = event.target.checked ? 'all' : 'incomplete';
         }
     }
 });
@@ -51364,6 +51392,15 @@ var render = function() {
           },
           [_vm._v("難易度")]
         )
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { id: "showAllTasks", type: "checkbox" },
+        on: { change: _vm.showAllTasks }
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "showAllTasks" } }, [
+        _vm._v("完了済みタスクも表示")
       ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
@@ -51490,6 +51527,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -51887,7 +51926,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
 
 // exports
 
@@ -52896,7 +52935,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n    overflow:scroll;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
 
 // exports
 
@@ -54154,6 +54193,11 @@ exports.push([module.i, "\nselect[data-v-c1dd303a] {\n    text-align:center;\n}\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //

@@ -1,5 +1,10 @@
 <!--将来の日付を返すUIコンポーネント-->
 <!--選択式と記述式を切替-->
+<!--今後の改修ポイント-->
+<!--１．設定値の表示-->
+<!--２．設定値を切りのいい数字にする関数-->
+<!--３．セレクトボックスのデザイン-->
+<!--４．記述式を追加-->
 <template>
     <div class="container">
         <select v-model="spanOption" v-on:change="selectSpanOption">

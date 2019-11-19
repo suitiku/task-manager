@@ -3,6 +3,8 @@
 <!--2 詳細ボタン-->
 <!--3 編集ボタン-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
+<!--5 ログ表示-->
+<!--6 現在の状態表示-->
 <template>
     <div class="container">
         <div v-if="task.project" class="project-label">{{task.project.name}}</div>
