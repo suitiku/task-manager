@@ -28,6 +28,8 @@ Vue.component('check-box', require('./components/CheckBox.vue')); //未実装
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
 Vue.component('lists', require('./components/Lists.vue'));
+Vue.component('dead-line', require('./components/DeadLine.vue'));
+Vue.component('tag-cloud', require('./components/TagCloud.vue'));
 
 const app = new Vue({
     el: '#app'
