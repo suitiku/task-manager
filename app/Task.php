@@ -16,8 +16,8 @@ class Task extends Model
         return $this->belongsTo('App\Project');
     }
     
-    public function statesTasks(){
-        return $this->belongsToMany('App\State','state_task')->withTimestamps();
+    public function state(){
+        return $this->belongsTo('App\State');
     }
     
 }

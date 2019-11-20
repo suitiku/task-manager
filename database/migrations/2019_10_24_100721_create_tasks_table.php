@@ -16,6 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('project_id');
+            $table->unsignedInteger('state_id');
             $table->string('name');
             $table->text('overview');
             $table->tinyInteger('priority')->comment('優先度');
@@ -24,6 +25,7 @@ class CreateTasksTable extends Migration
             $table->timestamps();
             
             $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('state_id')->references('id')->on('states');
         });
     }
 

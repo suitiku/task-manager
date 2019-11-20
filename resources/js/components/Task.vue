@@ -73,11 +73,10 @@
             },
             checkTask:async function(taskId){
                 if(event.target.checked == true){
-                    let postObject = {
-                        task_id:taskId,
-                        state_id:4
+                    let modifyData = {
+                        state_id:3
                     }
-                    let result = await axios.post('/api/state_task',postObject)
+                    let result = await axios.put('/api/tasks/' + taskId, modifyData)
                     if(result.data){
                         this.checkbox = true
                         //状態が変化したらtasks/idを再取得して送出
@@ -102,9 +101,7 @@
                 }
             },
             updateData:function(){
-                let stateIndex = this.task.states_tasks.length - 1
-                let stateId = this.task.states_tasks[stateIndex].id
-                this.checkbox = stateId == 4 ? true : false
+                this.checkbox = this.task.state_id == 3 ? true : false
             }
         }
     }

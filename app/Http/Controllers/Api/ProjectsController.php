@@ -15,7 +15,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return Project::with(['tasks.statesTasks'])->get();
+        return Project::with(['tasks.state'])->get();
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        return Project::with(['tasks.statesTasks'])->find($id);
+        return Project::with(['tasks.state'])->find($id);
     }
 
     /**

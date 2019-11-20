@@ -18,7 +18,7 @@ class TasksController extends Controller
         return Task::with([
                         'project',
                         'items',
-                        'statesTasks'
+                        'state'
                     ])->get();
     }
 
@@ -42,7 +42,6 @@ class TasksController extends Controller
     {
         $task = new Task;
         $task->fill($request->all())->save();
-        $task->statesTasks()->attach(1); //作成直後の状態を添付
         return $task;
     }
 
@@ -57,7 +56,7 @@ class TasksController extends Controller
         return Task::with([
                         'project',
                         'items',
-                        'statesTasks'
+                        'state'
                     ])->find($id);
     }
 
@@ -83,7 +82,6 @@ class TasksController extends Controller
     {
         $task = Task::find($id);
         $task->fill($request->all())->save();
-        $task->statesTasks()->attach(7); //編集状態を記録
         return $task;
     }
 
@@ -97,17 +95,4 @@ class TasksController extends Controller
     {
         Task::find($id)->delete();
     }
-    
-    //state_taskに対する操作
-    //成功すると状態が変化したtask_idが返ってくる
-    public function insertStateTask(Request $request){
-        $task = Task::find($request->task_id);
-        try{
-            $task->statesTasks()->attach($request->state_id);
-            return $request->task_id;
-        }catch(Exception $e){
-            return $e;
-        }
-    }
-    
 }

@@ -92,9 +92,8 @@
                 
                 this.denominotor = this.project.tasks.length
                 let numerator = 0
-                for(let value of this.project.tasks){
-                    let stateIndex = value.states_tasks.length - 1
-                    if(value.states_tasks[stateIndex].id == 4){
+                for(let task of this.project.tasks){
+                    if(task.state_id == 3){
                         numerator ++
                     }
                 }

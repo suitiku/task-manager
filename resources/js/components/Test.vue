@@ -1,7 +1,6 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <versatile-form table="tasks" />
     </div>
 </template>
 
@@ -9,14 +8,15 @@
     export default {
         data:function(){
             return {
-                test:''
+                tasks:[],
+                filteredTasks:[],
             }  
         },
         mounted() {
         },
         created:async function() {
-            let result = await axios.get('/api/projects/2')
-            this.project = result.data
+            let result = await axios.get('/api/tasks')
+            this.tasks = result.data
         },
         methods: {
         },

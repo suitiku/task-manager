@@ -14605,7 +14605,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(121);
+module.exports = __webpack_require__(126);
 
 
 /***/ }),
@@ -14644,6 +14644,7 @@ Vue.component('list-box', __webpack_require__(101));
 Vue.component('lists', __webpack_require__(106));
 Vue.component('dead-line', __webpack_require__(111));
 Vue.component('tag-cloud', __webpack_require__(116));
+Vue.component('array-filter', __webpack_require__(121));
 
 var app = new Vue({
   el: '#app'
@@ -50838,10 +50839,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             try {
                 for (var _iterator2 = this.project.tasks[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var value = _step2.value;
+                    var task = _step2.value;
 
-                    var stateIndex = value.states_tasks.length - 1;
-                    if (value.states_tasks[stateIndex].id == 4) {
+                    if (task.state_id == 3) {
                         numerator++;
                     }
                 }
@@ -51113,8 +51113,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51215,57 +51213,55 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context2.sent;
 
                                 this.allTasks = result.data;
+                                this.tasks = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 7;
+                                _context2.prev = 8;
                                 for (_iterator = Object.keys(this.allTasks)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
                                     this.ids.push(this.allTasks[index].id);
                                 }
-                                _context2.next = 15;
+                                _context2.next = 16;
                                 break;
 
-                            case 11:
-                                _context2.prev = 11;
-                                _context2.t0 = _context2['catch'](7);
+                            case 12:
+                                _context2.prev = 12;
+                                _context2.t0 = _context2['catch'](8);
                                 _didIteratorError = true;
                                 _iteratorError = _context2.t0;
 
-                            case 15:
-                                _context2.prev = 15;
+                            case 16:
                                 _context2.prev = 16;
+                                _context2.prev = 17;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 18:
-                                _context2.prev = 18;
+                            case 19:
+                                _context2.prev = 19;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 21;
+                                    _context2.next = 22;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 21:
-                                return _context2.finish(18);
-
                             case 22:
-                                return _context2.finish(15);
+                                return _context2.finish(19);
 
                             case 23:
-                                this.filterTasks('incomplete');
+                                return _context2.finish(16);
 
                             case 24:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+                }, _callee2, this, [[8, 12, 16, 24], [17,, 19, 23]]);
             }));
 
             function fetchTasks() {
@@ -51282,24 +51278,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.tasks.sort(function (a, b) {
                 return a[key] < b[key] ? -1 : 1;
             });
-        },
-        filterTasks: function filterTasks(state) {
-            switch (state) {
-                case 'all':
-                    this.tasks = this.allTasks;
-                    break;
-                case 'incomplete':
-                    //初期表示タスクは未完了分のみ
-                    this.tasks = this.allTasks.filter(function (task) {
-                        var index = task.states_tasks.length - 1;
-                        return task.states_tasks[index].id != 4;
-                    });
-                    break;
-            }
-        },
-        showAllTasks: function showAllTasks() {
-            console.log(event);
-            this.taskFilter = event.target.checked ? 'all' : 'incomplete';
         }
     }
 });
@@ -51392,15 +51370,6 @@ var render = function() {
           },
           [_vm._v("難易度")]
         )
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { id: "showAllTasks", type: "checkbox" },
-        on: { change: _vm.showAllTasks }
-      }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "showAllTasks" } }, [
-        _vm._v("完了済みタスクも表示")
       ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
@@ -51617,7 +51586,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         checkTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
-                var postObject, result, taskResult;
+                var modifyData, result, taskResult;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -51627,12 +51596,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     break;
                                 }
 
-                                postObject = {
-                                    task_id: taskId,
-                                    state_id: 4
+                                modifyData = {
+                                    state_id: 3
                                 };
                                 _context2.next = 4;
-                                return axios.post('/api/state_task', postObject);
+                                return axios.put('/api/tasks/' + taskId, modifyData);
 
                             case 4:
                                 result = _context2.sent;
@@ -51707,9 +51675,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return checkItem;
         }(),
         updateData: function updateData() {
-            var stateIndex = this.task.states_tasks.length - 1;
-            var stateId = this.task.states_tasks[stateIndex].id;
-            this.checkbox = stateId == 4 ? true : false;
+            this.checkbox = this.task.state_id == 3 ? true : false;
         }
     }
 });
@@ -52759,7 +52725,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52787,7 +52753,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            test: ''
+            tasks: [],
+            filteredTasks: []
         };
     },
     mounted: function mounted() {},
@@ -52800,12 +52767,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return axios.get('/api/projects/2');
+                            return axios.get('/api/tasks');
 
                         case 2:
                             result = _context.sent;
 
-                            this.project = result.data;
+                            this.tasks = result.data;
 
                         case 4:
                         case 'end':
@@ -52832,12 +52799,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [_c("versatile-form", { attrs: { table: "tasks" } })],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [_c("task-list")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54563,6 +54525,244 @@ if (false) {
 
 /***/ }),
 /* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(122)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(124)
+/* template */
+var __vue_template__ = __webpack_require__(125)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-26833d96"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ArrayFilter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-26833d96", Component.options)
+  } else {
+    hotAPI.reload("data-v-26833d96", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(123);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("9fc434bc", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-26833d96\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ArrayFilter.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-26833d96\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ArrayFilter.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            state: [1, 2, 3, 4, 5, 6, 7],
+            priority: 0,
+            difficulty: 0,
+            state_options: [{ label: '作成', value: 1 }, { label: '実行中', value: 2 }, { label: '対応待ち', value: 3 }, { label: '完了', value: 4 }, { label: 'タスク移動', value: 5 }, { label: '未完了', value: 6 }, { label: '編集', value: 7 }]
+        };
+    },
+    props: {
+        unfilteredObject: {
+            type: Array,
+            required: true
+        }
+    },
+    watch: {
+        state: function state() {
+            this.filter('state');
+        },
+        priority: function priority() {
+            this.filter('priority');
+        },
+        difficulty: function difficulty() {
+            this.filter('difficulty');
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        filter: function filter(key) {
+            var _this = this;
+
+            var result = void 0;
+            switch (key) {
+                case 'state':
+                    result = this.unfilteredObject.filter(function (obj) {
+                        var index = obj.states_tasks.length - 1;
+                        return _this.state.indexOf(obj.states_tasks[index].id) != -1;
+                    });
+                    this.$emit('input', result);
+                    break;
+                case 'priority':
+                case 'difficulty':
+                    result = this.unfilteredObject.filter(function (obj) {
+                        return obj[key] <= _this[key];
+                    });
+                    this.$emit('input', result);
+                    break;
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 125 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm._v("\n    " + _vm._s(_vm.state) + "\n    "),
+      _c("tag-cloud", {
+        attrs: { options: _vm.state_options, multiple: "" },
+        model: {
+          value: _vm.state,
+          callback: function($$v) {
+            _vm.state = $$v
+          },
+          expression: "state"
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.priority,
+            expression: "priority"
+          }
+        ],
+        attrs: { type: "range", min: "0", max: "5" },
+        domProps: { value: _vm.priority },
+        on: {
+          __r: function($event) {
+            _vm.priority = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.difficulty,
+            expression: "difficulty"
+          }
+        ],
+        attrs: { type: "range", min: "0", max: "5" },
+        domProps: { value: _vm.difficulty },
+        on: {
+          __r: function($event) {
+            _vm.difficulty = $event.target.value
+          }
+        }
+      }),
+      _vm._v("\n    " + _vm._s(_vm.unfilteredObject) + "\n")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-26833d96", module.exports)
+  }
+}
+
+/***/ }),
+/* 126 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

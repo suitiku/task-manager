@@ -11,8 +11,6 @@
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>
         </div>
-        <input id="showAllTasks" type="checkbox" v-on:change="showAllTasks" >
-        <label for="showAllTasks">完了済みタスクも表示</label>
         <task class="task" v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index" />
     </div>
 </template>
@@ -66,10 +64,10 @@
             fetchTasks: async function(){
                 let result = await axios.get('/api/tasks')
                 this.allTasks = result.data
+                this.tasks = result.data
                 for(let index of Object.keys(this.allTasks)){
                     this.ids.push(this.allTasks[index].id)
                 }
-                this.filterTasks('incomplete')
             },
             addTask:function(){
                 this.$refs.form.resetForm()
@@ -80,24 +78,6 @@
                     return (a[key] < b[key]) ? -1 : 1
                 })
             },
-            filterTasks:function(state){
-                switch(state){
-                    case 'all':
-                        this.tasks = this.allTasks
-                        break
-                    case 'incomplete':
-                        //初期表示タスクは未完了分のみ
-                        this.tasks = this.allTasks.filter((task) => {
-                            let index = task.states_tasks.length - 1
-                            return (task.states_tasks[index].id != 4)
-                        })
-                        break
-                }
-                 
-            },
-            showAllTasks:function(){
-                this.taskFilter = event.target.checked ? 'all' : 'incomplete'
-            }
         }
     }
 </script>
