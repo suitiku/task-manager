@@ -100,13 +100,27 @@ class TasksController extends Controller
     
     public function attachTags(Request $request){
         $task = Task::find($request->task_id);
-        $task->tags()->attach($request->tag_id);
-        //何をreturnするかは検討中
+        try{
+            $task->tags()->attach($request->tag_id);
+            $data = array('task_id' => $request->task_id, 'tag_id' => $request->tag_id);
+            $result = array('status' => 'success','data' => $data);
+            return $result;
+        }catch(Exception $e){
+            $result = array('status' => 'failed');
+            return $result;
+        }
     }
     
     public function detachTags(Request $request){
         $task = Task::find($request->task_id);
-        $task->tags()->detach($request->tag_id);
-        //何をreturnするかは検討中
+        try{
+            $task->tags()->detach($request->tag_id);
+            $data = array('task_id' => $request->task_id, 'tag_id' => $request->tag_id);
+            $result = array('status' => 'success','data' => $data);
+            return $result;
+        }catch(Exception $e){
+            $result = array('status' => 'failed');
+            return $result;
+        }
     }
 }

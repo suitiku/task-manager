@@ -31,6 +31,7 @@ Vue.component('lists', require('./components/Lists.vue'));
 Vue.component('dead-line', require('./components/DeadLine.vue'));
 Vue.component('tag-cloud', require('./components/TagCloud.vue'));
 Vue.component('array-filter', require('./components/ArrayFilter.vue'));
+Vue.component('tag', require('./components/Tag.vue'));
 
 const app = new Vue({
     el: '#app'
