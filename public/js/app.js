@@ -54874,7 +54874,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-root-wrapper[data-v-8d320b02] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n}\n.tag-wrapper[data-v-8d320b02] {\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.tag-wrapper[data-v-8d320b02]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.tag-label[data-v-8d320b02] {\n    font-size:0.15em;\n}\n.tag-detail[data-v-8d320b02] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-animation:tag-data-v-8d320b02 0.4s;\n            animation:tag-data-v-8d320b02 0.4s;\n}\n@-webkit-keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
+exports.push([module.i, "\n.tag-root-wrapper[data-v-8d320b02] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n}\n.tag-wrapper[data-v-8d320b02] {\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.tag-wrapper[data-v-8d320b02]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.tag-label[data-v-8d320b02] {\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    font-size:0.15em;\n}\n.tag-detail[data-v-8d320b02] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-8d320b02 0.4s;\n            animation:tag-data-v-8d320b02 0.4s;\n}\n@-webkit-keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
 
 // exports
 
@@ -54891,6 +54891,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -54958,17 +54959,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.$emit('input', 'failed');
 
                             case 13:
-
-                                console.log('hoge');
-                                // if(result.data.status == 'success'){
-                                //     this.$emit('input','deleted')
-                                //     this.deactive = {display:'none'}
-                                // }else{
-                                //     console.log('hoge')
-                                //     this.$emit('input','failed')
-                                // }
-
-                            case 14:
                             case 'end':
                                 return _context.stop();
                         }

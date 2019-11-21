@@ -1,6 +1,7 @@
 <!--タグ表示用コンポーネント-->
 <!--今後の改修ポイント-->
 <!--１．削除した際に通知コンポーネントを起動（成功／失敗）-->
+<!--２．色設定の追加-->
 <template>
     <div class="tag-root-wrapper" v-bind:style="deactive">
         <!--<div v-show="detail" class="tag-detail">{{tag.overview}}</div>-->
@@ -88,6 +89,7 @@
         transition:all 0.1s;
     }
     .tag-label {
+        user-select:none;
         font-size:0.15em;
     }
     .tag-detail {
@@ -106,6 +108,7 @@
         border-radius:0.3em;
         font-size:0.3em;
         padding:0.3em;
+        user-select:none;
         animation:tag 0.4s ;
     }
     @keyframes tag {
