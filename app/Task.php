@@ -20,4 +20,7 @@ class Task extends Model
         return $this->belongsTo('App\State');
     }
     
+    public function tags(){
+        return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
 }

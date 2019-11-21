@@ -18,8 +18,11 @@ class TasksTableSeeder extends Seeder
             ['project_id' => 1,'state_id' => 1,'name' => '持ち物リスト','overview' => '','priority' => 3,'difficulty' => 1,'dead_line' => '2022-05-03 18:00:00'], //4 
         ];
         
-        foreach($data as $value){
-            $result = App\Task::create($value);
+        $taglist = [2,4,5,1];
+        
+        foreach($data as $index => $value){
+            $task = App\Task::create($value);
+            $task->tags()->attach($taglist[$index]);
         }
     }
 }

@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Task;
+use App\Tag;
 
-class TasksController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return Task::with([
-                        'project',
-                        'items',
-                        'state',
-                        'tags'
-                    ])->get();
+        return Tag::all();
     }
 
     /**
@@ -41,9 +36,9 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $task = new Task;
-        $task->fill($request->all())->save();
-        return $task;
+        $tag = new Tag;
+        $tag->fill($request->all())->save();
+        return $tag;
     }
 
     /**
@@ -54,12 +49,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::with([
-                        'project',
-                        'items',
-                        'state',
-                        'tags'
-                    ])->find($id);
+        return Tag::find($id);
     }
 
     /**
@@ -82,9 +72,9 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
-        $task->fill($request->all())->save();
-        return $task;
+        $tag = Tag::find($id);
+        $tag->fill($request->all())->save();
+        return $tag;
     }
 
     /**
@@ -95,18 +85,6 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        Task::find($id)->delete();
-    }
-    
-    public function attachTags(Request $request){
-        $task = Task::find($request->task_id);
-        $task->tags()->attach($request->tag_id);
-        //何をreturnするかは検討中
-    }
-    
-    public function detachTags(Request $request){
-        $task = Task::find($request->task_id);
-        $task->tags()->detach($request->tag_id);
-        //何をreturnするかは検討中
+        Tag::find($id)->delete();
     }
 }

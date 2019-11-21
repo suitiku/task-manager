@@ -15,17 +15,16 @@
     export default {
         data:function(){
             return {
+                originalObject:JSON.parse(JSON.stringify(this.unfilteredObject)), //unfilterdObjectを値渡しでコピーしたもの
                 state:[1,2,3,4,5,6,7],
                 priority:0,
                 difficulty:0,
                 state_options: [
-                    {label:'作成',value:1},    
-                    {label:'実行中',value:2},    
-                    {label:'対応待ち',value:3},  
-                    {label:'完了',value:4},    
-                    {label:'タスク移動',value:5},    
-                    {label:'未完了',value:6},    
-                    {label:'編集',value:7},
+                    {label:'実行中',value:1},    
+                    {label:'対応待ち',value:2},  
+                    {label:'完了',value:3},    
+                    {label:'タスク移動',value:4},    
+                    {label:'未完了',value:5},    
                 ]
             }  
         },
@@ -58,8 +57,7 @@
                 switch(key){
                     case 'state':
                         result = this.unfilteredObject.filter((obj) => {
-                            let index = obj.states_tasks.length - 1
-                            return (this.state.indexOf(obj.states_tasks[index].id) != -1)
+                            return (this.state.indexOf(obj.state_id) != -1)
                         })
                         this.$emit('input',result)
                         break
