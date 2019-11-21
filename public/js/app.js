@@ -52760,7 +52760,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             test: '',
             tag: {},
-            id: 3
+            id: 0
         };
     },
     mounted: function mounted() {},
@@ -54910,6 +54910,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             deactive: '',
             detail: false,
+            //明るい背景ではフォント黒、暗い背景ではフォント白
             brightBackgroundColor: ['pink']
         };
     },
@@ -54937,21 +54938,42 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 deleteObj = { task_id: this.id, tag_id: this.tag.id };
-                                _context.next = 3;
+                                _context.prev = 1;
+                                _context.next = 4;
                                 return axios.delete('/api/tag_task', { data: deleteObj });
 
-                            case 3:
+                            case 4:
                                 result = _context.sent;
 
                                 this.$emit('input', 'deleted');
                                 this.deactive = { display: 'none' };
+                                _context.next = 13;
+                                break;
 
-                            case 6:
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](1);
+
+                                console.log(_context.t0);
+                                this.$emit('input', 'failed');
+
+                            case 13:
+
+                                console.log('hoge');
+                                // if(result.data.status == 'success'){
+                                //     this.$emit('input','deleted')
+                                //     this.deactive = {display:'none'}
+                                // }else{
+                                //     console.log('hoge')
+                                //     this.$emit('input','failed')
+                                // }
+
+                            case 14:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this);
+                }, _callee, this, [[1, 9]]);
             }));
 
             function deleteTag() {

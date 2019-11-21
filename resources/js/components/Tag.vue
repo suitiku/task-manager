@@ -45,9 +45,14 @@
         methods: {
             deleteTag:async function(){
                 let deleteObj = {task_id:this.id,tag_id:this.tag.id}
-                let result = await axios.delete('/api/tag_task', {data:deleteObj})
-                this.$emit('input','deleted')
-                this.deactive = {display:'none'}
+                try{
+                    let result = await axios.delete('/api/tag_task', {data:deleteObj})
+                    this.$emit('input','deleted')
+                    this.deactive = {display:'none'}
+                }catch(error){
+                    console.log(error)
+                    this.$emit('input','failed')
+                }
             },
             fontColor:function(){
                 if(this.brightBackgroundColor.indexOf(this.tag.color) != -1){
