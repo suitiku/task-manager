@@ -51536,6 +51536,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51690,29 +51691,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm.task.project
-      ? _c("div", { staticClass: "project-label" }, [
-          _vm._v(_vm._s(_vm.task.project.name))
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("div", { class: _vm.wrapper }, [
-      _c("div", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.checkbox,
-            expression: "checkbox"
-          }
-        ],
-        staticClass: "completed"
-      }),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("tag-list", { attrs: { id: _vm.task.id } }),
       _vm._v(" "),
-      _c(
-        "div",
-        {
+      _vm.task.project
+        ? _c("div", { staticClass: "project-label" }, [
+            _vm._v(_vm._s(_vm.task.project.name))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("div", { class: _vm.wrapper }, [
+        _c("div", {
           directives: [
             {
               name: "show",
@@ -51721,82 +51713,98 @@ var render = function() {
               expression: "checkbox"
             }
           ],
-          staticClass: "completed-mark"
-        },
-        [_vm._v("completed!")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "task" }, [
-        _c("span", [
-          _c("input", {
-            attrs: { type: "checkbox" },
-            on: {
-              change: function($event) {
-                return _vm.checkTask(_vm.task.id)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "headline",
-              on: {
-                click: function($event) {
-                  return _vm.openDetail()
-                }
-              }
-            },
-            [_vm._v(_vm._s(_vm.task.name))]
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "span",
-          [
-            _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
-            _vm._v(" "),
-            _vm._l(_vm.task.priority, function(p) {
-              return _c("i", { staticClass: "fas fa-star" })
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "label" }, [_vm._v("締切")]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(_vm.task.dead_line))])
-          ],
-          2
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "detail" }, [
-        _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+          staticClass: "completed"
+        }),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "items" },
-          _vm._l(_vm.task.items, function(item) {
-            return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-              _c("input", {
-                attrs: {
-                  type: "checkbox",
-                  disabled: _vm.setItemDisabled(item.is_checked)
-                },
-                domProps: { checked: item.is_checked },
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.checkbox,
+                expression: "checkbox"
+              }
+            ],
+            staticClass: "completed-mark"
+          },
+          [_vm._v("completed!")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "task" }, [
+          _c("span", [
+            _c("input", {
+              attrs: { type: "checkbox" },
+              on: {
+                change: function($event) {
+                  return _vm.checkTask(_vm.task.id)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "headline",
                 on: {
-                  change: function($event) {
-                    return _vm.checkItem(item.id)
+                  click: function($event) {
+                    return _vm.openDetail()
                   }
                 }
+              },
+              [_vm._v(_vm._s(_vm.task.name))]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            [
+              _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+              _vm._v(" "),
+              _vm._l(_vm.task.priority, function(p) {
+                return _c("i", { staticClass: "fas fa-star" })
               }),
-              _vm._v(" " + _vm._s(item.name) + " -- "),
-              _c("span", [_vm._v(_vm._s(item.memo))])
-            ])
-          }),
-          0
-        )
+              _vm._v(" "),
+              _c("span", { staticClass: "label" }, [_vm._v("締切")]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.task.dead_line))])
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "detail" }, [
+          _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "items" },
+            _vm._l(_vm.task.items, function(item) {
+              return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                _c("input", {
+                  attrs: {
+                    type: "checkbox",
+                    disabled: _vm.setItemDisabled(item.is_checked)
+                  },
+                  domProps: { checked: item.is_checked },
+                  on: {
+                    change: function($event) {
+                      return _vm.checkItem(item.id)
+                    }
+                  }
+                }),
+                _vm._v(" " + _vm._s(item.name) + " -- "),
+                _c("span", [_vm._v(_vm._s(item.memo))])
+              ])
+            }),
+            0
+          )
+        ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52751,6 +52759,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52803,7 +52812,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [_c("tag-list", { attrs: { tags: _vm.task.tags, id: _vm.task.id } })],
+    [_c("task", { attrs: { task: _vm.task } })],
     1
   )
 }
@@ -55106,7 +55115,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:50%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid black;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
+exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid black;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n.display-all-tags-button-wrapper[data-v-4aeb7686] {\n    position:absolute;\n    bottom:0;\n    right:0;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n}\n.display-all-tags-button[data-v-4aeb7686] {\n    text-align:center;\n    font-size:60%;\n    font-weight:bold;\n    width:1em;\n    height:1.3em;\n    overflow:hidden;\n    background:whitesmoke;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.button-active[data-v-4aeb7686] {\n    height:0.7em;\n    background:orange;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.all-tags[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    position:absolute;\n    z-index:2;\n    width:33%;\n    margin-top:1em;\n    background:gainsboro;\n    opacity:0.9;\n    overflow:hidden;\n    -webkit-animation:alltags-data-v-4aeb7686 0.4s;\n            animation:alltags-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n@keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n.all-tag[data-v-4aeb7686] {\n    margin:0.3em;\n    padding:0.3em;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -55141,13 +55150,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            display_tag_number: 0,
             tags: [],
             new_tags: [],
             add_detail: false,
+            info_detail: false,
+            display_all_tags_button: false,
+            all_tags: false,
             modal: false
         };
     },
@@ -55158,56 +55183,77 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        id: function id() {
-            this.fetchTags();
-        }
+        id: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return this.fetchTags();
+
+                            case 2:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function id() {
+                return _ref.apply(this, arguments);
+            }
+
+            return id;
+        }()
     },
     created: function created() {},
     mounted: function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                 while (1) {
-                    switch (_context.prev = _context.next) {
+                    switch (_context2.prev = _context2.next) {
                         case 0:
                         case 'end':
-                            return _context.stop();
+                            return _context2.stop();
                     }
                 }
-            }, _callee, this);
+            }, _callee2, this);
         }));
 
         function mounted() {
-            return _ref.apply(this, arguments);
+            return _ref2.apply(this, arguments);
         }
 
         return mounted;
     }(),
     methods: {
         fetchTags: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
-                                _context2.next = 2;
+                                _context3.next = 2;
                                 return axios.get('/api/tasks/' + this.id);
 
                             case 2:
-                                result = _context2.sent;
+                                result = _context3.sent;
 
                                 this.tags = result.data.tags;
+                                this.getDisplayTagNumber();
 
-                            case 4:
+                            case 5:
                             case 'end':
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee3, this);
             }));
 
             function fetchTags() {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return fetchTags;
@@ -55217,46 +55263,143 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.modal.openModal();
         },
         addTags: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-                var postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag, index, postObject;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
+                                _context4.next = 2;
+                                return this.fetchTags();
+
+                            case 2:
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context4.prev = 5;
+
+                                for (_iterator = this.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    tag = _step.value;
+                                    index = this.new_tags.indexOf(tag.id);
+
+                                    if (index != -1) {
+                                        this.new_tags.splice(index, 1);
+                                    }
+                                }
+
+                                _context4.next = 13;
+                                break;
+
+                            case 9:
+                                _context4.prev = 9;
+                                _context4.t0 = _context4['catch'](5);
+                                _didIteratorError = true;
+                                _iteratorError = _context4.t0;
+
+                            case 13:
+                                _context4.prev = 13;
+                                _context4.prev = 14;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 16:
+                                _context4.prev = 16;
+
+                                if (!_didIteratorError) {
+                                    _context4.next = 19;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 19:
+                                return _context4.finish(16);
+
+                            case 20:
+                                return _context4.finish(13);
+
+                            case 21:
+                                if (!(Object.keys(this.new_tags).length == 0)) {
+                                    _context4.next = 24;
+                                    break;
+                                }
+
+                                this.$refs.modal.closeModal();
+                                return _context4.abrupt('return');
+
+                            case 24:
                                 postObject = {
                                     task_id: this.id,
                                     tag_id: this.new_tags
                                 };
-                                _context3.prev = 1;
-                                _context3.next = 4;
+                                _context4.prev = 25;
+                                _context4.next = 28;
                                 return axios.post('/api/tag_task', postObject);
 
-                            case 4:
-                                this.fetchTags();
+                            case 28:
                                 this.$refs.modal.closeModal();
-                                _context3.next = 11;
+                                this.display_tag_number = 0;
+                                this.tags = [];
+                                _context4.next = 33;
+                                return this.fetchTags();
+
+                            case 33:
+                                _context4.next = 38;
                                 break;
 
-                            case 8:
-                                _context3.prev = 8;
-                                _context3.t0 = _context3['catch'](1);
+                            case 35:
+                                _context4.prev = 35;
+                                _context4.t1 = _context4['catch'](25);
 
-                                console.log(_context3.t0);
+                                console.log(_context4.t1);
 
-                            case 11:
+                            case 38:
                             case 'end':
-                                return _context3.stop();
+                                return _context4.stop();
                         }
                     }
-                }, _callee3, this, [[1, 8]]);
+                }, _callee4, this, [[5, 9, 13, 21], [14,, 16, 20], [25, 35]]);
             }));
 
             function addTags() {
-                return _ref3.apply(this, arguments);
+                return _ref4.apply(this, arguments);
             }
 
             return addTags;
-        }()
+        }(),
+        displayAllTags: function displayAllTags() {
+            if (event.target.className == 'display-all-tags-button') {
+                event.target.className = 'display-all-tags-button button-active';
+                this.all_tags = true;
+            } else {
+                event.target.className = 'display-all-tags-button';
+                this.all_tags = false;
+            }
+        },
+        getDisplayTagNumber: function getDisplayTagNumber() {
+            var el = document.getElementsByClassName('tag-list-wrapper');
+            var wrapper_width = el[0].clientWidth;
+            var tag_width = this.getPixel(4.5);
+            this.display_tag_number = Math.floor(wrapper_width / tag_width);
+            if (this.tags.length < this.display_tag_number) {
+                this.display_tag_number = this.tags.length;
+            } else {
+                this.display_tag_number--; //省略タグ表示ボタン用
+                this.display_all_tags_button = true;
+            }
+        },
+        getPixel: function getPixel(em) {
+            if (em === undefined) {
+                em = 1;
+            }
+            var div = $('<div style="width:' + em + 'em;"></div>').appendTo('body');
+            var pixel = div.width();
+            div.remove();
+            return pixel;
+        }
     }
 });
 
@@ -55319,8 +55462,11 @@ var render = function() {
         "div",
         { staticClass: "tag-list-wrapper" },
         [
-          _vm._l(_vm.tags, function(tag, index) {
-            return _c("tag", { key: index, attrs: { tag: tag, id: _vm.id } })
+          _vm._l(_vm.display_tag_number, function(index) {
+            return _c("tag", {
+              key: index,
+              attrs: { tag: _vm.tags[index - 1], id: _vm.id }
+            })
           }),
           _vm._v(" "),
           _c("div", { staticClass: "add-tag-wrapper" }, [
@@ -55358,9 +55504,83 @@ var render = function() {
               },
               [_c("i", { staticClass: "fas fa-plus-circle" })]
             )
-          ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.display_all_tags_button,
+                  expression: "display_all_tags_button"
+                }
+              ],
+              staticClass: "display-all-tags-button-wrapper"
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.info_detail,
+                      expression: "info_detail"
+                    }
+                  ],
+                  staticClass: "add-detail"
+                },
+                [_vm._v("省略されたタグを表示します")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "display-all-tags-button",
+                  on: {
+                    click: function($event) {
+                      return _vm.displayAllTags()
+                    },
+                    mouseover: function($event) {
+                      _vm.info_detail = true
+                    },
+                    mouseleave: function($event) {
+                      _vm.info_detail = false
+                    }
+                  }
+                },
+                [_vm._v("i")]
+              )
+            ]
+          )
         ],
         2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.all_tags,
+              expression: "all_tags"
+            }
+          ],
+          staticClass: "all-tags"
+        },
+        _vm._l(_vm.tags, function(tag, index) {
+          return _c(
+            "div",
+            { staticClass: "all-tag", style: { background: tag.color } },
+            [_vm._v(_vm._s(tag.name))]
+          )
+        }),
+        0
       )
     ],
     1

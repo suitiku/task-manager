@@ -7,6 +7,7 @@
 <!--6 現在の状態表示-->
 <template>
     <div class="container">
+        <tag-list v-bind:id="task.id" />
         <div v-if="task.project" class="project-label">{{task.project.name}}</div>
         <div v-bind:class="wrapper">
             <div class="completed" v-show="checkbox"></div>

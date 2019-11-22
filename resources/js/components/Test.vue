@@ -1,7 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <tag-list v-bind:tags="task.tags" v-bind:id="task.id" />
+        <!--<tag-list v-bind:tags="task.tags" v-bind:id="task.id" />-->
+        <task v-bind:task="task" />
     </div>
 </template>
 
