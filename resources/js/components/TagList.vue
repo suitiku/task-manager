@@ -3,7 +3,7 @@
 <!--１．削除した際のgetDisplayTagNumber()の起動-->
 <!--２．画面サイズを変更した際のgetDisplayTagNumber()の起動-->
 <template>
-    <div class="container">
+    <div class="tag-list-root-wrapper">
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <h3>追加したいタグを選択してください（複数可）</h3>
@@ -49,18 +49,21 @@
             },
         },
         watch:{
-            id:async function(){
-                await this.fetchTags()
+            id:function(){
+                this.fetchTags()
             }
         },
         created:function(){
-            
+            // this.fetchTags()
         },
         mounted:async function(){
-            
+            this.fetchTags()
+        },
+        updated:function(){
         },
         methods: {
             fetchTags:async function(){
+                if(!this.id){return }
                 let result = await axios.get('/api/tasks/' + this.id)
                 this.tags = result.data.tags
                 this.getDisplayTagNumber()
@@ -112,6 +115,7 @@
                 let wrapper_width = el[0].clientWidth
                 let tag_width = this.getPixel(4.5)
                 this.display_tag_number = Math.floor(wrapper_width / tag_width)
+                
                 if(this.tags.length < this.display_tag_number){
                     this.display_tag_number = this.tags.length
                 }else{
@@ -134,12 +138,14 @@
         position:relative;
         width:100%;
         display:flex;
-        border:1px solid black;
+        justify-content:flex-end;
     }
     
     
     .add-tag-wrapper {
         position:relative;
+        height:3em;
+        width:3.5em;
         margin:0 0.5em;
     }
     .add-tag{
@@ -191,19 +197,22 @@
         }
     }
     .display-all-tags-button-wrapper {
-        position:absolute;
-        bottom:0;
-        right:0;
-        border-left:1px solid black;
-        border-top:1px solid black;
-        border-right:1px solid black;
+        position:relative;
+        height:3em;
+        width:1em;
+        margin-left:0.5em;
     }
     .display-all-tags-button {
+        position:absolute;
+        bottom:0;
         text-align:center;
         font-size:60%;
         font-weight:bold;
         width:1em;
         height:1.3em;
+        border-left:1px solid black;
+        border-top:1px solid black;
+        border-right:1px solid black;
         overflow:hidden;
         background:whitesmoke;
         user-select:none;
@@ -219,7 +228,7 @@
         flex-wrap:wrap;
         position:absolute;
         z-index:2;
-        width:33%;
+        width:100%;
         margin-top:1em;
         background:gainsboro;
         opacity:0.9;

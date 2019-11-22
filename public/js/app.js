@@ -49696,11 +49696,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     created: function created() {},
     mounted: function mounted() {
-        this.init();
+        this.fetchProjects();
     },
 
     methods: {
-        init: function () {
+        fetchProjects: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
@@ -49723,11 +49723,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function init() {
+            function fetchProjects() {
                 return _ref2.apply(this, arguments);
             }
 
-            return init;
+            return fetchProjects;
         }(),
         addProject: function addProject() {
             this.$refs.form.resetForm();
@@ -50671,7 +50671,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n.task[data-v-c10f8004] {\n    margin-top:0.2em;\n}\nbutton[data-v-c10f8004] {\n    margin-top:0.5em;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n/*.task {*/\n/*    margin-top:0.2em;*/\n/*}*/\nbutton[data-v-c10f8004] {\n    margin-top:0.5em;\n}\n", ""]);
 
 // exports
 
@@ -50956,7 +50956,6 @@ var render = function() {
                   _vm._l(_vm.project.tasks, function(task, index) {
                     return _c("task", {
                       key: index,
-                      staticClass: "task",
                       attrs: { task: task },
                       model: {
                         value: _vm.project.tasks[index],
@@ -51081,7 +51080,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.task[data-v-0afd8bae] {\n    margin-bottom:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.margin[data-v-0afd8bae] {\n    width:100%;\n    margin-bottom:0.5em;\n}\n", ""]);
 
 // exports
 
@@ -51377,7 +51376,7 @@ var render = function() {
       _vm._l(_vm.tasks, function(task, index) {
         return _c("task", {
           key: index,
-          staticClass: "task",
+          staticClass: "margin",
           attrs: { task: task }
         })
       })
@@ -51481,7 +51480,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:-0.3em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.completed[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-e9a53c20] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:3.2em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.tag-list-component-wrapper[data-v-e9a53c20] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    -webkit-box-orient:horizontal;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:row;\n            flex-direction:row;\n}\n.tag-list-component[data-v-e9a53c20] {\n    width:40%;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.completed[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-e9a53c20] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -51498,6 +51497,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -51691,20 +51694,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("tag-list", { attrs: { id: _vm.task.id } }),
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "tag-list-component-wrapper" }, [
+      _c(
+        "div",
+        { staticClass: "tag-list-component" },
+        [_c("tag-list", { attrs: { id: _vm.task.id } })],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _vm.task.project
+      ? _c("div", { staticClass: "project-label" }, [
+          _vm._v(_vm._s(_vm.task.project.name))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { class: _vm.wrapper }, [
+      _c("div", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.checkbox,
+            expression: "checkbox"
+          }
+        ],
+        staticClass: "completed"
+      }),
       _vm._v(" "),
-      _vm.task.project
-        ? _c("div", { staticClass: "project-label" }, [
-            _vm._v(_vm._s(_vm.task.project.name))
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _c("div", { class: _vm.wrapper }, [
-        _c("div", {
+      _c(
+        "div",
+        {
           directives: [
             {
               name: "show",
@@ -51713,98 +51734,82 @@ var render = function() {
               expression: "checkbox"
             }
           ],
-          staticClass: "completed"
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.checkbox,
-                expression: "checkbox"
+          staticClass: "completed-mark"
+        },
+        [_vm._v("completed!")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "task" }, [
+        _c("span", [
+          _c("input", {
+            attrs: { type: "checkbox" },
+            on: {
+              change: function($event) {
+                return _vm.checkTask(_vm.task.id)
               }
-            ],
-            staticClass: "completed-mark"
-          },
-          [_vm._v("completed!")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "task" }, [
-          _c("span", [
-            _c("input", {
-              attrs: { type: "checkbox" },
-              on: {
-                change: function($event) {
-                  return _vm.checkTask(_vm.task.id)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "span",
-              {
-                staticClass: "headline",
-                on: {
-                  click: function($event) {
-                    return _vm.openDetail()
-                  }
-                }
-              },
-              [_vm._v(_vm._s(_vm.task.name))]
-            )
-          ]),
+            }
+          }),
           _vm._v(" "),
           _c(
             "span",
-            [
-              _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
-              _vm._v(" "),
-              _vm._l(_vm.task.priority, function(p) {
-                return _c("i", { staticClass: "fas fa-star" })
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "label" }, [_vm._v("締切")]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.task.dead_line))])
-            ],
-            2
+            {
+              staticClass: "headline",
+              on: {
+                click: function($event) {
+                  return _vm.openDetail()
+                }
+              }
+            },
+            [_vm._v(_vm._s(_vm.task.name))]
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "detail" }, [
-          _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "items" },
-            _vm._l(_vm.task.items, function(item) {
-              return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-                _c("input", {
-                  attrs: {
-                    type: "checkbox",
-                    disabled: _vm.setItemDisabled(item.is_checked)
-                  },
-                  domProps: { checked: item.is_checked },
-                  on: {
-                    change: function($event) {
-                      return _vm.checkItem(item.id)
-                    }
-                  }
-                }),
-                _vm._v(" " + _vm._s(item.name) + " -- "),
-                _c("span", [_vm._v(_vm._s(item.memo))])
-              ])
+        _c(
+          "span",
+          [
+            _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+            _vm._v(" "),
+            _vm._l(_vm.task.priority, function(p) {
+              return _c("i", { staticClass: "fas fa-star" })
             }),
-            0
-          )
-        ])
+            _vm._v(" "),
+            _c("span", { staticClass: "label" }, [_vm._v("締切")]),
+            _vm._v(" "),
+            _c("span", [_vm._v(_vm._s(_vm.task.dead_line))])
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "detail" }, [
+        _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "items" },
+          _vm._l(_vm.task.items, function(item) {
+            return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+              _c("input", {
+                attrs: {
+                  type: "checkbox",
+                  disabled: _vm.setItemDisabled(item.is_checked)
+                },
+                domProps: { checked: item.is_checked },
+                on: {
+                  change: function($event) {
+                    return _vm.checkItem(item.id)
+                  }
+                }
+              }),
+              _vm._v(" " + _vm._s(item.name) + " -- "),
+              _c("span", [_vm._v(_vm._s(item.memo))])
+            ])
+          }),
+          0
+        )
       ])
-    ],
-    1
-  )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52759,12 +52764,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            task: {}
+            project: {}
         };
     },
     mounted: function mounted() {},
@@ -52777,12 +52781,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return axios.get('/api/tasks/1');
+                            return axios.get('/api/projects/1');
 
                         case 2:
                             result = _context.sent;
 
-                            this.task = result.data;
+                            this.project = result.data;
 
                         case 4:
                         case 'end':
@@ -52809,12 +52813,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [_c("task", { attrs: { task: _vm.task } })],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [_c("project-list")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53946,7 +53945,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nbutton[data-v-eb27ec8c] {\n    margin-bottom:2em;\n}\n", ""]);
+exports.push([module.i, "\nbutton[data-v-eb27ec8c] {\n    margin-bottom:2em;\n}\n.lists-wrapper[data-v-eb27ec8c] {\n    position:relative;\n}\n.contents[data-v-eb27ec8c] {\n    position:relative;\n    width:100%;\n}\n.left[data-v-eb27ec8c] {\n    position:absolute;\n    left:-150%;\n    top:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.center[data-v-eb27ec8c] {\n    position:absolute;\n    left:0;\n    top:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -53969,20 +53968,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            showTasks: false
+            task_list: 'center',
+            project_list: 'left'
         };
     },
     watch: {},
     created: function created() {},
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    },
+    mounted: function mounted() {},
 
-    methods: {}
+    methods: {
+        toggleContents: function toggleContents() {
+            this.task_list = this.task_list == 'center' ? 'left' : 'center';
+            this.project_list = this.project_list == 'center' ? 'left' : 'center';
+        }
+    }
 });
 
 /***/ }),
@@ -53993,77 +53997,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary mx-auto d-block",
-          on: {
-            click: function($event) {
-              _vm.showTasks = !_vm.showTasks
-            }
-          }
-        },
-        [
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.showTasks,
-                  expression: "showTasks"
-                }
-              ]
-            },
-            [_vm._v("プロジェクトリストを表示")]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: !_vm.showTasks,
-                  expression: "!showTasks"
-                }
-              ]
-            },
-            [_vm._v("タスクリストを表示")]
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c("task-list", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showTasks,
-            expression: "showTasks"
-          }
-        ]
-      }),
-      _vm._v(" "),
-      _c("project-list", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.showTasks,
-            expression: "!showTasks"
-          }
-        ]
-      })
-    ],
-    1
-  )
+  return _c("div", { staticClass: "lists-wrapper" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-primary mx-auto d-block",
+        on: { click: _vm.toggleContents }
+      },
+      [_c("span", [_vm._v("タスク／プロジェクトを切替")])]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "contents" },
+      [
+        _c("task-list", { class: _vm.task_list }),
+        _vm._v(" "),
+        _c("project-list", { class: _vm.project_list })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55115,7 +55069,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid black;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n.display-all-tags-button-wrapper[data-v-4aeb7686] {\n    position:absolute;\n    bottom:0;\n    right:0;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n}\n.display-all-tags-button[data-v-4aeb7686] {\n    text-align:center;\n    font-size:60%;\n    font-weight:bold;\n    width:1em;\n    height:1.3em;\n    overflow:hidden;\n    background:whitesmoke;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.button-active[data-v-4aeb7686] {\n    height:0.7em;\n    background:orange;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.all-tags[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    position:absolute;\n    z-index:2;\n    width:33%;\n    margin-top:1em;\n    background:gainsboro;\n    opacity:0.9;\n    overflow:hidden;\n    -webkit-animation:alltags-data-v-4aeb7686 0.4s;\n            animation:alltags-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n@keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n.all-tag[data-v-4aeb7686] {\n    margin:0.3em;\n    padding:0.3em;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n.display-all-tags-button-wrapper[data-v-4aeb7686] {\n    position:relative;\n    height:3em;\n    width:1em;\n    margin-left:0.5em;\n}\n.display-all-tags-button[data-v-4aeb7686] {\n    position:absolute;\n    bottom:0;\n    text-align:center;\n    font-size:60%;\n    font-weight:bold;\n    width:1em;\n    height:1.3em;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    overflow:hidden;\n    background:whitesmoke;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.button-active[data-v-4aeb7686] {\n    height:0.7em;\n    background:orange;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.all-tags[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    position:absolute;\n    z-index:2;\n    width:100%;\n    margin-top:1em;\n    background:gainsboro;\n    opacity:0.9;\n    overflow:hidden;\n    -webkit-animation:alltags-data-v-4aeb7686 0.4s;\n            animation:alltags-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n@keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n.all-tag[data-v-4aeb7686] {\n    margin:0.3em;\n    padding:0.3em;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -55183,77 +55137,71 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        id: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.fetchTags();
-
-                            case 2:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
-
-            function id() {
-                return _ref.apply(this, arguments);
-            }
-
-            return id;
-        }()
+        id: function id() {
+            this.fetchTags();
+        }
     },
-    created: function created() {},
+    created: function created() {
+        // this.fetchTags()
+    },
     mounted: function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context.prev = _context.next) {
                         case 0:
+                            this.fetchTags();
+
+                        case 1:
                         case 'end':
-                            return _context2.stop();
+                            return _context.stop();
                     }
                 }
-            }, _callee2, this);
+            }, _callee, this);
         }));
 
         function mounted() {
-            return _ref2.apply(this, arguments);
+            return _ref.apply(this, arguments);
         }
 
         return mounted;
     }(),
+    updated: function updated() {},
     methods: {
         fetchTags: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context3.next = 2;
-                                return axios.get('/api/tasks/' + this.id);
+                                if (this.id) {
+                                    _context2.next = 2;
+                                    break;
+                                }
+
+                                return _context2.abrupt('return');
 
                             case 2:
-                                result = _context3.sent;
+                                _context2.next = 4;
+                                return axios.get('/api/tasks/' + this.id);
+
+                            case 4:
+                                result = _context2.sent;
 
                                 this.tags = result.data.tags;
                                 this.getDisplayTagNumber();
 
-                            case 5:
+                            case 7:
                             case 'end':
-                                return _context3.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee3, this);
+                }, _callee2, this);
             }));
 
             function fetchTags() {
-                return _ref3.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return fetchTags;
@@ -55263,21 +55211,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.modal.openModal();
         },
         addTags: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag, index, postObject;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context4.prev = _context4.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
-                                _context4.next = 2;
+                                _context3.next = 2;
                                 return this.fetchTags();
 
                             case 2:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context4.prev = 5;
+                                _context3.prev = 5;
 
                                 for (_iterator = this.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     tag = _step.value;
@@ -55288,84 +55236,84 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     }
                                 }
 
-                                _context4.next = 13;
+                                _context3.next = 13;
                                 break;
 
                             case 9:
-                                _context4.prev = 9;
-                                _context4.t0 = _context4['catch'](5);
+                                _context3.prev = 9;
+                                _context3.t0 = _context3['catch'](5);
                                 _didIteratorError = true;
-                                _iteratorError = _context4.t0;
+                                _iteratorError = _context3.t0;
 
                             case 13:
-                                _context4.prev = 13;
-                                _context4.prev = 14;
+                                _context3.prev = 13;
+                                _context3.prev = 14;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 16:
-                                _context4.prev = 16;
+                                _context3.prev = 16;
 
                                 if (!_didIteratorError) {
-                                    _context4.next = 19;
+                                    _context3.next = 19;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 19:
-                                return _context4.finish(16);
+                                return _context3.finish(16);
 
                             case 20:
-                                return _context4.finish(13);
+                                return _context3.finish(13);
 
                             case 21:
                                 if (!(Object.keys(this.new_tags).length == 0)) {
-                                    _context4.next = 24;
+                                    _context3.next = 24;
                                     break;
                                 }
 
                                 this.$refs.modal.closeModal();
-                                return _context4.abrupt('return');
+                                return _context3.abrupt('return');
 
                             case 24:
                                 postObject = {
                                     task_id: this.id,
                                     tag_id: this.new_tags
                                 };
-                                _context4.prev = 25;
-                                _context4.next = 28;
+                                _context3.prev = 25;
+                                _context3.next = 28;
                                 return axios.post('/api/tag_task', postObject);
 
                             case 28:
                                 this.$refs.modal.closeModal();
                                 this.display_tag_number = 0;
                                 this.tags = [];
-                                _context4.next = 33;
+                                _context3.next = 33;
                                 return this.fetchTags();
 
                             case 33:
-                                _context4.next = 38;
+                                _context3.next = 38;
                                 break;
 
                             case 35:
-                                _context4.prev = 35;
-                                _context4.t1 = _context4['catch'](25);
+                                _context3.prev = 35;
+                                _context3.t1 = _context3['catch'](25);
 
-                                console.log(_context4.t1);
+                                console.log(_context3.t1);
 
                             case 38:
                             case 'end':
-                                return _context4.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee4, this, [[5, 9, 13, 21], [14,, 16, 20], [25, 35]]);
+                }, _callee3, this, [[5, 9, 13, 21], [14,, 16, 20], [25, 35]]);
             }));
 
             function addTags() {
-                return _ref4.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return addTags;
@@ -55384,6 +55332,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var wrapper_width = el[0].clientWidth;
             var tag_width = this.getPixel(4.5);
             this.display_tag_number = Math.floor(wrapper_width / tag_width);
+
             if (this.tags.length < this.display_tag_number) {
                 this.display_tag_number = this.tags.length;
             } else {
@@ -55413,7 +55362,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "tag-list-root-wrapper" },
     [
       _c(
         "modal",

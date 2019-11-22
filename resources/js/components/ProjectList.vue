@@ -39,10 +39,10 @@
             
         },
         mounted() {
-            this.init()
+            this.fetchProjects()
         },
         methods: {
-            init: async function(){
+            fetchProjects: async function(){
                 let result = await axios.get('/api/projects')
                 this.projects = result.data
             },

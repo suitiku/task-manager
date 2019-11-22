@@ -7,7 +7,11 @@
 <!--6 現在の状態表示-->
 <template>
     <div class="container">
-        <tag-list v-bind:id="task.id" />
+        <div class="tag-list-component-wrapper">
+            <div class="tag-list-component">
+                <tag-list v-bind:id="task.id" />
+            </div>
+        </div>
         <div v-if="task.project" class="project-label">{{task.project.name}}</div>
         <div v-bind:class="wrapper">
             <div class="completed" v-show="checkbox"></div>
@@ -130,7 +134,7 @@
         position:absolute;
         z-index:2;
         height:1.5em;
-        top:-0.3em;
+        top:3.2em;
         left:0.2em;
         padding:0em 0.2em;
         background:burlywood;
@@ -138,6 +142,15 @@
         font-size:30%;
         overflow:hidden;
         
+    }
+    .tag-list-component-wrapper {
+        width:100%;
+        display:flex;
+        justify-content:flex-end;
+        flex-direction:row;
+    }
+    .tag-list-component {
+        width:40%;
     }
     .headline {
         font-weight:bold;

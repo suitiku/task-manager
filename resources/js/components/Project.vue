@@ -18,7 +18,7 @@
                     <div class="overview">{{project.overview}}</div>
                     <div class="tasks">
                         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
-                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" class="task" />
+                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" />
                         <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             
         },
         mounted() {
-            this.setProgress() 
+            this.setProgress()
         },
         computed:{
             override:function(){
@@ -137,9 +137,9 @@
     .tasks {
         width:100%;
     }
-    .task {
-        margin-top:0.2em;
-    }
+    /*.task {*/
+    /*    margin-top:0.2em;*/
+    /*}*/
     button {
         margin-top:0.5em;
     }
