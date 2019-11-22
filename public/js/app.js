@@ -14605,7 +14605,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(131);
+module.exports = __webpack_require__(136);
 
 
 /***/ }),
@@ -14646,6 +14646,7 @@ Vue.component('dead-line', __webpack_require__(111));
 Vue.component('tag-cloud', __webpack_require__(116));
 Vue.component('array-filter', __webpack_require__(121));
 Vue.component('tag', __webpack_require__(126));
+Vue.component('tag-list', __webpack_require__(131));
 
 var app = new Vue({
   el: '#app'
@@ -52726,7 +52727,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n}\n.wrapper {\n    width:50%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n", ""]);
+exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n}\n", ""]);
 
 // exports
 
@@ -52750,17 +52751,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            test: '',
-            tag: {},
-            id: 0
+            task: {}
         };
     },
     mounted: function mounted() {},
@@ -52773,12 +52768,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return axios.get('/api/tags/6');
+                            return axios.get('/api/tasks/1');
 
                         case 2:
                             result = _context.sent;
 
-                            this.tag = result.data;
+                            this.task = result.data;
 
                         case 4:
                         case 'end':
@@ -52805,28 +52800,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
-    _c("div", { staticClass: "space" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "wrapper" },
-      [
-        _c("tag", {
-          attrs: { tag: _vm.tag, id: _vm.id },
-          model: {
-            value: _vm.test,
-            callback: function($$v) {
-              _vm.test = $$v
-            },
-            expression: "test"
-          }
-        })
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [_c("tag-list", { attrs: { tags: _vm.task.tags, id: _vm.task.id } })],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53713,6 +53692,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53804,6 +53784,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         resetValue: function resetValue() {
             this.ids = [];
+            this.$emit('input', this.ids);
             var els = document.getElementsByClassName('item selected');
             if (els.length > 0) {
                 for (var index in Object.keys(els)) {
@@ -54874,7 +54855,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-root-wrapper[data-v-8d320b02] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n}\n.tag-wrapper[data-v-8d320b02] {\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.tag-wrapper[data-v-8d320b02]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.tag-label[data-v-8d320b02] {\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    font-size:0.15em;\n}\n.tag-detail[data-v-8d320b02] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-8d320b02 0.4s;\n            animation:tag-data-v-8d320b02 0.4s;\n}\n@-webkit-keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
+exports.push([module.i, "\n.tag-root-wrapper[data-v-8d320b02] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n    margin:0 0.5em;\n}\n.tag-wrapper[data-v-8d320b02] {\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.tag-wrapper[data-v-8d320b02]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.tag-label[data-v-8d320b02] {\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    font-size:0.15em;\n}\n.tag-detail[data-v-8d320b02] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-8d320b02 0.4s;\n            animation:tag-data-v-8d320b02 0.4s;\n}\n@-webkit-keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-8d320b02 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
 
 // exports
 
@@ -54904,7 +54885,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54912,7 +54892,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             deactive: '',
             detail: false,
             //明るい背景ではフォント黒、暗い背景ではフォント白
-            brightBackgroundColor: ['pink']
+            bright_background_colors: ['pink', 'white', 'orange']
         };
     },
     props: {
@@ -54973,7 +54953,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return deleteTag;
         }(),
         fontColor: function fontColor() {
-            if (this.brightBackgroundColor.indexOf(this.tag.color) != -1) {
+            if (this.bright_background_colors.indexOf(this.tag.color) != -1) {
                 return { color: 'black' };
             } else {
                 return { color: 'white' };
@@ -55042,6 +55022,362 @@ if (false) {
 
 /***/ }),
 /* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(132)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(134)
+/* template */
+var __vue_template__ = __webpack_require__(135)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4aeb7686"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/TagList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4aeb7686", Component.options)
+  } else {
+    hotAPI.reload("data-v-4aeb7686", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(133);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("63f8d714", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aeb7686\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagList.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aeb7686\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagList.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:50%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid black;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            tags: [],
+            new_tags: [],
+            add_detail: false,
+            modal: false
+        };
+    },
+    props: {
+        id: {
+            type: Number,
+            required: false
+        }
+    },
+    watch: {
+        id: function id() {
+            this.fetchTags();
+        }
+    },
+    created: function created() {},
+    mounted: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function mounted() {
+            return _ref.apply(this, arguments);
+        }
+
+        return mounted;
+    }(),
+    methods: {
+        fetchTags: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return axios.get('/api/tasks/' + this.id);
+
+                            case 2:
+                                result = _context2.sent;
+
+                                this.tags = result.data.tags;
+
+                            case 4:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function fetchTags() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return fetchTags;
+        }(),
+        openModal: function openModal() {
+            this.$refs.list.resetValue();
+            this.$refs.modal.openModal();
+        },
+        addTags: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                postObject = {
+                                    task_id: this.id,
+                                    tag_id: this.new_tags
+                                };
+                                _context3.prev = 1;
+                                _context3.next = 4;
+                                return axios.post('/api/tag_task', postObject);
+
+                            case 4:
+                                this.fetchTags();
+                                this.$refs.modal.closeModal();
+                                _context3.next = 11;
+                                break;
+
+                            case 8:
+                                _context3.prev = 8;
+                                _context3.t0 = _context3['catch'](1);
+
+                                console.log(_context3.t0);
+
+                            case 11:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[1, 8]]);
+            }));
+
+            function addTags() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return addTags;
+        }()
+    }
+});
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [
+          _c("h3", [_vm._v("追加したいタグを選択してください（複数可）")]),
+          _vm._v(" "),
+          _c("list-box", {
+            ref: "list",
+            attrs: { table: "tags", is_multiple: "" },
+            model: {
+              value: _vm.new_tags,
+              callback: function($$v) {
+                _vm.new_tags = $$v
+              },
+              expression: "new_tags"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary mx-auto d-block",
+              on: {
+                click: function($event) {
+                  return _vm.addTags()
+                }
+              }
+            },
+            [_vm._v("選択したタグを追加する")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "tag-list-wrapper" },
+        [
+          _vm._l(_vm.tags, function(tag, index) {
+            return _c("tag", { key: index, attrs: { tag: tag, id: _vm.id } })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "add-tag-wrapper" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.add_detail,
+                    expression: "add_detail"
+                  }
+                ],
+                staticClass: "add-detail"
+              },
+              [_vm._v("タグを追加します")]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "add-tag",
+                on: {
+                  click: function($event) {
+                    return _vm.openModal()
+                  },
+                  mouseover: function($event) {
+                    _vm.add_detail = true
+                  },
+                  mouseleave: function($event) {
+                    _vm.add_detail = false
+                  }
+                }
+              },
+              [_c("i", { staticClass: "fas fa-plus-circle" })]
+            )
+          ])
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4aeb7686", module.exports)
+  }
+}
+
+/***/ }),
+/* 136 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

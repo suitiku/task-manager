@@ -1,11 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
-        <div class="space"></div>
-        <div class="wrapper">
-            <tag v-model="test" v-bind:tag="tag" v-bind:id="id" />
-        </div>
+        <tag-list v-bind:tags="task.tags" v-bind:id="task.id" />
     </div>
 </template>
 
@@ -13,16 +9,14 @@
     export default {
         data:function(){
             return {
-                test:'',
-                tag:{},
-                id:0,
+                task:{}
             }  
         },
         mounted() {
         },
         created:async function() {
-            let result = await axios.get('/api/tags/6')
-            this.tag = result.data
+            let result = await axios.get('/api/tasks/1')
+            this.task = result.data
         },
         methods: {
         },
@@ -32,10 +26,5 @@
     .space {
         width:100%;
         height:50px;
-    }
-    .wrapper {
-        width:50%;
-        display:flex;
-        justify-content:flex-start;
     }
 </style>

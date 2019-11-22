@@ -21,6 +21,7 @@ class CreateTagTaskTable extends Migration
             
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->foreign('tag_id')->references('id')->on('tags');
+            $table->unique(['task_id','tag_id'],'tag_task_key');
         });
     }
 

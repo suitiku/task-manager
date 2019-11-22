@@ -4,7 +4,6 @@
 <!--２．色設定の追加-->
 <template>
     <div class="tag-root-wrapper" v-bind:style="deactive">
-        <!--<div v-show="detail" class="tag-detail">{{tag.overview}}</div>-->
         <div v-show="detail" class="tag-detail">ダブルクリックでこのタグを削除します</div>
         <div class="tag-wrapper" v-bind:style="{background:tag.color}" v-on:dblclick="deleteTag" v-on:mouseover="detail = true" v-on:mouseleave="detail = false" >
             <div class="tag-label" v-bind:style="fontColor()">{{tag.name}}</div>
@@ -19,7 +18,7 @@
                 deactive:'',
                 detail:false,
                 //明るい背景ではフォント黒、暗い背景ではフォント白
-                brightBackgroundColor:['pink']
+                bright_background_colors:['pink','white','orange'],
             }  
         },
         props: {
@@ -56,12 +55,12 @@
                 }
             },
             fontColor:function(){
-                if(this.brightBackgroundColor.indexOf(this.tag.color) != -1){
+                if(this.bright_background_colors.indexOf(this.tag.color) != -1){
                     return {color:'black'}
                 }else{
                     return {color:'white'}
                 }
-            }
+            },
         }
     }
 </script>
@@ -70,6 +69,7 @@
         position:relative;
         height:3em;
         width:3.5em;
+        margin:0 0.5em;
     }
     .tag-wrapper {
         position:absolute;
@@ -77,7 +77,7 @@
         transform-origin:center bottom;
         overflow:hidden;
         width:3.5em;
-        height:1em;
+        height:1.3em;
         padding:2px;
         text-align:center;
         border-radius:0.1em 0.1em 0 0;

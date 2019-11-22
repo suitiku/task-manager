@@ -4,6 +4,7 @@
 <!--今後の改修ポイント-->
 <!--１．検索／絞り込み機能-->
 <!--２．アニメーション付きのチェックボックス-->
+<!--３．複数選択時に選択したものを別枠に表示-->
 <template>
     <div class="container">
         <div class="wrapper">
@@ -84,6 +85,7 @@
             },
             resetValue:function(){
                 this.ids = []
+                this.$emit('input',this.ids)
                 let els = document.getElementsByClassName('item selected')
                 if(els.length > 0){
                     for(let index in Object.keys(els)){
