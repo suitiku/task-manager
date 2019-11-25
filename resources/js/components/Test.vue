@@ -1,7 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <project-list />
+        <date-selecter v-model="date" />
     </div>
 </template>
 
@@ -9,14 +9,14 @@
     export default {
         data:function(){
             return {
-                project:{}
+                date:''
             }  
         },
         mounted() {
         },
         created:async function() {
-            let result = await axios.get('/api/projects/1')
-            this.project = result.data
+            // let result = await axios.get('/api/projects/1')
+            // this.project = result.data
         },
         methods: {
         },
