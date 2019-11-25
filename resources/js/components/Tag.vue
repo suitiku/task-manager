@@ -19,6 +19,7 @@
                 detail:false,
                 //明るい背景ではフォント黒、暗い背景ではフォント白
                 bright_background_colors:['pink','white','orange'],
+                result_message:''
             }  
         },
         props: {
@@ -29,7 +30,7 @@
                 required:false,
             },
             tag: {
-                type:Object,
+                type:[Object,String],
                 required:true,
             }
         },
@@ -47,10 +48,12 @@
                 let deleteObj = {task_id:this.id,tag_id:this.tag.id}
                 try{
                     let result = await axios.delete('/api/tag_task', {data:deleteObj})
+                    this.$parent.$refs.notice.showNotice('タグを削除しました')
                     this.$emit('input','deleted')
                     this.deactive = {display:'none'}
                 }catch(error){
                     console.log(error)
+                    this.$parent.$refs.notice.showNotice('タグの削除に失敗しました')
                     this.$emit('input','failed')
                 }
             },

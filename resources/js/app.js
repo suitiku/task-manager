@@ -34,6 +34,7 @@ Vue.component('array-filter', require('./components/ArrayFilter.vue'));
 Vue.component('tag', require('./components/Tag.vue'));
 Vue.component('tag-list', require('./components/TagList.vue'));
 Vue.component('date-selecter', require('./components/DateSelecter.vue'));
+Vue.component('notice', require('./components/Notice.vue'));
 
 const app = new Vue({
     el: '#app'

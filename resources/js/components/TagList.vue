@@ -4,6 +4,8 @@
 <!--２．画面サイズを変更した際のgetDisplayTagNumber()の起動-->
 <template>
     <div class="tag-list-root-wrapper">
+        <!--通知-->
+        <notice ref="notice"></notice>
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <h3>追加したいタグを選択してください（複数可）</h3>

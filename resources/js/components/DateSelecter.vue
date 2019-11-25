@@ -105,7 +105,8 @@
         padding:0.5em;
     }
     .date-selecter {
-        width:4em;
+        width:3em;
+        text-align:center;
         border:1px solid grey;
         border-radius:0.3em;
         margin:0 0.5em;

@@ -1,7 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <date-selecter v-model="date" />
+        {{test}}
+        <notice v-model="test" ref="notice">hogehoge</notice>
+        <button v-on:click="showNotice()">notice</button>
     </div>
 </template>
 
@@ -9,16 +11,20 @@
     export default {
         data:function(){
             return {
-                date:''
+                test:'',
+                tag:''
             }  
         },
         mounted() {
         },
         created:async function() {
-            // let result = await axios.get('/api/projects/1')
-            // this.project = result.data
+            let result = await axios.get('/api/tags/1')
+            this.tag = result.data
         },
         methods: {
+            showNotice:function(){
+                this.$refs.notice.showNotice()
+            }
         },
     }
 </script>
