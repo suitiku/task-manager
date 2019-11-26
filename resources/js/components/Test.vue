@@ -1,9 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
-        <notice v-model="test" ref="notice">hogehoge</notice>
-        <button v-on:click="showNotice()">notice</button>
+        <toggle-switch />
     </div>
 </template>
 

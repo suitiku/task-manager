@@ -15,7 +15,6 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('project-list', require('./components/ProjectList.vue'));
 Vue.component('project', require('./components/Project.vue'));
 Vue.component('task-list', require('./components/TaskList.vue'));
@@ -35,6 +34,7 @@ Vue.component('tag', require('./components/Tag.vue'));
 Vue.component('tag-list', require('./components/TagList.vue'));
 Vue.component('date-selecter', require('./components/DateSelecter.vue'));
 Vue.component('notice', require('./components/Notice.vue'));
+Vue.component('toggle-switch', require('./components/ToggleSwitch.vue'));
 
 const app = new Vue({
     el: '#app'
