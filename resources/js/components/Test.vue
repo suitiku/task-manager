@@ -1,7 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <toggle-switch />
+        {{test}}
+        <toggle-switch v-model="test" />
     </div>
 </template>
 

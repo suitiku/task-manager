@@ -52630,6 +52630,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52684,7 +52685,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("toggle-switch")], 1)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("toggle-switch", {
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56035,7 +56052,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            result: false,
             toggle_switch_class: 'toggle-switch'
         };
     },
@@ -56047,8 +56063,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         toggleSwitch: function toggleSwitch() {
             console.log(event.target.className);
             if (this.toggle_switch_class == 'toggle-switch') {
+                this.$emit('input', true);
                 this.toggle_switch_class = 'toggle-switch toggle-switch-active';
             } else {
+                this.$emit('input', false);
                 this.toggle_switch_class = 'toggle-switch';
             }
         }

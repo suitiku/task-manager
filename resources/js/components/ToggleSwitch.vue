@@ -1,4 +1,6 @@
 <!--トグルスイッチコンポーネント-->
+<!--今後の改修ポイント-->
+<!--１．デザイン修正-->
 <template>
     <div class="toggle-switch-wrapper">
         <div class="click-area" v-on:click="toggleSwitch()"></div>
@@ -12,7 +14,6 @@
     export default {
         data:function(){
             return {
-                result:false,
                 toggle_switch_class:'toggle-switch'
             }  
         },
@@ -32,8 +33,10 @@
             toggleSwitch:function(){
                 console.log(event.target.className)
                 if(this.toggle_switch_class == 'toggle-switch'){
+                    this.$emit('input',true)
                     this.toggle_switch_class = 'toggle-switch toggle-switch-active'
                 }else{
+                    this.$emit('input',false)
                     this.toggle_switch_class = 'toggle-switch'
                 }
             }
