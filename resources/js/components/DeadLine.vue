@@ -6,7 +6,7 @@
 <!--３．セレクトボックスのデザイン-->
 <!--４．記述式を追加-->
 <template>
-    <div class="container">
+    <div class="dead-line-wrapper">
         <select v-model="spanOption" v-on:change="selectSpanOption">
             <option v-bind:value="0" selected>超短期スパン（1日まで）</option>
             <option v-bind:value="1">短期スパン（1週間まで）</option>
@@ -105,6 +105,12 @@
     }
 </script>
 <style scoped>
+    .dead-line-wrapper {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
     select {
         text-align:center;
     }

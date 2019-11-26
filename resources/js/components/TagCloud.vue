@@ -86,9 +86,9 @@
     .option {
         margin:0.5em 1em;
         padding:0.5em 1em;
-        border:1px solid black;
+        border:1px solid grey;
+        color:grey;
         border-radius:0.5em;
-        font-weight:bold;
         cursor:pointer;
         transition:all 0.3s;
     }

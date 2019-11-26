@@ -1,8 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
-        <toggle-switch v-model="test" />
+        <versatile-form table="tasks" />
     </div>
 </template>
 

@@ -14605,7 +14605,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(146);
+module.exports = __webpack_require__(151);
 
 
 /***/ }),
@@ -14649,6 +14649,7 @@ Vue.component('tag-list', __webpack_require__(126));
 Vue.component('date-selecter', __webpack_require__(131));
 Vue.component('notice', __webpack_require__(136));
 Vue.component('toggle-switch', __webpack_require__(141));
+Vue.component('date-picker', __webpack_require__(146));
 
 var app = new Vue({
   el: '#app'
@@ -51826,6 +51827,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52006,8 +52008,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return 'number';
                 case 'varchar':
                     return 'text';
-                case 'datetime':
-                    return 'date';
             }
         },
         resetForm: function resetForm() {
@@ -52203,6 +52203,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm._v("\n    " + _vm._s(_vm.postObject) + "\n    "),
     _c(
       "div",
       { staticClass: "forms" },
@@ -52227,8 +52228,8 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
               ),
               _vm._v(" "),
-              column.COLUMN_NAME == "dead_line"
-                ? _c("dead-line", {
+              column.COLUMN_TYPE == "datetime"
+                ? _c("date-picker", {
                     model: {
                       value: _vm.postObject[column.COLUMN_NAME],
                       callback: function($$v) {
@@ -52630,7 +52631,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52688,18 +52688,7 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [
-      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
-      _c("toggle-switch", {
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      })
-    ],
+    [_c("versatile-form", { attrs: { table: "tasks" } })],
     1
   )
 }
@@ -54003,7 +53992,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nselect[data-v-c1dd303a] {\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.dead-line-wrapper[data-v-c1dd303a] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\nselect[data-v-c1dd303a] {\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -54099,7 +54088,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "dead-line-wrapper" },
     [
       _c(
         "select",
@@ -54261,7 +54250,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.option-wrapper[data-v-ae23c2b4] {\n    margin:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    /*border:1px solid black;*/\n}\n.option[data-v-ae23c2b4] {\n    margin:0.5em 1em;\n    padding:0.5em 1em;\n    border:1px solid black;\n    border-radius:0.5em;\n    font-weight:bold;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.selected[data-v-ae23c2b4] {\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    background:grey;\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.option-wrapper[data-v-ae23c2b4] {\n    margin:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    /*border:1px solid black;*/\n}\n.option[data-v-ae23c2b4] {\n    margin:0.5em 1em;\n    padding:0.5em 1em;\n    border:1px solid grey;\n    color:grey;\n    border-radius:0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.selected[data-v-ae23c2b4] {\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    background:grey;\n    color:white;\n}\n", ""]);
 
 // exports
 
@@ -55526,7 +55515,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    height:2.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:3em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n\n", ""]);
+exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    height:4.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:3em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n\n", ""]);
 
 // exports
 
@@ -55651,7 +55640,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-selecter-root-wrapper" }, [
-    _c("div", { staticClass: "date-slecter-wrapper" }, [
+    _c("div", { staticClass: "date-selecter-wrapper" }, [
       _c("span", [_vm._v("20")]),
       _vm._v(" "),
       _c("input", {
@@ -56048,6 +56037,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56061,7 +56052,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {},
     methods: {
         toggleSwitch: function toggleSwitch() {
-            console.log(event.target.className);
             if (this.toggle_switch_class == 'toggle-switch') {
                 this.$emit('input', true);
                 this.toggle_switch_class = 'toggle-switch toggle-switch-active';
@@ -56108,6 +56098,214 @@ if (false) {
 
 /***/ }),
 /* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(147)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(149)
+/* template */
+var __vue_template__ = __webpack_require__(150)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-fa816ef2"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DatePicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-fa816ef2", Component.options)
+  } else {
+    hotAPI.reload("data-v-fa816ef2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(148);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("8a4b8da8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa816ef2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DatePicker.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-fa816ef2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DatePicker.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle[data-v-fa816ef2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            dead_line: false,
+            result: ''
+        };
+    },
+    props: {},
+    watch: {
+        result: function result() {
+            this.$emit('input', this.result);
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {}
+});
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "date-picker-wrapper" },
+    [
+      _c(
+        "div",
+        { staticClass: "toggle" },
+        [
+          _c("span", [_vm._v("入力方式を切り替える")]),
+          _vm._v(" "),
+          _c("toggle-switch", {
+            model: {
+              value: _vm.dead_line,
+              callback: function($$v) {
+                _vm.dead_line = $$v
+              },
+              expression: "dead_line"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("date-selecter", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.dead_line,
+            expression: "!dead_line"
+          }
+        ],
+        model: {
+          value: _vm.result,
+          callback: function($$v) {
+            _vm.result = $$v
+          },
+          expression: "result"
+        }
+      }),
+      _vm._v(" "),
+      _c("dead-line", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.dead_line,
+            expression: "dead_line"
+          }
+        ],
+        model: {
+          value: _vm.result,
+          callback: function($$v) {
+            _vm.result = $$v
+          },
+          expression: "result"
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-fa816ef2", module.exports)
+  }
+}
+
+/***/ }),
+/* 151 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

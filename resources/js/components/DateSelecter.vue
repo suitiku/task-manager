@@ -2,7 +2,7 @@
 <!--YYYY-MM-DD hh:mm:ssの形式で返却-->
 <template>
     <div class="date-selecter-root-wrapper">
-        <div class="date-slecter-wrapper">
+        <div class="date-selecter-wrapper">
             <span>20</span>
             <input v-model="datetime.year" type="text" placeholder="年" class="date-selecter" >
             <input v-model="datetime.month" type="text" placeholder="月" class="date-selecter" >
@@ -98,8 +98,10 @@
         margin:1em;
     }
     .date-selecter-wrapper {
-        height:2.0em;
+        width:100%;
+        height:4.0em;
         display:flex;
+        justify-content:center;
         flex-wrap:wrap;
         margin:0.5em;
         padding:0.5em;

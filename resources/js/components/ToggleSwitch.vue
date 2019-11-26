@@ -31,7 +31,6 @@
         },
         methods: {
             toggleSwitch:function(){
-                console.log(event.target.className)
                 if(this.toggle_switch_class == 'toggle-switch'){
                     this.$emit('input',true)
                     this.toggle_switch_class = 'toggle-switch toggle-switch-active'

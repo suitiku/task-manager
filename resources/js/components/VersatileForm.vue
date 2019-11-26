@@ -12,7 +12,7 @@
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
                 <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
-                <dead-line v-if="column.COLUMN_NAME == 'dead_line'" v-model="postObject[column.COLUMN_NAME]" />
+                <date-picker v-if="column.COLUMN_TYPE == 'datetime'" v-model="postObject[column.COLUMN_NAME]" />
                 <input v-else-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
                 <star-range v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" />
                 <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
@@ -104,8 +104,6 @@
                         return 'number'
                     case 'varchar':
                         return 'text'
-                    case 'datetime':
-                        return 'date'
                 }
             },
             resetForm:function(){
