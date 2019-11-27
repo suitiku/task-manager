@@ -79,9 +79,8 @@
         margin:0.5em;
         width:100%;
         display:flex;
-        justify-content:flex-start;
+        justify-content:space-around;
         flex-wrap:wrap;
-        /*border:1px solid black;*/
     }
     .option {
         margin:0.5em 1em;

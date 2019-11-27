@@ -10,7 +10,6 @@
             <input v-model="datetime.hour" type="text" placeholder="時" class="date-selecter" >
             <input v-model="datetime.minute" type="text" placeholder="分" class="date-selecter" >
         </div>
-        <div class="result-display">{{japaneseDatetime}}</div>
     </div>
 </template>
 
@@ -32,7 +31,6 @@
                     hour:'',
                     minute:''
                 },
-                japaneseDatetime:''
             }  
         },
         props: {
@@ -80,7 +78,6 @@
                 let hour = convertedDateTime.getHours()
                 let minute = convertedDateTime.getMinutes()
                 let second = convertedDateTime.getSeconds()
-                this.japaneseDatetime = year + '年' + month + '月' + day +'日' + hour + '時' + minute + '分'
                 let resultDatetime = year + '-' + month + '-' + day + ' ' + hour +':' + minute + ':' + second
                 this.$emit('input',resultDatetime)
             }
@@ -99,10 +96,11 @@
     }
     .date-selecter-wrapper {
         width:100%;
-        height:4.0em;
+        min-height:3.0em;
         display:flex;
         justify-content:center;
         flex-wrap:wrap;
+        align-items:center;
         margin:0.5em;
         padding:0.5em;
     }

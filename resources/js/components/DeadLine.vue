@@ -1,7 +1,6 @@
 <!--将来の日付を返すUIコンポーネント-->
 <!--選択式と記述式を切替-->
 <!--今後の改修ポイント-->
-<!--１．設定値の表示-->
 <!--２．設定値を切りのいい数字にする関数-->
 <!--３．セレクトボックスのデザイン-->
 <!--４．記述式を追加-->
@@ -106,6 +105,7 @@
 </script>
 <style scoped>
     .dead-line-wrapper {
+        width:100%;
         display:flex;
         flex-direction:column;
         justify-content:center;

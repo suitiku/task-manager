@@ -1,7 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <versatile-form table="tasks" />
+        <date-picker />
     </div>
 </template>
 
