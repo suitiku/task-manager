@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->text('overview');
             $table->tinyInteger('priority')->comment('優先度');
             $table->tinyInteger('difficulty')->comment('難易度');
+            $table->datetime('start_date')->comment('開始日時')->default(date('Y-m-d H:i:s'));
             $table->datetime('dead_line')->comment('締切');
             $table->timestamps();
             
