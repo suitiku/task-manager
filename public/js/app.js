@@ -52629,6 +52629,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52683,7 +52684,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("date-picker")], 1)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("date-picker", {
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56167,7 +56184,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle[data-v-fa816ef2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    width:100%;\n    min-height:7em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle[data-v-fa816ef2] {\n    width:40%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    width:100%;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -56220,7 +56237,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {},
     mounted: function mounted() {},
-    methods: {}
+    methods: {
+        setCurrentDatetime: function setCurrentDatetime() {
+            var currentDatetime = new Date();
+            var year = currentDatetime.getFullYear();
+            var month = currentDatetime.getMonth() + 1;
+            var day = currentDatetime.getDate();
+            var hour = currentDatetime.getHours();
+            var minute = currentDatetime.getMinutes();
+            var result = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':00';
+            this.japaneseDatetime = year + '年' + month + '月' + day + '日 ' + hour + '時' + minute + '分';
+            this.$emit('input', result);
+        }
+    }
 });
 
 /***/ }),
@@ -56232,6 +56261,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-picker-wrapper" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-primary mx-auto d-block",
+        on: {
+          click: function($event) {
+            return _vm.setCurrentDatetime()
+          }
+        }
+      },
+      [_vm._v("現在時刻を設定する")]
+    ),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "toggle" },

@@ -1,7 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <date-picker />
+        {{test}}
+        <date-picker v-model="test" />
     </div>
 </template>
 

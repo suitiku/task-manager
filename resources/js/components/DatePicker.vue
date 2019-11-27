@@ -3,10 +3,9 @@
 <!--１．選択肢の追加-->
 <!--２．デザイン修正-->
 <!--３．リセット機能-->
-<!--４．現在時刻セット機能-->
-<!--５．デザインが崩れないようにある程度の高さを確保しておく-->
 <template>
     <div class="date-picker-wrapper">
+        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="setCurrentDatetime()">現在時刻を設定する</button>
         <div class="toggle">
             <span>入力方式を切り替える</span>
             <toggle-switch v-model="dead_line" />
@@ -47,7 +46,17 @@
             
         },
         methods: {
-            
+            setCurrentDatetime:function(){
+                let currentDatetime = new Date()
+                let year = currentDatetime.getFullYear()
+                let month = currentDatetime.getMonth() + 1
+                let day = currentDatetime.getDate()
+                let hour = currentDatetime.getHours()
+                let minute = currentDatetime.getMinutes()
+                let result = year + '-' + month + '-' + day +' ' + hour + ':' + minute + ':00'
+                this.japaneseDatetime = year + '年' + month + '月' + day + '日 ' + hour + '時' + minute + '分'
+                this.$emit('input',result)
+            }
         }
     }
 </script>
@@ -61,15 +70,19 @@
         margin:0.5em;
     }
     .toggle {
+        width:40%;
         display:flex;
-        flex-direction:column;
         justify-content:center;
         align-items:center;
         margin:0.5em;
     }
+    .toggle span {
+        margin-right:1em;
+    }
     .component-wrapper {
         width:100%;
         min-height:7em;
+        margin-top:1em;
     }
     .result-display {
         width:14em;
