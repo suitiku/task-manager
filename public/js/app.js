@@ -52605,7 +52605,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n}\n", ""]);
+exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n", ""]);
 
 // exports
 
@@ -52630,10 +52630,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            modal: false,
             test: '',
             tag: ''
         };
@@ -52670,8 +52708,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return created;
     }(),
     methods: {
-        showNotice: function showNotice() {
-            this.$refs.notice.showNotice();
+        showModal: function showModal() {
+            this.$refs.modal.openModal();
         }
     }
 });
@@ -52688,16 +52726,102 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
-      _c("date-picker", {
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      })
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [_c("versatile-form", { attrs: { table: "tasks" } })],
+        1
+      ),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.showModal()
+            }
+          }
+        },
+        [_vm._v("modal")]
+      )
     ],
     1
   )
@@ -52798,7 +52922,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:5;\n    height:100%;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-wrapper[data-v-53ab54d2] {\n    position:absolute;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.content-wrapper[data-v-53ab54d2] {\n    width:50%;\n}\n.close-button[data-v-53ab54d2] {\n    position:relative;\n    left: calc(100% - 1em);\n    top:1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:relative;\n    width:100%;\n    z-index:14;\n    padding:1em;\n}\n.modal-background[data-v-53ab54d2] {\n    position:absolute;\n    height:100%;\n    width:100%;\n    z-index:13;\n    background-color:grey;\n    opacity:0.5;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
 
 // exports
 
@@ -52821,16 +52945,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: true,
-            modalClass: 'modal-root',
-            width: 0
+            modal_class: 'modal-root',
+            modal_content_class: 'modal-content',
+            content_top: 0
         };
     },
     watch: {},
@@ -52840,11 +52962,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         openModal: function openModal() {
-            this.modalClass = 'modal-root modal-active';
+            var contentEl = this.$el.lastChild;
+            var contentElRect = contentEl.getBoundingClientRect();
+            var baseY = contentElRect.y < 0 ? 0 : contentElRect.y;
+            var scrollY = window.pageYOffset;
+            console.log(contentElRect);
+            console.log(scrollY);
+
+            this.content_top = scrollY - baseY + 50 + 'px';
+            this.modal_class = 'modal-active';
+            this.modal_content_class = 'modal-content modal-content-active';
             this.$emit('input', true);
         },
         closeModal: function closeModal() {
-            this.modalClass = 'modal-root';
+            this.content_top = '0px';
+            this.modal_class = 'modal-root';
+            this.modal_content_class = 'modal-content';
             this.$emit('input', false);
         }
     }
@@ -52858,9 +52991,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { class: _vm.modalClass }, [
-    _c("div", { staticClass: "modal-wrapper" }, [
-      _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", { class: _vm.modal_class }, [
+    _c("div", {
+      staticClass: "modal-background",
+      on: {
+        click: function($event) {
+          return _vm.closeModal()
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { class: _vm.modal_content_class, style: { top: _vm.content_top } },
+      [
         _c(
           "div",
           {
@@ -52874,18 +53018,10 @@ var render = function() {
           [_c("i", { staticClass: "fa-2x far fa-times-circle" })]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", {
-      staticClass: "modal-background",
-      on: {
-        click: function($event) {
-          return _vm.closeModal()
-        }
-      }
-    })
+        _vm._t("default")
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = []

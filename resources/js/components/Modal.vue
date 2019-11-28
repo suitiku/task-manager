@@ -1,16 +1,13 @@
 <!--モーダル表示コンポーネント-->
 <!--今後の改修ポイント-->
-<!--１．コンテンツが見切れる場合の処理-->
 <template>
-    <div v-bind:class="modalClass">
-        <div class="modal-wrapper">
-            <div class="content-wrapper">
-                <div v-on:click="closeModal()" class="close-button"><i class="fa-2x far fa-times-circle"></i></div>
-                <div class="modal-content"><slot></slot></div>
-            </div>
+    <div v-bind:class="modal_class">
+        <div class="modal-background" v-on:click="closeModal()"></div>
+        <div v-bind:class="modal_content_class" v-bind:style="{top:content_top}">
+            <div v-on:click="closeModal()" class="close-button" ><i class="fa-2x far fa-times-circle"></i></div>
+            <slot></slot>
         </div>
-        <div v-on:click="closeModal()" class="modal-background"></div>
-    </div>
+    </div>    
 </template>
 
 <script>
@@ -18,8 +15,9 @@
         data:function(){
             return {
                 modal:true,
-                modalClass:'modal-root',
-                width:0
+                modal_class:'modal-root',
+                modal_content_class:'modal-content',
+                content_top:0,
             }  
         },
         watch:{
@@ -31,50 +29,54 @@
         mounted() {
         },
         computed:{
+            
         },
         methods: {
             openModal:function(){
-                this.modalClass = 'modal-root modal-active'
+                let contentEl = this.$el.lastChild
+                let contentElRect = contentEl.getBoundingClientRect()
+                let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
+                let scrollY = window.pageYOffset
+                this.content_top = (scrollY - baseY + 50) + 'px'
+                this.modal_class = 'modal-active'
+                this.modal_content_class = 'modal-content modal-content-active'
                 this.$emit('input',true)
             },
             closeModal:function(){
-                this.modalClass = 'modal-root'
+                this.content_top = '0px'
+                this.modal_class = 'modal-root'
+                this.modal_content_class = 'modal-content'
                 this.$emit('input',false)
-            }
+            },
         }
     }
 </script>
 <style scoped>
     .modal-root {
-        position:fixed;
+        position:absolute;
         top:0;
         left:0;
-        z-index:5;
-        height:100%;
+        padding:3em 0em;
         width:100%;
         transition:opacity 0.3s,visibility 0.3s;
         opacity:0;
         visibility:hidden;
     }
     .modal-active {
+        position:absolute;
+        top:0;
+        left:0;
+        padding:3em 0em;
+        display:flex;
+        justify-content:center;
+        width:100%;
         opacity:1.0;
         visibility:visible;
     }
-    .modal-wrapper {
-        position:absolute;
-        width:100%;
-        display:flex;
-        justify-content:center;
-        flex-direction:column;
-        align-items:center;
-    }
-    .content-wrapper {
-        width:50%;
-    }
     .close-button {
-        position:relative;
+        position:absolute;
         left: calc(100% - 1em);
-        top:1em;
+        top: -1em;
         width:2em;
         height:2em;
         border-radius:50%;
@@ -82,18 +84,27 @@
         z-index:15;
     }
     .modal-content {
-        position:relative;
-        width:100%;
+        position:absolute;
+        width:65%;
+        height:0px;
+        overflow:hidden;
         z-index:14;
+        margin-bottom:3em;
         padding:1em;
     }
+    .modal-content-active {
+        overflow:visible;
+        height:auto;
+    }
     .modal-background {
-        position:absolute;
-        height:100%;
+        position:fixed;
+        top:0;
+        left:0;
+        height:5000px;
         width:100%;
-        z-index:13;
-        background-color:grey;
+        background:grey;
         opacity:0.5;
+        z-index:10;
     }
    
 </style>
