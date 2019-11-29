@@ -1,14 +1,11 @@
 <!--日付選択統合コンポーネント-->
 <!--今後の改修ポイント-->
 <!--１．選択肢の追加-->
-<!--２．デザイン修正-->
 <!--３．リセット機能-->
 <template>
     <div class="date-picker-wrapper">
-        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="setCurrentDatetime()">現在時刻を設定する</button>
-        <div class="toggle">
-            <span>入力方式を切り替える</span>
-            <toggle-switch v-model="dead_line" />
+        <div class="select-option-wrapper">
+            <tag-cloud v-model="selected_option" v-bind:options="select_options" />
         </div>
         <div class="component-wrapper">
             <date-selecter v-model="result" v-show="!dead_line" />
@@ -22,6 +19,12 @@
     export default {
         data:function(){
             return {
+                select_options: [
+                    {label:'現在時刻',value:'current'},
+                    {label:'シメキリ',value:'dead_line'},
+                    {label:'数字入力',value:'date_selecter'},
+                ],
+                selected_option:'date_selecter',
                 dead_line:false,
                 result:'',
                 japaneseDatetime:''
@@ -36,6 +39,19 @@
                     let date = new Date(this.result)
                     this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
                     this.$emit('input',this.result)
+                }
+            },
+            selected_option:function(){
+                switch(this.selected_option[0]){
+                    case 'current':
+                        this.setCurrentDatetime()
+                        break
+                    case 'dead_line':
+                        this.dead_line = true
+                        break
+                    case 'date_selecter':
+                        this.dead_line = false
+                        break
                 }
             }
         },
@@ -62,25 +78,26 @@
 </script>
 <style scoped>
     .date-picker-wrapper {
+        position:relative;
+        border:3px solid grey;
+        background:whitesmoke;
+        border-radius:0.5em;
         width:100%;
         display:flex;
         flex-direction:column;
         justify-content:center;
         align-items:center;
         margin:0.5em;
+        padding:0.5em;
     }
-    .toggle {
-        width:40%;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        margin:0.5em;
+    .select-option-wrapper {
+        max-width:22em;
     }
     .toggle span {
         margin-right:1em;
     }
     .component-wrapper {
-        width:100%;
+        max-width:35em;
         min-height:7em;
         margin-top:1em;
     }

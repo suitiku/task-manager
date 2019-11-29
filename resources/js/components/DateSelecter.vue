@@ -3,12 +3,27 @@
 <template>
     <div class="date-selecter-root-wrapper">
         <div class="date-selecter-wrapper">
-            <span>20</span>
-            <input v-model="datetime.year" type="text" placeholder="年" class="date-selecter" >
-            <input v-model="datetime.month" type="text" placeholder="月" class="date-selecter" >
-            <input v-model="datetime.day" type="text" placeholder="日" class="date-selecter" >
-            <input v-model="datetime.hour" type="text" placeholder="時" class="date-selecter" >
-            <input v-model="datetime.minute" type="text" placeholder="分" class="date-selecter" >
+            <div class="date-set">
+                <span>20</span>
+                <input v-model="datetime.year" type="text" placeholder="年" class="date-selecter" >
+                <span>年</span>
+            </div>
+            <div class="date-set">
+                <input v-model="datetime.month" type="text" placeholder="月" class="date-selecter" >
+                <span>月</span>
+            </div>
+            <div class="date-set">
+                <input v-model="datetime.day" type="text" placeholder="日" class="date-selecter" >
+                <span>日</span>
+            </div>
+            <div class="date-set">
+                <input v-model="datetime.hour" type="text" placeholder="時" class="date-selecter" >
+                <span>時</span>
+            </div>
+            <div class="date-set">
+                <input v-model="datetime.minute" type="text" placeholder="分" class="date-selecter" >
+                <span>分</span>
+            </div>
         </div>
     </div>
 </template>
@@ -119,6 +134,18 @@
         padding:0.3em;
         border-radius:0.3em;
         text-align:center;
+    }
+    .date-set {
+        display:flex;
+        justify-content:center;
+        align-items:flex-end;
+         margin:0 0.6em;
+    }
+    span {
+        font-size:60%;
+    }
+    .date-selecter-wrapper span:first-child {
+        font-size:100%;
     }
     
 </style>

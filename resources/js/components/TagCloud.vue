@@ -83,7 +83,7 @@
         flex-wrap:wrap;
     }
     .option {
-        margin:0.5em 1em;
+        margin:0.2em 0.2em;
         padding:0.5em 1em;
         border:1px solid grey;
         color:grey;

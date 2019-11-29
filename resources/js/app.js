@@ -36,6 +36,7 @@ Vue.component('date-selecter', require('./components/DateSelecter.vue'));
 Vue.component('notice', require('./components/Notice.vue'));
 Vue.component('toggle-switch', require('./components/ToggleSwitch.vue'));
 Vue.component('date-picker', require('./components/DatePicker.vue'));
+Vue.component('content-frame', require('./components/ContentFrame.vue'));
 
 const app = new Vue({
     el: '#app'

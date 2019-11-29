@@ -14605,7 +14605,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(151);
+module.exports = __webpack_require__(156);
 
 
 /***/ }),
@@ -14650,6 +14650,7 @@ Vue.component('date-selecter', __webpack_require__(131));
 Vue.component('notice', __webpack_require__(136));
 Vue.component('toggle-switch', __webpack_require__(141));
 Vue.component('date-picker', __webpack_require__(146));
+Vue.component('content-frame', __webpack_require__(151));
 
 var app = new Vue({
   el: '#app'
@@ -51774,7 +51775,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-weight:bold;\n}\n.form-inline {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.form-inline span {\n    margin-right:2em;\n}\n.form-block {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
 
 // exports
 
@@ -51791,6 +51792,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52207,229 +52215,280 @@ var render = function() {
       { staticClass: "forms" },
       [
         _vm._l(_vm.columns, function(column, index) {
-          return _c(
-            "div",
-            { key: index, staticClass: "column" },
-            [
-              _c(
-                "span",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
-                      expression: "labelColumns.indexOf(column.DATA_TYPE) != -1"
-                    }
-                  ]
-                },
-                [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
-              ),
-              _vm._v(" "),
-              column.COLUMN_TYPE == "datetime"
-                ? _c("date-picker", {
-                    model: {
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      callback: function($$v) {
-                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+          return _c("div", { key: index, staticClass: "column" }, [
+            column.COLUMN_TYPE == "tinyint(4)"
+              ? _c(
+                  "div",
+                  { staticClass: "form-inline" },
+                  [
+                    _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
+                            expression:
+                              "labelColumns.indexOf(column.DATA_TYPE) != -1"
+                          }
+                        ]
                       },
-                      expression: "postObject[column.COLUMN_NAME]"
-                    }
-                  })
-                : column.COLUMN_KEY == "" &&
-                  _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
-                ? _vm.setInputType(column.DATA_TYPE) === "checkbox"
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.postObject[column.COLUMN_NAME],
-                          expression: "postObject[column.COLUMN_NAME]"
-                        }
-                      ],
-                      attrs: {
-                        placeholder: _vm.setPlaceholder(column),
-                        type: "checkbox"
+                      [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+                    ),
+                    _vm._v(" "),
+                    _c("star-range", {
+                      model: {
+                        value: _vm.postObject[column.COLUMN_NAME],
+                        callback: function($$v) {
+                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                        },
+                        expression: "postObject[column.COLUMN_NAME]"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _c(
+                  "div",
+                  { staticClass: "form-block" },
+                  [
+                    _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value:
+                              _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
+                            expression:
+                              "labelColumns.indexOf(column.DATA_TYPE) != -1"
+                          }
+                        ]
                       },
-                      domProps: {
-                        checked: Array.isArray(
-                          _vm.postObject[column.COLUMN_NAME]
-                        )
-                          ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) >
-                            -1
-                          : _vm.postObject[column.COLUMN_NAME]
-                      },
-                      on: {
-                        change: function($event) {
-                          var $$a = _vm.postObject[column.COLUMN_NAME],
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.postObject,
-                                  column.COLUMN_NAME,
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.postObject,
-                                  column.COLUMN_NAME,
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
+                      [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+                    ),
+                    _vm._v(" "),
+                    column.COLUMN_TYPE == "datetime"
+                      ? _c("date-picker", {
+                          model: {
+                            value: _vm.postObject[column.COLUMN_NAME],
+                            callback: function($$v) {
+                              _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                            },
+                            expression: "postObject[column.COLUMN_NAME]"
+                          }
+                        })
+                      : column.COLUMN_KEY == "" &&
+                        _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
+                      ? _vm.setInputType(column.DATA_TYPE) === "checkbox"
+                        ? _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.postObject[column.COLUMN_NAME],
+                                expression: "postObject[column.COLUMN_NAME]"
+                              }
+                            ],
+                            attrs: {
+                              placeholder: _vm.setPlaceholder(column),
+                              type: "checkbox"
+                            },
+                            domProps: {
+                              checked: Array.isArray(
+                                _vm.postObject[column.COLUMN_NAME]
+                              )
+                                ? _vm._i(
+                                    _vm.postObject[column.COLUMN_NAME],
+                                    null
+                                  ) > -1
+                                : _vm.postObject[column.COLUMN_NAME]
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.postObject[column.COLUMN_NAME],
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      _vm.$set(
+                                        _vm.postObject,
+                                        column.COLUMN_NAME,
+                                        $$a.concat([$$v])
+                                      )
+                                  } else {
+                                    $$i > -1 &&
+                                      _vm.$set(
+                                        _vm.postObject,
+                                        column.COLUMN_NAME,
+                                        $$a
+                                          .slice(0, $$i)
+                                          .concat($$a.slice($$i + 1))
+                                      )
+                                  }
+                                } else {
+                                  _vm.$set(
+                                    _vm.postObject,
+                                    column.COLUMN_NAME,
+                                    $$c
+                                  )
+                                }
+                              }
                             }
-                          } else {
-                            _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
+                          })
+                        : _vm.setInputType(column.DATA_TYPE) === "radio"
+                        ? _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.postObject[column.COLUMN_NAME],
+                                expression: "postObject[column.COLUMN_NAME]"
+                              }
+                            ],
+                            attrs: {
+                              placeholder: _vm.setPlaceholder(column),
+                              type: "radio"
+                            },
+                            domProps: {
+                              checked: _vm._q(
+                                _vm.postObject[column.COLUMN_NAME],
+                                null
+                              )
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  null
+                                )
+                              }
+                            }
+                          })
+                        : _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.postObject[column.COLUMN_NAME],
+                                expression: "postObject[column.COLUMN_NAME]"
+                              }
+                            ],
+                            attrs: {
+                              placeholder: _vm.setPlaceholder(column),
+                              type: _vm.setInputType(column.DATA_TYPE)
+                            },
+                            domProps: {
+                              value: _vm.postObject[column.COLUMN_NAME]
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                      : column.COLUMN_TYPE == "tinyint(1)"
+                      ? _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.postObject[column.COLUMN_NAME],
+                              expression: "postObject[column.COLUMN_NAME]"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.postObject[column.COLUMN_NAME]
+                            )
+                              ? _vm._i(
+                                  _vm.postObject[column.COLUMN_NAME],
+                                  null
+                                ) > -1
+                              : _vm.postObject[column.COLUMN_NAME]
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.postObject[column.COLUMN_NAME],
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.postObject,
+                                      column.COLUMN_NAME,
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.postObject,
+                                      column.COLUMN_NAME,
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  $$c
+                                )
+                              }
+                            }
                           }
-                        }
-                      }
-                    })
-                  : _vm.setInputType(column.DATA_TYPE) === "radio"
-                  ? _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.postObject[column.COLUMN_NAME],
-                          expression: "postObject[column.COLUMN_NAME]"
-                        }
-                      ],
-                      attrs: {
-                        placeholder: _vm.setPlaceholder(column),
-                        type: "radio"
-                      },
-                      domProps: {
-                        checked: _vm._q(
-                          _vm.postObject[column.COLUMN_NAME],
-                          null
-                        )
-                      },
-                      on: {
-                        change: function($event) {
-                          return _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            null
-                          )
-                        }
-                      }
-                    })
-                  : _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.postObject[column.COLUMN_NAME],
-                          expression: "postObject[column.COLUMN_NAME]"
-                        }
-                      ],
-                      attrs: {
-                        placeholder: _vm.setPlaceholder(column),
-                        type: _vm.setInputType(column.DATA_TYPE)
-                      },
-                      domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.postObject,
-                            column.COLUMN_NAME,
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                : column.COLUMN_TYPE == "tinyint(4)"
-                ? _c("star-range", {
-                    model: {
-                      value: _vm.postObject[column.COLUMN_NAME],
-                      callback: function($$v) {
-                        _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
-                      },
-                      expression: "postObject[column.COLUMN_NAME]"
-                    }
-                  })
-                : column.COLUMN_TYPE == "tinyint(1)"
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    ],
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(_vm.postObject[column.COLUMN_NAME])
-                        ? _vm._i(_vm.postObject[column.COLUMN_NAME], null) > -1
-                        : _vm.postObject[column.COLUMN_NAME]
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.postObject[column.COLUMN_NAME],
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
+                        })
+                      : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
+                      ? _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.postObject[column.COLUMN_NAME],
+                              expression: "postObject[column.COLUMN_NAME]"
+                            }
+                          ],
+                          attrs: { placeholder: _vm.setPlaceholder(column) },
+                          domProps: {
+                            value: _vm.postObject[column.COLUMN_NAME]
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
                               _vm.$set(
                                 _vm.postObject,
                                 column.COLUMN_NAME,
-                                $$a.concat([$$v])
+                                $event.target.value
                               )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.postObject,
-                                column.COLUMN_NAME,
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                            }
                           }
-                        } else {
-                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$c)
-                        }
-                      }
-                    }
-                  })
-                : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
-                ? _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    ],
-                    attrs: { placeholder: _vm.setPlaceholder(column) },
-                    domProps: { value: _vm.postObject[column.COLUMN_NAME] },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.postObject,
-                          column.COLUMN_NAME,
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
-                : _vm._e()
-            ],
-            1
-          )
+                        })
+                      : _vm._e()
+                  ],
+                  1
+                )
+          ])
         }),
         _vm._v(" "),
         _vm.foreign_keys
@@ -52633,40 +52692,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52741,74 +52766,6 @@ var render = function() {
         [_c("versatile-form", { attrs: { table: "tasks" } })],
         1
       ),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("テストテストテステスとテストテストテストテスト")]),
       _vm._v(" "),
       _c(
         "button",
@@ -52966,9 +52923,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var contentElRect = contentEl.getBoundingClientRect();
             var baseY = contentElRect.y < 0 ? 0 : contentElRect.y;
             var scrollY = window.pageYOffset;
-            console.log(contentElRect);
-            console.log(scrollY);
-
             this.content_top = scrollY - baseY + 50 + 'px';
             this.modal_class = 'modal-active';
             this.modal_content_class = 'modal-content modal-content-active';
@@ -54395,7 +54349,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.option-wrapper[data-v-ae23c2b4] {\n    margin:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.option[data-v-ae23c2b4] {\n    margin:0.5em 1em;\n    padding:0.5em 1em;\n    border:1px solid grey;\n    color:grey;\n    border-radius:0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.selected[data-v-ae23c2b4] {\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    background:grey;\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.option-wrapper[data-v-ae23c2b4] {\n    margin:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.option[data-v-ae23c2b4] {\n    margin:0.2em 0.2em;\n    padding:0.5em 1em;\n    border:1px solid grey;\n    color:grey;\n    border-radius:0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.selected[data-v-ae23c2b4] {\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    background:grey;\n    color:white;\n}\n", ""]);
 
 // exports
 
@@ -55660,7 +55614,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:3em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n\n", ""]);
+exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:3em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.date-set[data-v-afcfce3c] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:end;\n        -ms-flex-align:end;\n            align-items:flex-end;\n     margin:0 0.6em;\n}\nspan[data-v-afcfce3c] {\n    font-size:60%;\n}\n.date-selecter-wrapper span[data-v-afcfce3c]:first-child {\n    font-size:100%;\n}\n\n", ""]);
 
 // exports
 
@@ -55671,6 +55625,21 @@ exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    w
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55783,117 +55752,137 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-selecter-root-wrapper" }, [
     _c("div", { staticClass: "date-selecter-wrapper" }, [
-      _c("span", [_vm._v("20")]),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.datetime.year,
-            expression: "datetime.year"
-          }
-        ],
-        staticClass: "date-selecter",
-        attrs: { type: "text", placeholder: "年" },
-        domProps: { value: _vm.datetime.year },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "date-set" }, [
+        _c("span", [_vm._v("20")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datetime.year,
+              expression: "datetime.year"
             }
-            _vm.$set(_vm.datetime, "year", $event.target.value)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.datetime.month,
-            expression: "datetime.month"
-          }
-        ],
-        staticClass: "date-selecter",
-        attrs: { type: "text", placeholder: "月" },
-        domProps: { value: _vm.datetime.month },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+          ],
+          staticClass: "date-selecter",
+          attrs: { type: "text", placeholder: "年" },
+          domProps: { value: _vm.datetime.year },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.datetime, "year", $event.target.value)
             }
-            _vm.$set(_vm.datetime, "month", $event.target.value)
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("年")])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.datetime.day,
-            expression: "datetime.day"
-          }
-        ],
-        staticClass: "date-selecter",
-        attrs: { type: "text", placeholder: "日" },
-        domProps: { value: _vm.datetime.day },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "date-set" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datetime.month,
+              expression: "datetime.month"
             }
-            _vm.$set(_vm.datetime, "day", $event.target.value)
+          ],
+          staticClass: "date-selecter",
+          attrs: { type: "text", placeholder: "月" },
+          domProps: { value: _vm.datetime.month },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.datetime, "month", $event.target.value)
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("月")])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.datetime.hour,
-            expression: "datetime.hour"
-          }
-        ],
-        staticClass: "date-selecter",
-        attrs: { type: "text", placeholder: "時" },
-        domProps: { value: _vm.datetime.hour },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "date-set" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datetime.day,
+              expression: "datetime.day"
             }
-            _vm.$set(_vm.datetime, "hour", $event.target.value)
+          ],
+          staticClass: "date-selecter",
+          attrs: { type: "text", placeholder: "日" },
+          domProps: { value: _vm.datetime.day },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.datetime, "day", $event.target.value)
+            }
           }
-        }
-      }),
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("日")])
+      ]),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.datetime.minute,
-            expression: "datetime.minute"
-          }
-        ],
-        staticClass: "date-selecter",
-        attrs: { type: "text", placeholder: "分" },
-        domProps: { value: _vm.datetime.minute },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "date-set" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datetime.hour,
+              expression: "datetime.hour"
             }
-            _vm.$set(_vm.datetime, "minute", $event.target.value)
+          ],
+          staticClass: "date-selecter",
+          attrs: { type: "text", placeholder: "時" },
+          domProps: { value: _vm.datetime.hour },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.datetime, "hour", $event.target.value)
+            }
           }
-        }
-      })
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("時")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "date-set" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.datetime.minute,
+              expression: "datetime.minute"
+            }
+          ],
+          staticClass: "date-selecter",
+          attrs: { type: "text", placeholder: "分" },
+          domProps: { value: _vm.datetime.minute },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.datetime, "minute", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("span", [_vm._v("分")])
+      ])
     ])
   ])
 }
@@ -56320,7 +56309,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle[data-v-fa816ef2] {\n    width:40%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    width:100%;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:3px solid grey;\n    background:whitesmoke;\n    border-radius:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    max-width:22em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -56348,13 +56337,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            select_options: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'dead_line' }, { label: '数字入力', value: 'date_selecter' }],
+            selected_option: 'date_selecter',
             dead_line: false,
             result: '',
             japaneseDatetime: ''
@@ -56367,6 +56355,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var date = new Date(this.result);
                 this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
                 this.$emit('input', this.result);
+            }
+        },
+        selected_option: function selected_option() {
+            switch (this.selected_option[0]) {
+                case 'current':
+                    this.setCurrentDatetime();
+                    break;
+                case 'dead_line':
+                    this.dead_line = true;
+                    break;
+                case 'date_selecter':
+                    this.dead_line = false;
+                    break;
             }
         }
     },
@@ -56397,31 +56398,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-picker-wrapper" }, [
     _c(
-      "button",
-      {
-        staticClass: "btn btn-outline-primary mx-auto d-block",
-        on: {
-          click: function($event) {
-            return _vm.setCurrentDatetime()
-          }
-        }
-      },
-      [_vm._v("現在時刻を設定する")]
-    ),
-    _vm._v(" "),
-    _c(
       "div",
-      { staticClass: "toggle" },
+      { staticClass: "select-option-wrapper" },
       [
-        _c("span", [_vm._v("入力方式を切り替える")]),
-        _vm._v(" "),
-        _c("toggle-switch", {
+        _c("tag-cloud", {
+          attrs: { options: _vm.select_options },
           model: {
-            value: _vm.dead_line,
+            value: _vm.selected_option,
             callback: function($$v) {
-              _vm.dead_line = $$v
+              _vm.selected_option = $$v
             },
-            expression: "dead_line"
+            expression: "selected_option"
           }
         })
       ],
@@ -56488,6 +56475,175 @@ if (false) {
 
 /***/ }),
 /* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(152)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(154)
+/* template */
+var __vue_template__ = __webpack_require__(155)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-0995825f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ContentFrame.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0995825f", Component.options)
+  } else {
+    hotAPI.reload("data-v-0995825f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(153);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("1d94e24b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0995825f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContentFrame.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0995825f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ContentFrame.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.frame-wrapper[data-v-0995825f] {\n    position:relative;\n    width:100%;\n    border:2px solid grey;\n    border-radius:0.5em;\n    padding:1em;\n}\n.frame-label[data-v-0995825f] {\n    position:absolute;\n    z-index:2;\n    top:-1em;\n    left:3%;\n    padding:0.5em;\n    /*background-color:inherit;*/\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            label_background: 'red'
+        };
+    },
+    props: {
+        frame_label: {
+            type: String,
+            default: '',
+            required: false
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {
+        // let component = this.$parent
+        // console.log(component.$el)
+        // while(component.$el.syle.backgroundColor == ''){
+        //     component = component.$parent
+        //     console.log(component)
+        // }
+        // this.label_background = component.syle.backgroundColor
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "frame-wrapper" },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "frame-label",
+          style: { backgourndColor: _vm.label_background }
+        },
+        [_vm._v(_vm._s(_vm.frame_label))]
+      ),
+      _vm._v(" "),
+      _vm._t("default")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0995825f", module.exports)
+  }
+}
+
+/***/ }),
+/* 156 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -11,12 +11,19 @@
     <div class="container">
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
-                <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
-                <date-picker v-if="column.COLUMN_TYPE == 'datetime'" v-model="postObject[column.COLUMN_NAME]" />
-                <input v-else-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
-                <star-range v-else-if="column.COLUMN_TYPE == 'tinyint(4)'" v-model="postObject[column.COLUMN_NAME]" />
-                <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
-                <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
+                <!--インライン表示-->
+                <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
+                    <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
+                    <star-range v-model="postObject[column.COLUMN_NAME]" />                    
+                </div>
+                <!--ブロック表示-->
+                <div v-else class="form-block">
+                    <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
+                    <date-picker v-if="column.COLUMN_TYPE == 'datetime'" v-model="postObject[column.COLUMN_NAME]" />
+                    <input v-else-if="column.COLUMN_KEY == '' && inputColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:type="setInputType(column.DATA_TYPE)" v-bind:placeholder="setPlaceholder(column)">
+                    <input v-else-if="column.COLUMN_TYPE == 'tinyint(1)'" v-model="postObject[column.COLUMN_NAME]" type="checkbox">
+                    <textarea v-else-if="textareaColumns.indexOf(column.DATA_TYPE) != -1" v-model="postObject[column.COLUMN_NAME]" v-bind:placeholder="setPlaceholder(column)"></textarea>
+                </div>
             </div>
             <!--外部キー値の設定-->
             <div v-if="foreign_keys" class="foreign">
@@ -153,6 +160,22 @@
     }
 </script>
 <style>
+    span {
+        font-weight:bold;
+    }
+    .form-inline {
+        display:flex;
+        justify-content:flex-start;
+    }
+    .form-inline span {
+        margin-right:2em;
+    }
+    .form-block {
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        align-items:center;
+    }
     .forms input,textarea {
         width:100%;
         display:block;
