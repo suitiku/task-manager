@@ -11,7 +11,7 @@
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>
         </div>
-        <task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index" class="margin" />
+        <task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index"/>
     </div>
 </template>
 
@@ -90,9 +90,5 @@
         margin:1em;
         display:flex;
         justify-content:center;
-    }
-    .margin {
-        width:100%;
-        margin-bottom:0.5em;
     }
 </style>

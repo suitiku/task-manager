@@ -102,7 +102,7 @@
                         this.$set(this.postObject,key,value[key])
                     }
                 }
-                console.log(this.postObject)
+                // console.log(this.postObject)
                 
             },
             setInputType:function(dataType){
@@ -144,7 +144,7 @@
                 }
                 let result = await axios.post('/api/' + this.table,this.postObject)
                 if(result.data){
-                    console.log(result.data)
+                    // console.log(result.data)
                     this.$emit('input',result.data) //挿入したデータを送出
                     this.id = result.data.id //編集用idをセット
                 }
@@ -152,7 +152,7 @@
             editRecord: async function(){
                 let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
                 if(result.data){
-                    console.log(result.data)
+                    // console.log(result.data)
                     this.$emit('input',result.data)
                 }
             },

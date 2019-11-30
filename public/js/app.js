@@ -50948,7 +50948,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.margin[data-v-0afd8bae] {\n    width:100%;\n    margin-bottom:0.5em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n", ""]);
 
 // exports
 
@@ -51242,11 +51242,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
-        return _c("task", {
-          key: index,
-          staticClass: "margin",
-          attrs: { task: task }
-        })
+        return _c("task", { key: index, attrs: { task: task } })
       })
     ],
     2
@@ -51348,7 +51344,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:2.5em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:3.2em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.tag-list-component-wrapper[data-v-e9a53c20] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    -webkit-box-orient:horizontal;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:row;\n            flex-direction:row;\n}\n.tag-list-component[data-v-e9a53c20] {\n    width:40%;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin:0 0.2em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.completed[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    background-color:grey;\n    opacity:0.5;\n    -webkit-animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:completed-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes completed-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.completed-mark[data-v-e9a53c20] {\n    padding:0.4em;\n    color:red;\n    position:absolute;\n    /*top:50%;*/\n    left:calc(50% - 2em);\n    border:solid white 2px;\n    background-color:white;\n    /*border-radius:0.3em;*/\n    z-index:3;\n    opacity:1.0;\n    /*transform:rotate(10deg);*/\n    font-weight:bold;\n    -webkit-animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:completed-mark-before-data-v-e9a53c20 1s linear 0s 1,completed-mark-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes completed-mark-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n@keyframes completed-mark-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:3.2em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.tag-list-component-wrapper[data-v-e9a53c20] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    -webkit-box-orient:horizontal;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:row;\n            flex-direction:row;\n}\n.tag-list-component[data-v-e9a53c20] {\n    width:40%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    /*opacity:0.5;*/\n    opacity:0;\n    /*animation:mask 0.3s ease 0s 1;*/\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -51408,12 +51404,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            wrapper: 'task-wrapper',
+            wrapper_class: 'task-wrapper',
+            mask_class: 'mask',
+            mask: false,
             checkbox: false,
+            not_started: false,
             detail: false
         };
     },
@@ -51456,45 +51457,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         openDetail: function openDetail() {
             this.detail = !this.detail;
-            this.wrapper = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
+            this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
-                var modifyData, result, taskResult;
+                var check, modifyData, result, taskResult;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
+                                check = event;
+
                                 if (!(event.target.checked == true)) {
-                                    _context2.next = 11;
+                                    _context2.next = 14;
                                     break;
                                 }
 
                                 modifyData = {
                                     state_id: 3
                                 };
-                                _context2.next = 4;
+                                _context2.next = 5;
                                 return axios.put('/api/tasks/' + taskId, modifyData);
 
-                            case 4:
+                            case 5:
                                 result = _context2.sent;
 
                                 if (!result.data) {
-                                    _context2.next = 11;
+                                    _context2.next = 14;
                                     break;
                                 }
 
+                                // チェックボックスを無効化
+                                check.target.disabled = true;
+                                //タスク全体にマスクをかける
+                                this.mask_class = 'mask mask-active';
                                 this.checkbox = true;
                                 //状態が変化したらtasks/idを再取得して送出
-                                _context2.next = 9;
+                                _context2.next = 12;
                                 return axios.get('/api/tasks/' + taskId);
 
-                            case 9:
+                            case 12:
                                 taskResult = _context2.sent;
 
                                 this.$emit('input', taskResult.data);
 
-                            case 11:
+                            case 14:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -51549,7 +51556,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return checkItem;
         }(),
         updateData: function updateData() {
-            this.checkbox = this.task.state_id == 3 ? true : false;
+            // 各種パラメータをリセット
+            this.mask_class = 'mask';
+            this.checkbox = false;
+            this.not_started = false;
+
+            //チェックボックスの要素を取得
+            var check = this.$refs.checkbox;
+
+            var current_datetime = new Date();
+            var task_datetime = new Date(this.task.start_date);
+            if (this.task.state_id == 3) {
+                this.mask_class = 'mask mask-active';
+                this.checkbox = true;
+                check.checked = 'checked';
+                check.disabled = true;
+            } else if (current_datetime < task_datetime) {
+                this.mask_class = 'mask mask-active';
+                this.not_started = true;
+                check.disabled = true;
+            }
         }
     }
 });
@@ -51578,17 +51604,14 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { class: _vm.wrapper }, [
+    _c("div", { class: _vm.wrapper_class }, [
       _c("div", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.checkbox,
-            expression: "checkbox"
+        class: _vm.mask_class,
+        on: {
+          click: function($event) {
+            return _vm.openDetail()
           }
-        ],
-        staticClass: "completed"
+        }
       }),
       _vm._v(" "),
       _c(
@@ -51598,18 +51621,44 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.checkbox,
-              expression: "checkbox"
+              value: _vm.checkbox || _vm.not_started,
+              expression: "checkbox || not_started"
             }
           ],
-          staticClass: "completed-mark"
+          staticClass: "state-icon"
         },
-        [_vm._v("completed!")]
+        [
+          _c("i", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.checkbox,
+                expression: "checkbox"
+              }
+            ],
+            staticClass: "far fa-2x fa-check-circle"
+          }),
+          _vm._v(" "),
+          _c("i", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.not_started,
+                expression: "not_started"
+              }
+            ],
+            staticClass: "fas fa-2x fa-exclamation-circle"
+          })
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "task" }, [
-        _c("span", [
+        _c("div", [
           _c("input", {
+            ref: "checkbox",
+            staticClass: "checkbox",
             attrs: { type: "checkbox" },
             on: {
               change: function($event) {
@@ -51618,27 +51667,22 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "headline",
-              on: {
-                click: function($event) {
-                  return _vm.openDetail()
-                }
-              }
-            },
-            [_vm._v(_vm._s(_vm.task.name))]
-          )
+          _c("span", { staticClass: "headline" }, [
+            _vm._v(_vm._s(_vm.task.name))
+          ])
         ]),
         _vm._v(" "),
         _c(
-          "span",
+          "div",
           [
             _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
             _vm._v(" "),
-            _vm._l(_vm.task.priority, function(p) {
+            _vm._l(_vm.task.priority, function(p, pIndex) {
               return _c("i", { staticClass: "fas fa-star" })
+            }),
+            _vm._v(" "),
+            _vm._l(5 - _vm.task.priority, function(np, npIndex) {
+              return _c("i", { staticClass: "far fa-star" })
             }),
             _vm._v(" "),
             _c("span", { staticClass: "label" }, [_vm._v("締切")]),
@@ -51993,9 +52037,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context.finish(35);
 
                             case 43:
-                                console.log(this.postObject);
-
-                            case 44:
                             case 'end':
                                 return _context.stop();
                         }
@@ -52147,7 +52188,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context2.sent;
 
                                 if (result.data) {
-                                    console.log(result.data);
+                                    // console.log(result.data)
                                     this.$emit('input', result.data); //挿入したデータを送出
                                     this.id = result.data.id; //編集用idをセット
                                 }
@@ -52180,7 +52221,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context3.sent;
 
                                 if (result.data) {
-                                    console.log(result.data);
+                                    // console.log(result.data)
                                     this.$emit('input', result.data);
                                 }
 

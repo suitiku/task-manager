@@ -4,7 +4,6 @@
 <!--3 編集ボタン-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
 <!--5 ログ表示-->
-<!--6 現在の状態表示-->
 <template>
     <div class="container">
         <div class="tag-list-component-wrapper">
@@ -13,21 +12,24 @@
             </div>
         </div>
         <div v-if="task.project" class="project-label">{{task.project.name}}</div>
-        <div v-bind:class="wrapper">
-            <div class="completed" v-show="checkbox"></div>
-            <div class="completed-mark" v-show="checkbox">completed!</div>
+        <div v-bind:class="wrapper_class">
+            <div v-bind:class="mask_class" v-on:click="openDetail()"></div>
+            <div class="state-icon" v-show="checkbox || not_started">
+                <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
+                <i v-show="not_started" class="fas fa-2x fa-exclamation-circle"></i>
+            </div>
             <div class="task">
-                <span>
-                    <input type="checkbox" v-on:change="checkTask(task.id)">
-                    <span class="headline" v-on:click="openDetail()">{{task.name}}</span>
-                </span>
-                <span>
+                <div>
+                    <input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">
+                    <span class="headline">{{task.name}}</span>
+                </div>
+                <div>
                     <span class="label">優先度</span>
-                    <i class="fas fa-star" v-for="p in task.priority"></i>
-                    <!--<i class="far fa-star" v-for="np in (5 - task.priority)"></i> なんかエラー出るから後で直す-->
+                    <i class="fas fa-star" v-for="(p,pIndex) in task.priority"></i>
+                    <i class="far fa-star" v-for="(np,npIndex) in (5 - task.priority)"></i>
                     <span class="label">締切</span>
                     <span>{{task.dead_line}}</span>
-                </span>
+                </div>
             </div>
             <div class="detail">
                 <p>{{task.overview}}</p>
@@ -45,8 +47,11 @@
     export default {
         data:function(){
             return {
-                wrapper:'task-wrapper',
+                wrapper_class:'task-wrapper',
+                mask_class:'mask',
+                mask:false,
                 checkbox:false,
+                not_started:false,
                 detail:false,
             }  
         },
@@ -74,15 +79,20 @@
         methods: {
             openDetail: function(){
                 this.detail = !this.detail
-                this.wrapper = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
+                this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
             },
             checkTask:async function(taskId){
+                let check = event
                 if(event.target.checked == true){
                     let modifyData = {
                         state_id:3
                     }
                     let result = await axios.put('/api/tasks/' + taskId, modifyData)
                     if(result.data){
+                        // チェックボックスを無効化
+                        check.target.disabled = true
+                        //タスク全体にマスクをかける
+                        this.mask_class = 'mask mask-active'
                         this.checkbox = true
                         //状態が変化したらtasks/idを再取得して送出
                         let taskResult = await axios.get('/api/tasks/' + taskId)
@@ -106,7 +116,26 @@
                 }
             },
             updateData:function(){
-                this.checkbox = this.task.state_id == 3 ? true : false
+                // 各種パラメータをリセット
+                this.mask_class = 'mask'
+                this.checkbox = false
+                this.not_started = false
+                
+                //チェックボックスの要素を取得
+                let check = this.$refs.checkbox
+                
+                let current_datetime = new Date()
+                let task_datetime = new Date(this.task.start_date)
+                if(this.task.state_id == 3){
+                    this.mask_class = 'mask mask-active'
+                    this.checkbox = true
+                    check.checked = 'checked'
+                    check.disabled = true
+                }else if(current_datetime < task_datetime){
+                    this.mask_class = 'mask mask-active'
+                    this.not_started = true
+                    check.disabled = true
+                }
             }
         }
     }
@@ -119,7 +148,7 @@
     .task-wrapper {
         position:relative;
         width:100%;
-        max-height:2.5em;
+        max-height:3.0em;
         overflow:hidden;
         border:1px solid black;
         border-radius:0.2em;
@@ -152,6 +181,10 @@
     .tag-list-component {
         width:40%;
     }
+    .checkbox {
+        position:relative;
+        z-index:3;
+    }
     .headline {
         font-weight:bold;
         cursor:pointer;
@@ -161,7 +194,7 @@
         border-radius:0.2em;
         background-color:gainsboro;
         padding:0.1em;
-        margin:0 0.2em;
+        margin-left:1em;
     }
     .detail {
         width:100%;
@@ -172,16 +205,22 @@
         max-height:500px;
     }
     
-    .completed {
+    .mask {
         width:120%;
         height:120%;
         position:absolute;
         z-index:2;
+        cursor:pointer;
         background-color:grey;
-        opacity:0.5;
-        animation:completed 0.3s ease 0s 1;
+        /*opacity:0.5;*/
+        opacity:0;
+        /*animation:mask 0.3s ease 0s 1;*/
     }
-    @keyframes completed {
+    .mask-active {
+        opacity:0.5;
+        animation:mask 0.3s ease 0s 1;
+    }
+    @keyframes mask {
         0% {
             width:0%;
         }
@@ -189,22 +228,17 @@
             width:100%; 
         }
     }
-    .completed-mark {
-        padding:0.4em;
-        color:red;
+    .state-icon {
+        color:white;
         position:absolute;
-        /*top:50%;*/
+        top:0.5em;
         left:calc(50% - 2em);
-        border:solid white 2px;
-        background-color:white;
-        /*border-radius:0.3em;*/
         z-index:3;
         opacity:1.0;
-        /*transform:rotate(10deg);*/
-        font-weight:bold;
-        animation:completed-mark-before 1s linear 0s 1,completed-mark 0.5s linear 0.5s 1;
+        transform-origin:center;
+        animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;
     }
-    @keyframes completed-mark-before {
+    @keyframes icon-before {
         0% {
             opacity:0;
         }
@@ -212,11 +246,13 @@
             opacity:0;
         }
     }
-    @keyframes completed-mark {
+    @keyframes icon {
         0% {
+            transform:rotate(0deg);
             opacity:0;
         }
         100% {
+            transform:rotate(360deg);
             opacity:1.0;
         }
     }
