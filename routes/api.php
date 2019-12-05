@@ -28,3 +28,7 @@ Route::resource('states','Api\StatesController');
 Route::resource('items','Api\ItemsController');
 Route::resource('tags','Api\TagsController');
 Route::resource('projects','Api\ProjectsController');
+
+
+//メール送信テスト
+Route::get('mail/send','Api\MailController@sendMail');

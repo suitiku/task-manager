@@ -17,15 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-
-//ホーム画面（タスク一覧、
-Route::get('/home',function(){
-    return view('home');
-});
+//ホーム画面（認証必須）
+Route::get('/home','HomeController@index');
 
 
 //テストコンポーネント用test.blade.php
 Route::get('/test',function(){
     return view('test');
 });
+
+// メールプレビュー
+Route::get('mailable/preview',function(){
+    return new App\Mail\SampleNotification();    
+});
+
+// メール送信
+Route::get('mailable/send','MailController@sampleNotification');
