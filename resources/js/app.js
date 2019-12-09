@@ -38,6 +38,7 @@ Vue.component('toggle-switch', require('./components/ToggleSwitch.vue'));
 Vue.component('date-picker', require('./components/DatePicker.vue'));
 Vue.component('content-frame', require('./components/ContentFrame.vue'));
 Vue.component('progress-circle', require('./components/ProgressCircle.vue'));
+Vue.component('custom-button', require('./components/CustomButton.vue'));
 
 const app = new Vue({
     el: '#app'
