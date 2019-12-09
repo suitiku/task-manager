@@ -73,6 +73,12 @@
                 filtered_difficulty:0,
             }  
         },
+        props:{
+            user_id:{
+                type:[String,Number],
+                required:false,
+            }  
+        },
         mounted() {
         },
         created() {
@@ -80,6 +86,10 @@
             this.fetchTags()
         },
         watch: {
+            // user_id:function(){
+            //     this.fetchTasks()
+            //     this.fetchTags()
+            // },
             newTask:async function(newVal,oldVal){
                 let result
                 if(!newVal.id){return } //newValにidがなければ終了
@@ -160,8 +170,11 @@
         },
         methods: {
             fetchTasks: async function(){
-                // タスクの取得
-                let result = await axios.get('/api/tasks')
+                // タスクの取得（ユーザーIDでフィルター）
+                if(!this.user_id){return }
+                let result = await axios.get('/api/mytasks',{
+                                                params:{user_id:this.user_id,}
+                                            })
                 this.allTasks = result.data
                 this.tasks = result.data
                 for(let index of Object.keys(this.allTasks)){

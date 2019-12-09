@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    <lists />
+    <lists v-bind:user="{{$user}}"/>
 </div>
 @endsection

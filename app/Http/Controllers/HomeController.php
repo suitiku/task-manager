@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = \Auth::user(); //ログイン中のユーザー情報を取得
+        return view('home')->with('user',$user);
     }
 }

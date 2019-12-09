@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::resource('items','Api\ItemsController');
 Route::resource('tags','Api\TagsController');
 Route::resource('projects','Api\ProjectsController');
 
+//検索用
+Route::get('mytasks','Api\TasksController@getTasksByUserId');
 
 //メール送信テスト
 Route::get('mail/send','Api\MailController@sendMail');

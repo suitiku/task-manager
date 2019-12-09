@@ -113,4 +113,9 @@ class TasksController extends Controller
         $result = array('status' => 'success','data' => $data);
         return $result;
     }
+    
+    // ユーザーIDで検索
+    public function getTasksByUserId(Request $request){
+        return Task::where('user_id',$request->user_id)->with(['project','items','state','tags'])->get();
+    }
 }

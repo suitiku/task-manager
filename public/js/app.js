@@ -51038,6 +51038,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             filtered_difficulty: 0
         };
     },
+    props: {
+        user_id: {
+            type: [String, Number],
+            required: false
+        }
+    },
     mounted: function mounted() {},
     created: function created() {
         this.fetchTasks();
@@ -51045,6 +51051,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     watch: {
+        // user_id:function(){
+        //     this.fetchTasks()
+        //     this.fetchTags()
+        // },
         newTask: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
                 var result, index;
@@ -51218,7 +51228,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 _context2.next = 2;
-                                return axios.get('/api/tasks');
+                                return axios.get('/api/mytasks', {
+                                    params: { user_id: this.user_id }
+                                });
 
                             case 2:
                                 result = _context2.sent;
@@ -54545,6 +54557,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             project_list: 'left'
         };
     },
+    props: {
+        user: {
+            type: Object,
+            required: false
+        }
+    },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
@@ -54579,7 +54597,10 @@ var render = function() {
       "div",
       { staticClass: "contents" },
       [
-        _c("task-list", { class: _vm.task_list }),
+        _c("task-list", {
+          class: _vm.task_list,
+          attrs: { user_id: _vm.user.id }
+        }),
         _vm._v(" "),
         _c("project-list", { class: _vm.project_list })
       ],
