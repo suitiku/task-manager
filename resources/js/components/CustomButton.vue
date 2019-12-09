@@ -1,7 +1,7 @@
 <!--単一ファイルコンポーネントのテンプレートファイル-->
 <template>
     <div class="container">
-        <div v-bind:class="button_class" v-on:click="activeButton()">
+        <div v-bind:class="button_class" v-on:click="toggleButton()">
             <slot></slot>
         </div>
     </div>
@@ -28,7 +28,7 @@
             
         },
         methods: {
-            activeButton:function(){
+            toggleButton:function(){
                 if(!this.active){
                     this.button_class = 'button-wrapper button-active'
                     this.active = true
@@ -38,7 +38,8 @@
                     this.active = false
                     this.$emit('input',false)
                 }
-            }
+            },
+            
         }
     }
 </script>
@@ -47,7 +48,7 @@
         width:2.5em;
         height:2.5em;
         border-radius:50%;
-        background:grey;
+        background:gainsboro;
         color:white;
         font-weight:bold;
         display:flex;
@@ -55,10 +56,9 @@
         flex-direction:column;
         align-items:center;
         cursor:pointer;
-        transition:all 1s ease;
+        transition:all 0.5s ease;
     }
     .button-active {
         color:red;
-        background:gainsboro;
     }
 </style>

@@ -1,4 +1,5 @@
-<!--単一ファイルコンポーネントのテンプレートファイル-->
+<!--Homeコンポーネント-->
+<!--ユーザーデータ等の集中管理-->
 <template>
     <div class="lists-wrapper">
         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="toggleContents">

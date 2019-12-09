@@ -1,11 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
-        <custom-button v-model="test">
-            <!--<i class="fas fa-tasks"></i>-->
-            <i class="fas fa-project-diagram"></i>
-        </custom-button>
+        <navi-bar />
+        <event-bus-test />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <versatile-form table="tasks" />
