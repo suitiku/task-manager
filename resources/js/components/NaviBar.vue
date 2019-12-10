@@ -3,7 +3,7 @@
 <template>
     <div class="navi-bar-wrapper">
         <!--ホーム-->
-        <input v-model="content" type="radio" name="content" value="home" id="navi-home">
+        <input v-model="content" type="radio" name="content" value="home" id="navi-home" checked>
         <label for="navi-home"><i class="fas fa-home"></i></label>
         
         <!--タスク-->
@@ -40,7 +40,7 @@
             
         },
         mounted:function(){
-            
+            this.content = 'home'
         },
         methods: {
         }

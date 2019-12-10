@@ -27,7 +27,7 @@ Vue.component('star-range', require('./components/StarRange.vue'));
 Vue.component('check-box', require('./components/CheckBox.vue')); //未実装
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
-Vue.component('home', require('./components/Home.vue'));
+Vue.component('content-wrapper', require('./components/ContentWrapper.vue'));
 Vue.component('dead-line', require('./components/DeadLine.vue'));
 Vue.component('tag-cloud', require('./components/TagCloud.vue'));
 Vue.component('array-filter', require('./components/ArrayFilter.vue'));
@@ -42,6 +42,7 @@ Vue.component('progress-circle', require('./components/ProgressCircle.vue'));
 Vue.component('custom-button', require('./components/CustomButton.vue'));
 Vue.component('navi-bar', require('./components/NaviBar.vue'));
 Vue.component('event-bus-test', require('./components/EventBusTest.vue'));
+Vue.component('home', require('./components/Home.vue'));
 
 
 const app = new Vue({

@@ -3,6 +3,7 @@
         "@automaticShutdown": "30"
     },
     "language": {
+        "@semi": false,
         "tern_defs": {
             "json()": {
                 "browser": {

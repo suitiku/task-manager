@@ -7,9 +7,9 @@
 <template>
     <div class="container">
         <div class="tag-list-component-wrapper">
-            <div class="tag-list-component">
-                <tag-list v-bind:id="task.id" />
-            </div>
+            <!--<div class="tag-list-component">-->
+            <!--    <tag-list v-bind:id="task.id" />-->
+            <!--</div>-->
         </div>
         <div v-if="task.project" class="project-label">{{task.project.name}}</div>
         <div v-bind:class="wrapper_class">
