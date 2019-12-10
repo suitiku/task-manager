@@ -16,7 +16,7 @@
             }  
         },
         props: {
-            
+            value:Boolean
         },
         watch:{
             
@@ -38,6 +38,8 @@
                     this.active = false
                     this.$emit('input',false)
                 }
+                
+                
             },
             
         }
@@ -60,5 +62,6 @@
     }
     .button-active {
         color:red;
+        background:silver;
     }
 </style>

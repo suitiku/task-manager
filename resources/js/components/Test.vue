@@ -1,8 +1,6 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <navi-bar />
-        <event-bus-test />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <versatile-form table="tasks" />

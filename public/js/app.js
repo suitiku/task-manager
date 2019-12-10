@@ -489,7 +489,7 @@ module.exports = function normalizeComponent (
 "use strict";
 
 
-var bind = __webpack_require__(9);
+var bind = __webpack_require__(10);
 var isBuffer = __webpack_require__(25);
 
 /*global toString:true*/
@@ -850,10 +850,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(12);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(11);
+    adapter = __webpack_require__(12);
   }
   return adapter;
 }
@@ -928,10 +928,21 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
 /* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+
+var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
+/* harmony default export */ __webpack_exports__["a"] = (bus);
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3556,7 +3567,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -14161,7 +14172,7 @@ return jQuery;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14179,7 +14190,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -14369,7 +14380,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14380,7 +14391,7 @@ var settle = __webpack_require__(28);
 var buildURL = __webpack_require__(30);
 var parseHeaders = __webpack_require__(31);
 var isURLSameOrigin = __webpack_require__(32);
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(13);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -14538,7 +14549,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14563,7 +14574,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14575,7 +14586,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14601,7 +14612,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 if (false) {
@@ -14610,17 +14621,6 @@ if (false) {
   module.exports = __webpack_require__(41)
 }
 
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-
-var bus = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
-/* harmony default export */ __webpack_exports__["a"] = (bus);
 
 /***/ }),
 /* 17 */
@@ -14643,7 +14643,7 @@ module.exports = __webpack_require__(177);
 
 __webpack_require__(19);
 
-window.Vue = __webpack_require__(15);
+window.Vue = __webpack_require__(16);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14688,7 +14688,7 @@ var app = new Vue({
 
 
 window._ = __webpack_require__(20);
-window.Popper = __webpack_require__(7).default;
+window.Popper = __webpack_require__(8).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -14697,7 +14697,7 @@ window.Popper = __webpack_require__(7).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(8);
+  window.$ = window.jQuery = __webpack_require__(9);
 
   __webpack_require__(22);
 } catch (e) {}
@@ -31901,7 +31901,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(8), __webpack_require__(7)) :
+   true ? factory(exports, __webpack_require__(9), __webpack_require__(8)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (global = global || self, factory(global.bootstrap = {}, global.jQuery, global.Popper));
 }(this, function (exports, $, Popper) { 'use strict';
@@ -36346,7 +36346,7 @@ module.exports = __webpack_require__(24);
 
 
 var utils = __webpack_require__(3);
-var bind = __webpack_require__(9);
+var bind = __webpack_require__(10);
 var Axios = __webpack_require__(26);
 var defaults = __webpack_require__(6);
 
@@ -36381,9 +36381,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(14);
+axios.Cancel = __webpack_require__(15);
 axios.CancelToken = __webpack_require__(39);
-axios.isCancel = __webpack_require__(13);
+axios.isCancel = __webpack_require__(14);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -36526,7 +36526,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(12);
+var createError = __webpack_require__(13);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -36916,7 +36916,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(3);
 var transformData = __webpack_require__(36);
-var isCancel = __webpack_require__(13);
+var isCancel = __webpack_require__(14);
 var defaults = __webpack_require__(6);
 var isAbsoluteURL = __webpack_require__(37);
 var combineURLs = __webpack_require__(38);
@@ -37076,7 +37076,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(14);
+var Cancel = __webpack_require__(15);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -49374,7 +49374,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(11)))
 
 /***/ }),
 /* 44 */
@@ -53317,8 +53317,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53378,10 +53376,6 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("navi-bar"),
-      _vm._v(" "),
-      _c("event-bus-test"),
-      _vm._v(" "),
       _c(
         "modal",
         {
@@ -54564,6 +54558,7 @@ exports.push([module.i, "\nbutton[data-v-f2b6376c] {\n    margin-bottom:2em;\n}\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(7);
 //
 //
 //
@@ -54578,6 +54573,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54594,12 +54590,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     watch: {},
     created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        __WEBPACK_IMPORTED_MODULE_0__eventBus_js__["a" /* default */].$on('change-content', this.changeContent);
+    },
 
     methods: {
-        toggleContents: function toggleContents() {
-            this.task_list = this.task_list == 'center' ? 'left' : 'center';
-            this.project_list = this.project_list == 'center' ? 'left' : 'center';
+        changeContent: function changeContent(contentName) {
+            console.log(contentName);
+            // this.task_list = this.task_list == 'center' ? 'left' : 'center'
+            // this.project_list = this.project_list == 'center' ? 'left' : 'center'
         }
     }
 });
@@ -54613,15 +54612,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "lists-wrapper" }, [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-outline-primary mx-auto d-block",
-        on: { click: _vm.toggleContents }
-      },
-      [_c("span", [_vm._v("タスク／プロジェクトを切替")])]
-    ),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "contents" },
@@ -57537,7 +57527,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button-wrapper[data-v-edd77f24] {\n    width:2.5em;\n    height:2.5em;\n    border-radius:50%;\n    background:gainsboro;\n    color:white;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.button-active[data-v-edd77f24] {\n    color:red;\n}\n", ""]);
+exports.push([module.i, "\n.button-wrapper[data-v-edd77f24] {\n    width:2.5em;\n    height:2.5em;\n    border-radius:50%;\n    background:gainsboro;\n    color:white;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.button-active[data-v-edd77f24] {\n    color:red;\n    background:silver;\n}\n", ""]);
 
 // exports
 
@@ -57565,7 +57555,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             button_class: 'button-wrapper'
         };
     },
-    props: {},
+    props: {
+        value: Boolean
+    },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
@@ -57705,7 +57697,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.navi-bar-wrapper[data-v-b8678d1c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.button-wrapper[data-v-b8678d1c] {\n    margin:0 0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.navi-bar-wrapper[data-v-b8678d1c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\ninput[data-v-b8678d1c] {\n    display:none;\n}\nlabel[data-v-b8678d1c] {\n    width:2.5em;\n    height:2.5em;\n    margin:0 1em;\n    border-radius:50%;\n    background:gainsboro;\n    color:white;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\ninput:checked + label[data-v-b8678d1c] {\n    color:red;\n    background:silver;\n}\n\n", ""]);
 
 // exports
 
@@ -57716,7 +57708,14 @@ exports.push([module.i, "\n.navi-bar-wrapper[data-v-b8678d1c] {\n    width:100%;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(7);
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -57737,22 +57736,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: {
-                home: false,
-                task: false,
-                project: false
-            }
+            content: ''
         };
     },
     props: {},
     watch: {
-        options: {
-            handler: function handler() {
-                // console.log(bus)
-                __WEBPACK_IMPORTED_MODULE_0__eventBus_js__["a" /* default */].$emit('bus-event', this.options);
-                // console.log(this.options)
-            },
-            deep: true
+        content: function content() {
+            __WEBPACK_IMPORTED_MODULE_0__eventBus_js__["a" /* default */].$emit('change-content', this.content);
         }
     },
     created: function created() {},
@@ -57769,71 +57759,131 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "navi-bar-wrapper" }, [
-    _c(
-      "div",
-      { staticClass: "button-wrapper" },
-      [
-        _c(
-          "custom-button",
-          {
-            model: {
-              value: _vm.options.home,
-              callback: function($$v) {
-                _vm.$set(_vm.options, "home", $$v)
-              },
-              expression: "options.home"
-            }
-          },
-          [_c("i", { staticClass: "fas fa-home" })]
-        )
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.content,
+          expression: "content"
+        }
       ],
-      1
-    ),
+      attrs: { type: "radio", name: "content", value: "home", id: "navi-home" },
+      domProps: { checked: _vm._q(_vm.content, "home") },
+      on: {
+        change: function($event) {
+          _vm.content = "home"
+        }
+      }
+    }),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-wrapper" },
-      [
-        _c(
-          "custom-button",
-          {
-            model: {
-              value: _vm.options.task,
-              callback: function($$v) {
-                _vm.$set(_vm.options, "task", $$v)
-              },
-              expression: "options.task"
-            }
-          },
-          [_c("i", { staticClass: "fas fa-tasks" })]
-        )
-      ],
-      1
-    ),
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button-wrapper" },
-      [
-        _c(
-          "custom-button",
-          {
-            model: {
-              value: _vm.options.project,
-              callback: function($$v) {
-                _vm.$set(_vm.options, "project", $$v)
-              },
-              expression: "options.project"
-            }
-          },
-          [_c("i", { staticClass: "fas fa-project-diagram" })]
-        )
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.content,
+          expression: "content"
+        }
       ],
-      1
-    )
+      attrs: { type: "radio", name: "content", value: "task", id: "navi-task" },
+      domProps: { checked: _vm._q(_vm.content, "task") },
+      on: {
+        change: function($event) {
+          _vm.content = "task"
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.content,
+          expression: "content"
+        }
+      ],
+      attrs: {
+        type: "radio",
+        name: "content",
+        value: "project",
+        id: "navi-project"
+      },
+      domProps: { checked: _vm._q(_vm.content, "project") },
+      on: {
+        change: function($event) {
+          _vm.content = "project"
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm._m(2),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.content,
+          expression: "content"
+        }
+      ],
+      attrs: {
+        type: "radio",
+        name: "content",
+        value: "settings",
+        id: "navi-settings"
+      },
+      domProps: { checked: _vm._q(_vm.content, "settings") },
+      on: {
+        change: function($event) {
+          _vm.content = "settings"
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm._m(3)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "navi-home" } }, [
+      _c("i", { staticClass: "fas fa-home" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "navi-task" } }, [
+      _c("i", { staticClass: "fas fa-tasks" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "navi-project" } }, [
+      _c("i", { staticClass: "fas fa-project-diagram" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "navi-settings" } }, [
+      _c("i", { staticClass: "fas fa-cog" })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -57940,7 +57990,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(7);
 //
 //
 //

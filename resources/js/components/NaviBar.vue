@@ -1,15 +1,22 @@
-<!--単一ファイルコンポーネントのテンプレートファイル-->
+<!--ページ上部のナビゲーションバー-->
+<!--home.vueコンポーネントと通信して描写内容を変更する-->
 <template>
     <div class="navi-bar-wrapper">
-        <div class="button-wrapper">
-            <custom-button v-model="options.home"><i class="fas fa-home"></i></custom-button>
-        </div>
-        <div class="button-wrapper">
-            <custom-button v-model="options.task"><i class="fas fa-tasks"></i></custom-button>
-        </div>
-        <div class="button-wrapper">
-            <custom-button v-model="options.project"><i class="fas fa-project-diagram"></i></custom-button>
-        </div>
+        <!--ホーム-->
+        <input v-model="content" type="radio" name="content" value="home" id="navi-home">
+        <label for="navi-home"><i class="fas fa-home"></i></label>
+        
+        <!--タスク-->
+        <input v-model="content" type="radio" name="content" value="task" id="navi-task">
+        <label for="navi-task"><i class="fas fa-tasks"></i></label>
+        
+        <!--プロジェクト-->
+        <input v-model="content" type="radio" name="content" value="project" id="navi-project">
+        <label for="navi-project"><i class="fas fa-project-diagram"></i></label>
+        
+        <!--設定-->
+        <input v-model="content" type="radio" name="content" value="settings" id="navi-settings">
+        <label for="navi-settings"><i class="fas fa-cog"></i></label>
     </div>
 </template>
 
@@ -18,24 +25,15 @@
     export default {
         data:function(){
             return {
-                options:{
-                    home:false,
-                    task:false,
-                    project:false
-                }
+                content:'',
             }  
         },
         props: {
             
         },
         watch:{
-            options:{
-                handler:function(){
-                    // console.log(bus)
-                    bus.$emit('bus-event',this.options)
-                    // console.log(this.options)
-                },
-                deep:true,
+            content:function(){
+                bus.$emit('change-content',this.content)
             }
         },
         created:function(){
@@ -45,7 +43,6 @@
             
         },
         methods: {
-            
         }
     }
 </script>
@@ -55,7 +52,27 @@
         display:flex;
         justify-content:flex-start;
     }
-    .button-wrapper {
-        margin:0 0.3em;
+    input {
+        display:none;
     }
+    label {
+        width:2.5em;
+        height:2.5em;
+        margin:0 1em;
+        border-radius:50%;
+        background:gainsboro;
+        color:white;
+        font-weight:bold;
+        display:flex;
+        justify-content:center;
+        flex-direction:column;
+        align-items:center;
+        cursor:pointer;
+        transition:all 0.5s ease;
+    }
+    input:checked + label {
+        color:red;
+        background:silver;
+    }
+    
 </style>
