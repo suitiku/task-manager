@@ -46,7 +46,12 @@
                 <i class="fas fa-star" v-for="(p,pIndex) in task.difficulty"></i>
                 <i class="far fa-star" v-for="(np,npIndex) in (5 - task.difficulty)"></i>
                 <!--タグ-->
-                {{task.tags}}
+                <div class="tags">
+                    <div class="tag" v-for="(tag,index) in task.tags">
+                        <i class="fas fa-tag" v-bind:style="{color:tag.color}"></i>
+                        <span>{{tag.name}}</span>
+                    </div>
+                </div>
                 <!--概要-->
                 <p>{{task.overview}}</p>
                 <!--子アイテム-->
@@ -197,14 +202,27 @@
         overflow:hidden;
         
     }
-    .tag-list-component-wrapper {
-        width:100%;
+    /*.tag-list-component-wrapper {*/
+    /*    width:100%;*/
+    /*    display:flex;*/
+    /*    justify-content:flex-end;*/
+    /*    flex-direction:row;*/
+    /*}*/
+    /*.tag-list-component {*/
+    /*    width:40%;*/
+    /*}*/
+    .tags {
         display:flex;
-        justify-content:flex-end;
-        flex-direction:row;
+        justify-content:flex-start;
+        margin:0.5em 0;
     }
-    .tag-list-component {
-        width:40%;
+    .tag {
+        border:1px solid grey;
+        border-radius:0.3em;
+        padding:0.3em;
+        margin:0 0.3em;
+        background:white;
+        font-size:75%;
     }
     .checkbox {
         position:relative;
