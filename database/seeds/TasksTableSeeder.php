@@ -18,11 +18,13 @@ class TasksTableSeeder extends Seeder
             ['user_id' => 1,'project_id' => 1,'state_id' => 1,'name' => '持ち物リスト','overview' => '','priority' => 3,'difficulty' => 1,'start_date' => '2019-12-20 18:30:00','dead_line' => '2022-05-03 18:00:00'], //4 
         ];
         
-        $taglist = [2,4,5,1];
+        $taglist = [2,4,5];
         
         foreach($data as $index => $value){
             $task = App\Task::create($value);
-            $task->tags()->attach($taglist[$index]);
+            if(array_key_exists($index,$taglist)){
+                $task->tags()->attach($taglist[$index]);
+            }
         }
     }
 }

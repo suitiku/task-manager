@@ -51034,7 +51034,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     data: function data() {
         return {
             modal: false,
-            allTasks: [], //データベースから取得したリスト全体
+            // allTasks:[], //データベースから取得したリスト全体
             tasks: [], //表示用タスクリスト
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
@@ -51066,10 +51066,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     watch: {
-        // user_id:function(){
-        //     this.fetchTasks()
-        //     this.fetchTags()
-        // },
         newTask: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
                 var result, index;
@@ -51126,263 +51122,372 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return newTask;
         }(),
-        filtered_tags: function filtered_tags() {
-            var _this = this;
-
-            this.tasks = this.allTasks;
-            if (this.filtered_tags.length == 0) {
-                return;
-            } //選択されていない場合は全表示
-            var result = this.tasks.filter(function (task) {
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = Object.keys(task.tags)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var index = _step.value;
-
-                        if (_this.filtered_tags.indexOf(task.tags[index].id) != -1) {
-                            return task;
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-            });
-            this.tasks = result;
-        },
-        filtered_states: function filtered_states() {
-            var _this2 = this;
-
-            this.tasks = this.allTasks;
-            if (this.filtered_states.length == 0) {
-                return;
-            }
-            var result = this.tasks.filter(function (task) {
-                return _this2.filtered_states.indexOf(String(task.state_id)) != -1;
-            });
-            this.tasks = result;
-        },
-        filtered_date_time: function filtered_date_time() {
-            var _this3 = this;
-
-            this.tasks = this.allTasks;
-            var current_date_time = new Date();
-            if (this.filtered_date_time.length == 0) {
-                return;
-            }
-            var result = this.tasks.filter(function (task) {
-                var to_dead_line = new Date(task.dead_line) - current_date_time.getTime();
-                var from_start_date = new Date(task.start_date) - current_date_time.getTime();
-                switch (_this3.filtered_date_time) {
-                    case '1':
-                        if (from_start_date > 0) {
-                            return task;
-                        }
-                        break;
-                    case '2':
-                        if (to_dead_line < 86400000) {
-                            //24時間前
-                            return task;
-                        }
-                        break;
-                    case '3':
-                        if (to_dead_line < 43200000) {
-                            //12時間前
-                            return task;
-                        }
-                        break;
-                }
-            });
-            this.tasks = result;
-        },
-        filtered_priority: function filtered_priority() {
-            var _this4 = this;
-
-            this.tasks = this.allTasks;
-            if (this.filtered_priority == 0) {
-                return;
-            }
-            var result = this.tasks.filter(function (task) {
-                return task.priority >= _this4.filtered_priority;
-            });
-            this.tasks = result;
-        },
-        filtered_difficulty: function filtered_difficulty() {
-            var _this5 = this;
-
-            this.tasks = this.allTasks;
-            if (this.filtered_difficulty == 0) {
-                return;
-            }
-            var result = this.tasks.filter(function (task) {
-                return task.difficulty >= _this5.filtered_difficulty;
-            });
-            this.tasks = result;
-        }
-    },
-    methods: {
-        fetchTasks: function () {
+        filtered_tags: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, index;
+                var _this = this;
 
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                if (this.user_id) {
-                                    _context2.next = 2;
+                                _context2.next = 2;
+                                return this.fetchTasks();
+
+                            case 2:
+                                if (!(this.filtered_tags.length == 0)) {
+                                    _context2.next = 4;
                                     break;
                                 }
 
                                 return _context2.abrupt('return');
 
-                            case 2:
-                                _context2.next = 4;
-                                return axios.get('/api/mytasks', {
-                                    params: { user_id: this.user_id }
+                            case 4:
+                                //選択されていない場合は全表示
+                                result = this.tasks.filter(function (task) {
+                                    var _iteratorNormalCompletion = true;
+                                    var _didIteratorError = false;
+                                    var _iteratorError = undefined;
+
+                                    try {
+                                        for (var _iterator = Object.keys(task.tags)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                            var index = _step.value;
+
+                                            if (_this.filtered_tags.indexOf(task.tags[index].id) != -1) {
+                                                return task;
+                                            }
+                                        }
+                                    } catch (err) {
+                                        _didIteratorError = true;
+                                        _iteratorError = err;
+                                    } finally {
+                                        try {
+                                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                                _iterator.return();
+                                            }
+                                        } finally {
+                                            if (_didIteratorError) {
+                                                throw _iteratorError;
+                                            }
+                                        }
+                                    }
                                 });
 
-                            case 4:
-                                result = _context2.sent;
+                                this.tasks = result;
 
-                                this.allTasks = result.data;
-                                this.tasks = result.data;
-                                _iteratorNormalCompletion2 = true;
-                                _didIteratorError2 = false;
-                                _iteratorError2 = undefined;
-                                _context2.prev = 10;
-                                for (_iterator2 = Object.keys(this.allTasks)[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                    index = _step2.value;
-
-                                    this.ids.push(this.allTasks[index].id);
-                                }
-                                _context2.next = 18;
-                                break;
-
-                            case 14:
-                                _context2.prev = 14;
-                                _context2.t0 = _context2['catch'](10);
-                                _didIteratorError2 = true;
-                                _iteratorError2 = _context2.t0;
-
-                            case 18:
-                                _context2.prev = 18;
-                                _context2.prev = 19;
-
-                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                    _iterator2.return();
-                                }
-
-                            case 21:
-                                _context2.prev = 21;
-
-                                if (!_didIteratorError2) {
-                                    _context2.next = 24;
-                                    break;
-                                }
-
-                                throw _iteratorError2;
-
-                            case 24:
-                                return _context2.finish(21);
-
-                            case 25:
-                                return _context2.finish(18);
-
-                            case 26:
+                            case 6:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[10, 14, 18, 26], [19,, 21, 25]]);
+                }, _callee2, this);
             }));
 
-            function fetchTasks() {
+            function filtered_tags() {
                 return _ref2.apply(this, arguments);
             }
 
-            return fetchTasks;
+            return filtered_tags;
         }(),
-        fetchTags: function () {
+        filtered_states: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-                var result, tagsResult, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, index;
+                var _this2 = this;
 
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 _context3.next = 2;
-                                return axios.get('/api/tags');
+                                return this.fetchTasks();
 
                             case 2:
-                                result = _context3.sent;
-                                tagsResult = result.data;
-                                _iteratorNormalCompletion3 = true;
-                                _didIteratorError3 = false;
-                                _iteratorError3 = undefined;
-                                _context3.prev = 7;
-
-                                for (_iterator3 = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                    index = _step3.value;
-
-                                    this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
-                                }
-                                _context3.next = 15;
-                                break;
-
-                            case 11:
-                                _context3.prev = 11;
-                                _context3.t0 = _context3['catch'](7);
-                                _didIteratorError3 = true;
-                                _iteratorError3 = _context3.t0;
-
-                            case 15:
-                                _context3.prev = 15;
-                                _context3.prev = 16;
-
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
-                                }
-
-                            case 18:
-                                _context3.prev = 18;
-
-                                if (!_didIteratorError3) {
-                                    _context3.next = 21;
+                                if (!(this.filtered_states.length == 0)) {
+                                    _context3.next = 4;
                                     break;
                                 }
 
-                                throw _iteratorError3;
+                                return _context3.abrupt('return');
 
-                            case 21:
-                                return _context3.finish(18);
+                            case 4:
+                                result = this.tasks.filter(function (task) {
+                                    return _this2.filtered_states.indexOf(String(task.state_id)) != -1;
+                                });
 
-                            case 22:
-                                return _context3.finish(15);
+                                this.tasks = result;
 
-                            case 23:
+                            case 6:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+                }, _callee3, this);
+            }));
+
+            function filtered_states() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return filtered_states;
+        }(),
+        filtered_date_time: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var _this3 = this;
+
+                var current_date_time, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.next = 2;
+                                return this.fetchTasks();
+
+                            case 2:
+                                // this.tasks = this.allTasks
+                                current_date_time = new Date();
+
+                                if (!(this.filtered_date_time.length == 0)) {
+                                    _context4.next = 5;
+                                    break;
+                                }
+
+                                return _context4.abrupt('return');
+
+                            case 5:
+                                result = this.tasks.filter(function (task) {
+                                    var to_dead_line = new Date(task.dead_line) - current_date_time.getTime();
+                                    var from_start_date = new Date(task.start_date) - current_date_time.getTime();
+                                    switch (_this3.filtered_date_time) {
+                                        case '1':
+                                            if (from_start_date > 0) {
+                                                return task;
+                                            }
+                                            break;
+                                        case '2':
+                                            if (to_dead_line < 86400000) {
+                                                //24時間前
+                                                return task;
+                                            }
+                                            break;
+                                        case '3':
+                                            if (to_dead_line < 43200000) {
+                                                //12時間前
+                                                return task;
+                                            }
+                                            break;
+                                    }
+                                });
+
+                                this.tasks = result;
+
+                            case 7:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function filtered_date_time() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return filtered_date_time;
+        }(),
+        filtered_priority: function () {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                var _this4 = this;
+
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                _context5.next = 2;
+                                return this.fetchTasks();
+
+                            case 2:
+                                if (!(this.filtered_priority == 0)) {
+                                    _context5.next = 4;
+                                    break;
+                                }
+
+                                return _context5.abrupt('return');
+
+                            case 4:
+                                result = this.tasks.filter(function (task) {
+                                    return task.priority >= _this4.filtered_priority;
+                                });
+
+                                this.tasks = result;
+
+                            case 6:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+
+            function filtered_priority() {
+                return _ref5.apply(this, arguments);
+            }
+
+            return filtered_priority;
+        }(),
+        filtered_difficulty: function () {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+                var _this5 = this;
+
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                _context6.next = 2;
+                                return this.fetchTasks();
+
+                            case 2:
+                                if (!(this.filtered_difficulty == 0)) {
+                                    _context6.next = 4;
+                                    break;
+                                }
+
+                                return _context6.abrupt('return');
+
+                            case 4:
+                                result = this.tasks.filter(function (task) {
+                                    return task.difficulty >= _this5.filtered_difficulty;
+                                });
+
+                                this.tasks = result;
+
+                            case 6:
+                            case 'end':
+                                return _context6.stop();
+                        }
+                    }
+                }, _callee6, this);
+            }));
+
+            function filtered_difficulty() {
+                return _ref6.apply(this, arguments);
+            }
+
+            return filtered_difficulty;
+        }()
+    },
+    methods: {
+        fetchTasks: function () {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                    while (1) {
+                        switch (_context7.prev = _context7.next) {
+                            case 0:
+                                if (this.user_id) {
+                                    _context7.next = 2;
+                                    break;
+                                }
+
+                                return _context7.abrupt('return');
+
+                            case 2:
+                                _context7.next = 4;
+                                return axios.get('/api/mytasks', {
+                                    params: { user_id: this.user_id }
+                                });
+
+                            case 4:
+                                result = _context7.sent;
+
+                                // this.allTasks = result.data
+                                this.tasks = result.data;
+                                // for(let index of Object.keys(this.allTasks)){
+                                //     this.ids.push(this.allTasks[index].id)
+                                // }
+
+                            case 6:
+                            case 'end':
+                                return _context7.stop();
+                        }
+                    }
+                }, _callee7, this);
+            }));
+
+            function fetchTasks() {
+                return _ref7.apply(this, arguments);
+            }
+
+            return fetchTasks;
+        }(),
+        fetchTags: function () {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
+                var result, tagsResult, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, index;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+                    while (1) {
+                        switch (_context8.prev = _context8.next) {
+                            case 0:
+                                _context8.next = 2;
+                                return axios.get('/api/tags');
+
+                            case 2:
+                                result = _context8.sent;
+                                tagsResult = result.data;
+                                _iteratorNormalCompletion2 = true;
+                                _didIteratorError2 = false;
+                                _iteratorError2 = undefined;
+                                _context8.prev = 7;
+
+                                for (_iterator2 = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    index = _step2.value;
+
+                                    this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
+                                }
+                                _context8.next = 15;
+                                break;
+
+                            case 11:
+                                _context8.prev = 11;
+                                _context8.t0 = _context8['catch'](7);
+                                _didIteratorError2 = true;
+                                _iteratorError2 = _context8.t0;
+
+                            case 15:
+                                _context8.prev = 15;
+                                _context8.prev = 16;
+
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
+                                }
+
+                            case 18:
+                                _context8.prev = 18;
+
+                                if (!_didIteratorError2) {
+                                    _context8.next = 21;
+                                    break;
+                                }
+
+                                throw _iteratorError2;
+
+                            case 21:
+                                return _context8.finish(18);
+
+                            case 22:
+                                return _context8.finish(15);
+
+                            case 23:
+                            case 'end':
+                                return _context8.stop();
+                        }
+                    }
+                }, _callee8, this, [[7, 11, 15, 23], [16,, 18, 22]]);
             }));
 
             function fetchTags() {
-                return _ref3.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return fetchTags;
@@ -51391,11 +51496,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.form.resetForm();
             this.$refs.modal.openModal();
         },
-        sortTask: function sortTask(key) {
-            this.tasks.sort(function (a, b) {
-                return a[key] < b[key] ? -1 : 1;
-            });
-        },
+        sortTask: function () {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9(key) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
+                    while (1) {
+                        switch (_context9.prev = _context9.next) {
+                            case 0:
+                                _context9.next = 2;
+                                return this.fetchTasks();
+
+                            case 2:
+                                this.tasks.sort(function (a, b) {
+                                    return a[key] < b[key] ? -1 : 1;
+                                });
+
+                            case 3:
+                            case 'end':
+                                return _context9.stop();
+                        }
+                    }
+                }, _callee9, this);
+            }));
+
+            function sortTask(_x3) {
+                return _ref9.apply(this, arguments);
+            }
+
+            return sortTask;
+        }(),
         filterTasksByTags: function filterTasksByTags() {}
     }
 });
@@ -51929,7 +52057,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    border-radius:0.2em;\n    -webkit-transition:all 1.5s ease;\n    transition:all 1.5s ease;\n}\n.task[data-v-e9a53c20] {\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:3.2em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.tag-list-component-wrapper[data-v-e9a53c20] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    -webkit-box-orient:horizontal;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:row;\n            flex-direction:row;\n}\n.tag-list-component[data-v-e9a53c20] {\n    width:40%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.headline[data-v-e9a53c20] {\n    font-weight:bold;\n    cursor:pointer;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    background-color:gainsboro;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    /*opacity:0.5;*/\n    opacity:0;\n    /*animation:mask 0.3s ease 0s 1;*/\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    position:absolute;\n    z-index:2;\n    height:1.5em;\n    top:3.2em;\n    left:0.2em;\n    padding:0em 0.2em;\n    background:burlywood;\n    border-radius:0.3em;\n    font-size:30%;\n    overflow:hidden;\n}\n.tag-list-component-wrapper[data-v-e9a53c20] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    -webkit-box-orient:horizontal;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:row;\n            flex-direction:row;\n}\n.tag-list-component[data-v-e9a53c20] {\n    width:40%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -51946,6 +52074,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52011,8 +52157,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        task: function task() {
-            this.updateData();
+        task: {
+            handler: function handler() {
+                this.updateData();
+            },
+            deep: true
         }
     },
     created: function () {
@@ -52040,13 +52189,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     computed: {},
     methods: {
+        setTagIcon: function setTagIcon(task) {
+            return task.tags != '' ? { visibility: 'visible' } : { visibility: 'hidden' };
+        },
         openDetail: function openDetail() {
             this.detail = !this.detail;
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
-                var check, modifyData, result, taskResult;
+                var check, modifyData, result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -52054,7 +52206,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 check = event;
 
                                 if (!(event.target.checked == true)) {
-                                    _context2.next = 14;
+                                    _context2.next = 7;
                                     break;
                                 }
 
@@ -52067,26 +52219,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 5:
                                 result = _context2.sent;
 
-                                if (!result.data) {
-                                    _context2.next = 14;
-                                    break;
+                                if (result.data) {
+                                    // チェックボックスを無効化
+                                    check.target.disabled = true;
+                                    //タスク全体にマスクをかける
+                                    this.mask_class = 'mask mask-active';
+                                    this.checkbox = true;
+
+                                    //状態が変化したらtasks/idから書き換え
+                                    // let taskResult = await axios.get('/api/tasks/' + taskId)
+                                    // this.$emit('updated',taskResult.data)
+                                    // this.task = taskResult.data
                                 }
 
-                                // チェックボックスを無効化
-                                check.target.disabled = true;
-                                //タスク全体にマスクをかける
-                                this.mask_class = 'mask mask-active';
-                                this.checkbox = true;
-                                //状態が変化したらtasks/idを再取得して送出
-                                _context2.next = 12;
-                                return axios.get('/api/tasks/' + taskId);
-
-                            case 12:
-                                taskResult = _context2.sent;
-
-                                this.$emit('input', taskResult.data);
-
-                            case 14:
+                            case 7:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -52148,6 +52294,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             //チェックボックスの要素を取得
             var check = this.$refs.checkbox;
+            check.checked = false;
+            check.disabled = false;
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
@@ -52174,14 +52322,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "tag-list-component-wrapper" }),
-    _vm._v(" "),
-    _vm.task.project
-      ? _c("div", { staticClass: "project-label" }, [
-          _vm._v(_vm._s(_vm.task.project.name))
-        ])
-      : _vm._e(),
-    _vm._v(" "),
     _c("div", { class: _vm.wrapper_class }, [
       _c("div", {
         class: _vm.mask_class,
@@ -52232,7 +52372,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "task" }, [
+      _c("div", { staticClass: "task-label" }, [
         _c("div", [
           _c("input", {
             ref: "checkbox",
@@ -52245,59 +52385,83 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("span", { staticClass: "headline" }, [
+          _c("span", { staticClass: "task-headline" }, [
             _vm._v(_vm._s(_vm.task.name))
           ])
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          [
-            _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
-            _vm._v(" "),
-            _vm._l(_vm.task.priority, function(p, pIndex) {
-              return _c("i", { staticClass: "fas fa-star" })
-            }),
-            _vm._v(" "),
-            _vm._l(5 - _vm.task.priority, function(np, npIndex) {
-              return _c("i", { staticClass: "far fa-star" })
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "label" }, [_vm._v("締切")]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(_vm.task.dead_line))])
-          ],
-          2
-        )
+        _c("div", [
+          _c("i", { staticClass: "far fa-clock" }),
+          _vm._v(" "),
+          _c("span", { staticClass: "dead-line" }, [
+            _vm._v(_vm._s(_vm.task.dead_line))
+          ]),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-tag",
+            style: _vm.setTagIcon(_vm.task)
+          }),
+          _vm._v(" "),
+          _c("i", { staticClass: "far fa-edit task-icon" }),
+          _vm._v(" "),
+          _c("i", { staticClass: "fas fa-trash task-icon" })
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "detail" }, [
-        _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "items" },
-          _vm._l(_vm.task.items, function(item) {
-            return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-              _c("input", {
-                attrs: {
-                  type: "checkbox",
-                  disabled: _vm.setItemDisabled(item.is_checked)
-                },
-                domProps: { checked: item.is_checked },
-                on: {
-                  change: function($event) {
-                    return _vm.checkItem(item.id)
-                  }
-                }
-              }),
-              _vm._v(" " + _vm._s(item.name) + " -- "),
-              _c("span", [_vm._v(_vm._s(item.memo))])
-            ])
+      _c(
+        "div",
+        { staticClass: "detail" },
+        [
+          _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+          _vm._v(" "),
+          _vm._l(_vm.task.priority, function(p, pIndex) {
+            return _c("i", { staticClass: "fas fa-star" })
           }),
-          0
-        )
-      ])
+          _vm._v(" "),
+          _vm._l(5 - _vm.task.priority, function(np, npIndex) {
+            return _c("i", { staticClass: "far fa-star" })
+          }),
+          _vm._v(" "),
+          _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
+          _vm._v(" "),
+          _vm._l(_vm.task.difficulty, function(p, pIndex) {
+            return _c("i", { staticClass: "fas fa-star" })
+          }),
+          _vm._v(" "),
+          _vm._l(5 - _vm.task.difficulty, function(np, npIndex) {
+            return _c("i", { staticClass: "far fa-star" })
+          }),
+          _vm._v(" "),
+          _vm._v("\n            " + _vm._s(_vm.task.tags) + "\n            "),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "items" },
+            _vm._l(_vm.task.items, function(item) {
+              return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                _c("input", {
+                  attrs: {
+                    type: "checkbox",
+                    disabled: _vm.setItemDisabled(item.is_checked)
+                  },
+                  domProps: { checked: item.is_checked },
+                  on: {
+                    change: function($event) {
+                      return _vm.checkItem(item.id)
+                    }
+                  }
+                }),
+                _vm._v(" " + _vm._s(item.name) + " -- "),
+                _c("span", [_vm._v(_vm._s(item.memo))])
+              ])
+            }),
+            0
+          )
+        ],
+        2
+      )
     ])
   ])
 }

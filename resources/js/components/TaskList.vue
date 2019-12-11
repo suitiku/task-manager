@@ -51,7 +51,7 @@
         data:function(){
             return {
                 modal:false,
-                allTasks:[], //データベースから取得したリスト全体
+                // allTasks:[], //データベースから取得したリスト全体
                 tasks:[], //表示用タスクリスト
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
@@ -86,10 +86,6 @@
             this.fetchTags()
         },
         watch: {
-            // user_id:function(){
-            //     this.fetchTasks()
-            //     this.fetchTags()
-            // },
             newTask:async function(newVal,oldVal){
                 let result
                 if(!newVal.id){return } //newValにidがなければ終了
@@ -104,8 +100,8 @@
                     this.tasks.splice(index,1,newVal)
                 }
             },
-            filtered_tags:function(){
-                this.tasks = this.allTasks
+            filtered_tags:async function(){
+                await this.fetchTasks()
                 if(this.filtered_tags.length == 0){return } //選択されていない場合は全表示
                 let result = this.tasks.filter(task => {
                     for(let index of Object.keys(task.tags)){
@@ -116,16 +112,16 @@
                 })
                 this.tasks = result
             },
-            filtered_states:function(){
-                this.tasks = this.allTasks
+            filtered_states:async function(){
+                await this.fetchTasks()
                 if(this.filtered_states.length == 0){return }
                 let result = this.tasks.filter(task => {
                     return (this.filtered_states.indexOf(String(task.state_id)) != -1)
                 })
                 this.tasks = result
             },
-            filtered_date_time:function(){
-                this.tasks = this.allTasks
+            filtered_date_time:async function(){
+                await this.fetchTasks()
                 let current_date_time = new Date()
                 if(this.filtered_date_time.length == 0){return }
                 let result = this.tasks.filter(task => {
@@ -151,16 +147,17 @@
                 })
                 this.tasks = result
             },
-            filtered_priority:function(){
-                this.tasks = this.allTasks
+            filtered_priority:async function(){
+                await this.fetchTasks()
                 if(this.filtered_priority == 0){return }
                 let result = this.tasks.filter(task => {
                     return task.priority >= this.filtered_priority
                 })
                 this.tasks = result
             },
-            filtered_difficulty:function(){
-                this.tasks = this.allTasks
+            filtered_difficulty:async function(){
+                await this.fetchTasks()
+                // this.tasks = this.allTasks
                 if(this.filtered_difficulty == 0){return }
                 let result = this.tasks.filter(task => {
                     return task.difficulty >= this.filtered_difficulty
@@ -175,11 +172,7 @@
                 let result = await axios.get('/api/mytasks',{
                                                 params:{user_id:this.user_id,}
                                             })
-                this.allTasks = result.data
                 this.tasks = result.data
-                for(let index of Object.keys(this.allTasks)){
-                    this.ids.push(this.allTasks[index].id)
-                }
             },
             fetchTags: async function(){
                  // タグの取得
@@ -193,7 +186,8 @@
                 this.$refs.form.resetForm()
                 this.$refs.modal.openModal()
             },
-            sortTask:function(key){
+            sortTask:async function(key){
+                await this.fetchTasks()
                 this.tasks.sort((a,b) => {
                     return (a[key] < b[key]) ? -1 : 1
                 })
