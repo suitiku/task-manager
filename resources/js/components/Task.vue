@@ -1,18 +1,11 @@
 <!--タスク単体を表示するデザインコンポーネント-->
 <!--編集、状態の変化で上部に送出-->
-<!--マウスオーバーで詳細表示-->
-<!--2 詳細ボタン-->
-<!--3 編集ボタン-->
+<!--1 削除処理-->
+<!--3 編集処理-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
 <!--5 ログ表示-->
 <template>
     <div class="container">
-        <!--<div class="tag-list-component-wrapper">-->
-            <!--<div class="tag-list-component">-->
-            <!--    <tag-list v-bind:id="task.id" />-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div v-if="task.project" class="project-label">{{task.project.name}}</div>-->
         <div v-bind:class="wrapper_class">
             <div v-bind:class="mask_class" v-on:click="openDetail()"></div>
             <div class="state-icon" v-show="checkbox || not_started">
@@ -20,9 +13,12 @@
                 <i v-show="not_started" class="fas fa-2x fa-exclamation-circle"></i>
             </div>
             <div class="task-label">
-                <div>
+                <div class="headline">
                     <input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">
-                    <span class="task-headline">{{task.name}}</span>
+                    <div>
+                        <div v-if="task.project.id != 1" class="project-label">{{task.project.name}}</div>
+                        <span class="task-headline">{{task.name}}</span>
+                    </div>
                 </div>
                 <div>
                     <!--締切-->
@@ -123,6 +119,10 @@
                         //タスク全体にマスクをかける
                         this.mask_class = 'mask mask-active'
                         this.checkbox = true
+                        
+                        //Project.vueとかでv-modelが設定されているので上部に送出
+                        let taskResult = await axios.get('api/tasks/' + taskId)
+                        this.$emit('input',taskResult.data)
                     }
                 }
             },
@@ -182,6 +182,14 @@
         /*border-radius:0.2em;*/
         transition:all 1.0s ease;
     }
+    .headline {
+        display:flex;
+        justify-content:flex-start;
+        align-items:center;
+    }
+    .headline input {
+        margin-right:1em;
+    }
     .task-label {
         height:3.0em;
         padding:0.5em;
@@ -190,27 +198,8 @@
         justify-content:space-between;
     }
     .project-label {
-        position:absolute;
-        z-index:2;
-        height:1.5em;
-        top:3.2em;
-        left:0.2em;
-        padding:0em 0.2em;
-        background:burlywood;
-        border-radius:0.3em;
-        font-size:30%;
-        overflow:hidden;
-        
+        font-size:40%;
     }
-    /*.tag-list-component-wrapper {*/
-    /*    width:100%;*/
-    /*    display:flex;*/
-    /*    justify-content:flex-end;*/
-    /*    flex-direction:row;*/
-    /*}*/
-    /*.tag-list-component {*/
-    /*    width:40%;*/
-    /*}*/
     .tags {
         display:flex;
         justify-content:flex-start;

@@ -3,9 +3,9 @@
 <template>
     <div class="lists-wrapper">
         <div class="contents">
-            <home v-show="content == 'home'"/>
-            <task-list v-show="content == 'task'" v-bind:user_id="user.id"/>
-            <project-list v-show="content == 'project'"/>
+            <home v-if="content == 'home'"/>
+            <task-list v-else-if="content == 'task'" v-bind:user_id="user.id"/>
+            <project-list v-else-if="content == 'project'"/>
         </div>
     </div>
 </template>
