@@ -1,9 +1,9 @@
 <!--contentをまとめるコンポーネント-->
 <!--ユーザーデータ等の集中管理-->
 <template>
-    <div class="lists-wrapper">
+    <div class="contents-wrapper">
         <div class="contents">
-            <home v-if="content == 'home'"/>
+            <home v-if="content == 'home'" v-bind:user="user"/>
             <task-list v-else-if="content == 'task'" v-bind:user_id="user.id"/>
             <project-list v-else-if="content == 'project'"/>
         </div>
@@ -41,23 +41,11 @@
     }
 </script>
 <style scoped>
-    .lists-wrapper {
+    .contents-wrapper {
         position:relative;
     }
     .contents {
         position:relative;
         width:100%;
-    }
-    .left {
-        position:absolute;
-        left:-150%;
-        top:0;
-        transition:all 0.3s;
-    }
-    .center {
-        position:absolute;
-        left:0;
-        top:0;
-        transition:all 0.3s;
     }
 </style>

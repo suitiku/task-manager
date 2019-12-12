@@ -16,7 +16,7 @@
                 <div class="headline">
                     <input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">
                     <div>
-                        <div v-if="task.project.id != 1" class="project-label">{{task.project.name}}</div>
+                        <div v-if="task.project && task.project.id != 1" class="project-label">{{task.project.name}}</div>
                         <span class="task-headline">{{task.name}}</span>
                     </div>
                 </div>
