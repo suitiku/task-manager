@@ -71,8 +71,8 @@
         transition:all 0.5s ease;
     }
     input:checked + label {
-        color:red;
-        background:silver;
+        color:orange;
+        background:gainsboro;
     }
     
 </style>

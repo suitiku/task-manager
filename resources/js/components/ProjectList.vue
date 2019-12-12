@@ -4,7 +4,9 @@
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newProject" ref="form" table="projects" />
         </modal>
-        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addProject">プロジェクトを追加</button>
+        <div class="add-project-button">
+            <button class="btn btn-outline-primary d-block" v-on:click="addProject">プロジェクトを追加</button>
+        </div>
         <div v-for="(project,index) in projects" v-bind:key="index" class="project">
             <project v-if="project.id != 1" v-bind:project="project" />
         </div>
@@ -56,5 +58,13 @@
 <style scoped>
     .project {
         margin-top:0.5em;
+    }
+    .add-project-button {
+        position:fixed;
+        z-index:5;
+        right:3em;
+        bottom:0;
+        background:white;
+        padding:1em;
     }
 </style>

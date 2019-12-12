@@ -5,7 +5,9 @@
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:foreign_keys="foreign_keys"/>
         </modal>
-        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
+        <div class="add-task-button">
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
+        </div>
         <!--フィルター-->
         <div class="filter-box">
             <div class="filter">
@@ -222,5 +224,13 @@
     }
     input {
         margin:0 0.3em;
+    }
+    .add-task-button {
+        position:fixed;
+        z-index:5;
+        right:3em;
+        bottom:0;
+        background:white;
+        padding:1em;
     }
 </style>

@@ -6,7 +6,7 @@
             <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:column_override="override" />
         </modal>
         <div class="project-wrapper">
-            <div class="info">最終締切　{{project.dead_line}}</div>
+            <div class="info"><i class="far fa-clock"></i>　{{project.dead_line}}</div>
             <div class="project-content-wrapper">
                 <h3>{{project.name}}</h3>
                 <progress-bar v-bind:denominotor="denominotor" v-bind:numerator="numerator" />
@@ -15,12 +15,22 @@
                     <span v-else>詳細を隠す</span>
                 </button>
                 <div v-bind:class="detail">
+                    <!--関係者リスト-->
+                    
+                    <!--概要-->
                     <div class="overview">{{project.overview}}</div>
+                    
+                    <!--タスクリスト-->
                     <div class="tasks">
-                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
                         <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" />
                         <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
+                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
                     </div>
+                    
+                    <!--ガントチャート-->
+                    
+                    <!--ログ-->
+                    
                 </div>
             </div>
         </div>
@@ -132,15 +142,13 @@
         margin:0.5em 1em;
         padding:1em;
         border-radius:0.2em;
-        background:whitesmoke;
+        background:gainsboro;
     }
     .tasks {
         width:100%;
+        margin:1em 0;
     }
-    /*.task {*/
-    /*    margin-top:0.2em;*/
-    /*}*/
     button {
-        margin-top:0.5em;
+        margin:0.5em 0;
     }
 </style>

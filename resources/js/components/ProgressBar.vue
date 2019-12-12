@@ -75,13 +75,13 @@
         position:relative;
         width:100%;
         height:2em;
-        border:1px solid mediumspringgreen;
+        border:1px solid gainsboro;
         border-radius:1em;
         overflow:hidden;
     }
     .bar {
         height:2em;
-        background:mediumspringgreen;
+        background:gainsboro;
         transition:all 1s;
     }
     .char {

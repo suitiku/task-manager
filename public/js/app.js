@@ -49463,7 +49463,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project[data-v-236eb2bc] {\n    margin-top:0.5em;\n}\n", ""]);
+exports.push([module.i, "\n.project[data-v-236eb2bc] {\n    margin-top:0.5em;\n}\n.add-project-button[data-v-236eb2bc] {\n    position:fixed;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:white;\n    padding:1em;\n}\n", ""]);
 
 // exports
 
@@ -49513,6 +49513,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -50434,14 +50436,16 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary mx-auto d-block",
-          on: { click: _vm.addProject }
-        },
-        [_vm._v("プロジェクトを追加")]
-      ),
+      _c("div", { staticClass: "add-project-button" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary d-block",
+            on: { click: _vm.addProject }
+          },
+          [_vm._v("プロジェクトを追加")]
+        )
+      ]),
       _vm._v(" "),
       _vm._l(_vm.projects, function(project, index) {
         return _c(
@@ -50555,7 +50559,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:whitesmoke;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n}\n/*.task {*/\n/*    margin-top:0.2em;*/\n/*}*/\nbutton[data-v-c10f8004] {\n    margin-top:0.5em;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n", ""]);
 
 // exports
 
@@ -50572,6 +50576,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -50793,7 +50807,8 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "project-wrapper" }, [
         _c("div", { staticClass: "info" }, [
-          _vm._v("最終締切　" + _vm._s(_vm.project.dead_line))
+          _c("i", { staticClass: "far fa-clock" }),
+          _vm._v("　" + _vm._s(_vm.project.dead_line))
         ]),
         _vm._v(" "),
         _c(
@@ -50828,15 +50843,6 @@ var render = function() {
                 "div",
                 { staticClass: "tasks" },
                 [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-outline-primary mx-auto d-block",
-                      on: { click: _vm.addTask }
-                    },
-                    [_vm._v("プロジェクトにタスクを追加")]
-                  ),
-                  _vm._v(" "),
                   _vm._l(_vm.project.tasks, function(task, index) {
                     return _c("task", {
                       key: index,
@@ -50855,7 +50861,16 @@ var render = function() {
                     ? _c("p", { staticClass: "task" }, [
                         _vm._v("タスクが登録されていません！")
                       ])
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-primary mx-auto d-block",
+                      on: { click: _vm.addTask }
+                    },
+                    [_vm._v("プロジェクトにタスクを追加")]
+                  )
                 ],
                 2
               )
@@ -50964,7 +50979,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-button[data-v-0afd8bae] {\n    position:fixed;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:white;\n    padding:1em;\n}\n", ""]);
 
 // exports
 
@@ -50981,6 +50996,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -51563,14 +51580,16 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary mx-auto d-block",
-          on: { click: _vm.addTask }
-        },
-        [_vm._v("タスクを追加")]
-      ),
+      _c("div", { staticClass: "add-task-button" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mx-auto d-block",
+            on: { click: _vm.addTask }
+          },
+          [_vm._v("タスクを追加")]
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "filter-box" }, [
         _c("div", { staticClass: "filter" }, [
@@ -54254,7 +54273,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid mediumspringgreen;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:mediumspringgreen;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
+exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid gainsboro;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:gainsboro;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
 
 // exports
 
@@ -57877,7 +57896,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.navi-bar-wrapper[data-v-b8678d1c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\ninput[data-v-b8678d1c] {\n    display:none;\n}\nlabel[data-v-b8678d1c] {\n    width:2.5em;\n    height:2.5em;\n    margin:0 1em;\n    border-radius:50%;\n    background:gainsboro;\n    color:white;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\ninput:checked + label[data-v-b8678d1c] {\n    color:red;\n    background:silver;\n}\n\n", ""]);
+exports.push([module.i, "\n.navi-bar-wrapper[data-v-b8678d1c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\ninput[data-v-b8678d1c] {\n    display:none;\n}\nlabel[data-v-b8678d1c] {\n    width:2.5em;\n    height:2.5em;\n    margin:0 1em;\n    border-radius:50%;\n    background:gainsboro;\n    color:white;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\ninput:checked + label[data-v-b8678d1c] {\n    color:orange;\n    background:gainsboro;\n}\n\n", ""]);
 
 // exports
 
@@ -58315,7 +58334,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58326,6 +58345,18 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58359,7 +58390,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h3", [_vm._v("こんにちわ！" + _vm._s(_vm.user.name) + "さん！")])
+    _c("h4", [_vm._v("こんにちわ！" + _vm._s(_vm.user.name) + "さん！")]),
+    _vm._v(" "),
+    _c("p", [_vm._v("ここにグラフコンポーネントを追加")])
   ])
 }
 var staticRenderFns = []
