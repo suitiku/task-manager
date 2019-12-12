@@ -30,8 +30,8 @@
             
         },
         methods: {
-            showNotice:function(message){
-                this.message = message
+            showNotice:async function(message){
+                this.message = await message
                 let notice = document.querySelector('.notice-wrapper')
                 notice.className = 'notice-wrapper notice-active'
                 notice.addEventListener('animationend',function(){
@@ -67,7 +67,7 @@
     }
     .notice-active {
         display:block;
-        animation:notice 2s;
+        animation:notice 3s;
     }
     @keyframes notice {
         0% {

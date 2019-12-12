@@ -6,7 +6,27 @@
 <!--5 ログ表示-->
 <template>
     <div class="container">
-        <div v-bind:class="wrapper_class">
+        <!--通知-->
+        <notice ref="notice"></notice>
+        
+        <!--削除確認モーダル-->
+        <modal ref="deleteModal" v-model="deleteModal">
+            <b>タスク「{{task.name}}」を削除します。</b>
+            <b>この処理は取り消しできません。</b>
+            <b>よろしいですか？</b>
+            <p>　</p>
+            <div class="buttons">
+                <button class="btn btn-danger d-block" v-on:click="deleteTask()">タスクを削除</button>
+                <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
+            </div>
+        </modal>
+        
+        <!--編集用モーダル-->
+        <modal ref="editModal" v-model="editModal">
+            
+        </modal>
+        
+        <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <div v-bind:class="mask_class" v-on:click="openDetail()"></div>
             <div class="state-icon" v-show="checkbox || not_started">
                 <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
@@ -30,7 +50,7 @@
                     <!--編集ボタン-->
                     <i class="far fa-edit task-icon"></i>
                     <!--削除ボタン-->
-                    <i class="fas fa-trash task-icon"></i>
+                    <i class="fas fa-trash task-icon" v-on:click="showDeleteTaskDialog()"></i>
                 </div>
             </div>
             <div class="detail">
@@ -72,6 +92,9 @@
                 checkbox:false,
                 not_started:false,
                 detail:false,
+                deleteModal:false,
+                editModal:false,
+                inactivateTask:'',
             }  
         },
         props:{
@@ -164,6 +187,29 @@
                     this.not_started = true
                     check.disabled = true
                 }
+            },
+            showDeleteTaskDialog:function(){
+                this.$refs.deleteModal.openModal()
+            },
+            deleteTask:async function(){
+                // API経由で削除
+                // 返り値はboolean
+                let result = await axios.delete('/api/tasks/' + this.task.id)
+                if(result.data){
+                    // 削除が成功した場合
+                    // noticeで通知
+                    this.$refs.notice.showNotice('タスクを削除しました')
+                    // 通知が終わった後に自らを削除（不可視化）
+                    this.inactivateTask = {display:'none'}
+                }else{
+                    // 削除が失敗した場合
+                    // noticeで通知
+                    this.$refs.notice.showNotice('タスクの削除に失敗しました')
+                }
+                this.$refs.deleteModal.closeModal()
+            },
+            cancelDialog:function(){
+                this.$refs.deleteModal.closeModal()
             }
         }
     }

@@ -52152,6 +52152,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52161,7 +52181,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             mask: false,
             checkbox: false,
             not_started: false,
-            detail: false
+            detail: false,
+            deleteModal: false,
+            editModal: false,
+            inactivateTask: ''
         };
     },
     props: {
@@ -52332,6 +52355,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.not_started = true;
                 check.disabled = true;
             }
+        },
+        showDeleteTaskDialog: function showDeleteTaskDialog() {
+            this.$refs.deleteModal.openModal();
+        },
+        deleteTask: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.next = 2;
+                                return axios.delete('/api/tasks/' + this.task.id);
+
+                            case 2:
+                                result = _context4.sent;
+
+                                if (result.data) {
+                                    // 削除が成功した場合
+                                    // noticeで通知
+                                    this.$refs.notice.showNotice('タスクを削除しました');
+                                    // 通知が終わった後に自らを削除（不可視化）
+                                    this.inactivateTask = { display: 'none' };
+                                } else {
+                                    // 削除が失敗した場合
+                                    // noticeで通知
+                                    this.$refs.notice.showNotice('タスクの削除に失敗しました');
+                                }
+                                this.$refs.deleteModal.closeModal();
+
+                            case 5:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function deleteTask() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return deleteTask;
+        }(),
+        cancelDialog: function cancelDialog() {
+            this.$refs.deleteModal.closeModal();
         }
     }
 });
@@ -52344,171 +52413,249 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { class: _vm.wrapper_class }, [
-      _c("div", {
-        class: _vm.mask_class,
-        on: {
-          click: function($event) {
-            return _vm.openDetail()
-          }
-        }
-      }),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(
-        "div",
+        "modal",
         {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.checkbox || _vm.not_started,
-              expression: "checkbox || not_started"
-            }
-          ],
-          staticClass: "state-icon"
+          ref: "deleteModal",
+          model: {
+            value: _vm.deleteModal,
+            callback: function($$v) {
+              _vm.deleteModal = $$v
+            },
+            expression: "deleteModal"
+          }
         },
         [
-          _c("i", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.checkbox,
-                expression: "checkbox"
-              }
-            ],
-            staticClass: "far fa-2x fa-check-circle"
-          }),
+          _c("b", [
+            _vm._v("タスク「" + _vm._s(_vm.task.name) + "」を削除します。")
+          ]),
           _vm._v(" "),
-          _c("i", {
-            directives: [
+          _c("b", [_vm._v("この処理は取り消しできません。")]),
+          _vm._v(" "),
+          _c("b", [_vm._v("よろしいですか？")]),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c("div", { staticClass: "buttons" }, [
+            _c(
+              "button",
               {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.not_started,
-                expression: "not_started"
-              }
-            ],
-            staticClass: "fas fa-2x fa-exclamation-circle"
-          })
+                staticClass: "btn btn-danger d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.deleteTask()
+                  }
+                }
+              },
+              [_vm._v("タスクを削除")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.cancelDialog()
+                  }
+                }
+              },
+              [_vm._v("キャンセル")]
+            )
+          ])
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "task-label" }, [
-        _c("div", { staticClass: "headline" }, [
-          _c("input", {
-            ref: "checkbox",
-            staticClass: "checkbox",
-            attrs: { type: "checkbox" },
-            on: {
-              change: function($event) {
-                return _vm.checkTask(_vm.task.id)
-              }
+      _c("modal", {
+        ref: "editModal",
+        model: {
+          value: _vm.editModal,
+          callback: function($$v) {
+            _vm.editModal = $$v
+          },
+          expression: "editModal"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { class: _vm.wrapper_class, style: _vm.inactivateTask }, [
+        _c("div", {
+          class: _vm.mask_class,
+          on: {
+            click: function($event) {
+              return _vm.openDetail()
             }
-          }),
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.checkbox || _vm.not_started,
+                expression: "checkbox || not_started"
+              }
+            ],
+            staticClass: "state-icon"
+          },
+          [
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.checkbox,
+                  expression: "checkbox"
+                }
+              ],
+              staticClass: "far fa-2x fa-check-circle"
+            }),
+            _vm._v(" "),
+            _c("i", {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.not_started,
+                  expression: "not_started"
+                }
+              ],
+              staticClass: "fas fa-2x fa-exclamation-circle"
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "task-label" }, [
+          _c("div", { staticClass: "headline" }, [
+            _c("input", {
+              ref: "checkbox",
+              staticClass: "checkbox",
+              attrs: { type: "checkbox" },
+              on: {
+                change: function($event) {
+                  return _vm.checkTask(_vm.task.id)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", [
+              _vm.task.project && _vm.task.project.id != 1
+                ? _c("div", { staticClass: "project-label" }, [
+                    _vm._v(_vm._s(_vm.task.project.name))
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("span", { staticClass: "task-headline" }, [
+                _vm._v(_vm._s(_vm.task.name))
+              ])
+            ])
+          ]),
           _vm._v(" "),
           _c("div", [
-            _vm.task.project && _vm.task.project.id != 1
-              ? _c("div", { staticClass: "project-label" }, [
-                  _vm._v(_vm._s(_vm.task.project.name))
-                ])
-              : _vm._e(),
+            _c("i", { staticClass: "far fa-clock" }),
             _vm._v(" "),
-            _c("span", { staticClass: "task-headline" }, [
-              _vm._v(_vm._s(_vm.task.name))
-            ])
+            _c("span", { staticClass: "dead-line" }, [
+              _vm._v(_vm._s(_vm.task.dead_line))
+            ]),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-tag",
+              style: _vm.setTagIcon(_vm.task)
+            }),
+            _vm._v(" "),
+            _c("i", { staticClass: "far fa-edit task-icon" }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-trash task-icon",
+              on: {
+                click: function($event) {
+                  return _vm.showDeleteTaskDialog()
+                }
+              }
+            })
           ])
         ]),
         _vm._v(" "),
-        _c("div", [
-          _c("i", { staticClass: "far fa-clock" }),
-          _vm._v(" "),
-          _c("span", { staticClass: "dead-line" }, [
-            _vm._v(_vm._s(_vm.task.dead_line))
-          ]),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-tag",
-            style: _vm.setTagIcon(_vm.task)
-          }),
-          _vm._v(" "),
-          _c("i", { staticClass: "far fa-edit task-icon" }),
-          _vm._v(" "),
-          _c("i", { staticClass: "fas fa-trash task-icon" })
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "detail" },
-        [
-          _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
-          _vm._v(" "),
-          _vm._l(_vm.task.priority, function(p, pIndex) {
-            return _c("i", { staticClass: "fas fa-star" })
-          }),
-          _vm._v(" "),
-          _vm._l(5 - _vm.task.priority, function(np, npIndex) {
-            return _c("i", { staticClass: "far fa-star" })
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
-          _vm._v(" "),
-          _vm._l(_vm.task.difficulty, function(p, pIndex) {
-            return _c("i", { staticClass: "fas fa-star" })
-          }),
-          _vm._v(" "),
-          _vm._l(5 - _vm.task.difficulty, function(np, npIndex) {
-            return _c("i", { staticClass: "far fa-star" })
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "tags" },
-            _vm._l(_vm.task.tags, function(tag, index) {
-              return _c("div", { staticClass: "tag" }, [
-                _c("i", {
-                  staticClass: "fas fa-tag",
-                  style: { color: tag.color }
-                }),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(tag.name))])
-              ])
+        _c(
+          "div",
+          { staticClass: "detail" },
+          [
+            _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+            _vm._v(" "),
+            _vm._l(_vm.task.priority, function(p, pIndex) {
+              return _c("i", { staticClass: "fas fa-star" })
             }),
-            0
-          ),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "items" },
-            _vm._l(_vm.task.items, function(item) {
-              return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-                _c("input", {
-                  attrs: {
-                    type: "checkbox",
-                    disabled: _vm.setItemDisabled(item.is_checked)
-                  },
-                  domProps: { checked: item.is_checked },
-                  on: {
-                    change: function($event) {
-                      return _vm.checkItem(item.id)
+            _vm._v(" "),
+            _vm._l(5 - _vm.task.priority, function(np, npIndex) {
+              return _c("i", { staticClass: "far fa-star" })
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
+            _vm._v(" "),
+            _vm._l(_vm.task.difficulty, function(p, pIndex) {
+              return _c("i", { staticClass: "fas fa-star" })
+            }),
+            _vm._v(" "),
+            _vm._l(5 - _vm.task.difficulty, function(np, npIndex) {
+              return _c("i", { staticClass: "far fa-star" })
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "tags" },
+              _vm._l(_vm.task.tags, function(tag, index) {
+                return _c("div", { staticClass: "tag" }, [
+                  _c("i", {
+                    staticClass: "fas fa-tag",
+                    style: { color: tag.color }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(tag.name))])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "items" },
+              _vm._l(_vm.task.items, function(item) {
+                return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
+                  _c("input", {
+                    attrs: {
+                      type: "checkbox",
+                      disabled: _vm.setItemDisabled(item.is_checked)
+                    },
+                    domProps: { checked: item.is_checked },
+                    on: {
+                      change: function($event) {
+                        return _vm.checkItem(item.id)
+                      }
                     }
-                  }
-                }),
-                _vm._v(" " + _vm._s(item.name) + " -- "),
-                _c("span", [_vm._v(_vm._s(item.memo))])
-              ])
-            }),
-            0
-          )
-        ],
-        2
-      )
-    ])
-  ])
+                  }),
+                  _vm._v(" " + _vm._s(item.name) + " -- "),
+                  _c("span", [_vm._v(_vm._s(item.memo))])
+                ])
+              }),
+              0
+            )
+          ],
+          2
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53707,7 +53854,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    width:100%;\n    -webkit-transition:opacity 0.3s,visibility 0.3s;\n    transition:opacity 0.3s,visibility 0.3s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    width:100%;\n    -webkit-transition:opacity 0.5s,visibility 0.5s;\n    transition:opacity 0.5s,visibility 0.5s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.5s,visibility 0.5s;\n    transition:opacity 0.5s,visibility 0.5s;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
 
 // exports
 
@@ -53752,7 +53899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var baseY = contentElRect.y < 0 ? 0 : contentElRect.y;
             var scrollY = window.pageYOffset;
             this.content_top = scrollY - baseY + 50 + 'px';
-            this.modal_class = 'modal-active';
+            this.modal_class = 'modal-root modal-active';
             this.modal_content_class = 'modal-content modal-content-active';
             this.$emit('input', true);
         },
@@ -56812,7 +56959,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:10%;\n    top:10%;\n    padding:0.5em;\n    width:8em;\n    max-height:4em;\n    overflow:hidden;\n    border-radius:0.5em;\n    background:grey;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    font-size:75%;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 2s;\n            animation:notice-data-v-2ed81903 2s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
+exports.push([module.i, "\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:10%;\n    top:10%;\n    padding:0.5em;\n    width:8em;\n    max-height:4em;\n    overflow:hidden;\n    border-radius:0.5em;\n    background:grey;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    font-size:75%;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 3s;\n            animation:notice-data-v-2ed81903 3s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -56823,6 +56970,12 @@ exports.push([module.i, "\n.notice-wrapper[data-v-2ed81903] {\n    display:none;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 //
 //
 //
@@ -56848,15 +57001,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        showNotice: function showNotice(message) {
-            this.message = message;
-            var notice = document.querySelector('.notice-wrapper');
-            notice.className = 'notice-wrapper notice-active';
-            notice.addEventListener('animationend', function () {
-                notice.classList.remove('notice-active');
-                this.message = '';
-            });
-        }
+        showNotice: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(message) {
+                var notice;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return message;
+
+                            case 2:
+                                this.message = _context.sent;
+                                notice = document.querySelector('.notice-wrapper');
+
+                                notice.className = 'notice-wrapper notice-active';
+                                notice.addEventListener('animationend', function () {
+                                    notice.classList.remove('notice-active');
+                                    this.message = '';
+                                });
+
+                            case 6:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function showNotice(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return showNotice;
+        }()
     }
 });
 

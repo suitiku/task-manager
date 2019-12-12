@@ -95,7 +95,8 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        Task::find($id)->delete();
+        // 真偽値で返ってくる
+        return Task::destroy($id);
     }
     
     public function attachTags(Request $request){

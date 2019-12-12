@@ -38,7 +38,7 @@
                 let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
                 let scrollY = window.pageYOffset
                 this.content_top = (scrollY - baseY + 50) + 'px'
-                this.modal_class = 'modal-active'
+                this.modal_class = 'modal-root modal-active'
                 this.modal_content_class = 'modal-content modal-content-active'
                 this.$emit('input',true)
             },
@@ -58,7 +58,7 @@
         left:0;
         padding:3em 0em;
         width:100%;
-        transition:opacity 0.3s,visibility 0.3s;
+        transition:opacity 0.5s,visibility 0.5s;
         opacity:0;
         visibility:hidden;
     }
@@ -72,6 +72,7 @@
         width:100%;
         opacity:1.0;
         visibility:visible;
+        transition:opacity 0.5s,visibility 0.5s;
     }
     .close-button {
         position:absolute;

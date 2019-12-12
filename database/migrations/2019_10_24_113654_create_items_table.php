@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
             $table->text('memo')->comment('備考');
             $table->timestamps();
             
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 
