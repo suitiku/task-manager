@@ -38,14 +38,14 @@
                 let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
                 let scrollY = window.pageYOffset
                 this.content_top = (scrollY - baseY + 50) + 'px'
-                this.modal_class = 'modal-root modal-active'
                 this.modal_content_class = 'modal-content modal-content-active'
+                this.modal_class = 'modal-root-active'
                 this.$emit('input',true)
             },
             closeModal:function(){
                 this.content_top = '0px'
-                this.modal_class = 'modal-root'
                 this.modal_content_class = 'modal-content'
+                this.modal_class = 'modal-root'
                 this.$emit('input',false)
             },
         }
@@ -54,16 +54,20 @@
 <style scoped>
     .modal-root {
         position:absolute;
+        z-index:9;
         top:0;
         left:0;
         padding:3em 0em;
+        display:flex;
+        justify-content:center;
         width:100%;
-        transition:opacity 0.5s,visibility 0.5s;
+        transition:opacity 0.7s,visibility 0.7s;
         opacity:0;
         visibility:hidden;
     }
-    .modal-active {
+    .modal-root-active {
         position:absolute;
+        z-index:9;
         top:0;
         left:0;
         padding:3em 0em;
@@ -72,7 +76,7 @@
         width:100%;
         opacity:1.0;
         visibility:visible;
-        transition:opacity 0.5s,visibility 0.5s;
+        transition:opacity 0.7s,visibility 0.7s;
     }
     .close-button {
         position:absolute;
@@ -92,10 +96,15 @@
         z-index:14;
         margin-bottom:3em;
         padding:1em;
+        opacity:0;
+        visibility:hidden;
+        transition:opacity 0.7s;
     }
     .modal-content-active {
         overflow:visible;
         height:auto;
+        opacity:1.0;
+        visibility:visible;
     }
     .modal-background {
         position:fixed;

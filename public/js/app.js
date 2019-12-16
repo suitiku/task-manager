@@ -53854,7 +53854,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    width:100%;\n    -webkit-transition:opacity 0.5s,visibility 0.5s;\n    transition:opacity 0.5s,visibility 0.5s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-active[data-v-53ab54d2] {\n    position:absolute;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.5s,visibility 0.5s;\n    transition:opacity 0.5s,visibility 0.5s;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    z-index:9;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    /*transition:opacity 1s;*/\n    opacity:0;\n    visibility:hidden;\n}\n.modal-root-active[data-v-53ab54d2] {\n    position:absolute;\n    z-index:9;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    /*transition:opacity 1s;*/\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    \n    opacity:0;\n    visibility:hidden;\n    \n    /*transition:opacity 2s,visibility 2s;*/\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.modal-content-active[data-v-53ab54d2] {\n    /*position:absolute;*/\n    /*width:65%;*/\n    /*z-index:14;*/\n    /*margin-bottom:3em;*/\n    /*padding:1em;*/\n    \n    overflow:visible;\n    height:auto;\n    \n    opacity:1.0;\n    visibility:visible;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
 
 // exports
 
@@ -53899,14 +53899,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var baseY = contentElRect.y < 0 ? 0 : contentElRect.y;
             var scrollY = window.pageYOffset;
             this.content_top = scrollY - baseY + 50 + 'px';
-            this.modal_class = 'modal-root modal-active';
             this.modal_content_class = 'modal-content modal-content-active';
+            // this.modal_content_class = 'modal-content-active'
+            this.modal_class = 'modal-root-active';
             this.$emit('input', true);
         },
         closeModal: function closeModal() {
             this.content_top = '0px';
-            this.modal_class = 'modal-root';
             this.modal_content_class = 'modal-content';
+            this.modal_class = 'modal-root';
             this.$emit('input', false);
         }
     }
