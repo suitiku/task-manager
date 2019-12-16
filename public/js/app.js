@@ -50559,7 +50559,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    position:relative;\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    position:relative;\n    max-height:500px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n", ""]);
 
 // exports
 
@@ -52172,6 +52172,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52399,8 +52400,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return deleteTask;
         }(),
+        showEditTaskDialog: function () {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                this.$refs.editModal.openModal();
+
+                            case 1:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+
+            function showEditTaskDialog() {
+                return _ref5.apply(this, arguments);
+            }
+
+            return showEditTaskDialog;
+        }(),
         cancelDialog: function cancelDialog() {
             this.$refs.deleteModal.closeModal();
+            this.$refs.editModal.closeModal();
         }
     }
 });
@@ -52472,16 +52496,36 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("modal", {
-        ref: "editModal",
-        model: {
-          value: _vm.editModal,
-          callback: function($$v) {
-            _vm.editModal = $$v
-          },
-          expression: "editModal"
-        }
-      }),
+      _c(
+        "modal",
+        {
+          ref: "editModal",
+          model: {
+            value: _vm.editModal,
+            callback: function($$v) {
+              _vm.editModal = $$v
+            },
+            expression: "editModal"
+          }
+        },
+        [
+          _c("versatile-form", { attrs: { table: "tasks" } }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-secondary d-block",
+              on: {
+                click: function($event) {
+                  return _vm.cancelDialog()
+                }
+              }
+            },
+            [_vm._v("キャンセル")]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { class: _vm.wrapper_class, style: _vm.inactivateTask }, [
         _c("div", {
@@ -52571,7 +52615,14 @@ var render = function() {
               style: _vm.setTagIcon(_vm.task)
             }),
             _vm._v(" "),
-            _c("i", { staticClass: "far fa-edit task-icon" }),
+            _c("i", {
+              staticClass: "far fa-edit task-icon",
+              on: {
+                click: function($event) {
+                  return _vm.showEditTaskDialog()
+                }
+              }
+            }),
             _vm._v(" "),
             _c("i", {
               staticClass: "fas fa-trash task-icon",
@@ -53854,7 +53905,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:absolute;\n    z-index:9;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    /*transition:opacity 1s;*/\n    opacity:0;\n    visibility:hidden;\n}\n.modal-root-active[data-v-53ab54d2] {\n    position:absolute;\n    z-index:9;\n    top:0;\n    left:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    /*transition:opacity 1s;*/\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    \n    opacity:0;\n    visibility:hidden;\n    \n    /*transition:opacity 2s,visibility 2s;*/\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.modal-content-active[data-v-53ab54d2] {\n    /*position:absolute;*/\n    /*width:65%;*/\n    /*z-index:14;*/\n    /*margin-bottom:3em;*/\n    /*padding:1em;*/\n    \n    overflow:visible;\n    height:auto;\n    \n    opacity:1.0;\n    visibility:visible;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-root-active[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    opacity:0;\n    visibility:hidden;\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
 
 // exports
 
@@ -53900,7 +53951,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var scrollY = window.pageYOffset;
             this.content_top = scrollY - baseY + 50 + 'px';
             this.modal_content_class = 'modal-content modal-content-active';
-            // this.modal_content_class = 'modal-content-active'
             this.modal_class = 'modal-root-active';
             this.$emit('input', true);
         },

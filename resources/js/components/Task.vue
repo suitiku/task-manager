@@ -23,7 +23,8 @@
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
-            
+            <versatile-form table="tasks" />
+            <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
@@ -48,7 +49,7 @@
                     <!--タグがある場合はタグアイコン-->
                     <i class="fas fa-tag" v-bind:style="setTagIcon(task)"></i>
                     <!--編集ボタン-->
-                    <i class="far fa-edit task-icon"></i>
+                    <i class="far fa-edit task-icon" v-on:click="showEditTaskDialog()"></i>
                     <!--削除ボタン-->
                     <i class="fas fa-trash task-icon" v-on:click="showDeleteTaskDialog()"></i>
                 </div>
@@ -208,8 +209,12 @@
                 }
                 this.$refs.deleteModal.closeModal()
             },
+            showEditTaskDialog:async function(){
+                this.$refs.editModal.openModal()
+            },
             cancelDialog:function(){
                 this.$refs.deleteModal.closeModal()
+                this.$refs.editModal.closeModal()
             }
         }
     }

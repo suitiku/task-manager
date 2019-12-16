@@ -53,10 +53,14 @@
 </script>
 <style scoped>
     .modal-root {
-        position:absolute;
+        position:fixed;
+        overflow-y:auto;
+        
         z-index:9;
         top:0;
         left:0;
+        right:0;
+        bottom:0;
         padding:3em 0em;
         display:flex;
         justify-content:center;
@@ -66,10 +70,14 @@
         visibility:hidden;
     }
     .modal-root-active {
-        position:absolute;
+        position:fixed;
+        overflow-y:auto;
+        
         z-index:9;
         top:0;
         left:0;
+        right:0;
+        bottom:0;
         padding:3em 0em;
         display:flex;
         justify-content:center;

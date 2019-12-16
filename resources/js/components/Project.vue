@@ -22,7 +22,7 @@
                     
                     <!--タスクリスト-->
                     <div class="tasks">
-                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index" />
+                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index"/>
                         <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
                         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
                     </div>
@@ -114,11 +114,13 @@
 </script>
 <style scoped>
     .project-wrapper {
+        position:relative;
         width:100%;
         border:3px solid grey;
         border-radius:0.2em;
     }
     .project-content-wrapper {
+        position:relative;
         padding:1em;
         overflow:hidden;
     }
@@ -135,6 +137,7 @@
         transition:all 0.3s;
     }
     .project-detail-open {
+        position:relative;
         max-height:500px;
         transition:all 0.3s;
     }
@@ -145,6 +148,7 @@
         background:gainsboro;
     }
     .tasks {
+        position:relative;
         width:100%;
         margin:1em 0;
     }
