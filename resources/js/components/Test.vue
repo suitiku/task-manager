@@ -1,11 +1,16 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        
+        <!--<task v-bind:task="task" />-->
+        
+        <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <versatile-form table="tasks" idProp="4"/>
         </modal>
         <button class="button" v-on:click="showModal()">modal</button>
+        <!--<button class="button" v-on:click="showNotice()">notice</button>-->
     </div>
 </template>
 
@@ -15,18 +20,21 @@
             return {
                 modal:false,
                 test:'',
-                tag:''
+                task:''
             }  
         },
-        mounted() {
+        created:async function(){
         },
-        created:async function() {
-            let result = await axios.get('/api/tags/1')
-            this.tag = result.data
+        mounted:async function() {
+            let result = await axios.get('/api/tasks/1')
+            this.task = result.data
         },
         methods: {
             showModal:function(){
                 this.$refs.modal.openModal()
+            },
+            showNotice:function(){
+                this.$refs.notice.showNotice('実行中')
             }
         },
     }

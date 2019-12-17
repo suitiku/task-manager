@@ -7,7 +7,7 @@
 <template>
     <div class="container">
         <!--通知-->
-        <notice ref="notice"></notice>
+        <notice ref="notice" />
         
         <!--削除確認モーダル-->
         <modal ref="deleteModal" v-model="deleteModal">

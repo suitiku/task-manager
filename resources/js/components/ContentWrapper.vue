@@ -6,6 +6,7 @@
             <home v-if="content == 'home'" v-bind:user="user"/>
             <task-list v-else-if="content == 'task'" v-bind:user_id="user.id"/>
             <project-list v-else-if="content == 'project'"/>
+            <div class="spacer"></div>
         </div>
     </div>
 </template>
@@ -47,5 +48,9 @@
     .contents {
         position:relative;
         width:100%;
+    }
+    /*下に余白*/
+    .spacer {
+        height:5em;
     }
 </style>

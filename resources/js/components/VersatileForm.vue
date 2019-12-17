@@ -9,10 +9,13 @@
 
 <template>
     <div class="container">
+        <!--通知-->
+        <notice ref="editNotice" />
+        
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
-                {{column.COLUMN_NAME}}
-                {{postObject[column.COLUMN_NAME]}}
+                <!--{{column.COLUMN_NAME}}-->
+                <!--{{postObject[column.COLUMN_NAME]}}-->
                 <!--インライン表示-->
                 <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
                     <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
@@ -82,34 +85,40 @@
                 required:false
             },
         },
-        mounted() {
-            this.init()
+        mounted:async function(){
+            await this.init()
+            await this.overwritePostObject()
         },
         created() {
-            // this.init()
+        },
+        watch:{
         },
         methods: {
             init:async function(){
-                // idPropsが設定されている場合はそのレコードを取得
-                let existingRecord = {}
-                if(this.idProp){
-                    existingRecord = await axios.get('/api/' + this.table + '/' + this.idProp)
-                }
-                console.log(existingRecord.data)
+                // テーブルからカラムの情報を取得
                 let result = await axios.get('/api/table_info/' + this.table)
                 this.columns = result.data
                 for(let index of Object.keys(result.data)){
-                    if(this.whiteList.indexOf(result.data[index].COLUMN_NAME) == -1){
-                        let data = existingRecord.data[result.data[index].COLUMN_NAME] || ''
-                        this.$set(this.postObject,result.data[index].COLUMN_NAME,data)
+                    let columnName = result.data[index].COLUMN_NAME
+                    if(this.whiteList.indexOf(columnName) == -1){
+                        this.$set(this.postObject,columnName,'')
                     }
                 }
-                console.log(this.postObject)
                 //上書き処理がある場合
                 if(this.column_override){
                     for(let value of this.column_override){
                         let key = Object.keys(value)
                         this.$set(this.postObject,key,value[key])
+                    }
+                }
+            },
+            overwritePostObject:async function(){
+                // idPropsが設定されている場合はそのレコードを取得
+                let existingRecord = {}
+                if(this.idProp){
+                    existingRecord = await axios.get('/api/' + this.table + '/' + this.idProp)
+                    for(let key of Object.keys(this.postObject)){
+                        this.$set(this.postObject,key,existingRecord.data[key])
                     }
                 }
             },
@@ -152,16 +161,19 @@
                 }
                 let result = await axios.post('/api/' + this.table,this.postObject)
                 if(result.data){
-                    // console.log(result.data)
                     this.$emit('input',result.data) //挿入したデータを送出
                     this.id = result.data.id //編集用idをセット
                 }
             },
             editRecord: async function(){
-                let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
-                if(result.data){
-                    // console.log(result.data)
+                
+                try{
+                    let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
+                    this.$refs.editNotice.showNotice('タスクを修正しました','success')
                     this.$emit('input',result.data)
+                }catch(e){
+                    console.log(e)
+                    this.$refs.editNotice.showNotice('タスクの修正に失敗しました','error')
                 }
             },
         },

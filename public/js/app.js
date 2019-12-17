@@ -52868,6 +52868,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52907,104 +52910,108 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         }
     },
-    mounted: function mounted() {
-        this.init();
-    },
-    created: function created() {
-        // this.init()
-    },
+    mounted: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return this.init();
 
+                        case 2:
+                            _context.next = 4;
+                            return this.overwritePostObject();
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function mounted() {
+            return _ref.apply(this, arguments);
+        }
+
+        return mounted;
+    }(),
+    created: function created() {},
+
+    watch: {},
     methods: {
         init: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var existingRecord, result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index, data, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, value, key;
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index, columnName, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, value, key;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
-                                // idPropsが設定されている場合はそのレコードを取得
-                                existingRecord = {};
-
-                                if (!this.idProp) {
-                                    _context.next = 5;
-                                    break;
-                                }
-
-                                _context.next = 4;
-                                return axios.get('/api/' + this.table + '/' + this.idProp);
-
-                            case 4:
-                                existingRecord = _context.sent;
-
-                            case 5:
-                                console.log(existingRecord.data);
-                                _context.next = 8;
+                                _context2.next = 2;
                                 return axios.get('/api/table_info/' + this.table);
 
-                            case 8:
-                                result = _context.sent;
+                            case 2:
+                                result = _context2.sent;
 
                                 this.columns = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context.prev = 13;
+                                _context2.prev = 7;
                                 for (_iterator = Object.keys(result.data)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
+                                    columnName = result.data[index].COLUMN_NAME;
 
-                                    if (this.whiteList.indexOf(result.data[index].COLUMN_NAME) == -1) {
-                                        data = existingRecord.data[result.data[index].COLUMN_NAME] || '';
-
-                                        this.$set(this.postObject, result.data[index].COLUMN_NAME, data);
+                                    if (this.whiteList.indexOf(columnName) == -1) {
+                                        this.$set(this.postObject, columnName, '');
                                     }
                                 }
-                                _context.next = 21;
+                                //上書き処理がある場合
+                                _context2.next = 15;
                                 break;
 
-                            case 17:
-                                _context.prev = 17;
-                                _context.t0 = _context['catch'](13);
+                            case 11:
+                                _context2.prev = 11;
+                                _context2.t0 = _context2['catch'](7);
                                 _didIteratorError = true;
-                                _iteratorError = _context.t0;
+                                _iteratorError = _context2.t0;
 
-                            case 21:
-                                _context.prev = 21;
-                                _context.prev = 22;
+                            case 15:
+                                _context2.prev = 15;
+                                _context2.prev = 16;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 24:
-                                _context.prev = 24;
+                            case 18:
+                                _context2.prev = 18;
 
                                 if (!_didIteratorError) {
-                                    _context.next = 27;
+                                    _context2.next = 21;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 27:
-                                return _context.finish(24);
+                            case 21:
+                                return _context2.finish(18);
 
-                            case 28:
-                                return _context.finish(21);
+                            case 22:
+                                return _context2.finish(15);
 
-                            case 29:
-                                console.log(this.postObject);
-                                //上書き処理がある場合
-
+                            case 23:
                                 if (!this.column_override) {
-                                    _context.next = 50;
+                                    _context2.next = 43;
                                     break;
                                 }
 
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context.prev = 34;
+                                _context2.prev = 27;
 
                                 for (_iterator2 = this.column_override[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     value = _step2.value;
@@ -53012,52 +53019,130 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                     this.$set(this.postObject, key, value[key]);
                                 }
-                                _context.next = 42;
+                                _context2.next = 35;
                                 break;
 
-                            case 38:
-                                _context.prev = 38;
-                                _context.t1 = _context['catch'](34);
+                            case 31:
+                                _context2.prev = 31;
+                                _context2.t1 = _context2['catch'](27);
                                 _didIteratorError2 = true;
-                                _iteratorError2 = _context.t1;
+                                _iteratorError2 = _context2.t1;
 
-                            case 42:
-                                _context.prev = 42;
-                                _context.prev = 43;
+                            case 35:
+                                _context2.prev = 35;
+                                _context2.prev = 36;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
-                            case 45:
-                                _context.prev = 45;
+                            case 38:
+                                _context2.prev = 38;
 
                                 if (!_didIteratorError2) {
-                                    _context.next = 48;
+                                    _context2.next = 41;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
-                            case 48:
-                                return _context.finish(45);
+                            case 41:
+                                return _context2.finish(38);
 
-                            case 49:
-                                return _context.finish(42);
+                            case 42:
+                                return _context2.finish(35);
 
-                            case 50:
+                            case 43:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[13, 17, 21, 29], [22,, 24, 28], [34, 38, 42, 50], [43,, 45, 49]]);
+                }, _callee2, this, [[7, 11, 15, 23], [16,, 18, 22], [27, 31, 35, 43], [36,, 38, 42]]);
             }));
 
             function init() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return init;
+        }(),
+        overwritePostObject: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var existingRecord, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, key;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                // idPropsが設定されている場合はそのレコードを取得
+                                existingRecord = {};
+
+                                if (!this.idProp) {
+                                    _context3.next = 24;
+                                    break;
+                                }
+
+                                _context3.next = 4;
+                                return axios.get('/api/' + this.table + '/' + this.idProp);
+
+                            case 4:
+                                existingRecord = _context3.sent;
+                                _iteratorNormalCompletion3 = true;
+                                _didIteratorError3 = false;
+                                _iteratorError3 = undefined;
+                                _context3.prev = 8;
+
+                                for (_iterator3 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                    key = _step3.value;
+
+                                    this.$set(this.postObject, key, existingRecord.data[key]);
+                                }
+                                _context3.next = 16;
+                                break;
+
+                            case 12:
+                                _context3.prev = 12;
+                                _context3.t0 = _context3['catch'](8);
+                                _didIteratorError3 = true;
+                                _iteratorError3 = _context3.t0;
+
+                            case 16:
+                                _context3.prev = 16;
+                                _context3.prev = 17;
+
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+
+                            case 19:
+                                _context3.prev = 19;
+
+                                if (!_didIteratorError3) {
+                                    _context3.next = 22;
+                                    break;
+                                }
+
+                                throw _iteratorError3;
+
+                            case 22:
+                                return _context3.finish(19);
+
+                            case 23:
+                                return _context3.finish(16);
+
+                            case 24:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[8, 12, 16, 24], [17,, 19, 23]]);
+            }));
+
+            function overwritePostObject() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return overwritePostObject;
         }(),
         setInputType: function setInputType(dataType) {
             switch (dataType) {
@@ -53068,28 +53153,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
         },
         resetForm: function resetForm() {
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
-                for (var _iterator3 = Object.keys(this.postObject)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var key = _step3.value;
+                for (var _iterator4 = Object.keys(this.postObject)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var key = _step4.value;
 
                     this.$set(this.postObject, key, '');
                 }
                 //外部キー要素（list-box）を初期化
             } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
                     }
                 } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
                     }
                 }
             }
@@ -53101,28 +53186,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
             //上書き処理がある場合
             if (this.column_override) {
-                var _iteratorNormalCompletion4 = true;
-                var _didIteratorError4 = false;
-                var _iteratorError4 = undefined;
+                var _iteratorNormalCompletion5 = true;
+                var _didIteratorError5 = false;
+                var _iteratorError5 = undefined;
 
                 try {
-                    for (var _iterator4 = this.column_override[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                        var value = _step4.value;
+                    for (var _iterator5 = this.column_override[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                        var value = _step5.value;
 
                         var _key = Object.keys(value);
                         this.$set(this.postObject, _key, value[_key]);
                     }
                 } catch (err) {
-                    _didIteratorError4 = true;
-                    _iteratorError4 = err;
+                    _didIteratorError5 = true;
+                    _iteratorError5 = err;
                 } finally {
                     try {
-                        if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                            _iterator4.return();
+                        if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                            _iterator5.return();
                         }
                     } finally {
-                        if (_didIteratorError4) {
-                            throw _iteratorError4;
+                        if (_didIteratorError5) {
+                            throw _iteratorError5;
                         }
                     }
                 }
@@ -53132,22 +53217,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return column.COLUMN_COMMENT || column.COLUMN_NAME;
         },
         createRecord: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, key, result;
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, key, result;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 //Validation
                                 //配列要素を変換
                                 //空要素をkeyごと削除
-                                _iteratorNormalCompletion5 = true;
-                                _didIteratorError5 = false;
-                                _iteratorError5 = undefined;
-                                _context2.prev = 3;
-                                for (_iterator5 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                    key = _step5.value;
+                                _iteratorNormalCompletion6 = true;
+                                _didIteratorError6 = false;
+                                _iteratorError6 = undefined;
+                                _context4.prev = 3;
+                                for (_iterator6 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                                    key = _step6.value;
 
                                     if (this.postObject[key] == '') {
                                         delete this.postObject[key];
@@ -53156,94 +53241,101 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         this.postObject[key] = this.postObject[key][0];
                                     }
                                 }
-                                _context2.next = 11;
+                                _context4.next = 11;
                                 break;
 
                             case 7:
-                                _context2.prev = 7;
-                                _context2.t0 = _context2['catch'](3);
-                                _didIteratorError5 = true;
-                                _iteratorError5 = _context2.t0;
+                                _context4.prev = 7;
+                                _context4.t0 = _context4['catch'](3);
+                                _didIteratorError6 = true;
+                                _iteratorError6 = _context4.t0;
 
                             case 11:
-                                _context2.prev = 11;
-                                _context2.prev = 12;
+                                _context4.prev = 11;
+                                _context4.prev = 12;
 
-                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                    _iterator5.return();
+                                if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                                    _iterator6.return();
                                 }
 
                             case 14:
-                                _context2.prev = 14;
+                                _context4.prev = 14;
 
-                                if (!_didIteratorError5) {
-                                    _context2.next = 17;
+                                if (!_didIteratorError6) {
+                                    _context4.next = 17;
                                     break;
                                 }
 
-                                throw _iteratorError5;
+                                throw _iteratorError6;
 
                             case 17:
-                                return _context2.finish(14);
+                                return _context4.finish(14);
 
                             case 18:
-                                return _context2.finish(11);
+                                return _context4.finish(11);
 
                             case 19:
-                                _context2.next = 21;
+                                _context4.next = 21;
                                 return axios.post('/api/' + this.table, this.postObject);
 
                             case 21:
-                                result = _context2.sent;
+                                result = _context4.sent;
 
                                 if (result.data) {
-                                    // console.log(result.data)
                                     this.$emit('input', result.data); //挿入したデータを送出
                                     this.id = result.data.id; //編集用idをセット
                                 }
 
                             case 23:
                             case 'end':
-                                return _context2.stop();
+                                return _context4.stop();
                         }
                     }
-                }, _callee2, this, [[3, 7, 11, 19], [12,, 14, 18]]);
+                }, _callee4, this, [[3, 7, 11, 19], [12,, 14, 18]]);
             }));
 
             function createRecord() {
-                return _ref2.apply(this, arguments);
+                return _ref4.apply(this, arguments);
             }
 
             return createRecord;
         }(),
         editRecord: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context5.prev = _context5.next) {
                             case 0:
-                                _context3.next = 2;
+                                _context5.prev = 0;
+                                _context5.next = 3;
                                 return axios.put('/api/' + this.table + '/' + this.id, this.postObject);
 
-                            case 2:
-                                result = _context3.sent;
+                            case 3:
+                                result = _context5.sent;
 
-                                if (result.data) {
-                                    // console.log(result.data)
-                                    this.$emit('input', result.data);
-                                }
+                                this.$refs.editNotice.showNotice('タスクを修正しました', 'success');
+                                this.$emit('input', result.data);
+                                _context5.next = 12;
+                                break;
 
-                            case 4:
+                            case 8:
+                                _context5.prev = 8;
+                                _context5.t0 = _context5['catch'](0);
+
+                                console.log(_context5.t0);
+                                this.$refs.editNotice.showNotice('タスクの修正に失敗しました', 'error');
+
+                            case 12:
                             case 'end':
-                                return _context3.stop();
+                                return _context5.stop();
                         }
                     }
-                }, _callee3, this);
+                }, _callee5, this, [[0, 8]]);
             }));
 
             function editRecord() {
-                return _ref3.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return editRecord;
@@ -53259,89 +53351,210 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "forms" },
-      [
-        _vm._l(_vm.columns, function(column, index) {
-          return _c("div", { key: index, staticClass: "column" }, [
-            _vm._v(
-              "\n            " +
-                _vm._s(column.COLUMN_NAME) +
-                "\n            " +
-                _vm._s(_vm.postObject[column.COLUMN_NAME]) +
-                "\n            "
-            ),
-            _vm._v(" "),
-            column.COLUMN_TYPE == "tinyint(4)"
-              ? _c(
-                  "div",
-                  { staticClass: "form-inline" },
-                  [
-                    _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value:
-                              _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
-                            expression:
-                              "labelColumns.indexOf(column.DATA_TYPE) != -1"
-                          }
-                        ]
-                      },
-                      [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
-                    ),
-                    _vm._v(" "),
-                    _c("star-range", {
-                      model: {
-                        value: _vm.postObject[column.COLUMN_NAME],
-                        callback: function($$v) {
-                          _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("notice", { ref: "editNotice" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "forms" },
+        [
+          _vm._l(_vm.columns, function(column, index) {
+            return _c("div", { key: index, staticClass: "column" }, [
+              column.COLUMN_TYPE == "tinyint(4)"
+                ? _c(
+                    "div",
+                    { staticClass: "form-inline" },
+                    [
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.labelColumns.indexOf(column.DATA_TYPE) !=
+                                -1,
+                              expression:
+                                "labelColumns.indexOf(column.DATA_TYPE) != -1"
+                            }
+                          ]
                         },
-                        expression: "postObject[column.COLUMN_NAME]"
-                      }
-                    })
-                  ],
-                  1
-                )
-              : _c(
-                  "div",
-                  { staticClass: "form-block" },
-                  [
-                    _c(
-                      "span",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value:
-                              _vm.labelColumns.indexOf(column.DATA_TYPE) != -1,
-                            expression:
-                              "labelColumns.indexOf(column.DATA_TYPE) != -1"
-                          }
-                        ]
-                      },
-                      [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
-                    ),
-                    _vm._v(" "),
-                    column.COLUMN_TYPE == "datetime"
-                      ? _c("date-picker", {
-                          model: {
-                            value: _vm.postObject[column.COLUMN_NAME],
-                            callback: function($$v) {
-                              _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
-                            },
-                            expression: "postObject[column.COLUMN_NAME]"
-                          }
-                        })
-                      : column.COLUMN_KEY == "" &&
-                        _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
-                      ? _vm.setInputType(column.DATA_TYPE) === "checkbox"
+                        [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+                      ),
+                      _vm._v(" "),
+                      _c("star-range", {
+                        model: {
+                          value: _vm.postObject[column.COLUMN_NAME],
+                          callback: function($$v) {
+                            _vm.$set(_vm.postObject, column.COLUMN_NAME, $$v)
+                          },
+                          expression: "postObject[column.COLUMN_NAME]"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                : _c(
+                    "div",
+                    { staticClass: "form-block" },
+                    [
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.labelColumns.indexOf(column.DATA_TYPE) !=
+                                -1,
+                              expression:
+                                "labelColumns.indexOf(column.DATA_TYPE) != -1"
+                            }
+                          ]
+                        },
+                        [_vm._v(_vm._s(_vm.setPlaceholder(column)))]
+                      ),
+                      _vm._v(" "),
+                      column.COLUMN_TYPE == "datetime"
+                        ? _c("date-picker", {
+                            model: {
+                              value: _vm.postObject[column.COLUMN_NAME],
+                              callback: function($$v) {
+                                _vm.$set(
+                                  _vm.postObject,
+                                  column.COLUMN_NAME,
+                                  $$v
+                                )
+                              },
+                              expression: "postObject[column.COLUMN_NAME]"
+                            }
+                          })
+                        : column.COLUMN_KEY == "" &&
+                          _vm.inputColumns.indexOf(column.DATA_TYPE) != -1
+                        ? _vm.setInputType(column.DATA_TYPE) === "checkbox"
+                          ? _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.postObject[column.COLUMN_NAME],
+                                  expression: "postObject[column.COLUMN_NAME]"
+                                }
+                              ],
+                              attrs: {
+                                placeholder: _vm.setPlaceholder(column),
+                                type: "checkbox"
+                              },
+                              domProps: {
+                                checked: Array.isArray(
+                                  _vm.postObject[column.COLUMN_NAME]
+                                )
+                                  ? _vm._i(
+                                      _vm.postObject[column.COLUMN_NAME],
+                                      null
+                                    ) > -1
+                                  : _vm.postObject[column.COLUMN_NAME]
+                              },
+                              on: {
+                                change: function($event) {
+                                  var $$a = _vm.postObject[column.COLUMN_NAME],
+                                    $$el = $event.target,
+                                    $$c = $$el.checked ? true : false
+                                  if (Array.isArray($$a)) {
+                                    var $$v = null,
+                                      $$i = _vm._i($$a, $$v)
+                                    if ($$el.checked) {
+                                      $$i < 0 &&
+                                        _vm.$set(
+                                          _vm.postObject,
+                                          column.COLUMN_NAME,
+                                          $$a.concat([$$v])
+                                        )
+                                    } else {
+                                      $$i > -1 &&
+                                        _vm.$set(
+                                          _vm.postObject,
+                                          column.COLUMN_NAME,
+                                          $$a
+                                            .slice(0, $$i)
+                                            .concat($$a.slice($$i + 1))
+                                        )
+                                    }
+                                  } else {
+                                    _vm.$set(
+                                      _vm.postObject,
+                                      column.COLUMN_NAME,
+                                      $$c
+                                    )
+                                  }
+                                }
+                              }
+                            })
+                          : _vm.setInputType(column.DATA_TYPE) === "radio"
+                          ? _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.postObject[column.COLUMN_NAME],
+                                  expression: "postObject[column.COLUMN_NAME]"
+                                }
+                              ],
+                              attrs: {
+                                placeholder: _vm.setPlaceholder(column),
+                                type: "radio"
+                              },
+                              domProps: {
+                                checked: _vm._q(
+                                  _vm.postObject[column.COLUMN_NAME],
+                                  null
+                                )
+                              },
+                              on: {
+                                change: function($event) {
+                                  return _vm.$set(
+                                    _vm.postObject,
+                                    column.COLUMN_NAME,
+                                    null
+                                  )
+                                }
+                              }
+                            })
+                          : _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.postObject[column.COLUMN_NAME],
+                                  expression: "postObject[column.COLUMN_NAME]"
+                                }
+                              ],
+                              attrs: {
+                                placeholder: _vm.setPlaceholder(column),
+                                type: _vm.setInputType(column.DATA_TYPE)
+                              },
+                              domProps: {
+                                value: _vm.postObject[column.COLUMN_NAME]
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.postObject,
+                                    column.COLUMN_NAME,
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                        : column.COLUMN_TYPE == "tinyint(1)"
                         ? _c("input", {
                             directives: [
                               {
@@ -53351,10 +53564,7 @@ var render = function() {
                                 expression: "postObject[column.COLUMN_NAME]"
                               }
                             ],
-                            attrs: {
-                              placeholder: _vm.setPlaceholder(column),
-                              type: "checkbox"
-                            },
+                            attrs: { type: "checkbox" },
                             domProps: {
                               checked: Array.isArray(
                                 _vm.postObject[column.COLUMN_NAME]
@@ -53400,8 +53610,8 @@ var render = function() {
                               }
                             }
                           })
-                        : _vm.setInputType(column.DATA_TYPE) === "radio"
-                        ? _c("input", {
+                        : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
+                        ? _c("textarea", {
                             directives: [
                               {
                                 name: "model",
@@ -53410,39 +53620,7 @@ var render = function() {
                                 expression: "postObject[column.COLUMN_NAME]"
                               }
                             ],
-                            attrs: {
-                              placeholder: _vm.setPlaceholder(column),
-                              type: "radio"
-                            },
-                            domProps: {
-                              checked: _vm._q(
-                                _vm.postObject[column.COLUMN_NAME],
-                                null
-                              )
-                            },
-                            on: {
-                              change: function($event) {
-                                return _vm.$set(
-                                  _vm.postObject,
-                                  column.COLUMN_NAME,
-                                  null
-                                )
-                              }
-                            }
-                          })
-                        : _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.postObject[column.COLUMN_NAME],
-                                expression: "postObject[column.COLUMN_NAME]"
-                              }
-                            ],
-                            attrs: {
-                              placeholder: _vm.setPlaceholder(column),
-                              type: _vm.setInputType(column.DATA_TYPE)
-                            },
+                            attrs: { placeholder: _vm.setPlaceholder(column) },
                             domProps: {
                               value: _vm.postObject[column.COLUMN_NAME]
                             },
@@ -53459,172 +53637,93 @@ var render = function() {
                               }
                             }
                           })
-                      : column.COLUMN_TYPE == "tinyint(1)"
-                      ? _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.postObject[column.COLUMN_NAME],
-                              expression: "postObject[column.COLUMN_NAME]"
-                            }
-                          ],
-                          attrs: { type: "checkbox" },
-                          domProps: {
-                            checked: Array.isArray(
-                              _vm.postObject[column.COLUMN_NAME]
-                            )
-                              ? _vm._i(
-                                  _vm.postObject[column.COLUMN_NAME],
-                                  null
-                                ) > -1
-                              : _vm.postObject[column.COLUMN_NAME]
-                          },
-                          on: {
-                            change: function($event) {
-                              var $$a = _vm.postObject[column.COLUMN_NAME],
-                                $$el = $event.target,
-                                $$c = $$el.checked ? true : false
-                              if (Array.isArray($$a)) {
-                                var $$v = null,
-                                  $$i = _vm._i($$a, $$v)
-                                if ($$el.checked) {
-                                  $$i < 0 &&
-                                    _vm.$set(
-                                      _vm.postObject,
-                                      column.COLUMN_NAME,
-                                      $$a.concat([$$v])
-                                    )
-                                } else {
-                                  $$i > -1 &&
-                                    _vm.$set(
-                                      _vm.postObject,
-                                      column.COLUMN_NAME,
-                                      $$a
-                                        .slice(0, $$i)
-                                        .concat($$a.slice($$i + 1))
-                                    )
-                                }
-                              } else {
-                                _vm.$set(
-                                  _vm.postObject,
-                                  column.COLUMN_NAME,
-                                  $$c
-                                )
-                              }
-                            }
-                          }
-                        })
-                      : _vm.textareaColumns.indexOf(column.DATA_TYPE) != -1
-                      ? _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.postObject[column.COLUMN_NAME],
-                              expression: "postObject[column.COLUMN_NAME]"
-                            }
-                          ],
-                          attrs: { placeholder: _vm.setPlaceholder(column) },
-                          domProps: {
-                            value: _vm.postObject[column.COLUMN_NAME]
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.postObject,
-                                column.COLUMN_NAME,
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      : _vm._e()
-                  ],
-                  1
-                )
-          ])
-        }),
-        _vm._v(" "),
-        _vm.foreign_keys
-          ? _c(
-              "div",
-              { staticClass: "foreign" },
-              _vm._l(_vm.foreign_keys, function(foreign_key, index) {
-                return _c(
-                  "div",
-                  [
-                    _c("p", [
-                      _vm._v(
-                        _vm._s(foreign_key[Object.keys(foreign_key)[0]].comment)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("list-box", {
-                      ref: "foreigns",
-                      refInFor: true,
-                      attrs: {
-                        table: foreign_key[Object.keys(foreign_key)[0]].table,
-                        columns:
-                          foreign_key[Object.keys(foreign_key)[0]].columns
-                      },
-                      model: {
-                        value: _vm.postObject[Object.keys(foreign_key)[0]],
-                        callback: function($$v) {
-                          _vm.$set(
-                            _vm.postObject,
-                            Object.keys(foreign_key)[0],
-                            $$v
+                        : _vm._e()
+                    ],
+                    1
+                  )
+            ])
+          }),
+          _vm._v(" "),
+          _vm.foreign_keys
+            ? _c(
+                "div",
+                { staticClass: "foreign" },
+                _vm._l(_vm.foreign_keys, function(foreign_key, index) {
+                  return _c(
+                    "div",
+                    [
+                      _c("p", [
+                        _vm._v(
+                          _vm._s(
+                            foreign_key[Object.keys(foreign_key)[0]].comment
                           )
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("list-box", {
+                        ref: "foreigns",
+                        refInFor: true,
+                        attrs: {
+                          table: foreign_key[Object.keys(foreign_key)[0]].table,
+                          columns:
+                            foreign_key[Object.keys(foreign_key)[0]].columns
                         },
-                        expression: "postObject[Object.keys(foreign_key)[0]]"
-                      }
-                    })
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          : _vm._e()
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "buttons" }, [
-      _vm.id == ""
-        ? _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary mx-auto d-block",
-              attrs: { type: "button" },
-              on: { click: _vm.createRecord }
-            },
-            [_vm._v("登録")]
-          )
-        : _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary mx-auto d-block",
-              attrs: { type: "button" },
-              on: { click: _vm.editRecord }
-            },
-            [_vm._v("編集")]
-          ),
+                        model: {
+                          value: _vm.postObject[Object.keys(foreign_key)[0]],
+                          callback: function($$v) {
+                            _vm.$set(
+                              _vm.postObject,
+                              Object.keys(foreign_key)[0],
+                              $$v
+                            )
+                          },
+                          expression: "postObject[Object.keys(foreign_key)[0]]"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              )
+            : _vm._e()
+        ],
+        2
+      ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary mx-auto d-block",
-          on: { click: _vm.resetForm }
-        },
-        [_vm._v("項目をリセット")]
-      )
-    ])
-  ])
+      _c("div", { staticClass: "buttons" }, [
+        _vm.id == ""
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary mx-auto d-block",
+                attrs: { type: "button" },
+                on: { click: _vm.createRecord }
+              },
+              [_vm._v("登録")]
+            )
+          : _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary mx-auto d-block",
+                attrs: { type: "button" },
+                on: { click: _vm.editRecord }
+              },
+              [_vm._v("編集")]
+            ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-primary mx-auto d-block",
+            on: { click: _vm.resetForm }
+          },
+          [_vm._v("項目をリセット")]
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -53750,33 +53849,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
             test: '',
-            tag: ''
+            task: ''
         };
     },
-    mounted: function mounted() {},
-
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var result;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            _context.next = 2;
-                            return axios.get('/api/tags/1');
-
-                        case 2:
-                            result = _context.sent;
-
-                            this.tag = result.data;
-
-                        case 4:
                         case 'end':
                             return _context.stop();
                     }
@@ -53790,9 +53882,41 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         return created;
     }(),
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var result;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return axios.get('/api/tasks/1');
+
+                        case 2:
+                            result = _context2.sent;
+
+                            this.task = result.data;
+
+                        case 4:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }(),
     methods: {
         showModal: function showModal() {
             this.$refs.modal.openModal();
+        },
+        showNotice: function showNotice() {
+            this.$refs.notice.showNotice('実行中');
         }
     }
 });
@@ -53809,6 +53933,8 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("notice", { ref: "notice" }),
+      _vm._v(" "),
       _c(
         "modal",
         {
@@ -54170,6 +54296,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.value == '') {
                 this.stared = 1;
                 this.$emit('input', 1);
+            } else {
+                this.stared = this.value;
             }
         }
     },
@@ -54984,7 +55112,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n    position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n    position:relative;\n    width:100%;\n}\n", ""]);
+exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n    position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n    position:relative;\n    width:100%;\n}\n/*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n    height:5em;\n}\n", ""]);
 
 // exports
 
@@ -54996,6 +55124,7 @@ exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n    position:re
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventBus_js__ = __webpack_require__(7);
+//
 //
 //
 //
@@ -55054,7 +55183,9 @@ var render = function() {
           ? _c("task-list", { attrs: { user_id: _vm.user.id } })
           : _vm.content == "project"
           ? _c("project-list")
-          : _vm._e()
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "spacer" })
       ],
       1
     )
@@ -57046,7 +57177,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:10%;\n    top:10%;\n    padding:0.5em;\n    width:8em;\n    max-height:4em;\n    overflow:hidden;\n    border-radius:0.5em;\n    background:grey;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    font-size:75%;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 3s;\n            animation:notice-data-v-2ed81903 3s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
+exports.push([module.i, "\nspan[data-v-2ed81903] {\n    margin-left:0.5em;\n}\ni[data-v-2ed81903] {\n    font-size:150%;\n    color:grey;\n}\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:5%;\n    top:5%;\n    padding:0.5em;\n    /*width:10em;*/\n    height:3em;\n    overflow:hidden;\n    /*border-radius:0.5em;*/\n    background:orange;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    height:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    font-size:75%;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 3s;\n            animation:notice-data-v-2ed81903 3s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -57076,11 +57207,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            message: ''
+            message: '',
+            icon: ''
         };
     },
     props: {},
@@ -57089,18 +57224,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {},
     methods: {
         showNotice: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(message) {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(message, icon) {
                 var notice;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
-                                return message;
-
-                            case 2:
-                                this.message = _context.sent;
-                                notice = document.querySelector('.notice-wrapper');
+                                this.message = message || '';
+                                this.icon = icon || '';
+                                notice = this.$refs.noticeWrapper;
 
                                 notice.className = 'notice-wrapper notice-active';
                                 notice.addEventListener('animationend', function () {
@@ -57108,7 +57240,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.message = '';
                                 });
 
-                            case 6:
+                            case 5:
                             case 'end':
                                 return _context.stop();
                         }
@@ -57116,7 +57248,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function showNotice(_x) {
+            function showNotice(_x, _x2) {
                 return _ref.apply(this, arguments);
             }
 
@@ -57133,13 +57265,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "notice-wrapper" }, [
-    _c(
-      "div",
-      { staticClass: "notice-content" },
-      [_vm._t("default"), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.message))])],
-      2
-    )
+  return _c("div", { ref: "noticeWrapper", staticClass: "notice-wrapper" }, [
+    _c("div", { staticClass: "notice-content" }, [
+      _c("div", [
+        _vm.icon == "success"
+          ? _c("i", { staticClass: "far fa-check-circle success" })
+          : _vm.icon == "error"
+          ? _c("i", { staticClass: "fas fa-exclamation-circle error" })
+          : _vm._e(),
+        _vm._v(" "),
+        _c("span", [_vm._v(_vm._s(_vm.message))])
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -57443,7 +57580,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             japaneseDatetime: ''
         };
     },
-    props: {},
+    props: {
+        value: {
+            type: String,
+            required: false
+        }
+    },
     watch: {
         result: function result() {
             if (this.result) {
@@ -57464,10 +57606,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.dead_line = false;
                     break;
             }
+        },
+        value: function value() {
+            if (this.value == '') {
+                this.japaneseDatetime = '';
+            } else {
+                this.japaneseDatetime = this.value;
+            }
         }
     },
     created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        if (this.value) {
+            this.japaneseDatetime = this.value;
+        }
+    },
     methods: {
         setCurrentDatetime: function setCurrentDatetime() {
             var currentDatetime = new Date();

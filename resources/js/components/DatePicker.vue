@@ -31,7 +31,10 @@
             }  
         },
         props: {
-            
+            value:{
+                type:String,
+                required:false
+            }
         },
         watch:{
             result:function(){
@@ -53,13 +56,22 @@
                         this.dead_line = false
                         break
                 }
+            },
+             value:function(){
+                if(this.value == ''){
+                    this.japaneseDatetime = ''
+                }else{
+                    this.japaneseDatetime = this.value
+                }
             }
         },
         created:function(){
             
         },
         mounted:function(){
-            
+            if(this.value){
+                this.japaneseDatetime = this.value
+            }
         },
         methods: {
             setCurrentDatetime:function(){

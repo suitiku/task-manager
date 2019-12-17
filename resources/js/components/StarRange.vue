@@ -25,6 +25,8 @@
                 if(this.value == ''){
                     this.stared = 1
                     this.$emit('input',1)
+                }else{
+                    this.stared = this.value
                 }
             }
         },
