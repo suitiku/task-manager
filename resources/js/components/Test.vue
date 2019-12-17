@@ -3,7 +3,7 @@
     <div class="container">
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
-            <versatile-form table="tasks" />
+            <versatile-form table="tasks" idProp="4"/>
         </modal>
         <button class="button" v-on:click="showModal()">modal</button>
     </div>

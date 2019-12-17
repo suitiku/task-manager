@@ -11,6 +11,8 @@
     <div class="container">
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
+                {{column.COLUMN_NAME}}
+                {{postObject[column.COLUMN_NAME]}}
                 <!--インライン表示-->
                 <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
                     <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
@@ -45,7 +47,7 @@
     export default {
         data:function(){
             return {
-                id:this.id_props, //編集用id
+                id:this.idProp, //編集用id
                 columns:[],
                 postObject:{}, //送信用
                 
@@ -64,7 +66,7 @@
                 default:'',
                 required:true
             },
-            id_props: { //親コンポーネントから編集対象レコードを指定するためのid
+            idProp: { //親コンポーネントから編集対象レコードを指定するためのid
                 type:[Number,String],
                 default:'',
                 required:false
@@ -78,7 +80,7 @@
             foreign_keys: {
                 type:Array,
                 required:false
-            }
+            },
         },
         mounted() {
             this.init()
@@ -88,13 +90,21 @@
         },
         methods: {
             init:async function(){
+                // idPropsが設定されている場合はそのレコードを取得
+                let existingRecord = {}
+                if(this.idProp){
+                    existingRecord = await axios.get('/api/' + this.table + '/' + this.idProp)
+                }
+                console.log(existingRecord.data)
                 let result = await axios.get('/api/table_info/' + this.table)
                 this.columns = result.data
                 for(let index of Object.keys(result.data)){
                     if(this.whiteList.indexOf(result.data[index].COLUMN_NAME) == -1){
-                        this.$set(this.postObject,result.data[index].COLUMN_NAME,'')
+                        let data = existingRecord.data[result.data[index].COLUMN_NAME] || ''
+                        this.$set(this.postObject,result.data[index].COLUMN_NAME,data)
                     }
                 }
+                console.log(this.postObject)
                 //上書き処理がある場合
                 if(this.column_override){
                     for(let value of this.column_override){
@@ -102,8 +112,6 @@
                         this.$set(this.postObject,key,value[key])
                     }
                 }
-                // console.log(this.postObject)
-                
             },
             setInputType:function(dataType){
                 switch(dataType){

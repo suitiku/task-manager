@@ -23,7 +23,7 @@
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
-            <versatile-form table="tasks" />
+            <versatile-form table="tasks" v-bind:idProp="task.id"/>
             <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         

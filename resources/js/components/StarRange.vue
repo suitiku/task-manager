@@ -36,8 +36,12 @@
         },
         methods: {
             init:function(){
-                this.stared = 1
-                this.$emit('input',1)
+                if(this.value){
+                    this.stared = this.value
+                }else{
+                    this.stared = 1
+                    this.$emit('input',1)
+                }
             },
             updateValue:function(index){
                 this.stared = index

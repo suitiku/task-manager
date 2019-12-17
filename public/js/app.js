@@ -52509,7 +52509,9 @@ var render = function() {
           }
         },
         [
-          _c("versatile-form", { attrs: { table: "tasks" } }),
+          _c("versatile-form", {
+            attrs: { table: "tasks", idProp: _vm.task.id }
+          }),
           _vm._v(" "),
           _c(
             "button",
@@ -52864,11 +52866,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            id: this.id_props, //編集用id
+            id: this.idProp, //編集用id
             columns: [],
             postObject: {}, //送信用
 
@@ -52887,7 +52891,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             default: '',
             required: true
         },
-        id_props: { //親コンポーネントから編集対象レコードを指定するためのid
+        idProp: { //親コンポーネントから編集対象レコードを指定するためのid
             type: [Number, String],
             default: '',
             required: false
@@ -52913,74 +52917,94 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         init: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, value, key;
+                var existingRecord, result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index, data, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, value, key;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                // idPropsが設定されている場合はそのレコードを取得
+                                existingRecord = {};
+
+                                if (!this.idProp) {
+                                    _context.next = 5;
+                                    break;
+                                }
+
+                                _context.next = 4;
+                                return axios.get('/api/' + this.table + '/' + this.idProp);
+
+                            case 4:
+                                existingRecord = _context.sent;
+
+                            case 5:
+                                console.log(existingRecord.data);
+                                _context.next = 8;
                                 return axios.get('/api/table_info/' + this.table);
 
-                            case 2:
+                            case 8:
                                 result = _context.sent;
 
                                 this.columns = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context.prev = 7;
+                                _context.prev = 13;
                                 for (_iterator = Object.keys(result.data)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
                                     if (this.whiteList.indexOf(result.data[index].COLUMN_NAME) == -1) {
-                                        this.$set(this.postObject, result.data[index].COLUMN_NAME, '');
+                                        data = existingRecord.data[result.data[index].COLUMN_NAME] || '';
+
+                                        this.$set(this.postObject, result.data[index].COLUMN_NAME, data);
                                     }
                                 }
-                                //上書き処理がある場合
-                                _context.next = 15;
+                                _context.next = 21;
                                 break;
 
-                            case 11:
-                                _context.prev = 11;
-                                _context.t0 = _context['catch'](7);
+                            case 17:
+                                _context.prev = 17;
+                                _context.t0 = _context['catch'](13);
                                 _didIteratorError = true;
                                 _iteratorError = _context.t0;
 
-                            case 15:
-                                _context.prev = 15;
-                                _context.prev = 16;
+                            case 21:
+                                _context.prev = 21;
+                                _context.prev = 22;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 18:
-                                _context.prev = 18;
+                            case 24:
+                                _context.prev = 24;
 
                                 if (!_didIteratorError) {
-                                    _context.next = 21;
+                                    _context.next = 27;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 21:
-                                return _context.finish(18);
+                            case 27:
+                                return _context.finish(24);
 
-                            case 22:
-                                return _context.finish(15);
+                            case 28:
+                                return _context.finish(21);
 
-                            case 23:
+                            case 29:
+                                console.log(this.postObject);
+                                //上書き処理がある場合
+
                                 if (!this.column_override) {
-                                    _context.next = 43;
+                                    _context.next = 50;
                                     break;
                                 }
 
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context.prev = 27;
+                                _context.prev = 34;
 
                                 for (_iterator2 = this.column_override[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     value = _step2.value;
@@ -52988,45 +53012,45 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                     this.$set(this.postObject, key, value[key]);
                                 }
-                                _context.next = 35;
+                                _context.next = 42;
                                 break;
 
-                            case 31:
-                                _context.prev = 31;
-                                _context.t1 = _context['catch'](27);
+                            case 38:
+                                _context.prev = 38;
+                                _context.t1 = _context['catch'](34);
                                 _didIteratorError2 = true;
                                 _iteratorError2 = _context.t1;
 
-                            case 35:
-                                _context.prev = 35;
-                                _context.prev = 36;
+                            case 42:
+                                _context.prev = 42;
+                                _context.prev = 43;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
-                            case 38:
-                                _context.prev = 38;
+                            case 45:
+                                _context.prev = 45;
 
                                 if (!_didIteratorError2) {
-                                    _context.next = 41;
+                                    _context.next = 48;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
-                            case 41:
-                                return _context.finish(38);
+                            case 48:
+                                return _context.finish(45);
 
-                            case 42:
-                                return _context.finish(35);
+                            case 49:
+                                return _context.finish(42);
 
-                            case 43:
+                            case 50:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[7, 11, 15, 23], [16,, 18, 22], [27, 31, 35, 43], [36,, 38, 42]]);
+                }, _callee, this, [[13, 17, 21, 29], [22,, 24, 28], [34, 38, 42, 50], [43,, 45, 49]]);
             }));
 
             function init() {
@@ -53242,6 +53266,14 @@ var render = function() {
       [
         _vm._l(_vm.columns, function(column, index) {
           return _c("div", { key: index, staticClass: "column" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(column.COLUMN_NAME) +
+                "\n            " +
+                _vm._s(_vm.postObject[column.COLUMN_NAME]) +
+                "\n            "
+            ),
+            _vm._v(" "),
             column.COLUMN_TYPE == "tinyint(4)"
               ? _c(
                   "div",
@@ -53789,7 +53821,7 @@ var render = function() {
             expression: "modal"
           }
         },
-        [_c("versatile-form", { attrs: { table: "tasks" } })],
+        [_c("versatile-form", { attrs: { table: "tasks", idProp: "4" } })],
         1
       ),
       _vm._v(" "),
@@ -54150,8 +54182,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         init: function init() {
-            this.stared = 1;
-            this.$emit('input', 1);
+            if (this.value) {
+                this.stared = this.value;
+            } else {
+                this.stared = 1;
+                this.$emit('input', 1);
+            }
         },
         updateValue: function updateValue(index) {
             this.stared = index;
