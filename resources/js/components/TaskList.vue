@@ -44,7 +44,8 @@
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>
         </div>
-        <task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index"/>
+        <!--<task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index"/>-->
+        <task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>
     </div>
 </template>
 

@@ -23,7 +23,7 @@
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
-            <versatile-form v-model="editedTask" table="tasks" v-bind:idProp="taskId"/>
+            <versatile-form v-model="editedTask" table="tasks" v-bind:idProp="task.id"/>
             <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         
@@ -57,9 +57,11 @@
             <div class="detail">
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
-                <star-range v-model="task.priority" />
+                <i class="fas fa-star" v-for="(p,pIndex) in task.priority"></i>
+                <i class="far fa-star" v-for="(np,npIndex) in (5 - task.priority)"></i>
                 <span class="label">難易度</span>
-                <star-range v-model="task.difficulty" />
+                <i class="fas fa-star" v-for="(p,pIndex) in task.difficulty"></i>
+                <i class="far fa-star" v-for="(np,npIndex) in (5 - task.difficulty)"></i>
                 <!--タグ-->
                 <div class="tags">
                     <div class="tag" v-for="(tag,index) in task.tags">
@@ -99,8 +101,9 @@
             }  
         },
         props:{
-            taskId: {
-                type:[String,Number],
+            task: {
+                type:Object,
+                default:{},
                 required:true,
             }
         },
@@ -111,31 +114,19 @@
                 },
                 deep:true
             },
-            editedTask:async function(){
-                await this.fetchTask()
-                this.updateData()
+            editedTask:function(){
+                
             }
         },
         created:async function(){
-            if(this.taskId){
-                await this.fetchTask()
-                this.updateData()
-            }
         },
-        mounted:async function(){
-            if(this.taskId && !this.task){
-                await this.fetchTask()
-                this.updateData()
-            }
+        mounted() {
+            this.updateData()
         },
         computed:{
             
         },
         methods: {
-            fetchTask:async function(){
-                let result = await axios.get('/api/tasks/' + this.taskId)
-                this.task = result.data
-            },
             setTagIcon:function(task){
                 return task.tags != '' ? {visibility:'visible'} : {visibility:'hidden'}
             },
@@ -151,9 +142,15 @@
                     }
                     let result = await axios.put('/api/tasks/' + taskId, modifyData)
                     if(result.data){
-                        //taskを再取得して設定
+                        //状態だけ完了のものに変更。親コンポーネント（TaskList.vue）のtasksの値は変更されていないので注意。sort or filterでfetchする。
+                        // チェックボックスを無効化
+                        check.target.disabled = true
+                        //タスク全体にマスクをかける
+                        this.mask_class = 'mask mask-active'
+                        this.checkbox = true
+                        
+                        //Project.vueとかでv-modelが設定されているので上部に送出
                         let taskResult = await axios.get('api/tasks/' + taskId)
-                        this.task = taskResult.data
                         this.$emit('input',taskResult.data)
                     }
                 }
@@ -240,9 +237,6 @@
         border:1px solid black;
         /*border-radius:0.2em;*/
         transition:all 1.0s ease;
-    }
-    .task-wrapper:hover {
-        background:gainsboro;
     }
     .headline {
         display:flex;

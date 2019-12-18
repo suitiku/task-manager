@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         
-        <!--<task v-bind:task="task" />-->
+        <task v-bind:taskId="3" />
         
         <notice ref="notice" />
         <!--モーダル-->

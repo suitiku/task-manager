@@ -50615,6 +50615,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50846,7 +50847,7 @@ var render = function() {
                   _vm._l(_vm.project.tasks, function(task, index) {
                     return _c("task", {
                       key: index,
-                      attrs: { task: task },
+                      attrs: { taskId: task.id },
                       model: {
                         value: _vm.project.tasks[index],
                         callback: function($$v) {
@@ -50996,6 +50997,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -51969,7 +51971,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.tasks, function(task, index) {
-        return _c("task", { key: index, attrs: { task: task } })
+        return _c("task", { key: index, attrs: { taskId: task.id } })
       })
     ],
     2
@@ -52071,7 +52073,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin-right:1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin-right:1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -52171,12 +52173,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            task: {},
             wrapper_class: 'task-wrapper',
             mask_class: 'mask',
             mask: false,
@@ -52185,13 +52186,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             detail: false,
             deleteModal: false,
             editModal: false,
+            editedTask: '',
             inactivateTask: ''
         };
     },
     props: {
-        task: {
-            type: Object,
-            default: {},
+        taskId: {
+            type: [String, Number],
             required: true
         }
     },
@@ -52201,33 +52202,127 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.updateData();
             },
             deep: true
-        }
+        },
+        editedTask: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return this.fetchTask();
+
+                            case 2:
+                                this.updateData();
+
+                            case 3:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function editedTask() {
+                return _ref.apply(this, arguments);
+            }
+
+            return editedTask;
+        }()
     },
     created: function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                 while (1) {
-                    switch (_context.prev = _context.next) {
+                    switch (_context2.prev = _context2.next) {
                         case 0:
+                            if (!this.taskId) {
+                                _context2.next = 4;
+                                break;
+                            }
+
+                            _context2.next = 3;
+                            return this.fetchTask();
+
+                        case 3:
+                            this.updateData();
+
+                        case 4:
                         case 'end':
-                            return _context.stop();
+                            return _context2.stop();
                     }
                 }
-            }, _callee, this);
+            }, _callee2, this);
         }));
 
         function created() {
-            return _ref.apply(this, arguments);
+            return _ref2.apply(this, arguments);
         }
 
         return created;
     }(),
-    mounted: function mounted() {
-        this.updateData();
-    },
+    mounted: function () {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                while (1) {
+                    switch (_context3.prev = _context3.next) {
+                        case 0:
+                            if (!(this.taskId && !this.task)) {
+                                _context3.next = 4;
+                                break;
+                            }
 
+                            _context3.next = 3;
+                            return this.fetchTask();
+
+                        case 3:
+                            this.updateData();
+
+                        case 4:
+                        case 'end':
+                            return _context3.stop();
+                    }
+                }
+            }, _callee3, this);
+        }));
+
+        function mounted() {
+            return _ref3.apply(this, arguments);
+        }
+
+        return mounted;
+    }(),
     computed: {},
     methods: {
+        fetchTask: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.next = 2;
+                                return axios.get('/api/tasks/' + this.taskId);
+
+                            case 2:
+                                result = _context4.sent;
+
+                                this.task = result.data;
+
+                            case 4:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function fetchTask() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return fetchTask;
+        }(),
         setTagIcon: function setTagIcon(task) {
             return task.tags != '' ? { visibility: 'visible' } : { visibility: 'hidden' };
         },
@@ -52236,59 +52331,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(taskId) {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(taskId) {
                 var check, modifyData, result, taskResult;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context5.prev = _context5.next) {
                             case 0:
                                 check = event;
 
                                 if (!(event.target.checked == true)) {
-                                    _context2.next = 14;
+                                    _context5.next = 12;
                                     break;
                                 }
 
                                 modifyData = {
                                     state_id: 3
                                 };
-                                _context2.next = 5;
+                                _context5.next = 5;
                                 return axios.put('/api/tasks/' + taskId, modifyData);
 
                             case 5:
-                                result = _context2.sent;
+                                result = _context5.sent;
 
                                 if (!result.data) {
-                                    _context2.next = 14;
+                                    _context5.next = 12;
                                     break;
                                 }
 
-                                //状態だけ完了のものに変更。親コンポーネント（TaskList.vue）のtasksの値は変更されていないので注意。sort or filterでfetchする。
-                                // チェックボックスを無効化
-                                check.target.disabled = true;
-                                //タスク全体にマスクをかける
-                                this.mask_class = 'mask mask-active';
-                                this.checkbox = true;
-
-                                //Project.vueとかでv-modelが設定されているので上部に送出
-                                _context2.next = 12;
+                                _context5.next = 9;
                                 return axios.get('api/tasks/' + taskId);
 
-                            case 12:
-                                taskResult = _context2.sent;
+                            case 9:
+                                taskResult = _context5.sent;
 
+                                this.task = taskResult.data;
                                 this.$emit('input', taskResult.data);
 
-                            case 14:
+                            case 12:
                             case 'end':
-                                return _context2.stop();
+                                return _context5.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee5, this);
             }));
 
             function checkTask(_x) {
-                return _ref2.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return checkTask;
@@ -52300,19 +52388,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(itemId) {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(itemId) {
                 var el, modifyData, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context6.prev = _context6.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
-                                _context3.next = 4;
+                                _context6.next = 4;
                                 return axios.put('/api/items/' + itemId, modifyData);
 
                             case 4:
-                                result = _context3.sent;
+                                result = _context6.sent;
 
                                 if (result.data) {
                                     el.target.disabled = true;
@@ -52321,14 +52409,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 6:
                             case 'end':
-                                return _context3.stop();
+                                return _context6.stop();
                         }
                     }
-                }, _callee3, this);
+                }, _callee6, this);
             }));
 
             function checkItem(_x2) {
-                return _ref3.apply(this, arguments);
+                return _ref6.apply(this, arguments);
             }
 
             return checkItem;
@@ -52361,17 +52449,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
-                        switch (_context4.prev = _context4.next) {
+                        switch (_context7.prev = _context7.next) {
                             case 0:
-                                _context4.next = 2;
+                                _context7.next = 2;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 2:
-                                result = _context4.sent;
+                                result = _context7.sent;
 
                                 if (result.data) {
                                     // 削除が成功した場合
@@ -52388,36 +52476,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context4.stop();
+                                return _context7.stop();
                         }
                     }
-                }, _callee4, this);
+                }, _callee7, this);
             }));
 
             function deleteTask() {
-                return _ref4.apply(this, arguments);
+                return _ref7.apply(this, arguments);
             }
 
             return deleteTask;
         }(),
         showEditTaskDialog: function () {
-            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
                     while (1) {
-                        switch (_context5.prev = _context5.next) {
+                        switch (_context8.prev = _context8.next) {
                             case 0:
                                 this.$refs.editModal.openModal();
 
                             case 1:
                             case 'end':
-                                return _context5.stop();
+                                return _context8.stop();
                         }
                     }
-                }, _callee5, this);
+                }, _callee8, this);
             }));
 
             function showEditTaskDialog() {
-                return _ref5.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -52510,7 +52598,14 @@ var render = function() {
         },
         [
           _c("versatile-form", {
-            attrs: { table: "tasks", idProp: _vm.task.id }
+            attrs: { table: "tasks", idProp: _vm.taskId },
+            model: {
+              value: _vm.editedTask,
+              callback: function($$v) {
+                _vm.editedTask = $$v
+              },
+              expression: "editedTask"
+            }
           }),
           _vm._v(" "),
           _c(
@@ -52643,22 +52738,26 @@ var render = function() {
           [
             _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
             _vm._v(" "),
-            _vm._l(_vm.task.priority, function(p, pIndex) {
-              return _c("i", { staticClass: "fas fa-star" })
-            }),
-            _vm._v(" "),
-            _vm._l(5 - _vm.task.priority, function(np, npIndex) {
-              return _c("i", { staticClass: "far fa-star" })
+            _c("star-range", {
+              model: {
+                value: _vm.task.priority,
+                callback: function($$v) {
+                  _vm.$set(_vm.task, "priority", $$v)
+                },
+                expression: "task.priority"
+              }
             }),
             _vm._v(" "),
             _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
             _vm._v(" "),
-            _vm._l(_vm.task.difficulty, function(p, pIndex) {
-              return _c("i", { staticClass: "fas fa-star" })
-            }),
-            _vm._v(" "),
-            _vm._l(5 - _vm.task.difficulty, function(np, npIndex) {
-              return _c("i", { staticClass: "far fa-star" })
+            _c("star-range", {
+              model: {
+                value: _vm.task.difficulty,
+                callback: function($$v) {
+                  _vm.$set(_vm.task, "difficulty", $$v)
+                },
+                expression: "task.difficulty"
+              }
             }),
             _vm._v(" "),
             _c(
@@ -52703,7 +52802,7 @@ var render = function() {
               0
             )
           ],
-          2
+          1
         )
       ])
     ],
@@ -52823,9 +52922,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
 //
 //
 //
@@ -53314,7 +53410,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 3:
                                 result = _context5.sent;
 
-                                this.$refs.editNotice.showNotice('タスクを修正しました', 'success');
+                                this.$refs.editNotice.showNotice('データを修正しました', 'success');
                                 this.$emit('input', result.data);
                                 _context5.next = 12;
                                 break;
@@ -53324,7 +53420,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _context5.t0 = _context5['catch'](0);
 
                                 console.log(_context5.t0);
-                                this.$refs.editNotice.showNotice('タスクの修正に失敗しました', 'error');
+                                this.$refs.editNotice.showNotice('データの修正に失敗しました', 'error');
 
                             case 12:
                             case 'end':
@@ -53933,6 +54029,8 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("task", { attrs: { taskId: 3 } }),
+      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(

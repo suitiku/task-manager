@@ -22,7 +22,8 @@
                     
                     <!--タスクリスト-->
                     <div class="tasks">
-                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index"/>
+                        <!--<task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index"/>-->
+                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:taskId="task.id" v-bind:key="index"/>
                         <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
                         <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
                     </div>

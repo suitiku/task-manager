@@ -5,7 +5,6 @@
 <!--今後の改修-->
 <!--1 UIコンポーネントから生成する-->
 <!--2 バリデーションの追加-->
-<!--4 処理成功ダイアログ追加-->
 
 <template>
     <div class="container">
@@ -14,8 +13,6 @@
         
         <div class="forms">
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
-                <!--{{column.COLUMN_NAME}}-->
-                <!--{{postObject[column.COLUMN_NAME]}}-->
                 <!--インライン表示-->
                 <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
                     <span v-show="labelColumns.indexOf(column.DATA_TYPE) != -1">{{setPlaceholder(column)}}</span>
@@ -166,14 +163,13 @@
                 }
             },
             editRecord: async function(){
-                
                 try{
                     let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
-                    this.$refs.editNotice.showNotice('タスクを修正しました','success')
+                    this.$refs.editNotice.showNotice('データを修正しました','success')
                     this.$emit('input',result.data)
                 }catch(e){
                     console.log(e)
-                    this.$refs.editNotice.showNotice('タスクの修正に失敗しました','error')
+                    this.$refs.editNotice.showNotice('データの修正に失敗しました','error')
                 }
             },
         },
