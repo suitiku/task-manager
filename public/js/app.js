@@ -52943,7 +52943,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan {\n    font-weight:bold;\n}\n.form-inline {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.form-inline span {\n    margin-right:2em;\n}\n.form-block {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n    border:1px solid red;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-weight:bold;\n}\n.form-inline {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.form-inline span {\n    margin-right:2em;\n}\n.form-block {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
 
 // exports
 
@@ -53038,7 +53038,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             type: Array,
             required: false
         },
-        // 外部キーの設定。foreignKey:table形式の配列。この設定を元にlist-boxを生成する
+        // 外部キーの設定。foreignKey:{table:hoges,columns:['name','hoge'],comment:'hogehoge'}形式の配列。この設定を元にlist-boxを生成する
         foreignKeys: {
             type: Array,
             required: false
@@ -53441,31 +53441,32 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                _context5.prev = 0;
-                                _context5.next = 3;
+                                console.log(this.postObject);
+                                _context5.prev = 1;
+                                _context5.next = 4;
                                 return axios.put('/api/' + this.table + '/' + this.id, this.postObject);
 
-                            case 3:
+                            case 4:
                                 result = _context5.sent;
 
                                 this.$refs.editNotice.showNotice('データを修正しました', 'success');
                                 this.$emit('input', result.data);
-                                _context5.next = 12;
+                                _context5.next = 13;
                                 break;
 
-                            case 8:
-                                _context5.prev = 8;
-                                _context5.t0 = _context5['catch'](0);
+                            case 9:
+                                _context5.prev = 9;
+                                _context5.t0 = _context5['catch'](1);
 
                                 console.log(_context5.t0);
                                 this.$refs.editNotice.showNotice('データの修正に失敗しました', 'error');
 
-                            case 12:
+                            case 13:
                             case 'end':
                                 return _context5.stop();
                         }
                     }
-                }, _callee5, this, [[0, 8]]);
+                }, _callee5, this, [[1, 9]]);
             }));
 
             function editRecord() {
@@ -53781,10 +53782,10 @@ var render = function() {
           _vm.foreignKeys
             ? _c(
                 "div",
-                { staticClass: "foreign" },
                 _vm._l(_vm.foreignKeys, function(foreignKey, index) {
                   return _c(
                     "div",
+                    { staticClass: "foreign" },
                     [
                       _c("p", [
                         _vm._v(
@@ -55025,7 +55026,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         },
         value: {
-            type: [String, Number],
+            type: [String, Number, Array],
             required: false
         },
         is_multiple: {
@@ -55081,20 +55082,47 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     event.target.className = 'item selected';
                     this.ids.push(id);
                 }
+                //複数の場合は配列を返す
+                this.$emit('input', this.ids);
             } else {
                 this.ids = [];
                 if (event.target.className == 'item selected') {
                     event.target.className = 'item';
                 } else {
-                    var el = document.getElementsByClassName('selected');
-                    if (el[0]) {
-                        el[0].className = 'item';
+                    var els = this.$refs.items;
+                    var _iteratorNormalCompletion = true;
+                    var _didIteratorError = false;
+                    var _iteratorError = undefined;
+
+                    try {
+                        for (var _iterator = els[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                            var el = _step.value;
+
+                            if (el.className == 'item selected') {
+                                el.className = 'item';
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+                        } finally {
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
                     }
+
                     event.target.className = 'item selected';
                     this.ids.push(id);
                 }
+                // 単体の場合はNumberを返す
+                this.$emit('input', this.ids[0]);
             }
-            this.$emit('input', this.ids);
         },
         resetValue: function resetValue() {
             this.ids = [];
@@ -55125,6 +55153,8 @@ var render = function() {
         return _c("div", { staticClass: "item-wrapper" }, [
           _vm.value == item.id
             ? _c("div", {
+                ref: "items",
+                refInFor: true,
                 staticClass: "item selected",
                 on: {
                   click: function($event) {
@@ -55133,6 +55163,8 @@ var render = function() {
                 }
               })
             : _c("div", {
+                ref: "items",
+                refInFor: true,
                 staticClass: "item",
                 on: {
                   click: function($event) {

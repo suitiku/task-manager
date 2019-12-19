@@ -76,7 +76,7 @@
                 type:Array,
                 required:false
             },
-            // 外部キーの設定。foreignKey:table形式の配列。この設定を元にlist-boxを生成する
+            // 外部キーの設定。foreignKey:{table:hoges,columns:['name','hoge'],comment:'hogehoge'}形式の配列。この設定を元にlist-boxを生成する
             foreignKeys: {
                 type:Array,
                 required:false
@@ -163,6 +163,7 @@
                 }
             },
             editRecord: async function(){
+                console.log(this.postObject)
                 try{
                     let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
                     this.$refs.editNotice.showNotice('データを修正しました','success')
@@ -202,7 +203,6 @@
     }
     .foreign {
         margin:1em 0;
-        border:1px solid red;
     }
     .buttons {
         display:flex;

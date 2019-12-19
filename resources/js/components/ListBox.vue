@@ -9,8 +9,8 @@
     <div class="container">
         <div class="wrapper">
             <div v-for="(item,index) in items" class="item-wrapper">
-                <div v-if="value == item.id" class="item selected" v-on:click="selectItem(item.id)"></div>
-                <div v-else class="item" v-on:click="selectItem(item.id)"></div>
+                <div ref="items" v-if="value == item.id" class="item selected" v-on:click="selectItem(item.id)"></div>
+                <div ref="items" v-else class="item" v-on:click="selectItem(item.id)"></div>
                 <div class="column-wrapper">
                     <div v-for="(column,columnIndex) in columns">
                         <span v-if="columnIndex == 0">{{item[column]}}</span>
@@ -42,7 +42,7 @@
                     required:false
               },
               value: {
-                    type:[String,Number],
+                    type:[String,Number,Array],
                     required:false
               },
               is_multiple:{
@@ -75,18 +75,24 @@
                         event.target.className = 'item selected'
                         this.ids.push(id)
                     }
+                    //複数の場合は配列を返す
+                    this.$emit('input',this.ids)
                 }else{
                     this.ids = []
                     if(event.target.className == 'item selected'){
                         event.target.className = 'item'
                     }else{
-                        let el = document.getElementsByClassName('selected')
-                        if(el[0]){el[0].className = 'item'}
+                        let els = this.$refs.items
+                        for(let el of els){
+                            if(el.className == 'item selected'){el.className = 'item'}
+                        }
                         event.target.className = 'item selected'
                         this.ids.push(id)
                     }
+                    // 単体の場合はNumberを返す
+                    this.$emit('input',this.ids[0])
                 }
-                this.$emit('input',this.ids)
+                
             },
             resetValue:function(){
                 this.ids = []
