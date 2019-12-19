@@ -3,7 +3,7 @@
 <template>
     <div class="container">
         <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:foreign_keys="foreign_keys"/>
+            <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:foreignKeys="foreignKeys"/>
         </modal>
         <div class="add-task-button">
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
@@ -58,7 +58,7 @@
                 tasks:[], //表示用タスクリスト
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
-                foreign_keys:[
+                foreignKeys:[
                     {project_id:
                         {
                             table:'projects',

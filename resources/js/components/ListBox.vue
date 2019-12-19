@@ -9,7 +9,8 @@
     <div class="container">
         <div class="wrapper">
             <div v-for="(item,index) in items" class="item-wrapper">
-                <div class="item" v-on:click="selectItem(item.id)"></div>
+                <div v-if="value == item.id" class="item selected" v-on:click="selectItem(item.id)"></div>
+                <div v-else class="item" v-on:click="selectItem(item.id)"></div>
                 <div class="column-wrapper">
                     <div v-for="(column,columnIndex) in columns">
                         <span v-if="columnIndex == 0">{{item[column]}}</span>
@@ -38,6 +39,10 @@
               columns: {
                     type:Array,
                     default:() => (['name']),
+                    required:false
+              },
+              value: {
+                    type:[String,Number],
                     required:false
               },
               is_multiple:{

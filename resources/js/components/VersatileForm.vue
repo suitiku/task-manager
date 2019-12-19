@@ -28,10 +28,10 @@
                 </div>
             </div>
             <!--外部キー値の設定-->
-            <div v-if="foreign_keys" class="foreign">
-                <div v-for="(foreign_key,index) in foreign_keys">
-                    <p>{{foreign_key[Object.keys(foreign_key)[0]].comment}}</p>
-                    <list-box ref="foreigns" v-model="postObject[Object.keys(foreign_key)[0]]" v-bind:table="foreign_key[Object.keys(foreign_key)[0]].table" v-bind:columns="foreign_key[Object.keys(foreign_key)[0]].columns" />
+            <div v-if="foreignKeys">
+                <div v-for="(foreignKey,index) in foreignKeys" class="foreign">
+                    <p>{{foreignKey[Object.keys(foreignKey)[0]].comment}}</p>
+                    <list-box ref="foreigns" v-model="postObject[Object.keys(foreignKey)[0]]" v-bind:table="foreignKey[Object.keys(foreignKey)[0]].table" v-bind:columns="foreignKey[Object.keys(foreignKey)[0]].columns" />
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
                 type:Array,
                 required:false
             },
-            // 外部キーの設定。foreign_key:table形式の配列。この設定を元にlist-boxを生成する
-            foreign_keys: {
+            // 外部キーの設定。foreignKey:table形式の配列。この設定を元にlist-boxを生成する
+            foreignKeys: {
                 type:Array,
                 required:false
             },
@@ -132,7 +132,7 @@
                     this.$set(this.postObject,key,'')
                 }
                 //外部キー要素（list-box）を初期化
-                if(this.foreign_keys){
+                if(this.foreignKeys){
                     this.$refs.foreigns.forEach(foreign => {
                         foreign.resetValue()
                     })
@@ -202,6 +202,7 @@
     }
     .foreign {
         margin:1em 0;
+        border:1px solid red;
     }
     .buttons {
         display:flex;

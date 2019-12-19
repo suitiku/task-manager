@@ -51057,7 +51057,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tasks: [], //表示用タスクリスト
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
-            foreign_keys: [{ project_id: {
+            foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
                     comment: '所属するプロジェクトを選択してください。'
@@ -51569,7 +51569,7 @@ var render = function() {
         [
           _c("versatile-form", {
             ref: "form",
-            attrs: { table: "tasks", foreign_keys: _vm.foreign_keys },
+            attrs: { table: "tasks", foreignKeys: _vm.foreignKeys },
             model: {
               value: _vm.newTask,
               callback: function($$v) {
@@ -52194,7 +52194,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             deleteModal: false,
             editModal: false,
             editedTask: '',
-            inactivateTask: ''
+            inactivateTask: '',
+            foreignKeys: [{ project_id: {
+                    table: 'projects',
+                    columns: ['name', 'dead_line'],
+                    comment: '所属するプロジェクトを選択してください。'
+                }
+            }, { state_id: {
+                    table: 'states',
+                    columns: ['name'],
+                    comment: '状態を選択してください'
+                }
+            }]
         };
     },
     props: {
@@ -52300,11 +52311,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return mounted;
     }(),
     computed: {
+        // 炎上中マーク
         fire: function fire() {
             var currentDatetime = new Date();
             var deadlineDatetime = new Date(this.task.dead_line);
             var remainingTime = deadlineDatetime - currentDatetime;
-            console.log(remainingTime);
             if (0 < remainingTime && remainingTime < 43200000) {
                 return { fontSize: '150%', color: 'orange', opacity: '1.0' };
             } else {
@@ -52617,7 +52628,11 @@ var render = function() {
         },
         [
           _c("versatile-form", {
-            attrs: { table: "tasks", idProp: _vm.taskId },
+            attrs: {
+              foreignKeys: _vm.foreignKeys,
+              table: "tasks",
+              idProp: _vm.taskId
+            },
             model: {
               value: _vm.editedTask,
               callback: function($$v) {
@@ -52928,7 +52943,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan {\n    font-weight:bold;\n}\n.form-inline {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.form-inline span {\n    margin-right:2em;\n}\n.form-block {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
+exports.push([module.i, "\nspan {\n    font-weight:bold;\n}\n.form-inline {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.form-inline span {\n    margin-right:2em;\n}\n.form-block {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.forms input,textarea {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.foreign {\n    margin:1em 0;\n    border:1px solid red;\n}\n.buttons {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-pack:distribute;\n        justify-content:space-around;\n}\n.column {\n    margin:0.8em 0;\n}\n", ""]);
 
 // exports
 
@@ -53023,8 +53038,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             type: Array,
             required: false
         },
-        // 外部キーの設定。foreign_key:table形式の配列。この設定を元にlist-boxを生成する
-        foreign_keys: {
+        // 外部キーの設定。foreignKey:table形式の配列。この設定を元にlist-boxを生成する
+        foreignKeys: {
             type: Array,
             required: false
         }
@@ -53298,7 +53313,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            if (this.foreign_keys) {
+            if (this.foreignKeys) {
                 this.$refs.foreigns.forEach(function (foreign) {
                     foreign.resetValue();
                 });
@@ -53763,19 +53778,17 @@ var render = function() {
             ])
           }),
           _vm._v(" "),
-          _vm.foreign_keys
+          _vm.foreignKeys
             ? _c(
                 "div",
                 { staticClass: "foreign" },
-                _vm._l(_vm.foreign_keys, function(foreign_key, index) {
+                _vm._l(_vm.foreignKeys, function(foreignKey, index) {
                   return _c(
                     "div",
                     [
                       _c("p", [
                         _vm._v(
-                          _vm._s(
-                            foreign_key[Object.keys(foreign_key)[0]].comment
-                          )
+                          _vm._s(foreignKey[Object.keys(foreignKey)[0]].comment)
                         )
                       ]),
                       _vm._v(" "),
@@ -53783,20 +53796,20 @@ var render = function() {
                         ref: "foreigns",
                         refInFor: true,
                         attrs: {
-                          table: foreign_key[Object.keys(foreign_key)[0]].table,
+                          table: foreignKey[Object.keys(foreignKey)[0]].table,
                           columns:
-                            foreign_key[Object.keys(foreign_key)[0]].columns
+                            foreignKey[Object.keys(foreignKey)[0]].columns
                         },
                         model: {
-                          value: _vm.postObject[Object.keys(foreign_key)[0]],
+                          value: _vm.postObject[Object.keys(foreignKey)[0]],
                           callback: function($$v) {
                             _vm.$set(
                               _vm.postObject,
-                              Object.keys(foreign_key)[0],
+                              Object.keys(foreignKey)[0],
                               $$v
                             )
                           },
-                          expression: "postObject[Object.keys(foreign_key)[0]]"
+                          expression: "postObject[Object.keys(foreignKey)[0]]"
                         }
                       })
                     ],
@@ -54989,6 +55002,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55008,6 +55022,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             default: function _default() {
                 return ['name'];
             },
+            required: false
+        },
+        value: {
+            type: [String, Number],
             required: false
         },
         is_multiple: {
@@ -55105,14 +55123,23 @@ var render = function() {
       { staticClass: "wrapper" },
       _vm._l(_vm.items, function(item, index) {
         return _c("div", { staticClass: "item-wrapper" }, [
-          _c("div", {
-            staticClass: "item",
-            on: {
-              click: function($event) {
-                return _vm.selectItem(item.id)
-              }
-            }
-          }),
+          _vm.value == item.id
+            ? _c("div", {
+                staticClass: "item selected",
+                on: {
+                  click: function($event) {
+                    return _vm.selectItem(item.id)
+                  }
+                }
+              })
+            : _c("div", {
+                staticClass: "item",
+                on: {
+                  click: function($event) {
+                    return _vm.selectItem(item.id)
+                  }
+                }
+              }),
           _vm._v(" "),
           _c(
             "div",

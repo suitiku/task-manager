@@ -21,7 +21,7 @@
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
-            <versatile-form v-model="editedTask" table="tasks" v-bind:idProp="taskId"/>
+            <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
             <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         
@@ -103,6 +103,22 @@
                 editModal:false,
                 editedTask:'',
                 inactivateTask:'',
+                foreignKeys:[
+                    {project_id:
+                        {
+                            table:'projects',
+                            columns:['name','dead_line'],
+                            comment:'所属するプロジェクトを選択してください。'
+                        }
+                    },
+                    {state_id:
+                        {
+                            table:'states',
+                            columns:['name'],
+                            comment:'状態を選択してください'
+                        }
+                    }
+                ]
             }  
         },
         props:{
@@ -136,6 +152,7 @@
             }
         },
         computed:{
+            // 炎上中マーク
             fire:function(){
                 let currentDatetime = new Date()
                 let deadlineDatetime = new Date(this.task.dead_line)
