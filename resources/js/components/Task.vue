@@ -1,7 +1,5 @@
 <!--タスク単体を表示するデザインコンポーネント-->
 <!--編集、状態の変化で上部に送出-->
-<!--1 削除処理-->
-<!--3 編集処理-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
 <!--5 ログ表示-->
 <template>
@@ -27,14 +25,22 @@
             <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         
+        <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
+            <!--マスク部-->
             <div v-bind:class="mask_class" v-on:click="openDetail()"></div>
             <div class="state-icon" v-show="checkbox || not_started">
                 <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
                 <i v-show="not_started" class="fas fa-2x fa-exclamation-circle"></i>
             </div>
+            <!--本体表示部分-->
+            <!--ラベル部分-->
             <div class="task-label">
                 <div class="headline">
+                    <div class="headline-icons">
+                        <!--炎上マーク（締切24時間以内のタスク）-->
+                        <i class="fas fa-fire" v-bind:style="fire"></i>
+                    </div>
                     <input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">
                     <div>
                         <div v-if="task.project && task.project.id != 1" class="project-label">{{task.project.name}}</div>
@@ -54,6 +60,7 @@
                     <i class="fas fa-trash task-icon" v-on:click="showDeleteTaskDialog()"></i>
                 </div>
             </div>
+            <!--詳細部分（クリックで開閉）-->
             <div class="detail">
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
@@ -129,7 +136,16 @@
             }
         },
         computed:{
-            
+            fire:function(){
+                let currentDatetime = new Date()
+                let deadlineDatetime = new Date(this.task.dead_line)
+                let remainingTime = deadlineDatetime - currentDatetime
+                if(0 < remainingTime && remainingTime < 43200000){
+                    return {fontSize:'150%',color:'orange',opacity:'1.0'}
+                }else{
+                    return {fontSize:'150%',color:'grey',opacity:'0.3'}
+                }
+            }
         },
         methods: {
             fetchTask:async function(){
@@ -250,7 +266,7 @@
         align-items:center;
     }
     .headline input {
-        margin-right:1em;
+        margin:0 1em;
     }
     .task-label {
         height:3.0em;
