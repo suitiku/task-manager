@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(182);
+module.exports = __webpack_require__(187);
 
 
 /***/ }),
@@ -14678,6 +14678,7 @@ Vue.component('custom-button', __webpack_require__(162));
 Vue.component('navi-bar', __webpack_require__(167));
 Vue.component('event-bus-test', __webpack_require__(172));
 Vue.component('home', __webpack_require__(177));
+Vue.component('text-spliter', __webpack_require__(182));
 
 var app = new Vue({
   el: '#app'
@@ -52179,7 +52180,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52640,20 +52640,7 @@ var render = function() {
               },
               expression: "editedTask"
             }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-secondary d-block",
-              on: {
-                click: function($event) {
-                  return _vm.cancelDialog()
-                }
-              }
-            },
-            [_vm._v("キャンセル")]
-          )
+          })
         ],
         1
       ),
@@ -53993,7 +53980,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             modal: false,
             test: '',
-            task: ''
+            task: '',
+            text: ['hogehoge', 'aaaaaa', 'bbbbbb']
         };
     },
     created: function () {
@@ -54066,7 +54054,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("task", { attrs: { taskId: 3 } }),
+      _vm._v("\n    " + _vm._s(_vm.text) + "\n    "),
+      _c("text-spliter", {
+        model: {
+          value: _vm.text,
+          callback: function($$v) {
+            _vm.text = $$v
+          },
+          expression: "text"
+        }
+      }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -59005,6 +59002,213 @@ if (false) {
 
 /***/ }),
 /* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(183)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(185)
+/* template */
+var __vue_template__ = __webpack_require__(186)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-020e1d3f"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/TextSpliter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-020e1d3f", Component.options)
+  } else {
+    hotAPI.reload("data-v-020e1d3f", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(184);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("456d6904", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-020e1d3f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextSpliter.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-020e1d3f\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextSpliter.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            text: '',
+            result: []
+        };
+    },
+    props: {
+        value: {
+            type: [String, Array],
+            required: false
+        }
+    },
+    watch: {
+        text: function text() {
+            // 改行で分割
+            this.result = this.text.split(/\r\n|\n/);
+            // 空要素を排除
+            for (var index in this.result) {
+                if (this.result[index] == '') {
+                    this.result.splice(index, 1);
+                }
+            }
+            // 結果を送出
+            this.$emit('input', this.result);
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {
+        if (Array.isArray(this.value)) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.value[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var element = _step.value;
+
+                    this.text += element + '\n';
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        } else {
+            this.text = this.value;
+        }
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("textarea", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.text,
+          expression: "text"
+        }
+      ],
+      domProps: { value: _vm.text },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.text = $event.target.value
+        }
+      }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-020e1d3f", module.exports)
+  }
+}
+
+/***/ }),
+/* 187 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

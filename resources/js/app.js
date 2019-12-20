@@ -43,6 +43,7 @@ Vue.component('custom-button', require('./components/CustomButton.vue'));
 Vue.component('navi-bar', require('./components/NaviBar.vue'));
 Vue.component('event-bus-test', require('./components/EventBusTest.vue'));
 Vue.component('home', require('./components/Home.vue'));
+Vue.component('text-spliter', require('./components/TextSpliter.vue'));
 
 
 const app = new Vue({

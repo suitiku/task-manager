@@ -1,8 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        
-        <task v-bind:taskId="3" />
+        {{text}}
+        <text-spliter v-model="text" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -20,7 +20,8 @@
             return {
                 modal:false,
                 test:'',
-                task:''
+                task:'',
+                text:['hogehoge','aaaaaa','bbbbbb'],
             }  
         },
         created:async function(){

@@ -22,7 +22,6 @@
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
-            <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
         </modal>
         
         <!--メインコンテンツ-->
