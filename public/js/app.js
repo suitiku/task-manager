@@ -52184,6 +52184,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52197,8 +52210,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             detail: false,
             deleteModal: false,
             editModal: false,
+            deleteItemModal: false,
             editedTask: '',
             inactivateTask: '',
+            inactivateItem: [],
+            targetItemId: '',
+            targetItemName: '',
             foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
@@ -52544,6 +52561,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return showEditTaskDialog;
         }(),
+        showDeleteItemDialog: function showDeleteItemDialog(id, name) {
+            this.targetItemId = id;
+            this.targetItemName = name;
+            this.$refs.deleteItemModal.openModal();
+        },
+        deleteItem: function () {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
+                    while (1) {
+                        switch (_context9.prev = _context9.next) {
+                            case 0:
+                                _context9.next = 2;
+                                return axios.delete('/api/items/' + this.targetItemId);
+
+                            case 2:
+                                result = _context9.sent;
+
+                                if (result.data) {
+                                    // 削除が成功した場合
+                                    // noticeで通知
+                                    this.$refs.notice.showNotice('アイテムを削除しました');
+                                    // 通知が終わった後に自らを削除（不可視化）
+                                    this.inactivateItem[this.targetItemId] = { display: 'none' };
+                                } else {
+                                    // 削除が失敗した場合
+                                    // noticeで通知
+                                    this.$refs.notice.showNotice('アイテムの削除に失敗しました');
+                                }
+                                this.$refs.deleteItemModal.closeModal();
+
+                            case 5:
+                            case 'end':
+                                return _context9.stop();
+                        }
+                    }
+                }, _callee9, this);
+            }));
+
+            function deleteItem() {
+                return _ref9.apply(this, arguments);
+            }
+
+            return deleteItem;
+        }(),
         cancelDialog: function cancelDialog() {
             this.$refs.deleteModal.closeModal();
             this.$refs.editModal.closeModal();
@@ -52647,6 +52709,61 @@ var render = function() {
           })
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "deleteItemModal",
+          model: {
+            value: _vm.deleteItemModal,
+            callback: function($$v) {
+              _vm.deleteItemModal = $$v
+            },
+            expression: "deleteItemModal"
+          }
+        },
+        [
+          _c("b", [
+            _vm._v(
+              "アイテム「" + _vm._s(_vm.targetItemName) + "」を削除します。"
+            )
+          ]),
+          _vm._v(" "),
+          _c("b", [_vm._v("この処理は取り消しできません。")]),
+          _vm._v(" "),
+          _c("b", [_vm._v("よろしいですか？")]),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c("div", { staticClass: "buttons" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.deleteItem()
+                  }
+                }
+              },
+              [_vm._v("アイテムを削除")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.cancelDialog()
+                  }
+                }
+              },
+              [_vm._v("キャンセル")]
+            )
+          ])
+        ]
       ),
       _vm._v(" "),
       _c("div", { class: _vm.wrapper_class, style: _vm.inactivateTask }, [
@@ -52811,26 +52928,41 @@ var render = function() {
               "div",
               { staticClass: "items" },
               _vm._l(_vm.task.items, function(item) {
-                return _c("p", { class: _vm.setItemClass(item.is_checked) }, [
-                  _c("input", {
-                    attrs: {
-                      type: "checkbox",
-                      disabled: _vm.setItemDisabled(item.is_checked)
-                    },
-                    domProps: { checked: item.is_checked },
-                    on: {
-                      change: function($event) {
-                        return _vm.checkItem(item.id)
+                return _c(
+                  "p",
+                  {
+                    class: _vm.setItemClass(item.is_checked),
+                    style: _vm.inactivateItem[item.id]
+                  },
+                  [
+                    _c("input", {
+                      staticClass: "checkbox",
+                      attrs: {
+                        type: "checkbox",
+                        disabled: _vm.setItemDisabled(item.is_checked)
+                      },
+                      domProps: { checked: item.is_checked },
+                      on: {
+                        change: function($event) {
+                          return _vm.checkItem(item.id)
+                        }
                       }
-                    }
-                  }),
-                  _vm._v(" " + _vm._s(item.name) + " -- "),
-                  _c("span", [_vm._v(_vm._s(item.memo))]),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "far fa-edit task-icon" }),
-                  _vm._v(" "),
-                  _c("i", { staticClass: "fas fa-trash task-icon" })
-                ])
+                    }),
+                    _vm._v(" " + _vm._s(item.name) + " -- "),
+                    _c("span", [_vm._v(_vm._s(item.memo))]),
+                    _vm._v(" "),
+                    _c("i", { staticClass: "far fa-edit task-icon" }),
+                    _vm._v(" "),
+                    _c("i", {
+                      staticClass: "fas fa-trash task-icon",
+                      on: {
+                        click: function($event) {
+                          return _vm.showDeleteItemDialog(item.id, item.name)
+                        }
+                      }
+                    })
+                  ]
+                )
               }),
               0
             )

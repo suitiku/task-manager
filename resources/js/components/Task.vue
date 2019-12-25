@@ -24,6 +24,19 @@
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
         </modal>
         
+        <!--アイテムリストのアイテム削除モーダル-->
+        <modal ref="deleteItemModal" v-model="deleteItemModal">
+            <b>アイテム「{{targetItemName}}」を削除します。</b>
+            <b>この処理は取り消しできません。</b>
+            <b>よろしいですか？</b>
+            <p>　</p>
+            <div class="buttons">
+                <button class="btn btn-danger d-block" v-on:click="deleteItem()">アイテムを削除</button>
+                <button class="btn btn-secondary d-block" v-on:click="cancelDialog()">キャンセル</button>
+            </div>
+        </modal>
+        
+        
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
@@ -77,12 +90,12 @@
                 <p>{{task.overview}}</p>
                 <!--子アイテム-->
                 <div class="items">
-                    <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)">
-                        <input type="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
+                    <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
+                        <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
                         <!--編集ボタン-->
                         <i class="far fa-edit task-icon"></i>
                         <!--削除ボタン-->
-                        <i class="fas fa-trash task-icon"></i>
+                        <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
                     </p>
                 </div>
                 <!--ログ-->
@@ -104,8 +117,12 @@
                 detail:false,
                 deleteModal:false,
                 editModal:false,
+                deleteItemModal:false,
                 editedTask:'',
                 inactivateTask:'',
+                inactivateItem:[],
+                targetItemId:'',
+                targetItemName:'',
                 foreignKeys:[
                     {project_id:
                         {
@@ -255,6 +272,28 @@
             },
             showEditTaskDialog:async function(){
                 this.$refs.editModal.openModal()
+            },
+            showDeleteItemDialog:function(id,name){
+                this.targetItemId = id
+                this.targetItemName = name
+                this.$refs.deleteItemModal.openModal()
+            },
+            deleteItem:async function(){
+                // API経由で削除
+                // 返り値はboolean
+                let result = await axios.delete('/api/items/' + this.targetItemId)
+                if(result.data){
+                    // 削除が成功した場合
+                    // noticeで通知
+                    this.$refs.notice.showNotice('アイテムを削除しました')
+                    // 通知が終わった後に自らを削除（不可視化）
+                    this.inactivateItem[this.targetItemId] = {display:'none'}
+                }else{
+                    // 削除が失敗した場合
+                    // noticeで通知
+                    this.$refs.notice.showNotice('アイテムの削除に失敗しました')
+                }
+                this.$refs.deleteItemModal.closeModal()
             },
             cancelDialog:function(){
                 this.$refs.deleteModal.closeModal()
