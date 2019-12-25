@@ -52183,6 +52183,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52197,7 +52198,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             deleteModal: false,
             editModal: false,
             editedTask: '',
-            items: [],
             inactivateTask: '',
             foreignKeys: [{ project_id: {
                     table: 'projects',
@@ -52259,7 +52259,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context2.prev = _context2.next) {
                         case 0:
                             if (!this.taskId) {
-                                _context2.next = 5;
+                                _context2.next = 4;
                                 break;
                             }
 
@@ -52268,9 +52268,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 3:
                             this.updateData();
-                            this.parseItems();
 
-                        case 5:
+                        case 4:
                         case 'end':
                             return _context2.stop();
                     }
@@ -52291,7 +52290,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context3.prev = _context3.next) {
                         case 0:
                             if (!(this.taskId && !this.task)) {
-                                _context3.next = 5;
+                                _context3.next = 4;
                                 break;
                             }
 
@@ -52300,9 +52299,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 3:
                             this.updateData();
-                            this.parseItems();
 
-                        case 5:
+                        case 4:
                         case 'end':
                             return _context3.stop();
                     }
@@ -52549,33 +52547,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         cancelDialog: function cancelDialog() {
             this.$refs.deleteModal.closeModal();
             this.$refs.editModal.closeModal();
-        },
-        // アイテムリスト
-        parseItems: function parseItems() {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.task.items[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var item = _step.value;
-
-                    this.items.push(item.name);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
         }
     }
 });
@@ -52673,20 +52644,7 @@ var render = function() {
               },
               expression: "editedTask"
             }
-          }),
-          _vm._v(" "),
-          _c("h4", [_vm._v("アイテムリスト")]),
-          _vm._v(" "),
-          _c("text-spliter", {
-            model: {
-              value: _vm.items,
-              callback: function($$v) {
-                _vm.items = $$v
-              },
-              expression: "items"
-            }
-          }),
-          _vm._v("\n        " + _vm._s(_vm.items) + "\n    ")
+          })
         ],
         1
       ),
@@ -52867,7 +52825,11 @@ var render = function() {
                     }
                   }),
                   _vm._v(" " + _vm._s(item.name) + " -- "),
-                  _c("span", [_vm._v(_vm._s(item.memo))])
+                  _c("span", [_vm._v(_vm._s(item.memo))]),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "far fa-edit task-icon" }),
+                  _vm._v(" "),
+                  _c("i", { staticClass: "fas fa-trash task-icon" })
                 ])
               }),
               0
@@ -54227,7 +54189,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-root-active[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    opacity:0;\n    visibility:hidden;\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
+exports.push([module.i, "\n.modal-root[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.modal-root-active[data-v-53ab54d2] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.close-button[data-v-53ab54d2] {\n    position:absolute;\n    left: calc(100% - 1em);\n    top: -1em;\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    background-color:white;\n    z-index:15;\n}\n.modal-content[data-v-53ab54d2] {\n    position:absolute;\n    top:20%;\n    width:65%;\n    height:0px;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    opacity:0;\n    visibility:hidden;\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.modal-content-active[data-v-53ab54d2] {\n    overflow:visible;\n    height:auto;\n    opacity:1.0;\n    visibility:visible;\n}\n.modal-background[data-v-53ab54d2] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n\n", ""]);
 
 // exports
 
@@ -54267,11 +54229,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         openModal: function openModal() {
-            var contentEl = this.$el.lastChild;
-            var contentElRect = contentEl.getBoundingClientRect();
-            var baseY = contentElRect.y < 0 ? 0 : contentElRect.y;
-            var scrollY = window.pageYOffset;
-            this.content_top = scrollY - baseY + 50 + 'px';
+            // let contentEl = this.$el.lastChild
+            // let contentElRect = contentEl.getBoundingClientRect()
+            // let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
+            // let scrollY = window.pageYOffset
+            // this.content_top = (scrollY - baseY + 50) + 'px'
             this.modal_content_class = 'modal-content modal-content-active';
             this.modal_class = 'modal-root-active';
             this.$emit('input', true);
@@ -54305,7 +54267,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { class: _vm.modal_content_class, style: { top: _vm.content_top } },
+      { class: _vm.modal_content_class },
       [
         _c(
           "div",

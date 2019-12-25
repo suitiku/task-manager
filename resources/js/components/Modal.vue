@@ -3,7 +3,7 @@
 <template>
     <div v-bind:class="modal_class">
         <div class="modal-background" v-on:click="closeModal()"></div>
-        <div v-bind:class="modal_content_class" v-bind:style="{top:content_top}">
+        <div v-bind:class="modal_content_class">
             <div v-on:click="closeModal()" class="close-button" ><i class="fa-2x far fa-times-circle"></i></div>
             <slot></slot>
         </div>
@@ -33,11 +33,11 @@
         },
         methods: {
             openModal:function(){
-                let contentEl = this.$el.lastChild
-                let contentElRect = contentEl.getBoundingClientRect()
-                let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
-                let scrollY = window.pageYOffset
-                this.content_top = (scrollY - baseY + 50) + 'px'
+                // let contentEl = this.$el.lastChild
+                // let contentElRect = contentEl.getBoundingClientRect()
+                // let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
+                // let scrollY = window.pageYOffset
+                // this.content_top = (scrollY - baseY + 50) + 'px'
                 this.modal_content_class = 'modal-content modal-content-active'
                 this.modal_class = 'modal-root-active'
                 this.$emit('input',true)
@@ -98,6 +98,7 @@
     }
     .modal-content {
         position:absolute;
+        top:20%;
         width:65%;
         height:0px;
         overflow:hidden;

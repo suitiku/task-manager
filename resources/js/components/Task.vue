@@ -22,9 +22,6 @@
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
-            <h4>アイテムリスト</h4>
-            <text-spliter v-model="items" />
-            {{items}}
         </modal>
         
         <!--メインコンテンツ-->
@@ -82,6 +79,10 @@
                 <div class="items">
                     <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)">
                         <input type="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
+                        <!--編集ボタン-->
+                        <i class="far fa-edit task-icon"></i>
+                        <!--削除ボタン-->
+                        <i class="fas fa-trash task-icon"></i>
                     </p>
                 </div>
                 <!--ログ-->
@@ -104,7 +105,6 @@
                 deleteModal:false,
                 editModal:false,
                 editedTask:'',
-                items:[],
                 inactivateTask:'',
                 foreignKeys:[
                     {project_id:
@@ -146,14 +146,12 @@
             if(this.taskId){
                 await this.fetchTask()
                 this.updateData()
-                this.parseItems()
             }
         },
         mounted:async function(){
             if(this.taskId && !this.task){
                 await this.fetchTask()
                 this.updateData()
-                this.parseItems()
             }
         },
         computed:{
@@ -262,12 +260,6 @@
                 this.$refs.deleteModal.closeModal()
                 this.$refs.editModal.closeModal()
             },
-            // アイテムリスト
-            parseItems:function(){
-                for(let item of this.task.items){
-                    this.items.push(item.name)
-                }
-            }
         }
     }
 </script>
