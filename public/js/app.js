@@ -52180,6 +52180,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52194,6 +52197,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             deleteModal: false,
             editModal: false,
             editedTask: '',
+            items: [],
             inactivateTask: '',
             foreignKeys: [{ project_id: {
                     table: 'projects',
@@ -52255,7 +52259,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context2.prev = _context2.next) {
                         case 0:
                             if (!this.taskId) {
-                                _context2.next = 4;
+                                _context2.next = 5;
                                 break;
                             }
 
@@ -52264,8 +52268,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 3:
                             this.updateData();
+                            this.parseItems();
 
-                        case 4:
+                        case 5:
                         case 'end':
                             return _context2.stop();
                     }
@@ -52286,7 +52291,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context3.prev = _context3.next) {
                         case 0:
                             if (!(this.taskId && !this.task)) {
-                                _context3.next = 4;
+                                _context3.next = 5;
                                 break;
                             }
 
@@ -52295,8 +52300,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 3:
                             this.updateData();
+                            this.parseItems();
 
-                        case 4:
+                        case 5:
                         case 'end':
                             return _context3.stop();
                     }
@@ -52543,6 +52549,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         cancelDialog: function cancelDialog() {
             this.$refs.deleteModal.closeModal();
             this.$refs.editModal.closeModal();
+        },
+        // アイテムリスト
+        parseItems: function parseItems() {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.task.items[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var item = _step.value;
+
+                    this.items.push(item.name);
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
         }
     }
 });
@@ -52640,7 +52673,20 @@ var render = function() {
               },
               expression: "editedTask"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("h4", [_vm._v("アイテムリスト")]),
+          _vm._v(" "),
+          _c("text-spliter", {
+            model: {
+              value: _vm.items,
+              callback: function($$v) {
+                _vm.items = $$v
+              },
+              expression: "items"
+            }
+          }),
+          _vm._v("\n        " + _vm._s(_vm.items) + "\n    ")
         ],
         1
       ),
@@ -53972,16 +54018,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
             test: '',
-            task: '',
-            text: ['hogehoge', 'aaaaaa', 'bbbbbb']
+            task: ''
         };
     },
     created: function () {
@@ -54054,17 +54097,6 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.text) + "\n    "),
-      _c("text-spliter", {
-        model: {
-          value: _vm.text,
-          callback: function($$v) {
-            _vm.text = $$v
-          },
-          expression: "text"
-        }
-      }),
-      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(
@@ -59086,7 +59118,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59110,7 +59142,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             text: '',
-            result: []
+            result: [],
+            isInit: false
         };
     },
     props: {
@@ -59131,39 +59164,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             // 結果を送出
             this.$emit('input', this.result);
+        },
+        value: function value() {
+            //初回のみ初期値をセット
+            if (!this.isInit) {
+                this.text = this.value.join('\n');
+                this.isInit = true;
+            }
         }
     },
     created: function created() {},
-    mounted: function mounted() {
-        if (Array.isArray(this.value)) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.value[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var element = _step.value;
-
-                    this.text += element + '\n';
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-        } else {
-            this.text = this.value;
-        }
-    },
+    mounted: function mounted() {},
     methods: {}
 });
 

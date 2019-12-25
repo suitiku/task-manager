@@ -11,7 +11,8 @@
         data:function(){
             return {
                 text:'',
-                result:[]
+                result:[],
+                isInit:false,
             }  
         },
         props: {
@@ -30,19 +31,19 @@
                 }
                 // 結果を送出
                 this.$emit('input',this.result)
+            },
+            value:function(){
+                //初回のみ初期値をセット
+                if(!this.isInit){
+                    this.text = this.value.join('\n')
+                    this.isInit = true
+                }
             }
         },
         created:function(){
             
         },
         mounted:function(){
-            if(Array.isArray(this.value)){
-                for(let element of this.value){
-                    this.text += element + '\n'
-                }
-            }else{
-                this.text = this.value
-            }
         },
         methods: {
         }

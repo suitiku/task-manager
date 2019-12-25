@@ -22,6 +22,9 @@
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
+            <h4>アイテムリスト</h4>
+            <text-spliter v-model="items" />
+            {{items}}
         </modal>
         
         <!--メインコンテンツ-->
@@ -101,6 +104,7 @@
                 deleteModal:false,
                 editModal:false,
                 editedTask:'',
+                items:[],
                 inactivateTask:'',
                 foreignKeys:[
                     {project_id:
@@ -142,12 +146,14 @@
             if(this.taskId){
                 await this.fetchTask()
                 this.updateData()
+                this.parseItems()
             }
         },
         mounted:async function(){
             if(this.taskId && !this.task){
                 await this.fetchTask()
                 this.updateData()
+                this.parseItems()
             }
         },
         computed:{
@@ -161,7 +167,7 @@
                 }else{
                     return {fontSize:'150%',color:'grey',opacity:'0.3'}
                 }
-            }
+            },
         },
         methods: {
             fetchTask:async function(){
@@ -255,6 +261,12 @@
             cancelDialog:function(){
                 this.$refs.deleteModal.closeModal()
                 this.$refs.editModal.closeModal()
+            },
+            // アイテムリスト
+            parseItems:function(){
+                for(let item of this.task.items){
+                    this.items.push(item.name)
+                }
             }
         }
     }

@@ -1,8 +1,6 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{text}}
-        <text-spliter v-model="text" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -21,7 +19,6 @@
                 modal:false,
                 test:'',
                 task:'',
-                text:['hogehoge','aaaaaa','bbbbbb'],
             }  
         },
         created:async function(){
