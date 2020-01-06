@@ -7,7 +7,7 @@
         <!--通知-->
         <notice ref="notice" />
         
-        <!--削除確認モーダル-->
+        <!--タスク削除確認モーダル-->
         <modal ref="deleteModal" v-model="deleteModal">
             <b>タスク「{{task.name}}」を削除します。</b>
             <b>この処理は取り消しできません。</b>
@@ -24,7 +24,7 @@
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
         </modal>
         
-        <!--アイテムリストのアイテム削除モーダル-->
+        <!--アイテムリストのアイテム削除確認モーダル-->
         <modal ref="deleteItemModal" v-model="deleteItemModal">
             <b>アイテム「{{targetItemName}}」を削除します。</b>
             <b>この処理は取り消しできません。</b>
@@ -90,13 +90,25 @@
                 <p>{{task.overview}}</p>
                 <!--子アイテム-->
                 <div class="items">
-                    <p v-for="item in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
-                        <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
-                        <!--編集ボタン-->
-                        <i class="far fa-edit task-icon"></i>
-                        <!--削除ボタン-->
-                        <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
+                    <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
+                            <span v-show="!editItemMode[itemIndex]">
+                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
+                            </span>
+                            <!--編集用セクション-->
+                            <span v-show="editItemMode[itemIndex]">
+                                <input class="editable" type="text" v-model="task.items[itemIndex].name" v-on:keydown="updateItem(itemIndex)">
+                                --
+                                <input class="editable" type="text" v-model="task.items[itemIndex].memo" v-on:keydown="updateItem(itemIndex)">
+                            </span> 
+                            <!--編集ボタン-->
+                            <i class="far fa-edit task-icon" v-on:click="toggleEditMode(itemIndex)"></i>
+                            <!--削除ボタン-->
+                            <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
                     </p>
+                    <!--アイテムの追加処理セクション-->
+                    <div class="addItemsArea">
+                        
+                    </div>
                 </div>
                 <!--ログ-->
             </div>
@@ -123,6 +135,7 @@
                 inactivateItem:[],
                 targetItemId:'',
                 targetItemName:'',
+                editItemMode:[],
                 foreignKeys:[
                     {project_id:
                         {
@@ -188,6 +201,9 @@
             fetchTask:async function(){
                 let result = await axios.get('/api/tasks/' + this.taskId)
                 this.task = result.data
+                for(let index in this.task.items){
+                    this.editItemMode.push(false)
+                }
             },
             setTagIcon:function(task){
                 return task.tags != '' ? {visibility:'visible'} : {visibility:'hidden'}
@@ -298,7 +314,23 @@
             cancelDialog:function(){
                 this.$refs.deleteModal.closeModal()
                 this.$refs.editModal.closeModal()
+                this.$refs.deleteItemModal.closeModal()
             },
+            toggleEditMode:function(itemIndex){
+                this.editItemMode.splice(itemIndex,1,!this.editItemMode[itemIndex])
+            },
+            updateItem:async function(itemIndex){
+                if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
+                    try{
+                        await axios.put('/api/items/' + this.task.items[itemIndex].id,this.task.items[itemIndex])
+                        this.$refs.notice.showNotice('アイテムを変更しました')
+                    }catch(error){
+                        this.$refs.notice.showNotice('アイテムの変更に失敗しました')
+                        console.log(error)
+                    }
+                }
+                
+            }
         }
     }
 </script>
@@ -388,6 +420,10 @@
     .detail-active {
         max-height:500px;
         transition:all 1.0s ease;
+    }
+    .editable {
+        position:relative;
+        z-index:3;
     }
     
     .mask {

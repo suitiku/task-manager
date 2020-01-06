@@ -52074,7 +52074,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
 
 // exports
 
@@ -52091,6 +52091,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52216,6 +52228,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             inactivateItem: [],
             targetItemId: '',
             targetItemName: '',
+            editItemMode: [],
             foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
@@ -52347,7 +52360,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         fetchTask: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-                var result;
+                var result, index;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
                         switch (_context4.prev = _context4.next) {
@@ -52359,8 +52372,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context4.sent;
 
                                 this.task = result.data;
+                                for (index in this.task.items) {
+                                    this.editItemMode.push(false);
+                                }
 
-                            case 4:
+                            case 5:
                             case 'end':
                                 return _context4.stop();
                         }
@@ -52609,7 +52625,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         cancelDialog: function cancelDialog() {
             this.$refs.deleteModal.closeModal();
             this.$refs.editModal.closeModal();
-        }
+            this.$refs.deleteItemModal.closeModal();
+        },
+        toggleEditMode: function toggleEditMode(itemIndex) {
+            this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
+        },
+        updateItem: function () {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                    while (1) {
+                        switch (_context10.prev = _context10.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context10.next = 11;
+                                    break;
+                                }
+
+                                _context10.prev = 1;
+                                _context10.next = 4;
+                                return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
+
+                            case 4:
+                                this.$refs.notice.showNotice('アイテムを変更しました');
+                                _context10.next = 11;
+                                break;
+
+                            case 7:
+                                _context10.prev = 7;
+                                _context10.t0 = _context10['catch'](1);
+
+                                this.$refs.notice.showNotice('アイテムの変更に失敗しました');
+                                console.log(_context10.t0);
+
+                            case 11:
+                            case 'end':
+                                return _context10.stop();
+                        }
+                    }
+                }, _callee10, this, [[1, 7]]);
+            }));
+
+            function updateItem(_x3) {
+                return _ref10.apply(this, arguments);
+            }
+
+            return updateItem;
+        }()
     }
 });
 
@@ -52927,44 +52988,145 @@ var render = function() {
             _c(
               "div",
               { staticClass: "items" },
-              _vm._l(_vm.task.items, function(item) {
-                return _c(
-                  "p",
-                  {
-                    class: _vm.setItemClass(item.is_checked),
-                    style: _vm.inactivateItem[item.id]
-                  },
-                  [
-                    _c("input", {
-                      staticClass: "checkbox",
-                      attrs: {
-                        type: "checkbox",
-                        disabled: _vm.setItemDisabled(item.is_checked)
-                      },
-                      domProps: { checked: item.is_checked },
-                      on: {
-                        change: function($event) {
-                          return _vm.checkItem(item.id)
+              [
+                _vm._l(_vm.task.items, function(item, itemIndex) {
+                  return _c(
+                    "p",
+                    {
+                      class: _vm.setItemClass(item.is_checked),
+                      style: _vm.inactivateItem[item.id]
+                    },
+                    [
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.editItemMode[itemIndex],
+                              expression: "!editItemMode[itemIndex]"
+                            }
+                          ]
+                        },
+                        [
+                          _c("input", {
+                            staticClass: "checkbox",
+                            attrs: {
+                              type: "checkbox",
+                              disabled: _vm.setItemDisabled(item.is_checked)
+                            },
+                            domProps: { checked: item.is_checked },
+                            on: {
+                              change: function($event) {
+                                return _vm.checkItem(item.id)
+                              }
+                            }
+                          }),
+                          _vm._v(" " + _vm._s(item.name) + " -- "),
+                          _c("span", [_vm._v(_vm._s(item.memo))])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.editItemMode[itemIndex],
+                              expression: "editItemMode[itemIndex]"
+                            }
+                          ]
+                        },
+                        [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.task.items[itemIndex].name,
+                                expression: "task.items[itemIndex].name"
+                              }
+                            ],
+                            staticClass: "editable",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.task.items[itemIndex].name },
+                            on: {
+                              keydown: function($event) {
+                                return _vm.updateItem(itemIndex)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.task.items[itemIndex],
+                                  "name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(
+                            "\n                            --\n                            "
+                          ),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.task.items[itemIndex].memo,
+                                expression: "task.items[itemIndex].memo"
+                              }
+                            ],
+                            staticClass: "editable",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.task.items[itemIndex].memo },
+                            on: {
+                              keydown: function($event) {
+                                return _vm.updateItem(itemIndex)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.task.items[itemIndex],
+                                  "memo",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("i", {
+                        staticClass: "far fa-edit task-icon",
+                        on: {
+                          click: function($event) {
+                            return _vm.toggleEditMode(itemIndex)
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" " + _vm._s(item.name) + " -- "),
-                    _c("span", [_vm._v(_vm._s(item.memo))]),
-                    _vm._v(" "),
-                    _c("i", { staticClass: "far fa-edit task-icon" }),
-                    _vm._v(" "),
-                    _c("i", {
-                      staticClass: "fas fa-trash task-icon",
-                      on: {
-                        click: function($event) {
-                          return _vm.showDeleteItemDialog(item.id, item.name)
+                      }),
+                      _vm._v(" "),
+                      _c("i", {
+                        staticClass: "fas fa-trash task-icon",
+                        on: {
+                          click: function($event) {
+                            return _vm.showDeleteItemDialog(item.id, item.name)
+                          }
                         }
-                      }
-                    })
-                  ]
-                )
-              }),
-              0
+                      })
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "addItemsArea" })
+              ],
+              2
             )
           ],
           1
