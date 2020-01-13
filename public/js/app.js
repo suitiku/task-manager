@@ -52208,7 +52208,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52229,6 +52228,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             targetItemId: '',
             targetItemName: '',
             editItemMode: [],
+            items: [],
             foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
@@ -52602,7 +52602,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     // 通知が終わった後に自らを削除（不可視化）
                                     this.inactivateItem[this.targetItemId] = { display: 'none' };
                                 } else {
-                                    // 削除が失敗した場合
+                                    // ��除が失敗した場合
                                     // noticeで通知
                                     this.$refs.notice.showNotice('アイテムの削除に失敗しました');
                                 }
@@ -52670,6 +52670,103 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return updateItem;
+        }(),
+        addItems: function () {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+                    while (1) {
+                        switch (_context11.prev = _context11.next) {
+                            case 0:
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context11.prev = 3;
+                                _iterator = this.items[Symbol.iterator]();
+
+                            case 5:
+                                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                                    _context11.next = 22;
+                                    break;
+                                }
+
+                                item = _step.value;
+                                postItem = {
+                                    task_id: this.task.id,
+                                    name: item,
+                                    is_checked: false
+                                };
+                                _context11.prev = 8;
+                                _context11.next = 11;
+                                return axios.post('/api/items', postItem);
+
+                            case 11:
+                                this.$refs.notice.showNotice('タスクにアイテムを追加しました');
+                                this.fetchTask();
+                                // this.updateData()
+                                _context11.next = 19;
+                                break;
+
+                            case 15:
+                                _context11.prev = 15;
+                                _context11.t0 = _context11['catch'](8);
+
+                                this.$refs.notice.showNotice('アイテムの追加に失敗しました');
+                                console.log(_context11.t0);
+
+                            case 19:
+                                _iteratorNormalCompletion = true;
+                                _context11.next = 5;
+                                break;
+
+                            case 22:
+                                _context11.next = 28;
+                                break;
+
+                            case 24:
+                                _context11.prev = 24;
+                                _context11.t1 = _context11['catch'](3);
+                                _didIteratorError = true;
+                                _iteratorError = _context11.t1;
+
+                            case 28:
+                                _context11.prev = 28;
+                                _context11.prev = 29;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 31:
+                                _context11.prev = 31;
+
+                                if (!_didIteratorError) {
+                                    _context11.next = 34;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 34:
+                                return _context11.finish(31);
+
+                            case 35:
+                                return _context11.finish(28);
+
+                            case 36:
+                            case 'end':
+                                return _context11.stop();
+                        }
+                    }
+                }, _callee11, this, [[3, 24, 28, 36], [8, 15], [29,, 31, 35]]);
+            }));
+
+            function addItems() {
+                return _ref11.apply(this, arguments);
+            }
+
+            return addItems;
         }()
     }
 });
@@ -53023,8 +53120,11 @@ var render = function() {
                               }
                             }
                           }),
-                          _vm._v(" " + _vm._s(item.name) + " -- "),
-                          _c("span", [_vm._v(_vm._s(item.memo))])
+                          _vm._v(
+                            " " +
+                              _vm._s(item.name) +
+                              "\n                        "
+                          )
                         ]
                       ),
                       _vm._v(" "),
@@ -53068,37 +53168,6 @@ var render = function() {
                                 )
                               }
                             }
-                          }),
-                          _vm._v(
-                            "\n                            --\n                            "
-                          ),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.task.items[itemIndex].memo,
-                                expression: "task.items[itemIndex].memo"
-                              }
-                            ],
-                            staticClass: "editable",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.task.items[itemIndex].memo },
-                            on: {
-                              keydown: function($event) {
-                                return _vm.updateItem(itemIndex)
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.task.items[itemIndex],
-                                  "memo",
-                                  $event.target.value
-                                )
-                              }
-                            }
                           })
                         ]
                       ),
@@ -53124,7 +53193,31 @@ var render = function() {
                   )
                 }),
                 _vm._v(" "),
-                _c("div", { staticClass: "addItemsArea" })
+                _c(
+                  "div",
+                  { staticClass: "editable" },
+                  [
+                    _c("text-spliter", {
+                      model: {
+                        value: _vm.items,
+                        callback: function($$v) {
+                          _vm.items = $$v
+                        },
+                        expression: "items"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-outline-primary mx-auto d-block",
+                        on: { click: _vm.addItems }
+                      },
+                      [_vm._v("アイテムを追加")]
+                    )
+                  ],
+                  1
+                )
               ],
               2
             )

@@ -92,13 +92,11 @@
                 <div class="items">
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
                             <span v-show="!editItemMode[itemIndex]">
-                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}} -- <span>{{item.memo}}</span>
+                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}}
                             </span>
                             <!--編集用セクション-->
                             <span v-show="editItemMode[itemIndex]">
                                 <input class="editable" type="text" v-model="task.items[itemIndex].name" v-on:keydown="updateItem(itemIndex)">
-                                --
-                                <input class="editable" type="text" v-model="task.items[itemIndex].memo" v-on:keydown="updateItem(itemIndex)">
                             </span> 
                             <!--編集ボタン-->
                             <i class="far fa-edit task-icon" v-on:click="toggleEditMode(itemIndex)"></i>
@@ -106,8 +104,9 @@
                             <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
                     </p>
                     <!--アイテムの追加処理セクション-->
-                    <div class="addItemsArea">
-                        
+                    <div class="editable">
+                        <text-spliter v-model="items" />
+                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems">アイテムを追加</button>
                     </div>
                 </div>
                 <!--ログ-->
@@ -136,6 +135,7 @@
                 targetItemId:'',
                 targetItemName:'',
                 editItemMode:[],
+                items:[],
                 foreignKeys:[
                     {project_id:
                         {
@@ -305,7 +305,7 @@
                     // 通知が終わった後に自らを削除（不可視化）
                     this.inactivateItem[this.targetItemId] = {display:'none'}
                 }else{
-                    // 削除が失敗した場合
+                    // ��除が失敗した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('アイテムの削除に失敗しました')
                 }
@@ -324,12 +324,30 @@
                     try{
                         await axios.put('/api/items/' + this.task.items[itemIndex].id,this.task.items[itemIndex])
                         this.$refs.notice.showNotice('アイテムを変更しました')
+                        this.fetchTask()
                     }catch(error){
                         this.$refs.notice.showNotice('アイテムの変更に失敗しました')
                         console.log(error)
                     }
                 }
-                
+            },
+            addItems:async function(){
+                for(let item of this.items){
+                    let postItem = {
+                        task_id:this.task.id,
+                        name:item,
+                        is_checked:false
+                    }
+                    try{
+                        await axios.post('/api/items',postItem)
+                        this.$refs.notice.showNotice('タスクにアイテムを追加しました')
+                        this.fetchTask()
+                        this.items = []
+                    }catch(error){
+                        this.$refs.notice.showNotice('アイテムの追加に失敗しました')
+                        console.log(error)
+                    }
+                }
             }
         }
     }
