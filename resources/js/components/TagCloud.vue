@@ -5,7 +5,7 @@
 <template>
     <div class="container">
         <div class="option-wrapper">
-            <div v-for="(option,index) in options" class="option" v-on:click="selectOption(option.value)">{{option.label}}</div>
+            <div v-for="(option,index) in options" v-bind:class="setClass(option)" v-on:click="selectOption(option.value)">{{option.label}}</div>
         </div>
     </div>
 </template>
@@ -14,10 +14,14 @@
     export default {
         data:function(){
             return {
-                result:[]
+                result:this.value
             }  
         },
         props: {
+            value: {
+                type:[Array,String,Number],
+                required:false,
+            },
             options: {
                 type:Array,
                 required:true
@@ -69,6 +73,13 @@
                 let els = document.getElementsByClassName('selected')
                 if(els[0]){
                     els[0].className = 'option'
+                }
+            },
+            setClass:function(option){
+                if(this.value.indexOf(option.value) != -1){
+                    return 'option selected'
+                }else{
+                    return 'option'
                 }
             }
         }

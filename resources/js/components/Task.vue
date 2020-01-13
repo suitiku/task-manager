@@ -24,6 +24,13 @@
             <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
         </modal>
         
+        <!--タグ編集用モーダル-->
+        <modal ref="editTagModal" v-model="editTagModal">
+            <p>タグを編集します。</p>
+            <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
+            {{selectedTags}}
+        </modal>
+        
         <!--アイテムリストのアイテム削除確認モーダル-->
         <modal ref="deleteItemModal" v-model="deleteItemModal">
             <b>アイテム「{{targetItemName}}」を削除します。</b>
@@ -64,8 +71,8 @@
                     <i class="far fa-clock"></i>
                     <span class="dead-line">{{task.dead_line}}</span>
                     
-                    <!--タグがある場合はタグアイコン-->
-                    <i class="fas fa-tag" v-bind:style="setTagIcon(task)"></i>
+                    <!--タグ編集ボタン-->
+                    <i class="fas fa-tag task-icon" v-on:click="showEditTagDialog()"></i>
                     <!--編集ボタン-->
                     <i class="far fa-edit task-icon" v-on:click="showEditTaskDialog()"></i>
                     <!--削除ボタン-->
@@ -136,6 +143,9 @@
                 targetItemName:'',
                 editItemMode:[],
                 items:[],
+                editTagModal:false,
+                tags:[],
+                selectedTags:[],
                 foreignKeys:[
                     {project_id:
                         {
@@ -176,12 +186,14 @@
             if(this.taskId){
                 await this.fetchTask()
                 this.updateData()
+                this.fetchTags()
             }
         },
         mounted:async function(){
             if(this.taskId && !this.task){
                 await this.fetchTask()
                 this.updateData()
+                this.fetchTags()
             }
         },
         computed:{
@@ -204,9 +216,16 @@
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
                 }
+                //設定済みのタグの取得
+                for(let tag of this.task.tags){
+                    this.selectedTags.push(tag.id)
+                }
             },
-            setTagIcon:function(task){
-                return task.tags != '' ? {visibility:'visible'} : {visibility:'hidden'}
+            fetchTags:async function(){
+                let result = await axios.get('/api/tags/')
+                for(let tag of result.data){
+                    this.tags.push({label:tag.name,value:tag.id})
+                }
             },
             openDetail: function(){
                 this.detail = !this.detail
@@ -277,7 +296,7 @@
                     // 削除が成功した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('タスクを削除しました')
-                    // 通知が終わった後に自らを削除（不可視化）
+                    // 通知が終わった後に���らを削除（不可視化）
                     this.inactivateTask = {display:'none'}
                 }else{
                     // 削除が失敗した場合
@@ -348,6 +367,9 @@
                         console.log(error)
                     }
                 }
+            },
+            showEditTagDialog:function(){
+                this.$refs.editTagModal.openModal()
             }
         }
     }
