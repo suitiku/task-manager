@@ -115,6 +115,15 @@ class TasksController extends Controller
         return $result;
     }
     
+    //タグを同期する場合（メソッドはput）
+    public function syncTags(Request $request){
+        $task = Task::find($request->task_id);
+        $task->tags()->sync($request->tag_ids);
+        $data = array('task_id' => $request->task_id, 'tag_ids' => $request->tag_ids);
+        $result = array('status' => 'success','data' => $data);
+        return $result;
+    }
+    
     // ユーザーIDで検索
     public function getTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)->with(['project','items','state','tags'])->get();

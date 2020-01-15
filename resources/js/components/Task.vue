@@ -28,7 +28,6 @@
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグを編集します。</p>
             <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
-            {{selectedTags}}
         </modal>
         
         <!--アイテムリストのアイテム削除確認モーダル-->
@@ -53,7 +52,7 @@
                 <i v-show="not_started" class="fas fa-2x fa-exclamation-circle"></i>
             </div>
             <!--本体表示部分-->
-            <!--ラベル部分-->
+            <!--ラベ���部分-->
             <div class="task-label">
                 <div class="headline">
                     <div class="headline-icons">
@@ -144,6 +143,7 @@
                 editItemMode:[],
                 items:[],
                 editTagModal:false,
+                isEditedTags:false,
                 tags:[],
                 selectedTags:[],
                 foreignKeys:[
@@ -180,6 +180,27 @@
             editedTask:async function(){
                 await this.fetchTask()
                 this.updateData()
+            },
+            selectedTags:async function(){
+                if(!this.isEditedTags){return }
+                let tagsObject = {
+                    task_id:this.task.id,
+                    tag_ids:this.selectedTags
+                }
+                try{
+                    await axios.put('/api/tag_task/',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
+                }
+            },
+            // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
+            editTagModal:function(newVal,oldVal){
+                if(newVal == false){
+                    this.isEditedTags = false
+                    this.fetchTask()
+                }
             }
         },
         created:async function(){
@@ -370,6 +391,7 @@
             },
             showEditTagDialog:function(){
                 this.$refs.editTagModal.openModal()
+                this.isEditedTags = true
             }
         }
     }
