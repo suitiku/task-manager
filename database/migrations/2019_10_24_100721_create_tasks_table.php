@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->unsignedInteger('project_id');
             $table->unsignedInteger('state_id');
             $table->string('name');
-            $table->text('overview');
+            $table->text('overview')->nullable();
             $table->tinyInteger('priority')->comment('優先度');
             $table->tinyInteger('difficulty')->comment('難易度');
             $table->datetime('start_date')->comment('開始日時')->default(date('Y-m-d H:i:s'));
