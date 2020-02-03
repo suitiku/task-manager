@@ -163,11 +163,6 @@
                 }
             },
             editRecord: async function(){
-                for(let key of Object.keys(this.postObject)){
-                    // if(/^[\r\s]*$/.test(this.postObject[key])){delete this.postObject[key]}
-                    if(/^[\r\s]*$/.test(this.postObject[key])){this.postObject[key] = '\t'}
-                }
-                console.log(this.postObject)
                 try{
                     let result = await axios.put('/api/' + this.table + '/' + this.id, this.postObject)
                     this.$refs.editNotice.showNotice('データを修正しました','success')

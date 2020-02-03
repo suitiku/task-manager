@@ -51508,7 +51508,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return fetchTags;
         }(),
         addTask: function addTask() {
-            this.$refs.form.resetForm();
+            this.$refs.newTask.resetForm();
             this.$refs.modal.openModal();
         },
         sortTask: function () {
@@ -51569,7 +51569,7 @@ var render = function() {
         },
         [
           _c("versatile-form", {
-            ref: "form",
+            ref: "newTask",
             attrs: { table: "tasks", foreignKeys: _vm.foreignKeys },
             model: {
               value: _vm.newTask,
@@ -54034,85 +54034,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         editRecord: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-                var _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, key, result;
-
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                _iteratorNormalCompletion7 = true;
-                                _didIteratorError7 = false;
-                                _iteratorError7 = undefined;
-                                _context5.prev = 3;
-
-                                for (_iterator7 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                                    key = _step7.value;
-
-                                    // if(/^[\r\s]*$/.test(this.postObject[key])){delete this.postObject[key]}
-                                    if (/^[\r\s]*$/.test(this.postObject[key])) {
-                                        this.postObject[key] = '\t';
-                                    }
-                                }
-                                _context5.next = 11;
-                                break;
-
-                            case 7:
-                                _context5.prev = 7;
-                                _context5.t0 = _context5['catch'](3);
-                                _didIteratorError7 = true;
-                                _iteratorError7 = _context5.t0;
-
-                            case 11:
-                                _context5.prev = 11;
-                                _context5.prev = 12;
-
-                                if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                                    _iterator7.return();
-                                }
-
-                            case 14:
-                                _context5.prev = 14;
-
-                                if (!_didIteratorError7) {
-                                    _context5.next = 17;
-                                    break;
-                                }
-
-                                throw _iteratorError7;
-
-                            case 17:
-                                return _context5.finish(14);
-
-                            case 18:
-                                return _context5.finish(11);
-
-                            case 19:
-                                console.log(this.postObject);
-                                _context5.prev = 20;
-                                _context5.next = 23;
+                                _context5.prev = 0;
+                                _context5.next = 3;
                                 return axios.put('/api/' + this.table + '/' + this.id, this.postObject);
 
-                            case 23:
+                            case 3:
                                 result = _context5.sent;
 
                                 this.$refs.editNotice.showNotice('データを修正しました', 'success');
                                 this.$emit('input', result.data);
-                                _context5.next = 32;
+                                _context5.next = 12;
                                 break;
 
-                            case 28:
-                                _context5.prev = 28;
-                                _context5.t1 = _context5['catch'](20);
+                            case 8:
+                                _context5.prev = 8;
+                                _context5.t0 = _context5['catch'](0);
 
-                                console.log(_context5.t1);
+                                console.log(_context5.t0);
                                 this.$refs.editNotice.showNotice('データの修正に失敗しました', 'error');
 
-                            case 32:
+                            case 12:
                             case 'end':
                                 return _context5.stop();
                         }
                     }
-                }, _callee5, this, [[3, 7, 11, 19], [12,, 14, 18], [20, 28]]);
+                }, _callee5, this, [[0, 8]]);
             }));
 
             function editRecord() {
@@ -55769,12 +55720,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         resetValue: function resetValue() {
             this.ids = [];
             this.$emit('input', this.ids);
-            var els = document.getElementsByClassName('item selected');
-            if (els.length > 0) {
-                for (var index in Object.keys(els)) {
-                    els[index].className = 'item';
-                }
-            }
+            var els = this.$refs.items;
+            els.forEach(function (el) {
+                el.className = 'item';
+            });
         }
     }
 });

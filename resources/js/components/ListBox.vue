@@ -97,12 +97,10 @@
             resetValue:function(){
                 this.ids = []
                 this.$emit('input',this.ids)
-                let els = document.getElementsByClassName('item selected')
-                if(els.length > 0){
-                    for(let index in Object.keys(els)){
-                        els[index].className = 'item'
-                    }
-                }
+                let els = this.$refs.items
+                els.forEach(el => {
+                    el.className = 'item'
+                })
             }
         }
     }

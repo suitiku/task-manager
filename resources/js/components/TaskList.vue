@@ -3,7 +3,7 @@
 <template>
     <div class="container">
         <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:foreignKeys="foreignKeys"/>
+            <versatile-form v-model="newTask" ref="newTask" table="tasks" v-bind:foreignKeys="foreignKeys"/>
         </modal>
         <div class="add-task-button">
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
@@ -186,7 +186,7 @@
                 }
             },
             addTask:function(){
-                this.$refs.form.resetForm()
+                this.$refs.newTask.resetForm()
                 this.$refs.modal.openModal()
             },
             sortTask:async function(key){
