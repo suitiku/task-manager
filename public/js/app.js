@@ -50981,7 +50981,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-button[data-v-0afd8bae] {\n    position:fixed;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:white;\n    padding:1em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -50998,6 +50998,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51070,7 +51075,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             filtered_states: [],
             filtered_date_time: [],
             filtered_priority: 0,
-            filtered_difficulty: 0
+            filtered_difficulty: 0,
+            quickTask: ''
         };
     },
     props: {
@@ -51539,7 +51545,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return sortTask;
         }(),
-        filterTasksByTags: function filterTasksByTags() {}
+        filterTasksByTags: function filterTasksByTags() {},
+        addQuickTask: function () {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
+                var currentDatetime, deadLine, postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                    while (1) {
+                        switch (_context10.prev = _context10.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context10.next = 17;
+                                    break;
+                                }
+
+                                _context10.prev = 1;
+                                currentDatetime = new Date();
+                                deadLine = new Date(currentDatetime.getTime() + 43200000); //デフォルトの締切は12時間後
+
+                                postObject = {
+                                    user_id: this.user_id,
+                                    project_id: 1, //デフォルトのプロジェクトは無し
+                                    state_id: 1, //デフォルトの状態は「実行中」
+                                    name: this.quickTask,
+                                    overview: null,
+                                    priority: 3, //デフォルトは3
+                                    difficulty: 3, //デフォルトは3
+                                    start_date: currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
+                                    dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                                };
+
+                                console.log(postObject);
+                                _context10.next = 8;
+                                return axios.post('/api/tasks/', postObject);
+
+                            case 8:
+                                this.$refs.notice.showNotice('タスクを追加しました');
+                                this.fetchTasks();
+                                this.quickTask = '';
+                                _context10.next = 17;
+                                break;
+
+                            case 13:
+                                _context10.prev = 13;
+                                _context10.t0 = _context10['catch'](1);
+
+                                this.$refs.notice.showNotice('アイテムの変更に失敗しました');
+                                console.log(_context10.t0);
+
+                            case 17:
+                            case 'end':
+                                return _context10.stop();
+                        }
+                    }
+                }, _callee10, this, [[1, 13]]);
+            }));
+
+            function addQuickTask() {
+                return _ref10.apply(this, arguments);
+            }
+
+            return addQuickTask;
+        }()
     }
 });
 
@@ -51555,6 +51621,8 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("notice", { ref: "notice" }),
+      _vm._v(" "),
       _c(
         "modal",
         {
@@ -51583,14 +51651,38 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "add-task-button" }, [
+      _c("div", { staticClass: "add-task-area" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.quickTask,
+              expression: "quickTask"
+            }
+          ],
+          attrs: { type: "text", placeholder: "簡単タスク登録" },
+          domProps: { value: _vm.quickTask },
+          on: {
+            keydown: function($event) {
+              return _vm.addQuickTask()
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.quickTask = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c(
           "button",
           {
             staticClass: "btn btn-outline-primary mx-auto d-block",
             on: { click: _vm.addTask }
           },
-          [_vm._v("タスクを追加")]
+          [_vm._v("詳細登録ダイアログを表示")]
         )
       ]),
       _vm._v(" "),

@@ -2,11 +2,16 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="container">
+        <!--通知-->
+        <notice ref="notice" />
+        
+        <!--モーダル-->
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="newTask" table="tasks" v-bind:foreignKeys="foreignKeys"/>
         </modal>
-        <div class="add-task-button">
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">タスクを追加</button>
+        <div class="add-task-area">
+            <input v-model="quickTask" type="text" placeholder="簡単タスク登録" v-on:keydown="addQuickTask()">
+            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">詳細登録ダイアログを表示</button>
         </div>
         <!--フィルター-->
         <div class="filter-box">
@@ -74,6 +79,7 @@
                 filtered_date_time:[],
                 filtered_priority:0,
                 filtered_difficulty:0,
+                quickTask:'',
             }  
         },
         props:{
@@ -197,6 +203,33 @@
             },
             filterTasksByTags:function(){
                 
+            },
+            addQuickTask:async function(){
+                if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
+                    try{
+                        let currentDatetime = new Date()
+                        let deadLine = new Date(currentDatetime.getTime() + 43200000) //デフォルトの締切は12時間後
+                        let postObject = {
+                            user_id:this.user_id,
+                            project_id:1, //デフォルトのプロジェクトは無し
+                            state_id:1, //デフォルトの状態は「実行中」
+                            name:this.quickTask,
+                            overview:null,
+                            priority:3, //デフォルトは3
+                            difficulty:3, //デフォルトは3
+                            start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
+                            dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                        }
+                        console.log(postObject)
+                        await axios.post('/api/tasks/',postObject)
+                        this.$refs.notice.showNotice('タスクを追加しました')
+                        this.fetchTasks()
+                        this.quickTask = ''
+                    }catch(error){
+                        this.$refs.notice.showNotice('アイテムの変更に失敗しました')
+                        console.log(error)
+                    }
+                }
             }
         }
     }
@@ -226,12 +259,19 @@
     input {
         margin:0 0.3em;
     }
-    .add-task-button {
+    .add-task-area {
         position:fixed;
+        display:flex;
         z-index:5;
         right:3em;
         bottom:0;
-        background:white;
+        background:orange;
+        opacity:0.7;
         padding:1em;
+    }
+    .add-task-area input {
+        margin:0 0.5em;
+        border: 1px solid #ccc;
+        border-radius:0.3em;
     }
 </style>

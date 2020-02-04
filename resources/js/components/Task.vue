@@ -380,9 +380,9 @@
                     }
                     try{
                         await axios.post('/api/items',postItem)
+                        this.items = []
                         this.$refs.notice.showNotice('タスクにアイテムを追加しました')
                         this.fetchTask()
-                        this.items = []
                     }catch(error){
                         this.$refs.notice.showNotice('アイテムの追加に失敗しました')
                         console.log(error)
