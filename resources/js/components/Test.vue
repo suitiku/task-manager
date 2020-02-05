@@ -1,6 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        <filter-array ref="filter" v-bind:originalArray="tasks" columnName="difficulty" comparisonValue="3" comparisonOperator=">=" />
+        
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -8,6 +10,7 @@
             <versatile-form table="tasks" idProp="4"/>
         </modal>
         <button class="button" v-on:click="showModal()">modal</button>
+        <button class="button" v-on:click="filterArray()">filter</button>
         <!--<button class="button" v-on:click="showNotice()">notice</button>-->
     </div>
 </template>
@@ -18,16 +21,20 @@
             return {
                 modal:false,
                 test:'',
-                task:'',
+                tasks:'',
             }  
         },
         created:async function(){
+            let result = await axios.get('/api/tasks')
+            this.tasks = result.data
         },
         mounted:async function() {
-            let result = await axios.get('/api/tasks/1')
-            this.task = result.data
+            
         },
         methods: {
+            filterArray:function(){
+                this.$refs.filter.filterArray()
+            },
             showModal:function(){
                 this.$refs.modal.openModal()
             },
