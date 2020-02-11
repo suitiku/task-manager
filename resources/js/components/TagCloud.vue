@@ -44,23 +44,22 @@
         methods: {
             selectOption:function(value){
                 if(this.multiple){
+                    if(!this.result){this.result = []} //初回のみ空配列をセット
                     if(event.target.className == 'option selected'){
                         let index = this.result.indexOf(value)
                         this.result.splice(index,1)
                         event.target.className = 'option'
                         return
                     }
+                    
                 }else{
-                    this.result = []
                     if(event.target.className == 'option selected'){
                         event.target.className = 'option'
-                        this.$emit('input',this.result)
+                        this.$emit('input','')
                         return
                     }
-                    let els = document.getElementsByClassName('selected')
-                    if(els[0]){
-                        els[0].className = 'option'
-                    }
+                    this.$emit('input',value)
+                    return
                 }
                 
                 this.result.push(value)

@@ -1,8 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <filter-array ref="filter" v-bind:originalArray="tasks" columnName="difficulty" comparisonValue="3" comparisonOperator=">=" />
-        
+        <filter-box v-bind:targetArray="tasks" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -21,7 +20,14 @@
             return {
                 modal:false,
                 test:'',
+                hoge:'',
                 tasks:'',
+                testOptions: [
+                    {label:'test',value:'hoge'},    
+                    {label:'aaaa',value:'bbbb'},   
+                    {label:'moge',value:'moge2'},   
+                    {label:'yamada',value:'aaaa'},   
+                ]
             }  
         },
         created:async function(){
@@ -40,7 +46,7 @@
             },
             showNotice:function(){
                 this.$refs.notice.showNotice('実行中')
-            }
+            },
         },
     }
 </script>

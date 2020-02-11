@@ -26,6 +26,24 @@
             }
         },
         watch:{
+            columnName:{
+                immediate:true,
+                handler(){
+                    this.filterArray()
+                }
+            },
+            comparisonValue:{
+                immediate:true,
+                handler(){
+                    this.filterArray()
+                }
+            },
+            comparisonOperator:{
+                immediate:true,
+                handler(){
+                    this.filterArray()
+                }
+            }
             
         },
         created:function(){
@@ -36,6 +54,9 @@
         },
         methods: {
             filterArray:function(){
+                //3つのパラメータが揃っていない場合は終了
+                if(!this.columnName || !this.comparisonValue || !this.comparisonOperator){return }
+                //オペレータによって分岐
                 switch(this.comparisonOperator){
                     case '<':
                         this.filteredArray = this.originalArray.filter(el => {
@@ -49,7 +70,7 @@
                         break
                     case '=':
                         this.filteredArray = this.originalArray.filter(el => {
-                            return el[this.columnName] = this.comparisonValue
+                            return el[this.columnName] == this.comparisonValue
                         })
                         break
                     case '>=':

@@ -54678,14 +54678,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
             test: '',
-            tasks: ''
+            hoge: '',
+            tasks: '',
+            testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'aaaa' }]
         };
     },
     created: function () {
@@ -54761,15 +54762,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("filter-array", {
-        ref: "filter",
-        attrs: {
-          originalArray: _vm.tasks,
-          columnName: "difficulty",
-          comparisonValue: "3",
-          comparisonOperator: ">="
-        }
-      }),
+      _c("filter-box", { attrs: { targetArray: _vm.tasks } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -56489,6 +56482,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         selectOption: function selectOption(value) {
             if (this.multiple) {
+                if (!this.result) {
+                    this.result = [];
+                } //初回のみ空配列をセット
                 if (event.target.className == 'option selected') {
                     var index = this.result.indexOf(value);
                     this.result.splice(index, 1);
@@ -56496,16 +56492,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return;
                 }
             } else {
-                this.result = [];
                 if (event.target.className == 'option selected') {
                     event.target.className = 'option';
-                    this.$emit('input', this.result);
+                    this.$emit('input', '');
                     return;
                 }
-                var els = document.getElementsByClassName('selected');
-                if (els[0]) {
-                    els[0].className = 'option';
-                }
+                this.$emit('input', value);
+                return;
             }
 
             this.result.push(value);
@@ -60038,13 +60031,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             defalut: '='
         }
     },
-    watch: {},
+    watch: {
+        columnName: {
+            immediate: true,
+            handler: function handler() {
+                this.filterArray();
+            }
+        },
+        comparisonValue: {
+            immediate: true,
+            handler: function handler() {
+                this.filterArray();
+            }
+        },
+        comparisonOperator: {
+            immediate: true,
+            handler: function handler() {
+                this.filterArray();
+            }
+        }
+
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
         filterArray: function filterArray() {
             var _this = this;
 
+            //3つのパラメータが揃っていない場合は終了
+            if (!this.columnName || !this.comparisonValue || !this.comparisonOperator) {
+                return;
+            }
+            //オペレータによって分岐
             switch (this.comparisonOperator) {
                 case '<':
                     this.filteredArray = this.originalArray.filter(function (el) {
@@ -60058,7 +60076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     break;
                 case '=':
                     this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] = _this.comparisonValue;
+                        return el[_this.columnName] == _this.comparisonValue;
                     });
                     break;
                 case '>=':
@@ -60191,7 +60209,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n\n", ""]);
 
 // exports
 
@@ -60209,16 +60227,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            filteredArray: [],
+            filters: [],
+            // タグクラウド用option
+            fileterOptions: [{ label: '優先度', value: 'priority' }, { label: '重要度', value: 'difficulty' }],
+            operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
+            columnName: '',
+            comparisonValue: '',
+            comparisonOperator: ''
+        };
     },
-    props: {},
+    props: {
+        targetArray: {
+            type: [Array, String]
+        }
+    },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
-    methods: {}
+    methods: {
+        showFilterModal: function showFilterModal() {
+            this.$refs.filterModal.openModal();
+        },
+        addFilter: function addFilter() {
+            var filter = {
+                columnName: this.columnName,
+                comparisonValue: this.comparisonValue,
+                comparisonOperator: this.comparisonOperator
+            };
+            this.filteredArray.push({});
+            this.filters.push(filter);
+            console.log(this.filteredArray);
+        }
+    }
 });
 
 /***/ }),
@@ -60229,19 +60302,111 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "button",
-      {
-        on: {
-          click: function($event) {
-            return _vm.addFilter()
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "modal",
+        { ref: "filterModal" },
+        [
+          _vm._v("\n        " + _vm._s(_vm.columnName) + "\n        "),
+          _vm._v(" "),
+          _c("tag-cloud", {
+            attrs: { options: _vm.fileterOptions },
+            model: {
+              value: _vm.columnName,
+              callback: function($$v) {
+                _vm.columnName = $$v
+              },
+              expression: "columnName"
+            }
+          }),
+          _vm._v(" "),
+          _vm.columnName == "priority" || _vm.columnName == "difficulty"
+            ? _c("star-range", {
+                model: {
+                  value: _vm.comparisonValue,
+                  callback: function($$v) {
+                    _vm.comparisonValue = $$v
+                  },
+                  expression: "comparisonValue"
+                }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("tag-cloud", {
+            attrs: { options: _vm.operatorOptions },
+            model: {
+              value: _vm.comparisonOperator,
+              callback: function($$v) {
+                _vm.comparisonOperator = $$v
+              },
+              expression: "comparisonOperator"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.addFilter()
+                }
+              }
+            },
+            [_vm._v("フィルターを追加")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "filter-container" },
+        _vm._l(_vm.filters, function(filter, index) {
+          return _c(
+            "div",
+            [
+              index != 0 ? _c("span", [_vm._v("×")]) : _vm._e(),
+              _vm._v(" "),
+              _c("filter-array", {
+                key: index,
+                attrs: {
+                  originalArray: _vm.targetArray,
+                  columnName: filter.columnName,
+                  comparisonValue: filter.comparisonValue,
+                  comparisonOperator: filter.comparisonOperator
+                },
+                model: {
+                  value: _vm.filteredArray[index],
+                  callback: function($$v) {
+                    _vm.$set(_vm.filteredArray, index, $$v)
+                  },
+                  expression: "filteredArray[index]"
+                }
+              })
+            ],
+            1
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.showFilterModal()
+            }
           }
-        }
-      },
-      [_vm._v("フィルターを追加")]
-    )
-  ])
+        },
+        [_vm._v("add filter")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
