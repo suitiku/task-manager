@@ -1,7 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <filter-box v-bind:targetArray="tasks" />
+        {{test}}
+        <filter-box v-model="test" v-bind:targetArray="tasks" />
+        
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -26,8 +28,16 @@
                     {label:'test',value:'hoge'},    
                     {label:'aaaa',value:'bbbb'},   
                     {label:'moge',value:'moge2'},   
-                    {label:'yamada',value:'aaaa'},   
-                ]
+                    {label:'yamada',value:'yamada'},   
+                    {label:'yamamoto',value:'yamada'},   
+                ],
+                operatorOptions:[
+                    {label:'<',value:'<'},
+                    {label:'<=',value:'<='},
+                    {label:'=',value:'='},
+                    {label:'>=',value:'>='},
+                    {label:'>',value:'>'},
+                ],
             }  
         },
         created:async function(){

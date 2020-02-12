@@ -75,10 +75,18 @@
                 }
             },
             setClass:function(option){
-                if(this.value.indexOf(option.value) != -1){
-                    return 'option selected'
+                if(this.multiple){
+                    if(this.value.indexOf(option.value) != -1){
+                        return 'option selected'
+                    }else{
+                        return 'option'
+                    }
                 }else{
-                    return 'option'
+                    if(this.value == option.value){
+                        return 'option selected'
+                    }else{
+                        return 'option'
+                    }
                 }
             }
         }

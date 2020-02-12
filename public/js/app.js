@@ -54678,6 +54678,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54686,7 +54688,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             test: '',
             hoge: '',
             tasks: '',
-            testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'aaaa' }]
+            testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
+            operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }]
         };
     },
     created: function () {
@@ -54762,7 +54765,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("filter-box", { attrs: { targetArray: _vm.tasks } }),
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("filter-box", {
+        attrs: { targetArray: _vm.tasks },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -56514,10 +56527,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         setClass: function setClass(option) {
-            if (this.value.indexOf(option.value) != -1) {
-                return 'option selected';
+            if (this.multiple) {
+                if (this.value.indexOf(option.value) != -1) {
+                    return 'option selected';
+                } else {
+                    return 'option';
+                }
             } else {
-                return 'option';
+                if (this.value == option.value) {
+                    return 'option selected';
+                } else {
+                    return 'option';
+                }
             }
         }
     }
@@ -60209,7 +60230,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.operator[data-v-085cbfd8] {\n    margin:0 0.5em;\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -60261,6 +60282,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             filteredArray: [],
             filters: [],
+            filterOperators: [],
             // タグクラウド用option
             fileterOptions: [{ label: '優先度', value: 'priority' }, { label: '重要度', value: 'difficulty' }],
             operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
@@ -60274,7 +60296,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: [Array, String]
         }
     },
-    watch: {},
+    watch: {
+        //個別にフィルターされた配列をand/or演算して出力
+        filteredArray: function filteredArray() {
+            if (this.filteredArray.length == 1) {
+                this.$emit('input', this.filteredArray[0]);
+            } else {
+                this.operate();
+            }
+        }
+
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
@@ -60289,7 +60321,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.filteredArray.push({});
             this.filters.push(filter);
+            this.filterOperators.push('×');
             console.log(this.filteredArray);
+        },
+        // 配列をAnd/Or演算して出力
+        operate: function operate() {
+            for (var index in this.filteredArray) {
+                console.log(index);
+            }
         }
     }
 });
@@ -60368,8 +60407,6 @@ var render = function() {
           return _c(
             "div",
             [
-              index != 0 ? _c("span", [_vm._v("×")]) : _vm._e(),
-              _vm._v(" "),
               _c("filter-array", {
                 key: index,
                 attrs: {
@@ -60385,7 +60422,11 @@ var render = function() {
                   },
                   expression: "filteredArray[index]"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "operator" }, [
+                _vm._v(_vm._s(_vm.filterOperators[index]))
+              ])
             ],
             1
           )

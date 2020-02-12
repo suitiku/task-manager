@@ -25,8 +25,8 @@
         <!--処理部-->
         <div class="filter-container">
             <div v-for="(filter,index) in filters">
-                <span v-if="index != 0">×</span>
                 <filter-array v-model="filteredArray[index]" v-bind:key="index" v-bind:originalArray="targetArray" v-bind:columnName="filter.columnName" v-bind:comparisonValue="filter.comparisonValue" v-bind:comparisonOperator="filter.comparisonOperator" />
+                <span class="operator">{{filterOperators[index]}}</span>
             </div>
         </div>
         <button v-on:click="showFilterModal()">add filter</button>
@@ -39,6 +39,7 @@
             return {
                 filteredArray:[],
                 filters:[],
+                filterOperators:[],
                 // タグクラウド用option
                 fileterOptions:[
                     {label:'優先度',value:'priority'},          
@@ -62,6 +63,14 @@
             }
         },
         watch:{
+            //個別にフィルターされた配列をand/or演算して出力
+            filteredArray:function(){
+                if(this.filteredArray.length == 1){
+                    this.$emit('input',this.filteredArray[0])
+                }else{
+                    this.operate()
+                }
+            }
             
         },
         created:function(){
@@ -82,8 +91,15 @@
                 }
                 this.filteredArray.push({})
                 this.filters.push(filter)
+                this.filterOperators.push('×')
                 console.log(this.filteredArray)
-            }
+            },
+            // 配列をAnd/Or演算して出力
+            operate:function(){
+                for(let index in this.filteredArray){
+                    console.log(index)
+                }
+            },
         }
     }
 </script>
@@ -94,5 +110,8 @@
         border-radius:0.2em;
         padding:0.8em;
     }
-    
+    .operator {
+        margin:0 0.5em;
+        cursor:pointer;
+    }
 </style>
