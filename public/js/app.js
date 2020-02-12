@@ -54680,6 +54680,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54765,7 +54769,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _vm._l(_vm.test, function(tes) {
+        return _c("div", [
+          _c("p", [_vm._v("id: " + _vm._s(tes.id))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("priority: " + _vm._s(tes.priority))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("difficulty: " + _vm._s(tes.difficulty))])
+        ])
+      }),
+      _vm._v(" "),
       _c("filter-box", {
         attrs: { targetArray: _vm.tasks },
         model: {
@@ -54821,7 +54834,7 @@ var render = function() {
         [_vm._v("filter")]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -60302,6 +60315,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.filteredArray.length == 1) {
                 this.$emit('input', this.filteredArray[0]);
             } else {
+                this.$emit('input', []);
                 this.operate();
             }
         }
@@ -60321,15 +60335,200 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.filteredArray.push({});
             this.filters.push(filter);
-            this.filterOperators.push('×');
-            console.log(this.filteredArray);
+            this.filterOperators.push('*');
+            // console.log(this.filteredArray)
         },
         // 配列をAnd/Or演算して出力
         operate: function operate() {
+            var result = [];
+            var resultIds = [];
+            var ids = [];
             for (var index in this.filteredArray) {
-                console.log(index);
+                if (index == 0) {
+                    var _iteratorNormalCompletion = true;
+                    var _didIteratorError = false;
+                    var _iteratorError = undefined;
+
+                    try {
+                        for (var _iterator = this.filteredArray[0][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                            var el = _step.value;
+
+                            // resultIds.push(el.id)
+                            ids.push(el.id);
+                        }
+                    } catch (err) {
+                        _didIteratorError = true;
+                        _iteratorError = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+                        } finally {
+                            if (_didIteratorError) {
+                                throw _iteratorError;
+                            }
+                        }
+                    }
+                } else {
+                    resultIds = [];
+                    if (!this.filteredArray[index].length) {
+                        continue;
+                    }
+                    if (this.filterOperators[index - 1] == '*') {
+                        // 積
+                        console.log('かける');
+                        // console.log(this.filteredArray[index].length)
+                        // console.log(ids)
+                        // console.log(index)
+                        // console.log(this.filteredArray[index])
+                        var _iteratorNormalCompletion2 = true;
+                        var _didIteratorError2 = false;
+                        var _iteratorError2 = undefined;
+
+                        try {
+                            for (var _iterator2 = this.filteredArray[index][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                var _el = _step2.value;
+
+                                if (ids.indexOf(_el.id) != -1) {
+                                    resultIds.push(_el.id);
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError2 = true;
+                            _iteratorError2 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
+                                }
+                            } finally {
+                                if (_didIteratorError2) {
+                                    throw _iteratorError2;
+                                }
+                            }
+                        }
+                    } else {
+                        // 和
+                        console.log('たす');
+                    }
+                    ids = resultIds;
+                    console.log(ids);
+                }
             }
-        }
+            // idから配列を復元して出力
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this.targetArray[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var _el2 = _step3.value;
+
+                    if (resultIds.indexOf(_el2.id) != -1) {
+                        result.push(_el2);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            this.$emit('input', result);
+
+            return;
+
+            for (var _index in this.filterOperators) {
+
+                // オペレータによってandとorを分岐
+                console.log(this.filteredArray[Number(_index) + 1]);
+                for (var elIndex in this.filteredArray[_index + 1]) {
+                    console.log(elIndex);
+                    // and
+                    if (this.filterOperators[_index] == '*') {
+                        if (_index == 0) {
+                            var _iteratorNormalCompletion4 = true;
+                            var _didIteratorError4 = false;
+                            var _iteratorError4 = undefined;
+
+                            try {
+                                for (var _iterator4 = this.filteredArray[0][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                    var _el3 = _step4.value;
+
+                                    resultIds.push(_el3.id);
+                                    ids.push(_el3.id);
+                                }
+                            } catch (err) {
+                                _didIteratorError4 = true;
+                                _iteratorError4 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                        _iterator4.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError4) {
+                                        throw _iteratorError4;
+                                    }
+                                }
+                            }
+                        }
+                        console.log('ids: ' + ids);
+                        if (ids.indexOf(this.filteredArray[Number(_index) + 1][elIndex].id) != -1) {
+
+                            resultIds.push(this.filteredArray[Number(_index) + 1][elIndex].id);
+                        }
+                    } else {
+                        // or
+
+                    }
+                }
+                if (this.filteredArray.length == Number(_index) + 1) {
+                    break;
+                } //配列の最後まで来たらループを抜ける
+            }
+            // idから配列を復元して出力
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+                for (var _iterator5 = this.targetArray[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var _el4 = _step5.value;
+
+                    if (resultIds.indexOf(_el4.id) != -1) {
+                        result.push(_el4);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
+                    }
+                } finally {
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
+                    }
+                }
+            }
+
+            this.$emit('input', result);
+        },
+        //andとorを切り替え
+        toggleOperator: function toggleOperator(index) {}
     }
 });
 

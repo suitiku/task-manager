@@ -68,6 +68,7 @@
                 if(this.filteredArray.length == 1){
                     this.$emit('input',this.filteredArray[0])
                 }else{
+                    this.$emit('input',[])
                     this.operate()
                 }
             }
@@ -91,15 +92,55 @@
                 }
                 this.filteredArray.push({})
                 this.filters.push(filter)
-                this.filterOperators.push('×')
-                console.log(this.filteredArray)
+                this.filterOperators.push('*')
+                // console.log(this.filteredArray)
             },
             // 配列をAnd/Or演算して出力
             operate:function(){
+                let result = []
+                let resultIds = []
+                let ids = []
                 for(let index in this.filteredArray){
-                    console.log(index)
+                    if(index == 0){
+                        for(let el of this.filteredArray[0]){
+                            // resultIds.push(el.id)
+                            ids.push(el.id)
+                        }
+                    }else{
+                        resultIds = []
+                        if(!this.filteredArray[index].length){continue }
+                        if(this.filterOperators[index - 1] == '*'){
+                        // 積
+                            console.log('かける')
+                            // console.log(this.filteredArray[index].length)
+                            // console.log(ids)
+                            // console.log(index)
+                            // console.log(this.filteredArray[index])
+                            for(let el of this.filteredArray[index]){
+                                if(ids.indexOf(el.id) != -1){
+                                    resultIds.push(el.id)
+                                }
+                            }
+                        }else{
+                        // 和
+                            console.log('たす')
+                        }
+                        ids = resultIds
+                        console.log(ids)
+                    }
                 }
+                // idから配列を復元して出力
+                for(let el of this.targetArray){
+                    if(resultIds.indexOf(el.id) != -1){
+                        result.push(el)
+                    }
+                }
+                this.$emit('input',result)
             },
+            //andとorを切り替え
+            toggleOperator:function(index){
+                
+            }
         }
     }
 </script>

@@ -1,7 +1,11 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
+        <div v-for="tes in test">
+            <p>id: {{tes.id}}</p>
+            <p>priority: {{tes.priority}}</p>
+            <p>difficulty: {{tes.difficulty}}</p>
+        </div>
         <filter-box v-model="test" v-bind:targetArray="tasks" />
         
         
