@@ -60243,7 +60243,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.operator[data-v-085cbfd8] {\n    margin:0 0.5em;\n    cursor:pointer;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.operator-or[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n\n\n", ""]);
 
 // exports
 
@@ -60254,6 +60254,7 @@ exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-we
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -60336,7 +60337,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.filteredArray.push({});
             this.filters.push(filter);
             this.filterOperators.push('*');
-            // console.log(this.filteredArray)
         },
         // 配列をAnd/Or演算して出力
         operate: function operate() {
@@ -60353,7 +60353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         for (var _iterator = this.filteredArray[0][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                             var el = _step.value;
 
-                            // resultIds.push(el.id)
+                            resultIds.push(el.id);
                             ids.push(el.id);
                         }
                     } catch (err) {
@@ -60371,17 +60371,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     }
                 } else {
-                    resultIds = [];
                     if (!this.filteredArray[index].length) {
                         continue;
                     }
                     if (this.filterOperators[index - 1] == '*') {
                         // 積
-                        console.log('かける');
-                        // console.log(this.filteredArray[index].length)
-                        // console.log(ids)
-                        // console.log(index)
-                        // console.log(this.filteredArray[index])
+                        resultIds = [];
                         var _iteratorNormalCompletion2 = true;
                         var _didIteratorError2 = false;
                         var _iteratorError2 = undefined;
@@ -60410,92 +60405,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     } else {
                         // 和
-                        console.log('たす');
-                    }
-                    ids = resultIds;
-                    console.log(ids);
-                }
-            }
-            // idから配列を復元して出力
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
+                        // 追加用id配列
+                        var _iteratorNormalCompletion3 = true;
+                        var _didIteratorError3 = false;
+                        var _iteratorError3 = undefined;
 
-            try {
-                for (var _iterator3 = this.targetArray[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var _el2 = _step3.value;
+                        try {
+                            for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                var _el2 = _step3.value;
 
-                    if (resultIds.indexOf(_el2.id) != -1) {
-                        result.push(_el2);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
-                    }
-                } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
-                    }
-                }
-            }
-
-            this.$emit('input', result);
-
-            return;
-
-            for (var _index in this.filterOperators) {
-
-                // オペレータによってandとorを分岐
-                console.log(this.filteredArray[Number(_index) + 1]);
-                for (var elIndex in this.filteredArray[_index + 1]) {
-                    console.log(elIndex);
-                    // and
-                    if (this.filterOperators[_index] == '*') {
-                        if (_index == 0) {
-                            var _iteratorNormalCompletion4 = true;
-                            var _didIteratorError4 = false;
-                            var _iteratorError4 = undefined;
-
+                                ids.push(_el2.id);
+                            }
+                            // setオブジェクトを生成
+                        } catch (err) {
+                            _didIteratorError3 = true;
+                            _iteratorError3 = err;
+                        } finally {
                             try {
-                                for (var _iterator4 = this.filteredArray[0][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                    var _el3 = _step4.value;
-
-                                    resultIds.push(_el3.id);
-                                    ids.push(_el3.id);
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
                                 }
-                            } catch (err) {
-                                _didIteratorError4 = true;
-                                _iteratorError4 = err;
                             } finally {
-                                try {
-                                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                        _iterator4.return();
-                                    }
-                                } finally {
-                                    if (_didIteratorError4) {
-                                        throw _iteratorError4;
-                                    }
+                                if (_didIteratorError3) {
+                                    throw _iteratorError3;
                                 }
                             }
                         }
-                        console.log('ids: ' + ids);
-                        if (ids.indexOf(this.filteredArray[Number(_index) + 1][elIndex].id) != -1) {
 
-                            resultIds.push(this.filteredArray[Number(_index) + 1][elIndex].id);
+                        var setObj = new Set(ids);
+                        var _iteratorNormalCompletion4 = true;
+                        var _didIteratorError4 = false;
+                        var _iteratorError4 = undefined;
+
+                        try {
+                            for (var _iterator4 = setObj[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                var id = _step4.value;
+
+                                resultIds.push(id);
+                            }
+                        } catch (err) {
+                            _didIteratorError4 = true;
+                            _iteratorError4 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                    _iterator4.return();
+                                }
+                            } finally {
+                                if (_didIteratorError4) {
+                                    throw _iteratorError4;
+                                }
+                            }
                         }
-                    } else {
-                        // or
-
                     }
+                    ids = resultIds;
                 }
-                if (this.filteredArray.length == Number(_index) + 1) {
-                    break;
-                } //配列の最後まで来たらループを抜ける
             }
             // idから配列を復元して出力
             var _iteratorNormalCompletion5 = true;
@@ -60504,10 +60468,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             try {
                 for (var _iterator5 = this.targetArray[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var _el4 = _step5.value;
+                    var _el3 = _step5.value;
 
-                    if (resultIds.indexOf(_el4.id) != -1) {
-                        result.push(_el4);
+                    if (resultIds.indexOf(_el3.id) != -1) {
+                        result.push(_el3);
                     }
                 }
             } catch (err) {
@@ -60528,7 +60492,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('input', result);
         },
         //andとorを切り替え
-        toggleOperator: function toggleOperator(index) {}
+        toggleOperator: function toggleOperator(index) {
+            if (this.filterOperators[index] == '*') {
+                this.filterOperators.splice(index, 1, '+');
+            } else {
+                this.filterOperators.splice(index, 1, '*');
+            }
+            this.operate();
+        },
+        setOperatorClass: function setOperatorClass(index) {
+
+            return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
+        }
     }
 });
 
@@ -60602,35 +60577,47 @@ var render = function() {
       _c(
         "div",
         { staticClass: "filter-container" },
-        _vm._l(_vm.filters, function(filter, index) {
-          return _c(
-            "div",
-            [
-              _c("filter-array", {
-                key: index,
-                attrs: {
-                  originalArray: _vm.targetArray,
-                  columnName: filter.columnName,
-                  comparisonValue: filter.comparisonValue,
-                  comparisonOperator: filter.comparisonOperator
-                },
-                model: {
-                  value: _vm.filteredArray[index],
-                  callback: function($$v) {
-                    _vm.$set(_vm.filteredArray, index, $$v)
+        [
+          _vm._v("\n        " + _vm._s(_vm.filterOperators) + "\n        "),
+          _vm._l(_vm.filters, function(filter, index) {
+            return _c(
+              "div",
+              [
+                _c("filter-array", {
+                  key: index,
+                  attrs: {
+                    originalArray: _vm.targetArray,
+                    columnName: filter.columnName,
+                    comparisonValue: filter.comparisonValue,
+                    comparisonOperator: filter.comparisonOperator
                   },
-                  expression: "filteredArray[index]"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "operator" }, [
-                _vm._v(_vm._s(_vm.filterOperators[index]))
-              ])
-            ],
-            1
-          )
-        }),
-        0
+                  model: {
+                    value: _vm.filteredArray[index],
+                    callback: function($$v) {
+                      _vm.$set(_vm.filteredArray, index, $$v)
+                    },
+                    expression: "filteredArray[index]"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    class: _vm.setOperatorClass(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOperator(index)
+                      }
+                    }
+                  },
+                  [_vm._v("+")]
+                )
+              ],
+              1
+            )
+          })
+        ],
+        2
       ),
       _vm._v(" "),
       _c(

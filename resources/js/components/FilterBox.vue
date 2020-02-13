@@ -26,7 +26,7 @@
         <div class="filter-container">
             <div v-for="(filter,index) in filters">
                 <filter-array v-model="filteredArray[index]" v-bind:key="index" v-bind:originalArray="targetArray" v-bind:columnName="filter.columnName" v-bind:comparisonValue="filter.comparisonValue" v-bind:comparisonOperator="filter.comparisonOperator" />
-                <span class="operator">{{filterOperators[index]}}</span>
+                <span v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)">+</span>
             </div>
         </div>
         <button v-on:click="showFilterModal()">add filter</button>
@@ -93,7 +93,6 @@
                 this.filteredArray.push({})
                 this.filters.push(filter)
                 this.filterOperators.push('*')
-                // console.log(this.filteredArray)
             },
             // 配列をAnd/Or演算して出力
             operate:function(){
@@ -103,30 +102,32 @@
                 for(let index in this.filteredArray){
                     if(index == 0){
                         for(let el of this.filteredArray[0]){
-                            // resultIds.push(el.id)
+                            resultIds.push(el.id)
                             ids.push(el.id)
                         }
                     }else{
-                        resultIds = []
                         if(!this.filteredArray[index].length){continue }
                         if(this.filterOperators[index - 1] == '*'){
-                        // 積
-                            console.log('かける')
-                            // console.log(this.filteredArray[index].length)
-                            // console.log(ids)
-                            // console.log(index)
-                            // console.log(this.filteredArray[index])
+                            // 積
+                            resultIds = []
                             for(let el of this.filteredArray[index]){
                                 if(ids.indexOf(el.id) != -1){
                                     resultIds.push(el.id)
                                 }
                             }
                         }else{
-                        // 和
-                            console.log('たす')
+                            // 和
+                            // 追加用id配列
+                            for(let el of this.filteredArray[index]){
+                                ids.push(el.id)
+                            }
+                            // setオブジェクトを生成
+                            let setObj = new Set(ids)
+                            for(let id of setObj){
+                                resultIds.push(id)
+                            }
                         }
                         ids = resultIds
-                        console.log(ids)
                     }
                 }
                 // idから配列を復元して出力
@@ -139,7 +140,15 @@
             },
             //andとorを切り替え
             toggleOperator:function(index){
-                
+                if(this.filterOperators[index] == '*'){
+                    this.filterOperators.splice(index,1,'+')
+                }else{
+                    this.filterOperators.splice(index,1,'*')
+                }
+                this.operate()
+            },
+            setOperatorClass:function(index){
+                return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or'
             }
         }
     }
@@ -151,8 +160,20 @@
         border-radius:0.2em;
         padding:0.8em;
     }
-    .operator {
+    .operator-or {
+        display:inline-block;
         margin:0 0.5em;
         cursor:pointer;
+        transition:all 0.5s ease;
     }
+    .operator-and {
+        display:inline-block;
+        margin:0 0.5em;
+        cursor:pointer;
+        transform:rotate(45deg);
+        transition:all 0.5s ease;
+        color:red;
+    }
+    
+    
 </style>
