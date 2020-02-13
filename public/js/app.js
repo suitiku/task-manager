@@ -54684,6 +54684,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54693,7 +54695,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             hoge: '',
             tasks: '',
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }]
         };
     },
     created: function () {
@@ -54775,18 +54777,30 @@ var render = function() {
           _vm._v(" "),
           _c("p", [_vm._v("priority: " + _vm._s(tes.priority))]),
           _vm._v(" "),
-          _c("p", [_vm._v("difficulty: " + _vm._s(tes.difficulty))])
+          _c("p", [_vm._v("difficulty: " + _vm._s(tes.difficulty))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("start_date: " + _vm._s(tes.start_date))])
         ])
       }),
       _vm._v(" "),
       _c("filter-box", {
-        attrs: { targetArray: _vm.tasks },
+        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
         model: {
           value: _vm.test,
           callback: function($$v) {
             _vm.test = $$v
           },
           expression: "test"
+        }
+      }),
+      _vm._v(" "),
+      _c("date-picker", {
+        model: {
+          value: _vm.hoge,
+          callback: function($$v) {
+            _vm.hoge = $$v
+          },
+          expression: "hoge"
         }
       }),
       _vm._v(" "),
@@ -58505,9 +58519,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            select_options: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'dead_line' }, { label: '数字入力', value: 'date_selecter' }],
-            selected_option: 'date_selecter',
-            dead_line: false,
+            selectOptions: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
+            selectedOption: 'dateSelecter',
+            deadLine: false,
             result: '',
             japaneseDatetime: ''
         };
@@ -58526,16 +58540,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$emit('input', this.result);
             }
         },
-        selected_option: function selected_option() {
-            switch (this.selected_option[0]) {
+        selectedOption: function selectedOption() {
+            switch (this.selectedOption) {
                 case 'current':
                     this.setCurrentDatetime();
                     break;
-                case 'dead_line':
-                    this.dead_line = true;
+                case 'deadLine':
+                    this.deadLine = true;
                     break;
-                case 'date_selecter':
-                    this.dead_line = false;
+                case 'dateSelecter':
+                    this.deadLine = false;
                     break;
             }
         },
@@ -58582,13 +58596,13 @@ var render = function() {
       { staticClass: "select-option-wrapper" },
       [
         _c("tag-cloud", {
-          attrs: { options: _vm.select_options },
+          attrs: { options: _vm.selectOptions },
           model: {
-            value: _vm.selected_option,
+            value: _vm.selectedOption,
             callback: function($$v) {
-              _vm.selected_option = $$v
+              _vm.selectedOption = $$v
             },
-            expression: "selected_option"
+            expression: "selectedOption"
           }
         })
       ],
@@ -58604,8 +58618,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: !_vm.dead_line,
-              expression: "!dead_line"
+              value: !_vm.deadLine,
+              expression: "!deadLine"
             }
           ],
           model: {
@@ -58622,8 +58636,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.dead_line,
-              expression: "dead_line"
+              value: _vm.deadLine,
+              expression: "deadLine"
             }
           ],
           model: {
@@ -60057,6 +60071,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         columnName: {
             type: String
         },
+        columnLabel: {
+            type: String
+        },
         comparisonValue: {
             type: [String, Number]
         },
@@ -60139,7 +60156,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("span", { staticClass: "filter-label" }, [
     _vm._v(
-      _vm._s(_vm.columnName) +
+      _vm._s(_vm.columnLabel) +
         " " +
         _vm._s(_vm.comparisonOperator) +
         " " +
@@ -60290,6 +60307,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -60297,8 +60316,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filteredArray: [],
             filters: [],
             filterOperators: [],
-            // タグクラウド用option
-            fileterOptions: [{ label: '優先度', value: 'priority' }, { label: '重要度', value: 'difficulty' }],
             operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
             columnName: '',
             comparisonValue: '',
@@ -60307,6 +60324,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     props: {
         targetArray: {
+            type: [Array, String]
+        },
+        filterOptions: {
             type: [Array, String]
         }
     },
@@ -60329,8 +60349,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs.filterModal.openModal();
         },
         addFilter: function addFilter() {
+            var _this = this;
+
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this.columnName;
+            });
             var filter = {
                 columnName: this.columnName,
+                columnLabel: selectedOption.label,
                 comparisonValue: this.comparisonValue,
                 comparisonOperator: this.comparisonOperator
             };
@@ -60501,8 +60527,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.operate();
         },
         setOperatorClass: function setOperatorClass(index) {
-
             return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
+        },
+        showComparisonValueComponent: function showComparisonValueComponent() {
+            var _this2 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this2.columnName;
+            });
+            switch (selectedOption.type) {
+                case 'star':
+                    return 'star-range';
+                case 'number':
+                    return '';
+                case 'date':
+                    return 'date-picker';
+            }
         }
     }
 });
@@ -60526,7 +60569,7 @@ var render = function() {
           _vm._v("\n        " + _vm._s(_vm.columnName) + "\n        "),
           _vm._v(" "),
           _c("tag-cloud", {
-            attrs: { options: _vm.fileterOptions },
+            attrs: { options: _vm.filterOptions },
             model: {
               value: _vm.columnName,
               callback: function($$v) {
@@ -60536,17 +60579,16 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm.columnName == "priority" || _vm.columnName == "difficulty"
-            ? _c("star-range", {
-                model: {
-                  value: _vm.comparisonValue,
-                  callback: function($$v) {
-                    _vm.comparisonValue = $$v
-                  },
-                  expression: "comparisonValue"
-                }
-              })
-            : _vm._e(),
+          _c(_vm.showComparisonValueComponent(), {
+            tag: "component",
+            model: {
+              value: _vm.comparisonValue,
+              callback: function($$v) {
+                _vm.comparisonValue = $$v
+              },
+              expression: "comparisonValue"
+            }
+          }),
           _vm._v(" "),
           _c("tag-cloud", {
             attrs: { options: _vm.operatorOptions },
@@ -60577,47 +60619,45 @@ var render = function() {
       _c(
         "div",
         { staticClass: "filter-container" },
-        [
-          _vm._v("\n        " + _vm._s(_vm.filterOperators) + "\n        "),
-          _vm._l(_vm.filters, function(filter, index) {
-            return _c(
-              "div",
-              [
-                _c("filter-array", {
-                  key: index,
-                  attrs: {
-                    originalArray: _vm.targetArray,
-                    columnName: filter.columnName,
-                    comparisonValue: filter.comparisonValue,
-                    comparisonOperator: filter.comparisonOperator
+        _vm._l(_vm.filters, function(filter, index) {
+          return _c(
+            "div",
+            [
+              _c("filter-array", {
+                key: index,
+                attrs: {
+                  originalArray: _vm.targetArray,
+                  columnName: filter.columnName,
+                  columnLabel: filter.columnLabel,
+                  comparisonValue: filter.comparisonValue,
+                  comparisonOperator: filter.comparisonOperator
+                },
+                model: {
+                  value: _vm.filteredArray[index],
+                  callback: function($$v) {
+                    _vm.$set(_vm.filteredArray, index, $$v)
                   },
-                  model: {
-                    value: _vm.filteredArray[index],
-                    callback: function($$v) {
-                      _vm.$set(_vm.filteredArray, index, $$v)
-                    },
-                    expression: "filteredArray[index]"
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    class: _vm.setOperatorClass(index),
-                    on: {
-                      click: function($event) {
-                        return _vm.toggleOperator(index)
-                      }
+                  expression: "filteredArray[index]"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "span",
+                {
+                  class: _vm.setOperatorClass(index),
+                  on: {
+                    click: function($event) {
+                      return _vm.toggleOperator(index)
                     }
-                  },
-                  [_vm._v("+")]
-                )
-              ],
-              1
-            )
-          })
-        ],
-        2
+                  }
+                },
+                [_vm._v("+")]
+              )
+            ],
+            1
+          )
+        }),
+        0
       ),
       _vm._v(" "),
       _c(

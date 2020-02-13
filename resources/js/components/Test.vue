@@ -5,9 +5,9 @@
             <p>id: {{tes.id}}</p>
             <p>priority: {{tes.priority}}</p>
             <p>difficulty: {{tes.difficulty}}</p>
+            <p>start_date: {{tes.start_date}}</p>
         </div>
-        <filter-box v-model="test" v-bind:targetArray="tasks" />
-        
+        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -35,12 +35,10 @@
                     {label:'yamada',value:'yamada'},   
                     {label:'yamamoto',value:'yamada'},   
                 ],
-                operatorOptions:[
-                    {label:'<',value:'<'},
-                    {label:'<=',value:'<='},
-                    {label:'=',value:'='},
-                    {label:'>=',value:'>='},
-                    {label:'>',value:'>'},
+                filterOptions:[
+                    {label:'優先度',value:'priority',type:'star'},          
+                    {label:'難易度',value:'difficulty',type:'star'},            
+                    {label:'作成日',value:'start_date',type:'date'},
                 ],
             }  
         },

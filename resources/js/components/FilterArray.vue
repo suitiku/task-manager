@@ -1,6 +1,6 @@
 <!--単一ファイルコンポーネントのテンプレートファイル-->
 <template>
-    <span class="filter-label">{{columnName}} {{comparisonOperator}} {{comparisonValue}}</span>
+    <span class="filter-label">{{columnLabel}} {{comparisonOperator}} {{comparisonValue}}</span>
 </template>
 
 <script>
@@ -16,6 +16,9 @@
             },
             columnName:{
                 type:String,
+            },
+            columnLabel: {
+                type:String,  
             },
             comparisonValue:{
                 type:[String,Number]

@@ -5,11 +5,11 @@
 <template>
     <div class="date-picker-wrapper">
         <div class="select-option-wrapper">
-            <tag-cloud v-model="selected_option" v-bind:options="select_options" />
+            <tag-cloud v-model="selectedOption" v-bind:options="selectOptions" />
         </div>
         <div class="component-wrapper">
-            <date-selecter v-model="result" v-show="!dead_line" />
-            <dead-line v-model="result" v-show="dead_line" />
+            <date-selecter v-model="result" v-show="!deadLine" />
+            <dead-line v-model="result" v-show="deadLine" />
         </div>
         <div class="result-display">{{japaneseDatetime}}</div>
     </div>
@@ -19,13 +19,13 @@
     export default {
         data:function(){
             return {
-                select_options: [
+                selectOptions: [
                     {label:'現在時刻',value:'current'},
-                    {label:'シメキリ',value:'dead_line'},
-                    {label:'数字入力',value:'date_selecter'},
+                    {label:'シメキリ',value:'deadLine'},
+                    {label:'数字入力',value:'dateSelecter'},
                 ],
-                selected_option:'date_selecter',
-                dead_line:false,
+                selectedOption:'dateSelecter',
+                deadLine:false,
                 result:'',
                 japaneseDatetime:''
             }  
@@ -44,16 +44,16 @@
                     this.$emit('input',this.result)
                 }
             },
-            selected_option:function(){
-                switch(this.selected_option[0]){
+            selectedOption:function(){
+                switch(this.selectedOption){
                     case 'current':
                         this.setCurrentDatetime()
                         break
-                    case 'dead_line':
-                        this.dead_line = true
+                    case 'deadLine':
+                        this.deadLine = true
                         break
-                    case 'date_selecter':
-                        this.dead_line = false
+                    case 'dateSelecter':
+                        this.deadLine = false
                         break
                 }
             },

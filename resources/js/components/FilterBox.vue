@@ -1,21 +1,19 @@
 <!--複数フィルターを適用するコンポーネント-->
-
+<!--今後の改修ポイント-->
+<!--１．テキスト検索の実装-->
+<!--２．数値検索の実装-->
+<!--３．デザインの修正-->
 <template>
     <div class="container">
         <!--モーダル-->
         <modal ref="filterModal">
             {{columnName}}
             <!--フィルターするカラム名-->
-                <tag-cloud v-model="columnName" v-bind:options="fileterOptions" />
+                <tag-cloud v-model="columnName" v-bind:options="filterOptions" />
             
             <!--値-->
-                <!--１．数字-->
-            
-                <!--２．5段階評価-->
-                <star-range v-if="columnName == 'priority' || columnName == 'difficulty'" v-model="comparisonValue" />
-            
-                <!--３．日付-->
-                <!--４．文字列-->
+                <!--数字：number,五段階評価：star,日付：date,文字列：string-->
+                <component v-bind:is="showComparisonValueComponent()" v-model="comparisonValue" />
             
             <!--演算子-->
             <tag-cloud v-model="comparisonOperator" v-bind:options="operatorOptions" />
@@ -25,7 +23,15 @@
         <!--処理部-->
         <div class="filter-container">
             <div v-for="(filter,index) in filters">
-                <filter-array v-model="filteredArray[index]" v-bind:key="index" v-bind:originalArray="targetArray" v-bind:columnName="filter.columnName" v-bind:comparisonValue="filter.comparisonValue" v-bind:comparisonOperator="filter.comparisonOperator" />
+                <filter-array 
+                    v-model="filteredArray[index]" 
+                    v-bind:key="index" 
+                    v-bind:originalArray="targetArray" 
+                    v-bind:columnName="filter.columnName" 
+                    v-bind:columnLabel="filter.columnLabel" 
+                    v-bind:comparisonValue="filter.comparisonValue" 
+                    v-bind:comparisonOperator="filter.comparisonOperator"
+                />
                 <span v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)">+</span>
             </div>
         </div>
@@ -40,11 +46,6 @@
                 filteredArray:[],
                 filters:[],
                 filterOperators:[],
-                // タグクラウド用option
-                fileterOptions:[
-                    {label:'優先度',value:'priority'},          
-                    {label:'重要度',value:'difficulty'}            
-                ],
                 operatorOptions:[
                     {label:'<',value:'<'},
                     {label:'<=',value:'<='},
@@ -59,6 +60,9 @@
         },
         props: {
             targetArray:{
+                type:[Array,String]
+            },
+            filterOptions:{
                 type:[Array,String]
             }
         },
@@ -85,8 +89,12 @@
                   this.$refs.filterModal.openModal()
             },
             addFilter:function(){
+                let selectedOption = this.filterOptions.find(el => {
+                    return el.value == this.columnName
+                })
                 let filter = {
                     columnName:this.columnName,
+                    columnLabel:selectedOption.label,
                     comparisonValue:this.comparisonValue,
                     comparisonOperator:this.comparisonOperator
                 }
@@ -149,6 +157,22 @@
             },
             setOperatorClass:function(index){
                 return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or'
+            },
+            showComparisonValueComponent:function(){
+                if(!this.columnName){return ''}
+                let selectedOption = this.filterOptions.find(el => {
+                    return el.value == this.columnName
+                })
+                switch(selectedOption.type){
+                    case 'star':
+                        return 'star-range'
+                    case 'number':
+                        return ''
+                    case 'date':
+                        return 'date-picker'
+                    case 'string':
+                        return ''
+                }
             }
         }
     }
