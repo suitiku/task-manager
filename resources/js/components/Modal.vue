@@ -33,11 +33,6 @@
         },
         methods: {
             openModal:function(){
-                // let contentEl = this.$el.lastChild
-                // let contentElRect = contentEl.getBoundingClientRect()
-                // let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
-                // let scrollY = window.pageYOffset
-                // this.content_top = (scrollY - baseY + 50) + 'px'
                 this.modal_content_class = 'modal-content modal-content-active'
                 this.modal_class = 'modal-root-active'
                 this.$emit('input',true)

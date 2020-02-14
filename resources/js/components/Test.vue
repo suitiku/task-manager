@@ -1,13 +1,16 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div v-for="tes in test">
-            <p>id: {{tes.id}}</p>
-            <p>priority: {{tes.priority}}</p>
-            <p>difficulty: {{tes.difficulty}}</p>
-            <p>start_date: {{tes.start_date}}</p>
-        </div>
-        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        <div v-on:click="showToolTip()" class="tool-tip-area"></div>
+        <tool-tip ref="tooltip">
+            <p>このフィルターを削除します</p>
+            <button>OK</button>
+        </tool-tip>
+        
+        
+        
+        
+        <!--<filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />-->
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -59,6 +62,9 @@
             showNotice:function(){
                 this.$refs.notice.showNotice('実行中')
             },
+            showToolTip:function(){
+                this.$refs.tooltip.toggleToolTipVisible()
+            }
         },
     }
 </script>
@@ -72,5 +78,10 @@
         position:fixed;
         top:0;
         left:0;
+    }
+    .tool-tip-area {
+        width:50%;
+        height:200px;
+        background:grey;
     }
 </style>

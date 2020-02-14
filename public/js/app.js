@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(197);
+module.exports = __webpack_require__(202);
 
 
 /***/ }),
@@ -14681,6 +14681,7 @@ Vue.component('home', __webpack_require__(177));
 Vue.component('text-spliter', __webpack_require__(182));
 Vue.component('filter-array', __webpack_require__(187));
 Vue.component('filter-box', __webpack_require__(192));
+Vue.component('tool-tip', __webpack_require__(197));
 
 var app = new Vue({
   el: '#app'
@@ -54645,7 +54646,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n", ""]);
+exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
 
 // exports
 
@@ -54662,6 +54663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -54755,6 +54757,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         showNotice: function showNotice() {
             this.$refs.notice.showNotice('実行中');
+        },
+        showToolTip: function showToolTip() {
+            this.$refs.tooltip.toggleToolTipVisible();
         }
     }
 });
@@ -54771,38 +54776,20 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._l(_vm.test, function(tes) {
-        return _c("div", [
-          _c("p", [_vm._v("id: " + _vm._s(tes.id))]),
-          _vm._v(" "),
-          _c("p", [_vm._v("priority: " + _vm._s(tes.priority))]),
-          _vm._v(" "),
-          _c("p", [_vm._v("difficulty: " + _vm._s(tes.difficulty))]),
-          _vm._v(" "),
-          _c("p", [_vm._v("start_date: " + _vm._s(tes.start_date))])
-        ])
-      }),
-      _vm._v(" "),
-      _c("filter-box", {
-        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
+      _c("div", {
+        staticClass: "tool-tip-area",
+        on: {
+          click: function($event) {
+            return _vm.showToolTip()
+          }
         }
       }),
       _vm._v(" "),
-      _c("date-picker", {
-        model: {
-          value: _vm.hoge,
-          callback: function($$v) {
-            _vm.hoge = $$v
-          },
-          expression: "hoge"
-        }
-      }),
+      _c("tool-tip", { ref: "tooltip" }, [
+        _c("p", [_vm._v("このフィルターを削除します")]),
+        _vm._v(" "),
+        _c("button", [_vm._v("OK")])
+      ]),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -54848,7 +54835,7 @@ var render = function() {
         [_vm._v("filter")]
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -54987,11 +54974,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         openModal: function openModal() {
-            // let contentEl = this.$el.lastChild
-            // let contentElRect = contentEl.getBoundingClientRect()
-            // let baseY = contentElRect.y < 0 ? 0 : contentElRect.y
-            // let scrollY = window.pageYOffset
-            // this.content_top = (scrollY - baseY + 50) + 'px'
             this.modal_content_class = 'modal-content modal-content-active';
             this.modal_class = 'modal-root-active';
             this.$emit('input', true);
@@ -60309,6 +60291,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -60545,6 +60530,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return '';
                 case 'date':
                     return 'date-picker';
+                case 'string':
+                    return '';
             }
         }
     }
@@ -60687,6 +60674,183 @@ if (false) {
 
 /***/ }),
 /* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(198)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(200)
+/* template */
+var __vue_template__ = __webpack_require__(201)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-6cabd7c8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ToolTip.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6cabd7c8", Component.options)
+  } else {
+    hotAPI.reload("data-v-6cabd7c8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(199);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("b2c5ab86", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6cabd7c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ToolTip.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6cabd7c8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ToolTip.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(90deg);\n                transform:rotateX(90deg);\n        position:absolute;\n        /*opacity:0;*/\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip-show[data-v-6cabd7c8] {\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(0deg);\n                transform:rotateX(0deg);\n        position:absolute;\n        /*opacity:1.0;*/\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip[data-v-6cabd7c8] {\n        position: relative;\n        display: inline-block;\n        padding: 1.0em 0.5em;\n        max-height:200px;\n        min-width: 5em;\n        max-width: 100%;\n        color: #555;\n        font-size: 75%;\n        background: #FFF;\n        border: solid 3px #555;\n        -webkit-box-sizing: border-box;\n                box-sizing: border-box;\n        text-align:center;\n        border-radius:1.0em;\n}\n.tool-tip[data-v-6cabd7c8]:before {\n        content: \"\";\n        position: absolute;\n        bottom: -24px;\n        left: 50%;\n        margin-left: -15px;\n        border: 12px solid transparent;\n        border-top: 12px solid #FFF;\n        z-index: 2;\n}\n.tool-tip[data-v-6cabd7c8]:after {\n        content: \"\";\n        position: absolute;\n        bottom: -30px;\n        left: 50%;    \n        margin-left: -17px;\n        border: 14px solid transparent;\n        border-top: 14px solid #555;\n        z-index: 1;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            textContent: '',
+            toolTipRoot: 'tool-tip-hide',
+            toolTipPosition: {
+                top: 0,
+                left: 0
+            }
+        };
+    },
+    props: {},
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        showToolTip: function showToolTip() {
+            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight + 'px';
+            this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
+            this.toolTipRoot = 'tool-tip-show';
+        },
+        hideToolTip: function hideToolTip() {
+            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight + 'px';
+            this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
+            this.toolTipRoot = 'tool-tip-hide';
+        },
+        toggleToolTipVisible: function toggleToolTipVisible() {
+            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight - 30 + 'px';
+            this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
+            this.toolTipRoot = this.toolTipRoot == 'tool-tip-show' ? 'tool-tip-hide' : 'tool-tip-show';
+        }
+    }
+});
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { ref: "toolTip", class: _vm.toolTipRoot, style: _vm.toolTipPosition },
+    [
+      _c(
+        "div",
+        { staticClass: "tool-tip" },
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.textContent))])
+        ],
+        2
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6cabd7c8", module.exports)
+  }
+}
+
+/***/ }),
+/* 202 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
