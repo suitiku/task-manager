@@ -40,8 +40,6 @@
                 this.toolTipRoot = 'tool-tip-show'
             },
             hideToolTip:function(){
-                // this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
-                // this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
                 this.toolTipRoot = 'tool-tip-hide'
                 this.textContent = ''
             },
@@ -56,17 +54,15 @@
 </script>
 <style scoped>
     .tool-tip-hide {
+        position:fixed;
         transform-origin:bottom center;
         transform:rotateX(90deg);
-        position:absolute;
-        /*opacity:0;*/
         transition:opacity,transform 0.5s ease;
     }
     .tool-tip-show {
+        position:fixed;
         transform-origin:bottom center;
         transform:rotateX(0deg);
-        position:absolute;
-        /*opacity:1.0;*/
         transition:opacity,transform 0.5s ease;
     }
     .tool-tip {

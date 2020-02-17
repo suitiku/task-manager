@@ -97,6 +97,9 @@
                 if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
                     this.$emit('input',this.targetArray)   
                 }
+            },
+            columnName:function(){
+                this.comparisonValue = ''
             }
             
         },

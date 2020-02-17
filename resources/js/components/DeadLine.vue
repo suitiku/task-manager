@@ -41,7 +41,7 @@
                     return 
                 }
                 let baseDateTime = new Date()
-                let text = this.selectedOption[0]
+                let text = this.selectedOption
                 let regex = /(\d{4})-(\d{2})-(\d{2})\s{1}(\d{2}):(\d{2}):(\d{2})/
                 let regexResult = text.match(regex)
                 let year = Number(regexResult[1]) + baseDateTime.getFullYear()

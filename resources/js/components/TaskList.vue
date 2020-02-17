@@ -9,48 +9,26 @@
         <modal ref="modal" v-model="modal">
             <versatile-form v-model="newTask" ref="newTask" table="tasks" v-bind:foreignKeys="foreignKeys"/>
         </modal>
+        
+        <!--タスク追加エリア（固定）-->
         <div class="add-task-area">
             <input v-model="quickTask" type="text" placeholder="簡単タスク登録" v-on:keydown="addQuickTask()">
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">詳細登録ダイアログを表示</button>
         </div>
+        
         <!--フィルター-->
-        <div class="filter-box">
-            <div class="filter">
-                <span>状態　</span>
-                <label><input type="checkbox" v-model="filtered_states" value="1">実行中</label>
-                <label><input type="checkbox" v-model="filtered_states" value="2">対応待ち</label>
-                <label><input type="checkbox" v-model="filtered_states" value="3">完了</label>
-                <label><input type="checkbox" v-model="filtered_states" value="4">タスク移動</label>
-                <label><input type="checkbox" v-model="filtered_states" value="5">未完了</label>
-            </div>
-            <div class="fileter">
-                <span>時間　</span>
-                <label><input type="radio" v-model="filtered_date_time" value="1">開始前</label>
-                <label><input type="radio" v-model="filtered_date_time" value="2">締切1日前</label>
-                <label><input type="radio" v-model="filtered_date_time" value="3">締切12時間前</label>
-                
-            </div>
-            <div class="filter">
-                <span>優先度</span>
-                <star-range v-model="filtered_priority" />
-            </div>
-            <div class="filter">
-                <span>難易度</span>
-                <star-range v-model="filtered_difficulty" />
-            </div>
-            <div class="filter">
-                <span>タグでフィルター</span>
-                <tag-cloud v-model="filtered_tags" v-bind:options="tags" multiple />
-            </div>
-        </div>
+        <filter-box v-model="displayedTasks" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        
         <!--ソート-->
-        <div class="sortBox">
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('dead_line')">締切</button>
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>
-        </div>
-        <!--<task v-for="(task,index) in tasks" v-bind:task="task" v-bind:key="index"/>-->
-        <task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>
+        <!--<div class="sortBox">-->
+        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('dead_line')">締切</button>-->
+        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>-->
+        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>-->
+        <!--</div>-->
+        
+        <!--リスト表示-->
+        <!--<task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
+        <task v-for="(task,index) in displayedTasks" v-bind:taskId="task.id" v-bind:key="index"/>
     </div>
 </template>
 
@@ -59,8 +37,8 @@
         data:function(){
             return {
                 modal:false,
-                // allTasks:[], //データベースから取得したリスト全体
-                tasks:[], //表示用タスクリスト
+                tasks:[], //tasksから取得したオリジナルの配列
+                displayedTasks:[], //フィルター、ソートされたtaskの配列
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
                 foreignKeys:[
@@ -74,12 +52,13 @@
                 ],
                 taskFilter:'incomplete',
                 tags:[],
-                filtered_tags:[],
-                filtered_states:[],
-                filtered_date_time:[],
-                filtered_priority:0,
-                filtered_difficulty:0,
                 quickTask:'',
+                filterOptions:[
+                    {label:'優先度',value:'priority',type:'star'},          
+                    {label:'難易度',value:'difficulty',type:'star'},            
+                    {label:'作成日',value:'start_date',type:'date'},
+                    {label:'締切',value:'dead_line',type:'date'},
+                ],
             }  
         },
         props:{
@@ -109,70 +88,6 @@
                     this.tasks.splice(index,1,newVal)
                 }
             },
-            filtered_tags:async function(){
-                await this.fetchTasks()
-                if(this.filtered_tags.length == 0){return } //選択されていない場合は全表示
-                let result = this.tasks.filter(task => {
-                    for(let index of Object.keys(task.tags)){
-                        if(this.filtered_tags.indexOf(task.tags[index].id) != -1){
-                            return task
-                        }
-                    }
-                })
-                this.tasks = result
-            },
-            filtered_states:async function(){
-                await this.fetchTasks()
-                if(this.filtered_states.length == 0){return }
-                let result = this.tasks.filter(task => {
-                    return (this.filtered_states.indexOf(String(task.state_id)) != -1)
-                })
-                this.tasks = result
-            },
-            filtered_date_time:async function(){
-                await this.fetchTasks()
-                let current_date_time = new Date()
-                if(this.filtered_date_time.length == 0){return }
-                let result = this.tasks.filter(task => {
-                    let to_dead_line = new Date(task.dead_line) - current_date_time.getTime()
-                    let from_start_date = new Date(task.start_date) - current_date_time.getTime()
-                    switch(this.filtered_date_time){
-                        case '1':
-                            if(from_start_date > 0){
-                                return task
-                            }
-                            break
-                        case '2':
-                            if(to_dead_line < 86400000){ //24時間前
-                                return task
-                            }
-                            break
-                        case '3':
-                            if(to_dead_line < 43200000){ //12時間前
-                                return task
-                            }
-                            break
-                    }
-                })
-                this.tasks = result
-            },
-            filtered_priority:async function(){
-                await this.fetchTasks()
-                if(this.filtered_priority == 0){return }
-                let result = this.tasks.filter(task => {
-                    return task.priority >= this.filtered_priority
-                })
-                this.tasks = result
-            },
-            filtered_difficulty:async function(){
-                await this.fetchTasks()
-                // this.tasks = this.allTasks
-                if(this.filtered_difficulty == 0){return }
-                let result = this.tasks.filter(task => {
-                    return task.difficulty >= this.filtered_difficulty
-                })
-                this.tasks = result
-            },
         },
         methods: {
             fetchTasks: async function(){
@@ -200,9 +115,6 @@
                 this.tasks.sort((a,b) => {
                     return (a[key] < b[key]) ? -1 : 1
                 })
-            },
-            filterTasksByTags:function(){
-                
             },
             addQuickTask:async function(){
                 if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
