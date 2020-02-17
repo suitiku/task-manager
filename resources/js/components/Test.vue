@@ -1,16 +1,10 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div v-on:click="showToolTip()" class="tool-tip-area"></div>
-        <tool-tip ref="tooltip">
-            <p>このフィルターを削除します</p>
-            <button>OK</button>
-        </tool-tip>
-        
-        
-        
-        
-        <!--<filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />-->
+        <div v-for="tes in test">
+            <span>id: {{tes.id}} , name: {{tes.name}}</span>
+        </div>
+        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
         
         <notice ref="notice" />
         <!--モーダル-->

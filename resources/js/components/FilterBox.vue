@@ -5,9 +5,16 @@
 <!--３．デザインの修正-->
 <template>
     <div class="container">
+        <!--ツールチップ-->
+        <tool-tip ref="toolTipDelete">
+            <div class="tool-tip-content">
+                <span>このフィルターを削除します　</span>
+                <button class="btn btn-sm btn-warning d-block" v-on:click="deleteFilter()">OK</button>
+            </div>
+        </tool-tip>
+        <tool-tip ref="toolTip"><span>フィルターを追加します</span></tool-tip>
         <!--モーダル-->
         <modal ref="filterModal">
-            {{columnName}}
             <!--フィルターするカラム名-->
                 <tag-cloud v-model="columnName" v-bind:options="filterOptions" />
             
@@ -22,20 +29,27 @@
         </modal>
         <!--処理部-->
         <div class="filter-container">
-            <div v-for="(filter,index) in filters">
-                <filter-array 
-                    v-model="filteredArray[index]" 
-                    v-bind:key="index" 
-                    v-bind:originalArray="targetArray" 
-                    v-bind:columnName="filter.columnName" 
-                    v-bind:columnLabel="filter.columnLabel" 
-                    v-bind:comparisonValue="filter.comparisonValue" 
-                    v-bind:comparisonOperator="filter.comparisonOperator"
-                />
+            <div v-for="(filter,index) in filters" class="filter-wrapper">
+                <div v-on:click="showDeleteFilterToolTip(index)" v-on:mouseout="hideDeleteFilterToolTip()">
+                    <filter-array 
+                        v-model="filteredArray[index]" 
+                        v-bind:key="index" 
+                        v-bind:originalArray="targetArray" 
+                        v-bind:columnName="filter.columnName" 
+                        v-bind:columnLabel="filter.columnLabel" 
+                        v-bind:comparisonValue="filter.comparisonValue" 
+                        v-bind:comparisonOperator="filter.comparisonOperator"
+                    />
+                </div>
                 <span v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)">+</span>
             </div>
+            <i class="fas fa-plus-circle fa-lg add-button" 
+                v-on:click="showFilterModal()" 
+                v-on:mouseover="showToolTip()"
+                v-on:mouseout="hideToolTip()">
+            </i>
         </div>
-        <button v-on:click="showFilterModal()">add filter</button>
+        
     </div>
 </template>
 
@@ -55,7 +69,8 @@
                 ],
                 columnName:'',
                 comparisonValue:'',
-                comparisonOperator:''
+                comparisonOperator:'',
+                deleteTargetIndex:''
             }
         },
         props: {
@@ -69,11 +84,18 @@
         watch:{
             //個別にフィルターされた配列をand/or演算して出力
             filteredArray:function(){
-                if(this.filteredArray.length == 1){
+                if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
+                    this.$emit('input',this.targetArray)   
+                }else if(this.filteredArray.length == 1){
                     this.$emit('input',this.filteredArray[0])
                 }else{
                     this.$emit('input',[])
                     this.operate()
+                }
+            },
+            targetArray:function(){
+                if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
+                    this.$emit('input',this.targetArray)   
                 }
             }
             
@@ -173,7 +195,30 @@
                     case 'string':
                         return ''
                 }
-            }
+            },
+            showDeleteFilterToolTip:function(index){
+                this.deleteTargetIndex = index
+                this.$refs.toolTipDelete.showToolTip()
+            },
+            hideDeleteFilterToolTip:function(){
+                let vue = this
+                let timer = window.setTimeout(function(){
+                    vue.$refs.toolTipDelete.hideToolTip()
+                    this.deleteTargetIndex = ''
+                },2000)
+            },
+            deleteFilter:function(){
+                this.filterOperators.splice(this.deleteTargetIndex,1)
+                this.filters.splice(this.deleteTargetIndex,1)
+                this.filteredArray.splice(this.deleteTargetIndex,1)
+                this.$refs.toolTipDelete.hideToolTip() //ツールチップを消す
+            },
+            showToolTip:function(){
+                this.$refs.toolTip.showToolTip()
+            },
+            hideToolTip:function(){
+                this.$refs.toolTip.hideToolTip()
+            },
         }
     }
 </script>
@@ -183,6 +228,9 @@
         border:1px solid grey;
         border-radius:0.2em;
         padding:0.8em;
+    }
+    .filter-wrapper {
+        display:flex;
     }
     .operator-or {
         display:inline-block;
@@ -197,6 +245,13 @@
         transform:rotate(45deg);
         transition:all 0.5s ease;
         color:red;
+    }
+    .tool-tip-content{
+        display:flex;
+        align-items:center;
+    }
+    .add-button {
+        cursor:pointer;
     }
     
     

@@ -54682,12 +54682,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54776,20 +54770,24 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("div", {
-        staticClass: "tool-tip-area",
-        on: {
-          click: function($event) {
-            return _vm.showToolTip()
-          }
-        }
+      _vm._l(_vm.test, function(tes) {
+        return _c("div", [
+          _c("span", [
+            _vm._v("id: " + _vm._s(tes.id) + " , name: " + _vm._s(tes.name))
+          ])
+        ])
       }),
       _vm._v(" "),
-      _c("tool-tip", { ref: "tooltip" }, [
-        _c("p", [_vm._v("このフィルターを削除します")]),
-        _vm._v(" "),
-        _c("button", [_vm._v("OK")])
-      ]),
+      _c("filter-box", {
+        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -54835,7 +54833,7 @@ var render = function() {
         [_vm._v("filter")]
       )
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -60023,7 +60021,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -60242,7 +60240,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.operator-or[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-085cbfd8]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-085cbfd8] {\n    cursor:pointer;\n}\n\n\n", ""]);
 
 // exports
 
@@ -60294,6 +60292,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -60304,7 +60316,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
             columnName: '',
             comparisonValue: '',
-            comparisonOperator: ''
+            comparisonOperator: '',
+            deleteTargetIndex: ''
         };
     },
     props: {
@@ -60318,11 +60331,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         //個別にフィルターされた配列をand/or演算して出力
         filteredArray: function filteredArray() {
-            if (this.filteredArray.length == 1) {
+            if (!this.filteredArray || this.filteredArray.length == 0) {
+                //フィルターが設定されていない場合は全部出力
+                this.$emit('input', this.targetArray);
+            } else if (this.filteredArray.length == 1) {
                 this.$emit('input', this.filteredArray[0]);
             } else {
                 this.$emit('input', []);
                 this.operate();
+            }
+        },
+        targetArray: function targetArray() {
+            if (!this.filteredArray || this.filteredArray.length == 0) {
+                //フィルターが設定されていない場合は全部出力
+                this.$emit('input', this.targetArray);
             }
         }
 
@@ -60533,6 +60555,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 'string':
                     return '';
             }
+        },
+        showDeleteFilterToolTip: function showDeleteFilterToolTip(index) {
+            this.deleteTargetIndex = index;
+            this.$refs.toolTipDelete.showToolTip();
+        },
+        hideDeleteFilterToolTip: function hideDeleteFilterToolTip() {
+            var vue = this;
+            var timer = window.setTimeout(function () {
+                vue.$refs.toolTipDelete.hideToolTip();
+                this.deleteTargetIndex = '';
+            }, 2000);
+        },
+        deleteFilter: function deleteFilter() {
+            this.filterOperators.splice(this.deleteTargetIndex, 1);
+            this.filters.splice(this.deleteTargetIndex, 1);
+            this.filteredArray.splice(this.deleteTargetIndex, 1);
+            this.$refs.toolTipDelete.hideToolTip(); //ツールチップを消す
+        },
+        showToolTip: function showToolTip() {
+            this.$refs.toolTip.showToolTip();
+        },
+        hideToolTip: function hideToolTip() {
+            this.$refs.toolTip.hideToolTip();
         }
     }
 });
@@ -60549,12 +60594,33 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("tool-tip", { ref: "toolTipDelete" }, [
+        _c("div", { staticClass: "tool-tip-content" }, [
+          _c("span", [_vm._v("このフィルターを削除します　")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-warning d-block",
+              on: {
+                click: function($event) {
+                  return _vm.deleteFilter()
+                }
+              }
+            },
+            [_vm._v("OK")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tool-tip", { ref: "toolTip" }, [
+        _c("span", [_vm._v("フィルターを追加します")])
+      ]),
+      _vm._v(" "),
       _c(
         "modal",
         { ref: "filterModal" },
         [
-          _vm._v("\n        " + _vm._s(_vm.columnName) + "\n        "),
-          _vm._v(" "),
           _c("tag-cloud", {
             attrs: { options: _vm.filterOptions },
             model: {
@@ -60606,27 +60672,42 @@ var render = function() {
       _c(
         "div",
         { staticClass: "filter-container" },
-        _vm._l(_vm.filters, function(filter, index) {
-          return _c(
-            "div",
-            [
-              _c("filter-array", {
-                key: index,
-                attrs: {
-                  originalArray: _vm.targetArray,
-                  columnName: filter.columnName,
-                  columnLabel: filter.columnLabel,
-                  comparisonValue: filter.comparisonValue,
-                  comparisonOperator: filter.comparisonOperator
+        [
+          _vm._l(_vm.filters, function(filter, index) {
+            return _c("div", { staticClass: "filter-wrapper" }, [
+              _c(
+                "div",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.showDeleteFilterToolTip(index)
+                    },
+                    mouseout: function($event) {
+                      return _vm.hideDeleteFilterToolTip()
+                    }
+                  }
                 },
-                model: {
-                  value: _vm.filteredArray[index],
-                  callback: function($$v) {
-                    _vm.$set(_vm.filteredArray, index, $$v)
-                  },
-                  expression: "filteredArray[index]"
-                }
-              }),
+                [
+                  _c("filter-array", {
+                    key: index,
+                    attrs: {
+                      originalArray: _vm.targetArray,
+                      columnName: filter.columnName,
+                      columnLabel: filter.columnLabel,
+                      comparisonValue: filter.comparisonValue,
+                      comparisonOperator: filter.comparisonOperator
+                    },
+                    model: {
+                      value: _vm.filteredArray[index],
+                      callback: function($$v) {
+                        _vm.$set(_vm.filteredArray, index, $$v)
+                      },
+                      expression: "filteredArray[index]"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c(
                 "span",
@@ -60640,23 +60721,25 @@ var render = function() {
                 },
                 [_vm._v("+")]
               )
-            ],
-            1
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.showFilterModal()
+            ])
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-plus-circle fa-lg add-button",
+            on: {
+              click: function($event) {
+                return _vm.showFilterModal()
+              },
+              mouseover: function($event) {
+                return _vm.showToolTip()
+              },
+              mouseout: function($event) {
+                return _vm.hideToolTip()
+              }
             }
-          }
-        },
-        [_vm._v("add filter")]
+          })
+        ],
+        2
       )
     ],
     1
@@ -60796,17 +60879,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        showToolTip: function showToolTip() {
-            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight + 'px';
+        showToolTip: function showToolTip(content) {
+            this.textContent = content;
+            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight - 30 + 'px';
             this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
             this.toolTipRoot = 'tool-tip-show';
         },
         hideToolTip: function hideToolTip() {
-            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight + 'px';
-            this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
+            // this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
+            // this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
             this.toolTipRoot = 'tool-tip-hide';
+            this.textContent = '';
         },
-        toggleToolTipVisible: function toggleToolTipVisible() {
+        toggleToolTipVisible: function toggleToolTipVisible(content) {
+            this.textContent = content;
             this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight - 30 + 'px';
             this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
             this.toolTipRoot = this.toolTipRoot == 'tool-tip-show' ? 'tool-tip-hide' : 'tool-tip-show';

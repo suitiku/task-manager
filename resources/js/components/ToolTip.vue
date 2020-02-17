@@ -33,17 +33,20 @@
             
         },
         methods: {
-            showToolTip:function(){
-                this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight) + 'px'
+            showToolTip:function(content){
+                this.textContent = content
+                this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
                 this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
                 this.toolTipRoot = 'tool-tip-show'
             },
             hideToolTip:function(){
-                this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight) + 'px'
-                this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
+                // this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
+                // this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
                 this.toolTipRoot = 'tool-tip-hide'
+                this.textContent = ''
             },
-            toggleToolTipVisible:function(){
+            toggleToolTipVisible:function(content){
+                this.textContent = content
                 this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
                 this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
                 this.toolTipRoot = this.toolTipRoot == 'tool-tip-show' ? 'tool-tip-hide' : 'tool-tip-show'
