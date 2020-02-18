@@ -86,6 +86,13 @@
                             return el[this.columnName] > this.comparisonValue
                         })
                         break
+                    //comparisonValueが配列の場合はand(*)／or（+）で分ける
+                    case '*':
+                        
+                        break
+                    case '+':
+                        
+                        break
                 }
                 this.$emit('input',this.filteredArray)
             }

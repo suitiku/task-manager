@@ -171,8 +171,12 @@
             }
         },
         watch:{
+            taskId:async function() {
+                await this.fetchTask()
+                this.updateData()
+            },
             task:{
-                handler:function(){
+                handler:async function(){
                     this.updateData()
                 },
                 deep:true

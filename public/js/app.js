@@ -51066,6 +51066,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     created: function created() {
         this.fetchTasks();
         this.fetchTags();
+        this.addFilters(); //追加でフィルターオプションを追加（状態、）
     },
 
     watch: {
@@ -51237,17 +51238,91 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTags;
         }(),
-        addTask: function addTask() {
-            this.$refs.newTask.resetForm();
-            this.$refs.modal.openModal();
-        },
-        sortTask: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(key) {
+        addFilters: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var statesResult, states, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, state;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
                         switch (_context4.prev = _context4.next) {
                             case 0:
                                 _context4.next = 2;
+                                return axios.get('api/states');
+
+                            case 2:
+                                statesResult = _context4.sent;
+                                states = [];
+                                _iteratorNormalCompletion2 = true;
+                                _didIteratorError2 = false;
+                                _iteratorError2 = undefined;
+                                _context4.prev = 7;
+
+                                for (_iterator2 = statesResult.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    state = _step2.value;
+
+                                    states.push({ label: state.name, value: state.id });
+                                }
+                                _context4.next = 15;
+                                break;
+
+                            case 11:
+                                _context4.prev = 11;
+                                _context4.t0 = _context4['catch'](7);
+                                _didIteratorError2 = true;
+                                _iteratorError2 = _context4.t0;
+
+                            case 15:
+                                _context4.prev = 15;
+                                _context4.prev = 16;
+
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
+                                }
+
+                            case 18:
+                                _context4.prev = 18;
+
+                                if (!_didIteratorError2) {
+                                    _context4.next = 21;
+                                    break;
+                                }
+
+                                throw _iteratorError2;
+
+                            case 21:
+                                return _context4.finish(18);
+
+                            case 22:
+                                return _context4.finish(15);
+
+                            case 23:
+                                this.filterOptions.push({ label: '状態', value: 'state_id', type: 'options', options: states });
+
+                            case 24:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+            }));
+
+            function addFilters() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return addFilters;
+        }(),
+        addTask: function addTask() {
+            this.$refs.newTask.resetForm();
+            this.$refs.modal.openModal();
+        },
+        sortTask: function () {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(key) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                _context5.next = 2;
                                 return this.fetchTasks();
 
                             case 2:
@@ -51257,31 +51332,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 3:
                             case 'end':
-                                return _context4.stop();
+                                return _context5.stop();
                         }
                     }
-                }, _callee4, this);
+                }, _callee5, this);
             }));
 
             function sortTask(_x3) {
-                return _ref4.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return sortTask;
         }(),
         addQuickTask: function () {
-            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
                 var currentDatetime, deadLine, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
-                        switch (_context5.prev = _context5.next) {
+                        switch (_context6.prev = _context6.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context5.next = 17;
+                                    _context6.next = 17;
                                     break;
                                 }
 
-                                _context5.prev = 1;
+                                _context6.prev = 1;
                                 currentDatetime = new Date();
                                 deadLine = new Date(currentDatetime.getTime() + 43200000); //デフォルトの締切は12時間後
 
@@ -51298,33 +51373,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
 
                                 console.log(postObject);
-                                _context5.next = 8;
+                                _context6.next = 8;
                                 return axios.post('/api/tasks/', postObject);
 
                             case 8:
                                 this.$refs.notice.showNotice('タスクを追加しました');
                                 this.fetchTasks();
                                 this.quickTask = '';
-                                _context5.next = 17;
+                                _context6.next = 17;
                                 break;
 
                             case 13:
-                                _context5.prev = 13;
-                                _context5.t0 = _context5['catch'](1);
+                                _context6.prev = 13;
+                                _context6.t0 = _context6['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context5.t0);
+                                console.log(_context6.t0);
 
                             case 17:
                             case 'end':
-                                return _context5.stop();
+                                return _context6.stop();
                         }
                     }
-                }, _callee5, this, [[1, 13]]);
+                }, _callee6, this, [[1, 13]]);
             }));
 
             function addQuickTask() {
-                return _ref5.apply(this, arguments);
+                return _ref6.apply(this, arguments);
             }
 
             return addQuickTask;
@@ -51708,13 +51783,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        task: {
-            handler: function handler() {
-                this.updateData();
-            },
-            deep: true
-        },
-        editedTask: function () {
+        //2020-02-18
+        taskId: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
@@ -51734,57 +51804,109 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function editedTask() {
+            function taskId() {
                 return _ref.apply(this, arguments);
+            }
+
+            return taskId;
+        }(),
+
+        task: {
+            handler: function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                        while (1) {
+                            switch (_context2.prev = _context2.next) {
+                                case 0:
+                                    this.updateData();
+
+                                case 1:
+                                case 'end':
+                                    return _context2.stop();
+                            }
+                        }
+                    }, _callee2, this);
+                }));
+
+                function handler() {
+                    return _ref2.apply(this, arguments);
+                }
+
+                return handler;
+            }(),
+            deep: true
+        },
+        editedTask: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.next = 2;
+                                return this.fetchTask();
+
+                            case 2:
+                                this.updateData();
+
+                            case 3:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function editedTask() {
+                return _ref3.apply(this, arguments);
             }
 
             return editedTask;
         }(),
         selectedTags: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
                 var tagsObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 if (this.isEditedTags) {
-                                    _context2.next = 2;
+                                    _context4.next = 2;
                                     break;
                                 }
 
-                                return _context2.abrupt('return');
+                                return _context4.abrupt('return');
 
                             case 2:
                                 tagsObject = {
                                     task_id: this.task.id,
                                     tag_ids: this.selectedTags
                                 };
-                                _context2.prev = 3;
-                                _context2.next = 6;
+                                _context4.prev = 3;
+                                _context4.next = 6;
                                 return axios.put('/api/tag_task/', tagsObject);
 
                             case 6:
                                 this.$refs.notice.showNotice('タグを変更しました');
-                                _context2.next = 13;
+                                _context4.next = 13;
                                 break;
 
                             case 9:
-                                _context2.prev = 9;
-                                _context2.t0 = _context2['catch'](3);
+                                _context4.prev = 9;
+                                _context4.t0 = _context4['catch'](3);
 
                                 this.$refs.notice.showNotice('タグの変更に失敗しました');
-                                console.log(_context2.t0);
+                                console.log(_context4.t0);
 
                             case 13:
                             case 'end':
-                                return _context2.stop();
+                                return _context4.stop();
                         }
                     }
-                }, _callee2, this, [[3, 9]]);
+                }, _callee4, this, [[3, 9]]);
             }));
 
             function selectedTags() {
-                return _ref2.apply(this, arguments);
+                return _ref4.apply(this, arguments);
             }
 
             return selectedTags;
@@ -51798,17 +51920,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                 while (1) {
-                    switch (_context3.prev = _context3.next) {
+                    switch (_context5.prev = _context5.next) {
                         case 0:
                             if (!this.taskId) {
-                                _context3.next = 5;
+                                _context5.next = 5;
                                 break;
                             }
 
-                            _context3.next = 3;
+                            _context5.next = 3;
                             return this.fetchTask();
 
                         case 3:
@@ -51817,30 +51939,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 5:
                         case 'end':
-                            return _context3.stop();
+                            return _context5.stop();
                     }
                 }
-            }, _callee3, this);
+            }, _callee5, this);
         }));
 
         function created() {
-            return _ref3.apply(this, arguments);
+            return _ref5.apply(this, arguments);
         }
 
         return created;
     }(),
     mounted: function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                 while (1) {
-                    switch (_context4.prev = _context4.next) {
+                    switch (_context6.prev = _context6.next) {
                         case 0:
                             if (!(this.taskId && !this.task)) {
-                                _context4.next = 5;
+                                _context6.next = 5;
                                 break;
                             }
 
-                            _context4.next = 3;
+                            _context6.next = 3;
                             return this.fetchTask();
 
                         case 3:
@@ -51849,14 +51971,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 5:
                         case 'end':
-                            return _context4.stop();
+                            return _context6.stop();
                     }
                 }
-            }, _callee4, this);
+            }, _callee6, this);
         }));
 
         function mounted() {
-            return _ref4.apply(this, arguments);
+            return _ref6.apply(this, arguments);
         }
 
         return mounted;
@@ -51876,18 +51998,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     methods: {
         fetchTask: function () {
-            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
                 var result, index, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
-                        switch (_context5.prev = _context5.next) {
+                        switch (_context7.prev = _context7.next) {
                             case 0:
-                                _context5.next = 2;
+                                _context7.next = 2;
                                 return axios.get('/api/tasks/' + this.taskId);
 
                             case 2:
-                                result = _context5.sent;
+                                result = _context7.sent;
 
                                 this.task = result.data;
                                 for (index in this.task.items) {
@@ -51897,125 +52019,125 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context5.prev = 8;
+                                _context7.prev = 8;
                                 for (_iterator = this.task.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     tag = _step.value;
 
                                     this.selectedTags.push(tag.id);
                                 }
-                                _context5.next = 16;
+                                _context7.next = 16;
                                 break;
 
                             case 12:
-                                _context5.prev = 12;
-                                _context5.t0 = _context5['catch'](8);
+                                _context7.prev = 12;
+                                _context7.t0 = _context7['catch'](8);
                                 _didIteratorError = true;
-                                _iteratorError = _context5.t0;
+                                _iteratorError = _context7.t0;
 
                             case 16:
-                                _context5.prev = 16;
-                                _context5.prev = 17;
+                                _context7.prev = 16;
+                                _context7.prev = 17;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 19:
-                                _context5.prev = 19;
+                                _context7.prev = 19;
 
                                 if (!_didIteratorError) {
-                                    _context5.next = 22;
+                                    _context7.next = 22;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 22:
-                                return _context5.finish(19);
+                                return _context7.finish(19);
 
                             case 23:
-                                return _context5.finish(16);
+                                return _context7.finish(16);
 
                             case 24:
                             case 'end':
-                                return _context5.stop();
+                                return _context7.stop();
                         }
                     }
-                }, _callee5, this, [[8, 12, 16, 24], [17,, 19, 23]]);
+                }, _callee7, this, [[8, 12, 16, 24], [17,, 19, 23]]);
             }));
 
             function fetchTask() {
-                return _ref5.apply(this, arguments);
+                return _ref7.apply(this, arguments);
             }
 
             return fetchTask;
         }(),
         fetchTags: function () {
-            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
                 var result, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
                     while (1) {
-                        switch (_context6.prev = _context6.next) {
+                        switch (_context8.prev = _context8.next) {
                             case 0:
-                                _context6.next = 2;
+                                _context8.next = 2;
                                 return axios.get('/api/tags/');
 
                             case 2:
-                                result = _context6.sent;
+                                result = _context8.sent;
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context6.prev = 6;
+                                _context8.prev = 6;
 
                                 for (_iterator2 = result.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     tag = _step2.value;
 
                                     this.tags.push({ label: tag.name, value: tag.id });
                                 }
-                                _context6.next = 14;
+                                _context8.next = 14;
                                 break;
 
                             case 10:
-                                _context6.prev = 10;
-                                _context6.t0 = _context6['catch'](6);
+                                _context8.prev = 10;
+                                _context8.t0 = _context8['catch'](6);
                                 _didIteratorError2 = true;
-                                _iteratorError2 = _context6.t0;
+                                _iteratorError2 = _context8.t0;
 
                             case 14:
-                                _context6.prev = 14;
-                                _context6.prev = 15;
+                                _context8.prev = 14;
+                                _context8.prev = 15;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
                             case 17:
-                                _context6.prev = 17;
+                                _context8.prev = 17;
 
                                 if (!_didIteratorError2) {
-                                    _context6.next = 20;
+                                    _context8.next = 20;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
                             case 20:
-                                return _context6.finish(17);
+                                return _context8.finish(17);
 
                             case 21:
-                                return _context6.finish(14);
+                                return _context8.finish(14);
 
                             case 22:
                             case 'end':
-                                return _context6.stop();
+                                return _context8.stop();
                         }
                     }
-                }, _callee6, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+                }, _callee8, this, [[6, 10, 14, 22], [15,, 17, 21]]);
             }));
 
             function fetchTags() {
-                return _ref6.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return fetchTags;
@@ -52025,52 +52147,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
-            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7(taskId) {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9(taskId) {
                 var check, modifyData, result, taskResult;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
-                        switch (_context7.prev = _context7.next) {
+                        switch (_context9.prev = _context9.next) {
                             case 0:
                                 check = event;
 
                                 if (!(event.target.checked == true)) {
-                                    _context7.next = 12;
+                                    _context9.next = 12;
                                     break;
                                 }
 
                                 modifyData = {
                                     state_id: 3
                                 };
-                                _context7.next = 5;
+                                _context9.next = 5;
                                 return axios.put('/api/tasks/' + taskId, modifyData);
 
                             case 5:
-                                result = _context7.sent;
+                                result = _context9.sent;
 
                                 if (!result.data) {
-                                    _context7.next = 12;
+                                    _context9.next = 12;
                                     break;
                                 }
 
-                                _context7.next = 9;
+                                _context9.next = 9;
                                 return axios.get('api/tasks/' + taskId);
 
                             case 9:
-                                taskResult = _context7.sent;
+                                taskResult = _context9.sent;
 
                                 this.task = taskResult.data;
                                 this.$emit('input', taskResult.data);
 
                             case 12:
                             case 'end':
-                                return _context7.stop();
+                                return _context9.stop();
                         }
                     }
-                }, _callee7, this);
+                }, _callee9, this);
             }));
 
             function checkTask(_x) {
-                return _ref7.apply(this, arguments);
+                return _ref9.apply(this, arguments);
             }
 
             return checkTask;
@@ -52082,19 +52204,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8(itemId) {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(itemId) {
                 var el, modifyData, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
                     while (1) {
-                        switch (_context8.prev = _context8.next) {
+                        switch (_context10.prev = _context10.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
-                                _context8.next = 4;
+                                _context10.next = 4;
                                 return axios.put('/api/items/' + itemId, modifyData);
 
                             case 4:
-                                result = _context8.sent;
+                                result = _context10.sent;
 
                                 if (result.data) {
                                     el.target.disabled = true;
@@ -52103,14 +52225,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 6:
                             case 'end':
-                                return _context8.stop();
+                                return _context10.stop();
                         }
                     }
-                }, _callee8, this);
+                }, _callee10, this);
             }));
 
             function checkItem(_x2) {
-                return _ref8.apply(this, arguments);
+                return _ref10.apply(this, arguments);
             }
 
             return checkItem;
@@ -52143,17 +52265,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
                     while (1) {
-                        switch (_context9.prev = _context9.next) {
+                        switch (_context11.prev = _context11.next) {
                             case 0:
-                                _context9.next = 2;
+                                _context11.next = 2;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 2:
-                                result = _context9.sent;
+                                result = _context11.sent;
 
                                 if (result.data) {
                                     // 削除が成功した場合
@@ -52170,36 +52292,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context9.stop();
+                                return _context11.stop();
                         }
                     }
-                }, _callee9, this);
+                }, _callee11, this);
             }));
 
             function deleteTask() {
-                return _ref9.apply(this, arguments);
+                return _ref11.apply(this, arguments);
             }
 
             return deleteTask;
         }(),
         showEditTaskDialog: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
                     while (1) {
-                        switch (_context10.prev = _context10.next) {
+                        switch (_context12.prev = _context12.next) {
                             case 0:
                                 this.$refs.editModal.openModal();
 
                             case 1:
                             case 'end':
-                                return _context10.stop();
+                                return _context12.stop();
                         }
                     }
-                }, _callee10, this);
+                }, _callee12, this);
             }));
 
             function showEditTaskDialog() {
-                return _ref10.apply(this, arguments);
+                return _ref12.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -52210,17 +52332,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteItemModal.openModal();
         },
         deleteItem: function () {
-            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
                     while (1) {
-                        switch (_context11.prev = _context11.next) {
+                        switch (_context13.prev = _context13.next) {
                             case 0:
-                                _context11.next = 2;
+                                _context13.next = 2;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
                             case 2:
-                                result = _context11.sent;
+                                result = _context13.sent;
 
                                 if (result.data) {
                                     // 削除が成功した場合
@@ -52237,14 +52359,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context11.stop();
+                                return _context13.stop();
                         }
                     }
-                }, _callee11, this);
+                }, _callee13, this);
             }));
 
             function deleteItem() {
-                return _ref11.apply(this, arguments);
+                return _ref13.apply(this, arguments);
             }
 
             return deleteItem;
@@ -52258,64 +52380,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
         },
         updateItem: function () {
-            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12(itemIndex) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
-                        switch (_context12.prev = _context12.next) {
+                        switch (_context14.prev = _context14.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context12.next = 12;
+                                    _context14.next = 12;
                                     break;
                                 }
 
-                                _context12.prev = 1;
-                                _context12.next = 4;
+                                _context14.prev = 1;
+                                _context14.next = 4;
                                 return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
 
                             case 4:
                                 this.$refs.notice.showNotice('アイテムを変更しました');
                                 this.fetchTask();
-                                _context12.next = 12;
+                                _context14.next = 12;
                                 break;
 
                             case 8:
-                                _context12.prev = 8;
-                                _context12.t0 = _context12['catch'](1);
+                                _context14.prev = 8;
+                                _context14.t0 = _context14['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context12.t0);
+                                console.log(_context14.t0);
 
                             case 12:
                             case 'end':
-                                return _context12.stop();
+                                return _context14.stop();
                         }
                     }
-                }, _callee12, this, [[1, 8]]);
+                }, _callee14, this, [[1, 8]]);
             }));
 
             function updateItem(_x3) {
-                return _ref12.apply(this, arguments);
+                return _ref14.apply(this, arguments);
             }
 
             return updateItem;
         }(),
         addItems: function () {
-            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, postItem;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
-                        switch (_context13.prev = _context13.next) {
+                        switch (_context15.prev = _context15.next) {
                             case 0:
                                 _iteratorNormalCompletion3 = true;
                                 _didIteratorError3 = false;
                                 _iteratorError3 = undefined;
-                                _context13.prev = 3;
+                                _context15.prev = 3;
                                 _iterator3 = this.items[Symbol.iterator]();
 
                             case 5:
                                 if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
-                                    _context13.next = 23;
+                                    _context15.next = 23;
                                     break;
                                 }
 
@@ -52325,73 +52447,73 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: item,
                                     is_checked: false
                                 };
-                                _context13.prev = 8;
-                                _context13.next = 11;
+                                _context15.prev = 8;
+                                _context15.next = 11;
                                 return axios.post('/api/items', postItem);
 
                             case 11:
                                 this.items = [];
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
                                 this.fetchTask();
-                                _context13.next = 20;
+                                _context15.next = 20;
                                 break;
 
                             case 16:
-                                _context13.prev = 16;
-                                _context13.t0 = _context13['catch'](8);
+                                _context15.prev = 16;
+                                _context15.t0 = _context15['catch'](8);
 
                                 this.$refs.notice.showNotice('アイテムの追加に失敗しました');
-                                console.log(_context13.t0);
+                                console.log(_context15.t0);
 
                             case 20:
                                 _iteratorNormalCompletion3 = true;
-                                _context13.next = 5;
+                                _context15.next = 5;
                                 break;
 
                             case 23:
-                                _context13.next = 29;
+                                _context15.next = 29;
                                 break;
 
                             case 25:
-                                _context13.prev = 25;
-                                _context13.t1 = _context13['catch'](3);
+                                _context15.prev = 25;
+                                _context15.t1 = _context15['catch'](3);
                                 _didIteratorError3 = true;
-                                _iteratorError3 = _context13.t1;
+                                _iteratorError3 = _context15.t1;
 
                             case 29:
-                                _context13.prev = 29;
-                                _context13.prev = 30;
+                                _context15.prev = 29;
+                                _context15.prev = 30;
 
                                 if (!_iteratorNormalCompletion3 && _iterator3.return) {
                                     _iterator3.return();
                                 }
 
                             case 32:
-                                _context13.prev = 32;
+                                _context15.prev = 32;
 
                                 if (!_didIteratorError3) {
-                                    _context13.next = 35;
+                                    _context15.next = 35;
                                     break;
                                 }
 
                                 throw _iteratorError3;
 
                             case 35:
-                                return _context13.finish(32);
+                                return _context15.finish(32);
 
                             case 36:
-                                return _context13.finish(29);
+                                return _context15.finish(29);
 
                             case 37:
                             case 'end':
-                                return _context13.stop();
+                                return _context15.stop();
                         }
                     }
-                }, _callee13, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
+                }, _callee15, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
             }));
 
             function addItems() {
-                return _ref13.apply(this, arguments);
+                return _ref15.apply(this, arguments);
             }
 
             return addItems;
@@ -54045,12 +54167,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             hoge: '',
             tasks: '',
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '状態', value: 'state_id', type: 'options', options: [] }]
         };
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var result;
+            var result, stateOptions, states, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, state;
+
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -54063,12 +54186,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             this.tasks = result.data;
 
-                        case 4:
+                            stateOptions = [];
+                            _context.next = 7;
+                            return axios.get('/api/states');
+
+                        case 7:
+                            states = _context.sent;
+                            _iteratorNormalCompletion = true;
+                            _didIteratorError = false;
+                            _iteratorError = undefined;
+                            _context.prev = 11;
+
+                            for (_iterator = states.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                state = _step.value;
+
+                                stateOptions.push({ label: state.name, value: state.id });
+                            }
+                            _context.next = 19;
+                            break;
+
+                        case 15:
+                            _context.prev = 15;
+                            _context.t0 = _context['catch'](11);
+                            _didIteratorError = true;
+                            _iteratorError = _context.t0;
+
+                        case 19:
+                            _context.prev = 19;
+                            _context.prev = 20;
+
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+
+                        case 22:
+                            _context.prev = 22;
+
+                            if (!_didIteratorError) {
+                                _context.next = 25;
+                                break;
+                            }
+
+                            throw _iteratorError;
+
+                        case 25:
+                            return _context.finish(22);
+
+                        case 26:
+                            return _context.finish(19);
+
+                        case 27:
+                            this.$set(this.filterOptions[3], 'options', stateOptions);
+
+                        case 28:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this);
+            }, _callee, this, [[11, 15, 19, 27], [20,, 22, 26]]);
         }));
 
         function created() {
@@ -59474,6 +59649,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         return el[_this.columnName] > _this.comparisonValue;
                     });
                     break;
+                //comparisonValueが配列の場合はand(*)／or（+）で分ける
+                case '*':
+
+                    break;
+                case '+':
+
+                    break;
             }
             this.$emit('input', this.filteredArray);
         }
@@ -59660,6 +59842,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -59670,7 +59860,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
             columnName: '',
             comparisonValue: '',
-            comparisonOperator: '',
+            comparisonOperator: '=',
             deleteTargetIndex: ''
         };
     },
@@ -59730,6 +59920,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         // 配列をAnd/Or演算して出力
         operate: function operate() {
+            this.$emit('input', []); //2020-02-18
             var result = [];
             var resultIds = [];
             var ids = [];
@@ -59893,7 +60084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setOperatorClass: function setOperatorClass(index) {
             return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
         },
-        showComparisonValueComponent: function showComparisonValueComponent() {
+        setComparisonValueComponent: function setComparisonValueComponent() {
             var _this2 = this;
 
             if (!this.columnName) {
@@ -59911,7 +60102,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return 'date-picker';
                 case 'string':
                     return '';
+                case 'options':
+                    return 'tag-cloud';
             }
+        },
+        setComparisonValueOptions: function setComparisonValueOptions() {
+            var _this3 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this3.columnName;
+            });
+            return selectedOption.options;
+        },
+        showComparisonOperator: function showComparisonOperator() {
+            var _this4 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this4.columnName;
+            });
+            return selectedOption.type != 'options' || false;
         },
         showDeleteFilterToolTip: function showDeleteFilterToolTip(index) {
             this.deleteTargetIndex = index;
@@ -59989,8 +60204,9 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(_vm.showComparisonValueComponent(), {
+          _c(_vm.setComparisonValueComponent(), {
             tag: "component",
+            attrs: { options: _vm.setComparisonValueOptions() },
             model: {
               value: _vm.comparisonValue,
               callback: function($$v) {
@@ -60001,6 +60217,14 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("tag-cloud", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showComparisonOperator(),
+                expression: "showComparisonOperator()"
+              }
+            ],
             attrs: { options: _vm.operatorOptions },
             model: {
               value: _vm.comparisonOperator,

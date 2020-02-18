@@ -19,11 +19,19 @@
                 <tag-cloud v-model="columnName" v-bind:options="filterOptions" />
             
             <!--値-->
-                <!--数字：number,五段階評価：star,日付：date,文字列：string-->
-                <component v-bind:is="showComparisonValueComponent()" v-model="comparisonValue" />
+                <!--数字：number,五段階評価：star,日付：date,文字列：string,候補：options-->
+                <component 
+                    v-bind:is="setComparisonValueComponent()" 
+                    v-model="comparisonValue"
+                    v-bind:options="setComparisonValueOptions()" />
             
             <!--演算子-->
-            <tag-cloud v-model="comparisonOperator" v-bind:options="operatorOptions" />
+            <!--optionsが選択された場合は表示しない（デフォルトの＝になる）-->
+            <tag-cloud 
+                v-show="showComparisonOperator()" 
+                v-model="comparisonOperator" 
+                v-bind:options="operatorOptions"
+            />
             
             <button v-on:click="addFilter()">フィルターを追加</button>
         </modal>
@@ -69,7 +77,7 @@
                 ],
                 columnName:'',
                 comparisonValue:'',
-                comparisonOperator:'',
+                comparisonOperator:'=',
                 deleteTargetIndex:''
             }
         },
@@ -129,6 +137,7 @@
             },
             // 配列をAnd/Or演算して出力
             operate:function(){
+                this.$emit('input',[]) //2020-02-18
                 let result = []
                 let resultIds = []
                 let ids = []
@@ -183,7 +192,7 @@
             setOperatorClass:function(index){
                 return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or'
             },
-            showComparisonValueComponent:function(){
+            setComparisonValueComponent:function(){
                 if(!this.columnName){return ''}
                 let selectedOption = this.filterOptions.find(el => {
                     return el.value == this.columnName
@@ -197,7 +206,23 @@
                         return 'date-picker'
                     case 'string':
                         return ''
+                    case 'options':
+                        return 'tag-cloud'
                 }
+            },
+            setComparisonValueOptions:function(){
+                if(!this.columnName){return ''}
+                let selectedOption = this.filterOptions.find(el => {
+                    return el.value == this.columnName
+                })
+                return selectedOption.options
+            },
+            showComparisonOperator:function(){
+                if(!this.columnName){return ''}
+                let selectedOption = this.filterOptions.find(el => {
+                    return el.value == this.columnName
+                })
+                return selectedOption.type != 'options' || false
             },
             showDeleteFilterToolTip:function(index){
                 this.deleteTargetIndex = index

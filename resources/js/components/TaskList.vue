@@ -72,6 +72,7 @@
         created() {
             this.fetchTasks()
             this.fetchTags()
+            this.addFilters() //追加でフィルターオプションを追加（状態、）
         },
         watch: {
             newTask:async function(newVal,oldVal){
@@ -105,6 +106,15 @@
                 for(let index of Object.keys(tagsResult)){
                     this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
+            },
+            addFilters: async function(){
+                // statesフィルターオプションを追加
+                let statesResult = await axios.get('api/states')
+                let states = []
+                for(let state of statesResult.data){
+                    states.push({label:state.name,value:state.id})
+                }
+                this.filterOptions.push({label:'状態',value:'state_id',type:'options',options:states})
             },
             addTask:function(){
                 this.$refs.newTask.resetForm()

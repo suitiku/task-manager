@@ -36,12 +36,20 @@
                     {label:'優先度',value:'priority',type:'star'},          
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
+                    {label:'状態',value:'state_id',type:'options',options:[]}
                 ],
             }  
         },
         created:async function(){
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
+            
+            let stateOptions = []
+            let states = await axios.get('/api/states')
+            for(let state of states.data){
+                stateOptions.push({label:state.name,value:state.id})
+            }
+            this.$set(this.filterOptions[3],'options',stateOptions)
         },
         mounted:async function() {
             
