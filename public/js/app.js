@@ -51036,13 +51036,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
             tasks: [], //tasksから取得したオリジナルの配列
-            displayedTasks: [], //フィルター、ソートされたtaskの配列
+            filteredTasks: [], //一般フィルターでフィルターしたタスク配列
+            displayedTasks: [], //表示用タスクの配列：タグフィルター後
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
             foreignKeys: [{ project_id: {
@@ -51489,6 +51491,17 @@ var render = function() {
       _vm._v(" "),
       _c("filter-box", {
         attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
+        model: {
+          value: _vm.filteredTasks,
+          callback: function($$v) {
+            _vm.filteredTasks = $$v
+          },
+          expression: "filteredTasks"
+        }
+      }),
+      _vm._v(" "),
+      _c("filter-tag-box", {
+        attrs: { targetArray: _vm.filteredTasks },
         model: {
           value: _vm.displayedTasks,
           callback: function($$v) {
@@ -59830,6 +59843,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -59842,7 +59857,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     props: {
         targetArray: {
-            type: [Array, String]
+            type: [Array, String, Object]
         }
     },
     watch: {

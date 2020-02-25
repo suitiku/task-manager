@@ -17,7 +17,8 @@
         </div>
         
         <!--フィルター-->
-        <filter-box v-model="displayedTasks" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        <filter-box v-model="filteredTasks" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        <filter-tag-box v-model="displayedTasks" v-bind:targetArray="filteredTasks" />
         
         <!--ソート-->
         <!--<div class="sortBox">-->
@@ -38,7 +39,8 @@
             return {
                 modal:false,
                 tasks:[], //tasksから取得したオリジナルの配列
-                displayedTasks:[], //フィルター、ソートされたtaskの配列
+                filteredTasks:[], //一般フィルターでフィルターしたタスク配列
+                displayedTasks:[], //表示用タスクの配列：タグフィルター後
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
                 foreignKeys:[

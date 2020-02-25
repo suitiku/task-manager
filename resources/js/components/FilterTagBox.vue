@@ -1,5 +1,7 @@
 <!--タグフィルターを適用するコンポーネント-->
 <!--今後の改修ポイント-->
+<!--１．「タグなし」のフィルタリング-->
+<!--２．タグの表示を改善-->
 <template>
     <div class="container">
         <!--処理部-->
@@ -29,7 +31,7 @@
         },
         props: {
             targetArray:{
-                type:[Array,String]
+                type:[Array,String,Object]
             },
         },
         watch:{
