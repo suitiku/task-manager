@@ -45,6 +45,7 @@ Vue.component('event-bus-test', require('./components/EventBusTest.vue'));
 Vue.component('home', require('./components/Home.vue'));
 Vue.component('text-spliter', require('./components/TextSpliter.vue'));
 Vue.component('filter-array', require('./components/FilterArray.vue'));
+Vue.component('filter-tag-box', require('./components/FilterTagBox.vue'));
 Vue.component('filter-box', require('./components/FilterBox.vue'));
 Vue.component('tool-tip', require('./components/ToolTip.vue'));
 

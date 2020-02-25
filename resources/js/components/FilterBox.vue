@@ -39,7 +39,7 @@
         <div class="filter-container">
             <div v-for="(filter,index) in filters" class="filter-wrapper">
                 <div v-on:click="showDeleteFilterToolTip(index)" v-on:mouseout="hideDeleteFilterToolTip()">
-                    <filter-array 
+                    <filter-array
                         v-model="filteredArray[index]" 
                         v-bind:key="index" 
                         v-bind:originalArray="targetArray" 

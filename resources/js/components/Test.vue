@@ -2,9 +2,14 @@
 <template>
     <div class="container">
         <div v-for="tes in test">
-            <span>id: {{tes.id}} , name: {{tes.name}}</span>
+            <span>id: {{tes.id}} , name: {{tes.name}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
         </div>
-        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        <!--<filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />-->
+        <filter-tag-box v-model="test" v-bind:targetArray="tasks" />
+        
+        <!--{{selectedTagId}}-->
+        <!--<tag-cloud v-model="selectedTagId" v-bind:options="tags" />-->
+        <!--<filter-tag v-model="test" v-bind:originalArray="tasks" v-bind:selectedTagId="selectedTagId" />-->
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -25,6 +30,8 @@
                 test:'',
                 hoge:'',
                 tasks:'',
+                tags:[],
+                selectedTagId:0,
                 testOptions: [
                     {label:'test',value:'hoge'},    
                     {label:'aaaa',value:'bbbb'},   
@@ -36,20 +43,21 @@
                     {label:'優先度',value:'priority',type:'star'},          
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
-                    {label:'状態',value:'state_id',type:'options',options:[]}
+                    {label:'状態',value:'state_id',type:'options',options:[]},
+                    {label:'タグ',value:'tag',type:'options'},
                 ],
             }  
         },
         created:async function(){
+            //タスク全取得
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
             
-            let stateOptions = []
-            let states = await axios.get('/api/states')
-            for(let state of states.data){
-                stateOptions.push({label:state.name,value:state.id})
+            //タグ全取得
+            let tagsResult = await axios.get('/api/tags')
+            for(let tag of tagsResult.data){
+                this.tags.push({label:tag.name,value:tag.id})
             }
-            this.$set(this.filterOptions[3],'options',stateOptions)
         },
         mounted:async function() {
             

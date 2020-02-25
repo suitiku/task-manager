@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(202);
+module.exports = __webpack_require__(207);
 
 
 /***/ }),
@@ -14680,8 +14680,9 @@ Vue.component('event-bus-test', __webpack_require__(172));
 Vue.component('home', __webpack_require__(177));
 Vue.component('text-spliter', __webpack_require__(182));
 Vue.component('filter-array', __webpack_require__(187));
-Vue.component('filter-box', __webpack_require__(192));
-Vue.component('tool-tip', __webpack_require__(197));
+Vue.component('filter-tag-box', __webpack_require__(192));
+Vue.component('filter-box', __webpack_require__(197));
+Vue.component('tool-tip', __webpack_require__(202));
 
 var app = new Vue({
   el: '#app'
@@ -51181,11 +51182,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 result = _context3.sent;
                                 tagsResult = result.data;
+
+                                //tag-cloudに投入できる形に整形
+
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
                                 _context3.prev = 7;
-
                                 for (_iterator = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
@@ -51783,7 +51786,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        //2020-02-18
         taskId: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
@@ -51810,7 +51812,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return taskId;
         }(),
-
         task: {
             handler: function () {
                 var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -54158,6 +54159,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54166,13 +54172,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             test: '',
             hoge: '',
             tasks: '',
+            tags: [],
+            selectedTagId: 0,
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '状態', value: 'state_id', type: 'options', options: [] }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '状態', value: 'state_id', type: 'options', options: [] }, { label: 'タグ', value: 'tag', type: 'options' }]
         };
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var result, stateOptions, states, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, state;
+            var result, tagsResult, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
 
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
@@ -54186,64 +54194,61 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             this.tasks = result.data;
 
-                            stateOptions = [];
-                            _context.next = 7;
-                            return axios.get('/api/states');
+                            //タグ全取得
+                            _context.next = 6;
+                            return axios.get('/api/tags');
 
-                        case 7:
-                            states = _context.sent;
+                        case 6:
+                            tagsResult = _context.sent;
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context.prev = 11;
+                            _context.prev = 10;
 
-                            for (_iterator = states.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                                state = _step.value;
+                            for (_iterator = tagsResult.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                tag = _step.value;
 
-                                stateOptions.push({ label: state.name, value: state.id });
+                                this.tags.push({ label: tag.name, value: tag.id });
                             }
-                            _context.next = 19;
+                            _context.next = 18;
                             break;
 
-                        case 15:
-                            _context.prev = 15;
-                            _context.t0 = _context['catch'](11);
+                        case 14:
+                            _context.prev = 14;
+                            _context.t0 = _context['catch'](10);
                             _didIteratorError = true;
                             _iteratorError = _context.t0;
 
-                        case 19:
+                        case 18:
+                            _context.prev = 18;
                             _context.prev = 19;
-                            _context.prev = 20;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 22:
-                            _context.prev = 22;
+                        case 21:
+                            _context.prev = 21;
 
                             if (!_didIteratorError) {
-                                _context.next = 25;
+                                _context.next = 24;
                                 break;
                             }
 
                             throw _iteratorError;
 
+                        case 24:
+                            return _context.finish(21);
+
                         case 25:
-                            return _context.finish(22);
+                            return _context.finish(18);
 
                         case 26:
-                            return _context.finish(19);
-
-                        case 27:
-                            this.$set(this.filterOptions[3], 'options', stateOptions);
-
-                        case 28:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[11, 15, 19, 27], [20,, 22, 26]]);
+            }, _callee, this, [[10, 14, 18, 26], [19,, 21, 25]]);
         }));
 
         function created() {
@@ -54301,14 +54306,27 @@ var render = function() {
     [
       _vm._l(_vm.test, function(tes) {
         return _c("div", [
-          _c("span", [
-            _vm._v("id: " + _vm._s(tes.id) + " , name: " + _vm._s(tes.name))
-          ])
+          _c(
+            "span",
+            [
+              _vm._v(
+                "id: " +
+                  _vm._s(tes.id) +
+                  " , name: " +
+                  _vm._s(tes.name) +
+                  " , tags: "
+              ),
+              _vm._l(tes.tags, function(tag) {
+                return _c("span", [_vm._v(_vm._s(tag.id))])
+              })
+            ],
+            2
+          )
         ])
       }),
       _vm._v(" "),
-      _c("filter-box", {
-        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
+      _c("filter-tag-box", {
+        attrs: { targetArray: _vm.tasks },
         model: {
           value: _vm.test,
           callback: function($$v) {
@@ -59709,6 +59727,588 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
+var __vue_scopeId__ = "data-v-62eebcd4"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/FilterTagBox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-62eebcd4", Component.options)
+  } else {
+    hotAPI.reload("data-v-62eebcd4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(194);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("891350e4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62eebcd4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTagBox.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62eebcd4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTagBox.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.filter-container[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-62eebcd4] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            tags: [],
+            filteredArray: [],
+            filterOperators: [],
+            selectedTagIds: []
+        };
+    },
+    props: {
+        targetArray: {
+            type: [Array, String]
+        }
+    },
+    watch: {
+        selectedTagIds: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, selectedTagId;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                //配列リセット
+                                this.filteredArray = [];
+
+                                //個別にフィルター
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context.prev = 4;
+                                _iterator = this.selectedTagIds[Symbol.iterator]();
+
+                            case 6:
+                                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                                    _context.next = 13;
+                                    break;
+                                }
+
+                                selectedTagId = _step.value;
+                                _context.next = 10;
+                                return this.filterTag(selectedTagId);
+
+                            case 10:
+                                _iteratorNormalCompletion = true;
+                                _context.next = 6;
+                                break;
+
+                            case 13:
+                                _context.next = 19;
+                                break;
+
+                            case 15:
+                                _context.prev = 15;
+                                _context.t0 = _context['catch'](4);
+                                _didIteratorError = true;
+                                _iteratorError = _context.t0;
+
+                            case 19:
+                                _context.prev = 19;
+                                _context.prev = 20;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 22:
+                                _context.prev = 22;
+
+                                if (!_didIteratorError) {
+                                    _context.next = 25;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 25:
+                                return _context.finish(22);
+
+                            case 26:
+                                return _context.finish(19);
+
+                            case 27:
+
+                                //and/or演算
+                                if (!this.selectedTagIds || this.selectedTagIds.length == 0) {
+                                    //フィルターが設定されていない場合は全部出力
+                                    console.log('length 0');
+                                    this.$emit('input', this.targetArray);
+                                } else if (this.selectedTagIds.length == 1) {
+                                    this.$emit('input', this.filteredArray[0]);
+                                } else {
+                                    this.$emit('input', []);
+                                    this.operate();
+                                }
+
+                            case 28:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[4, 15, 19, 27], [20,, 22, 26]]);
+            }));
+
+            function selectedTagIds(_x, _x2) {
+                return _ref.apply(this, arguments);
+            }
+
+            return selectedTagIds;
+        }(),
+        targetArray: function targetArray() {
+            if (!this.filteredArray || this.filteredArray.length == 0) {
+                //フィルターが設定されていない場合は全部出力
+                this.$emit('input', this.targetArray);
+            }
+        }
+    },
+    created: function created() {},
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var result, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag;
+
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return axios.get('/api/tags');
+
+                        case 2:
+                            result = _context2.sent;
+                            _iteratorNormalCompletion2 = true;
+                            _didIteratorError2 = false;
+                            _iteratorError2 = undefined;
+                            _context2.prev = 6;
+
+                            for (_iterator2 = result.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                tag = _step2.value;
+
+                                this.tags.push({ label: tag.name, value: tag.id });
+                            }
+                            _context2.next = 14;
+                            break;
+
+                        case 10:
+                            _context2.prev = 10;
+                            _context2.t0 = _context2['catch'](6);
+                            _didIteratorError2 = true;
+                            _iteratorError2 = _context2.t0;
+
+                        case 14:
+                            _context2.prev = 14;
+                            _context2.prev = 15;
+
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+
+                        case 17:
+                            _context2.prev = 17;
+
+                            if (!_didIteratorError2) {
+                                _context2.next = 20;
+                                break;
+                            }
+
+                            throw _iteratorError2;
+
+                        case 20:
+                            return _context2.finish(17);
+
+                        case 21:
+                            return _context2.finish(14);
+
+                        case 22:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }(),
+    methods: {
+        filterTag: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(selectedTagId) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                //フィルター
+                                this.filteredArray.push(this.targetArray.filter(function (el) {
+                                    return el.tags.some(function (tag) {
+                                        return tag.id == selectedTagId;
+                                    });
+                                }));
+
+                            case 1:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function filterTag(_x3) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return filterTag;
+        }(),
+        // 配列をAnd/Or演算して出力
+        operate: function operate() {
+            this.$emit('input', []); //2020-02-18
+            var result = [];
+            var resultIds = [];
+            var ids = [];
+            for (var index in this.filteredArray) {
+                if (index == 0) {
+                    var _iteratorNormalCompletion3 = true;
+                    var _didIteratorError3 = false;
+                    var _iteratorError3 = undefined;
+
+                    try {
+                        for (var _iterator3 = this.filteredArray[0][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                            var el = _step3.value;
+
+                            resultIds.push(el.id);
+                            ids.push(el.id);
+                        }
+                    } catch (err) {
+                        _didIteratorError3 = true;
+                        _iteratorError3 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                _iterator3.return();
+                            }
+                        } finally {
+                            if (_didIteratorError3) {
+                                throw _iteratorError3;
+                            }
+                        }
+                    }
+                } else {
+                    // if(!this.filteredArray[index].length){continue }
+                    if (this.filterOperators[index - 1] == '*') {
+                        // 積
+                        resultIds = [];
+                        if (!this.filteredArray[index].length) {
+                            break;
+                        } //空の要素があったら終了
+                        var _iteratorNormalCompletion4 = true;
+                        var _didIteratorError4 = false;
+                        var _iteratorError4 = undefined;
+
+                        try {
+                            for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                var _el = _step4.value;
+
+                                if (ids.indexOf(_el.id) != -1) {
+                                    resultIds.push(_el.id);
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError4 = true;
+                            _iteratorError4 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                    _iterator4.return();
+                                }
+                            } finally {
+                                if (_didIteratorError4) {
+                                    throw _iteratorError4;
+                                }
+                            }
+                        }
+                    } else {
+                        // 和
+                        if (!this.filteredArray[index].length) {
+                            continue;
+                        } //空の要素の場合はループ飛ばす
+                        // 追加用id配列
+                        var _iteratorNormalCompletion5 = true;
+                        var _didIteratorError5 = false;
+                        var _iteratorError5 = undefined;
+
+                        try {
+                            for (var _iterator5 = this.filteredArray[index][Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                var _el2 = _step5.value;
+
+                                ids.push(_el2.id);
+                            }
+                            // setオブジェクトを生成
+                        } catch (err) {
+                            _didIteratorError5 = true;
+                            _iteratorError5 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                    _iterator5.return();
+                                }
+                            } finally {
+                                if (_didIteratorError5) {
+                                    throw _iteratorError5;
+                                }
+                            }
+                        }
+
+                        var setObj = new Set(ids);
+                        var _iteratorNormalCompletion6 = true;
+                        var _didIteratorError6 = false;
+                        var _iteratorError6 = undefined;
+
+                        try {
+                            for (var _iterator6 = setObj[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                                var id = _step6.value;
+
+                                resultIds.push(id);
+                            }
+                        } catch (err) {
+                            _didIteratorError6 = true;
+                            _iteratorError6 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                                    _iterator6.return();
+                                }
+                            } finally {
+                                if (_didIteratorError6) {
+                                    throw _iteratorError6;
+                                }
+                            }
+                        }
+                    }
+                    ids = resultIds;
+                }
+            }
+            // idから配列を復元して出力
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
+
+            try {
+                for (var _iterator7 = this.targetArray[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var _el3 = _step7.value;
+
+                    if (resultIds.indexOf(_el3.id) != -1) {
+                        result.push(_el3);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
+                    }
+                } finally {
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
+                    }
+                }
+            }
+
+            this.$emit('input', result);
+        },
+        //andとorを切り替え
+        toggleOperator: function toggleOperator(index) {
+            if (this.filterOperators[index] == '*') {
+                this.filterOperators.splice(index, 1, '+');
+            } else {
+                this.filterOperators.splice(index, 1, '*');
+            }
+            this.operate();
+        },
+        setOperatorClass: function setOperatorClass(index) {
+            return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
+        },
+        //タグIDからタグ名を取得
+        displayTagName: function displayTagName(selectedTagId) {
+            var tag = this.tags.find(function (el) {
+                return el.value == selectedTagId;
+            });
+            return tag.label;
+        }
+    }
+});
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "filter-container" },
+      _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
+        return _c("div", { staticClass: "filter-wrapper" }, [
+          _c("span", { staticClass: "filter-label" }, [
+            _vm._v(_vm._s(_vm.displayTagName(selectedTagId)))
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              class: _vm.setOperatorClass(index),
+              on: {
+                click: function($event) {
+                  return _vm.toggleOperator(index)
+                }
+              }
+            },
+            [_c("span", [_vm._v("+")])]
+          )
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      [
+        _c("tag-cloud", {
+          attrs: { options: _vm.tags, multiple: "" },
+          model: {
+            value: _vm.selectedTagIds,
+            callback: function($$v) {
+              _vm.selectedTagIds = $$v
+            },
+            expression: "selectedTagIds"
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-62eebcd4", module.exports)
+  }
+}
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(198)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(200)
+/* template */
+var __vue_template__ = __webpack_require__(201)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
 var __vue_scopeId__ = "data-v-085cbfd8"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
@@ -59742,13 +60342,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 193 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(194);
+var content = __webpack_require__(199);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -59768,7 +60368,7 @@ if(false) {
 }
 
 /***/ }),
-/* 194 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -59782,7 +60382,7 @@ exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-we
 
 
 /***/ }),
-/* 195 */
+/* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60155,7 +60755,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 196 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -60337,19 +60937,19 @@ if (false) {
 }
 
 /***/ }),
-/* 197 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(198)
+  __webpack_require__(203)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(200)
+var __vue_script__ = __webpack_require__(205)
 /* template */
-var __vue_template__ = __webpack_require__(201)
+var __vue_template__ = __webpack_require__(206)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -60388,13 +60988,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(199);
+var content = __webpack_require__(204);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -60414,7 +61014,7 @@ if(false) {
 }
 
 /***/ }),
-/* 199 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -60428,7 +61028,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:f
 
 
 /***/ }),
-/* 200 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60480,7 +61080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 201 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -60515,7 +61115,7 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
+/* 207 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

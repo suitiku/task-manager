@@ -103,6 +103,8 @@
                  // タグの取得
                 let result = await axios.get('/api/tags')
                 let tagsResult = result.data
+                
+                //tag-cloudに投入できる形に整形
                 for(let index of Object.keys(tagsResult)){
                     this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
