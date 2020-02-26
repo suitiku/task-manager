@@ -7,7 +7,13 @@
         
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" ref="newTask" table="tasks" v-bind:foreignKeys="foreignKeys"/>
+            <versatile-form 
+                v-model="newTask" 
+                ref="newTask" 
+                table="tasks" 
+                v-bind:foreignKeys="foreignKeys" 
+                v-bind:columnOverride="columnOverride"
+            />
         </modal>
         
         <!--タスク追加エリア（固定）-->
@@ -43,6 +49,10 @@
                 displayedTasks:[], //表示用タスクの配列：タグフィルター後
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
+                columnOverride: [
+                    {user_id:this.user_id},
+                    {state_id:1} //新規タスクは「実行中」で登録
+                ],
                 foreignKeys:[
                     {project_id:
                         {

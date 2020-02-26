@@ -51037,6 +51037,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51047,6 +51053,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             displayedTasks: [], //表示用タスクの配列：タグフィルター後
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
+            columnOverride: [{ user_id: this.user_id }, { state_id: 1 //新規タスクは「実行中」で登録
+            }],
             foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
@@ -51441,7 +51449,11 @@ var render = function() {
         [
           _c("versatile-form", {
             ref: "newTask",
-            attrs: { table: "tasks", foreignKeys: _vm.foreignKeys },
+            attrs: {
+              table: "tasks",
+              foreignKeys: _vm.foreignKeys,
+              columnOverride: _vm.columnOverride
+            },
             model: {
               value: _vm.newTask,
               callback: function($$v) {
@@ -51992,7 +52004,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var currentDatetime = new Date();
             var deadlineDatetime = new Date(this.task.dead_line);
             var remainingTime = deadlineDatetime - currentDatetime;
-            if (0 < remainingTime && remainingTime < 43200000) {
+            if (0 > remainingTime) {
+                //締切を過ぎているか残り時間が12時間以内の場合に表示
+                return { fontSize: '150%', color: 'red', opacity: '1.0' };
+            } else if (remainingTime < 43200000) {
                 return { fontSize: '150%', color: 'orange', opacity: '1.0' };
             } else {
                 return { fontSize: '150%', color: 'grey', opacity: '0.3' };
@@ -53206,7 +53221,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         },
         //key:value配列の形式で上書きする。外部キーの設定などに利用
-        column_override: {
+        columnOverride: {
             type: Array,
             required: false
         },
@@ -53309,7 +53324,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context2.finish(15);
 
                             case 23:
-                                if (!this.column_override) {
+                                if (!this.columnOverride) {
                                     _context2.next = 43;
                                     break;
                                 }
@@ -53319,7 +53334,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _iteratorError2 = undefined;
                                 _context2.prev = 27;
 
-                                for (_iterator2 = this.column_override[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                for (_iterator2 = this.columnOverride[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     value = _step2.value;
                                     key = Object.keys(value);
 
@@ -53491,13 +53506,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 });
             }
             //上書き処理がある場合
-            if (this.column_override) {
+            if (this.columnOverride) {
                 var _iteratorNormalCompletion5 = true;
                 var _didIteratorError5 = false;
                 var _iteratorError5 = undefined;
 
                 try {
-                    for (var _iterator5 = this.column_override[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    for (var _iterator5 = this.columnOverride[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
                         var value = _step5.value;
 
                         var _key = Object.keys(value);
@@ -53530,13 +53545,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context4.prev = _context4.next) {
                             case 0:
+                                console.log(this.postObject);
                                 //Validation
                                 //配列要素を変換
                                 //空要素をkeyごと削除
                                 _iteratorNormalCompletion6 = true;
                                 _didIteratorError6 = false;
                                 _iteratorError6 = undefined;
-                                _context4.prev = 3;
+                                _context4.prev = 4;
                                 for (_iterator6 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                                     key = _step6.value;
 
@@ -53547,44 +53563,44 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         this.postObject[key] = this.postObject[key][0];
                                     }
                                 }
-                                _context4.next = 11;
+                                _context4.next = 12;
                                 break;
 
-                            case 7:
-                                _context4.prev = 7;
-                                _context4.t0 = _context4['catch'](3);
+                            case 8:
+                                _context4.prev = 8;
+                                _context4.t0 = _context4['catch'](4);
                                 _didIteratorError6 = true;
                                 _iteratorError6 = _context4.t0;
 
-                            case 11:
-                                _context4.prev = 11;
+                            case 12:
                                 _context4.prev = 12;
+                                _context4.prev = 13;
 
                                 if (!_iteratorNormalCompletion6 && _iterator6.return) {
                                     _iterator6.return();
                                 }
 
-                            case 14:
-                                _context4.prev = 14;
+                            case 15:
+                                _context4.prev = 15;
 
                                 if (!_didIteratorError6) {
-                                    _context4.next = 17;
+                                    _context4.next = 18;
                                     break;
                                 }
 
                                 throw _iteratorError6;
 
-                            case 17:
-                                return _context4.finish(14);
-
                             case 18:
-                                return _context4.finish(11);
+                                return _context4.finish(15);
 
                             case 19:
-                                _context4.next = 21;
+                                return _context4.finish(12);
+
+                            case 20:
+                                _context4.next = 22;
                                 return axios.post('/api/' + this.table, this.postObject);
 
-                            case 21:
+                            case 22:
                                 result = _context4.sent;
 
                                 if (result.data) {
@@ -53592,12 +53608,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.id = result.data.id; //編集用idをセット
                                 }
 
-                            case 23:
+                            case 24:
                             case 'end':
                                 return _context4.stop();
                         }
                     }
-                }, _callee4, this, [[3, 7, 11, 19], [12,, 14, 18]]);
+                }, _callee4, this, [[4, 8, 12, 20], [13,, 15, 19]]);
             }));
 
             function createRecord() {

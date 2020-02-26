@@ -72,7 +72,7 @@
                 required:false
             },
             //key:value配列の形式で上書きする。外部キーの設定などに利用
-            column_override: {
+            columnOverride: {
                 type:Array,
                 required:false
             },
@@ -102,8 +102,8 @@
                     }
                 }
                 //上書き処理がある場合
-                if(this.column_override){
-                    for(let value of this.column_override){
+                if(this.columnOverride){
+                    for(let value of this.columnOverride){
                         let key = Object.keys(value)
                         this.$set(this.postObject,key,value[key])
                     }
@@ -138,8 +138,8 @@
                     })
                 }
                 //上書き処理がある場合
-                if(this.column_override){
-                    for(let value of this.column_override){
+                if(this.columnOverride){
+                    for(let value of this.columnOverride){
                         let key = Object.keys(value)
                         this.$set(this.postObject,key,value[key])
                     }
@@ -149,6 +149,7 @@
                 return column.COLUMN_COMMENT || column.COLUMN_NAME  
             },
             createRecord: async function(){
+                console.log(this.postObject)
                 //Validation
                 //配列要素を変換
                 //空要素をkeyごと削除

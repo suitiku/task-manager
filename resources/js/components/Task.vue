@@ -227,7 +227,9 @@
                 let currentDatetime = new Date()
                 let deadlineDatetime = new Date(this.task.dead_line)
                 let remainingTime = deadlineDatetime - currentDatetime
-                if(0 < remainingTime && remainingTime < 43200000){
+                if(0 > remainingTime){ //締切を過ぎているか残り時間が12時間以内の場合に表示
+                    return {fontSize:'150%',color:'red',opacity:'1.0'}
+                }else if(remainingTime < 43200000){
                     return {fontSize:'150%',color:'orange',opacity:'1.0'}
                 }else{
                     return {fontSize:'150%',color:'grey',opacity:'0.3'}
