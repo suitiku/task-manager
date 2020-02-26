@@ -4,8 +4,8 @@
         <div v-for="tes in test">
             <span>id: {{tes.id}} , name: {{tes.name}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
         </div>
-        <!--<filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />-->
-        <filter-tag-box v-model="test" v-bind:targetArray="tasks" />
+        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
+        <!--<filter-tag-box v-model="test" v-bind:targetArray="tasks" />-->
         
         <!--{{selectedTagId}}-->
         <!--<tag-cloud v-model="selectedTagId" v-bind:options="tags" />-->
@@ -43,8 +43,6 @@
                     {label:'優先度',value:'priority',type:'star'},          
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
-                    {label:'状態',value:'state_id',type:'options',options:[]},
-                    {label:'タグ',value:'tag',type:'options'},
                 ],
             }  
         },
@@ -58,11 +56,23 @@
             for(let tag of tagsResult.data){
                 this.tags.push({label:tag.name,value:tag.id})
             }
+            
+            this.addFilters() //状態を追加
         },
         mounted:async function() {
             
         },
         methods: {
+            addFilters: async function(){
+                // statesフィルターオプションを追加
+                let statesResult = await axios.get('api/states')
+                let states = []
+                for(let state of statesResult.data){
+                    states.push({label:state.name,value:state.id})
+                }
+                this.filterOptions.push({label:'状態',value:'state_id',type:'options',options:states})
+            },
+            
             filterArray:function(){
                 this.$refs.filter.filterArray()
             },

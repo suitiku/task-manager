@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(207);
+module.exports = __webpack_require__(202);
 
 
 /***/ }),
@@ -14680,9 +14680,9 @@ Vue.component('event-bus-test', __webpack_require__(172));
 Vue.component('home', __webpack_require__(177));
 Vue.component('text-spliter', __webpack_require__(182));
 Vue.component('filter-array', __webpack_require__(187));
-Vue.component('filter-tag-box', __webpack_require__(192));
-Vue.component('filter-box', __webpack_require__(197));
-Vue.component('tool-tip', __webpack_require__(202));
+Vue.component('filter-tag', __webpack_require__(192));
+// Vue.component('filter-box', require('./components/FilterBox.vue'));
+Vue.component('tool-tip', __webpack_require__(197));
 
 var app = new Vue({
   el: '#app'
@@ -51043,7 +51043,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             modal: false,
             tasks: [], //tasksから取得したオリジナルの配列
-            filteredTasks: [], //一般フィルターでフィルターしたタスク配列
+            // filteredTasks:[], //一般フィルターでフィルターしたタスク配列
             displayedTasks: [], //表示用タスクの配列：タグフィルター後
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
@@ -51489,19 +51489,8 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("filter-box", {
+      _c("filter-array", {
         attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
-        model: {
-          value: _vm.filteredTasks,
-          callback: function($$v) {
-            _vm.filteredTasks = $$v
-          },
-          expression: "filteredTasks"
-        }
-      }),
-      _vm._v(" "),
-      _c("filter-tag-box", {
-        attrs: { targetArray: _vm.filteredTasks },
         model: {
           value: _vm.displayedTasks,
           callback: function($$v) {
@@ -54188,7 +54177,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tags: [],
             selectedTagId: 0,
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '状態', value: 'state_id', type: 'options', options: [] }, { label: 'タグ', value: 'tag', type: 'options' }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }]
         };
     },
     created: function () {
@@ -54223,6 +54212,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 this.tags.push({ label: tag.name, value: tag.id });
                             }
+
                             _context.next = 18;
                             break;
 
@@ -54257,6 +54247,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             return _context.finish(18);
 
                         case 26:
+                            this.addFilters(); //状態を追加
+
+                        case 27:
                         case 'end':
                             return _context.stop();
                     }
@@ -54290,6 +54283,81 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return mounted;
     }(),
     methods: {
+        addFilters: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var statesResult, states, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, state;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.next = 2;
+                                return axios.get('api/states');
+
+                            case 2:
+                                statesResult = _context3.sent;
+                                states = [];
+                                _iteratorNormalCompletion2 = true;
+                                _didIteratorError2 = false;
+                                _iteratorError2 = undefined;
+                                _context3.prev = 7;
+
+                                for (_iterator2 = statesResult.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    state = _step2.value;
+
+                                    states.push({ label: state.name, value: state.id });
+                                }
+                                _context3.next = 15;
+                                break;
+
+                            case 11:
+                                _context3.prev = 11;
+                                _context3.t0 = _context3['catch'](7);
+                                _didIteratorError2 = true;
+                                _iteratorError2 = _context3.t0;
+
+                            case 15:
+                                _context3.prev = 15;
+                                _context3.prev = 16;
+
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
+                                }
+
+                            case 18:
+                                _context3.prev = 18;
+
+                                if (!_didIteratorError2) {
+                                    _context3.next = 21;
+                                    break;
+                                }
+
+                                throw _iteratorError2;
+
+                            case 21:
+                                return _context3.finish(18);
+
+                            case 22:
+                                return _context3.finish(15);
+
+                            case 23:
+                                this.filterOptions.push({ label: '状態', value: 'state_id', type: 'options', options: states });
+
+                            case 24:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+            }));
+
+            function addFilters() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return addFilters;
+        }(),
+
         filterArray: function filterArray() {
             this.$refs.filter.filterArray();
         },
@@ -54338,8 +54406,8 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _c("filter-tag-box", {
-        attrs: { targetArray: _vm.tasks },
+      _c("filter-box", {
+        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
         model: {
           value: _vm.test,
           callback: function($$v) {
@@ -59581,7 +59649,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n\n\n", ""]);
 
 // exports
 
@@ -59597,98 +59665,442 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            filteredArray: []
+            filteredArray: [],
+            filters: [],
+            filterOperators: [],
+            operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
+            columnName: '',
+            comparisonValue: '',
+            comparisonOperator: '=',
+            deleteTargetIndex: ''
         };
     },
     props: {
-        originalArray: {
+        targetArray: {
             type: [Array, String]
         },
-        columnName: {
-            type: String
-        },
-        columnLabel: {
-            type: String
-        },
-        comparisonValue: {
-            type: [String, Number]
-        },
-        comparisonOperator: {
-            type: String,
-            defalut: '='
+        filterOptions: {
+            type: [Array, String]
         }
     },
     watch: {
-        columnName: {
-            immediate: true,
-            handler: function handler() {
-                this.filterArray();
+        //個別にフィルター
+        filters: function filters() {
+            var _this = this;
+
+            //リセット
+            this.filteredArray = [];
+            //フィルターがない場合は全部出力
+            if (!this.filters || this.filters.length == 0) {
+                console.log('hoge');
+                this.$emit('input', this.targetArray);
+                return;
+            }
+
+            var _loop = function _loop(filter) {
+                //オペレータによって分岐
+                switch (filter.comparisonOperator) {
+                    case '<':
+                        _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                            return el[filter.columnName] < filter.comparisonValue;
+                        }));
+                        break;
+                    case '<=':
+                        _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                            return el[filter.columnName] <= filter.comparisonValue;
+                        }));
+                        break;
+                    case '=':
+                        _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                            return el[filter.columnName] == filter.comparisonValue;
+                        }));
+                        break;
+                    case '>=':
+                        _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                            return el[filter.columnName] >= filter.comparisonValue;
+                        }));
+                        break;
+                    case '>':
+                        _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                            return el[filter.columnName] > filter.comparisonValue;
+                        }));
+                        break;
+                }
+            };
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.filters[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var filter = _step.value;
+
+                    _loop(filter);
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            this.operate();
+        },
+        targetArray: function targetArray() {
+            if (!this.filteres || this.filters.length == 0) {
+                //フィルターが設定されていない場合は全部出力
+                this.$emit('input', this.targetArray);
             }
         },
-        comparisonValue: {
-            immediate: true,
-            handler: function handler() {
-                this.filterArray();
-            }
-        },
-        comparisonOperator: {
-            immediate: true,
-            handler: function handler() {
-                this.filterArray();
-            }
+        columnName: function columnName() {
+            this.comparisonValue = '';
         }
 
     },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        filterArray: function filterArray() {
-            var _this = this;
+        showFilterModal: function showFilterModal() {
+            this.$refs.filterModal.openModal();
+        },
+        addFilter: function addFilter() {
+            var _this2 = this;
 
-            //3つのパラメータが揃っていない場合は終了
-            if (!this.columnName || !this.comparisonValue || !this.comparisonOperator) {
-                return;
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this2.columnName;
+            });
+
+            //optionsが選択された場合は比較演算子を==にする
+            if (selectedOption.type == 'options') {
+                this.comparisonOperator = '=';
             }
-            //オペレータによって分岐
-            switch (this.comparisonOperator) {
-                case '<':
-                    this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] < _this.comparisonValue;
-                    });
-                    break;
-                case '<=':
-                    this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] <= _this.comparisonValue;
-                    });
-                    break;
-                case '=':
-                    this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] == _this.comparisonValue;
-                    });
-                    break;
-                case '>=':
-                    this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] >= _this.comparisonValue;
-                    });
-                    break;
-                case '>':
-                    this.filteredArray = this.originalArray.filter(function (el) {
-                        return el[_this.columnName] > _this.comparisonValue;
-                    });
-                    break;
-                //comparisonValueが配列の場合はand(*)／or（+）で分ける
-                case '*':
 
-                    break;
-                case '+':
+            var filter = {
+                columnName: this.columnName,
+                columnLabel: selectedOption.label,
+                comparisonValue: this.comparisonValue,
+                comparisonOperator: this.comparisonOperator
+            };
+            this.filteredArray.push({});
+            this.filters.push(filter);
+            this.filterOperators.push('+');
+        },
+        // 配列をAnd/Or演算して出力
+        operate: function operate() {
+            // リセット
+            this.$emit('input', []);
+            var result = [];
+            var resultIds = [];
+            var ids = [];
 
-                    break;
+            //フィルターの数が0/1の場合
+            if (!this.filteredArray || this.filteredArray.length == 0) {
+                //フィルターが設定されていない場合は全部出力
+                this.$emit('input', this.targetArray);
+            } else if (this.filteredArray.length == 1) {
+                this.$emit('input', this.filteredArray[0]);
             }
-            this.$emit('input', this.filteredArray);
+
+            for (var index in this.filteredArray) {
+                if (index == 0) {
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+                        for (var _iterator2 = this.filteredArray[0][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var el = _step2.value;
+
+                            resultIds.push(el.id);
+                            ids.push(el.id);
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+                } else {
+                    if (!this.filteredArray[index].length) {
+                        continue;
+                    }
+                    if (this.filterOperators[index - 1] == '*') {
+                        // 積
+                        resultIds = [];
+                        var _iteratorNormalCompletion3 = true;
+                        var _didIteratorError3 = false;
+                        var _iteratorError3 = undefined;
+
+                        try {
+                            for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                var _el = _step3.value;
+
+                                if (ids.indexOf(_el.id) != -1) {
+                                    resultIds.push(_el.id);
+                                }
+                            }
+                        } catch (err) {
+                            _didIteratorError3 = true;
+                            _iteratorError3 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+                            } finally {
+                                if (_didIteratorError3) {
+                                    throw _iteratorError3;
+                                }
+                            }
+                        }
+                    } else {
+                        // 和
+                        // 追加用id配列
+                        var _iteratorNormalCompletion4 = true;
+                        var _didIteratorError4 = false;
+                        var _iteratorError4 = undefined;
+
+                        try {
+                            for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                var _el2 = _step4.value;
+
+                                ids.push(_el2.id);
+                            }
+                            // setオブジェクトを生成
+                        } catch (err) {
+                            _didIteratorError4 = true;
+                            _iteratorError4 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                    _iterator4.return();
+                                }
+                            } finally {
+                                if (_didIteratorError4) {
+                                    throw _iteratorError4;
+                                }
+                            }
+                        }
+
+                        var setObj = new Set(ids);
+                        var _iteratorNormalCompletion5 = true;
+                        var _didIteratorError5 = false;
+                        var _iteratorError5 = undefined;
+
+                        try {
+                            for (var _iterator5 = setObj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                var id = _step5.value;
+
+                                resultIds.push(id);
+                            }
+                        } catch (err) {
+                            _didIteratorError5 = true;
+                            _iteratorError5 = err;
+                        } finally {
+                            try {
+                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                    _iterator5.return();
+                                }
+                            } finally {
+                                if (_didIteratorError5) {
+                                    throw _iteratorError5;
+                                }
+                            }
+                        }
+                    }
+                    ids = resultIds;
+                }
+            }
+            // idから配列を復元して出力
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
+
+            try {
+                for (var _iterator6 = this.targetArray[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var _el3 = _step6.value;
+
+                    if (resultIds.indexOf(_el3.id) != -1) {
+                        result.push(_el3);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
+                    }
+                } finally {
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
+                    }
+                }
+            }
+
+            this.$emit('input', result);
+        },
+        //andとorを切り替え
+        toggleOperator: function toggleOperator(index) {
+            if (this.filterOperators[index] == '*') {
+                this.filterOperators.splice(index, 1, '+');
+            } else {
+                this.filterOperators.splice(index, 1, '*');
+            }
+            this.operate();
+        },
+        setOperatorClass: function setOperatorClass(index) {
+            return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
+        },
+        setComparisonValueComponent: function setComparisonValueComponent() {
+            var _this3 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this3.columnName;
+            });
+            switch (selectedOption.type) {
+                case 'star':
+                    return 'star-range';
+                case 'number':
+                    return '';
+                case 'date':
+                    return 'date-picker';
+                case 'string':
+                    return '';
+                case 'options':
+                    return 'tag-cloud';
+            }
+        },
+        setComparisonValueOptions: function setComparisonValueOptions() {
+            var _this4 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this4.columnName;
+            });
+            return selectedOption.options;
+        },
+        showComparisonOperator: function showComparisonOperator() {
+            var _this5 = this;
+
+            if (!this.columnName) {
+                return '';
+            }
+            var selectedOption = this.filterOptions.find(function (el) {
+                return el.value == _this5.columnName;
+            });
+            return selectedOption.type != 'options' || false;
+        },
+        showDeleteFilterToolTip: function showDeleteFilterToolTip(index) {
+            this.deleteTargetIndex = index;
+            this.$refs.toolTipDelete.showToolTip();
+        },
+        hideDeleteFilterToolTip: function hideDeleteFilterToolTip() {
+            var vue = this;
+            var timer = window.setTimeout(function () {
+                vue.$refs.toolTipDelete.hideToolTip();
+                this.deleteTargetIndex = '';
+            }, 2000);
+        },
+        deleteFilter: function deleteFilter() {
+            this.filterOperators.splice(this.deleteTargetIndex, 1);
+            this.filters.splice(this.deleteTargetIndex, 1);
+            this.filteredArray.splice(this.deleteTargetIndex, 1);
+            this.$refs.toolTipDelete.hideToolTip(); //ツールチップを消す
+        },
+        showToolTip: function showToolTip() {
+            this.$refs.toolTip.showToolTip();
+        },
+        hideToolTip: function hideToolTip() {
+            this.$refs.toolTip.hideToolTip();
+        },
+        setLabel: function setLabel(filter) {
+            var selectedFilterOption = this.filterOptions.find(function (el) {
+                return el.value == filter.columnName;
+            });
+            if (selectedFilterOption.type == 'options') {
+                return selectedFilterOption.label + ': ' + selectedFilterOption.options.find(function (el) {
+                    return el.value == filter.comparisonValue;
+                }).label;
+            } else {
+                return filter.columnLabel + ' ' + filter.comparisonOperator + ' ' + filter.comparisonValue;
+            }
         }
     }
 });
@@ -59701,15 +60113,148 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", { staticClass: "filter-label" }, [
-    _vm._v(
-      _vm._s(_vm.columnLabel) +
-        " " +
-        _vm._s(_vm.comparisonOperator) +
-        " " +
-        _vm._s(_vm.comparisonValue)
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("tool-tip", { ref: "toolTipDelete" }, [
+        _c("div", { staticClass: "tool-tip-content" }, [
+          _c("span", [_vm._v("このフィルターを削除します　")]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-sm btn-warning d-block",
+              on: {
+                click: function($event) {
+                  return _vm.deleteFilter()
+                }
+              }
+            },
+            [_vm._v("OK")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tool-tip", { ref: "toolTip" }, [
+        _c("span", [_vm._v("フィルターを追加します")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "modal",
+        { ref: "filterModal" },
+        [
+          _c("tag-cloud", {
+            attrs: { options: _vm.filterOptions },
+            model: {
+              value: _vm.columnName,
+              callback: function($$v) {
+                _vm.columnName = $$v
+              },
+              expression: "columnName"
+            }
+          }),
+          _vm._v(" "),
+          _c(_vm.setComparisonValueComponent(), {
+            tag: "component",
+            attrs: { options: _vm.setComparisonValueOptions() },
+            model: {
+              value: _vm.comparisonValue,
+              callback: function($$v) {
+                _vm.comparisonValue = $$v
+              },
+              expression: "comparisonValue"
+            }
+          }),
+          _vm._v(" "),
+          _c("tag-cloud", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.showComparisonOperator(),
+                expression: "showComparisonOperator()"
+              }
+            ],
+            attrs: { options: _vm.operatorOptions },
+            model: {
+              value: _vm.comparisonOperator,
+              callback: function($$v) {
+                _vm.comparisonOperator = $$v
+              },
+              expression: "comparisonOperator"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.addFilter()
+                }
+              }
+            },
+            [_vm._v("フィルターを追加")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "filter-container" },
+        [
+          _vm._l(_vm.filters, function(filter, index) {
+            return _c("div", { staticClass: "filter-wrapper" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "filter-label",
+                  on: {
+                    click: function($event) {
+                      return _vm.showDeleteFilterToolTip(index)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.setLabel(filter)))]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: _vm.setOperatorClass(index),
+                  on: {
+                    click: function($event) {
+                      return _vm.toggleOperator(index)
+                    }
+                  }
+                },
+                [_c("span", [_vm._v("+")])]
+              )
+            ])
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-plus-circle fa-lg add-button",
+            on: {
+              click: function($event) {
+                return _vm.showFilterModal()
+              },
+              mouseover: function($event) {
+                return _vm.showToolTip()
+              },
+              mouseout: function($event) {
+                return _vm.hideToolTip()
+              }
+            }
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -59740,7 +60285,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-62eebcd4"
+var __vue_scopeId__ = "data-v-b08cfbb2"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -59751,7 +60296,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/FilterTagBox.vue"
+Component.options.__file = "resources/js/components/FilterTag.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -59760,9 +60305,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-62eebcd4", Component.options)
+    hotAPI.createRecord("data-v-b08cfbb2", Component.options)
   } else {
-    hotAPI.reload("data-v-62eebcd4", Component.options)
+    hotAPI.reload("data-v-b08cfbb2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -59783,13 +60328,13 @@ var content = __webpack_require__(194);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(1)("891350e4", content, false, {});
+var update = __webpack_require__(1)("2cfcb8ec", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62eebcd4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTagBox.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-62eebcd4\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTagBox.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b08cfbb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTag.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b08cfbb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterTag.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -59807,7 +60352,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-62eebcd4] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-62eebcd4] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n\n\n", ""]);
 
 // exports
 
@@ -60301,7 +60846,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-62eebcd4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-b08cfbb2", module.exports)
   }
 }
 
@@ -60319,652 +60864,6 @@ var normalizeComponent = __webpack_require__(2)
 var __vue_script__ = __webpack_require__(200)
 /* template */
 var __vue_template__ = __webpack_require__(201)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-085cbfd8"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/FilterBox.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-085cbfd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-085cbfd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(199);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("71fa4b05", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.filter-container[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-085cbfd8] {\n    display:inline-block;\n    margin:0 0.5em;\n    cursor:pointer;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-085cbfd8]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-085cbfd8] {\n    cursor:pointer;\n}\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 200 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            filteredArray: [],
-            filters: [],
-            filterOperators: [],
-            operatorOptions: [{ label: '<', value: '<' }, { label: '<=', value: '<=' }, { label: '=', value: '=' }, { label: '>=', value: '>=' }, { label: '>', value: '>' }],
-            columnName: '',
-            comparisonValue: '',
-            comparisonOperator: '=',
-            deleteTargetIndex: ''
-        };
-    },
-    props: {
-        targetArray: {
-            type: [Array, String]
-        },
-        filterOptions: {
-            type: [Array, String]
-        }
-    },
-    watch: {
-        //個別にフィルターされた配列をand/or演算して出力
-        filteredArray: function filteredArray() {
-            if (!this.filteredArray || this.filteredArray.length == 0) {
-                //フィルターが設定されていない場合は全部出力
-                this.$emit('input', this.targetArray);
-            } else if (this.filteredArray.length == 1) {
-                this.$emit('input', this.filteredArray[0]);
-            } else {
-                this.$emit('input', []);
-                this.operate();
-            }
-        },
-        targetArray: function targetArray() {
-            if (!this.filteredArray || this.filteredArray.length == 0) {
-                //フィルターが設定されていない場合は全部出力
-                this.$emit('input', this.targetArray);
-            }
-        },
-        columnName: function columnName() {
-            this.comparisonValue = '';
-        }
-
-    },
-    created: function created() {},
-    mounted: function mounted() {},
-    methods: {
-        showFilterModal: function showFilterModal() {
-            this.$refs.filterModal.openModal();
-        },
-        addFilter: function addFilter() {
-            var _this = this;
-
-            var selectedOption = this.filterOptions.find(function (el) {
-                return el.value == _this.columnName;
-            });
-            var filter = {
-                columnName: this.columnName,
-                columnLabel: selectedOption.label,
-                comparisonValue: this.comparisonValue,
-                comparisonOperator: this.comparisonOperator
-            };
-            this.filteredArray.push({});
-            this.filters.push(filter);
-            this.filterOperators.push('*');
-        },
-        // 配列をAnd/Or演算して出力
-        operate: function operate() {
-            this.$emit('input', []); //2020-02-18
-            var result = [];
-            var resultIds = [];
-            var ids = [];
-            for (var index in this.filteredArray) {
-                if (index == 0) {
-                    var _iteratorNormalCompletion = true;
-                    var _didIteratorError = false;
-                    var _iteratorError = undefined;
-
-                    try {
-                        for (var _iterator = this.filteredArray[0][Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                            var el = _step.value;
-
-                            resultIds.push(el.id);
-                            ids.push(el.id);
-                        }
-                    } catch (err) {
-                        _didIteratorError = true;
-                        _iteratorError = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                                _iterator.return();
-                            }
-                        } finally {
-                            if (_didIteratorError) {
-                                throw _iteratorError;
-                            }
-                        }
-                    }
-                } else {
-                    if (!this.filteredArray[index].length) {
-                        continue;
-                    }
-                    if (this.filterOperators[index - 1] == '*') {
-                        // 積
-                        resultIds = [];
-                        var _iteratorNormalCompletion2 = true;
-                        var _didIteratorError2 = false;
-                        var _iteratorError2 = undefined;
-
-                        try {
-                            for (var _iterator2 = this.filteredArray[index][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                var _el = _step2.value;
-
-                                if (ids.indexOf(_el.id) != -1) {
-                                    resultIds.push(_el.id);
-                                }
-                            }
-                        } catch (err) {
-                            _didIteratorError2 = true;
-                            _iteratorError2 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                    _iterator2.return();
-                                }
-                            } finally {
-                                if (_didIteratorError2) {
-                                    throw _iteratorError2;
-                                }
-                            }
-                        }
-                    } else {
-                        // 和
-                        // 追加用id配列
-                        var _iteratorNormalCompletion3 = true;
-                        var _didIteratorError3 = false;
-                        var _iteratorError3 = undefined;
-
-                        try {
-                            for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                var _el2 = _step3.value;
-
-                                ids.push(_el2.id);
-                            }
-                            // setオブジェクトを生成
-                        } catch (err) {
-                            _didIteratorError3 = true;
-                            _iteratorError3 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
-                                }
-                            } finally {
-                                if (_didIteratorError3) {
-                                    throw _iteratorError3;
-                                }
-                            }
-                        }
-
-                        var setObj = new Set(ids);
-                        var _iteratorNormalCompletion4 = true;
-                        var _didIteratorError4 = false;
-                        var _iteratorError4 = undefined;
-
-                        try {
-                            for (var _iterator4 = setObj[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                var id = _step4.value;
-
-                                resultIds.push(id);
-                            }
-                        } catch (err) {
-                            _didIteratorError4 = true;
-                            _iteratorError4 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                    _iterator4.return();
-                                }
-                            } finally {
-                                if (_didIteratorError4) {
-                                    throw _iteratorError4;
-                                }
-                            }
-                        }
-                    }
-                    ids = resultIds;
-                }
-            }
-            // idから配列を復元して出力
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
-
-            try {
-                for (var _iterator5 = this.targetArray[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var _el3 = _step5.value;
-
-                    if (resultIds.indexOf(_el3.id) != -1) {
-                        result.push(_el3);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                        _iterator5.return();
-                    }
-                } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
-                    }
-                }
-            }
-
-            this.$emit('input', result);
-        },
-        //andとorを切り替え
-        toggleOperator: function toggleOperator(index) {
-            if (this.filterOperators[index] == '*') {
-                this.filterOperators.splice(index, 1, '+');
-            } else {
-                this.filterOperators.splice(index, 1, '*');
-            }
-            this.operate();
-        },
-        setOperatorClass: function setOperatorClass(index) {
-            return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
-        },
-        setComparisonValueComponent: function setComparisonValueComponent() {
-            var _this2 = this;
-
-            if (!this.columnName) {
-                return '';
-            }
-            var selectedOption = this.filterOptions.find(function (el) {
-                return el.value == _this2.columnName;
-            });
-            switch (selectedOption.type) {
-                case 'star':
-                    return 'star-range';
-                case 'number':
-                    return '';
-                case 'date':
-                    return 'date-picker';
-                case 'string':
-                    return '';
-                case 'options':
-                    return 'tag-cloud';
-            }
-        },
-        setComparisonValueOptions: function setComparisonValueOptions() {
-            var _this3 = this;
-
-            if (!this.columnName) {
-                return '';
-            }
-            var selectedOption = this.filterOptions.find(function (el) {
-                return el.value == _this3.columnName;
-            });
-            return selectedOption.options;
-        },
-        showComparisonOperator: function showComparisonOperator() {
-            var _this4 = this;
-
-            if (!this.columnName) {
-                return '';
-            }
-            var selectedOption = this.filterOptions.find(function (el) {
-                return el.value == _this4.columnName;
-            });
-            return selectedOption.type != 'options' || false;
-        },
-        showDeleteFilterToolTip: function showDeleteFilterToolTip(index) {
-            this.deleteTargetIndex = index;
-            this.$refs.toolTipDelete.showToolTip();
-        },
-        hideDeleteFilterToolTip: function hideDeleteFilterToolTip() {
-            var vue = this;
-            var timer = window.setTimeout(function () {
-                vue.$refs.toolTipDelete.hideToolTip();
-                this.deleteTargetIndex = '';
-            }, 2000);
-        },
-        deleteFilter: function deleteFilter() {
-            this.filterOperators.splice(this.deleteTargetIndex, 1);
-            this.filters.splice(this.deleteTargetIndex, 1);
-            this.filteredArray.splice(this.deleteTargetIndex, 1);
-            this.$refs.toolTipDelete.hideToolTip(); //ツールチップを消す
-        },
-        showToolTip: function showToolTip() {
-            this.$refs.toolTip.showToolTip();
-        },
-        hideToolTip: function hideToolTip() {
-            this.$refs.toolTip.hideToolTip();
-        }
-    }
-});
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("tool-tip", { ref: "toolTipDelete" }, [
-        _c("div", { staticClass: "tool-tip-content" }, [
-          _c("span", [_vm._v("このフィルターを削除します　")]),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-warning d-block",
-              on: {
-                click: function($event) {
-                  return _vm.deleteFilter()
-                }
-              }
-            },
-            [_vm._v("OK")]
-          )
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tool-tip", { ref: "toolTip" }, [
-        _c("span", [_vm._v("フィルターを追加します")])
-      ]),
-      _vm._v(" "),
-      _c(
-        "modal",
-        { ref: "filterModal" },
-        [
-          _c("tag-cloud", {
-            attrs: { options: _vm.filterOptions },
-            model: {
-              value: _vm.columnName,
-              callback: function($$v) {
-                _vm.columnName = $$v
-              },
-              expression: "columnName"
-            }
-          }),
-          _vm._v(" "),
-          _c(_vm.setComparisonValueComponent(), {
-            tag: "component",
-            attrs: { options: _vm.setComparisonValueOptions() },
-            model: {
-              value: _vm.comparisonValue,
-              callback: function($$v) {
-                _vm.comparisonValue = $$v
-              },
-              expression: "comparisonValue"
-            }
-          }),
-          _vm._v(" "),
-          _c("tag-cloud", {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.showComparisonOperator(),
-                expression: "showComparisonOperator()"
-              }
-            ],
-            attrs: { options: _vm.operatorOptions },
-            model: {
-              value: _vm.comparisonOperator,
-              callback: function($$v) {
-                _vm.comparisonOperator = $$v
-              },
-              expression: "comparisonOperator"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.addFilter()
-                }
-              }
-            },
-            [_vm._v("フィルターを追加")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "filter-container" },
-        [
-          _vm._l(_vm.filters, function(filter, index) {
-            return _c("div", { staticClass: "filter-wrapper" }, [
-              _c(
-                "div",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.showDeleteFilterToolTip(index)
-                    },
-                    mouseout: function($event) {
-                      return _vm.hideDeleteFilterToolTip()
-                    }
-                  }
-                },
-                [
-                  _c("filter-array", {
-                    key: index,
-                    attrs: {
-                      originalArray: _vm.targetArray,
-                      columnName: filter.columnName,
-                      columnLabel: filter.columnLabel,
-                      comparisonValue: filter.comparisonValue,
-                      comparisonOperator: filter.comparisonOperator
-                    },
-                    model: {
-                      value: _vm.filteredArray[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.filteredArray, index, $$v)
-                      },
-                      expression: "filteredArray[index]"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  class: _vm.setOperatorClass(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleOperator(index)
-                    }
-                  }
-                },
-                [_vm._v("+")]
-              )
-            ])
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-plus-circle fa-lg add-button",
-            on: {
-              click: function($event) {
-                return _vm.showFilterModal()
-              },
-              mouseover: function($event) {
-                return _vm.showToolTip()
-              },
-              mouseout: function($event) {
-                return _vm.hideToolTip()
-              }
-            }
-          })
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-085cbfd8", module.exports)
-  }
-}
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(203)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(205)
-/* template */
-var __vue_template__ = __webpack_require__(206)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -61003,13 +60902,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 203 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(204);
+var content = __webpack_require__(199);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -61029,7 +60928,7 @@ if(false) {
 }
 
 /***/ }),
-/* 204 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -61043,7 +60942,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:f
 
 
 /***/ }),
-/* 205 */
+/* 200 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61095,7 +60994,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 206 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -61130,7 +61029,7 @@ if (false) {
 }
 
 /***/ }),
-/* 207 */
+/* 202 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
