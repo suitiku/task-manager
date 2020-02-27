@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(202);
+module.exports = __webpack_require__(207);
 
 
 /***/ }),
@@ -14681,8 +14681,8 @@ Vue.component('home', __webpack_require__(177));
 Vue.component('text-spliter', __webpack_require__(182));
 Vue.component('filter-array', __webpack_require__(187));
 Vue.component('filter-tag', __webpack_require__(192));
-// Vue.component('filter-box', require('./components/FilterBox.vue'));
-Vue.component('tool-tip', __webpack_require__(197));
+Vue.component('filter-box', __webpack_require__(197));
+Vue.component('tool-tip', __webpack_require__(202));
 
 var app = new Vue({
   el: '#app'
@@ -51042,7 +51042,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51501,8 +51500,8 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("filter-array", {
-        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
+      _c("filter-box", {
+        attrs: { originalArray: _vm.tasks, filterOptions: _vm.filterOptions },
         model: {
           value: _vm.displayedTasks,
           callback: function($$v) {
@@ -54181,7 +54180,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54401,6 +54399,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("filter-box", {
+        attrs: { originalArray: _vm.tasks, filterOptions: _vm.filterOptions },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
+      _vm._v(" "),
       _vm._l(_vm.test, function(tes) {
         return _c("div", [
           _c(
@@ -54420,17 +54429,6 @@ var render = function() {
             2
           )
         ])
-      }),
-      _vm._v(" "),
-      _c("filter-box", {
-        attrs: { targetArray: _vm.tasks, filterOptions: _vm.filterOptions },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
       }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
@@ -60368,7 +60366,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n.invisible[data-v-b08cfbb2] {\n    visibility:hidden;\n}\n\n", ""]);
 
 // exports
 
@@ -60385,6 +60383,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -60885,6 +60885,249 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
+var __vue_scopeId__ = "data-v-085cbfd8"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/FilterBox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-085cbfd8", Component.options)
+  } else {
+    hotAPI.reload("data-v-085cbfd8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(199);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("71fa4b05", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.filter-select[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    margin:0 1em;\n    padding:1em;\n}\n.filter-select i[data-v-085cbfd8] {\n    font-size:120%;\n    margin:0 0.5em;\n    cursor:pointer;\n}\n.selected[data-v-085cbfd8] {\n    color:orange;\n}\n.disable[data-v-085cbfd8] {\n    display:none;\n}\n.visible[data-v-085cbfd8] {\n    display:block;\n}\n.visible div[data-v-085cbfd8] {\n    margin:0.5em 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            selectedFilters: [],
+            nomalFilteredArray: [],
+            tagFilteredArray: [],
+            filterClass: 'disable'
+        };
+    },
+    props: {
+        originalArray: {
+            type: [String, Array, Object]
+        },
+        filterOptions: {
+            type: [String, Array, Object]
+        }
+    },
+    watch: {
+        tagFilteredArray: function tagFilteredArray() {
+            this.$emit('input', this.tagFilteredArray);
+        },
+        selectedFilters: function selectedFilters() {
+            this.filterClass = this.selectedFilters.length != 0 ? 'visible' : 'disable';
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        selectFilter: function selectFilter(filterName) {
+            var index = this.selectedFilters.indexOf(filterName);
+            if (index != -1) {
+                this.selectedFilters.splice(index, 1);
+            } else {
+                this.selectedFilters.push(filterName);
+            }
+            event.target.classList.toggle('selected');
+        }
+    }
+});
+
+/***/ }),
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "filter-select" }, [
+      _c("i", {
+        staticClass: "fas fa-filter",
+        on: {
+          click: function($event) {
+            return _vm.selectFilter("normal")
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("i", {
+        staticClass: "fas fa-tags",
+        on: {
+          click: function($event) {
+            return _vm.selectFilter("tag")
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { class: _vm.filterClass },
+      [
+        _c("filter-array", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.selectedFilters.indexOf("normal") != -1,
+              expression: "selectedFilters.indexOf('normal') != -1"
+            }
+          ],
+          attrs: {
+            targetArray: _vm.originalArray,
+            filterOptions: _vm.filterOptions
+          },
+          model: {
+            value: _vm.nomalFilteredArray,
+            callback: function($$v) {
+              _vm.nomalFilteredArray = $$v
+            },
+            expression: "nomalFilteredArray"
+          }
+        }),
+        _vm._v(" "),
+        _c("filter-tag", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.selectedFilters.indexOf("tag") != -1,
+              expression: "selectedFilters.indexOf('tag') != -1"
+            }
+          ],
+          attrs: { targetArray: _vm.nomalFilteredArray },
+          model: {
+            value: _vm.tagFilteredArray,
+            callback: function($$v) {
+              _vm.tagFilteredArray = $$v
+            },
+            expression: "tagFilteredArray"
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-085cbfd8", module.exports)
+  }
+}
+
+/***/ }),
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(203)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(205)
+/* template */
+var __vue_template__ = __webpack_require__(206)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
 var __vue_scopeId__ = "data-v-6cabd7c8"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
@@ -60918,13 +61161,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 198 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(199);
+var content = __webpack_require__(204);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -60944,7 +61187,7 @@ if(false) {
 }
 
 /***/ }),
-/* 199 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -60958,7 +61201,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:f
 
 
 /***/ }),
-/* 200 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61010,7 +61253,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 201 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -61045,7 +61288,7 @@ if (false) {
 }
 
 /***/ }),
-/* 202 */
+/* 207 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

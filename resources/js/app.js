@@ -46,7 +46,7 @@ Vue.component('home', require('./components/Home.vue'));
 Vue.component('text-spliter', require('./components/TextSpliter.vue'));
 Vue.component('filter-array', require('./components/FilterArray.vue'));
 Vue.component('filter-tag', require('./components/FilterTag.vue'));
-// Vue.component('filter-box', require('./components/FilterBox.vue'));
+Vue.component('filter-box', require('./components/FilterBox.vue'));
 Vue.component('tool-tip', require('./components/ToolTip.vue'));
 
 

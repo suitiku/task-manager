@@ -10,6 +10,8 @@
                 <span class="filter-label">{{displayTagName(selectedTagId)}}</span>
                 <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
             </div>
+            <!--高さ調整用-->
+            <i class="fas fa-plus-circle fa-lg invisible" </i>
         </div>
         <!--タグ一覧表示部分-->
         <div>
@@ -175,6 +177,8 @@
         border:1px solid gray;
         border-radius:0.2em;
     }
-    
+    .invisible {
+        visibility:hidden;
+    }
     
 </style>

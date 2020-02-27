@@ -1,11 +1,10 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        <filter-box v-model="test" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
         <div v-for="tes in test">
             <span>id: {{tes.id}} , name: {{tes.name}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
         </div>
-        <filter-box v-model="test" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
-        <!--<filter-tag-box v-model="test" v-bind:targetArray="tasks" />-->
         
         <!--{{selectedTagId}}-->
         <!--<tag-cloud v-model="selectedTagId" v-bind:options="tags" />-->

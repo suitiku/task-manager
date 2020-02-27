@@ -23,8 +23,7 @@
         </div>
         
         <!--フィルター-->
-        <filter-array v-model="displayedTasks" v-bind:targetArray="tasks" v-bind:filterOptions="filterOptions" />
-        <!--<filter-tag-box v-model="displayedTasks" v-bind:targetArray="filteredTasks" />-->
+        <filter-box v-model="displayedTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
         
         <!--ソート-->
         <!--<div class="sortBox">-->
