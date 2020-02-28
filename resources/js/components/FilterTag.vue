@@ -48,7 +48,6 @@
                 
                 //and/or演算
                 if(!this.selectedTagIds || this.selectedTagIds.length == 0){ //フィルターが設定されていない場合は全部出力
-                    console.log('length 0')
                     this.$emit('input',this.targetArray)   
                 }else if(this.selectedTagIds.length == 1){
                     this.$emit('input',this.filteredArray[0])

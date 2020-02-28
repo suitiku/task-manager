@@ -87,7 +87,6 @@
                 this.filteredArray = []
                 //フィルターがない場合は全部出力
                 if(!this.filters || this.filters.length == 0){
-                    console.log('hoge')
                     this.$emit('input',this.targetArray)
                     return 
                 }

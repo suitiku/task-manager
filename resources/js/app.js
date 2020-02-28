@@ -47,6 +47,7 @@ Vue.component('text-spliter', require('./components/TextSpliter.vue'));
 Vue.component('filter-array', require('./components/FilterArray.vue'));
 Vue.component('filter-tag', require('./components/FilterTag.vue'));
 Vue.component('filter-box', require('./components/FilterBox.vue'));
+Vue.component('sort-array', require('./components/SortArray.vue'));
 Vue.component('tool-tip', require('./components/ToolTip.vue'));
 
 

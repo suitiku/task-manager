@@ -1,14 +1,14 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <filter-box v-model="test" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+        <sort-array v-model="test" ref="sortArrayComponent" v-bind:targetArray="tasks" columnName="priority" v-bind:ascending="false" />
+        <button v-on:click="sortArray()">sort</button>
+        
         <div v-for="tes in test">
-            <span>id: {{tes.id}} , name: {{tes.name}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
+            <span>id: {{tes.id}} , name: {{tes.name}} , priority: {{tes.priority}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
         </div>
         
-        <!--{{selectedTagId}}-->
-        <!--<tag-cloud v-model="selectedTagId" v-bind:options="tags" />-->
-        <!--<filter-tag v-model="test" v-bind:originalArray="tasks" v-bind:selectedTagId="selectedTagId" />-->
+        
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -83,6 +83,10 @@
             },
             showToolTip:function(){
                 this.$refs.tooltip.toggleToolTipVisible()
+            },
+            sortArray:function(){
+                console.log('hoge')
+                this.$refs.sortArrayComponent.sortArray()
             }
         },
     }
