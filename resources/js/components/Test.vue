@@ -1,8 +1,10 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <sort-array v-model="test" ref="sortArrayComponent" v-bind:targetArray="tasks" columnName="priority" v-bind:ascending="false" />
-        <button v-on:click="sortArray()">sort</button>
+        <div class="hoge">
+            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="priority" columnLabel="優先度" v-bind:ascending="false" />
+            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="difficulty" columnLabel="難易度" v-bind:ascending="false" />
+        </div>
         
         <div v-for="tes in test">
             <span>id: {{tes.id}} , name: {{tes.name}} , priority: {{tes.priority}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
@@ -92,6 +94,9 @@
     }
 </script>
 <style>
+    .hoge {
+        display:flex;
+    }
     .space {
         width:100%;
         height:50px;

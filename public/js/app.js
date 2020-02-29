@@ -54141,7 +54141,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
+exports.push([module.i, "\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
 
 // exports
 
@@ -54158,6 +54158,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -54404,32 +54406,43 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("sort-array", {
-        ref: "sortArrayComponent",
-        attrs: {
-          targetArray: _vm.tasks,
-          columnName: "priority",
-          ascending: false
-        },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      }),
-      _vm._v(" "),
       _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.sortArray()
+        "div",
+        { staticClass: "hoge" },
+        [
+          _c("sort-array", {
+            attrs: {
+              targetArray: _vm.tasks,
+              columnName: "priority",
+              columnLabel: "優先度",
+              ascending: false
+            },
+            model: {
+              value: _vm.test,
+              callback: function($$v) {
+                _vm.test = $$v
+              },
+              expression: "test"
             }
-          }
-        },
-        [_vm._v("sort")]
+          }),
+          _vm._v(" "),
+          _c("sort-array", {
+            attrs: {
+              targetArray: _vm.tasks,
+              columnName: "difficulty",
+              columnLabel: "難易度",
+              ascending: false
+            },
+            model: {
+              value: _vm.test,
+              callback: function($$v) {
+                _vm.test = $$v
+              },
+              expression: "test"
+            }
+          })
+        ],
+        1
       ),
       _vm._v(" "),
       _vm._l(_vm.test, function(tes) {
@@ -61217,7 +61230,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.enable[data-v-6b803800] {\n    background:#ffff7f;\n}\n.sort-label[data-v-6b803800] {\n    border:1px solid grey;\n    padding:0.2em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.ascending-descending-selector[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n    /*border:1px solid red;*/\n}\n.ascending-descending-selector i[data-v-6b803800] {\n    margin:-0.3em 0;\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -61235,10 +61248,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            enable: false,
+            ascending: true
+        };
     },
     props: {
         targetArray: {
@@ -61249,17 +61269,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: '',
             required: false
         },
-        ascending: {
-            type: Boolean,
-            defalut: true,
+        columnLabel: {
+            type: String,
+            default: '',
             required: false
         }
     },
-    watch: {},
+    watch: {
+        //初期状態はそのまま出力
+        targetArray: function targetArray() {
+            if (!this.enable) {
+                this.$emit('input', this.targetArray);
+            } else {
+                this.sortArray();
+            }
+        }
+
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
+        clickButton: function clickButton() {
+            // カラー変更
+            event.target.classList.toggle('enable');
+
+            //有効化／無効化トグル
+            this.enable = !this.enable;
+            //無効の場合は元の配列を
+            if (!this.enable) {
+                this.$emit('input', this.targetArray);
+                return;
+            }
+
+            this.sortArray();
+        },
         sortArray: function sortArray() {
+            //昇順でソート
             var sortedArray = JSON.parse(JSON.stringify(this.targetArray));
             var vue = this;
             sortedArray.sort(function (a, b) {
@@ -61271,7 +61316,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 sortedArray.reverse();
             }
             this.$emit('input', sortedArray);
+        },
+        // 昇順/降順を切り替える
+        toggleAscending: function toggleAscending() {
+            if (!this.enable) return;
+            this.ascending = !this.ascending;
+            this.sortArray();
+        },
+        setArrowStyle: function setArrowStyle(flag) {
+            if (this.ascending && flag == 'desc' || !this.ascending && flag == 'asc') {
+                return { color: 'white' };
+            } else {
+                return '';
+            }
         }
+
     }
 });
 
@@ -61283,7 +61342,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" })
+  return _c("div", { staticClass: "sort-wrapper" }, [
+    _c(
+      "div",
+      {
+        staticClass: "sort-label",
+        on: {
+          click: function($event) {
+            return _vm.clickButton()
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.columnLabel))]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "ascending-descending-selector",
+        on: {
+          click: function($event) {
+            return _vm.toggleAscending()
+          }
+        }
+      },
+      [
+        _c("i", {
+          staticClass: "fas fa-sort-up",
+          style: _vm.setArrowStyle("desc")
+        }),
+        _vm._v(" "),
+        _c("i", {
+          staticClass: "fas fa-sort-down",
+          style: _vm.setArrowStyle("asc")
+        })
+      ]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
