@@ -105,7 +105,7 @@
     }
     .sort-label {
         border:1px solid grey;
-        padding:0.2em;
+        padding:0 0.8em;
         margin-right:0.2em;
         border-radius:0.2em;
         cursor:pointer;

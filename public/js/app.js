@@ -54413,8 +54413,8 @@ var render = function() {
           _c("sort-array", {
             attrs: {
               targetArray: _vm.tasks,
-              columnName: "priority",
-              columnLabel: "優先度",
+              columnName: "name",
+              columnLabel: "件名",
               ascending: false
             },
             model: {
@@ -61230,7 +61230,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.enable[data-v-6b803800] {\n    background:#ffff7f;\n}\n.sort-label[data-v-6b803800] {\n    border:1px solid grey;\n    padding:0.2em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.ascending-descending-selector[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n    /*border:1px solid red;*/\n}\n.ascending-descending-selector i[data-v-6b803800] {\n    margin:-0.3em 0;\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
+exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.enable[data-v-6b803800] {\n    background:#ffff7f;\n}\n.sort-label[data-v-6b803800] {\n    border:1px solid grey;\n    padding:0 0.8em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.ascending-descending-selector[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n    /*border:1px solid red;*/\n}\n.ascending-descending-selector i[data-v-6b803800] {\n    margin:-0.3em 0;\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
 
 // exports
 

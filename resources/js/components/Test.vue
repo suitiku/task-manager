@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         <div class="hoge">
-            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="priority" columnLabel="優先度" v-bind:ascending="false" />
+            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="name" columnLabel="件名" v-bind:ascending="false" />
             <sort-array v-model="test" v-bind:targetArray="tasks" columnName="difficulty" columnLabel="難易度" v-bind:ascending="false" />
         </div>
         
