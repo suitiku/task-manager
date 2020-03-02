@@ -22,15 +22,12 @@
             <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">詳細登録ダイアログを表示</button>
         </div>
         
-        <!--フィルター-->
-        <filter-box v-model="displayedTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
-        
-        <!--ソート-->
-        <!--<div class="sortBox">-->
-        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('dead_line')">締切</button>-->
-        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('priority')">優先度</button>-->
-        <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="sortTask('difficulty')">難易度</button>-->
-        <!--</div>-->
+        <div class="filter-and-sort">
+            <!--フィルター-->
+            <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+            <!--ソート-->
+            <sort-box v-model="displayedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
+        </div>
         
         <!--リスト表示-->
         <!--<task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
@@ -44,7 +41,7 @@
             return {
                 modal:false,
                 tasks:[], //tasksから取得したオリジナルの配列
-                // filteredTasks:[], //一般フィルターでフィルターしたタスク配列
+                filteredTasks:[], //一般フィルターでフィルターしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：タグフィルター後
                 newTask:{},
                 ids:[], //編集確認用のtask.idの配列
@@ -69,6 +66,13 @@
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
                     {label:'締切',value:'dead_line',type:'date'},
+                ],
+                sortColumns:[
+                    {columnName:'name',columnLabel:'件名'},
+                    {columnName:'priority',columnLabel:'優先度'},
+                    {columnName:'difficulty',columnLabel:'難易度'},
+                    {columnName:'start_date',columnLabel:'作成日'},
+                    {columnName:'dead_line',columnLabel:'締切'},
                 ],
             }  
         },
@@ -204,9 +208,15 @@
         opacity:0.7;
         padding:1em;
     }
+    .add-task-area:hover{
+        opacity:1.0;
+    }
     .add-task-area input {
         margin:0 0.5em;
         border: 1px solid #ccc;
         border-radius:0.3em;
+    }
+    .filter-and-sort {
+        margin:1em 2em;
     }
 </style>

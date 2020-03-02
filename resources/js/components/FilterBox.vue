@@ -2,7 +2,7 @@
 <!--今後の改修ポイント-->
 <!--１．フィルターのoffでフィルタークリア-->
 <template>
-    <div class="container">
+    <div>
         <div class="filter-select">
             <i class="fas fa-filter" v-on:click="selectFilter('normal')"></i>
             <i class="fas fa-tags" v-on:click="selectFilter('tag')"></i>
@@ -63,13 +63,11 @@
 <style scoped>
     .filter-select {
         display:flex;
-        justify-content:flex-end;
-        margin:0 1em;
         padding:1em;
     }
     .filter-select i {
         font-size:120%;
-        margin:0 0.5em;
+        margin-right:0.5em;
         cursor:pointer;
     }
     .selected {

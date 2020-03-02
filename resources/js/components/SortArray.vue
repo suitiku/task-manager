@@ -1,7 +1,7 @@
 <!--配列をソート-->
 <template>
     <div class="sort-wrapper">
-        <div class="sort-label" v-on:click="clickButton()">{{columnLabel}}</div>
+        <div class="sort-label" v-on:click="enable()">{{columnLabel}}</div>
         <div class="ascending-descending-selector" v-on:click="toggleAscending()">
             <i class="fas fa-sort-up" v-bind:style="setArrowStyle('desc')"></i>
             <i class="fas fa-sort-down" v-bind:style="setArrowStyle('asc')"></i>
@@ -14,7 +14,7 @@
         data:function(){
             return {
                 enable:false,
-                 ascending:true,
+                ascending:true,
             }  
         },
         props: {
@@ -40,8 +40,7 @@
                 }else{
                     this.sortArray()
                 }
-            }
-            
+            },
         },
         created:function(){
             
@@ -50,7 +49,7 @@
             
         },
         methods: {
-            clickButton:function(){
+            enable:function(){
                 // カラー変更
                 event.target.classList.toggle('enable')
                 
@@ -88,8 +87,15 @@
                 }else{
                     return ''
                 }
+            },
+            //外部からスタイルを変更する
+            disableSort:function(){
+                // カラー変更
+                event.target.classList.remove('enable')
+                
+                //有効化／無効化トグル
+                this.enable = false
             }
-            
         }
     }
 </script>
@@ -98,7 +104,6 @@
         display:flex;
         align-items:center;
         padding:0 0.4em;
-        transition:all 0.5s;
     }
     .enable {
         background:#ffff7f;
@@ -109,6 +114,7 @@
         margin-right:0.2em;
         border-radius:0.2em;
         cursor:pointer;
+        transition:all 0.5s;
     }
     .ascending-descending-selector {
         display:flex;

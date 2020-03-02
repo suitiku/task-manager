@@ -1,10 +1,12 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div class="hoge">
-            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="name" columnLabel="件名" v-bind:ascending="false" />
-            <sort-array v-model="test" v-bind:targetArray="tasks" columnName="difficulty" columnLabel="難易度" v-bind:ascending="false" />
-        </div>
+        <!--<div class="hoge">-->
+            <!--<sort-array v-model="test" v-bind:targetArray="tasks" columnName="name" columnLabel="件名" />-->
+            <!--<sort-array v-model="test" v-bind:targetArray="tasks" columnName="difficulty" columnLabel="難易度" />-->
+        <!--</div>-->
+        
+        <sort-box v-model="test" v-bind:originalArray="tasks" v-bind:columns="sortColumns" />
         
         <div v-for="tes in test">
             <span>id: {{tes.id}} , name: {{tes.name}} , priority: {{tes.priority}} , tags: <span v-for="tag in tes.tags">{{tag.id}}</span></span>
@@ -33,6 +35,10 @@
                 tasks:'',
                 tags:[],
                 selectedTagId:0,
+                sortColumns:[
+                    {columnName:'priority',columnLabel:'優先度'},
+                    {columnName:'difficulty',columnLabel:'難易度'},
+                ],
                 testOptions: [
                     {label:'test',value:'hoge'},    
                     {label:'aaaa',value:'bbbb'},   

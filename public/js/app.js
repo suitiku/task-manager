@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(212);
+module.exports = __webpack_require__(217);
 
 
 /***/ }),
@@ -14683,7 +14683,8 @@ Vue.component('filter-array', __webpack_require__(187));
 Vue.component('filter-tag', __webpack_require__(192));
 Vue.component('filter-box', __webpack_require__(197));
 Vue.component('sort-array', __webpack_require__(202));
-Vue.component('tool-tip', __webpack_require__(207));
+Vue.component('sort-box', __webpack_require__(207));
+Vue.component('tool-tip', __webpack_require__(212));
 
 var app = new Vue({
   el: '#app'
@@ -50986,7 +50987,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n", ""]);
 
 // exports
 
@@ -51040,16 +51041,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
             tasks: [], //tasksから取得したオリジナルの配列
-            // filteredTasks:[], //一般フィルターでフィルターしたタスク配列
+            filteredTasks: [], //一般フィルターでフィルターしたタスク配列
             displayedTasks: [], //表示用タスクの配列：タグフィルター後
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
@@ -51064,7 +51062,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             taskFilter: 'incomplete',
             tags: [],
             quickTask: '',
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
+            sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }]
         };
     },
     props: {
@@ -51501,16 +51500,40 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("filter-box", {
-        attrs: { originalArray: _vm.tasks, filterOptions: _vm.filterOptions },
-        model: {
-          value: _vm.displayedTasks,
-          callback: function($$v) {
-            _vm.displayedTasks = $$v
-          },
-          expression: "displayedTasks"
-        }
-      }),
+      _c(
+        "div",
+        { staticClass: "filter-and-sort" },
+        [
+          _c("filter-box", {
+            attrs: {
+              originalArray: _vm.tasks,
+              filterOptions: _vm.filterOptions
+            },
+            model: {
+              value: _vm.filteredTasks,
+              callback: function($$v) {
+                _vm.filteredTasks = $$v
+              },
+              expression: "filteredTasks"
+            }
+          }),
+          _vm._v(" "),
+          _c("sort-box", {
+            attrs: {
+              originalArray: _vm.filteredTasks,
+              columns: _vm.sortColumns
+            },
+            model: {
+              value: _vm.displayedTasks,
+              callback: function($$v) {
+                _vm.displayedTasks = $$v
+              },
+              expression: "displayedTasks"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _vm._l(_vm.displayedTasks, function(task, index) {
         return _c("task", { key: index, attrs: { taskId: task.id } })
@@ -54183,6 +54206,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54193,6 +54218,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tasks: '',
             tags: [],
             selectedTagId: 0,
+            sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }]
         };
@@ -54406,44 +54432,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c(
-        "div",
-        { staticClass: "hoge" },
-        [
-          _c("sort-array", {
-            attrs: {
-              targetArray: _vm.tasks,
-              columnName: "name",
-              columnLabel: "件名",
-              ascending: false
-            },
-            model: {
-              value: _vm.test,
-              callback: function($$v) {
-                _vm.test = $$v
-              },
-              expression: "test"
-            }
-          }),
-          _vm._v(" "),
-          _c("sort-array", {
-            attrs: {
-              targetArray: _vm.tasks,
-              columnName: "difficulty",
-              columnLabel: "難易度",
-              ascending: false
-            },
-            model: {
-              value: _vm.test,
-              callback: function($$v) {
-                _vm.test = $$v
-              },
-              expression: "test"
-            }
-          })
-        ],
-        1
-      ),
+      _c("sort-box", {
+        attrs: { originalArray: _vm.tasks, columns: _vm.sortColumns },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
       _vm._v(" "),
       _vm._l(_vm.test, function(tes) {
         return _c("div", [
@@ -60987,7 +60985,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-select[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    margin:0 1em;\n    padding:1em;\n}\n.filter-select i[data-v-085cbfd8] {\n    font-size:120%;\n    margin:0 0.5em;\n    cursor:pointer;\n}\n.selected[data-v-085cbfd8] {\n    color:orange;\n}\n.disable[data-v-085cbfd8] {\n    display:none;\n}\n.visible[data-v-085cbfd8] {\n    display:block;\n}\n.visible div[data-v-085cbfd8] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\n.filter-select[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    padding:1em;\n}\n.filter-select i[data-v-085cbfd8] {\n    font-size:120%;\n    margin-right:0.5em;\n    cursor:pointer;\n}\n.selected[data-v-085cbfd8] {\n    color:orange;\n}\n.disable[data-v-085cbfd8] {\n    display:none;\n}\n.visible[data-v-085cbfd8] {\n    display:block;\n}\n.visible div[data-v-085cbfd8] {\n    margin:0.5em 0;\n}\n", ""]);
 
 // exports
 
@@ -61064,7 +61062,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", [
     _c("div", { staticClass: "filter-select" }, [
       _c("i", {
         staticClass: "fas fa-filter",
@@ -61230,7 +61228,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.enable[data-v-6b803800] {\n    background:#ffff7f;\n}\n.sort-label[data-v-6b803800] {\n    border:1px solid grey;\n    padding:0 0.8em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.ascending-descending-selector[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n    /*border:1px solid red;*/\n}\n.ascending-descending-selector i[data-v-6b803800] {\n    margin:-0.3em 0;\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
+exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n}\n.enable[data-v-6b803800] {\n    background:#ffff7f;\n}\n.sort-label[data-v-6b803800] {\n    border:1px solid grey;\n    padding:0 0.8em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.ascending-descending-selector[data-v-6b803800] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n    /*border:1px solid red;*/\n}\n.ascending-descending-selector i[data-v-6b803800] {\n    margin:-0.3em 0;\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -61284,12 +61282,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.sortArray();
             }
         }
-
     },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        clickButton: function clickButton() {
+        enable: function enable() {
             // カラー変更
             event.target.classList.toggle('enable');
 
@@ -61329,8 +61326,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 return '';
             }
-        }
+        },
+        //外部からスタイルを変更する
+        disableSort: function disableSort() {
+            // カラー変更
+            event.target.classList.remove('enable');
 
+            //有効化／無効化トグル
+            this.enable = false;
+        }
     }
 });
 
@@ -61349,7 +61353,7 @@ var render = function() {
         staticClass: "sort-label",
         on: {
           click: function($event) {
-            return _vm.clickButton()
+            return _vm.enable()
           }
         }
       },
@@ -61409,6 +61413,271 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
+var __vue_scopeId__ = "data-v-261b7e32"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/SortBox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-261b7e32", Component.options)
+  } else {
+    hotAPI.reload("data-v-261b7e32", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(209);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("ef6f74b6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-261b7e32\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SortBox.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-261b7e32\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SortBox.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.sort-box-wrapper[data-v-261b7e32] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.sort-wrapper[data-v-261b7e32] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0 0.4em;\n}\n.enable[data-v-261b7e32] {\n    background:#ffff7f;\n}\n.sort-label[data-v-261b7e32] {\n    border:1px solid grey;\n    padding:0 0.8em;\n    margin-right:0.2em;\n    border-radius:0.2em;\n    cursor:pointer;\n    -webkit-transition:all 0.5s;\n    transition:all 0.5s;\n}\n.ascending-descending-selector[data-v-261b7e32] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    cursor:pointer;\n}\n.ascending-descending-selector i[data-v-261b7e32] {\n    font-size:120%;\n    color:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 210 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            currentColumnName: '',
+            currentButtonIndex: '',
+            ascending: true,
+            output: []
+        };
+    },
+    props: {
+        columns: {
+            type: [String, Object, Array]
+        },
+        originalArray: {
+            type: [String, Object, Array]
+        }
+    },
+    watch: {
+        originalArray: function originalArray() {
+            if (this.currentColumnName == '') {
+                this.$emit('input', this.originalArray);
+            } else {
+                this.sortArray();
+            }
+        },
+        currentColumnName: {
+            immediate: true,
+            handler: function handler() {
+                if (this.currentColumnName === '') {
+                    this.$emit('input', this.originalArray);
+                } else {
+                    this.sortArray();
+                }
+            }
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        enable: function enable(columnName, buttonIndex) {
+            if (this.currentButtonIndex === '') {
+                event.target.classList.toggle('enable');
+                this.currentButtonIndex = buttonIndex;
+            } else if (this.currentButtonIndex === buttonIndex) {
+                event.target.classList.toggle('enable');
+                this.currentButtonIndex = '';
+            } else {
+                this.$refs.sortButton[this.currentButtonIndex].classList.remove('enable');
+                event.target.classList.toggle('enable');
+                this.currentButtonIndex = buttonIndex;
+            }
+
+            //現在のsortカラムと同じ場合は無効化
+            this.currentColumnName = this.currentColumnName == columnName ? '' : columnName;
+        },
+        sortArray: function sortArray() {
+            //昇順でソート
+            var sortedArray = JSON.parse(JSON.stringify(this.originalArray));
+            var vue = this;
+            sortedArray.sort(function (a, b) {
+                if (a[vue.currentColumnName] < b[vue.currentColumnName]) return -1;
+                if (a[vue.currentColumnName] > b[vue.currentColumnName]) return 1;
+                return 0;
+            });
+            if (!this.ascending) {
+                sortedArray.reverse();
+            }
+            this.$emit('input', sortedArray);
+        },
+        // 昇順/降順を切り替える
+        toggleAscending: function toggleAscending() {
+            if (this.currentColumnName === '') {
+                return;
+            }
+            this.ascending = !this.ascending;
+            this.sortArray();
+        },
+        setArrowStyle: function setArrowStyle(flag) {
+            if (this.ascending && flag == 'desc' || !this.ascending && flag == 'asc') {
+                return { color: 'white' };
+            } else {
+                return '';
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "sort-box-wrapper" },
+    [
+      _vm._l(_vm.columns, function(column, index) {
+        return _c("div", { staticClass: "sort-wrapper" }, [
+          _c(
+            "div",
+            {
+              ref: "sortButton",
+              refInFor: true,
+              staticClass: "sort-label",
+              on: {
+                click: function($event) {
+                  return _vm.enable(column.columnName, index)
+                }
+              }
+            },
+            [_vm._v(_vm._s(column.columnLabel))]
+          )
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "ascending-descending-selector",
+          on: {
+            click: function($event) {
+              return _vm.toggleAscending()
+            }
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-sort-up",
+            style: _vm.setArrowStyle("desc")
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-sort-down",
+            style: _vm.setArrowStyle("asc")
+          })
+        ]
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-261b7e32", module.exports)
+  }
+}
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(213)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(215)
+/* template */
+var __vue_template__ = __webpack_require__(216)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
 var __vue_scopeId__ = "data-v-6cabd7c8"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
@@ -61442,13 +61711,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 208 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(209);
+var content = __webpack_require__(214);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -61468,7 +61737,7 @@ if(false) {
 }
 
 /***/ }),
-/* 209 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -61482,7 +61751,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:f
 
 
 /***/ }),
-/* 210 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61534,7 +61803,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 211 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -61569,7 +61838,7 @@ if (false) {
 }
 
 /***/ }),
-/* 212 */
+/* 217 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
