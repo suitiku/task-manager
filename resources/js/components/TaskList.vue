@@ -6,6 +6,7 @@
         <notice ref="notice" />
         
         <!--モーダル-->
+        <!--新規タスク追加用モーダル-->
         <modal ref="modal" v-model="modal">
             <versatile-form 
                 v-model="newTask" 
@@ -14,6 +15,17 @@
                 v-bind:foreignKeys="foreignKeys" 
                 v-bind:columnOverride="columnOverride"
             />
+        </modal>
+        
+        <!--タスクコピー確認用モーダル-->
+        <modal ref="copyTaskDialog" v-model="copyModal">
+            <div class="task-copy-dialog">
+                <p>タスク「{{copyTargetTask.name}}」をコピーします。</p>
+                <div>
+                    <button type="button" class="btn btn-primary" v-on:click="copyTask()">コピーする</button>
+                    <button type="button" class="btn btn-secondary" v-on:click="hideCopyTaskDialog()">キャンセル</button>
+                </div>
+            </div>
         </modal>
         
         <!--タスク追加エリア（固定）-->
@@ -31,7 +43,13 @@
         
         <!--リスト表示-->
         <!--<task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
-        <task v-for="(task,index) in displayedTasks" v-bind:taskId="task.id" v-bind:key="index"/>
+        <!--<task v-for="(task,index) in displayedTasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
+        <div v-for="(task,index) in displayedTasks" class="task">
+            <task v-bind:taskId="task.id" v-bind:key="index"/>
+            <div class="control-buttons">
+                <i class="fas fa-copy" v-on:click="showCopyTaskDialog(task)"></i>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -74,6 +92,9 @@
                     {columnName:'start_date',columnLabel:'作成日'},
                     {columnName:'dead_line',columnLabel:'締切'},
                 ],
+                //コピー対象のタスクオブジェクト
+                copyTargetTask:{},
+                copyModal:false
             }  
         },
         props:{
@@ -137,12 +158,6 @@
                 this.$refs.newTask.resetForm()
                 this.$refs.modal.openModal()
             },
-            sortTask:async function(key){
-                await this.fetchTasks()
-                this.tasks.sort((a,b) => {
-                    return (a[key] < b[key]) ? -1 : 1
-                })
-            },
             addQuickTask:async function(){
                 if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
                     try{
@@ -168,6 +183,57 @@
                         this.$refs.notice.showNotice('アイテムの変更に失敗しました')
                         console.log(error)
                     }
+                }
+            },
+            showCopyTaskDialog:function(task){
+                this.copyTargetTask = task
+                this.$refs.copyTaskDialog.openModal()
+            },
+            hideCopyTaskDialog:function(){
+                this.$refs.copyTaskDialog.closeModal()
+            },
+            copyTask:async function(){
+                let copiedTask
+                this.$refs.copyTaskDialog.closeModal()
+                let postObject = {
+                    user_id:this.copyTargetTask.user_id,
+                    project_id:this.copyTargetTask.project_id,
+                    state_id:this.copyTargetTask.state_id,
+                    name:this.copyTargetTask.name + '（コピー）',
+                    priority:this.copyTargetTask.priority,
+                    difficulty:this.copyTargetTask.difficulty,
+                    start_date:this.copyTargetTask.start_date,
+                    dead_line:this.copyTargetTask.dead_line,
+                }
+                try{
+                    //タスク本体を登録
+                    let result = await axios.post('/api/tasks/',postObject)
+                    copiedTask = result.data
+                    
+                    //タグを登録
+                    let tags = []
+                    for(let tag of this.copyTargetTask.tags){
+                        tags.push(tag.id)
+                    }
+                    let tagsPostObject = {task_id:copiedTask.id,tag_ids:tags}
+                    await axios.put('/api/tag_task/',tagsPostObject)
+                    
+                    //アイテムを登録
+                    for(let item of this.copyTargetTask.items){
+                        let itemPostObject = {
+                            task_id:copiedTask.id,
+                            name:item.name,
+                            is_checked:item.is_checked
+                        }
+                        await axios.post('/api/items/',itemPostObject)
+                    }
+                    
+                    //終了処理
+                    this.$refs.notice.showNotice('タスクをコピーしました')
+                    this.fetchTasks()
+                }catch(error){
+                    this.$refs.notice.showNotice('タスクのコピーに失敗しました')
+                    console.log(error)
                 }
             }
         }
@@ -218,5 +284,18 @@
     }
     .filter-and-sort {
         margin:1em 2em;
+    }
+    .task {
+        display:flex;
+        align-items:center;
+    }
+    .control-buttons i {
+        cursor:pointer;
+    }
+    .control-buttons i:hover{
+        color:salmon;
+    }
+    .task-copy-dialog {
+        text-align:center;
     }
 </style>

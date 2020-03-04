@@ -50987,7 +50987,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -51004,6 +51004,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51063,7 +51081,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tags: [],
             quickTask: '',
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
-            sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }]
+            sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }],
+            //コピー対象のタスクオブジェクト
+            copyTargetTask: {},
+            copyModal: false
         };
     },
     props: {
@@ -51328,47 +51349,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.newTask.resetForm();
             this.$refs.modal.openModal();
         },
-        sortTask: function () {
-            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(key) {
+        addQuickTask: function () {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                var currentDatetime, deadLine, postObject;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                _context5.next = 2;
-                                return this.fetchTasks();
-
-                            case 2:
-                                this.tasks.sort(function (a, b) {
-                                    return a[key] < b[key] ? -1 : 1;
-                                });
-
-                            case 3:
-                            case 'end':
-                                return _context5.stop();
-                        }
-                    }
-                }, _callee5, this);
-            }));
-
-            function sortTask(_x3) {
-                return _ref5.apply(this, arguments);
-            }
-
-            return sortTask;
-        }(),
-        addQuickTask: function () {
-            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-                var currentDatetime, deadLine, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
-                    while (1) {
-                        switch (_context6.prev = _context6.next) {
-                            case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context6.next = 17;
+                                    _context5.next = 17;
                                     break;
                                 }
 
-                                _context6.prev = 1;
+                                _context5.prev = 1;
                                 currentDatetime = new Date();
                                 deadLine = new Date(currentDatetime.getTime() + 43200000); //デフォルトの締切は12時間後
 
@@ -51385,36 +51378,215 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
 
                                 console.log(postObject);
-                                _context6.next = 8;
+                                _context5.next = 8;
                                 return axios.post('/api/tasks/', postObject);
 
                             case 8:
                                 this.$refs.notice.showNotice('タスクを追加しました');
                                 this.fetchTasks();
                                 this.quickTask = '';
-                                _context6.next = 17;
+                                _context5.next = 17;
                                 break;
 
                             case 13:
-                                _context6.prev = 13;
-                                _context6.t0 = _context6['catch'](1);
+                                _context5.prev = 13;
+                                _context5.t0 = _context5['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context6.t0);
+                                console.log(_context5.t0);
 
                             case 17:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this, [[1, 13]]);
+            }));
+
+            function addQuickTask() {
+                return _ref5.apply(this, arguments);
+            }
+
+            return addQuickTask;
+        }(),
+        showCopyTaskDialog: function showCopyTaskDialog(task) {
+            this.copyTargetTask = task;
+            this.$refs.copyTaskDialog.openModal();
+        },
+        hideCopyTaskDialog: function hideCopyTaskDialog() {
+            this.$refs.copyTaskDialog.closeModal();
+        },
+        copyTask: function () {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+                var copiedTask, postObject, result, tags, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, tag, tagsPostObject, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, item, itemPostObject;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                copiedTask = void 0;
+
+                                this.$refs.copyTaskDialog.closeModal();
+                                postObject = {
+                                    user_id: this.copyTargetTask.user_id,
+                                    project_id: this.copyTargetTask.project_id,
+                                    state_id: this.copyTargetTask.state_id,
+                                    name: this.copyTargetTask.name + '（コピー）',
+                                    priority: this.copyTargetTask.priority,
+                                    difficulty: this.copyTargetTask.difficulty,
+                                    start_date: this.copyTargetTask.start_date,
+                                    dead_line: this.copyTargetTask.dead_line
+                                };
+                                _context6.prev = 3;
+                                _context6.next = 6;
+                                return axios.post('/api/tasks/', postObject);
+
+                            case 6:
+                                result = _context6.sent;
+
+                                copiedTask = result.data;
+
+                                //タグを登録
+                                tags = [];
+                                _iteratorNormalCompletion3 = true;
+                                _didIteratorError3 = false;
+                                _iteratorError3 = undefined;
+                                _context6.prev = 12;
+
+                                for (_iterator3 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                    tag = _step3.value;
+
+                                    tags.push(tag.id);
+                                }
+                                _context6.next = 20;
+                                break;
+
+                            case 16:
+                                _context6.prev = 16;
+                                _context6.t0 = _context6['catch'](12);
+                                _didIteratorError3 = true;
+                                _iteratorError3 = _context6.t0;
+
+                            case 20:
+                                _context6.prev = 20;
+                                _context6.prev = 21;
+
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+
+                            case 23:
+                                _context6.prev = 23;
+
+                                if (!_didIteratorError3) {
+                                    _context6.next = 26;
+                                    break;
+                                }
+
+                                throw _iteratorError3;
+
+                            case 26:
+                                return _context6.finish(23);
+
+                            case 27:
+                                return _context6.finish(20);
+
+                            case 28:
+                                tagsPostObject = { task_id: copiedTask.id, tag_ids: tags };
+                                _context6.next = 31;
+                                return axios.put('/api/tag_task/', tagsPostObject);
+
+                            case 31:
+
+                                //アイテムを登録
+                                _iteratorNormalCompletion4 = true;
+                                _didIteratorError4 = false;
+                                _iteratorError4 = undefined;
+                                _context6.prev = 34;
+                                _iterator4 = this.copyTargetTask.items[Symbol.iterator]();
+
+                            case 36:
+                                if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+                                    _context6.next = 44;
+                                    break;
+                                }
+
+                                item = _step4.value;
+                                itemPostObject = {
+                                    task_id: copiedTask.id,
+                                    name: item.name,
+                                    is_checked: item.is_checked
+                                };
+                                _context6.next = 41;
+                                return axios.post('/api/items/', itemPostObject);
+
+                            case 41:
+                                _iteratorNormalCompletion4 = true;
+                                _context6.next = 36;
+                                break;
+
+                            case 44:
+                                _context6.next = 50;
+                                break;
+
+                            case 46:
+                                _context6.prev = 46;
+                                _context6.t1 = _context6['catch'](34);
+                                _didIteratorError4 = true;
+                                _iteratorError4 = _context6.t1;
+
+                            case 50:
+                                _context6.prev = 50;
+                                _context6.prev = 51;
+
+                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                    _iterator4.return();
+                                }
+
+                            case 53:
+                                _context6.prev = 53;
+
+                                if (!_didIteratorError4) {
+                                    _context6.next = 56;
+                                    break;
+                                }
+
+                                throw _iteratorError4;
+
+                            case 56:
+                                return _context6.finish(53);
+
+                            case 57:
+                                return _context6.finish(50);
+
+                            case 58:
+
+                                //終了処理
+                                this.$refs.notice.showNotice('タスクをコピーしました');
+                                this.fetchTasks();
+                                _context6.next = 66;
+                                break;
+
+                            case 62:
+                                _context6.prev = 62;
+                                _context6.t2 = _context6['catch'](3);
+
+                                this.$refs.notice.showNotice('タスクのコピーに失敗しました');
+                                console.log(_context6.t2);
+
+                            case 66:
                             case 'end':
                                 return _context6.stop();
                         }
                     }
-                }, _callee6, this, [[1, 13]]);
+                }, _callee6, this, [[3, 62], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
             }));
 
-            function addQuickTask() {
+            function copyTask() {
                 return _ref6.apply(this, arguments);
             }
 
-            return addQuickTask;
+            return copyTask;
         }()
     }
 });
@@ -51463,6 +51635,61 @@ var render = function() {
           })
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "copyTaskDialog",
+          model: {
+            value: _vm.copyModal,
+            callback: function($$v) {
+              _vm.copyModal = $$v
+            },
+            expression: "copyModal"
+          }
+        },
+        [
+          _c("div", { staticClass: "task-copy-dialog" }, [
+            _c("p", [
+              _vm._v(
+                "タスク「" +
+                  _vm._s(_vm.copyTargetTask.name) +
+                  "」をコピーします。"
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.copyTask()
+                    }
+                  }
+                },
+                [_vm._v("コピーする")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.hideCopyTaskDialog()
+                    }
+                  }
+                },
+                [_vm._v("キャンセル")]
+              )
+            ])
+          ])
+        ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "add-task-area" }, [
@@ -51536,7 +51763,25 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.displayedTasks, function(task, index) {
-        return _c("task", { key: index, attrs: { taskId: task.id } })
+        return _c(
+          "div",
+          { staticClass: "task" },
+          [
+            _c("task", { key: index, attrs: { taskId: task.id } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "control-buttons" }, [
+              _c("i", {
+                staticClass: "fas fa-copy",
+                on: {
+                  click: function($event) {
+                    return _vm.showCopyTaskDialog(task)
+                  }
+                }
+              })
+            ])
+          ],
+          1
+        )
       })
     ],
     2
