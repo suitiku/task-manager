@@ -50987,7 +50987,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n", ""]);
 
 // exports
 
@@ -51004,6 +51004,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -51084,7 +51103,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }],
             //コピー対象のタスクオブジェクト
             copyTargetTask: {},
-            copyModal: false
+            copyModal: false,
+
+            //テンプレート関連
+            templateTasks: [], //テンプレートタスク一覧
+            templateModal: false,
+            selectedTemplateTask: ''
         };
     },
     props: {
@@ -51182,9 +51206,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context2.sent;
 
-                                this.tasks = result.data;
+                                //テンプレートファイル以外を表示
+                                this.tasks = result.data.filter(function (task) {
+                                    return task.is_template == false;
+                                });
 
-                            case 6:
+                                //テンプレートタスクリスト
+                                this.templateTasks = result.data.filter(function (task) {
+                                    return task.is_template == true;
+                                });
+
+                            case 7:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -51435,7 +51467,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     priority: this.copyTargetTask.priority,
                                     difficulty: this.copyTargetTask.difficulty,
                                     start_date: this.copyTargetTask.start_date,
-                                    dead_line: this.copyTargetTask.dead_line
+                                    dead_line: this.copyTargetTask.dead_line,
+                                    is_template: this.copyTargetTask.is_template
                                 };
                                 _context6.prev = 3;
                                 _context6.next = 6;
@@ -51587,6 +51620,77 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return copyTask;
+        }(),
+        templateTask: function () {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+                var taskId;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                    while (1) {
+                        switch (_context7.prev = _context7.next) {
+                            case 0:
+                                taskId = this.copyTargetTask.id;
+                                _context7.prev = 1;
+                                _context7.next = 4;
+                                return axios.put('/api/tasks/' + taskId, { is_template: true });
+
+                            case 4:
+                                //終了処理
+                                this.$refs.notice.showNotice('タスクをテンプレートにしました');
+                                this.fetchTasks();
+                                _context7.next = 12;
+                                break;
+
+                            case 8:
+                                _context7.prev = 8;
+                                _context7.t0 = _context7['catch'](1);
+
+                                this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました');
+                                console.log(_context7.t0);
+
+                            case 12:
+                            case 'end':
+                                return _context7.stop();
+                        }
+                    }
+                }, _callee7, this, [[1, 8]]);
+            }));
+
+            function templateTask() {
+                return _ref7.apply(this, arguments);
+            }
+
+            return templateTask;
+        }(),
+        showTemplateModal: function showTemplateModal() {
+            this.$refs.templateModal.openModal();
+        },
+        hideTemplateModal: function hideTemplateModal() {
+            this.$refs.templateModal.closeModal();
+        },
+        addTemplateTask: function () {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+                    while (1) {
+                        switch (_context8.prev = _context8.next) {
+                            case 0:
+                                this.copyTargetTask = this.selectedTemplateTask;
+                                this.copyTargetTask.is_template = false;
+                                this.copyTask();
+                                this.$refs.templateModal.closeModal();
+
+                            case 4:
+                            case 'end':
+                                return _context8.stop();
+                        }
+                    }
+                }, _callee8, this);
+            }));
+
+            function addTemplateTask() {
+                return _ref8.apply(this, arguments);
+            }
+
+            return addTemplateTask;
         }()
     }
 });
@@ -51655,7 +51759,7 @@ var render = function() {
               _vm._v(
                 "タスク「" +
                   _vm._s(_vm.copyTargetTask.name) +
-                  "」をコピーします。"
+                  "」をコピー／テンプレートにします。"
               )
             ]),
             _vm._v(" "),
@@ -51677,11 +51781,106 @@ var render = function() {
               _c(
                 "button",
                 {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.templateTask()
+                    }
+                  }
+                },
+                [_vm._v("テンプレートにする")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
                   staticClass: "btn btn-secondary",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
                       return _vm.hideCopyTaskDialog()
+                    }
+                  }
+                },
+                [_vm._v("キャンセル")]
+              )
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "templateModal",
+          model: {
+            value: _vm.templateModal,
+            callback: function($$v) {
+              _vm.templateModal = $$v
+            },
+            expression: "templateModal"
+          }
+        },
+        [
+          _c("div", { staticClass: "task-copy-dialog" }, [
+            _c("p", [_vm._v("生成元のテンプレートを選択してください")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "template-list" },
+              _vm._l(_vm.templateTasks, function(templateTask, templateIndex) {
+                return _c("div", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedTemplateTask,
+                        expression: "selectedTemplateTask"
+                      }
+                    ],
+                    attrs: { type: "radio" },
+                    domProps: {
+                      value: templateTask,
+                      checked: _vm._q(_vm.selectedTemplateTask, templateTask)
+                    },
+                    on: {
+                      change: function($event) {
+                        _vm.selectedTemplateTask = templateTask
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v(_vm._s(templateTask.name))])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.addTemplateTask()
+                    }
+                  }
+                },
+                [_vm._v("テンプレートからタスクを生成")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.hideTemplateModal()
                     }
                   }
                 },
@@ -51702,7 +51901,7 @@ var render = function() {
               expression: "quickTask"
             }
           ],
-          attrs: { type: "text", placeholder: "簡単タスク登録" },
+          attrs: { type: "text", placeholder: "簡単登録" },
           domProps: { value: _vm.quickTask },
           on: {
             keydown: function($event) {
@@ -51720,10 +51919,27 @@ var render = function() {
         _c(
           "button",
           {
-            staticClass: "btn btn-outline-primary mx-auto d-block",
-            on: { click: _vm.addTask }
+            staticClass: "btn btn-primary mx-auto d-block",
+            on: {
+              click: function($event) {
+                return _vm.addTask()
+              }
+            }
           },
-          [_vm._v("詳細登録ダイアログを表示")]
+          [_vm._v("詳細登録")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary mx-auto d-block",
+            on: {
+              click: function($event) {
+                return _vm.showTemplateModal()
+              }
+            }
+          },
+          [_vm._v("テンプレートから作成")]
         )
       ]),
       _vm._v(" "),
@@ -53469,7 +53685,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             postObject: {}, //送信用
 
             //除外リスト
-            whiteList: ['id', 'created_at', 'updated_at'],
+            whiteList: ['id', 'created_at', 'updated_at', 'is_template'],
 
             //form種別判定用配列
             inputColumns: ['int', 'varchar', 'datetime'],
@@ -53543,64 +53759,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 2:
                                 result = _context2.sent;
-
-                                this.columns = result.data;
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 7;
+                                _context2.prev = 6;
+
                                 for (_iterator = Object.keys(result.data)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
                                     columnName = result.data[index].COLUMN_NAME;
 
                                     if (this.whiteList.indexOf(columnName) == -1) {
+                                        this.columns.push(result.data[index]);
                                         this.$set(this.postObject, columnName, '');
                                     }
                                 }
                                 //上書き処理がある場合
-                                _context2.next = 15;
+                                _context2.next = 14;
                                 break;
 
-                            case 11:
-                                _context2.prev = 11;
-                                _context2.t0 = _context2['catch'](7);
+                            case 10:
+                                _context2.prev = 10;
+                                _context2.t0 = _context2['catch'](6);
                                 _didIteratorError = true;
                                 _iteratorError = _context2.t0;
 
-                            case 15:
+                            case 14:
+                                _context2.prev = 14;
                                 _context2.prev = 15;
-                                _context2.prev = 16;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 18:
-                                _context2.prev = 18;
+                            case 17:
+                                _context2.prev = 17;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 21;
+                                    _context2.next = 20;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
+                            case 20:
+                                return _context2.finish(17);
+
                             case 21:
-                                return _context2.finish(18);
+                                return _context2.finish(14);
 
                             case 22:
-                                return _context2.finish(15);
-
-                            case 23:
                                 if (!this.columnOverride) {
-                                    _context2.next = 43;
+                                    _context2.next = 42;
                                     break;
                                 }
 
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context2.prev = 27;
+                                _context2.prev = 26;
 
                                 for (_iterator2 = this.columnOverride[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     value = _step2.value;
@@ -53608,45 +53824,45 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                     this.$set(this.postObject, key, value[key]);
                                 }
-                                _context2.next = 35;
+                                _context2.next = 34;
                                 break;
 
-                            case 31:
-                                _context2.prev = 31;
-                                _context2.t1 = _context2['catch'](27);
+                            case 30:
+                                _context2.prev = 30;
+                                _context2.t1 = _context2['catch'](26);
                                 _didIteratorError2 = true;
                                 _iteratorError2 = _context2.t1;
 
-                            case 35:
+                            case 34:
+                                _context2.prev = 34;
                                 _context2.prev = 35;
-                                _context2.prev = 36;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
-                            case 38:
-                                _context2.prev = 38;
+                            case 37:
+                                _context2.prev = 37;
 
                                 if (!_didIteratorError2) {
-                                    _context2.next = 41;
+                                    _context2.next = 40;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
+                            case 40:
+                                return _context2.finish(37);
+
                             case 41:
-                                return _context2.finish(38);
+                                return _context2.finish(34);
 
                             case 42:
-                                return _context2.finish(35);
-
-                            case 43:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[7, 11, 15, 23], [16,, 18, 22], [27, 31, 35, 43], [36,, 38, 42]]);
+                }, _callee2, this, [[6, 10, 14, 22], [15,, 17, 21], [26, 30, 34, 42], [35,, 37, 41]]);
             }));
 
             function init() {

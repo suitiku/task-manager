@@ -52,7 +52,7 @@
                 postObject:{}, //送信用
                 
                 //除外リスト
-                whiteList:['id','created_at','updated_at'],
+                whiteList:['id','created_at','updated_at','is_template'],
                 
                 //form種別判定用配列
                 inputColumns:['int','varchar','datetime'],
@@ -94,10 +94,10 @@
             init:async function(){
                 // テーブルからカラムの情報を取得
                 let result = await axios.get('/api/table_info/' + this.table)
-                this.columns = result.data
                 for(let index of Object.keys(result.data)){
                     let columnName = result.data[index].COLUMN_NAME
                     if(this.whiteList.indexOf(columnName) == -1){
+                        this.columns.push(result.data[index])
                         this.$set(this.postObject,columnName,'')
                     }
                 }

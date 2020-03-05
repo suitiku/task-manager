@@ -24,6 +24,7 @@ class CreateTasksTable extends Migration
             $table->tinyInteger('difficulty')->comment('難易度');
             $table->datetime('start_date')->comment('開始日時')->default(date('Y-m-d H:i:s'));
             $table->datetime('dead_line')->comment('締切');
+            $table->boolean('is_template')->default(false)->comment('テンプレートファイルかどうか');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');

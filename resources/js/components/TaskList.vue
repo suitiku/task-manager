@@ -20,18 +20,37 @@
         <!--タスクコピー確認用モーダル-->
         <modal ref="copyTaskDialog" v-model="copyModal">
             <div class="task-copy-dialog">
-                <p>タスク「{{copyTargetTask.name}}」をコピーします。</p>
+                <p>タスク「{{copyTargetTask.name}}」をコピー／テンプレートにします。</p>
                 <div>
                     <button type="button" class="btn btn-primary" v-on:click="copyTask()">コピーする</button>
+                    <button type="button" class="btn btn-primary" v-on:click="templateTask()">テンプレートにする</button>
                     <button type="button" class="btn btn-secondary" v-on:click="hideCopyTaskDialog()">キャンセル</button>
+                </div>
+            </div>
+        </modal>
+        
+        <!--テンプレート表示用モーダル-->
+        <modal ref="templateModal" v-model="templateModal">
+            <div class="task-copy-dialog">
+                <p>生成元のテンプレートを選択してください</p>
+                <div class="template-list">
+                    <div v-for="(templateTask,templateIndex) in templateTasks">
+                        <input type="radio" v-model="selectedTemplateTask" v-bind:value="templateTask">
+                        <span>{{templateTask.name}}</span>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" v-on:click="addTemplateTask()">テンプレートからタスクを生成</button>
+                    <button type="button" class="btn btn-secondary" v-on:click="hideTemplateModal()">キャンセル</button>
                 </div>
             </div>
         </modal>
         
         <!--タスク追加エリア（固定）-->
         <div class="add-task-area">
-            <input v-model="quickTask" type="text" placeholder="簡単タスク登録" v-on:keydown="addQuickTask()">
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">詳細登録ダイアログを表示</button>
+            <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
+            <button class="btn btn-primary mx-auto d-block" v-on:click="addTask()">詳細登録</button>
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
         </div>
         
         <div class="filter-and-sort">
@@ -94,7 +113,12 @@
                 ],
                 //コピー対象のタスクオブジェクト
                 copyTargetTask:{},
-                copyModal:false
+                copyModal:false,
+                
+                //テンプレート関連
+                templateTasks:[], //テンプレートタスク一覧
+                templateModal:false,
+                selectedTemplateTask:''
             }  
         },
         props:{
@@ -133,7 +157,15 @@
                 let result = await axios.get('/api/mytasks',{
                                                 params:{user_id:this.user_id,}
                                             })
-                this.tasks = result.data
+                //テンプレートファイル以外を表示
+                this.tasks = result.data.filter(task => {
+                    return task.is_template == false
+                })
+                
+                //テンプレートタスクリスト
+                this.templateTasks = result.data.filter(task => {
+                    return task.is_template == true
+                })
             },
             fetchTags: async function(){
                  // タグの取得
@@ -204,6 +236,7 @@
                     difficulty:this.copyTargetTask.difficulty,
                     start_date:this.copyTargetTask.start_date,
                     dead_line:this.copyTargetTask.dead_line,
+                    is_template:this.copyTargetTask.is_template,
                 }
                 try{
                     //タスク本体を登録
@@ -235,6 +268,31 @@
                     this.$refs.notice.showNotice('タスクのコピーに失敗しました')
                     console.log(error)
                 }
+            },
+            templateTask:async function(){
+                let taskId = this.copyTargetTask.id
+                try{
+                    //tasksのis_templateをtrueに
+                    await axios.put('/api/tasks/' + taskId,{is_template:true})
+                    //終了処理
+                    this.$refs.notice.showNotice('タスクをテンプレートにしました')
+                    this.fetchTasks()
+                }catch(error){
+                    this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました')
+                    console.log(error)
+                }
+            },
+            showTemplateModal:function(){
+                this.$refs.templateModal.openModal()
+            },
+            hideTemplateModal:function(){
+                this.$refs.templateModal.closeModal()
+            },
+            addTemplateTask:async function(){
+                this.copyTargetTask = this.selectedTemplateTask
+                this.copyTargetTask.is_template = false
+                this.copyTask()
+                this.$refs.templateModal.closeModal()
             }
         }
     }
@@ -297,5 +355,8 @@
     }
     .task-copy-dialog {
         text-align:center;
+    }
+    .template-list {
+        text-align:left;
     }
 </style>
