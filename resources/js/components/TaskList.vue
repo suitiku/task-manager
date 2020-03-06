@@ -15,14 +15,15 @@
                 v-bind:foreignKeys="foreignKeys" 
                 v-bind:columnOverride="columnOverride"
             />
-            <!--タグ登録-->
-            <div v-show="newTask.id">
+            <div v-show="newTask.id" class="tags-and-items">
+                <!--タグ登録-->
                 <p>タグを追加します。</p>
                 <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
-            </div>
-            <!--アイテム登録-->
-            <div v-show="newTask.id">
-                アイテム登録
+                <!--アイテム登録-->
+                <div>
+                    <text-spliter v-model="items" />
+                    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems">アイテムを追加</button>
+                </div>
             </div>
         </modal>
         
@@ -107,6 +108,7 @@
                 taskFilter:'incomplete',
                 tags:[],
                 selectedTags:[],
+                items:[],
                 quickTask:'',
                 filterOptions:[
                     {label:'優先度',value:'priority',type:'star'},          
@@ -223,6 +225,22 @@
                 this.selectedTags = []
                 this.$refs.newTask.resetForm()
                 this.$refs.modal.openModal()
+            },
+            addItems:async function(){
+                for(let item of this.items){
+                    let postItem = {
+                        task_id:this.newTask.id,
+                        name:item,
+                        is_checked:false
+                    }
+                    try{
+                        await axios.post('/api/items',postItem)
+                        this.$refs.notice.showNotice('タスクにアイテムを追加しました')
+                    }catch(error){
+                        this.$refs.notice.showNotice('アイテムの追加に失敗しました')
+                        console.log(error)
+                    }
+                }
             },
             addQuickTask:async function(){
                 if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
@@ -392,5 +410,8 @@
     }
     .template-list {
         text-align:left;
+    }
+    .tags-and-items {
+        border:1px solid red;
     }
 </style>

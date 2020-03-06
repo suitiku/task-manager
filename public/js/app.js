@@ -50987,7 +50987,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    border:1px solid red;\n}\n", ""]);
 
 // exports
 
@@ -51004,6 +51004,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -51108,6 +51109,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             taskFilter: 'incomplete',
             tags: [],
             selectedTags: [],
+            items: [],
             quickTask: '',
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
             sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }],
@@ -51408,19 +51410,115 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.newTask.resetForm();
             this.$refs.modal.openModal();
         },
-        addQuickTask: function () {
+        addItems: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-                var currentDatetime, deadLine, postObject;
+                var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, postItem;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                if (!(event.keyCode == 13)) {
-                                    _context5.next = 17;
+                                _iteratorNormalCompletion3 = true;
+                                _didIteratorError3 = false;
+                                _iteratorError3 = undefined;
+                                _context5.prev = 3;
+                                _iterator3 = this.items[Symbol.iterator]();
+
+                            case 5:
+                                if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+                                    _context5.next = 21;
                                     break;
                                 }
 
-                                _context5.prev = 1;
+                                item = _step3.value;
+                                postItem = {
+                                    task_id: this.newTask.id,
+                                    name: item,
+                                    is_checked: false
+                                };
+                                _context5.prev = 8;
+                                _context5.next = 11;
+                                return axios.post('/api/items', postItem);
+
+                            case 11:
+                                // this.items = []
+                                this.$refs.notice.showNotice('タスクにアイテムを追加しました');
+                                _context5.next = 18;
+                                break;
+
+                            case 14:
+                                _context5.prev = 14;
+                                _context5.t0 = _context5['catch'](8);
+
+                                this.$refs.notice.showNotice('アイテムの追加に失敗しました');
+                                console.log(_context5.t0);
+
+                            case 18:
+                                _iteratorNormalCompletion3 = true;
+                                _context5.next = 5;
+                                break;
+
+                            case 21:
+                                _context5.next = 27;
+                                break;
+
+                            case 23:
+                                _context5.prev = 23;
+                                _context5.t1 = _context5['catch'](3);
+                                _didIteratorError3 = true;
+                                _iteratorError3 = _context5.t1;
+
+                            case 27:
+                                _context5.prev = 27;
+                                _context5.prev = 28;
+
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
+                                }
+
+                            case 30:
+                                _context5.prev = 30;
+
+                                if (!_didIteratorError3) {
+                                    _context5.next = 33;
+                                    break;
+                                }
+
+                                throw _iteratorError3;
+
+                            case 33:
+                                return _context5.finish(30);
+
+                            case 34:
+                                return _context5.finish(27);
+
+                            case 35:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this, [[3, 23, 27, 35], [8, 14], [28,, 30, 34]]);
+            }));
+
+            function addItems() {
+                return _ref5.apply(this, arguments);
+            }
+
+            return addItems;
+        }(),
+        addQuickTask: function () {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+                var currentDatetime, deadLine, postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context6.next = 17;
+                                    break;
+                                }
+
+                                _context6.prev = 1;
                                 currentDatetime = new Date();
                                 deadLine = new Date(currentDatetime.getTime() + 43200000); //デフォルトの締切は12時間後
 
@@ -51437,33 +51535,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
 
                                 console.log(postObject);
-                                _context5.next = 8;
+                                _context6.next = 8;
                                 return axios.post('/api/tasks/', postObject);
 
                             case 8:
                                 this.$refs.notice.showNotice('タスクを追加しました');
                                 this.fetchTasks();
                                 this.quickTask = '';
-                                _context5.next = 17;
+                                _context6.next = 17;
                                 break;
 
                             case 13:
-                                _context5.prev = 13;
-                                _context5.t0 = _context5['catch'](1);
+                                _context6.prev = 13;
+                                _context6.t0 = _context6['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context5.t0);
+                                console.log(_context6.t0);
 
                             case 17:
                             case 'end':
-                                return _context5.stop();
+                                return _context6.stop();
                         }
                     }
-                }, _callee5, this, [[1, 13]]);
+                }, _callee6, this, [[1, 13]]);
             }));
 
             function addQuickTask() {
-                return _ref5.apply(this, arguments);
+                return _ref6.apply(this, arguments);
             }
 
             return addQuickTask;
@@ -51476,12 +51574,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.copyTaskDialog.closeModal();
         },
         copyTask: function () {
-            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-                var copiedTask, postObject, result, tags, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, tag, tagsPostObject, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, item, itemPostObject;
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+                var copiedTask, postObject, result, tags, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, tag, tagsPostObject, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, item, itemPostObject;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
-                        switch (_context6.prev = _context6.next) {
+                        switch (_context7.prev = _context7.next) {
                             case 0:
                                 copiedTask = void 0;
 
@@ -51497,193 +51595,193 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     dead_line: this.copyTargetTask.dead_line,
                                     is_template: this.copyTargetTask.is_template
                                 };
-                                _context6.prev = 3;
-                                _context6.next = 6;
+                                _context7.prev = 3;
+                                _context7.next = 6;
                                 return axios.post('/api/tasks/', postObject);
 
                             case 6:
-                                result = _context6.sent;
+                                result = _context7.sent;
 
                                 copiedTask = result.data;
 
                                 //タグを登録
                                 tags = [];
-                                _iteratorNormalCompletion3 = true;
-                                _didIteratorError3 = false;
-                                _iteratorError3 = undefined;
-                                _context6.prev = 12;
-
-                                for (_iterator3 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                    tag = _step3.value;
-
-                                    tags.push(tag.id);
-                                }
-                                _context6.next = 20;
-                                break;
-
-                            case 16:
-                                _context6.prev = 16;
-                                _context6.t0 = _context6['catch'](12);
-                                _didIteratorError3 = true;
-                                _iteratorError3 = _context6.t0;
-
-                            case 20:
-                                _context6.prev = 20;
-                                _context6.prev = 21;
-
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
-                                }
-
-                            case 23:
-                                _context6.prev = 23;
-
-                                if (!_didIteratorError3) {
-                                    _context6.next = 26;
-                                    break;
-                                }
-
-                                throw _iteratorError3;
-
-                            case 26:
-                                return _context6.finish(23);
-
-                            case 27:
-                                return _context6.finish(20);
-
-                            case 28:
-                                tagsPostObject = { task_id: copiedTask.id, tag_ids: tags };
-                                _context6.next = 31;
-                                return axios.put('/api/tag_task/', tagsPostObject);
-
-                            case 31:
-
-                                //アイテムを登録
                                 _iteratorNormalCompletion4 = true;
                                 _didIteratorError4 = false;
                                 _iteratorError4 = undefined;
-                                _context6.prev = 34;
-                                _iterator4 = this.copyTargetTask.items[Symbol.iterator]();
+                                _context7.prev = 12;
 
-                            case 36:
-                                if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
-                                    _context6.next = 44;
-                                    break;
+                                for (_iterator4 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                    tag = _step4.value;
+
+                                    tags.push(tag.id);
                                 }
-
-                                item = _step4.value;
-                                itemPostObject = {
-                                    task_id: copiedTask.id,
-                                    name: item.name,
-                                    is_checked: item.is_checked
-                                };
-                                _context6.next = 41;
-                                return axios.post('/api/items/', itemPostObject);
-
-                            case 41:
-                                _iteratorNormalCompletion4 = true;
-                                _context6.next = 36;
+                                _context7.next = 20;
                                 break;
 
-                            case 44:
-                                _context6.next = 50;
-                                break;
-
-                            case 46:
-                                _context6.prev = 46;
-                                _context6.t1 = _context6['catch'](34);
+                            case 16:
+                                _context7.prev = 16;
+                                _context7.t0 = _context7['catch'](12);
                                 _didIteratorError4 = true;
-                                _iteratorError4 = _context6.t1;
+                                _iteratorError4 = _context7.t0;
 
-                            case 50:
-                                _context6.prev = 50;
-                                _context6.prev = 51;
+                            case 20:
+                                _context7.prev = 20;
+                                _context7.prev = 21;
 
                                 if (!_iteratorNormalCompletion4 && _iterator4.return) {
                                     _iterator4.return();
                                 }
 
-                            case 53:
-                                _context6.prev = 53;
+                            case 23:
+                                _context7.prev = 23;
 
                                 if (!_didIteratorError4) {
-                                    _context6.next = 56;
+                                    _context7.next = 26;
                                     break;
                                 }
 
                                 throw _iteratorError4;
 
+                            case 26:
+                                return _context7.finish(23);
+
+                            case 27:
+                                return _context7.finish(20);
+
+                            case 28:
+                                tagsPostObject = { task_id: copiedTask.id, tag_ids: tags };
+                                _context7.next = 31;
+                                return axios.put('/api/tag_task/', tagsPostObject);
+
+                            case 31:
+
+                                //アイテムを登録
+                                _iteratorNormalCompletion5 = true;
+                                _didIteratorError5 = false;
+                                _iteratorError5 = undefined;
+                                _context7.prev = 34;
+                                _iterator5 = this.copyTargetTask.items[Symbol.iterator]();
+
+                            case 36:
+                                if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+                                    _context7.next = 44;
+                                    break;
+                                }
+
+                                item = _step5.value;
+                                itemPostObject = {
+                                    task_id: copiedTask.id,
+                                    name: item.name,
+                                    is_checked: item.is_checked
+                                };
+                                _context7.next = 41;
+                                return axios.post('/api/items/', itemPostObject);
+
+                            case 41:
+                                _iteratorNormalCompletion5 = true;
+                                _context7.next = 36;
+                                break;
+
+                            case 44:
+                                _context7.next = 50;
+                                break;
+
+                            case 46:
+                                _context7.prev = 46;
+                                _context7.t1 = _context7['catch'](34);
+                                _didIteratorError5 = true;
+                                _iteratorError5 = _context7.t1;
+
+                            case 50:
+                                _context7.prev = 50;
+                                _context7.prev = 51;
+
+                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                    _iterator5.return();
+                                }
+
+                            case 53:
+                                _context7.prev = 53;
+
+                                if (!_didIteratorError5) {
+                                    _context7.next = 56;
+                                    break;
+                                }
+
+                                throw _iteratorError5;
+
                             case 56:
-                                return _context6.finish(53);
+                                return _context7.finish(53);
 
                             case 57:
-                                return _context6.finish(50);
+                                return _context7.finish(50);
 
                             case 58:
 
                                 //終了処理
                                 this.$refs.notice.showNotice('タスクをコピーしました');
                                 this.fetchTasks();
-                                _context6.next = 66;
+                                _context7.next = 66;
                                 break;
 
                             case 62:
-                                _context6.prev = 62;
-                                _context6.t2 = _context6['catch'](3);
+                                _context7.prev = 62;
+                                _context7.t2 = _context7['catch'](3);
 
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
-                                console.log(_context6.t2);
+                                console.log(_context7.t2);
 
                             case 66:
                             case 'end':
-                                return _context6.stop();
+                                return _context7.stop();
                         }
                     }
-                }, _callee6, this, [[3, 62], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
+                }, _callee7, this, [[3, 62], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
             }));
 
             function copyTask() {
-                return _ref6.apply(this, arguments);
+                return _ref7.apply(this, arguments);
             }
 
             return copyTask;
         }(),
         templateTask: function () {
-            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
                 var taskId;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
                     while (1) {
-                        switch (_context7.prev = _context7.next) {
+                        switch (_context8.prev = _context8.next) {
                             case 0:
                                 taskId = this.copyTargetTask.id;
-                                _context7.prev = 1;
-                                _context7.next = 4;
+                                _context8.prev = 1;
+                                _context8.next = 4;
                                 return axios.put('/api/tasks/' + taskId, { is_template: true });
 
                             case 4:
                                 //終了処理
                                 this.$refs.notice.showNotice('タスクをテンプレートにしました');
                                 this.fetchTasks();
-                                _context7.next = 12;
+                                _context8.next = 12;
                                 break;
 
                             case 8:
-                                _context7.prev = 8;
-                                _context7.t0 = _context7['catch'](1);
+                                _context8.prev = 8;
+                                _context8.t0 = _context8['catch'](1);
 
                                 this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました');
-                                console.log(_context7.t0);
+                                console.log(_context8.t0);
 
                             case 12:
                             case 'end':
-                                return _context7.stop();
+                                return _context8.stop();
                         }
                     }
-                }, _callee7, this, [[1, 8]]);
+                }, _callee8, this, [[1, 8]]);
             }));
 
             function templateTask() {
-                return _ref7.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return templateTask;
@@ -51695,10 +51793,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.templateModal.closeModal();
         },
         addTemplateTask: function () {
-            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
-                        switch (_context8.prev = _context8.next) {
+                        switch (_context9.prev = _context9.next) {
                             case 0:
                                 this.copyTargetTask = this.selectedTemplateTask;
                                 this.copyTargetTask.is_template = false;
@@ -51707,14 +51805,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                             case 'end':
-                                return _context8.stop();
+                                return _context9.stop();
                         }
                     }
-                }, _callee8, this);
+                }, _callee9, this);
             }));
 
             function addTemplateTask() {
-                return _ref8.apply(this, arguments);
+                return _ref9.apply(this, arguments);
             }
 
             return addTemplateTask;
@@ -51775,7 +51873,8 @@ var render = function() {
                   value: _vm.newTask.id,
                   expression: "newTask.id"
                 }
-              ]
+              ],
+              staticClass: "tags-and-items"
             },
             [
               _c("p", [_vm._v("タグを追加します。")]),
@@ -51789,24 +51888,34 @@ var render = function() {
                   },
                   expression: "selectedTags"
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                [
+                  _c("text-spliter", {
+                    model: {
+                      value: _vm.items,
+                      callback: function($$v) {
+                        _vm.items = $$v
+                      },
+                      expression: "items"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-primary mx-auto d-block",
+                      on: { click: _vm.addItems }
+                    },
+                    [_vm._v("アイテムを追加")]
+                  )
+                ],
+                1
+              )
             ],
             1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.newTask.id,
-                  expression: "newTask.id"
-                }
-              ]
-            },
-            [_vm._v("\n            アイテム登録\n        ")]
           )
         ],
         1
