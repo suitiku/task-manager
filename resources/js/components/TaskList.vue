@@ -15,6 +15,15 @@
                 v-bind:foreignKeys="foreignKeys" 
                 v-bind:columnOverride="columnOverride"
             />
+            <!--タグ登録-->
+            <div v-show="newTask.id">
+                <p>タグを追加します。</p>
+                <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
+            </div>
+            <!--アイテム登録-->
+            <div v-show="newTask.id">
+                アイテム登録
+            </div>
         </modal>
         
         <!--タスクコピー確認用モーダル-->
@@ -97,6 +106,7 @@
                 ],
                 taskFilter:'incomplete',
                 tags:[],
+                selectedTags:[],
                 quickTask:'',
                 filterOptions:[
                     {label:'優先度',value:'priority',type:'star'},          
@@ -135,18 +145,39 @@
             this.addFilters() //追加でフィルターオプションを追加（状態、）
         },
         watch: {
-            newTask:async function(newVal,oldVal){
-                let result
-                if(!newVal.id){return } //newValにidがなければ終了
-                if(this.ids.indexOf(newVal.id) == -1){ //新規登録
-                    this.ids.push(newVal.id)
-                    result = await axios.get('/api/tasks/' + newVal.id)
-                    this.tasks.push(result.data)
-                }else{                                 //編集->更新
-                    let index = this.tasks.findIndex((task) => {
-                        return (task.id == newVal.id)
-                    })
-                    this.tasks.splice(index,1,newVal)
+            // newTask:async function(newVal,oldVal){
+            //     let result
+            //     if(!newVal.id){return } //newValにidがなければ終了
+            //     if(this.ids.indexOf(newVal.id) == -1){ //新規登録
+            //         this.ids.push(newVal.id)
+            //         result = await axios.get('/api/tasks/' + newVal.id)
+            //         this.tasks.push(result.data)
+            //     }else{                                 //編集->更新
+            //         let index = this.tasks.findIndex((task) => {
+            //             return (task.id == newVal.id)
+            //         })
+            //         this.tasks.splice(index,1,newVal)
+            //     }
+            // },
+            // 新規登録モーダルを閉じた際に更新
+            modal:function(){
+                if(this.modal == false){
+                    this.fetchTasks()
+                }
+            },
+            //新規登録画面のタグ登録用
+            selectedTags:async function(){
+                if(!this.newTask.id){return }
+                let tagsObject = {
+                    task_id:this.newTask.id,
+                    tag_ids:this.selectedTags
+                }
+                try{
+                    await axios.put('/api/tag_task/',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
                 }
             },
         },
@@ -187,6 +218,9 @@
                 this.filterOptions.push({label:'状態',value:'state_id',type:'options',options:states})
             },
             addTask:function(){
+                // リセット
+                this.newTask = {}
+                this.selectedTags = []
                 this.$refs.newTask.resetForm()
                 this.$refs.modal.openModal()
             },

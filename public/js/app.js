@@ -51078,6 +51078,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51098,6 +51107,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }],
             taskFilter: 'incomplete',
             tags: [],
+            selectedTags: [],
             quickTask: '',
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
             sortColumns: [{ columnName: 'name', columnLabel: '件名' }, { columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }, { columnName: 'start_date', columnLabel: '作成日' }, { columnName: 'dead_line', columnLabel: '締切' }],
@@ -51125,61 +51135,75 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     watch: {
-        newTask: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
-                var result, index;
+        // newTask:async function(newVal,oldVal){
+        //     let result
+        //     if(!newVal.id){return } //newValにidがなければ終了
+        //     if(this.ids.indexOf(newVal.id) == -1){ //新規登録
+        //         this.ids.push(newVal.id)
+        //         result = await axios.get('/api/tasks/' + newVal.id)
+        //         this.tasks.push(result.data)
+        //     }else{                                 //編集->更新
+        //         let index = this.tasks.findIndex((task) => {
+        //             return (task.id == newVal.id)
+        //         })
+        //         this.tasks.splice(index,1,newVal)
+        //     }
+        // },
+        // 新規登録モーダルを閉じた際に更新
+        modal: function modal() {
+            if (this.modal == false) {
+                this.fetchTasks();
+            }
+        },
+        //新規登録画面のタグ登録用
+        selectedTags: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var tagsObject;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                result = void 0;
-
-                                if (newVal.id) {
-                                    _context.next = 3;
+                                if (this.newTask.id) {
+                                    _context.next = 2;
                                     break;
                                 }
 
                                 return _context.abrupt('return');
 
-                            case 3:
-                                if (!(this.ids.indexOf(newVal.id) == -1)) {
-                                    _context.next = 11;
-                                    break;
-                                }
+                            case 2:
+                                tagsObject = {
+                                    task_id: this.newTask.id,
+                                    tag_ids: this.selectedTags
+                                };
+                                _context.prev = 3;
+                                _context.next = 6;
+                                return axios.put('/api/tag_task/', tagsObject);
 
-                                //新規登録
-                                this.ids.push(newVal.id);
-                                _context.next = 7;
-                                return axios.get('/api/tasks/' + newVal.id);
-
-                            case 7:
-                                result = _context.sent;
-
-                                this.tasks.push(result.data);
+                            case 6:
+                                this.$refs.notice.showNotice('タグを変更しました');
                                 _context.next = 13;
                                 break;
 
-                            case 11:
-                                //編集->更新
-                                index = this.tasks.findIndex(function (task) {
-                                    return task.id == newVal.id;
-                                });
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](3);
 
-                                this.tasks.splice(index, 1, newVal);
+                                this.$refs.notice.showNotice('タグの変更に失敗しました');
+                                console.log(_context.t0);
 
                             case 13:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this);
+                }, _callee, this, [[3, 9]]);
             }));
 
-            function newTask(_x, _x2) {
+            function selectedTags() {
                 return _ref.apply(this, arguments);
             }
 
-            return newTask;
+            return selectedTags;
         }()
     },
     methods: {
@@ -51378,6 +51402,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return addFilters;
         }(),
         addTask: function addTask() {
+            // リセット
+            this.newTask = {};
+            this.selectedTags = [];
             this.$refs.newTask.resetForm();
             this.$refs.modal.openModal();
         },
@@ -51736,7 +51763,51 @@ var render = function() {
               },
               expression: "newTask"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.newTask.id,
+                  expression: "newTask.id"
+                }
+              ]
+            },
+            [
+              _c("p", [_vm._v("タグを追加します。")]),
+              _vm._v(" "),
+              _c("tag-cloud", {
+                attrs: { options: _vm.tags, multiple: "" },
+                model: {
+                  value: _vm.selectedTags,
+                  callback: function($$v) {
+                    _vm.selectedTags = $$v
+                  },
+                  expression: "selectedTags"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.newTask.id,
+                  expression: "newTask.id"
+                }
+              ]
+            },
+            [_vm._v("\n            アイテム登録\n        ")]
+          )
         ],
         1
       ),
