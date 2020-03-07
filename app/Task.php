@@ -16,11 +16,12 @@ class Task extends Model
         return $this->belongsTo('App\Project');
     }
     
-    public function state(){
-        return $this->belongsTo('App\State');
+    public function tags(){
+        // return $this->belongsToMany('App\Tag')->withTimestamps();
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
     
-    public function tags(){
-        return $this->belongsToMany('App\Tag')->withTimestamps();
+    public function states(){
+        return $this->belongsToMany('App\State')->withPivot('state_detail')->withTimestamps();
     }
 }

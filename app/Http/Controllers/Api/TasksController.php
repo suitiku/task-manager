@@ -18,7 +18,7 @@ class TasksController extends Controller
         return Task::with([
                         'project',
                         'items',
-                        'state',
+                        'states',
                         'tags'
                     ])->get();
     }
@@ -57,7 +57,7 @@ class TasksController extends Controller
         return Task::with([
                         'project',
                         'items',
-                        'state',
+                        'states',
                         'tags'
                     ])->find($id);
     }
@@ -99,6 +99,7 @@ class TasksController extends Controller
         return Task::destroy($id);
     }
     
+    //タグ設定関連
     public function attachTags(Request $request){
         $task = Task::find($request->task_id);
         $task->tags()->attach($request->tag_id);
@@ -122,6 +123,13 @@ class TasksController extends Controller
         $data = array('task_id' => $request->task_id, 'tag_ids' => $request->tag_ids);
         $result = array('status' => 'success','data' => $data);
         return $result;
+    }
+    
+    //状態管理関連
+    //変更
+    public function changeState(Request $request){
+        $task = Task::find($request->task_id);
+        $task->states()->attach($request->state_id,['state_detail' => $request->detail]);
     }
     
     // ユーザーIDで検索

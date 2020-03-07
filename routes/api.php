@@ -33,6 +33,9 @@ Route::post('tag_task','Api\TasksController@attachTags');
 Route::delete('tag_task','Api\TasksController@detachTags');
 Route::put('tag_task','Api\TasksController@syncTags');
 
+//状態（state）
+Route::post('state_task','Api\TasksController@changeState');
+
 //検索用
 Route::get('mytasks','Api\TasksController@getTasksByUserId');
 
