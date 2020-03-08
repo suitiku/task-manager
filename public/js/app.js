@@ -51098,8 +51098,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             displayedTasks: [], //表示用タスクの配列：タグフィルター後
             newTask: {},
             ids: [], //編集確認用のtask.idの配列
-            columnOverride: [{ user_id: this.user_id }, { state_id: 1 //新規タスクは「実行中」で登録
-            }],
+            columnOverride: [{ user_id: this.user_id }],
             foreignKeys: [{ project_id: {
                     table: 'projects',
                     columns: ['name', 'dead_line'],
@@ -51133,24 +51132,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     created: function created() {
         this.fetchTasks();
         this.fetchTags();
-        this.addFilters(); //追加でフィルターオプションを追加（状態、）
     },
 
     watch: {
-        // newTask:async function(newVal,oldVal){
-        //     let result
-        //     if(!newVal.id){return } //newValにidがなければ終了
-        //     if(this.ids.indexOf(newVal.id) == -1){ //新規登録
-        //         this.ids.push(newVal.id)
-        //         result = await axios.get('/api/tasks/' + newVal.id)
-        //         this.tasks.push(result.data)
-        //     }else{                                 //編集->更新
-        //         let index = this.tasks.findIndex((task) => {
-        //             return (task.id == newVal.id)
-        //         })
-        //         this.tasks.splice(index,1,newVal)
-        //     }
-        // },
         // 新規登録モーダルを閉じた際に更新
         modal: function modal() {
             if (this.modal == false) {
@@ -51206,17 +51190,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return selectedTags;
-        }()
-    },
-    methods: {
-        fetchTasks: function () {
+        }(),
+        //新規タスクが登録されたら状態を1:実行中で登録
+        newTask: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                if (this.user_id) {
+                                if (this.newTask.id) {
                                     _context2.next = 2;
                                     break;
                                 }
@@ -51224,13 +51206,58 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context2.abrupt('return');
 
                             case 2:
-                                _context2.next = 4;
+                                _context2.prev = 2;
+                                _context2.next = 5;
+                                return axios.post('/api/state_task', { task_id: this.newTask.id, state_id: 1 });
+
+                            case 5:
+                                _context2.next = 10;
+                                break;
+
+                            case 7:
+                                _context2.prev = 7;
+                                _context2.t0 = _context2['catch'](2);
+
+                                console.log(_context2.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[2, 7]]);
+            }));
+
+            function newTask() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return newTask;
+        }()
+    },
+    methods: {
+        fetchTasks: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                if (this.user_id) {
+                                    _context3.next = 2;
+                                    break;
+                                }
+
+                                return _context3.abrupt('return');
+
+                            case 2:
+                                _context3.next = 4;
                                 return axios.get('/api/mytasks', {
                                     params: { user_id: this.user_id }
                                 });
 
                             case 4:
-                                result = _context2.sent;
+                                result = _context3.sent;
 
                                 //テンプレートファイル以外を表示
                                 this.tasks = result.data.filter(function (task) {
@@ -51244,31 +51271,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 7:
                             case 'end':
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee3, this);
             }));
 
             function fetchTasks() {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return fetchTasks;
         }(),
         fetchTags: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
                 var result, tagsResult, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, index;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
-                                _context3.next = 2;
+                                _context4.next = 2;
                                 return axios.get('/api/tags');
 
                             case 2:
-                                result = _context3.sent;
+                                result = _context4.sent;
                                 tagsResult = result.data;
 
                                 //tag-cloudに投入できる形に整形
@@ -51276,82 +51303,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context3.prev = 7;
+                                _context4.prev = 7;
                                 for (_iterator = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     index = _step.value;
 
                                     this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
-                                }
-                                _context3.next = 15;
-                                break;
-
-                            case 11:
-                                _context3.prev = 11;
-                                _context3.t0 = _context3['catch'](7);
-                                _didIteratorError = true;
-                                _iteratorError = _context3.t0;
-
-                            case 15:
-                                _context3.prev = 15;
-                                _context3.prev = 16;
-
-                                if (!_iteratorNormalCompletion && _iterator.return) {
-                                    _iterator.return();
-                                }
-
-                            case 18:
-                                _context3.prev = 18;
-
-                                if (!_didIteratorError) {
-                                    _context3.next = 21;
-                                    break;
-                                }
-
-                                throw _iteratorError;
-
-                            case 21:
-                                return _context3.finish(18);
-
-                            case 22:
-                                return _context3.finish(15);
-
-                            case 23:
-                            case 'end':
-                                return _context3.stop();
-                        }
-                    }
-                }, _callee3, this, [[7, 11, 15, 23], [16,, 18, 22]]);
-            }));
-
-            function fetchTags() {
-                return _ref3.apply(this, arguments);
-            }
-
-            return fetchTags;
-        }(),
-        addFilters: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-                var statesResult, states, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, state;
-
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-                    while (1) {
-                        switch (_context4.prev = _context4.next) {
-                            case 0:
-                                _context4.next = 2;
-                                return axios.get('api/states');
-
-                            case 2:
-                                statesResult = _context4.sent;
-                                states = [];
-                                _iteratorNormalCompletion2 = true;
-                                _didIteratorError2 = false;
-                                _iteratorError2 = undefined;
-                                _context4.prev = 7;
-
-                                for (_iterator2 = statesResult.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                    state = _step2.value;
-
-                                    states.push({ label: state.name, value: state.id });
                                 }
                                 _context4.next = 15;
                                 break;
@@ -51359,26 +51315,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 11:
                                 _context4.prev = 11;
                                 _context4.t0 = _context4['catch'](7);
-                                _didIteratorError2 = true;
-                                _iteratorError2 = _context4.t0;
+                                _didIteratorError = true;
+                                _iteratorError = _context4.t0;
 
                             case 15:
                                 _context4.prev = 15;
                                 _context4.prev = 16;
 
-                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                    _iterator2.return();
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
                                 }
 
                             case 18:
                                 _context4.prev = 18;
 
-                                if (!_didIteratorError2) {
+                                if (!_didIteratorError) {
                                     _context4.next = 21;
                                     break;
                                 }
 
-                                throw _iteratorError2;
+                                throw _iteratorError;
 
                             case 21:
                                 return _context4.finish(18);
@@ -51387,9 +51343,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context4.finish(15);
 
                             case 23:
-                                this.filterOptions.push({ label: '状態', value: 'state_id', type: 'options', options: states });
-
-                            case 24:
                             case 'end':
                                 return _context4.stop();
                         }
@@ -51397,11 +51350,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee4, this, [[7, 11, 15, 23], [16,, 18, 22]]);
             }));
 
-            function addFilters() {
+            function fetchTags() {
                 return _ref4.apply(this, arguments);
             }
 
-            return addFilters;
+            return fetchTags;
         }(),
         addTask: function addTask() {
             // リセット
@@ -51412,25 +51365,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         addItems: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-                var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, postItem;
+                var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, item, postItem;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                _iteratorNormalCompletion3 = true;
-                                _didIteratorError3 = false;
-                                _iteratorError3 = undefined;
+                                _iteratorNormalCompletion2 = true;
+                                _didIteratorError2 = false;
+                                _iteratorError2 = undefined;
                                 _context5.prev = 3;
-                                _iterator3 = this.items[Symbol.iterator]();
+                                _iterator2 = this.items[Symbol.iterator]();
 
                             case 5:
-                                if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+                                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
                                     _context5.next = 21;
                                     break;
                                 }
 
-                                item = _step3.value;
+                                item = _step2.value;
                                 postItem = {
                                     task_id: this.newTask.id,
                                     name: item,
@@ -51453,7 +51406,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 console.log(_context5.t0);
 
                             case 18:
-                                _iteratorNormalCompletion3 = true;
+                                _iteratorNormalCompletion2 = true;
                                 _context5.next = 5;
                                 break;
 
@@ -51464,26 +51417,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 23:
                                 _context5.prev = 23;
                                 _context5.t1 = _context5['catch'](3);
-                                _didIteratorError3 = true;
-                                _iteratorError3 = _context5.t1;
+                                _didIteratorError2 = true;
+                                _iteratorError2 = _context5.t1;
 
                             case 27:
                                 _context5.prev = 27;
                                 _context5.prev = 28;
 
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
                                 }
 
                             case 30:
                                 _context5.prev = 30;
 
-                                if (!_didIteratorError3) {
+                                if (!_didIteratorError2) {
                                     _context5.next = 33;
                                     break;
                                 }
 
-                                throw _iteratorError3;
+                                throw _iteratorError2;
 
                             case 33:
                                 return _context5.finish(30);
@@ -51507,13 +51460,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         addQuickTask: function () {
             var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-                var currentDatetime, deadLine, postObject;
+                var currentDatetime, deadLine, postObject, result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
                         switch (_context6.prev = _context6.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context6.next = 17;
+                                    _context6.next = 19;
                                     break;
                                 }
 
@@ -51524,7 +51477,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 postObject = {
                                     user_id: this.user_id,
                                     project_id: 1, //デフォルトのプロジェクトは無し
-                                    state_id: 1, //デフォルトの状態は「実行中」
                                     name: this.quickTask,
                                     overview: null,
                                     priority: 3, //デフォルトは3
@@ -51532,31 +51484,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     start_date: currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
                                 };
-
-                                console.log(postObject);
-                                _context6.next = 8;
+                                _context6.next = 7;
                                 return axios.post('/api/tasks/', postObject);
 
-                            case 8:
+                            case 7:
+                                result = _context6.sent;
+                                _context6.next = 10;
+                                return axios.post('/api/state_task', { task_id: result.data.id, state_id: 1 });
+
+                            case 10:
+                                //通知処理
                                 this.$refs.notice.showNotice('タスクを追加しました');
                                 this.fetchTasks();
                                 this.quickTask = '';
-                                _context6.next = 17;
+                                _context6.next = 19;
                                 break;
 
-                            case 13:
-                                _context6.prev = 13;
+                            case 15:
+                                _context6.prev = 15;
                                 _context6.t0 = _context6['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
                                 console.log(_context6.t0);
 
-                            case 17:
+                            case 19:
                             case 'end':
                                 return _context6.stop();
                         }
                     }
-                }, _callee6, this, [[1, 13]]);
+                }, _callee6, this, [[1, 15]]);
             }));
 
             function addQuickTask() {
@@ -51574,7 +51530,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         copyTask: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
-                var copiedTask, postObject, result, tags, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, tag, tagsPostObject, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, item, itemPostObject;
+                var copiedTask, postObject, result, tags, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, tag, tagsPostObject, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, item, itemPostObject;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
@@ -51586,7 +51542,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 postObject = {
                                     user_id: this.copyTargetTask.user_id,
                                     project_id: this.copyTargetTask.project_id,
-                                    state_id: this.copyTargetTask.state_id,
                                     name: this.copyTargetTask.name + '（コピー）',
                                     priority: this.copyTargetTask.priority,
                                     difficulty: this.copyTargetTask.difficulty,
@@ -51605,13 +51560,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 //タグを登録
                                 tags = [];
-                                _iteratorNormalCompletion4 = true;
-                                _didIteratorError4 = false;
-                                _iteratorError4 = undefined;
+                                _iteratorNormalCompletion3 = true;
+                                _didIteratorError3 = false;
+                                _iteratorError3 = undefined;
                                 _context7.prev = 12;
 
-                                for (_iterator4 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                    tag = _step4.value;
+                                for (_iterator3 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                    tag = _step3.value;
 
                                     tags.push(tag.id);
                                 }
@@ -51621,26 +51576,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 16:
                                 _context7.prev = 16;
                                 _context7.t0 = _context7['catch'](12);
-                                _didIteratorError4 = true;
-                                _iteratorError4 = _context7.t0;
+                                _didIteratorError3 = true;
+                                _iteratorError3 = _context7.t0;
 
                             case 20:
                                 _context7.prev = 20;
                                 _context7.prev = 21;
 
-                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                    _iterator4.return();
+                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                    _iterator3.return();
                                 }
 
                             case 23:
                                 _context7.prev = 23;
 
-                                if (!_didIteratorError4) {
+                                if (!_didIteratorError3) {
                                     _context7.next = 26;
                                     break;
                                 }
 
-                                throw _iteratorError4;
+                                throw _iteratorError3;
 
                             case 26:
                                 return _context7.finish(23);
@@ -51656,19 +51611,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 31:
 
                                 //アイテムを登録
-                                _iteratorNormalCompletion5 = true;
-                                _didIteratorError5 = false;
-                                _iteratorError5 = undefined;
+                                _iteratorNormalCompletion4 = true;
+                                _didIteratorError4 = false;
+                                _iteratorError4 = undefined;
                                 _context7.prev = 34;
-                                _iterator5 = this.copyTargetTask.items[Symbol.iterator]();
+                                _iterator4 = this.copyTargetTask.items[Symbol.iterator]();
 
                             case 36:
-                                if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+                                if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
                                     _context7.next = 44;
                                     break;
                                 }
 
-                                item = _step5.value;
+                                item = _step4.value;
                                 itemPostObject = {
                                     task_id: copiedTask.id,
                                     name: item.name,
@@ -51678,7 +51633,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return axios.post('/api/items/', itemPostObject);
 
                             case 41:
-                                _iteratorNormalCompletion5 = true;
+                                _iteratorNormalCompletion4 = true;
                                 _context7.next = 36;
                                 break;
 
@@ -51689,26 +51644,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 46:
                                 _context7.prev = 46;
                                 _context7.t1 = _context7['catch'](34);
-                                _didIteratorError5 = true;
-                                _iteratorError5 = _context7.t1;
+                                _didIteratorError4 = true;
+                                _iteratorError4 = _context7.t1;
 
                             case 50:
                                 _context7.prev = 50;
                                 _context7.prev = 51;
 
-                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                    _iterator5.return();
+                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                    _iterator4.return();
                                 }
 
                             case 53:
                                 _context7.prev = 53;
 
-                                if (!_didIteratorError5) {
+                                if (!_didIteratorError4) {
                                     _context7.next = 56;
                                     break;
                                 }
 
-                                throw _iteratorError5;
+                                throw _iteratorError4;
 
                             case 56:
                                 return _context7.finish(53);
@@ -51717,26 +51672,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context7.finish(50);
 
                             case 58:
+                                _context7.next = 60;
+                                return axios.post('/api/state_task', { task_id: copiedTask.id, state_id: 1 });
+
+                            case 60:
 
                                 //終了処理
                                 this.$refs.notice.showNotice('タスクをコピーしました');
                                 this.fetchTasks();
-                                _context7.next = 66;
+                                _context7.next = 68;
                                 break;
 
-                            case 62:
-                                _context7.prev = 62;
+                            case 64:
+                                _context7.prev = 64;
                                 _context7.t2 = _context7['catch'](3);
 
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
                                 console.log(_context7.t2);
 
-                            case 66:
+                            case 68:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[3, 62], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
+                }, _callee7, this, [[3, 64], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
             }));
 
             function copyTask() {
@@ -52928,7 +52887,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var task_datetime = new Date(this.task.start_date);
             //statesの最後の状態を取得
             var lastStateIndex = this.task.states.length - 1;
-            // if(this.task.state_id == 3){
             if (this.task.states[lastStateIndex].id == 3) {
                 this.mask_class = 'mask mask-active';
                 this.checkbox = true;

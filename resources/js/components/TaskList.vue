@@ -94,7 +94,6 @@
                 ids:[], //編集確認用のtask.idの配列
                 columnOverride: [
                     {user_id:this.user_id},
-                    {state_id:1} //新規タスクは「実行中」で登録
                 ],
                 foreignKeys:[
                     {project_id:
@@ -144,23 +143,8 @@
         created() {
             this.fetchTasks()
             this.fetchTags()
-            this.addFilters() //追加でフィルターオプションを追加（状態、）
         },
         watch: {
-            // newTask:async function(newVal,oldVal){
-            //     let result
-            //     if(!newVal.id){return } //newValにidがなければ終了
-            //     if(this.ids.indexOf(newVal.id) == -1){ //新規登録
-            //         this.ids.push(newVal.id)
-            //         result = await axios.get('/api/tasks/' + newVal.id)
-            //         this.tasks.push(result.data)
-            //     }else{                                 //編集->更新
-            //         let index = this.tasks.findIndex((task) => {
-            //             return (task.id == newVal.id)
-            //         })
-            //         this.tasks.splice(index,1,newVal)
-            //     }
-            // },
             // 新規登録モーダルを閉じた際に更新
             modal:function(){
                 if(this.modal == false){
@@ -182,6 +166,15 @@
                     console.log(error)
                 }
             },
+            //新規タスクが登録されたら状態を1:実行中で登録
+            newTask:async function(){
+                if(!this.newTask.id){return }
+                try{
+                    await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
+                }catch(error){
+                    console.log(error)
+                }
+            }
         },
         methods: {
             fetchTasks: async function(){
@@ -209,15 +202,6 @@
                 for(let index of Object.keys(tagsResult)){
                     this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
-            },
-            addFilters: async function(){
-                // statesフィルターオプションを追加
-                let statesResult = await axios.get('api/states')
-                let states = []
-                for(let state of statesResult.data){
-                    states.push({label:state.name,value:state.id})
-                }
-                this.filterOptions.push({label:'状態',value:'state_id',type:'options',options:states})
             },
             addTask:function(){
                 // リセット
@@ -250,7 +234,6 @@
                         let postObject = {
                             user_id:this.user_id,
                             project_id:1, //デフォルトのプロジェクトは無し
-                            state_id:1, //デフォルトの状態は「実行中」
                             name:this.quickTask,
                             overview:null,
                             priority:3, //デフォルトは3
@@ -258,8 +241,10 @@
                             start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
                             dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
                         }
-                        console.log(postObject)
-                        await axios.post('/api/tasks/',postObject)
+                        let result = await axios.post('/api/tasks/',postObject)
+                        //1:実行中でstate_taskテーブルに登録
+                        await axios.post('/api/state_task',{task_id:result.data.id,state_id:1})
+                        //通知処理
                         this.$refs.notice.showNotice('タスクを追加しました')
                         this.fetchTasks()
                         this.quickTask = ''
@@ -282,7 +267,6 @@
                 let postObject = {
                     user_id:this.copyTargetTask.user_id,
                     project_id:this.copyTargetTask.project_id,
-                    state_id:this.copyTargetTask.state_id,
                     name:this.copyTargetTask.name + '（コピー）',
                     priority:this.copyTargetTask.priority,
                     difficulty:this.copyTargetTask.difficulty,
@@ -312,6 +296,9 @@
                         }
                         await axios.post('/api/items/',itemPostObject)
                     }
+                    
+                    //状態を1:実行中で登録
+                    await axios.post('/api/state_task',{task_id:copiedTask.id,state_id:1})
                     
                     //終了処理
                     this.$refs.notice.showNotice('タスクをコピーしました')
