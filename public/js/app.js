@@ -51441,7 +51441,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return axios.post('/api/items', postItem);
 
                             case 11:
-                                // this.items = []
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
                                 _context5.next = 18;
                                 break;
@@ -52449,11 +52448,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     columns: ['name', 'dead_line'],
                     comment: '所属するプロジェクトを選択してください。'
                 }
-            }, { state_id: {
-                    table: 'states',
-                    columns: ['name'],
-                    comment: '状態を選択してください'
-                }
             }]
         };
     },
@@ -52829,8 +52823,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
-            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9(taskId) {
-                var check, modifyData, result, taskResult;
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
+                var check, postObject;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
                         switch (_context9.prev = _context9.next) {
@@ -52838,42 +52832,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 check = event;
 
                                 if (!(event.target.checked == true)) {
-                                    _context9.next = 12;
+                                    _context9.next = 13;
                                     break;
                                 }
 
-                                modifyData = {
+                                postObject = {
+                                    task_id: this.taskId,
                                     state_id: 3
                                 };
-                                _context9.next = 5;
-                                return axios.put('/api/tasks/' + taskId, modifyData);
+                                _context9.prev = 3;
+                                _context9.next = 6;
+                                return axios.post('/api/state_task', postObject);
 
-                            case 5:
-                                result = _context9.sent;
-
-                                if (!result.data) {
-                                    _context9.next = 12;
-                                    break;
-                                }
-
-                                _context9.next = 9;
-                                return axios.get('api/tasks/' + taskId);
+                            case 6:
+                                this.fetchTask();
+                                _context9.next = 13;
+                                break;
 
                             case 9:
-                                taskResult = _context9.sent;
+                                _context9.prev = 9;
+                                _context9.t0 = _context9['catch'](3);
 
-                                this.task = taskResult.data;
-                                this.$emit('input', taskResult.data);
+                                this.$refs.notice.showNotice('タスクの削除に失敗しました');
+                                console.log(_context9.t0);
 
-                            case 12:
+                            case 13:
                             case 'end':
                                 return _context9.stop();
                         }
                     }
-                }, _callee9, this);
+                }, _callee9, this, [[3, 9]]);
             }));
 
-            function checkTask(_x) {
+            function checkTask() {
                 return _ref9.apply(this, arguments);
             }
 
@@ -52913,13 +52904,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee10, this);
             }));
 
-            function checkItem(_x2) {
+            function checkItem(_x) {
                 return _ref10.apply(this, arguments);
             }
 
             return checkItem;
         }(),
         updateData: function updateData() {
+            if (!this.task.id) {
+                return;
+            }
             // 各種パラメータをリセット
             this.mask_class = 'mask';
             this.checkbox = false;
@@ -52932,7 +52926,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
-            if (this.task.state_id == 3) {
+            //statesの最後の状態を取得
+            var lastStateIndex = this.task.states.length - 1;
+            // if(this.task.state_id == 3){
+            if (this.task.states[lastStateIndex].id == 3) {
                 this.mask_class = 'mask mask-active';
                 this.checkbox = true;
                 check.checked = 'checked';
@@ -53097,7 +53094,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee14, this, [[1, 8]]);
             }));
 
-            function updateItem(_x3) {
+            function updateItem(_x2) {
                 return _ref14.apply(this, arguments);
             }
 
@@ -54839,16 +54836,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55073,39 +55060,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("sort-box", {
-        attrs: { originalArray: _vm.tasks, columns: _vm.sortColumns },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.test, function(tes) {
-        return _c("div", [
-          _c(
-            "span",
-            [
-              _vm._v(
-                "id: " +
-                  _vm._s(tes.id) +
-                  " , name: " +
-                  _vm._s(tes.name) +
-                  " , priority: " +
-                  _vm._s(tes.priority) +
-                  " , tags: "
-              ),
-              _vm._l(tes.tags, function(tag) {
-                return _c("span", [_vm._v(_vm._s(tag.id))])
-              })
-            ],
-            2
-          )
-        ])
-      }),
+      _c("task", { attrs: { taskId: 1 } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -55151,7 +55106,7 @@ var render = function() {
         [_vm._v("filter")]
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

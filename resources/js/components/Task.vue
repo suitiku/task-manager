@@ -154,13 +154,6 @@
                             comment:'所属するプロジェクトを選択してください。'
                         }
                     },
-                    {state_id:
-                        {
-                            table:'states',
-                            columns:['name'],
-                            comment:'状態を選択してください'
-                        }
-                    }
                 ]
             }  
         },
@@ -258,18 +251,20 @@
                 this.detail = !this.detail
                 this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
             },
-            checkTask:async function(taskId){
+            checkTask:async function(){
                 let check = event
                 if(event.target.checked == true){
-                    let modifyData = {
-                        state_id:3
+                    let postObject = {
+                        task_id:this.taskId,
+                        state_id:3,
                     }
-                    let result = await axios.put('/api/tasks/' + taskId, modifyData)
-                    if(result.data){
-                        //taskを再取得して設定
-                        let taskResult = await axios.get('api/tasks/' + taskId)
-                        this.task = taskResult.data
-                        this.$emit('input',taskResult.data)
+                    
+                    try{
+                        await axios.post('/api/state_task',postObject)
+                        this.fetchTask()
+                    }catch(error){
+                        this.$refs.notice.showNotice('タスクの削除に失敗しました')
+                        console.log(error)
                     }
                 }
             },
@@ -289,6 +284,7 @@
                 }
             },
             updateData:function(){
+                if(!this.task.id){return }
                 // 各種パラメータをリセット
                 this.mask_class = 'mask'
                 this.checkbox = false
@@ -301,7 +297,9 @@
                 
                 let current_datetime = new Date()
                 let task_datetime = new Date(this.task.start_date)
-                if(this.task.state_id == 3){
+                //statesの最後の状態を取得
+                let lastStateIndex = this.task.states.length - 1
+                if(this.task.states[lastStateIndex].id == 3){
                     this.mask_class = 'mask mask-active'
                     this.checkbox = true
                     check.checked = 'checked'
