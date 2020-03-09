@@ -26,15 +26,25 @@
             </div>
         </modal>
         
-        <!--編集用モーダル-->
-        <modal ref="editModal" v-model="editModal">
-            <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
+        <!--状態編集用モーダル-->
+        <modal ref="editStatusModal" v-model="editStatusModal">
+            <div class="edit-status-modal">
+                <p>状態を変更します</p>
+                <list-box v-model="selectedStatus.id" table="states" v-bind:columns="['name']" />
+                <input v-model="selectedStatus.state_detail" type="text" placeholder="状態についてのコメント（null可）">
+                <button class="btn btn-primary d-block mx-auto" v-on:click="changeStatus()">状態を変更</button>
+            </div>
         </modal>
         
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグを編集します。</p>
             <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
+        </modal>
+        
+        <!--編集用モーダル-->
+        <modal ref="editModal" v-model="editModal">
+            <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
         </modal>
         
         <!--アイテムリストのアイテム削除確認モーダル-->
@@ -49,7 +59,6 @@
             </div>
         </modal>
         
-        
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
@@ -59,7 +68,7 @@
                 <i v-show="notStarted" class="fas fa-2x fa-exclamation-circle"></i>
             </div>
             <!--本体表示部分-->
-            <!--ラベ���部分-->
+            <!--ラベル部分-->
             <div class="task-label">
                 <div class="headline">
                     <div class="headline-icons">
@@ -77,6 +86,8 @@
                     <i class="far fa-clock"></i>
                     <span class="dead-line">{{task.dead_line}}</span>
                     
+                    <!--状態編集ボタン-->
+                    <i class="far fa-check-square task-icon" v-on:click="showEditStatusDialog()"></i>
                     <!--タグ編集ボタン-->
                     <i class="fas fa-tag task-icon" v-on:click="showEditTagDialog()"></i>
                     <!--編集ボタン-->
@@ -154,6 +165,11 @@
                 isEditedTags:false,
                 tags:[],
                 selectedTags:[],
+                editStatusModal:false,
+                selectedStatus:{
+                    id:'',
+                    state_detail:''
+                },
                 foreignKeys:[
                     {project_id:
                         {
@@ -416,6 +432,34 @@
                 let timer = window.setTimeout(function(){
                     vue.$refs.toolTip.hideToolTip()
                 },500)
+            },
+            showEditStatusDialog:function(){
+                this.$refs.editStatusModal.openModal()
+            },
+            changeStatus:async function(){
+                // 現在の状態を取得
+                let lastStateIndex = this.task.states.length - 1
+                let currentStatus = this.task.states[lastStateIndex]
+                // Statusが選択されていない
+                if(!this.selectedStatus.id){
+                    return 
+                }else{
+                    let postObject = {
+                        task_id:this.task.id,
+                        state_id:this.selectedStatus.id,
+                        state_detail:this.selectedStatus.state_detail
+                    }
+                    try{
+                        await axios.post('/api/state_task',postObject)
+                        this.$refs.notice.showNotice('タスクステータスを更新しました')
+                        this.fetchTask()
+                        this.selectedStatus = {id:'',state_detail:''} //リセット
+                        this.$refs.editStatusModal.closeModal()// モータル閉じる
+                    }catch(error){
+                        this.$refs.notice.showNotice('タスクステータスの更新に失敗しました')
+                        console.log(error)
+                    }
+                }
             }
         }
     }
@@ -567,5 +611,17 @@
     .tool-tip-content{
         display:flex;
         align-items:center;
+    }
+    .edit-status-modal * {
+        margin:1em 0;
+    }
+    .edit-status-modal input {
+        text-align:center;
+        width:100%;
+        display:block;
+        margin:0.5em;
+        padding:0.3em;
+        border:1px solid grey;
+        border-radius:0.3em;
     }
 </style>
