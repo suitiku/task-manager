@@ -401,4 +401,8 @@
     .tags-and-items {
         border:1px solid red;
     }
+    .tool-tip-content{
+        display:flex;
+        align-items:center;
+    }
 </style>

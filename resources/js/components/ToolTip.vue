@@ -55,12 +55,14 @@
 <style scoped>
     .tool-tip-hide {
         position:fixed;
+        z-index:10;
         transform-origin:bottom center;
         transform:rotateX(90deg);
         transition:opacity,transform 0.5s ease;
     }
     .tool-tip-show {
         position:fixed;
+        z-index:10;
         transform-origin:bottom center;
         transform:rotateX(0deg);
         transition:opacity,transform 0.5s ease;

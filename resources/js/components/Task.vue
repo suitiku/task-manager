@@ -7,6 +7,13 @@
         <!--通知-->
         <notice ref="notice" />
         
+         <!--ツールチップ-->
+        <tool-tip ref="toolTip">
+            <div class="tool-tip-content">
+                {{toolTipContent}}
+            </div>
+        </tool-tip>
+        
         <!--タスク削除確認モーダル-->
         <modal ref="deleteModal" v-model="deleteModal">
             <b>タスク「{{task.name}}」を削除します。</b>
@@ -46,10 +53,10 @@
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
-            <div v-bind:class="mask_class" v-on:click="openDetail()"></div>
-            <div class="state-icon" v-show="checkbox || not_started">
+            <div v-bind:class="mask_class" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
+            <div class="state-icon" v-show="checkbox || notStarted">
                 <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
-                <i v-show="not_started" class="fas fa-2x fa-exclamation-circle"></i>
+                <i v-show="notStarted" class="fas fa-2x fa-exclamation-circle"></i>
             </div>
             <!--本体表示部分-->
             <!--ラベ���部分-->
@@ -130,7 +137,8 @@
                 mask_class:'mask',
                 mask:false,
                 checkbox:false,
-                not_started:false,
+                notStarted:false,
+                toolTipContent:'',
                 detail:false,
                 deleteModal:false,
                 editModal:false,
@@ -288,7 +296,7 @@
                 // 各種パラメータをリセット
                 this.mask_class = 'mask'
                 this.checkbox = false
-                this.not_started = false
+                this.notStarted = false
                 
                 //チェックボックスの要素を取得
                 let check = this.$refs.checkbox
@@ -299,6 +307,7 @@
                 let task_datetime = new Date(this.task.start_date)
                 //statesの最後の状態を取得
                 let lastStateIndex = this.task.states.length - 1
+                this.toolTipContent = this.task.states[lastStateIndex].state_detail //ツールチップに表示するコメント
                 if(this.task.states[lastStateIndex].id == 3){
                     this.mask_class = 'mask mask-active'
                     this.checkbox = true
@@ -306,8 +315,9 @@
                     check.disabled = true
                 }else if(current_datetime < task_datetime){
                     this.mask_class = 'mask mask-active'
-                    this.not_started = true
+                    this.notStarted = true
                     check.disabled = true
+                    this.toolTipContent = '開始前タスクです'
                 }
             },
             showDeleteTaskDialog:function(){
@@ -396,6 +406,16 @@
             showEditTagDialog:function(){
                 this.$refs.editTagModal.openModal()
                 this.isEditedTags = true
+            },
+            showToolTip:function(){
+                if(!this.toolTipContent){return }
+                this.$refs.toolTip.showToolTip()
+            },
+            hideToolTip:function(){
+                let vue = this
+                let timer = window.setTimeout(function(){
+                    vue.$refs.toolTip.hideToolTip()
+                },500)
             }
         }
     }
@@ -543,5 +563,9 @@
     }
     .item-completed {
         text-decoration:line-through;
+    }
+    .tool-tip-content{
+        display:flex;
+        align-items:center;
     }
 </style>

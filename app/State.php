@@ -9,6 +9,6 @@ class State extends Model
     protected $guarded = array('id','created_at','updated_at');
     
     public function tasks(){
-        return $this->hasMany('App\Task');
+        return $this->belongsToMany('App\Task')->withPivot('state_detail')->withTimestamps();
     }
 }

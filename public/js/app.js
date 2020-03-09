@@ -50987,7 +50987,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    border:1px solid red;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    border:1px solid red;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n", ""]);
 
 // exports
 
@@ -52237,7 +52237,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid black;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n", ""]);
 
 // exports
 
@@ -52377,6 +52377,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -52386,7 +52393,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             mask_class: 'mask',
             mask: false,
             checkbox: false,
-            not_started: false,
+            notStarted: false,
+            toolTipContent: '',
             detail: false,
             deleteModal: false,
             editModal: false,
@@ -52876,7 +52884,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             // 各種パラメータをリセット
             this.mask_class = 'mask';
             this.checkbox = false;
-            this.not_started = false;
+            this.notStarted = false;
 
             //チェックボックスの要素を取得
             var check = this.$refs.checkbox;
@@ -52887,6 +52895,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var task_datetime = new Date(this.task.start_date);
             //statesの最後の状態を取得
             var lastStateIndex = this.task.states.length - 1;
+            this.toolTipContent = this.task.states[lastStateIndex].state_detail; //ツールチップに表示するコメント
             if (this.task.states[lastStateIndex].id == 3) {
                 this.mask_class = 'mask mask-active';
                 this.checkbox = true;
@@ -52894,8 +52903,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 check.disabled = true;
             } else if (current_datetime < task_datetime) {
                 this.mask_class = 'mask mask-active';
-                this.not_started = true;
+                this.notStarted = true;
                 check.disabled = true;
+                this.toolTipContent = '開始前タスクです';
             }
         },
         showDeleteTaskDialog: function showDeleteTaskDialog() {
@@ -53158,6 +53168,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         showEditTagDialog: function showEditTagDialog() {
             this.$refs.editTagModal.openModal();
             this.isEditedTags = true;
+        },
+        showToolTip: function showToolTip() {
+            if (!this.toolTipContent) {
+                return;
+            }
+            this.$refs.toolTip.showToolTip();
+        },
+        hideToolTip: function hideToolTip() {
+            var vue = this;
+            var timer = window.setTimeout(function () {
+                vue.$refs.toolTip.hideToolTip();
+            }, 500);
         }
     }
 });
@@ -53175,6 +53197,12 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("notice", { ref: "notice" }),
+      _vm._v(" "),
+      _c("tool-tip", { ref: "toolTip" }, [
+        _c("div", { staticClass: "tool-tip-content" }, [
+          _vm._v("\n            " + _vm._s(_vm.toolTipContent) + "\n        ")
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "modal",
@@ -53350,6 +53378,12 @@ var render = function() {
           on: {
             click: function($event) {
               return _vm.openDetail()
+            },
+            mouseover: function($event) {
+              return _vm.showToolTip()
+            },
+            mouseout: function($event) {
+              return _vm.hideToolTip()
             }
           }
         }),
@@ -53361,8 +53395,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.checkbox || _vm.not_started,
-                expression: "checkbox || not_started"
+                value: _vm.checkbox || _vm.notStarted,
+                expression: "checkbox || notStarted"
               }
             ],
             staticClass: "state-icon"
@@ -53385,8 +53419,8 @@ var render = function() {
                 {
                   name: "show",
                   rawName: "v-show",
-                  value: _vm.not_started,
-                  expression: "not_started"
+                  value: _vm.notStarted,
+                  expression: "notStarted"
                 }
               ],
               staticClass: "fas fa-2x fa-exclamation-circle"
@@ -62299,7 +62333,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:fixed;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(90deg);\n                transform:rotateX(90deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip-show[data-v-6cabd7c8] {\n        position:fixed;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(0deg);\n                transform:rotateX(0deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip[data-v-6cabd7c8] {\n        position: relative;\n        display: inline-block;\n        padding: 1.0em 0.5em;\n        max-height:200px;\n        min-width: 5em;\n        max-width: 100%;\n        color: #555;\n        font-size: 75%;\n        background: #FFF;\n        border: solid 3px #555;\n        -webkit-box-sizing: border-box;\n                box-sizing: border-box;\n        text-align:center;\n        border-radius:1.0em;\n}\n.tool-tip[data-v-6cabd7c8]:before {\n        content: \"\";\n        position: absolute;\n        bottom: -24px;\n        left: 50%;\n        margin-left: -15px;\n        border: 12px solid transparent;\n        border-top: 12px solid #FFF;\n        z-index: 2;\n}\n.tool-tip[data-v-6cabd7c8]:after {\n        content: \"\";\n        position: absolute;\n        bottom: -30px;\n        left: 50%;    \n        margin-left: -17px;\n        border: 14px solid transparent;\n        border-top: 14px solid #555;\n        z-index: 1;\n}\n", ""]);
+exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:fixed;\n        z-index:10;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(90deg);\n                transform:rotateX(90deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip-show[data-v-6cabd7c8] {\n        position:fixed;\n        z-index:10;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(0deg);\n                transform:rotateX(0deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip[data-v-6cabd7c8] {\n        position: relative;\n        display: inline-block;\n        padding: 1.0em 0.5em;\n        max-height:200px;\n        min-width: 5em;\n        max-width: 100%;\n        color: #555;\n        font-size: 75%;\n        background: #FFF;\n        border: solid 3px #555;\n        -webkit-box-sizing: border-box;\n                box-sizing: border-box;\n        text-align:center;\n        border-radius:1.0em;\n}\n.tool-tip[data-v-6cabd7c8]:before {\n        content: \"\";\n        position: absolute;\n        bottom: -24px;\n        left: 50%;\n        margin-left: -15px;\n        border: 12px solid transparent;\n        border-top: 12px solid #FFF;\n        z-index: 2;\n}\n.tool-tip[data-v-6cabd7c8]:after {\n        content: \"\";\n        position: absolute;\n        bottom: -30px;\n        left: 50%;    \n        margin-left: -17px;\n        border: 14px solid transparent;\n        border-top: 14px solid #555;\n        z-index: 1;\n}\n", ""]);
 
 // exports
 
