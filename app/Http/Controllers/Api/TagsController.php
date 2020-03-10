@@ -15,7 +15,7 @@ class TagsController extends Controller
      */
     public function index()
     {
-        return Tag::all();
+        return Tag::with(['tasks'])->get();
     }
 
     /**
@@ -49,7 +49,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        return Tag::find($id);
+        return Tag::with(['tasks'])->find($id);
     }
 
     /**
@@ -90,6 +90,6 @@ class TagsController extends Controller
     
     // ユーザーIDで検索
     public function getTagsByUserId(Request $request){
-        return Tag::where('user_id',$request->user_id)->get();
+        return Tag::where('user_id',$request->user_id)->with(['tasks'])->get();
     }
 }
