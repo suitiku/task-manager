@@ -63,9 +63,13 @@
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
             <div v-bind:class="mask_class" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
-            <div class="state-icon" v-show="checkbox || notStarted">
+            <div class="state-icon" v-show="checkbox || notActive">
+                <!--完了マーク-->
                 <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
-                <i v-show="notStarted" class="fas fa-2x fa-exclamation-circle"></i>
+                <!--エクスクラメーション-->
+                <i v-show="notActive" class="fas fa-2x fa-exclamation-circle"></i>
+                <!--状態詳細-->
+                <span>{{stateDetail}}</span>
             </div>
             <!--本体表示部分-->
             <!--ラベル部分-->
@@ -148,7 +152,8 @@
                 mask_class:'mask',
                 mask:false,
                 checkbox:false,
-                notStarted:false,
+                notActive:false, //実行状態ではない場合のフラグ
+                stateDetail:'', //状態詳細テキスト（実行可能状態ではない場合に表示）
                 toolTipContent:'',
                 detail:false,
                 deleteModal:false,
@@ -192,12 +197,13 @@
                 await this.fetchTask()
                 this.updateData()
             },
-            task:{
-                handler:async function(){
-                    this.updateData()
-                },
-                deep:true
-            },
+            // task:{
+            //     handler:async function(){
+            //         await this.fetchTask()
+            //         this.updateData()
+            //     },
+            //     deep:true
+            // },
             editedTask:async function(){
                 await this.fetchTask()
                 this.updateData()
@@ -312,7 +318,8 @@
                 // 各種パラメータをリセット
                 this.mask_class = 'mask'
                 this.checkbox = false
-                this.notStarted = false
+                this.notActive = false
+                this.stateDetail = ''
                 
                 //チェックボックスの要素を取得
                 let check = this.$refs.checkbox
@@ -324,16 +331,22 @@
                 //statesの最後の状態を取得
                 let lastStateIndex = this.task.states.length - 1
                 this.toolTipContent = this.task.states[lastStateIndex].state_detail //ツールチップに表示するコメント
-                if(this.task.states[lastStateIndex].id == 3){
+                
+                if(this.task.states[lastStateIndex].id == 3){ //完了タスク
                     this.mask_class = 'mask mask-active'
                     this.checkbox = true
                     check.checked = 'checked'
                     check.disabled = true
-                }else if(current_datetime < task_datetime){
+                }else if(current_datetime < task_datetime){ //開始前タスク
                     this.mask_class = 'mask mask-active'
-                    this.notStarted = true
+                    this.notActive = true
                     check.disabled = true
-                    this.toolTipContent = '開始前タスクです'
+                    this.stateDetail = '開始前タスクです'
+                }else if(this.task.states[lastStateIndex].id != 1){ //実行状態でも完了でもないタスク
+                    this.mask_class = 'mask mask-active'
+                    this.notActive = true
+                    check.disabled = true
+                    this.stateDetail = this.task.states[lastStateIndex].state_detail
                 }
             },
             showDeleteTaskDialog:function(){
@@ -578,6 +591,8 @@
         }
     }
     .state-icon {
+        display:flex;
+        align-items:center;
         color:white;
         position:absolute;
         top:0.5em;
@@ -586,6 +601,11 @@
         opacity:1.0;
         transform-origin:center;
         animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;
+    }
+    .state-icon span {
+        margin-left:1em;
+        font-size:75%;
+        animation:none;
     }
     @keyframes icon-before {
         0% {
