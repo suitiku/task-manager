@@ -195,7 +195,9 @@
             },
             fetchTags: async function(){
                  // タグの取得
-                let result = await axios.get('/api/tags')
+                 let result = await axios.get('/api/mytags',{
+                                                params:{user_id:this.user_id,}
+                                            })
                 let tagsResult = result.data
                 
                 //tag-cloudに投入できる形に整形

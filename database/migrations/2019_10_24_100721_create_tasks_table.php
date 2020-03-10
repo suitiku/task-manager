@@ -17,7 +17,6 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('project_id');
-            // $table->unsignedInteger('state_id');
             $table->string('name');
             $table->text('overview')->nullable();
             $table->tinyInteger('priority')->comment('優先度');
@@ -29,7 +28,6 @@ class CreateTasksTable extends Migration
             
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('project_id')->references('id')->on('projects');
-            // $table->foreign('state_id')->references('id')->on('states');
         });
     }
 

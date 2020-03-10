@@ -36,8 +36,9 @@ Route::put('tag_task','Api\TasksController@syncTags');
 //状態（state）
 Route::post('state_task','Api\TasksController@changeState');
 
-//検索用
+//ユーザー別
 Route::get('mytasks','Api\TasksController@getTasksByUserId');
+Route::get('mytags','Api\TagsController@getTagsByUserId');
 
 //メール送信テスト
 Route::get('mail/send','Api\MailController@sendMail');

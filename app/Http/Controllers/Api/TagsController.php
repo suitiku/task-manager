@@ -87,4 +87,9 @@ class TagsController extends Controller
     {
         Tag::find($id)->delete();
     }
+    
+    // ユーザーIDで検索
+    public function getTagsByUserId(Request $request){
+        return Tag::where('user_id',$request->user_id)->get();
+    }
 }

@@ -51292,7 +51292,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context4.prev = _context4.next) {
                             case 0:
                                 _context4.next = 2;
-                                return axios.get('/api/tags');
+                                return axios.get('/api/mytags', {
+                                    params: { user_id: this.user_id }
+                                });
 
                             case 2:
                                 result = _context4.sent;
