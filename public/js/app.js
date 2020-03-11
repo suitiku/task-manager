@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(217);
+module.exports = __webpack_require__(222);
 
 
 /***/ }),
@@ -14685,6 +14685,7 @@ Vue.component('filter-box', __webpack_require__(197));
 Vue.component('sort-array', __webpack_require__(202));
 Vue.component('sort-box', __webpack_require__(207));
 Vue.component('tool-tip', __webpack_require__(212));
+Vue.component('tag-management', __webpack_require__(217));
 
 var app = new Vue({
   el: '#app'
@@ -52722,66 +52723,71 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         fetchTags: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
-                var result, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag;
+                var result, tagsResult, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, index;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
                         switch (_context7.prev = _context7.next) {
                             case 0:
                                 _context7.next = 2;
-                                return axios.get('/api/tags/');
+                                return axios.get('/api/mytags', {
+                                    params: { user_id: this.user_id }
+                                });
 
                             case 2:
                                 result = _context7.sent;
+                                tagsResult = result.data;
+
+                                //tag-cloudに投入できる形に整形
+
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context7.prev = 6;
+                                _context7.prev = 7;
+                                for (_iterator2 = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    index = _step2.value;
 
-                                for (_iterator2 = result.data[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                    tag = _step2.value;
-
-                                    this.tags.push({ label: tag.name, value: tag.id });
+                                    this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
                                 }
-                                _context7.next = 14;
+                                _context7.next = 15;
                                 break;
 
-                            case 10:
-                                _context7.prev = 10;
-                                _context7.t0 = _context7['catch'](6);
+                            case 11:
+                                _context7.prev = 11;
+                                _context7.t0 = _context7['catch'](7);
                                 _didIteratorError2 = true;
                                 _iteratorError2 = _context7.t0;
 
-                            case 14:
-                                _context7.prev = 14;
+                            case 15:
                                 _context7.prev = 15;
+                                _context7.prev = 16;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
-                            case 17:
-                                _context7.prev = 17;
+                            case 18:
+                                _context7.prev = 18;
 
                                 if (!_didIteratorError2) {
-                                    _context7.next = 20;
+                                    _context7.next = 21;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
-                            case 20:
-                                return _context7.finish(17);
-
                             case 21:
-                                return _context7.finish(14);
+                                return _context7.finish(18);
 
                             case 22:
+                                return _context7.finish(15);
+
+                            case 23:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+                }, _callee7, this, [[7, 11, 15, 23], [16,, 18, 22]]);
             }));
 
             function fetchTags() {
@@ -54008,6 +54014,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54076,7 +54084,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }(),
     created: function created() {},
 
-    watch: {},
+    watch: {
+        idProp: function idProp() {
+            this.overwritePostObject();
+        }
+    },
     methods: {
         init: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -54212,67 +54224,68 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 // idPropsが設定されている場合はそのレコードを取得
+                                this.id = this.idProp;
                                 existingRecord = {};
 
                                 if (!this.idProp) {
-                                    _context3.next = 24;
+                                    _context3.next = 25;
                                     break;
                                 }
 
-                                _context3.next = 4;
+                                _context3.next = 5;
                                 return axios.get('/api/' + this.table + '/' + this.idProp);
 
-                            case 4:
+                            case 5:
                                 existingRecord = _context3.sent;
                                 _iteratorNormalCompletion3 = true;
                                 _didIteratorError3 = false;
                                 _iteratorError3 = undefined;
-                                _context3.prev = 8;
+                                _context3.prev = 9;
 
                                 for (_iterator3 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                                     key = _step3.value;
 
                                     this.$set(this.postObject, key, existingRecord.data[key]);
                                 }
-                                _context3.next = 16;
+                                _context3.next = 17;
                                 break;
 
-                            case 12:
-                                _context3.prev = 12;
-                                _context3.t0 = _context3['catch'](8);
+                            case 13:
+                                _context3.prev = 13;
+                                _context3.t0 = _context3['catch'](9);
                                 _didIteratorError3 = true;
                                 _iteratorError3 = _context3.t0;
 
-                            case 16:
-                                _context3.prev = 16;
+                            case 17:
                                 _context3.prev = 17;
+                                _context3.prev = 18;
 
                                 if (!_iteratorNormalCompletion3 && _iterator3.return) {
                                     _iterator3.return();
                                 }
 
-                            case 19:
-                                _context3.prev = 19;
+                            case 20:
+                                _context3.prev = 20;
 
                                 if (!_didIteratorError3) {
-                                    _context3.next = 22;
+                                    _context3.next = 23;
                                     break;
                                 }
 
                                 throw _iteratorError3;
 
-                            case 22:
-                                return _context3.finish(19);
-
                             case 23:
-                                return _context3.finish(16);
+                                return _context3.finish(20);
 
                             case 24:
+                                return _context3.finish(17);
+
+                            case 25:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[8, 12, 16, 24], [17,, 19, 23]]);
+                }, _callee3, this, [[9, 13, 17, 25], [18,, 20, 24]]);
             }));
 
             function overwritePostObject() {
@@ -54499,6 +54512,13 @@ var render = function() {
         "div",
         { staticClass: "forms" },
         [
+          _vm._v(
+            "\n        " +
+              _vm._s(_vm.id) +
+              "\n        " +
+              _vm._s(_vm.postObject) +
+              "\n        "
+          ),
           _vm._l(_vm.columns, function(column, index) {
             return _c("div", { key: index, staticClass: "column" }, [
               column.COLUMN_TYPE == "tinyint(4)"
@@ -54990,7 +55010,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55215,7 +55234,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("task", { attrs: { taskId: 1 } }),
+      _c("tag-management", { attrs: { user_id: "1" } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -62590,6 +62609,497 @@ if (false) {
 
 /***/ }),
 /* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(218)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(220)
+/* template */
+var __vue_template__ = __webpack_require__(221)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-6bee1ebc"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/TagManagement.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6bee1ebc", Component.options)
+  } else {
+    hotAPI.reload("data-v-6bee1ebc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(219);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("3ee38ac6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6bee1ebc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagManagement.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6bee1ebc\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TagManagement.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tag-wrapper[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:1em;\n    cursor:pointer;\n}\n.tag-wrapper span[data-v-6bee1ebc] {\n    font-family: Impact,Charcoal;\n}\n.tag[data-v-6bee1ebc] {\n    margin-right:0.3em;\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.3em;\n    opacity:0.8;\n}\ninput[data-v-6bee1ebc],textarea[data-v-6bee1ebc] {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            tags: [],
+            modal: false,
+            editId: '',
+            editedTag: {},
+            colorOptions: [{ label: 'black', value: 'black' }, { label: 'white', value: 'white' }, { label: 'orange', value: 'orange' }, { label: 'red', value: 'red' }, { label: 'grey', value: 'grey' }, { label: 'green', value: 'green' }, { label: 'blue', value: 'blue' }, { label: 'yellow', value: 'yellow' }, { label: 'pink', value: 'pink' }]
+        };
+    },
+    props: {
+        user_id: {
+            type: [String, Number],
+            default: 0,
+            required: true
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {
+        // タグを取得
+        this.fetchTags();
+        this.init();
+    },
+    computed: {},
+    methods: {
+        init: function init() {
+            this.editedTag = {
+                id: '',
+                user_id: this.user_id,
+                name: '',
+                overview: '',
+                color: ''
+            };
+        },
+        fetchTags: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return axios.get('/api/mytags', {
+                                    params: { user_id: this.user_id }
+                                });
+
+                            case 2:
+                                result = _context.sent;
+
+                                this.tags = result.data;
+
+                            case 4:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function fetchTags() {
+                return _ref.apply(this, arguments);
+            }
+
+            return fetchTags;
+        }(),
+        countTasks: function countTasks(tag) {
+            if (!tag.tasks) {
+                return 0;
+            } else {
+                return tag.tasks.length;
+            }
+        },
+        setFontColor: function setFontColor(backgroundColor) {
+            switch (backgroundColor) {
+                case 'red':
+                case 'green':
+                case 'black':
+                    return 'white';
+                default:
+                    return 'black';
+            }
+        },
+        showModal: function showModal() {
+            var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            if (tag && tag.id != '') {
+                this.editedTag = JSON.parse(JSON.stringify(tag));
+            } else {
+                this.init();
+            }
+            this.$refs.modal.openModal();
+        },
+        createTag: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                delete this.editedTag.id; //id削除
+                                _context2.prev = 1;
+                                _context2.next = 4;
+                                return axios.post('/api/tags', this.editedTag);
+
+                            case 4:
+
+                                //editedTagを初期化
+                                this.init();
+
+                                //終了処理
+                                this.$refs.notice.showNotice('タグを追加しました');
+                                this.fetchTags();
+                                _context2.next = 14;
+                                break;
+
+                            case 9:
+                                _context2.prev = 9;
+                                _context2.t0 = _context2['catch'](1);
+
+                                //editedTagを初期化
+                                this.init();
+
+                                this.$refs.notice.showNotice('タグの追加に失敗しました');
+                                console.log(_context2.t0);
+
+                            case 14:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[1, 9]]);
+            }));
+
+            function createTag() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return createTag;
+        }(),
+        editTag: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var tagId, postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                tagId = this.editedTag.id;
+                                postObject = {
+                                    user_id: this.editedTag.user_id,
+                                    name: this.editedTag.name,
+                                    overview: this.editedTag.overview,
+                                    color: this.editedTag.color
+                                };
+                                _context3.prev = 2;
+                                _context3.next = 5;
+                                return axios.put('/api/tags/' + tagId, postObject);
+
+                            case 5:
+
+                                //editedTagを初期化
+                                this.init();
+
+                                //終了処理
+                                this.$refs.notice.showNotice('タグを追加しました');
+                                this.fetchTags();
+
+                                _context3.next = 15;
+                                break;
+
+                            case 10:
+                                _context3.prev = 10;
+                                _context3.t0 = _context3['catch'](2);
+
+                                //editedTagを初期化
+                                this.init();
+                                this.$refs.notice.showNotice('タグの追加に失敗しました');
+                                console.log(_context3.t0);
+
+                            case 15:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[2, 10]]);
+            }));
+
+            function editTag() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return editTag;
+        }()
+    }
+});
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("notice", { ref: "notice" }),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editedTag.name,
+                expression: "editedTag.name"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.editedTag.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editedTag, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.editedTag.overview,
+                expression: "editedTag.overview"
+              }
+            ],
+            domProps: { value: _vm.editedTag.overview },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.editedTag, "overview", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("tag-cloud", {
+            attrs: { options: _vm.colorOptions },
+            model: {
+              value: _vm.editedTag.color,
+              callback: function($$v) {
+                _vm.$set(_vm.editedTag, "color", $$v)
+              },
+              expression: "editedTag.color"
+            }
+          }),
+          _vm._v(" "),
+          _vm.editedTag.id == ""
+            ? _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary mx-auto d-block",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.createTag()
+                    }
+                  }
+                },
+                [_vm._v("登録")]
+              )
+            : _c(
+                "button",
+                {
+                  staticClass: "btn btn-outline-primary mx-auto d-block",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.editTag()
+                    }
+                  }
+                },
+                [_vm._v("編集")]
+              )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "display-tags" },
+        [
+          _vm._l(_vm.tags, function(tag, index) {
+            return _c("div", { staticClass: "tag-wrapper" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tag",
+                  style: { background: tag.color },
+                  on: {
+                    click: function($event) {
+                      return _vm.showModal(tag)
+                    }
+                  }
+                },
+                [
+                  _c(
+                    "span",
+                    { style: { color: _vm.setFontColor(tag.color) } },
+                    [_vm._v(_vm._s(tag.name))]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.countTasks(tag)))])
+            ])
+          }),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-plus-circle",
+            on: {
+              click: function($event) {
+                return _vm.showModal()
+              }
+            }
+          })
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6bee1ebc", module.exports)
+  }
+}
+
+/***/ }),
+/* 222 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

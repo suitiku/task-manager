@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name');
-            $table->text('overview');
+            $table->text('overview')->nullable();
             $table->enum('color',['black','white','orange','red','grey','green','blue','yellow','pink']);
             $table->timestamps();
             

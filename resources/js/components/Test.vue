@@ -1,8 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <task v-bind:taskId="1" />       
-        
+        <tag-management user_id="1" />
         
         <notice ref="notice" />
         <!--モーダル-->

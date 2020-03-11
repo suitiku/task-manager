@@ -271,10 +271,16 @@
                     this.selectedTags.push(tag.id)
                 }
             },
-            fetchTags:async function(){
-                let result = await axios.get('/api/tags/')
-                for(let tag of result.data){
-                    this.tags.push({label:tag.name,value:tag.id})
+            fetchTags: async function(){
+                 // タグの取得
+                 let result = await axios.get('/api/mytags',{
+                                                params:{user_id:this.user_id,}
+                                            })
+                let tagsResult = result.data
+                
+                //tag-cloudに投入できる形に整形
+                for(let index of Object.keys(tagsResult)){
+                    this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
             },
             openDetail: function(){

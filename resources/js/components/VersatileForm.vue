@@ -12,6 +12,8 @@
         <notice ref="editNotice" />
         
         <div class="forms">
+            {{id}}
+            {{postObject}}
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
                 <!--インライン表示-->
                 <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
@@ -89,6 +91,9 @@
         created() {
         },
         watch:{
+            idProp:function(){
+                this.overwritePostObject()
+            }
         },
         methods: {
             init:async function(){
@@ -111,6 +116,7 @@
             },
             overwritePostObject:async function(){
                 // idPropsが設定されている場合はそのレコードを取得
+                this.id = this.idProp
                 let existingRecord = {}
                 if(this.idProp){
                     existingRecord = await axios.get('/api/' + this.table + '/' + this.idProp)
