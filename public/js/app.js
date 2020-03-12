@@ -55012,7 +55012,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55239,17 +55238,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.selectedColor) + "\n    "),
-      _c("color-picker", {
-        attrs: { colorOptions: _vm.colorOptions },
-        model: {
-          value: _vm.selectedColor,
-          callback: function($$v) {
-            _vm.selectedColor = $$v
-          },
-          expression: "selectedColor"
-        }
-      }),
+      _c("tag-management", { attrs: { user_id: "1" } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -62753,6 +62742,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62761,7 +62751,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             editId: '',
             editedTag: {},
-            colorOptions: [{ label: 'black', value: 'black' }, { label: 'white', value: 'white' }, { label: 'orange', value: 'orange' }, { label: 'red', value: 'red' }, { label: 'grey', value: 'grey' }, { label: 'green', value: 'green' }, { label: 'blue', value: 'blue' }, { label: 'yellow', value: 'yellow' }, { label: 'pink', value: 'pink' }]
+            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc']
         };
     },
     props: {
@@ -63006,6 +62996,17 @@ var render = function() {
             }
           }),
           _vm._v(" "),
+          _c("color-picker", {
+            attrs: { colorOptions: _vm.colorOptions },
+            model: {
+              value: _vm.editedTag.color,
+              callback: function($$v) {
+                _vm.$set(_vm.editedTag, "color", $$v)
+              },
+              expression: "editedTag.color"
+            }
+          }),
+          _vm._v(" "),
           _vm.editedTag.id == ""
             ? _c(
                 "button",
@@ -63033,7 +63034,8 @@ var render = function() {
                 },
                 [_vm._v("編集")]
               )
-        ]
+        ],
+        1
       ),
       _vm._v(" "),
       _c(
@@ -63198,6 +63200,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -63208,6 +63211,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: [Array, String],
             default: [],
             required: false
+        },
+        value: {
+            type: String,
+            defalut: ''
         }
     },
     watch: {},
@@ -63225,6 +63232,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 } else {
                     this.$refs.buttons[buttonIndex].classList.remove('selected');
+                }
+            }
+        },
+        setPropClass: function setPropClass(index) {
+            if (this.colorOptions.indexOf(this.value) == index) {
+                return 'selected';
+            } else {
+                return '';
+            }
+        },
+        resetSelected: function resetSelected() {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.$refs.buttons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var button = _step.value;
+
+                    button.classList.remove('selected');
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
                 }
             }
         }
@@ -63247,6 +63287,7 @@ var render = function() {
         ref: "buttons",
         refInFor: true,
         staticClass: "color-button",
+        class: _vm.setPropClass(index),
         style: { background: color },
         on: {
           click: function($event) {

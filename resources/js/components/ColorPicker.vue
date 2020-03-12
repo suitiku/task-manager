@@ -9,6 +9,7 @@
             v-for="(color,index) in colorOptions" 
             v-on:click="selectColor(index)" 
             class="color-button" 
+            v-bind:class="setPropClass(index)"
             v-bind:style="{background:color}">
         </div>
     </div>
@@ -26,6 +27,10 @@
                 type:[Array,String],
                 default:[],
                 required:false
+            },
+            value:{
+                type:String,
+                defalut:'',
             }
         },
         watch:{
@@ -51,7 +56,14 @@
                         this.$refs.buttons[buttonIndex].classList.remove('selected')
                     }
                 }
-            }
+            },
+            setPropClass:function(index){
+                if(this.colorOptions.indexOf(this.value) == index){
+                    return 'selected'
+                }else{
+                    return ''
+                }
+            },
         }
     }
 </script>

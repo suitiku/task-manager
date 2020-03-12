@@ -1,9 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <!--<tag-management user_id="1" />-->
-        {{selectedColor}}
-        <color-picker v-model="selectedColor" v-bind:colorOptions="colorOptions" />
+        <tag-management user_id="1" />
+        <!--<color-picker v-model="selectedColor" v-bind:colorOptions="colorOptions" />-->
         
         <notice ref="notice" />
         <!--モーダル-->
