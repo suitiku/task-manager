@@ -18,7 +18,8 @@ class CreateTagsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('name');
             $table->text('overview')->nullable();
-            $table->enum('color',['black','white','orange','red','grey','green','blue','yellow','pink']);
+            // $table->enum('color',['black','white','orange','red','grey','green','blue','yellow','pink']);
+            $table->enum('color',['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc']);
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');

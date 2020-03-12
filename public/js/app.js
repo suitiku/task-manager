@@ -62693,7 +62693,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tag-wrapper[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:1em;\n    cursor:pointer;\n}\n.tag-wrapper span[data-v-6bee1ebc] {\n    font-family: Impact,Charcoal;\n}\n.tag[data-v-6bee1ebc] {\n    margin-right:0.3em;\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.3em;\n    opacity:0.8;\n}\ninput[data-v-6bee1ebc],textarea[data-v-6bee1ebc] {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n\n", ""]);
+exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tag-wrapper[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:1em;\n    cursor:pointer;\n}\n.tag-wrapper span[data-v-6bee1ebc] {\n    font-family: Impact,Charcoal;\n}\n.tag[data-v-6bee1ebc] {\n    margin-right:0.3em;\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    opacity:0.9;\n}\ninput[data-v-6bee1ebc],textarea[data-v-6bee1ebc] {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.tag span[data-v-6bee1ebc] {\n    font-weight:bold;\n    letter-spacing:0.1em;\n}\n\n", ""]);
 
 // exports
 
@@ -62710,6 +62710,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -62812,16 +62813,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return tag.tasks.length;
             }
         },
-        setFontColor: function setFontColor(backgroundColor) {
-            switch (backgroundColor) {
-                case 'red':
-                case 'green':
-                case 'black':
-                    return 'white';
-                default:
-                    return 'black';
-            }
-        },
+        // setFontColor:function(backgroundColor){
+        //     switch(backgroundColor){
+        //         case 'red':
+        //         case 'green':
+        //         case 'black':
+        //         case 'blue':
+        //             return 'white'
+        //         default:
+        //             return 'black'
+        //     }
+        // },
         showModal: function showModal() {
             var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
@@ -62902,7 +62904,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.init();
 
                                 //終了処理
-                                this.$refs.notice.showNotice('タグを追加しました');
+                                this.$refs.notice.showNotice('タグを編集しました');
                                 this.fetchTags();
 
                                 _context3.next = 15;
@@ -62914,7 +62916,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 //editedTagを初期化
                                 this.init();
-                                this.$refs.notice.showNotice('タグの追加に失敗しました');
+                                this.$refs.notice.showNotice('タグの編集に失敗しました');
                                 console.log(_context3.t0);
 
                             case 15:
@@ -63060,13 +63062,7 @@ var render = function() {
                     }
                   }
                 },
-                [
-                  _c(
-                    "span",
-                    { style: { color: _vm.setFontColor(tag.color) } },
-                    [_vm._v(_vm._s(tag.name))]
-                  )
-                ]
+                [_c("span", [_vm._v(_vm._s(tag.name))])]
               ),
               _vm._v(" "),
               _c("span", [_vm._v(_vm._s(_vm.countTasks(tag)))])

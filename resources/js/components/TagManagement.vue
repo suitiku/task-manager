@@ -17,7 +17,8 @@
         <div class="display-tags">
             <div v-for="(tag,index) in tags" class="tag-wrapper">
                 <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
-                    <span v-bind:style="{color:setFontColor(tag.color)}">{{tag.name}}</span>
+                    <!--<span v-bind:style="{color:setFontColor(tag.color)}">{{tag.name}}</span>-->
+                    <span>{{tag.name}}</span>
                 </div>
                 <span>{{countTasks(tag)}}</span>
             </div>
@@ -92,17 +93,17 @@
                     return tag.tasks.length
                 }
             },
-            setFontColor:function(backgroundColor){
-                switch(backgroundColor){
-                    case 'red':
-                    case 'green':
-                    case 'black':
-                    case 'blue':
-                        return 'white'
-                    default:
-                        return 'black'
-                }
-            },
+            // setFontColor:function(backgroundColor){
+            //     switch(backgroundColor){
+            //         case 'red':
+            //         case 'green':
+            //         case 'black':
+            //         case 'blue':
+            //             return 'white'
+            //         default:
+            //             return 'black'
+            //     }
+            // },
             showModal:function(tag = null){
                 if(tag && tag.id != ''){
                     this.editedTag = JSON.parse(JSON.stringify(tag))
@@ -178,8 +179,8 @@
         display:inline-block;
         padding:0.5em;
         border:1px solid grey;
-        border-radius:0.3em;
-        opacity:0.8;
+        border-radius:0.2em;
+        opacity:0.9;
     }
     input,textarea {
         width:100%;
@@ -188,6 +189,11 @@
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
+    }
+    
+    .tag span {
+        font-weight:bold;
+        letter-spacing:0.1em;
     }
     
 </style>
