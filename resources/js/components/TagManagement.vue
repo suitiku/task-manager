@@ -8,7 +8,7 @@
         <modal ref="modal" v-model="modal">
             <input type="text" v-model="editedTag.name" />
             <textarea v-model="editedTag.overview" />
-            <tag-cloud v-model="editedTag.color" v-bind:options="colorOptions" />
+            <!--<tag-cloud v-model="editedTag.color" v-bind:options="colorOptions" />-->
             <button v-if="editedTag.id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createTag()">登録</button>
             <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editTag()">編集</button>
         </modal>
@@ -17,7 +17,6 @@
         <div class="display-tags">
             <div v-for="(tag,index) in tags" class="tag-wrapper">
                 <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
-                    <!--<span v-bind:style="{color:setFontColor(tag.color)}">{{tag.name}}</span>-->
                     <span>{{tag.name}}</span>
                 </div>
                 <span>{{countTasks(tag)}}</span>
@@ -93,17 +92,6 @@
                     return tag.tasks.length
                 }
             },
-            // setFontColor:function(backgroundColor){
-            //     switch(backgroundColor){
-            //         case 'red':
-            //         case 'green':
-            //         case 'black':
-            //         case 'blue':
-            //             return 'white'
-            //         default:
-            //             return 'black'
-            //     }
-            // },
             showModal:function(tag = null){
                 if(tag && tag.id != ''){
                     this.editedTag = JSON.parse(JSON.stringify(tag))

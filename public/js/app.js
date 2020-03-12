@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(222);
+module.exports = __webpack_require__(227);
 
 
 /***/ }),
@@ -14686,6 +14686,7 @@ Vue.component('sort-array', __webpack_require__(202));
 Vue.component('sort-box', __webpack_require__(207));
 Vue.component('tool-tip', __webpack_require__(212));
 Vue.component('tag-management', __webpack_require__(217));
+Vue.component('color-picker', __webpack_require__(222));
 
 var app = new Vue({
   el: '#app'
@@ -55010,6 +55011,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -55020,9 +55023,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tasks: '',
             tags: [],
             selectedTagId: 0,
+            selectedColor: '',
             sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }]
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }],
+            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc']
         };
     },
     created: function () {
@@ -55234,7 +55239,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("tag-management", { attrs: { user_id: "1" } }),
+      _vm._v("\n    " + _vm._s(_vm.selectedColor) + "\n    "),
+      _c("color-picker", {
+        attrs: { colorOptions: _vm.colorOptions },
+        model: {
+          value: _vm.selectedColor,
+          callback: function($$v) {
+            _vm.selectedColor = $$v
+          },
+          expression: "selectedColor"
+        }
+      }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -62738,7 +62753,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62813,17 +62827,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return tag.tasks.length;
             }
         },
-        // setFontColor:function(backgroundColor){
-        //     switch(backgroundColor){
-        //         case 'red':
-        //         case 'green':
-        //         case 'black':
-        //         case 'blue':
-        //             return 'white'
-        //         default:
-        //             return 'black'
-        //     }
-        // },
         showModal: function showModal() {
             var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
@@ -63003,17 +63006,6 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("tag-cloud", {
-            attrs: { options: _vm.colorOptions },
-            model: {
-              value: _vm.editedTag.color,
-              callback: function($$v) {
-                _vm.$set(_vm.editedTag, "color", $$v)
-              },
-              expression: "editedTag.color"
-            }
-          }),
-          _vm._v(" "),
           _vm.editedTag.id == ""
             ? _c(
                 "button",
@@ -63041,8 +63033,7 @@ var render = function() {
                 },
                 [_vm._v("編集")]
               )
-        ],
-        1
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -63096,6 +63087,189 @@ if (false) {
 
 /***/ }),
 /* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(223)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(225)
+/* template */
+var __vue_template__ = __webpack_require__(226)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-023f0f94"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ColorPicker.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-023f0f94", Component.options)
+  } else {
+    hotAPI.reload("data-v-023f0f94", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(224);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("709658c9", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023f0f94\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ColorPicker.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-023f0f94\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ColorPicker.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.color-wrapper[data-v-023f0f94] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.color-button[data-v-023f0f94] {\n    width:2em;\n    height:2em;\n    border-radius:50%;\n    margin:0.2em;\n    cursor:pointer;\n    opacity:0.5;\n    -webkit-transition:all 0.4s;\n    transition:all 0.4s;\n}\n.color-button[data-v-023f0f94]:hover {\n    opacity:1.0;\n    border:2px solid darkgray;\n    -webkit-transition:all 0.4s;\n    transition:all 0.4s;\n}\n.selected[data-v-023f0f94] {\n    opacity:1.0;\n    border:2px solid darkgray;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 225 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {
+        colorOptions: {
+            type: [Array, String],
+            default: [],
+            required: false
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        selectColor: function selectColor(index) {
+            for (var buttonIndex in this.$refs.buttons) {
+                if (buttonIndex == index) {
+                    event.target.classList.toggle('selected');
+                    if (event.target.classList.contains('selected')) {
+                        this.$emit('input', this.colorOptions[index]);
+                    } else {
+                        this.$emit('input', '');
+                    }
+                } else {
+                    this.$refs.buttons[buttonIndex].classList.remove('selected');
+                }
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "color-wrapper" },
+    _vm._l(_vm.colorOptions, function(color, index) {
+      return _c("div", {
+        ref: "buttons",
+        refInFor: true,
+        staticClass: "color-button",
+        style: { background: color },
+        on: {
+          click: function($event) {
+            return _vm.selectColor(index)
+          }
+        }
+      })
+    }),
+    0
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-023f0f94", module.exports)
+  }
+}
+
+/***/ }),
+/* 227 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

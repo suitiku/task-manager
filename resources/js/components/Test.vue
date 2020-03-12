@@ -1,7 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <tag-management user_id="1" />
+        <!--<tag-management user_id="1" />-->
+        {{selectedColor}}
+        <color-picker v-model="selectedColor" v-bind:colorOptions="colorOptions" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -24,6 +26,7 @@
                 tasks:'',
                 tags:[],
                 selectedTagId:0,
+                selectedColor:'',
                 sortColumns:[
                     {columnName:'priority',columnLabel:'優先度'},
                     {columnName:'difficulty',columnLabel:'難易度'},
@@ -40,6 +43,7 @@
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
                 ],
+                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc']
             }  
         },
         created:async function(){
