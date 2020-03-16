@@ -15,10 +15,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('name')->comment('プロジェクト名');
             $table->text('overview');
             $table->datetime('dead_line')->comment('プロジェクトの最終締切')->nullable();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

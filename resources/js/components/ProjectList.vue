@@ -22,6 +22,12 @@
                 newProject:{}
             }  
         },
+        props:{
+            user_id:{
+                type:[String,Number],
+                required:false,
+            }  
+        },
         watch:{
             newProject:async function(newVal,oldVal){
                 if(newVal.id){
@@ -45,7 +51,11 @@
         },
         methods: {
             fetchProjects: async function(){
-                let result = await axios.get('/api/projects')
+                // プロジェクトの取得（ユーザーIDでフィルター）
+                if(!this.user_id){return }
+                let result = await axios.get('/api/myprojects',{
+                                                params:{user_id:this.user_id,}
+                                            })
                 this.projects = result.data
             },
             addProject:function(){

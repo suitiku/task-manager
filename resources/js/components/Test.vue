@@ -1,13 +1,21 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <tag-management user_id="1" />
+        <!--<tag-management user_id="1" />-->
         <!--<color-picker v-model="selectedColor" v-bind:colorOptions="colorOptions" />-->
-        
+        {{newTask}}
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
-            <versatile-form table="tasks" idProp="4"/>
+            <versatile-form2 v-model="newTask">
+                <input v-model="newTask.name" type="text" placeholder="タスク名">
+                <textarea v-model="newTask.overview" placeholder="概要" />
+                <star-range v-model="newTask.priority" />
+                <star-range v-model="newTask.difficulty" />
+                <date-picker v-model="newTask.start_date" />
+                <date-picker v-model="newTask.dead_line" />
+                <list-box v-model="newTask.project_id" table="projects" />
+            </versatile-form2>
         </modal>
         <button class="button" v-on:click="showModal()">modal</button>
         <button class="button" v-on:click="filterArray()">filter</button>
@@ -19,6 +27,17 @@
     export default {
         data:function(){
             return {
+                newTask:{
+                    user_id:1,
+                    project_id:'',
+                    name:'',
+                    overview:'',
+                    priority:1,
+                    difficulty:1,
+                    start_date:'',
+                    dead_line:'',
+                    is_template:false,
+                },
                 modal:false,
                 test:'',
                 hoge:'',

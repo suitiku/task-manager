@@ -37,6 +37,7 @@ Route::put('tag_task','Api\TasksController@syncTags');
 Route::post('state_task','Api\TasksController@changeState');
 
 //ユーザー別
+Route::get('myprojects','Api\ProjectsController@getProjectsByUserId');
 Route::get('mytasks','Api\TasksController@getTasksByUserId');
 Route::get('mytags','Api\TagsController@getTagsByUserId');
 

@@ -85,6 +85,11 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        Project::find($id)->delete();
+        return Project::destroy($id);
+    }
+    
+    // ユーザーIDで検索
+    public function getProjectsByUserId(Request $request){
+        return Project::where('user_id',$request->user_id)->with(['tasks.states'])->get();
     }
 }

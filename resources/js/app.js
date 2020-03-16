@@ -21,6 +21,7 @@ Vue.component('project', require('./components/Project.vue'));
 Vue.component('task-list', require('./components/TaskList.vue'));
 Vue.component('task', require('./components/Task.vue'));
 Vue.component('versatile-form', require('./components/VersatileForm.vue'));
+Vue.component('versatile-form2', require('./components/VersatileForm2.vue'));
 Vue.component('test', require('./components/Test.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('star-range', require('./components/StarRange.vue'));
