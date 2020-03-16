@@ -170,6 +170,7 @@
             newTask:async function(){
                 if(!this.newTask.id){return }
                 try{
+                    console.log('hoge')
                     console.log(this.newTask.id)
                     await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
                 }catch(error){
