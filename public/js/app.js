@@ -51209,25 +51209,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 2:
                                 _context2.prev = 2;
-                                _context2.next = 5;
+
+                                console.log('hoge');
+                                console.log(this.newTask.id);
+                                _context2.next = 7;
                                 return axios.post('/api/state_task', { task_id: this.newTask.id, state_id: 1 });
 
-                            case 5:
-                                _context2.next = 10;
+                            case 7:
+                                _context2.next = 12;
                                 break;
 
-                            case 7:
-                                _context2.prev = 7;
+                            case 9:
+                                _context2.prev = 9;
                                 _context2.t0 = _context2['catch'](2);
 
                                 console.log(_context2.t0);
 
-                            case 10:
+                            case 12:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[2, 7]]);
+                }, _callee2, this, [[2, 9]]);
             }));
 
             function newTask() {
@@ -54015,8 +54018,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54375,14 +54376,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context4.prev = _context4.next) {
                             case 0:
-                                console.log(this.postObject);
+                                // console.log(this.postObject)
                                 //Validation
                                 //配列要素を変換
                                 //空要素をkeyごと削除
                                 _iteratorNormalCompletion6 = true;
                                 _didIteratorError6 = false;
                                 _iteratorError6 = undefined;
-                                _context4.prev = 4;
+                                _context4.prev = 3;
                                 for (_iterator6 = Object.keys(this.postObject)[Symbol.iterator](); !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                                     key = _step6.value;
 
@@ -54393,44 +54394,44 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         this.postObject[key] = this.postObject[key][0];
                                     }
                                 }
-                                _context4.next = 12;
+                                _context4.next = 11;
                                 break;
 
-                            case 8:
-                                _context4.prev = 8;
-                                _context4.t0 = _context4['catch'](4);
+                            case 7:
+                                _context4.prev = 7;
+                                _context4.t0 = _context4['catch'](3);
                                 _didIteratorError6 = true;
                                 _iteratorError6 = _context4.t0;
 
-                            case 12:
+                            case 11:
+                                _context4.prev = 11;
                                 _context4.prev = 12;
-                                _context4.prev = 13;
 
                                 if (!_iteratorNormalCompletion6 && _iterator6.return) {
                                     _iterator6.return();
                                 }
 
-                            case 15:
-                                _context4.prev = 15;
+                            case 14:
+                                _context4.prev = 14;
 
                                 if (!_didIteratorError6) {
-                                    _context4.next = 18;
+                                    _context4.next = 17;
                                     break;
                                 }
 
                                 throw _iteratorError6;
 
+                            case 17:
+                                return _context4.finish(14);
+
                             case 18:
-                                return _context4.finish(15);
+                                return _context4.finish(11);
 
                             case 19:
-                                return _context4.finish(12);
-
-                            case 20:
-                                _context4.next = 22;
+                                _context4.next = 21;
                                 return axios.post('/api/' + this.table, this.postObject);
 
-                            case 22:
+                            case 21:
                                 result = _context4.sent;
 
                                 if (result.data) {
@@ -54438,12 +54439,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.id = result.data.id; //編集用idをセット
                                 }
 
-                            case 24:
+                            case 23:
                             case 'end':
                                 return _context4.stop();
                         }
                     }
-                }, _callee4, this, [[4, 8, 12, 20], [13,, 15, 19]]);
+                }, _callee4, this, [[3, 7, 11, 19], [12,, 14, 18]]);
             }));
 
             function createRecord() {
@@ -54513,13 +54514,6 @@ var render = function() {
         "div",
         { staticClass: "forms" },
         [
-          _vm._v(
-            "\n        " +
-              _vm._s(_vm.id) +
-              "\n        " +
-              _vm._s(_vm.postObject) +
-              "\n        "
-          ),
           _vm._l(_vm.columns, function(column, index) {
             return _c("div", { key: index, staticClass: "column" }, [
               column.COLUMN_TYPE == "tinyint(4)"
@@ -63240,32 +63234,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return 'selected';
             } else {
                 return '';
-            }
-        },
-        resetSelected: function resetSelected() {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.$refs.buttons[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var button = _step.value;
-
-                    button.classList.remove('selected');
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
             }
         }
     }
