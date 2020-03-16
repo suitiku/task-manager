@@ -12,8 +12,6 @@
         <notice ref="editNotice" />
         
         <div class="forms">
-            {{id}}
-            {{postObject}}
             <div v-for="(column,index) in columns" v-bind:key="index" class="column">
                 <!--インライン表示-->
                 <div v-if="column.COLUMN_TYPE == 'tinyint(4)'" class="form-inline">
@@ -155,7 +153,7 @@
                 return column.COLUMN_COMMENT || column.COLUMN_NAME  
             },
             createRecord: async function(){
-                console.log(this.postObject)
+                // console.log(this.postObject)
                 //Validation
                 //配列要素を変換
                 //空要素をkeyごと削除
