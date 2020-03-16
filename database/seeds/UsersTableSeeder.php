@@ -15,6 +15,6 @@ class UsersTableSeeder extends Seeder
         App\User::create($initialUser);
         
         //テストユーザー
-        factory(App\User::class,20)->create();
+        // factory(App\User::class,20)->create();
     }
 }
