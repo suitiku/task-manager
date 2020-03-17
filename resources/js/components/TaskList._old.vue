@@ -8,33 +8,21 @@
         <!--モーダル-->
         <!--新規タスク追加用モーダル-->
         <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" table="tasks">
-                <input v-model="newTask.name" type="text" placeholder="タスク名">
-                <textarea v-model="newTask.overview" placeholder="概要" />
-                <div class="inline">
-                    <span>優先度</span>
-                    <star-range v-model="newTask.priority" />
-                </div>
-                <div class="inline">
-                    <span>難易度</span>
-                    <star-range v-model="newTask.difficulty" />
-                </div>
-                <span>開始日</span>
-                <date-picker v-model="newTask.start_date" />
-                <span>締切</span>
-                <date-picker v-model="newTask.dead_line" />
-                <span>プロジェクトを選択してください</span>
-                <list-box v-model="newTask.project_id" table="projects" />
-            </versatile-form>
+            <versatile-form 
+                v-model="newTask" 
+                ref="newTask" 
+                table="tasks" 
+                v-bind:foreignKeys="foreignKeys" 
+                v-bind:columnOverride="columnOverride"
+            />
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
                 <p>タグを追加します。</p>
                 <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
                 <!--アイテム登録-->
                 <div>
-                    <p>改行区切りでアイテムリストを作成します</p>
                     <text-spliter v-model="items" />
-                    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems">アイテムリストを追加</button>
+                    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems">アイテムを追加</button>
                 </div>
             </div>
         </modal>
@@ -83,6 +71,8 @@
         </div>
         
         <!--リスト表示-->
+        <!--<task v-for="(task,index) in tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
+        <!--<task v-for="(task,index) in displayedTasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
         <div v-for="(task,index) in displayedTasks" class="task">
             <task v-bind:taskId="task.id" v-bind:key="index"/>
             <div class="control-buttons">
@@ -101,9 +91,19 @@
                 filteredTasks:[], //一般フィルターでフィルターしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：タグフィルター後
                 newTask:{},
-                projects:[],
-                defalutProjectId:'', //所属なしのproject_id
                 ids:[], //編集確認用のtask.idの配列
+                columnOverride: [
+                    {user_id:this.user_id},
+                ],
+                foreignKeys:[
+                    {project_id:
+                        {
+                            table:'projects',
+                            columns:['name','dead_line'],
+                            comment:'所属するプロジェクトを選択してください。'
+                        }
+                    }
+                ],
                 taskFilter:'incomplete',
                 tags:[],
                 selectedTags:[],
@@ -143,7 +143,6 @@
         created() {
             this.fetchTasks()
             this.fetchTags()
-            this.fetchProjects()
         },
         watch: {
             // 新規登録モーダルを閉じた際に更新
@@ -198,7 +197,7 @@
             },
             fetchTags: async function(){
                  // タグの取得
-                let result = await axios.get('/api/mytags',{
+                 let result = await axios.get('/api/mytags',{
                                                 params:{user_id:this.user_id,}
                                             })
                 let tagsResult = result.data
@@ -208,27 +207,11 @@
                     this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
             },
-            fetchProjects:async function(){
-                // プロジェクトの取得
-                let result = await axios.get('/api/myprojects',{
-                                                params:{user_id:this.user_id,}
-                                            })
-                this.projects = result.data
-            },
             addTask:function(){
                 // リセット
-                this.newTask = {
-                    user_id:this.user_id,
-                    project_id:'',
-                    name:'',
-                    overview:'',
-                    priority:1,
-                    difficulty:1,
-                    start_date:'',
-                    dead_line:'',
-                    is_template:false,
-                }
+                this.newTask = {}
                 this.selectedTags = []
+                this.$refs.newTask.resetForm()
                 this.$refs.modal.openModal()
             },
             addItems:async function(){
@@ -420,7 +403,7 @@
         text-align:left;
     }
     .tags-and-items {
-        margin:1.5em 0;
+        border:1px solid red;
     }
     .tool-tip-content{
         display:flex;

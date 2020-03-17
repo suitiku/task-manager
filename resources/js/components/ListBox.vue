@@ -117,12 +117,12 @@
         width:100%;
         /*height:2em;*/
         overflow:hidden;
-        border-top:1px solid black;
-        border-left:1px solid black;
-        border-right:1px solid black;
+        border-top:1px solid grey;
+        border-left:1px solid grey;
+        border-right:1px solid grey;
     }
     .item-wrapper:last-of-type {
-        border-bottom:1px solid black;
+        border-bottom:1px solid grey;
     }
     .item {
         width:100%;

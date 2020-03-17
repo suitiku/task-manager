@@ -31,7 +31,7 @@
             <div class="edit-status-modal">
                 <p>状態を変更します</p>
                 <list-box v-model="selectedStatus.id" table="states" v-bind:columns="['name']" />
-                <input v-model="selectedStatus.state_detail" type="text" placeholder="状態についてのコメント（null可）">
+                <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）">
                 <button class="btn btn-primary d-block mx-auto" v-on:click="changeStatus()">状態を変更</button>
             </div>
         </modal>
@@ -44,7 +44,24 @@
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
-            <versatile-form v-model="editedTask" v-bind:foreignKeys="foreignKeys" table="tasks" v-bind:idProp="taskId"/>
+            <versatile-form v-model="editedTask" table="tasks">
+                <input v-model="editedTask.name" type="text" placeholder="タスク名">
+                <textarea v-model="editedTask.overview" placeholder="概要" />
+                <div class="inline">
+                    <span>優先度</span>
+                    <star-range v-model="editedTask.priority" />
+                </div>
+                <div class="inline">
+                    <span>難易度</span>
+                    <star-range v-model="editedTask.difficulty" />
+                </div>
+                <span>開始日</span>
+                <date-picker v-model="editedTask.start_date" />
+                <span>締切</span>
+                <date-picker v-model="editedTask.dead_line" />
+                <span>プロジェクトを選択してください</span>
+                <list-box v-model="editedTask.project_id" table="projects" />
+            </versatile-form>
         </modal>
         
         <!--アイテムリストのアイテム削除確認モーダル-->
@@ -159,7 +176,7 @@
                 deleteModal:false,
                 editModal:false,
                 deleteItemModal:false,
-                editedTask:'',
+                editedTask:{},
                 inactivateTask:'',
                 inactivateItem:[],
                 targetItemId:'',
@@ -175,15 +192,6 @@
                     id:'',
                     state_detail:''
                 },
-                foreignKeys:[
-                    {project_id:
-                        {
-                            table:'projects',
-                            columns:['name','dead_line'],
-                            comment:'所属するプロジェクトを選択してください。'
-                        }
-                    },
-                ]
             }  
         },
         props:{
@@ -197,17 +205,14 @@
                 await this.fetchTask()
                 this.updateData()
             },
-            // task:{
-            //     handler:async function(){
-            //         await this.fetchTask()
-            //         this.updateData()
-            //     },
-            //     deep:true
-            // },
-            editedTask:async function(){
-                await this.fetchTask()
-                this.updateData()
+            //編集用モーダルを閉じたときにアップデート
+            editModal:async function(newVal,oldVal){
+                if(newVal == false){
+                    await this.fetchTask()
+                    this.updateData()
+                }
             },
+            //タグを選択して付け替え
             selectedTags:async function(){
                 if(!this.isEditedTags){return }
                 let tagsObject = {
@@ -263,6 +268,20 @@
             fetchTask:async function(){
                 let result = await axios.get('/api/tasks/' + this.taskId)
                 this.task = result.data
+                //編集モーダル用のデータ作成
+                this.editedTask = {
+                    id:result.data.id,
+                    user_id:result.data.user_id,
+                    project_id:result.data.project.id,
+                    name:result.data.name,
+                    overview:result.data.overview,
+                    priority:result.data.priority,
+                    difficulty:result.data.difficulty,
+                    start_date:result.data.start_date,
+                    dead_line:result.data.dead_line,
+                    is_template:result.data.is_template,
+                }
+                //
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
                 }
@@ -274,7 +293,7 @@
             fetchTags: async function(){
                  // タグの取得
                  let result = await axios.get('/api/mytags',{
-                                                params:{user_id:this.user_id,}
+                                                params:{user_id:this.task.user_id,}
                                             })
                 let tagsResult = result.data
                 
@@ -493,7 +512,7 @@
         width:100%;
         max-height:3.0em;
         overflow:hidden;
-        border:1px solid black;
+        border:1px solid grey;
         /*border-radius:0.2em;*/
         transition:all 1.0s ease;
     }
