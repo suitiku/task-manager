@@ -31,7 +31,8 @@
         created(){
             
         },
-        mounted() {
+        mounted:async function() {
+            // イベントバスを設定
             bus.$on('change-content',this.changeContent)
         },
         methods: {

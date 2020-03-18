@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,10 +64,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        // ]);
+        
+        //新規ユーザーを作成
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        //新規ユーザーに対して「所属なしプロジェクト」を追加
+        Project::create([
+            'user_id' => $user['id'],
+            'name' => '単体タスク',
+            'overview' => 'プロジェクトに所属しないタスク',
+            'dead_line' => null,
+        ]);
+        
+        //ユーザーインスタンスを返す
+        return $user;
+        
     }
 }
