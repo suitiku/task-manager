@@ -1,6 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        {{test}}
+        <date-picker v-model="test" />
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
@@ -27,7 +29,7 @@
                     is_template:false,
                 },
                 modal:false,
-                test:'',
+                test:'2002-10-11 12:00:03',
                 hoge:'',
                 tasks:'',
                 tags:[],

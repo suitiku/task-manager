@@ -54620,6 +54620,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54636,7 +54638,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 is_template: false
             },
             modal: false,
-            test: '',
+            test: '2002-10-11 12:00:03',
             hoge: '',
             tasks: '',
             tags: [],
@@ -54857,6 +54859,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("date-picker", {
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
+      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c("modal", {
@@ -58197,6 +58210,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -58211,14 +58225,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {},
     methods: {
         showNotice: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(message, icon) {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(message, status) {
                 var notice;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 this.message = message || '';
-                                this.icon = icon || '';
+                                this.icon = status || '';
                                 notice = this.$refs.noticeWrapper;
 
                                 notice.className = 'notice-wrapper notice-active';
@@ -58526,7 +58540,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:3px solid grey;\n    background:whitesmoke;\n    border-radius:0.5em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    max-width:22em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:2px solid grey;\n    background:whitesmoke;\n    border-radius:0.3em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    max-width:22em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -58554,12 +58568,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            selectOptions: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
-            selectedOption: 'dateSelecter',
+            options: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
+            selectedOption: 'current',
             deadLine: false,
             result: '',
             japaneseDatetime: ''
@@ -58576,34 +58591,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.result) {
                 var date = new Date(this.result);
                 this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
+                console.log(this.japaneseDatetime);
                 this.$emit('input', this.result);
             }
         },
         selectedOption: function selectedOption() {
-            switch (this.selectedOption) {
-                case 'current':
-                    this.setCurrentDatetime();
-                    break;
-                case 'deadLine':
-                    this.deadLine = true;
-                    break;
-                case 'dateSelecter':
-                    this.deadLine = false;
-                    break;
-            }
-        },
-        value: function value() {
-            if (this.value == '') {
-                this.japaneseDatetime = '';
-            } else {
-                this.japaneseDatetime = this.value;
+            if (this.selectedOption == 'current') {
+                this.setCurrentDatetime();
             }
         }
     },
     created: function created() {},
     mounted: function mounted() {
+        // 初期値設定
         if (this.value) {
-            this.japaneseDatetime = this.value;
+            this.selectedOption = '';
+            var date = new Date(this.value);
+            this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
+        } else {
+            this.setCurrentDatetime();
         }
     },
     methods: {
@@ -58630,12 +58636,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-picker-wrapper" }, [
+    _c("div", { staticClass: "result-display" }, [
+      _vm._v(_vm._s(_vm.japaneseDatetime))
+    ]),
+    _vm._v(" "),
     _c(
       "div",
       { staticClass: "select-option-wrapper" },
       [
         _c("tag-cloud", {
-          attrs: { options: _vm.selectOptions },
+          attrs: { options: _vm.options },
           model: {
             value: _vm.selectedOption,
             callback: function($$v) {
@@ -58657,8 +58667,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: !_vm.deadLine,
-              expression: "!deadLine"
+              value: _vm.selectedOption == "dateSelecter",
+              expression: "selectedOption == 'dateSelecter'"
             }
           ],
           model: {
@@ -58675,8 +58685,8 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.deadLine,
-              expression: "deadLine"
+              value: _vm.selectedOption == "deadLine",
+              expression: "selectedOption == 'deadLine'"
             }
           ],
           model: {
@@ -58689,11 +58699,7 @@ var render = function() {
         })
       ],
       1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "result-display" }, [
-      _vm._v(_vm._s(_vm.japaneseDatetime))
-    ])
+    )
   ])
 }
 var staticRenderFns = []

@@ -4,14 +4,15 @@
 <!--３．リセット機能-->
 <template>
     <div class="date-picker-wrapper">
+        <div class="result-display">{{japaneseDatetime}}</div>
         <div class="select-option-wrapper">
-            <tag-cloud v-model="selectedOption" v-bind:options="selectOptions" />
+            <tag-cloud v-model="selectedOption" v-bind:options="options" />
         </div>
         <div class="component-wrapper">
-            <date-selecter v-model="result" v-show="!deadLine" />
-            <dead-line v-model="result" v-show="deadLine" />
+            <date-selecter v-model="result" v-show="selectedOption == 'dateSelecter'" />
+            <dead-line v-model="result" v-show="selectedOption == 'deadLine'" />
         </div>
-        <div class="result-display">{{japaneseDatetime}}</div>
+        
     </div>
 </template>
 
@@ -19,12 +20,12 @@
     export default {
         data:function(){
             return {
-                selectOptions: [
+                options: [
                     {label:'現在時刻',value:'current'},
                     {label:'シメキリ',value:'deadLine'},
                     {label:'数字入力',value:'dateSelecter'},
                 ],
-                selectedOption:'dateSelecter',
+                selectedOption:'current',
                 deadLine:false,
                 result:'',
                 japaneseDatetime:''
@@ -45,32 +46,22 @@
                 }
             },
             selectedOption:function(){
-                switch(this.selectedOption){
-                    case 'current':
-                        this.setCurrentDatetime()
-                        break
-                    case 'deadLine':
-                        this.deadLine = true
-                        break
-                    case 'dateSelecter':
-                        this.deadLine = false
-                        break
+                if(this.selectedOption == 'current'){
+                    this.setCurrentDatetime()
                 }
             },
-             value:function(){
-                if(this.value == ''){
-                    this.japaneseDatetime = ''
-                }else{
-                    this.japaneseDatetime = this.value
-                }
-            }
         },
         created:function(){
             
         },
         mounted:function(){
+            // 初期値設定
             if(this.value){
-                this.japaneseDatetime = this.value
+                this.selectedOption = ''
+                let date = new Date(this.value)
+                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
+            }else{
+                this.setCurrentDatetime()
             }
         },
         methods: {
@@ -91,9 +82,9 @@
 <style scoped>
     .date-picker-wrapper {
         position:relative;
-        border:3px solid grey;
+        border:2px solid grey;
         background:whitesmoke;
-        border-radius:0.5em;
+        border-radius:0.3em;
         width:100%;
         display:flex;
         flex-direction:column;
