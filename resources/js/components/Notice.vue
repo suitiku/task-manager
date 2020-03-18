@@ -1,15 +1,14 @@
 <!--通知コンポーネント-->
-<!--2秒で消える-->
+<!--4秒で消える-->
 <!--今後の改修ポイント-->
 <!--１．デザイン修正-->
+<!--２．font-awsomeのコードでiconを制御-->
 <template>
     <div class="notice-wrapper" ref="noticeWrapper">
         <div class="notice-content">
-            <div>
-                <i v-if="icon == 'success'" class="far fa-check-circle success"></i>
-                <i v-else-if="icon =='error'" class="fas fa-exclamation-circle error"></i>
-                <span>{{message}}</span>
-            </div>
+            <i v-if="icon == 'success'" class="far fa-check-circle success"></i>
+            <i v-else-if="icon =='error'" class="fas fa-exclamation-circle error"></i>
+            <span>{{message}}</span>
         </div>
     </div>
 </template>
@@ -34,9 +33,9 @@
             
         },
         methods: {
-            showNotice:async function(message,icon){
+            showNotice:async function(message,status){
                 this.message = message || ''
-                this.icon = icon || ''
+                this.icon = status || ''
                 let notice = this.$refs.noticeWrapper
                 notice.className = 'notice-wrapper notice-active'
                 notice.addEventListener('animationend',function(){
@@ -61,21 +60,18 @@
         z-index:50;
         right:5%;
         top:5%;
-        padding:0.5em;
-        /*width:10em;*/
+        padding:1.0em;
         height:3em;
         overflow:hidden;
-        /*border-radius:0.5em;*/
         background:orange;
+        border-radius:0.3em;
     }
     .notice-content {
         width:100%;
         height:100%;
         display:flex;
-        flex-direction:column;
         align-items:center;
         justify-content:center;
-        font-size:75%;
         color:white;
     }
     .notice-active {
@@ -86,7 +82,7 @@
         0% {
             opacity:0;
         }
-        25% {
+        75% {
             opacity:1.0;
         }
         100% {

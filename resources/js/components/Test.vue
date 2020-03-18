@@ -1,24 +1,12 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <!--<tag-management user_id="1" />-->
-        <!--<color-picker v-model="selectedColor" v-bind:colorOptions="colorOptions" />-->
-        {{newTask}}
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
-            <versatile-form2 v-model="newTask">
-                <input v-model="newTask.name" type="text" placeholder="タスク名">
-                <textarea v-model="newTask.overview" placeholder="概要" />
-                <star-range v-model="newTask.priority" />
-                <star-range v-model="newTask.difficulty" />
-                <date-picker v-model="newTask.start_date" />
-                <date-picker v-model="newTask.dead_line" />
-                <list-box v-model="newTask.project_id" table="projects" />
-            </versatile-form2>
         </modal>
         <button class="button" v-on:click="showModal()">modal</button>
-        <button class="button" v-on:click="filterArray()">filter</button>
+        <button class="button" v-on:click="showNotice()">Notice</button>
         <!--<button class="button" v-on:click="showNotice()">notice</button>-->
     </div>
 </template>
@@ -98,7 +86,7 @@
                 this.$refs.modal.openModal()
             },
             showNotice:function(){
-                this.$refs.notice.showNotice('実行中')
+                this.$refs.notice.showNotice('だめです！','error')
             },
             showToolTip:function(){
                 this.$refs.tooltip.toggleToolTipVisible()

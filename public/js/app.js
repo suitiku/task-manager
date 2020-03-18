@@ -51116,8 +51116,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54622,18 +54620,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54847,7 +54833,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.modal.openModal();
         },
         showNotice: function showNotice() {
-            this.$refs.notice.showNotice('実行中');
+            this.$refs.notice.showNotice('だめです！', 'error');
         },
         showToolTip: function showToolTip() {
             this.$refs.tooltip.toggleToolTipVisible();
@@ -54871,132 +54857,18 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._v("\n    " + _vm._s(_vm.newTask) + "\n    "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "modal",
-          model: {
-            value: _vm.modal,
-            callback: function($$v) {
-              _vm.modal = $$v
-            },
-            expression: "modal"
-          }
-        },
-        [
-          _c(
-            "versatile-form2",
-            {
-              model: {
-                value: _vm.newTask,
-                callback: function($$v) {
-                  _vm.newTask = $$v
-                },
-                expression: "newTask"
-              }
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.newTask.name,
-                    expression: "newTask.name"
-                  }
-                ],
-                attrs: { type: "text", placeholder: "タスク名" },
-                domProps: { value: _vm.newTask.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.newTask, "name", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.newTask.overview,
-                    expression: "newTask.overview"
-                  }
-                ],
-                attrs: { placeholder: "概要" },
-                domProps: { value: _vm.newTask.overview },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.newTask, "overview", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("star-range", {
-                model: {
-                  value: _vm.newTask.priority,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "priority", $$v)
-                  },
-                  expression: "newTask.priority"
-                }
-              }),
-              _vm._v(" "),
-              _c("star-range", {
-                model: {
-                  value: _vm.newTask.difficulty,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "difficulty", $$v)
-                  },
-                  expression: "newTask.difficulty"
-                }
-              }),
-              _vm._v(" "),
-              _c("date-picker", {
-                model: {
-                  value: _vm.newTask.start_date,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "start_date", $$v)
-                  },
-                  expression: "newTask.start_date"
-                }
-              }),
-              _vm._v(" "),
-              _c("date-picker", {
-                model: {
-                  value: _vm.newTask.dead_line,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "dead_line", $$v)
-                  },
-                  expression: "newTask.dead_line"
-                }
-              }),
-              _vm._v(" "),
-              _c("list-box", {
-                attrs: { table: "projects" },
-                model: {
-                  value: _vm.newTask.project_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "project_id", $$v)
-                  },
-                  expression: "newTask.project_id"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
+      _c("modal", {
+        ref: "modal",
+        model: {
+          value: _vm.modal,
+          callback: function($$v) {
+            _vm.modal = $$v
+          },
+          expression: "modal"
+        }
+      }),
       _vm._v(" "),
       _c(
         "button",
@@ -55017,11 +54889,11 @@ var render = function() {
           staticClass: "button",
           on: {
             click: function($event) {
-              return _vm.filterArray()
+              return _vm.showNotice()
             }
           }
         },
-        [_vm._v("filter")]
+        [_vm._v("Notice")]
       )
     ],
     1
@@ -58294,7 +58166,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan[data-v-2ed81903] {\n    margin-left:0.5em;\n}\ni[data-v-2ed81903] {\n    font-size:150%;\n    color:grey;\n}\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:5%;\n    top:5%;\n    padding:0.5em;\n    /*width:10em;*/\n    height:3em;\n    overflow:hidden;\n    /*border-radius:0.5em;*/\n    background:orange;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    height:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    font-size:75%;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 3s;\n            animation:notice-data-v-2ed81903 3s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n25% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
+exports.push([module.i, "\nspan[data-v-2ed81903] {\n    margin-left:0.5em;\n}\ni[data-v-2ed81903] {\n    font-size:150%;\n    color:grey;\n}\n.notice-wrapper[data-v-2ed81903] {\n    display:none;\n    position:fixed;\n    z-index:50;\n    right:5%;\n    top:5%;\n    padding:1.0em;\n    height:3em;\n    overflow:hidden;\n    background:orange;\n    border-radius:0.3em;\n}\n.notice-content[data-v-2ed81903] {\n    width:100%;\n    height:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    color:white;\n}\n.notice-active[data-v-2ed81903] {\n    display:block;\n    -webkit-animation:notice-data-v-2ed81903 3s;\n            animation:notice-data-v-2ed81903 3s;\n}\n@-webkit-keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n75% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes notice-data-v-2ed81903 {\n0% {\n        opacity:0;\n}\n75% {\n        opacity:1.0;\n}\n100% {\n        opacity:0;\n}\n}\n\n", ""]);
 
 // exports
 
@@ -58311,8 +58183,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -58384,15 +58254,13 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { ref: "noticeWrapper", staticClass: "notice-wrapper" }, [
     _c("div", { staticClass: "notice-content" }, [
-      _c("div", [
-        _vm.icon == "success"
-          ? _c("i", { staticClass: "far fa-check-circle success" })
-          : _vm.icon == "error"
-          ? _c("i", { staticClass: "fas fa-exclamation-circle error" })
-          : _vm._e(),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(_vm.message))])
-      ])
+      _vm.icon == "success"
+        ? _c("i", { staticClass: "far fa-check-circle success" })
+        : _vm.icon == "error"
+        ? _c("i", { staticClass: "fas fa-exclamation-circle error" })
+        : _vm._e(),
+      _vm._v(" "),
+      _c("span", [_vm._v(_vm._s(_vm.message))])
     ])
   ])
 }
