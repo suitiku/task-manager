@@ -311,14 +311,15 @@
                 if(event.target.checked == true){
                     let postObject = {
                         task_id:this.taskId,
-                        state_id:3,
+                        state_id:2,
                     }
                     
                     try{
                         await axios.post('/api/state_task',postObject)
-                        this.fetchTask()
+                        await this.fetchTask()
+                        this.updateData()
                     }catch(error){
-                        this.$refs.notice.showNotice('タスクの削除に失敗しました')
+                        this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
                         console.log(error)
                     }
                 }
@@ -357,7 +358,7 @@
                 let lastStateIndex = this.task.states.length - 1
                 this.toolTipContent = this.task.states[lastStateIndex].state_detail //ツールチップに表示するコメント
                 
-                if(this.task.states[lastStateIndex].id == 3){ //完了タスク
+                if(this.task.states[lastStateIndex].id == 2){ //完了タスク
                     this.mask_class = 'mask mask-active'
                     this.checkbox = true
                     check.checked = 'checked'

@@ -14,16 +14,16 @@
             return {
                 statuses:[],
                 filteredArray:[],
-                selectedStatusIds:[1], //デフォルトは1の実行中
+                selectedStatusIds:[], //デフォルトは1の実行中
             }
         },
         props: {
-            targetArray:{
+            originalArray:{
                 type:[Array,String,Object]
             },
         },
         watch:{
-            selectedStatusIds:async function(newVal,oldVal){
+            selectedStatusIds:async function(){
                 //配列リセット
                 this.filteredArray = []
                 
@@ -31,11 +31,9 @@
                 for(let selectedStatusId of this.selectedStatusIds){
                     await this.filterStatus(selectedStatusId)
                 }
-                console.log(this.filteredArray)
-                
                 //出力
                 if(!this.selectedStatusIds || this.selectedStatusIds.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.targetArray)   
+                    this.$emit('input',this.originalArray)   
                 }else if(this.selectedStatusIds.length == 1){
                     this.$emit('input',this.filteredArray[0])
                 }else{
@@ -43,9 +41,11 @@
                     this.operate()
                 }
             },
-            targetArray:function(){
+            originalArray:async function(){
                 if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.targetArray)   
+                    this.$emit('input',this.originalArray)   
+                }else{
+                    
                 }
             },
         },
@@ -62,7 +62,7 @@
         methods: {
             filterStatus:async function(selectedStatusId){
                 //フィルター
-                this.filteredArray.push(this.targetArray.filter(el => {
+                this.filteredArray.push(this.originalArray.filter(el => {
                     return el.states[el.states.length - 1].id == selectedStatusId
                 }))
             },
@@ -94,12 +94,11 @@
                     ids = resultIds
                 }
                 // idから配列を復元して出力
-                for(let el of this.targetArray){
+                for(let el of this.originalArray){
                     if(resultIds.indexOf(el.id) != -1){
                         result.push(el)
                     }
                 }
-                console.log(result)
                 this.$emit('input',result)
             },
         }

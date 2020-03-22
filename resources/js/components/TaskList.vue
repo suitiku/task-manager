@@ -79,7 +79,9 @@
             <!--フィルター-->
             <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
             <!--ソート-->
-            <sort-box v-model="displayedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
+            <sort-box v-model="sortedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
+            <!--ステースタフィルター-->
+            <filter-status v-model="displayedTasks" v-bind:originalArray="sortedTasks" />
         </div>
         
         <!--リスト表示-->
@@ -98,8 +100,9 @@
             return {
                 modal:false,
                 tasks:[], //tasksから取得したオリジナルの配列
-                filteredTasks:[], //一般フィルターでフィルターしたタスク配列
-                displayedTasks:[], //表示用タスクの配列：タグフィルター後
+                filteredTasks:[], //フィルターしたタスク配列
+                sortedTasks:[], //ソートしたタスク配列
+                displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
                 newTask:{},
                 projects:[],
                 defalutProjectId:'', //所属なしのproject_id
