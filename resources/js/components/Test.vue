@@ -1,8 +1,13 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        {{test}}
-        <date-picker v-model="test" />
+        
+        <filter-status v-model="filteredTasks" v-bind:targetArray="tasks" />
+        
+        <div v-for="filteredTask in filteredTasks">
+            {{filteredTask.name}}
+        </div>
+        
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
@@ -17,23 +22,13 @@
     export default {
         data:function(){
             return {
-                newTask:{
-                    user_id:1,
-                    project_id:'',
-                    name:'',
-                    overview:'',
-                    priority:1,
-                    difficulty:1,
-                    start_date:'',
-                    dead_line:'',
-                    is_template:false,
-                },
                 modal:false,
-                test:'2002-10-11 12:00:03',
+                test:'',
                 hoge:'',
                 tasks:'',
                 tags:[],
                 selectedTagId:0,
+                filteredTasks:[],
                 selectedColor:'',
                 sortColumns:[
                     {columnName:'priority',columnLabel:'優先度'},
