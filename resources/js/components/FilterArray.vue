@@ -83,50 +83,10 @@
         watch:{
             //個別にフィルター
             filters:function(){
-                //リセット
-                this.filteredArray = []
-                //フィルターがない場合は全部出力
-                if(!this.filters || this.filters.length == 0){
-                    this.$emit('input',this.targetArray)
-                    return 
-                }
-                
-                for(let filter of this.filters){
-                    //オペレータによって分岐
-                    switch(filter.comparisonOperator){
-                        case '<':
-                            this.filteredArray.push(this.targetArray.filter(el => {
-                                return el[filter.columnName] < filter.comparisonValue
-                            }))
-                            break
-                        case '<=':
-                            this.filteredArray.push(this.targetArray.filter(el => {
-                                return el[filter.columnName] <= filter.comparisonValue
-                            }))
-                            break
-                        case '=':
-                            this.filteredArray.push(this.targetArray.filter(el => {
-                                return el[filter.columnName] == filter.comparisonValue
-                            }))
-                            break
-                        case '>=':
-                            this.filteredArray.push(this.targetArray.filter(el => {
-                                return el[filter.columnName] >= filter.comparisonValue
-                            }))
-                            break
-                        case '>':
-                            this.filteredArray.push(this.targetArray.filter(el => {
-                                return el[filter.columnName] > filter.comparisonValue
-                            }))
-                            break
-                    }
-                }
-                this.operate()
+                this.filterArray()
             },
             targetArray:function(){
-                if(!this.filteres || this.filters.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.targetArray)   
-                }
+                this.filterArray()
             },
             columnName:function(){
                 this.comparisonValue = ''
@@ -160,6 +120,49 @@
                 this.filteredArray.push({})
                 this.filters.push(filter)
                 this.filterOperators.push('+')
+            },
+            filterArray:function(){
+                 //リセット
+                this.filteredArray = []
+                
+                //フィルターが設定されていない場合は全部出力
+                if(!this.filters || this.filters.length == 0){ 
+                    this.$emit('input',this.targetArray)   
+                    return
+                }
+                
+                //filters配列を回す
+                for(let filter of this.filters){
+                    //オペレータによって分岐
+                    switch(filter.comparisonOperator){
+                        case '<':
+                            this.filteredArray.push(this.targetArray.filter(el => {
+                                return el[filter.columnName] < filter.comparisonValue
+                            }))
+                            break
+                        case '<=':
+                            this.filteredArray.push(this.targetArray.filter(el => {
+                                return el[filter.columnName] <= filter.comparisonValue
+                            }))
+                            break
+                        case '=':
+                            this.filteredArray.push(this.targetArray.filter(el => {
+                                return el[filter.columnName] == filter.comparisonValue
+                            }))
+                            break
+                        case '>=':
+                            this.filteredArray.push(this.targetArray.filter(el => {
+                                return el[filter.columnName] >= filter.comparisonValue
+                            }))
+                            break
+                        case '>':
+                            this.filteredArray.push(this.targetArray.filter(el => {
+                                return el[filter.columnName] > filter.comparisonValue
+                            }))
+                            break
+                    }
+                }
+                this.operate()
             },
             // 配列をAnd/Or演算して出力
             operate:function(){

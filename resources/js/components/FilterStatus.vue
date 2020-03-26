@@ -24,29 +24,10 @@
         },
         watch:{
             selectedStatusIds:async function(){
-                //配列リセット
-                this.filteredArray = []
-                
-                //個別にフィルター
-                for(let selectedStatusId of this.selectedStatusIds){
-                    await this.filterStatus(selectedStatusId)
-                }
-                //出力
-                if(!this.selectedStatusIds || this.selectedStatusIds.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.originalArray)   
-                }else if(this.selectedStatusIds.length == 1){
-                    this.$emit('input',this.filteredArray[0])
-                }else{
-                    this.$emit('input',[])
-                    this.operate()
-                }
+                this.filterStatus()
             },
             originalArray:async function(){
-                if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.originalArray)   
-                }else{
-                    
-                }
+                this.filterStatus()
             },
         },
         created:function(){
@@ -60,12 +41,33 @@
             }
         },
         methods: {
-            filterStatus:async function(selectedStatusId){
-                //フィルター
-                this.filteredArray.push(this.originalArray.filter(el => {
-                    return el.states[el.states.length - 1].id == selectedStatusId
-                }))
+            filterStatus:async function(){
+                //配列リセット
+                this.filteredArray = []
+                
+                //個別にフィルター
+                for(let selectedStatusId of this.selectedStatusIds){
+                    this.filteredArray.push(this.originalArray.filter(el => {
+                        return el.states[el.states.length - 1].id == selectedStatusId
+                    }))
+                    // await this.filterStatus(selectedStatusId)
+                }
+                //出力
+                if(!this.selectedStatusIds || this.selectedStatusIds.length == 0){ //フィルターが設定されていない場合は全部出力
+                    this.$emit('input',this.originalArray)   
+                }else if(this.selectedStatusIds.length == 1){
+                    this.$emit('input',this.filteredArray[0])
+                }else{
+                    this.$emit('input',[])
+                    this.operate()
+                }
             },
+            // filterStatus:async function(selectedStatusId){
+            //     //フィルター
+            //     this.filteredArray.push(this.originalArray.filter(el => {
+            //         return el.states[el.states.length - 1].id == selectedStatusId
+            //     }))
+            // },
             // 配列をAnd演算して出力
             operate:function(){
                 this.$emit('input',[])

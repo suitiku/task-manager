@@ -86,8 +86,8 @@
         
         <!--リスト表示-->
         <div v-for="(task,index) in displayedTasks" class="task">
-            <task v-bind:taskId="task.id" v-bind:key="index"/>
-            <div class="control-buttons">
+            <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:taskId="task.id" v-bind:key="index"/>
+            <div v-if="task" class="control-buttons">
                 <i class="fas fa-copy" v-on:click="showCopyTaskDialog(task)"></i>
             </div>
         </div>
@@ -149,12 +149,6 @@
             this.fetchProjects()
         },
         watch: {
-            // 新規登録モーダルを閉じた際に更新
-            modal:function(){
-                if(this.modal == false){
-                    this.fetchTasks()
-                }
-            },
             //新規登録画面のタグ登録用
             selectedTags:async function(){
                 if(!this.newTask.id){return }
@@ -174,13 +168,22 @@
             newTask:async function(){
                 if(!this.newTask.id){return }
                 try{
-                    console.log('hoge')
-                    console.log(this.newTask.id)
                     await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
+                    let resultTask = await axios.get('/api/tasks/' + this.newTask.id)
+                    this.tasks.push(resultTask.data)
                 }catch(error){
                     console.log(error)
                 }
-            }
+            },
+            // tasks:async function(){
+            //     // タスクが削除された際に詰める
+            //     // this.tasks.filter(task => task != '')
+            //     for(let index in this.tasks){
+            //         if(this.tasks[index] == ''){
+            //             delete this.tasks[index]
+            //         }
+            //     }
+            // }
         },
         methods: {
             fetchTasks: async function(){
@@ -198,6 +201,10 @@
                 this.templateTasks = result.data.filter(task => {
                     return task.is_template == true
                 })
+            },
+            //フィルター＆ソート
+            updateTasks:async function(){
+                
             },
             fetchTags: async function(){
                  // タグの取得
@@ -356,6 +363,9 @@
                 this.copyTargetTask.is_template = false
                 this.copyTask()
                 this.$refs.templateModal.closeModal()
+            },
+            getTasksIndex:function(id){
+                return this.tasks.findIndex(task => task.id == id)
             }
         }
     }

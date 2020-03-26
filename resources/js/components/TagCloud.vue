@@ -39,16 +39,16 @@
             
         },
         mounted:function(){
-            
         },
         methods: {
             selectOption:function(value){
                 if(this.multiple){
-                    if(!this.result){this.result = []} //初回のみ空配列をセット
+                    this.result = this.value
                     if(event.target.className == 'option selected'){
                         let index = this.result.indexOf(value)
                         this.result.splice(index,1)
                         event.target.className = 'option'
+                        this.$emit('input',this.result)
                         return
                     }
                     

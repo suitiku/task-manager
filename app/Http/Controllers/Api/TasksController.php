@@ -129,7 +129,7 @@ class TasksController extends Controller
     //変更
     public function changeState(Request $request){
         $task = Task::find($request->task_id);
-        $task->states()->attach($request->state_id,['state_detail' => $request->detail]);
+        $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
     }
     
     // ユーザーIDで検索

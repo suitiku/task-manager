@@ -38,28 +38,10 @@
         },
         watch:{
             selectedTagIds:async function(newVal,oldVal){
-                //配列リセット
-                this.filteredArray = []
-                
-                //個別にフィルター
-                for(let selectedTagId of this.selectedTagIds){
-                    await this.filterTag(selectedTagId)
-                }
-                
-                //and/or演算
-                if(!this.selectedTagIds || this.selectedTagIds.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.targetArray)   
-                }else if(this.selectedTagIds.length == 1){
-                    this.$emit('input',this.filteredArray[0])
-                }else{
-                    this.$emit('input',[])
-                    this.operate()
-                }
+                this.filterTag()
             },
             targetArray:function(){
-                if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.targetArray)   
-                }
+                this.filterTag()
             },
         },
         created:function(){
@@ -72,11 +54,26 @@
             }
         },
         methods: {
-            filterTag:async function(selectedTagId){
-                //フィルター
-                this.filteredArray.push(this.targetArray.filter(el => {
-                    return el.tags.some(tag => tag.id == selectedTagId)
-                }))
+            filterTag:async function(){
+                //配列リセット
+                this.filteredArray = []
+                
+                //個別にフィルター
+                for(let selectedTagId of this.selectedTagIds){
+                    this.filteredArray.push(this.targetArray.filter(el => {
+                        return el.tags.some(tag => tag.id == selectedTagId)
+                    }))
+                }
+                
+                //and/or演算
+                if(!this.selectedTagIds || this.selectedTagIds.length == 0){ //フィルターが設定されていない場合は全部出力
+                    this.$emit('input',this.targetArray)   
+                }else if(this.selectedTagIds.length == 1){
+                    this.$emit('input',this.filteredArray[0])
+                }else{
+                    this.$emit('input',[])
+                    this.operate()
+                }
             },
             // 配列をAnd/Or演算して出力
             operate:function(){

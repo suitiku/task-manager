@@ -21,7 +21,7 @@ class CreateStateTaskTable extends Migration
             $table->timestamps();
             
             $table->foreign('state_id')->references('id')->on('states');
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 

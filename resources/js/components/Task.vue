@@ -80,11 +80,14 @@
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
             <div v-bind:class="mask_class" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
+            <!--<div class="state-icon" v-show="checkbox || notActive">-->
             <div class="state-icon" v-show="checkbox || notActive">
-                <!--完了マーク-->
-                <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
-                <!--エクスクラメーション-->
-                <i v-show="notActive" class="fas fa-2x fa-exclamation-circle"></i>
+                <div>
+                    <!--完了マーク-->
+                    <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
+                    <!--エクスクラメーション-->
+                    <i v-show="notActive" class="fas fa-2x fa-exclamation-circle"></i>
+                </div>
                 <!--状態詳細-->
                 <span>{{stateDetail}}</span>
             </div>
@@ -210,11 +213,13 @@
                 if(newVal == false){
                     await this.fetchTask()
                     this.updateData()
+                    this.$emit('input',this.task)
                 }
             },
             //タグを選択して付け替え
             selectedTags:async function(){
-                if(!this.isEditedTags){return }
+                // if(!this.isEditedTags){return }
+                if(!this.editTagModal){return }
                 let tagsObject = {
                     task_id:this.task.id,
                     tag_ids:this.selectedTags
@@ -228,10 +233,11 @@
                 }
             },
             // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
-            editTagModal:function(newVal,oldVal){
+            editTagModal:async function(newVal,oldVal){
                 if(newVal == false){
                     this.isEditedTags = false
-                    this.fetchTask()
+                    await this.fetchTask()
+                    this.$emit('input',this.task)
                 }
             }
         },
@@ -281,11 +287,13 @@
                     dead_line:result.data.dead_line,
                     is_template:result.data.is_template,
                 }
-                //
+                //子アイテムの編集モード管理配列
+                this.editItemMode = []
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
                 }
                 //設定済みのタグの取得
+                this.selectedTags = []
                 for(let tag of this.task.tags){
                     this.selectedTags.push(tag.id)
                 }
@@ -318,6 +326,7 @@
                         await axios.post('/api/state_task',postObject)
                         await this.fetchTask()
                         this.updateData()
+                        this.$emit('input',this.task)
                     }catch(error){
                         this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
                         console.log(error)
@@ -356,7 +365,6 @@
                 let task_datetime = new Date(this.task.start_date)
                 //statesの最後の状態を取得
                 let lastStateIndex = this.task.states.length - 1
-                this.toolTipContent = this.task.states[lastStateIndex].state_detail //ツールチップに表示するコメント
                 
                 if(this.task.states[lastStateIndex].id == 2){ //完了タスク
                     this.mask_class = 'mask mask-active'
@@ -372,7 +380,7 @@
                     this.mask_class = 'mask mask-active'
                     this.notActive = true
                     check.disabled = true
-                    this.stateDetail = this.task.states[lastStateIndex].state_detail
+                    this.stateDetail = this.task.states[lastStateIndex].pivot.state_detail
                 }
             },
             showDeleteTaskDialog:function(){
@@ -386,8 +394,9 @@
                     // 削除が成功した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('タスクを削除しました')
-                    // 通知が終わった後に���らを削除（不可視化）
+                    // 通知が終わった後に自らを削除（不可視化）
                     this.inactivateTask = {display:'none'}
+                    this.$emit('input','')
                 }else{
                     // 削除が失敗した場合
                     // noticeで通知
@@ -414,7 +423,7 @@
                     // 通知が終わった後に自らを削除（不可視化）
                     this.inactivateItem[this.targetItemId] = {display:'none'}
                 }else{
-                    // ��除が失敗した場合
+                    // 削除失敗した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('アイテムの削除に失敗しました')
                 }
@@ -491,9 +500,10 @@
                     try{
                         await axios.post('/api/state_task',postObject)
                         this.$refs.notice.showNotice('タスクステータスを更新しました')
-                        this.fetchTask()
+                        await this.fetchTask()
+                        this.updateData()
                         this.selectedStatus = {id:'',state_detail:''} //リセット
-                        this.$refs.editStatusModal.closeModal()// モータル閉じる
+                        this.$emit('input',this.task)
                     }catch(error){
                         this.$refs.notice.showNotice('タスクステータスの更新に失敗しました')
                         console.log(error)
@@ -625,6 +635,10 @@
         left:calc(50% - 2em);
         z-index:3;
         opacity:1.0;
+        /*transform-origin:center;*/
+        /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/
+    }
+    .state-icon div {
         transform-origin:center;
         animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;
     }
