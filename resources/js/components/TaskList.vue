@@ -175,15 +175,14 @@
                     console.log(error)
                 }
             },
-            // tasks:async function(){
-            //     // タスクが削除された際に詰める
-            //     // this.tasks.filter(task => task != '')
-            //     for(let index in this.tasks){
-            //         if(this.tasks[index] == ''){
-            //             delete this.tasks[index]
-            //         }
-            //     }
-            // }
+            tasks:async function(){
+                // タスクが削除された際にインデックスを詰める
+                for(let index in this.tasks){
+                    if(this.tasks[index] == ''){
+                        this.tasks.splice(index,1)
+                    }
+                }
+            }
         },
         methods: {
             fetchTasks: async function(){
