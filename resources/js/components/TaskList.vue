@@ -105,7 +105,7 @@
                 displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
                 newTask:{},
                 projects:[],
-                defalutProjectId:'', //所属なしのproject_id
+                defaultProjectId:'', //所属なしのproject_id
                 ids:[], //編集確認用のtask.idの配列
                 taskFilter:'incomplete',
                 tags:[],
@@ -223,6 +223,9 @@
                                                 params:{user_id:this.user_id,}
                                             })
                 this.projects = result.data
+                
+                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                this.defaultProjectId = result.data[0].id
             },
             addTask:function(){
                 // リセット
@@ -263,7 +266,7 @@
                         let deadLine = new Date(currentDatetime.getTime() + 43200000) //デフォルトの締切は12時間後
                         let postObject = {
                             user_id:this.user_id,
-                            project_id:1, //デフォルトのプロジェクトは無し
+                            project_id:this.defaultProjectId, //デフォルトのプロジェクトは無し
                             name:this.quickTask,
                             overview:null,
                             priority:3, //デフォルトは3
@@ -271,7 +274,7 @@
                             start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
                             dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
                         }
-                        let result = await axios.post('/api/tasks/',postObject)
+                        let result = await axios.post('/api/tasks',postObject)
                         //1:実行中でstate_taskテーブルに登録
                         await axios.post('/api/state_task',{task_id:result.data.id,state_id:1})
                         //通知処理
@@ -279,7 +282,7 @@
                         this.fetchTasks()
                         this.quickTask = ''
                     }catch(error){
-                        this.$refs.notice.showNotice('アイテムの変更に失敗しました')
+                        this.$refs.notice.showNotice('タスクの追加に失敗しました')
                         console.log(error)
                     }
                 }
