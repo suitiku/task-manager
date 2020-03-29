@@ -51130,7 +51130,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             displayedTasks: [], //表示用タスクの配列：ステータスフィルター後
             newTask: {},
             projects: [],
-            defalutProjectId: '', //所属なしのproject_id
+            defaultProjectId: '', //所属なしのproject_id
             ids: [], //編集確認用のtask.idの配列
             taskFilter: 'incomplete',
             tags: [],
@@ -51271,15 +51271,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
-                                // タスクが削除された際に詰める
+                                // タスクが削除された際にインデックスを詰める
                                 for (index in this.tasks) {
                                     if (this.tasks[index] == '') {
                                         this.tasks.splice(index, 1);
                                     }
                                 }
-                                console.log(this.tasks);
 
-                            case 2:
+                            case 1:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -51454,7 +51453,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 this.projects = result.data;
 
-                            case 4:
+                                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                                this.defaultProjectId = result.data[0].id;
+
+                            case 5:
                             case 'end':
                                 return _context7.stop();
                         }
@@ -51597,7 +51599,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 postObject = {
                                     user_id: this.user_id,
-                                    project_id: 1, //デフォルトのプロジェクトは無し
+                                    project_id: this.defaultProjectId, //デフォルトのプロジェクトは無し
                                     name: this.quickTask,
                                     overview: null,
                                     priority: 3, //デフォルトは3
@@ -51606,7 +51608,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
                                 };
                                 _context9.next = 7;
-                                return axios.post('/api/tasks/', postObject);
+                                return axios.post('/api/tasks', postObject);
 
                             case 7:
                                 result = _context9.sent;
@@ -51625,7 +51627,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _context9.prev = 15;
                                 _context9.t0 = _context9['catch'](1);
 
-                                this.$refs.notice.showNotice('アイテムの変更に失敗しました');
+                                this.$refs.notice.showNotice('タスクの追加に失敗しました');
                                 console.log(_context9.t0);
 
                             case 19:
