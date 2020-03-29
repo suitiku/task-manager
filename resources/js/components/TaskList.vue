@@ -30,6 +30,7 @@
                 <!--タグ登録-->
                 <p>タグを追加します。</p>
                 <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
+                <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
                 <!--アイテム登録-->
                 <div>
                     <p>改行区切りでアイテムリストを作成します</p>
@@ -368,6 +369,27 @@
             },
             getTasksIndex:function(id){
                 return this.tasks.findIndex(task => task.id == id)
+            },
+            createTag:async function(){
+                if(event.keyCode == 13){
+                    let postObject = {
+                        user_id:this.user_id,
+                        name:event.target.value,
+                        color:'#ef857d'
+                    }
+                    try{
+                        let result = await axios.post('/api/tags',postObject)
+                        this.$refs.notice.showNotice('タグを追加しました')
+                        //tagsに追加
+                        this.tags.push({label:result.data.name,value:result.data.id})
+                        // インプットをリセット
+                        this.$refs.newTag.value = ''
+                    }catch(error){
+                        this.$refs.notice.showNotice('タグの追加に失敗しました')
+                        console.log(error)
+                    }
+                    
+                }
             }
         }
     }
@@ -396,6 +418,11 @@
     }
     input {
         margin:0 0.3em;
+        /*width:100%;*/
+        /*display:block;*/
+        /*padding:0.3em;*/
+        /*border:1px solid grey;*/
+        /*border-radius:0.3em;*/
     }
     .add-task-area {
         position:fixed;
@@ -407,6 +434,7 @@
         opacity:0.7;
         padding:1em;
     }
+    
     .add-task-area:hover{
         opacity:1.0;
     }
@@ -440,5 +468,13 @@
     .tool-tip-content{
         display:flex;
         align-items:center;
+    }
+    .input-inline {
+        margin:0.5em 0.3em;
+        width:100%;
+        display:block;
+        padding:0.3em;
+        border:1px solid grey;
+        border-radius:0.3em;
     }
 </style>
