@@ -17,7 +17,7 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('name')->comment('プロジェクト名');
-            $table->text('overview');
+            $table->text('overview')->nullable();
             $table->datetime('dead_line')->comment('プロジェクトの最終締切')->nullable();
             $table->timestamps();
             

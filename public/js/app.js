@@ -51120,6 +51120,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51956,7 +51957,62 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return createTag;
+        }(),
+        createProject: function () {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+                var currentDatetime, deadLine, postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
+                    while (1) {
+                        switch (_context14.prev = _context14.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context14.next = 16;
+                                    break;
+                                }
+
+                                currentDatetime = new Date();
+                                deadLine = new Date(currentDatetime.getTime() + 604800000); //デフォルトの締切は一週間後
+
+                                postObject = {
+                                    user_id: this.user_id,
+                                    name: event.target.value,
+                                    dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                                };
+                                _context14.prev = 4;
+                                _context14.next = 7;
+                                return axios.post('/api/projects', postObject);
+
+                            case 7:
+                                this.$refs.notice.showNotice('プロジェクトを追加しました');
+                                //プロジェクトを再取得
+                                this.$refs.projectsListbox.init();
+                                // インプットをリセット
+                                this.$refs.newProject.value = '';
+                                _context14.next = 16;
+                                break;
+
+                            case 12:
+                                _context14.prev = 12;
+                                _context14.t0 = _context14['catch'](4);
+
+                                this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
+                                console.log(_context14.t0);
+
+                            case 16:
+                            case 'end':
+                                return _context14.stop();
+                        }
+                    }
+                }, _callee14, this, [[4, 12]]);
+            }));
+
+            function createProject() {
+                return _ref14.apply(this, arguments);
+            }
+
+            return createProject;
         }()
+
     }
 });
 
@@ -52107,6 +52163,7 @@ var render = function() {
               _c("span", [_vm._v("プロジェクトを選択してください")]),
               _vm._v(" "),
               _c("list-box", {
+                ref: "projectsListbox",
                 attrs: { table: "projects" },
                 model: {
                   value: _vm.newTask.project_id,
@@ -52114,6 +52171,17 @@ var render = function() {
                     _vm.$set(_vm.newTask, "project_id", $$v)
                   },
                   expression: "newTask.project_id"
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                ref: "newProject",
+                staticClass: "input-inline",
+                attrs: { type: "text", placeholder: "プロジェクトを新規登録" },
+                on: {
+                  keydown: function($event) {
+                    return _vm.createProject()
+                  }
                 }
               })
             ],

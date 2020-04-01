@@ -24,7 +24,8 @@
                 <span>締切</span>
                 <date-picker v-model="newTask.dead_line" />
                 <span>プロジェクトを選択してください</span>
-                <list-box v-model="newTask.project_id" table="projects" />
+                <list-box v-model="newTask.project_id" ref="projectsListbox" table="projects" />
+                <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
             </versatile-form>
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
@@ -390,7 +391,31 @@
                     }
                     
                 }
-            }
+            },
+            createProject:async function(){
+                if(event.keyCode == 13){
+                    let currentDatetime = new Date()
+                    let deadLine = new Date(currentDatetime.getTime() + 604800000) //デフォルトの締切は一週間後
+                    let postObject = {
+                        user_id:this.user_id,
+                        name:event.target.value,
+                        dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                    }
+                    try{
+                        await axios.post('/api/projects',postObject)
+                        this.$refs.notice.showNotice('プロジェクトを追加しました')
+                        //プロジェクトを再取得
+                        this.$refs.projectsListbox.init()
+                        // インプットをリセット
+                        this.$refs.newProject.value = ''
+                    }catch(error){
+                        this.$refs.notice.showNotice('プロジェクトの追加に失敗しました')
+                        console.log(error)
+                    }
+                    
+                }
+            },
+            
         }
     }
 </script>
