@@ -51006,7 +51006,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n    /*width:100%;*/\n    /*display:block;*/\n    /*padding:0.3em;*/\n    /*border:1px solid grey;*/\n    /*border-radius:0.3em;*/\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    position:fixed;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -52848,9 +52848,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             editItemMode: [],
             items: [],
             editTagModal: false,
-            isEditedTags: false,
             tags: [],
-            selectedTags: [],
             editStatusModal: false,
             selectedStatus: {
                 id: '',
@@ -52924,70 +52922,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return editModal;
         }(),
-        //タグを選択して付け替え
-        selectedTags: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-                var tagsObject;
+        // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
+        editTagModal: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(newVal, oldVal) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
-                                if (this.editTagModal) {
-                                    _context3.next = 2;
-                                    break;
-                                }
-
-                                return _context3.abrupt('return');
-
-                            case 2:
-                                tagsObject = {
-                                    task_id: this.task.id,
-                                    tag_ids: this.selectedTags
-                                };
-                                _context3.prev = 3;
-                                _context3.next = 6;
-                                return axios.put('/api/tag_task/', tagsObject);
-
-                            case 6:
-                                this.$refs.notice.showNotice('タグを変更しました');
-                                _context3.next = 13;
-                                break;
-
-                            case 9:
-                                _context3.prev = 9;
-                                _context3.t0 = _context3['catch'](3);
-
-                                this.$refs.notice.showNotice('タグの変更に失敗しました');
-                                console.log(_context3.t0);
-
-                            case 13:
-                            case 'end':
-                                return _context3.stop();
-                        }
-                    }
-                }, _callee3, this, [[3, 9]]);
-            }));
-
-            function selectedTags() {
-                return _ref3.apply(this, arguments);
-            }
-
-            return selectedTags;
-        }(),
-        // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
-        editTagModal: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(newVal, oldVal) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-                    while (1) {
-                        switch (_context4.prev = _context4.next) {
-                            case 0:
                                 if (!(newVal == false)) {
-                                    _context4.next = 5;
+                                    _context3.next = 5;
                                     break;
                                 }
 
                                 this.isEditedTags = false;
-                                _context4.next = 4;
+                                _context3.next = 4;
                                 return this.fetchTask();
 
                             case 4:
@@ -52995,26 +52943,58 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context4.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee4, this);
+                }, _callee3, this);
             }));
 
             function editTagModal(_x3, _x4) {
-                return _ref4.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return editTagModal;
         }()
     },
     created: function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                while (1) {
+                    switch (_context4.prev = _context4.next) {
+                        case 0:
+                            if (!this.taskId) {
+                                _context4.next = 5;
+                                break;
+                            }
+
+                            _context4.next = 3;
+                            return this.fetchTask();
+
+                        case 3:
+                            this.updateData();
+                            this.fetchTags();
+
+                        case 5:
+                        case 'end':
+                            return _context4.stop();
+                    }
+                }
+            }, _callee4, this);
+        }));
+
+        function created() {
+            return _ref4.apply(this, arguments);
+        }
+
+        return created;
+    }(),
+    mounted: function () {
         var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                 while (1) {
                     switch (_context5.prev = _context5.next) {
                         case 0:
-                            if (!this.taskId) {
+                            if (!(this.taskId && !this.task)) {
                                 _context5.next = 5;
                                 break;
                             }
@@ -53034,40 +53014,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }, _callee5, this);
         }));
 
-        function created() {
-            return _ref5.apply(this, arguments);
-        }
-
-        return created;
-    }(),
-    mounted: function () {
-        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
-                while (1) {
-                    switch (_context6.prev = _context6.next) {
-                        case 0:
-                            if (!(this.taskId && !this.task)) {
-                                _context6.next = 5;
-                                break;
-                            }
-
-                            _context6.next = 3;
-                            return this.fetchTask();
-
-                        case 3:
-                            this.updateData();
-                            this.fetchTags();
-
-                        case 5:
-                        case 'end':
-                            return _context6.stop();
-                    }
-                }
-            }, _callee6, this);
-        }));
-
         function mounted() {
-            return _ref6.apply(this, arguments);
+            return _ref5.apply(this, arguments);
         }
 
         return mounted;
@@ -53090,18 +53038,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     methods: {
         fetchTask: function () {
-            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
                 var result, index, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
-                        switch (_context7.prev = _context7.next) {
+                        switch (_context6.prev = _context6.next) {
                             case 0:
-                                _context7.next = 2;
+                                _context6.next = 2;
                                 return axios.get('/api/tasks/' + this.taskId);
 
                             case 2:
-                                result = _context7.sent;
+                                result = _context6.sent;
 
                                 this.task = result.data;
                                 //編集モーダル用のデータ作成
@@ -53126,74 +53074,74 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context7.prev = 11;
+                                _context6.prev = 11;
                                 for (_iterator = this.task.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     tag = _step.value;
 
                                     this.selectedTags.push(tag.id);
                                 }
-                                _context7.next = 19;
+                                _context6.next = 19;
                                 break;
 
                             case 15:
-                                _context7.prev = 15;
-                                _context7.t0 = _context7['catch'](11);
+                                _context6.prev = 15;
+                                _context6.t0 = _context6['catch'](11);
                                 _didIteratorError = true;
-                                _iteratorError = _context7.t0;
+                                _iteratorError = _context6.t0;
 
                             case 19:
-                                _context7.prev = 19;
-                                _context7.prev = 20;
+                                _context6.prev = 19;
+                                _context6.prev = 20;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 22:
-                                _context7.prev = 22;
+                                _context6.prev = 22;
 
                                 if (!_didIteratorError) {
-                                    _context7.next = 25;
+                                    _context6.next = 25;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 25:
-                                return _context7.finish(22);
+                                return _context6.finish(22);
 
                             case 26:
-                                return _context7.finish(19);
+                                return _context6.finish(19);
 
                             case 27:
                             case 'end':
-                                return _context7.stop();
+                                return _context6.stop();
                         }
                     }
-                }, _callee7, this, [[11, 15, 19, 27], [20,, 22, 26]]);
+                }, _callee6, this, [[11, 15, 19, 27], [20,, 22, 26]]);
             }));
 
             function fetchTask() {
-                return _ref7.apply(this, arguments);
+                return _ref6.apply(this, arguments);
             }
 
             return fetchTask;
         }(),
         fetchTags: function () {
-            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
                 var result, tagsResult, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, index;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
-                        switch (_context8.prev = _context8.next) {
+                        switch (_context7.prev = _context7.next) {
                             case 0:
-                                _context8.next = 2;
+                                _context7.next = 2;
                                 return axios.get('/api/mytags', {
                                     params: { user_id: this.task.user_id }
                                 });
 
                             case 2:
-                                result = _context8.sent;
+                                result = _context7.sent;
                                 tagsResult = result.data;
 
                                 //tag-cloudに投入できる形に整形
@@ -53201,55 +53149,55 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _iteratorNormalCompletion2 = true;
                                 _didIteratorError2 = false;
                                 _iteratorError2 = undefined;
-                                _context8.prev = 7;
+                                _context7.prev = 7;
                                 for (_iterator2 = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                                     index = _step2.value;
 
                                     this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
                                 }
-                                _context8.next = 15;
+                                _context7.next = 15;
                                 break;
 
                             case 11:
-                                _context8.prev = 11;
-                                _context8.t0 = _context8['catch'](7);
+                                _context7.prev = 11;
+                                _context7.t0 = _context7['catch'](7);
                                 _didIteratorError2 = true;
-                                _iteratorError2 = _context8.t0;
+                                _iteratorError2 = _context7.t0;
 
                             case 15:
-                                _context8.prev = 15;
-                                _context8.prev = 16;
+                                _context7.prev = 15;
+                                _context7.prev = 16;
 
                                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                                     _iterator2.return();
                                 }
 
                             case 18:
-                                _context8.prev = 18;
+                                _context7.prev = 18;
 
                                 if (!_didIteratorError2) {
-                                    _context8.next = 21;
+                                    _context7.next = 21;
                                     break;
                                 }
 
                                 throw _iteratorError2;
 
                             case 21:
-                                return _context8.finish(18);
+                                return _context7.finish(18);
 
                             case 22:
-                                return _context8.finish(15);
+                                return _context7.finish(15);
 
                             case 23:
                             case 'end':
-                                return _context8.stop();
+                                return _context7.stop();
                         }
                     }
-                }, _callee8, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+                }, _callee7, this, [[7, 11, 15, 23], [16,, 18, 22]]);
             }));
 
             function fetchTags() {
-                return _ref8.apply(this, arguments);
+                return _ref7.apply(this, arguments);
             }
 
             return fetchTags;
@@ -53259,16 +53207,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
         checkTask: function () {
-            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
                 var check, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
                     while (1) {
-                        switch (_context9.prev = _context9.next) {
+                        switch (_context8.prev = _context8.next) {
                             case 0:
                                 check = event;
 
                                 if (!(event.target.checked == true)) {
-                                    _context9.next = 16;
+                                    _context8.next = 16;
                                     break;
                                 }
 
@@ -53276,37 +53224,37 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     task_id: this.taskId,
                                     state_id: 2
                                 };
-                                _context9.prev = 3;
-                                _context9.next = 6;
+                                _context8.prev = 3;
+                                _context8.next = 6;
                                 return axios.post('/api/state_task', postObject);
 
                             case 6:
-                                _context9.next = 8;
+                                _context8.next = 8;
                                 return this.fetchTask();
 
                             case 8:
                                 this.updateData();
                                 this.$emit('input', this.task);
-                                _context9.next = 16;
+                                _context8.next = 16;
                                 break;
 
                             case 12:
-                                _context9.prev = 12;
-                                _context9.t0 = _context9['catch'](3);
+                                _context8.prev = 12;
+                                _context8.t0 = _context8['catch'](3);
 
                                 this.$refs.notice.showNotice('タスクの状態更新に失敗しました');
-                                console.log(_context9.t0);
+                                console.log(_context8.t0);
 
                             case 16:
                             case 'end':
-                                return _context9.stop();
+                                return _context8.stop();
                         }
                     }
-                }, _callee9, this, [[3, 12]]);
+                }, _callee8, this, [[3, 12]]);
             }));
 
             function checkTask() {
-                return _ref9.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return checkTask;
@@ -53318,19 +53266,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(itemId) {
+            var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9(itemId) {
                 var el, modifyData, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
-                        switch (_context10.prev = _context10.next) {
+                        switch (_context9.prev = _context9.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
-                                _context10.next = 4;
+                                _context9.next = 4;
                                 return axios.put('/api/items/' + itemId, modifyData);
 
                             case 4:
-                                result = _context10.sent;
+                                result = _context9.sent;
 
                                 if (result.data) {
                                     el.target.disabled = true;
@@ -53339,14 +53287,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 6:
                             case 'end':
-                                return _context10.stop();
+                                return _context9.stop();
                         }
                     }
-                }, _callee10, this);
+                }, _callee9, this);
             }));
 
             function checkItem(_x5) {
-                return _ref10.apply(this, arguments);
+                return _ref9.apply(this, arguments);
             }
 
             return checkItem;
@@ -53395,17 +53343,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
                     while (1) {
-                        switch (_context11.prev = _context11.next) {
+                        switch (_context10.prev = _context10.next) {
                             case 0:
-                                _context11.next = 2;
+                                _context10.next = 2;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 2:
-                                result = _context11.sent;
+                                result = _context10.sent;
 
                                 if (result.data) {
                                     // 削除が成功した場合
@@ -53423,36 +53371,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
+                                return _context10.stop();
+                        }
+                    }
+                }, _callee10, this);
+            }));
+
+            function deleteTask() {
+                return _ref10.apply(this, arguments);
+            }
+
+            return deleteTask;
+        }(),
+        showEditTaskDialog: function () {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+                    while (1) {
+                        switch (_context11.prev = _context11.next) {
+                            case 0:
+                                this.$refs.editModal.openModal();
+
+                            case 1:
+                            case 'end':
                                 return _context11.stop();
                         }
                     }
                 }, _callee11, this);
             }));
 
-            function deleteTask() {
-                return _ref11.apply(this, arguments);
-            }
-
-            return deleteTask;
-        }(),
-        showEditTaskDialog: function () {
-            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
-                    while (1) {
-                        switch (_context12.prev = _context12.next) {
-                            case 0:
-                                this.$refs.editModal.openModal();
-
-                            case 1:
-                            case 'end':
-                                return _context12.stop();
-                        }
-                    }
-                }, _callee12, this);
-            }));
-
             function showEditTaskDialog() {
-                return _ref12.apply(this, arguments);
+                return _ref11.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -53463,17 +53411,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteItemModal.openModal();
         },
         deleteItem: function () {
-            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
                     while (1) {
-                        switch (_context13.prev = _context13.next) {
+                        switch (_context12.prev = _context12.next) {
                             case 0:
-                                _context13.next = 2;
+                                _context12.next = 2;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
                             case 2:
-                                result = _context13.sent;
+                                result = _context12.sent;
 
                                 if (result.data) {
                                     // 削除が成功した場合
@@ -53490,14 +53438,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context13.stop();
+                                return _context12.stop();
                         }
                     }
-                }, _callee13, this);
+                }, _callee12, this);
             }));
 
             function deleteItem() {
-                return _ref13.apply(this, arguments);
+                return _ref12.apply(this, arguments);
             }
 
             return deleteItem;
@@ -53511,64 +53459,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
         },
         updateItem: function () {
-            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14(itemIndex) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
                     while (1) {
-                        switch (_context14.prev = _context14.next) {
+                        switch (_context13.prev = _context13.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context14.next = 12;
+                                    _context13.next = 12;
                                     break;
                                 }
 
-                                _context14.prev = 1;
-                                _context14.next = 4;
+                                _context13.prev = 1;
+                                _context13.next = 4;
                                 return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
 
                             case 4:
                                 this.$refs.notice.showNotice('アイテムを変更しました');
                                 this.fetchTask();
-                                _context14.next = 12;
+                                _context13.next = 12;
                                 break;
 
                             case 8:
-                                _context14.prev = 8;
-                                _context14.t0 = _context14['catch'](1);
+                                _context13.prev = 8;
+                                _context13.t0 = _context13['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context14.t0);
+                                console.log(_context13.t0);
 
                             case 12:
                             case 'end':
-                                return _context14.stop();
+                                return _context13.stop();
                         }
                     }
-                }, _callee14, this, [[1, 8]]);
+                }, _callee13, this, [[1, 8]]);
             }));
 
             function updateItem(_x6) {
-                return _ref14.apply(this, arguments);
+                return _ref13.apply(this, arguments);
             }
 
             return updateItem;
         }(),
         addItems: function () {
-            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
                 var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, postItem;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
-                        switch (_context15.prev = _context15.next) {
+                        switch (_context14.prev = _context14.next) {
                             case 0:
                                 _iteratorNormalCompletion3 = true;
                                 _didIteratorError3 = false;
                                 _iteratorError3 = undefined;
-                                _context15.prev = 3;
+                                _context14.prev = 3;
                                 _iterator3 = this.items[Symbol.iterator]();
 
                             case 5:
                                 if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
-                                    _context15.next = 23;
+                                    _context14.next = 23;
                                     break;
                                 }
 
@@ -53578,73 +53526,73 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: item,
                                     is_checked: false
                                 };
-                                _context15.prev = 8;
-                                _context15.next = 11;
+                                _context14.prev = 8;
+                                _context14.next = 11;
                                 return axios.post('/api/items', postItem);
 
                             case 11:
                                 this.items = [];
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
                                 this.fetchTask();
-                                _context15.next = 20;
+                                _context14.next = 20;
                                 break;
 
                             case 16:
-                                _context15.prev = 16;
-                                _context15.t0 = _context15['catch'](8);
+                                _context14.prev = 16;
+                                _context14.t0 = _context14['catch'](8);
 
                                 this.$refs.notice.showNotice('アイテムの追加に失敗しました');
-                                console.log(_context15.t0);
+                                console.log(_context14.t0);
 
                             case 20:
                                 _iteratorNormalCompletion3 = true;
-                                _context15.next = 5;
+                                _context14.next = 5;
                                 break;
 
                             case 23:
-                                _context15.next = 29;
+                                _context14.next = 29;
                                 break;
 
                             case 25:
-                                _context15.prev = 25;
-                                _context15.t1 = _context15['catch'](3);
+                                _context14.prev = 25;
+                                _context14.t1 = _context14['catch'](3);
                                 _didIteratorError3 = true;
-                                _iteratorError3 = _context15.t1;
+                                _iteratorError3 = _context14.t1;
 
                             case 29:
-                                _context15.prev = 29;
-                                _context15.prev = 30;
+                                _context14.prev = 29;
+                                _context14.prev = 30;
 
                                 if (!_iteratorNormalCompletion3 && _iterator3.return) {
                                     _iterator3.return();
                                 }
 
                             case 32:
-                                _context15.prev = 32;
+                                _context14.prev = 32;
 
                                 if (!_didIteratorError3) {
-                                    _context15.next = 35;
+                                    _context14.next = 35;
                                     break;
                                 }
 
                                 throw _iteratorError3;
 
                             case 35:
-                                return _context15.finish(32);
+                                return _context14.finish(32);
 
                             case 36:
-                                return _context15.finish(29);
+                                return _context14.finish(29);
 
                             case 37:
                             case 'end':
-                                return _context15.stop();
+                                return _context14.stop();
                         }
                     }
-                }, _callee15, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
+                }, _callee14, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
             }));
 
             function addItems() {
-                return _ref15.apply(this, arguments);
+                return _ref14.apply(this, arguments);
             }
 
             return addItems;
@@ -53669,11 +53617,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.editStatusModal.openModal();
         },
         changeStatus: function () {
-            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var lastStateIndex, currentStatus, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
-                        switch (_context16.prev = _context16.next) {
+                        switch (_context15.prev = _context15.next) {
                             case 0:
                                 // 現在の状態を取得
                                 lastStateIndex = this.task.states.length - 1;
@@ -53681,11 +53629,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 // Statusが選択されていない
 
                                 if (this.selectedStatus.id) {
-                                    _context16.next = 6;
+                                    _context15.next = 6;
                                     break;
                                 }
 
-                                return _context16.abrupt('return');
+                                return _context15.abrupt('return');
 
                             case 6:
                                 postObject = {
@@ -53693,39 +53641,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context16.prev = 7;
-                                _context16.next = 10;
+                                _context15.prev = 7;
+                                _context15.next = 10;
                                 return axios.post('/api/state_task', postObject);
 
                             case 10:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context16.next = 13;
+                                _context15.next = 13;
                                 return this.fetchTask();
 
                             case 13:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context16.next = 22;
+                                _context15.next = 22;
                                 break;
 
                             case 18:
-                                _context16.prev = 18;
-                                _context16.t0 = _context16['catch'](7);
+                                _context15.prev = 18;
+                                _context15.t0 = _context15['catch'](7);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
-                                console.log(_context16.t0);
+                                console.log(_context15.t0);
 
                             case 22:
                             case 'end':
-                                return _context16.stop();
+                                return _context15.stop();
                         }
                     }
-                }, _callee16, this, [[7, 18]]);
+                }, _callee15, this, [[7, 18]]);
             }));
 
             function changeStatus() {
-                return _ref16.apply(this, arguments);
+                return _ref15.apply(this, arguments);
             }
 
             return changeStatus;
@@ -53892,18 +53840,9 @@ var render = function() {
           }
         },
         [
-          _c("p", [_vm._v("タグを編集します。")]),
+          _c("p", [_vm._v("タグの付替えを行います")]),
           _vm._v(" "),
-          _c("tag-cloud", {
-            attrs: { options: _vm.tags, multiple: "" },
-            model: {
-              value: _vm.selectedTags,
-              callback: function($$v) {
-                _vm.selectedTags = $$v
-              },
-              expression: "selectedTags"
-            }
-          })
+          _c("tag-list", { attrs: { taskId: _vm.taskId } })
         ],
         1
       ),
@@ -54883,10 +54822,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54902,7 +54837,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }],
-            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc']
+            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
+            userId: 1
         };
     },
     created: function () {
@@ -55114,22 +55050,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("filter-status", {
-        attrs: { targetArray: _vm.tasks },
-        model: {
-          value: _vm.filteredTasks,
-          callback: function($$v) {
-            _vm.filteredTasks = $$v
-          },
-          expression: "filteredTasks"
-        }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.filteredTasks, function(filteredTask) {
-        return _c("div", [
-          _vm._v("\n        " + _vm._s(filteredTask.name) + "\n    ")
-        ])
-      }),
+      _c("tag-list", { attrs: { taskId: "1" } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -55170,7 +55091,7 @@ var render = function() {
         [_vm._v("Notice")]
       )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -57531,7 +57452,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-list-wrapper[data-v-4aeb7686] {\n    position:relative;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n}\n.add-tag-wrapper[data-v-4aeb7686] {\n    position:relative;\n    height:3em;\n    width:3.5em;\n    margin:0 0.5em;\n}\n.add-tag[data-v-4aeb7686]{\n    position:absolute;\n    bottom:0;\n    -webkit-transform-origin:center bottom;\n            transform-origin:center bottom;\n    overflow:hidden;\n    width:3.5em;\n    height:1.3em;\n    padding:2px;\n    text-align:center;\n    border-radius:0.1em 0.1em 0 0;\n    cursor:pointer;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    background:white;\n}\n.add-tag[data-v-4aeb7686]:hover {\n    height:4.0em;\n    -webkit-transition:all 0.1s;\n    transition:all 0.1s;\n}\n.add-detail[data-v-4aeb7686] {\n    position:absolute;\n    z-index:2;\n    opacity:0.9;\n    bottom:6em;\n    left:-2.75em;\n    display:block;\n    width:10em;\n    max-height:4em;\n    overflow:hidden;\n    background:grey;\n    color:white;\n    text-align:center;\n    border-radius:0.3em;\n    font-size:0.3em;\n    padding:0.3em;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-animation:tag-data-v-4aeb7686 0.4s;\n            animation:tag-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n@keyframes tag-data-v-4aeb7686 {\n0% {\n        -webkit-transform:scale(0,0);\n                transform:scale(0,0);\n}\n100% {\n        -webkit-transform:scale(1.0,1.0);\n                transform:scale(1.0,1.0);\n}\n}\n.display-all-tags-button-wrapper[data-v-4aeb7686] {\n    position:relative;\n    height:3em;\n    width:1em;\n    margin-left:0.5em;\n}\n.display-all-tags-button[data-v-4aeb7686] {\n    position:absolute;\n    bottom:0;\n    text-align:center;\n    font-size:60%;\n    font-weight:bold;\n    width:1em;\n    height:1.3em;\n    border-left:1px solid black;\n    border-top:1px solid black;\n    border-right:1px solid black;\n    overflow:hidden;\n    background:whitesmoke;\n    -webkit-user-select:none;\n       -moz-user-select:none;\n        -ms-user-select:none;\n            user-select:none;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.button-active[data-v-4aeb7686] {\n    height:0.7em;\n    background:orange;\n    -webkit-transition:all 0.2s;\n    transition:all 0.2s;\n}\n.all-tags[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    position:absolute;\n    z-index:2;\n    width:100%;\n    margin-top:1em;\n    background:gainsboro;\n    opacity:0.9;\n    overflow:hidden;\n    -webkit-animation:alltags-data-v-4aeb7686 0.4s;\n            animation:alltags-data-v-4aeb7686 0.4s;\n}\n@-webkit-keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n@keyframes alltags-data-v-4aeb7686 {\n0% {\n        max-height:0;\n}\n100% {\n        max-height:500px;\n}\n}\n.all-tag[data-v-4aeb7686] {\n    margin:0.3em;\n    padding:0.3em;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.tag-list-container[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.tag[data-v-4aeb7686] {\n    color:grey;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.4em;\n    margin:calc(0.2em + 1px) calc(0.3em + 1px);\n    background:white;\n    font-size:75%;\n    opacity:0.5;\n    cursor:pointer;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.selected[data-v-4aeb7686] {\n    opacity:1.0;\n    border:2px solid grey;\n    margin:0.2em 0.3em;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.input-inline[data-v-4aeb7686] {\n    margin:0.5em 0.3em;\n    width:20em;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n\n", ""]);
 
 // exports
 
@@ -57567,96 +57488,106 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            display_tag_number: 0,
+            userId: '',
             tags: [],
-            new_tags: [],
-            add_detail: false,
-            info_detail: false,
-            display_all_tags_button: false,
-            all_tags: false,
-            modal: false
+            selectedTags: []
         };
     },
     props: {
-        id: {
-            type: Number,
+        //タスク単位のタグを管理する
+        taskId: {
+            type: [String, Number],
             required: false
         }
     },
     watch: {
-        id: function id() {
-            this.fetchTags();
-        }
-    },
-    created: function created() {
-        // this.fetchTags()
-    },
-    mounted: function () {
-        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                while (1) {
-                    switch (_context.prev = _context.next) {
-                        case 0:
-                            this.fetchTags();
+        //タグを選択して付け替え
+        selectedTags: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                var tagsObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                if (!(oldVal.length == 0)) {
+                                    _context.next = 2;
+                                    break;
+                                }
 
-                        case 1:
-                        case 'end':
-                            return _context.stop();
+                                return _context.abrupt('return');
+
+                            case 2:
+
+                                // 投入用オブジェクト作成
+                                tagsObject = {
+                                    task_id: this.taskId,
+                                    tag_ids: this.selectedTags
+
+                                    // 書き込み
+                                };
+                                _context.prev = 3;
+                                _context.next = 6;
+                                return axios.put('/api/tag_task/', tagsObject);
+
+                            case 6:
+                                this.$refs.notice.showNotice('タグを変更しました');
+                                _context.next = 13;
+                                break;
+
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](3);
+
+                                this.$refs.notice.showNotice('タグの変更に失敗しました');
+                                console.log(_context.t0);
+
+                            case 13:
+                            case 'end':
+                                return _context.stop();
+                        }
                     }
-                }
-            }, _callee, this);
-        }));
+                }, _callee, this, [[3, 9]]);
+            }));
 
-        function mounted() {
-            return _ref.apply(this, arguments);
-        }
+            function selectedTags(_x, _x2) {
+                return _ref.apply(this, arguments);
+            }
 
-        return mounted;
-    }(),
-    updated: function updated() {},
+            return selectedTags;
+        }()
+    },
+    created: function created() {},
+    mounted: function mounted() {
+        this.init();
+    },
     methods: {
-        fetchTags: function () {
+        init: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                if (this.id) {
-                                    _context2.next = 2;
-                                    break;
-                                }
-
-                                return _context2.abrupt('return');
+                                _context2.next = 2;
+                                return axios.get('/api/tasks/' + this.taskId);
 
                             case 2:
-                                _context2.next = 4;
-                                return axios.get('/api/tasks/' + this.id);
-
-                            case 4:
                                 result = _context2.sent;
 
-                                this.tags = result.data.tags;
-                                this.getDisplayTagNumber();
+                                this.selectedTags = result.data.tags.map(function (el) {
+                                    return el.id;
+                                });
 
-                            case 7:
+                                // userIdを設定
+                                this.userId = result.data.user_id;
+
+                                this.fetchTags();
+
+                            case 6:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -57664,155 +57595,111 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function fetchTags() {
+            function init() {
                 return _ref2.apply(this, arguments);
             }
 
-            return fetchTags;
+            return init;
         }(),
-        openModal: function openModal() {
-            this.$refs.list.resetValue();
-            this.$refs.modal.openModal();
-        },
-        addTags: function () {
+        fetchTags: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag, index, postObject;
-
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 _context3.next = 2;
-                                return this.fetchTags();
+                                return axios.get('/api/mytags', {
+                                    params: { user_id: this.userId }
+                                });
 
                             case 2:
-                                _iteratorNormalCompletion = true;
-                                _didIteratorError = false;
-                                _iteratorError = undefined;
-                                _context3.prev = 5;
+                                result = _context3.sent;
 
-                                for (_iterator = this.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                                    tag = _step.value;
-                                    index = this.new_tags.indexOf(tag.id);
+                                this.tags = result.data;
 
-                                    if (index != -1) {
-                                        this.new_tags.splice(index, 1);
-                                    }
-                                }
-
-                                _context3.next = 13;
-                                break;
-
-                            case 9:
-                                _context3.prev = 9;
-                                _context3.t0 = _context3['catch'](5);
-                                _didIteratorError = true;
-                                _iteratorError = _context3.t0;
-
-                            case 13:
-                                _context3.prev = 13;
-                                _context3.prev = 14;
-
-                                if (!_iteratorNormalCompletion && _iterator.return) {
-                                    _iterator.return();
-                                }
-
-                            case 16:
-                                _context3.prev = 16;
-
-                                if (!_didIteratorError) {
-                                    _context3.next = 19;
-                                    break;
-                                }
-
-                                throw _iteratorError;
-
-                            case 19:
-                                return _context3.finish(16);
-
-                            case 20:
-                                return _context3.finish(13);
-
-                            case 21:
-                                if (!(Object.keys(this.new_tags).length == 0)) {
-                                    _context3.next = 24;
-                                    break;
-                                }
-
-                                this.$refs.modal.closeModal();
-                                return _context3.abrupt('return');
-
-                            case 24:
-                                postObject = {
-                                    task_id: this.id,
-                                    tag_id: this.new_tags
-                                };
-                                _context3.prev = 25;
-                                _context3.next = 28;
-                                return axios.post('/api/tag_task', postObject);
-
-                            case 28:
-                                this.$refs.modal.closeModal();
-                                this.display_tag_number = 0;
-                                this.tags = [];
-                                _context3.next = 33;
-                                return this.fetchTags();
-
-                            case 33:
-                                _context3.next = 38;
-                                break;
-
-                            case 35:
-                                _context3.prev = 35;
-                                _context3.t1 = _context3['catch'](25);
-
-                                console.log(_context3.t1);
-
-                            case 38:
+                            case 4:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[5, 9, 13, 21], [14,, 16, 20], [25, 35]]);
+                }, _callee3, this);
             }));
 
-            function addTags() {
+            function fetchTags() {
                 return _ref3.apply(this, arguments);
             }
 
-            return addTags;
+            return fetchTags;
         }(),
-        displayAllTags: function displayAllTags() {
-            if (event.target.className == 'display-all-tags-button') {
-                event.target.className = 'display-all-tags-button button-active';
-                this.all_tags = true;
+        setClass: function setClass(index) {
+            if (this.selectedTags.indexOf(this.tags[index].id) == -1) {
+                return 'tag';
             } else {
-                event.target.className = 'display-all-tags-button';
-                this.all_tags = false;
+                return 'tag selected';
             }
         },
-        getDisplayTagNumber: function getDisplayTagNumber() {
-            var el = document.getElementsByClassName('tag-list-wrapper');
-            var wrapper_width = el[0].clientWidth;
-            var tag_width = this.getPixel(4.5);
-            this.display_tag_number = Math.floor(wrapper_width / tag_width);
+        selectTag: function selectTag(id) {
+            if (this.selectedTags.indexOf(id) == -1) {
+                this.selectedTags.push(id);
+            } else {
+                this.selectedTags.splice(this.selectedTags.indexOf(id), 1);
+            }
+        },
+        createTag: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var postObject, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context4.next = 15;
+                                    break;
+                                }
 
-            if (this.tags.length < this.display_tag_number) {
-                this.display_tag_number = this.tags.length;
-            } else {
-                this.display_tag_number--; //省略タグ表示ボタン用
-                this.display_all_tags_button = true;
+                                postObject = {
+                                    user_id: this.userId,
+                                    name: event.target.value,
+                                    color: '#ef857d'
+                                };
+                                _context4.prev = 2;
+                                _context4.next = 5;
+                                return axios.post('/api/tags', postObject);
+
+                            case 5:
+                                result = _context4.sent;
+
+                                this.$refs.notice.showNotice('タグを追加しました');
+                                // インプットをリセット
+                                this.$refs.newTag.value = '';
+                                // タグ一覧を更新
+                                this.fetchTags();
+                                _context4.next = 15;
+                                break;
+
+                            case 11:
+                                _context4.prev = 11;
+                                _context4.t0 = _context4['catch'](2);
+
+                                this.$refs.notice.showNotice('タグの追加に失敗しました');
+                                console.log(_context4.t0);
+
+                            case 15:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[2, 11]]);
+            }));
+
+            function createTag() {
+                return _ref4.apply(this, arguments);
             }
-        },
-        getPixel: function getPixel(em) {
-            if (em === undefined) {
-                em = 1;
-            }
-            var div = $('<div style="width:' + em + 'em;"></div>').appendTo('body');
-            var pixel = div.width();
-            div.remove();
-            return pixel;
-        }
+
+            return createTag;
+        }()
+
     }
 });
 
@@ -57826,177 +57713,43 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "tag-list-root-wrapper" },
+    { staticClass: "container" },
     [
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(
-        "modal",
-        {
-          ref: "modal",
-          model: {
-            value: _vm.modal,
-            callback: function($$v) {
-              _vm.modal = $$v
-            },
-            expression: "modal"
-          }
-        },
-        [
-          _c("h3", [_vm._v("追加したいタグを選択してください（複数可）")]),
-          _vm._v(" "),
-          _c("list-box", {
-            ref: "list",
-            attrs: { table: "tags", is_multiple: "" },
-            model: {
-              value: _vm.new_tags,
-              callback: function($$v) {
-                _vm.new_tags = $$v
-              },
-              expression: "new_tags"
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary mx-auto d-block",
-              on: {
-                click: function($event) {
-                  return _vm.addTags()
-                }
-              }
-            },
-            [_vm._v("選択したタグを追加する")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
         "div",
-        { staticClass: "tag-list-wrapper" },
-        [
-          _vm._l(_vm.display_tag_number, function(index) {
-            return _c("tag", {
-              key: index,
-              attrs: { tag: _vm.tags[index - 1], id: _vm.id }
-            })
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "add-tag-wrapper" }, [
-            _c(
-              "div",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.add_detail,
-                    expression: "add_detail"
-                  }
-                ],
-                staticClass: "add-detail"
-              },
-              [_vm._v("タグを追加します")]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "add-tag",
-                on: {
-                  click: function($event) {
-                    return _vm.openModal()
-                  },
-                  mouseover: function($event) {
-                    _vm.add_detail = true
-                  },
-                  mouseleave: function($event) {
-                    _vm.add_detail = false
-                  }
-                }
-              },
-              [_c("i", { staticClass: "fas fa-plus-circle" })]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.display_all_tags_button,
-                  expression: "display_all_tags_button"
-                }
-              ],
-              staticClass: "display-all-tags-button-wrapper"
-            },
-            [
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.info_detail,
-                      expression: "info_detail"
-                    }
-                  ],
-                  staticClass: "add-detail"
-                },
-                [_vm._v("省略されたタグを表示します")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "display-all-tags-button",
-                  on: {
-                    click: function($event) {
-                      return _vm.displayAllTags()
-                    },
-                    mouseover: function($event) {
-                      _vm.info_detail = true
-                    },
-                    mouseleave: function($event) {
-                      _vm.info_detail = false
-                    }
-                  }
-                },
-                [_vm._v("i")]
-              )
-            ]
-          )
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.all_tags,
-              expression: "all_tags"
-            }
-          ],
-          staticClass: "all-tags"
-        },
+        { staticClass: "tag-list-container" },
         _vm._l(_vm.tags, function(tag, index) {
           return _c(
             "div",
-            { staticClass: "all-tag", style: { background: tag.color } },
-            [_vm._v(_vm._s(tag.name))]
+            {
+              ref: "tag",
+              refInFor: true,
+              class: _vm.setClass(index),
+              style: { background: tag.color },
+              on: {
+                click: function($event) {
+                  return _vm.selectTag(tag.id)
+                }
+              }
+            },
+            [_c("span", [_vm._v(_vm._s(tag.name))])]
           )
         }),
         0
-      )
+      ),
+      _vm._v(" "),
+      _c("input", {
+        ref: "newTag",
+        staticClass: "input-inline",
+        attrs: { type: "text", placeholder: "タグを新規登録" },
+        on: {
+          keydown: function($event) {
+            return _vm.createTag()
+          }
+        }
+      })
     ],
     1
   )

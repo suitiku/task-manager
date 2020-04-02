@@ -2,11 +2,7 @@
 <template>
     <div class="container">
         
-        <filter-status v-model="filteredTasks" v-bind:targetArray="tasks" />
-        
-        <div v-for="filteredTask in filteredTasks">
-            {{filteredTask.name}}
-        </div>
+        <tag-list taskId="1" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -46,7 +42,8 @@
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
                 ],
-                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc']
+                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
+                userId:1,
             }  
         },
         created:async function(){

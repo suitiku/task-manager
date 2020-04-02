@@ -38,8 +38,8 @@
         
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
-            <p>タグを編集します。</p>
-            <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
+            <p>タグの付替えを行います</p>
+            <tag-list v-bind:taskId="taskId" />
         </modal>
         
         <!--編集用モーダル-->
@@ -187,9 +187,7 @@
                 editItemMode:[],
                 items:[],
                 editTagModal:false,
-                isEditedTags:false,
                 tags:[],
-                selectedTags:[],
                 editStatusModal:false,
                 selectedStatus:{
                     id:'',
@@ -214,22 +212,6 @@
                     await this.fetchTask()
                     this.updateData()
                     this.$emit('input',this.task)
-                }
-            },
-            //タグを選択して付け替え
-            selectedTags:async function(){
-                // if(!this.isEditedTags){return }
-                if(!this.editTagModal){return }
-                let tagsObject = {
-                    task_id:this.task.id,
-                    tag_ids:this.selectedTags
-                }
-                try{
-                    await axios.put('/api/tag_task/',tagsObject)
-                    this.$refs.notice.showNotice('タグを変更しました')
-                }catch(error){
-                    this.$refs.notice.showNotice('タグの変更に失敗しました')
-                    console.log(error)
                 }
             },
             // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得

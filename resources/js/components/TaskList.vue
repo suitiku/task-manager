@@ -443,11 +443,6 @@
     }
     input {
         margin:0 0.3em;
-        /*width:100%;*/
-        /*display:block;*/
-        /*padding:0.3em;*/
-        /*border:1px solid grey;*/
-        /*border-radius:0.3em;*/
     }
     .add-task-area {
         position:fixed;

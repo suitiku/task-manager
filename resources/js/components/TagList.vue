@@ -1,32 +1,19 @@
-<!--タグリスト表示編集用コンポーネント-->
-<!--今後の改修ポイント-->
-<!--１．削除した際のgetDisplayTagNumber()の起動-->
-<!--２．画面サイズを変更した際のgetDisplayTagNumber()の起動-->
+<!--タグ付け替えコンポーネント-->
+<!--今後の追加機能-->
+<!--①カラーで並べ替え-->
 <template>
-    <div class="tag-list-root-wrapper">
+    <div class="container">
         <!--通知-->
-        <notice ref="notice"></notice>
-        <!--モーダル-->
-        <modal ref="modal" v-model="modal">
-            <h3>追加したいタグを選択してください（複数可）</h3>
-            <list-box ref="list" v-model="new_tags" table="tags" is_multiple/>
-            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTags()">選択したタグを追加する</button>
-        </modal>
-        <!--タグ表示部-->
-        <div class="tag-list-wrapper">
-            <tag v-for="index in display_tag_number" v-bind:tag="tags[index - 1]" v-bind:id="id" v-bind:key="index" />
-            <div class="add-tag-wrapper">
-                <div v-show="add_detail" class="add-detail">タグを追加します</div>
-                <div class="add-tag" v-on:click="openModal()" v-on:mouseover="add_detail = true" v-on:mouseleave="add_detail = false"><i class="fas fa-plus-circle"></i></div>
-            </div>
-            <div class="display-all-tags-button-wrapper" v-show="display_all_tags_button">
-                <div v-show="info_detail" class="add-detail">省略されたタグを表示します</div>
-                <div class="display-all-tags-button" v-on:click="displayAllTags()" v-on:mouseover="info_detail = true" v-on:mouseleave="info_detail = false">i</div>
+        <notice ref="notice" />
+        
+        <!--表示部-->
+        <div class="tag-list-container">
+            <div ref="tag" v-for="(tag,index) in tags" v-bind:class="setClass(index)" v-bind:style="{background:tag.color}" v-on:click="selectTag(tag.id)">
+                <span>{{tag.name}}</span>
             </div>
         </div>
-        <div v-show="all_tags" class="all-tags">
-            <div v-for="(tag,index) in tags" class="all-tag" v-bind:style="{background:tag.color}">{{tag.name}}</div>
-        </div>
+        <!--追加部分-->
+        <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
     </div>
 </template>
 
@@ -34,220 +21,132 @@
     export default {
         data:function(){
             return {
-                display_tag_number:0,
+                userId:'',
                 tags:[],
-                new_tags:[],
-                add_detail:false,
-                info_detail:false,
-                display_all_tags_button:false,
-                all_tags:false,
-                modal:false,
+                selectedTags:[],
             }  
         },
         props: {
-            id: {
-                type:Number,
+            //タスク単位のタグを管理する
+            taskId:{
+                type:[String,Number],
                 required:false
-            },
-        },
-        watch:{
-            id:function(){
-                this.fetchTags()
             }
         },
-        created:function(){
-            // this.fetchTags()
-        },
-        mounted:async function(){
-            this.fetchTags()
-        },
-        updated:function(){
-        },
-        methods: {
-            fetchTags:async function(){
-                if(!this.id){return }
-                let result = await axios.get('/api/tasks/' + this.id)
-                this.tags = result.data.tags
-                this.getDisplayTagNumber()
-            },
-            openModal:function(){
-                this.$refs.list.resetValue()
-                this.$refs.modal.openModal()
-            },
-            addTags:async function(){
-                // バリデーション（重複するとエラーになるので）
-                await this.fetchTags()
-                for(let tag of this.tags){
-                    let index = this.new_tags.indexOf(tag.id)
-                    if(index != -1){
-                        this.new_tags.splice(index,1)
-                    }
+        watch:{
+            //タグを選択して付け替え
+            selectedTags:async function(newVal,oldVal){
+                // 初回は飛ばす
+                if(oldVal.length == 0){return }
+                
+                // 投入用オブジェクト作成
+                let tagsObject = {
+                    task_id:this.taskId,
+                    tag_ids:this.selectedTags
                 }
                 
-                if(Object.keys(this.new_tags).length == 0){
-                    this.$refs.modal.closeModal()
-                    return
-                }
-                
-                let postObject = {
-                    task_id:this.id,
-                    tag_id:this.new_tags
-                }
+                // 書き込み
                 try{
-                    await axios.post('/api/tag_task',postObject)
-                    this.$refs.modal.closeModal()
-                    this.display_tag_number = 0
-                    this.tags = []
-                    await this.fetchTags()
+                    await axios.put('/api/tag_task/',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
                 }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
                     console.log(error)
                 }
             },
-            displayAllTags:function(){
-                if(event.target.className == 'display-all-tags-button'){
-                    event.target.className = 'display-all-tags-button button-active'
-                    this.all_tags = true
-                }else{
-                    event.target.className = 'display-all-tags-button'
-                    this.all_tags = false
-                }  
-            },
-            getDisplayTagNumber:function(){
-                let el = document.getElementsByClassName('tag-list-wrapper')
-                let wrapper_width = el[0].clientWidth
-                let tag_width = this.getPixel(4.5)
-                this.display_tag_number = Math.floor(wrapper_width / tag_width)
+        },
+        created:function(){
+        },
+        mounted:function(){
+            this.init()
+        },
+        methods: {
+            init:async function(){
+                 // タスクに紐付いたタグの取得
+                let result = await axios.get('/api/tasks/' + this.taskId)
+                this.selectedTags = result.data.tags.map(el => el.id)
                 
-                if(this.tags.length < this.display_tag_number){
-                    this.display_tag_number = this.tags.length
+                // userIdを設定
+                this.userId = result.data.user_id
+                
+                this.fetchTags()
+            },
+            fetchTags:async function(){
+                // userIdに基づきすべてタグを取得
+                let result = await axios.get('/api/mytags',{
+                                                params:{user_id:this.userId,}
+                                            })
+                this.tags = result.data
+            },
+            setClass:function(index){
+                if(this.selectedTags.indexOf(this.tags[index].id) == -1){
+                    return 'tag'
                 }else{
-                    this.display_tag_number -- //省略タグ表示ボタン用
-                    this.display_all_tags_button = true
+                    return 'tag selected'
                 }
             },
-            getPixel:function(em) {
-                if (em === undefined) { em = 1; }
-                let div = $('<div style="width:' + em + 'em;"></div>').appendTo('body');
-                let pixel = div.width();
-                div.remove();
-                return pixel;
-            }
+            selectTag:function(id){
+                if(this.selectedTags.indexOf(id) == -1){
+                    this.selectedTags.push(id)
+                }else{
+                    this.selectedTags.splice(this.selectedTags.indexOf(id),1)
+                }
+            },
+            createTag:async function(){
+                if(event.keyCode == 13){
+                    let postObject = {
+                        user_id:this.userId,
+                        name:event.target.value,
+                        color:'#ef857d'
+                    }
+                    try{
+                        let result = await axios.post('/api/tags',postObject)
+                        this.$refs.notice.showNotice('タグを追加しました')
+                        // インプットをリセット
+                        this.$refs.newTag.value = ''
+                        // タグ一覧を更新
+                        this.fetchTags()
+                    }catch(error){
+                        this.$refs.notice.showNotice('タグの追加に失敗しました')
+                        console.log(error)
+                    }
+                    
+                }
+            },
+            
         }
     }
 </script>
 <style scoped>
-    .tag-list-wrapper {
-        position:relative;
-        width:100%;
-        display:flex;
-        justify-content:flex-end;
-    }
-    
-    
-    .add-tag-wrapper {
-        position:relative;
-        height:3em;
-        width:3.5em;
-        margin:0 0.5em;
-    }
-    .add-tag{
-        position:absolute;
-        bottom:0;
-        transform-origin:center bottom;
-        overflow:hidden;
-        width:3.5em;
-        height:1.3em;
-        padding:2px;
-        text-align:center;
-        border-radius:0.1em 0.1em 0 0;
-        cursor:pointer;
-        transition:all 0.3s;
-        border-left:1px solid black;
-        border-top:1px solid black;
-        border-right:1px solid black;
-        background:white;
-    }
-    .add-tag:hover {
-        height:4.0em;
-        transition:all 0.1s;
-    }
-    .add-detail {
-        position:absolute;
-        z-index:2;
-        opacity:0.9;
-        bottom:6em;
-        left:-2.75em;
-        display:block;
-        width:10em;
-        max-height:4em;
-        overflow:hidden;
-        background:grey;
-        color:white;
-        text-align:center;
-        border-radius:0.3em;
-        font-size:0.3em;
-        padding:0.3em;
-        user-select:none;
-        animation:tag 0.4s ;
-    }
-    @keyframes tag {
-        0% {
-            transform:scale(0,0);
-        }
-        100% {
-            transform:scale(1.0,1.0);
-        }
-    }
-    .display-all-tags-button-wrapper {
-        position:relative;
-        height:3em;
-        width:1em;
-        margin-left:0.5em;
-    }
-    .display-all-tags-button {
-        position:absolute;
-        bottom:0;
-        text-align:center;
-        font-size:60%;
-        font-weight:bold;
-        width:1em;
-        height:1.3em;
-        border-left:1px solid black;
-        border-top:1px solid black;
-        border-right:1px solid black;
-        overflow:hidden;
-        background:whitesmoke;
-        user-select:none;
-        transition:all 0.2s;
-    }
-    .button-active {
-        height:0.7em;
-        background:orange;
-        transition:all 0.2s;
-    }
-    .all-tags {
+    .tag-list-container {
         display:flex;
         flex-wrap:wrap;
-        position:absolute;
-        z-index:2;
-        width:100%;
-        margin-top:1em;
-        background:gainsboro;
-        opacity:0.9;
-        overflow:hidden;
-        animation:alltags 0.4s;
     }
-    @keyframes alltags {
-        0% {
-            max-height:0;
-        }
-        100% {
-            max-height:500px;
-        }
+    .tag {
+        color:grey;
+        border:1px solid grey;
+        border-radius:0.3em;
+        padding:0.4em;
+        margin:calc(0.2em + 1px) calc(0.3em + 1px);
+        background:white;
+        font-size:75%;
+        opacity:0.5;
+        cursor:pointer;
+        transition:opacity 0.3s;
     }
-    .all-tag {
-        margin:0.3em;
+    .selected {
+        opacity:1.0;
+        border:2px solid grey;
+        margin:0.2em 0.3em;
+        transition:opacity 0.3s;
+    }
+    .input-inline {
+        margin:0.5em 0.3em;
+        width:20em;
+        display:block;
         padding:0.3em;
+        border:1px solid grey;
         border-radius:0.3em;
     }
+    
 </style>
