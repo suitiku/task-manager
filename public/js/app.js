@@ -53360,7 +53360,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     // noticeで通知
                                     this.$refs.notice.showNotice('タスクを削除しました');
                                     // 通知が終わった後に自らを削除（不可視化）
-                                    this.inactivateTask = { display: 'none' };
+                                    // this.inactivateTask = {display:'none'}
                                     this.$emit('input', '');
                                 } else {
                                     // 削除が失敗した場合
