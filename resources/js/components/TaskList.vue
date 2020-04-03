@@ -7,7 +7,7 @@
         
         <!--モーダル-->
         <!--新規タスク追加用モーダル-->
-        <modal ref="modal" v-model="modal">
+        <modal ref="newTaskModal" v-model="newTaskModal">
             <versatile-form v-model="newTask" table="tasks">
                 <input v-model="newTask.name" type="text" placeholder="タスク名">
                 <textarea v-model="newTask.overview" placeholder="概要" />
@@ -30,8 +30,7 @@
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
                 <p>タグを追加します。</p>
-                <tag-cloud v-model="selectedTags" v-bind:options="tags" multiple/>
-                <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
+                <tag-list v-bind:taskId="newTask.id" />
                 <!--アイテム登録-->
                 <div>
                     <p>改行区切りでアイテムリストを作成します</p>
@@ -100,7 +99,7 @@
     export default {
         data:function(){
             return {
-                modal:false,
+                newTaskModal:false,
                 tasks:[], //tasksから取得したオリジナルの配列
                 filteredTasks:[], //フィルターしたタスク配列
                 sortedTasks:[], //ソートしたタスク配列
@@ -110,8 +109,6 @@
                 defaultProjectId:'', //所属なしのproject_id
                 ids:[], //編集確認用のtask.idの配列
                 taskFilter:'incomplete',
-                tags:[],
-                selectedTags:[],
                 items:[],
                 quickTask:'',
                 filterOptions:[
@@ -147,36 +144,10 @@
         },
         created() {
             this.fetchTasks()
-            this.fetchTags()
+            // this.fetchTags()
             this.fetchProjects()
         },
         watch: {
-            //新規登録画面のタグ登録用
-            selectedTags:async function(){
-                if(!this.newTask.id){return }
-                let tagsObject = {
-                    task_id:this.newTask.id,
-                    tag_ids:this.selectedTags
-                }
-                try{
-                    await axios.put('/api/tag_task/',tagsObject)
-                    this.$refs.notice.showNotice('タグを変更しました')
-                }catch(error){
-                    this.$refs.notice.showNotice('タグの変更に失敗しました')
-                    console.log(error)
-                }
-            },
-            //新規タスクが登録されたら状態を1:実行中で登録
-            newTask:async function(){
-                if(!this.newTask.id){return }
-                try{
-                    await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
-                    let resultTask = await axios.get('/api/tasks/' + this.newTask.id)
-                    this.tasks.push(resultTask.data)
-                }catch(error){
-                    console.log(error)
-                }
-            },
             tasks:async function(){
                 // タスクが削除された際にインデックスを詰める
                 for(let index in this.tasks){
@@ -184,10 +155,29 @@
                         this.tasks.splice(index,1)
                     }
                 }
+            },
+            
+            //新規タスク登録モーダルを閉じた際にtasksに追加
+            newTaskModal:async function(newVal,oldVal){
+                if(newVal == false){
+                    // await this.fetchTasks()
+                    if(!this.newTask.id){return }
+                    try{
+                        //statusを1：実行中で登録
+                        await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
+                        let resultTask = await axios.get('/api/tasks/' + this.newTask.id)
+                        this.tasks.push(resultTask.data)
+                    }catch(error){
+                        console.log(error)
+                    }
+                }
             }
         },
         methods: {
             fetchTasks: async function(){
+                // 初期化
+                this.tasks = []
+                
                 // タスクの取得（ユーザーIDでフィルター）
                 if(!this.user_id){return }
                 let result = await axios.get('/api/mytasks',{
@@ -202,22 +192,6 @@
                 this.templateTasks = result.data.filter(task => {
                     return task.is_template == true
                 })
-            },
-            //フィルター＆ソート
-            updateTasks:async function(){
-                
-            },
-            fetchTags: async function(){
-                 // タグの取得
-                let result = await axios.get('/api/mytags',{
-                                                params:{user_id:this.user_id,}
-                                            })
-                let tagsResult = result.data
-                
-                //tag-cloudに投入できる形に整形
-                for(let index of Object.keys(tagsResult)){
-                    this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
-                }
             },
             fetchProjects:async function(){
                 // プロジェクトの取得
@@ -243,7 +217,7 @@
                     is_template:false,
                 }
                 this.selectedTags = []
-                this.$refs.modal.openModal()
+                this.$refs.newTaskModal.openModal()
             },
             addItems:async function(){
                 for(let item of this.items){

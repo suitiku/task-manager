@@ -34,6 +34,10 @@
             }
         },
         watch:{
+            // 途中でtaskIdが設定されたら初期化
+            taskId:function(){
+                this.init()  
+            },
             //タグを選択して付け替え
             selectedTags:async function(newVal,oldVal){
                 // 初回は飛ばす
@@ -62,6 +66,7 @@
         },
         methods: {
             init:async function(){
+                if(!this.taskId){return }
                  // タスクに紐付いたタグの取得
                 let result = await axios.get('/api/tasks/' + this.taskId)
                 this.selectedTags = result.data.tags.map(el => el.id)
