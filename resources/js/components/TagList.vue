@@ -47,7 +47,7 @@
                 
                 // 書き込み
                 try{
-                    await axios.put('/api/tag_task/',tagsObject)
+                    await axios.put('/api/tag_task',tagsObject)
                     this.$refs.notice.showNotice('タグを変更しました')
                 }catch(error){
                     this.$refs.notice.showNotice('タグの変更に失敗しました')

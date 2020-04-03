@@ -57531,7 +57531,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
                                 _context.prev = 3;
                                 _context.next = 6;
-                                return axios.put('/api/tag_task/', tagsObject);
+                                return axios.put('/api/tag_task', tagsObject);
 
                             case 6:
                                 this.$refs.notice.showNotice('タグを変更しました');
