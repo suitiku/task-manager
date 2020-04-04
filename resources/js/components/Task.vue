@@ -158,6 +158,7 @@
                     </div>
                 </div>
                 <!--ログ-->
+                <task-log v-bind:task="task" class="editable" />
             </div>
         </div>
     </div>

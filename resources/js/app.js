@@ -53,6 +53,8 @@ Vue.component('sort-box', require('./components/SortBox.vue'));
 Vue.component('tool-tip', require('./components/ToolTip.vue'));
 Vue.component('tag-management', require('./components/TagManagement.vue'));
 Vue.component('color-picker', require('./components/ColorPicker.vue'));
+Vue.component('task-log', require('./components/TaskLog.vue'));
+
 
 
 const app = new Vue({

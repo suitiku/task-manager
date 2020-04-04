@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(232);
+module.exports = __webpack_require__(237);
 
 
 /***/ }),
@@ -14688,6 +14688,7 @@ Vue.component('sort-box', __webpack_require__(212));
 Vue.component('tool-tip', __webpack_require__(217));
 Vue.component('tag-management', __webpack_require__(222));
 Vue.component('color-picker', __webpack_require__(227));
+Vue.component('task-log', __webpack_require__(232));
 
 var app = new Vue({
   el: '#app'
@@ -52667,6 +52668,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54212,7 +54214,12 @@ var render = function() {
                 )
               ],
               2
-            )
+            ),
+            _vm._v(" "),
+            _c("task-log", {
+              staticClass: "editable",
+              attrs: { task: _vm.task }
+            })
           ],
           1
         )
@@ -54672,6 +54679,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             test: '',
             hoge: '',
             tasks: '',
+            task: {},
             tags: [],
             selectedTagId: 0,
             filteredTasks: [],
@@ -54698,17 +54706,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             result = _context.sent;
 
                             this.tasks = result.data;
+                            this.task = this.tasks[1];
+                            console.log(this.tasks);
 
                             //タグ全取得
-                            _context.next = 6;
+                            _context.next = 8;
                             return axios.get('/api/tags');
 
-                        case 6:
+                        case 8:
                             tagsResult = _context.sent;
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context.prev = 10;
+                            _context.prev = 12;
 
                             for (_iterator = tagsResult.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                 tag = _step.value;
@@ -54716,48 +54726,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.tags.push({ label: tag.name, value: tag.id });
                             }
 
-                            _context.next = 18;
+                            _context.next = 20;
                             break;
 
-                        case 14:
-                            _context.prev = 14;
-                            _context.t0 = _context['catch'](10);
+                        case 16:
+                            _context.prev = 16;
+                            _context.t0 = _context['catch'](12);
                             _didIteratorError = true;
                             _iteratorError = _context.t0;
 
-                        case 18:
-                            _context.prev = 18;
-                            _context.prev = 19;
+                        case 20:
+                            _context.prev = 20;
+                            _context.prev = 21;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 21:
-                            _context.prev = 21;
+                        case 23:
+                            _context.prev = 23;
 
                             if (!_didIteratorError) {
-                                _context.next = 24;
+                                _context.next = 26;
                                 break;
                             }
 
                             throw _iteratorError;
 
-                        case 24:
-                            return _context.finish(21);
-
-                        case 25:
-                            return _context.finish(18);
-
                         case 26:
-                            this.addFilters(); //状態を追加
+                            return _context.finish(23);
 
                         case 27:
+                            return _context.finish(20);
+
+                        case 28:
+                            this.addFilters(); //状態を追加
+
+                        case 29:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[10, 14, 18, 26], [19,, 21, 25]]);
+            }, _callee, this, [[12, 16, 20, 28], [21,, 23, 27]]);
         }));
 
         function created() {
@@ -54892,7 +54902,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("tag-list", { attrs: { taskId: "1" } }),
+      _c("task-log", { attrs: { task: _vm.task } }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -63287,6 +63297,237 @@ if (false) {
 
 /***/ }),
 /* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(233)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(235)
+/* template */
+var __vue_template__ = __webpack_require__(236)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-5c649d64"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/TaskLog.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5c649d64", Component.options)
+  } else {
+    hotAPI.reload("data-v-5c649d64", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(234);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("d31812d4", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c649d64\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TaskLog.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5c649d64\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TaskLog.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.logs[data-v-5c649d64] {\n    /*opacity:0;*/\n    display:none;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.active[data-v-5c649d64] {\n    /*opacity:1.0;*/\n    display:block;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.logs div[data-v-5c649d64] {\n    margin:0.5em 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 235 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {
+        task: {
+            type: [String, Object],
+            required: true
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        setTaskStatus: function setTaskStatus(state) {
+            if (state.id == 1) {
+                return { color: 'red' };
+            } else {
+                return { color: 'grey' };
+            }
+        },
+        displayLogs: function displayLogs() {
+            this.$refs.logs.classList.toggle('active');
+        }
+    }
+});
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-primary mx-auto d-block",
+        on: {
+          click: function($event) {
+            return _vm.displayLogs()
+          }
+        }
+      },
+      [_vm._v("ログを表示する")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { ref: "logs", staticClass: "logs" },
+      _vm._l(_vm.task.states, function(state, index) {
+        return _c("div", [
+          index == 0
+            ? _c("div", [
+                _c("span", [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(state.pivot.created_at) +
+                      "\n                    "
+                  ),
+                  _c("i", {
+                    staticClass: "fas fa-power-off",
+                    style: _vm.setTaskStatus(state)
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("タスクが作成されました。")])
+                ])
+              ])
+            : _c("div", [
+                _c("span", [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(state.pivot.created_at) +
+                      "\n                    "
+                  ),
+                  _c("i", {
+                    staticClass: "fas fa-power-off",
+                    style: _vm.setTaskStatus(state)
+                  }),
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(state.pivot.state_detail) +
+                      "\n                "
+                  )
+                ])
+              ])
+        ])
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5c649d64", module.exports)
+  }
+}
+
+/***/ }),
+/* 237 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

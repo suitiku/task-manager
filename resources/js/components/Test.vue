@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         
-        <tag-list taskId="1" />
+        <task-log v-bind:task="task" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -22,6 +22,7 @@
                 test:'',
                 hoge:'',
                 tasks:'',
+                task:{},
                 tags:[],
                 selectedTagId:0,
                 filteredTasks:[],
@@ -50,6 +51,8 @@
             //タスク全取得
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
+            this.task = this.tasks[1]
+            console.log(this.tasks)
             
             //タグ全取得
             let tagsResult = await axios.get('/api/tags')
