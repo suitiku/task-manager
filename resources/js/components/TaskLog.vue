@@ -1,11 +1,12 @@
 <!--タスクデータからログ画面を構築する-->
 <!--今後の改修ポイント-->
 <!--①内容を変更したことを記録-->
-<!--②動きをなめらかにする-->
-<!--③表示ボタンをトグルスイッチに-->
 <template>
     <div class="container">
-        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="displayLogs()">ログを表示する</button>
+        <div class="log-button">
+            <span>{{setButtonMessage}}</span>
+            <toggle-switch v-model="openLog" />
+        </div>
         <div ref="logs" class="logs">
             <div v-for="(state,index) in task.states">
                 <!--タスク作成時-->
@@ -33,7 +34,7 @@
     export default {
         data:function(){
             return {
-
+                openLog:false
             }  
         },
         props: {
@@ -43,13 +44,25 @@
             }
         },
         watch:{
-            
+            openLog:function(){
+                if(this.openLog){
+                    let lineNum = this.task.states.length + 3
+                    this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease'
+                }else{
+                    this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease'
+                }
+            }
         },
         created:function(){
             
         },
         mounted:function(){
             
+        },
+        computed:{
+            setButtonMessage:function(){
+                return this.openLog == false ? 'ログを表示' : 'ログを閉じる'
+            }
         },
         methods: {
             setTaskStatus:function(state){
@@ -59,9 +72,6 @@
                     return {color:'grey'}
                 }
             },
-            displayLogs:function(){
-                this.$refs.logs.classList.toggle('active')
-            }
         }
     }
 </script>
@@ -73,19 +83,21 @@
     .container {
         margin:1em 0;
     }
+    .log-button {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .log-button span {
+        margin-right:1em;
+    }
     .logs {
-        /*opacity:0;*/
-        display:none;
+        opacity:0;
+        height:0;
         margin:1em 0;
         overflow:hidden;
         padding:0 1em;
         border:1px solid grey;
-        transition:all 0.3s;
-    }
-    .active {
-        /*opacity:1.0;*/
-        display:block;
-        transition:all 0.3s;
     }
     .logs div {
         margin:0.5em 0;

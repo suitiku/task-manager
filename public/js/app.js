@@ -58277,7 +58277,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.click-area[data-v-657420da] {\n    position:absolute;\n    z-index:2;\n    width:2em;\n    height:1em;\n}\n.toggle-switch[data-v-657420da] {\n    position:relative;\n    width:2em;\n    height:1em;\n    border:1px solid black;\n    overflow:hidden;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-child[data-v-657420da] {\n    position:relative;\n    width:1em;\n    height:calc(1em - 2px);\n    background:black;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-active[data-v-657420da] {\n    border:1px solid red;\n}\n.toggle-switch-active .toggle-switch-child[data-v-657420da] {\n    margin-left:1em;\n    width:calc(1em - 2px);\n    height:calc(1em - 2px);\n    background:red;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.click-area[data-v-657420da] {\n    position:absolute;\n    z-index:2;\n    width:2em;\n    height:1em;\n}\n.toggle-switch[data-v-657420da] {\n    position:relative;\n    width:2em;\n    height:1em;\n    border:1px solid grey;\n    overflow:hidden;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-child[data-v-657420da] {\n    position:relative;\n    width:1em;\n    height:calc(1em - 2px);\n    background:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-active[data-v-657420da] {\n    border:1px solid orange;\n}\n.toggle-switch-active .toggle-switch-child[data-v-657420da] {\n    margin-left:1em;\n    width:calc(1em - 2px);\n    height:calc(1em - 2px);\n    background:orange;\n}\n\n\n", ""]);
 
 // exports
 
@@ -58304,7 +58304,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            toggle_switch_class: 'toggle-switch'
+            toggleSwitchClass: 'toggle-switch'
         };
     },
     props: {},
@@ -58313,12 +58313,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {},
     methods: {
         toggleSwitch: function toggleSwitch() {
-            if (this.toggle_switch_class == 'toggle-switch') {
+            if (this.toggleSwitchClass == 'toggle-switch') {
                 this.$emit('input', true);
-                this.toggle_switch_class = 'toggle-switch toggle-switch-active';
+                this.toggleSwitchClass = 'toggle-switch toggle-switch-active';
             } else {
                 this.$emit('input', false);
-                this.toggle_switch_class = 'toggle-switch';
+                this.toggleSwitchClass = 'toggle-switch';
             }
         }
     }
@@ -58342,7 +58342,7 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("div", { class: _vm.toggle_switch_class }, [
+    _c("div", { class: _vm.toggleSwitchClass }, [
       _c("div", { staticClass: "toggle-switch-child" })
     ])
   ])
@@ -63381,7 +63381,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.logs[data-v-5c649d64] {\n    /*opacity:0;*/\n    display:none;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.active[data-v-5c649d64] {\n    /*opacity:1.0;*/\n    display:block;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.logs div[data-v-5c649d64] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.log-button[data-v-5c649d64] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.log-button span[data-v-5c649d64] {\n    margin-right:1em;\n}\n.logs[data-v-5c649d64] {\n    opacity:0;\n    height:0;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n}\n.logs div[data-v-5c649d64] {\n    margin:0.5em 0;\n}\n", ""]);
 
 // exports
 
@@ -63421,10 +63421,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            openLog: false
+        };
     },
     props: {
         task: {
@@ -63432,9 +63437,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: true
         }
     },
-    watch: {},
+    watch: {
+        openLog: function openLog() {
+            if (this.openLog) {
+                var lineNum = this.task.states.length + 3;
+                this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease';
+            } else {
+                this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease';
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
+    computed: {
+        setButtonMessage: function setButtonMessage() {
+            return this.openLog == false ? 'ログを表示' : 'ログを閉じる';
+        }
+    },
     methods: {
         setTaskStatus: function setTaskStatus(state) {
             if (state.id == 1) {
@@ -63442,9 +63461,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 return { color: 'grey' };
             }
-        },
-        displayLogs: function displayLogs() {
-            this.$refs.logs.classList.toggle('active');
         }
     }
 });
@@ -63459,16 +63475,22 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c(
-      "button",
-      {
-        staticClass: "btn btn-outline-primary mx-auto d-block",
-        on: {
-          click: function($event) {
-            return _vm.displayLogs()
+      "div",
+      { staticClass: "log-button" },
+      [
+        _c("span", [_vm._v(_vm._s(_vm.setButtonMessage))]),
+        _vm._v(" "),
+        _c("toggle-switch", {
+          model: {
+            value: _vm.openLog,
+            callback: function($$v) {
+              _vm.openLog = $$v
+            },
+            expression: "openLog"
           }
-        }
-      },
-      [_vm._v("ログを表示する")]
+        })
+      ],
+      1
     ),
     _vm._v(" "),
     _c(

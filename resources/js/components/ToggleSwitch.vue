@@ -4,7 +4,7 @@
 <template>
     <div class="toggle-switch-wrapper">
         <div class="click-area" v-on:click="toggleSwitch()"></div>
-        <div v-bind:class="toggle_switch_class">
+        <div v-bind:class="toggleSwitchClass">
             <div class="toggle-switch-child"></div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     export default {
         data:function(){
             return {
-                toggle_switch_class:'toggle-switch'
+                toggleSwitchClass:'toggle-switch'
             }  
         },
         props: {
@@ -31,12 +31,12 @@
         },
         methods: {
             toggleSwitch:function(){
-                if(this.toggle_switch_class == 'toggle-switch'){
+                if(this.toggleSwitchClass == 'toggle-switch'){
                     this.$emit('input',true)
-                    this.toggle_switch_class = 'toggle-switch toggle-switch-active'
+                    this.toggleSwitchClass = 'toggle-switch toggle-switch-active'
                 }else{
                     this.$emit('input',false)
-                    this.toggle_switch_class = 'toggle-switch'
+                    this.toggleSwitchClass = 'toggle-switch'
                 }
             }
         }
@@ -53,7 +53,7 @@
         position:relative;
         width:2em;
         height:1em;
-        border:1px solid black;
+        border:1px solid grey;
         overflow:hidden;
         transition:all 0.3s;
     }
@@ -61,17 +61,17 @@
         position:relative;
         width:1em;
         height:calc(1em - 2px);
-        background:black;
+        background:grey;
         transition:all 0.3s;
     }
     .toggle-switch-active {
-        border:1px solid red;
+        border:1px solid orange;
     }
     .toggle-switch-active .toggle-switch-child {
         margin-left:1em;
         width:calc(1em - 2px);
         height:calc(1em - 2px);
-        background:red;
+        background:orange;
     }
     
     
