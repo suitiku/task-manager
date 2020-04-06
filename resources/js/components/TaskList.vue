@@ -41,13 +41,13 @@
         </modal>
         
         <!--タスクコピー確認用モーダル-->
-        <modal ref="copyTaskDialog" v-model="copyModal">
+        <modal ref="copyTaskModal" v-model="copyModal">
             <div class="task-copy-dialog">
                 <p>タスク「{{copyTargetTask.name}}」をコピー／テンプレートにします。</p>
                 <div>
                     <button type="button" class="btn btn-primary" v-on:click="copyTask()">コピーする</button>
                     <button type="button" class="btn btn-primary" v-on:click="templateTask()">テンプレートにする</button>
-                    <button type="button" class="btn btn-secondary" v-on:click="hideCopyTaskDialog()">キャンセル</button>
+                    <button type="button" class="btn btn-secondary" v-on:click="hidecopyTaskModal()">キャンセル</button>
                 </div>
             </div>
         </modal>
@@ -89,7 +89,7 @@
         <div v-for="(task,index) in displayedTasks" class="task">
             <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:taskId="task.id" v-bind:key="index"/>
             <div v-if="task" class="control-buttons">
-                <i class="fas fa-copy" v-on:click="showCopyTaskDialog(task)"></i>
+                <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
             </div>
         </div>
     </div>
@@ -265,16 +265,16 @@
                     }
                 }
             },
-            showCopyTaskDialog:function(task){
+            showCopyTaskModal:function(task){
                 this.copyTargetTask = task
-                this.$refs.copyTaskDialog.openModal()
+                this.$refs.copyTaskModal.openModal()
             },
-            hideCopyTaskDialog:function(){
-                this.$refs.copyTaskDialog.closeModal()
+            hidecopyTaskModal:function(){
+                this.$refs.copyTaskModal.closeModal()
             },
             copyTask:async function(){
                 let copiedTask
-                this.$refs.copyTaskDialog.closeModal()
+                this.$refs.copyTaskModal.closeModal()
                 let postObject = {
                     user_id:this.copyTargetTask.user_id,
                     project_id:this.copyTargetTask.project_id,
@@ -312,9 +312,11 @@
                     await axios.post('/api/state_task',{task_id:copiedTask.id,state_id:1})
                     
                     //終了処理
+                    this.$refs.showCopyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをコピーしました')
                     this.fetchTasks()
                 }catch(error){
+                    this.$refs.showCopyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのコピーに失敗しました')
                     console.log(error)
                 }
@@ -322,12 +324,14 @@
             templateTask:async function(){
                 let taskId = this.copyTargetTask.id
                 try{
-                    //tasksのis_templateをtrueに
+                    //taskのis_templateをtrueに
                     await axios.put('/api/tasks/' + taskId,{is_template:true})
                     //終了処理
+                    this.$refs.showCopyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをテンプレートにしました')
                     this.fetchTasks()
                 }catch(error){
+                    this.$refs.showCopyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました')
                     console.log(error)
                 }

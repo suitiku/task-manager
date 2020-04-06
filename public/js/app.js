@@ -51517,12 +51517,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return addQuickTask;
         }(),
-        showCopyTaskDialog: function showCopyTaskDialog(task) {
+        showCopyTaskModal: function showCopyTaskModal(task) {
             this.copyTargetTask = task;
-            this.$refs.copyTaskDialog.openModal();
+            this.$refs.copyTaskModal.openModal();
         },
-        hideCopyTaskDialog: function hideCopyTaskDialog() {
-            this.$refs.copyTaskDialog.closeModal();
+        hidecopyTaskModal: function hidecopyTaskModal() {
+            this.$refs.copyTaskModal.closeModal();
         },
         copyTask: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
@@ -51534,7 +51534,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 copiedTask = void 0;
 
-                                this.$refs.copyTaskDialog.closeModal();
+                                this.$refs.copyTaskModal.closeModal();
                                 postObject = {
                                     user_id: this.copyTargetTask.user_id,
                                     project_id: this.copyTargetTask.project_id,
@@ -51674,24 +51674,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 60:
 
                                 //終了処理
+                                this.$refs.showCopyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをコピーしました');
                                 this.fetchTasks();
-                                _context7.next = 68;
+                                _context7.next = 70;
                                 break;
 
-                            case 64:
-                                _context7.prev = 64;
+                            case 65:
+                                _context7.prev = 65;
                                 _context7.t2 = _context7['catch'](3);
 
+                                this.$refs.showCopyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
                                 console.log(_context7.t2);
 
-                            case 68:
+                            case 70:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[3, 64], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
+                }, _callee7, this, [[3, 65], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
             }));
 
             function copyTask() {
@@ -51714,24 +51716,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                                 //終了処理
+                                this.$refs.showCopyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをテンプレートにしました');
                                 this.fetchTasks();
-                                _context8.next = 12;
+                                _context8.next = 14;
                                 break;
 
-                            case 8:
-                                _context8.prev = 8;
+                            case 9:
+                                _context8.prev = 9;
                                 _context8.t0 = _context8['catch'](1);
 
+                                this.$refs.showCopyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました');
                                 console.log(_context8.t0);
 
-                            case 12:
+                            case 14:
                             case 'end':
                                 return _context8.stop();
                         }
                     }
-                }, _callee8, this, [[1, 8]]);
+                }, _callee8, this, [[1, 9]]);
             }));
 
             function templateTask() {
@@ -52113,7 +52117,7 @@ var render = function() {
       _c(
         "modal",
         {
-          ref: "copyTaskDialog",
+          ref: "copyTaskModal",
           model: {
             value: _vm.copyModal,
             callback: function($$v) {
@@ -52168,7 +52172,7 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.hideCopyTaskDialog()
+                      return _vm.hidecopyTaskModal()
                     }
                   }
                 },
@@ -52383,7 +52387,7 @@ var render = function() {
                     staticClass: "fas fa-copy",
                     on: {
                       click: function($event) {
-                        return _vm.showCopyTaskDialog(task)
+                        return _vm.showCopyTaskModal(task)
                       }
                     }
                   })
