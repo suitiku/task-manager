@@ -51449,13 +51449,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         addQuickTask: function () {
             var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-                var currentDatetime, deadLine, postObject, result;
+                var currentDatetime, deadLine, postObject, result, task;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
                         switch (_context6.prev = _context6.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context6.next = 19;
+                                    _context6.next = 22;
                                     break;
                                 }
 
@@ -51484,24 +51484,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 10:
                                 //通知処理
                                 this.$refs.notice.showNotice('タスクを追加しました');
-                                this.fetchTasks();
+                                _context6.next = 13;
+                                return axios.get('/api/tasks/' + result.data.id);
+
+                            case 13:
+                                task = _context6.sent;
+
+                                this.tasks.push(task.data);
+                                // this.fetchTasks()
                                 this.quickTask = '';
-                                _context6.next = 19;
+                                _context6.next = 22;
                                 break;
 
-                            case 15:
-                                _context6.prev = 15;
+                            case 18:
+                                _context6.prev = 18;
                                 _context6.t0 = _context6['catch'](1);
 
                                 this.$refs.notice.showNotice('タスクの追加に失敗しました');
                                 console.log(_context6.t0);
 
-                            case 19:
+                            case 22:
                             case 'end':
                                 return _context6.stop();
                         }
                     }
-                }, _callee6, this, [[1, 15]]);
+                }, _callee6, this, [[1, 18]]);
             }));
 
             function addQuickTask() {

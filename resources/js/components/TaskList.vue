@@ -255,7 +255,9 @@
                         await axios.post('/api/state_task',{task_id:result.data.id,state_id:1})
                         //通知処理
                         this.$refs.notice.showNotice('タスクを追加しました')
-                        this.fetchTasks()
+                        let task = await axios.get('/api/tasks/' + result.data.id)
+                        this.tasks.push(task.data)
+                        // this.fetchTasks()
                         this.quickTask = ''
                     }catch(error){
                         this.$refs.notice.showNotice('タスクの追加に失敗しました')
