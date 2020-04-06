@@ -257,7 +257,6 @@
                         this.$refs.notice.showNotice('タスクを追加しました')
                         let task = await axios.get('/api/tasks/' + result.data.id)
                         this.tasks.push(task.data)
-                        // this.fetchTasks()
                         this.quickTask = ''
                     }catch(error){
                         this.$refs.notice.showNotice('タスクの追加に失敗しました')
@@ -312,11 +311,13 @@
                     await axios.post('/api/state_task',{task_id:copiedTask.id,state_id:1})
                     
                     //終了処理
-                    this.$refs.showCopyTaskModal.closeModal()
+                    this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをコピーしました')
-                    this.fetchTasks()
+                    // this.fetchTasks()
+                    let task = await axios.get('/api/tasks/' + copiedTask.id)
+                    this.tasks.push(task.data)
                 }catch(error){
-                    this.$refs.showCopyTaskModal.closeModal()
+                    this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのコピーに失敗しました')
                     console.log(error)
                 }
@@ -327,11 +328,11 @@
                     //taskのis_templateをtrueに
                     await axios.put('/api/tasks/' + taskId,{is_template:true})
                     //終了処理
-                    this.$refs.showCopyTaskModal.closeModal()
+                    this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをテンプレートにしました')
                     this.fetchTasks()
                 }catch(error){
-                    this.$refs.showCopyTaskModal.closeModal()
+                    this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました')
                     console.log(error)
                 }

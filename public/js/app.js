@@ -51491,7 +51491,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 task = _context6.sent;
 
                                 this.tasks.push(task.data);
-                                // this.fetchTasks()
                                 this.quickTask = '';
                                 _context6.next = 22;
                                 break;
@@ -51526,7 +51525,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         copyTask: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
-                var copiedTask, postObject, result, tags, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag, tagsPostObject, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, itemPostObject;
+                var copiedTask, postObject, result, tags, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag, tagsPostObject, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, itemPostObject, task;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
@@ -51674,26 +51673,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 60:
 
                                 //終了処理
-                                this.$refs.showCopyTaskModal.closeModal();
+                                this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをコピーしました');
-                                this.fetchTasks();
-                                _context7.next = 70;
+                                // this.fetchTasks()
+                                _context7.next = 64;
+                                return axios.get('/api/tasks/' + copiedTask.id);
+
+                            case 64:
+                                task = _context7.sent;
+
+                                this.tasks.push(task.data);
+                                _context7.next = 73;
                                 break;
 
-                            case 65:
-                                _context7.prev = 65;
+                            case 68:
+                                _context7.prev = 68;
                                 _context7.t2 = _context7['catch'](3);
 
-                                this.$refs.showCopyTaskModal.closeModal();
+                                this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
                                 console.log(_context7.t2);
 
-                            case 70:
+                            case 73:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[3, 65], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
+                }, _callee7, this, [[3, 68], [12, 16, 20, 28], [21,, 23, 27], [34, 46, 50, 58], [51,, 53, 57]]);
             }));
 
             function copyTask() {
@@ -51716,7 +51722,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                                 //終了処理
-                                this.$refs.showCopyTaskModal.closeModal();
+                                this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをテンプレートにしました');
                                 this.fetchTasks();
                                 _context8.next = 14;
@@ -51726,7 +51732,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _context8.prev = 9;
                                 _context8.t0 = _context8['catch'](1);
 
-                                this.$refs.showCopyTaskModal.closeModal();
+                                this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました');
                                 console.log(_context8.t0);
 
