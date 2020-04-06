@@ -295,7 +295,7 @@
                         tags.push(tag.id)
                     }
                     let tagsPostObject = {task_id:copiedTask.id,tag_ids:tags}
-                    await axios.put('/api/tag_task/',tagsPostObject)
+                    await axios.put('/api/tag_task',tagsPostObject)
                     
                     //アイテムを登録
                     for(let item of this.copyTargetTask.items){

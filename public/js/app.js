@@ -51601,7 +51601,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 28:
                                 tagsPostObject = { task_id: copiedTask.id, tag_ids: tags };
                                 _context7.next = 31;
-                                return axios.put('/api/tag_task/', tagsPostObject);
+                                return axios.put('/api/tag_task', tagsPostObject);
 
                             case 31:
 
