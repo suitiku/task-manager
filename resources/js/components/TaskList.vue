@@ -286,7 +286,7 @@
                 }
                 try{
                     //タスク本体を登録
-                    let result = await axios.post('/api/tasks/',postObject)
+                    let result = await axios.post('/api/tasks',postObject)
                     copiedTask = result.data
                     
                     //タグを登録
@@ -304,7 +304,7 @@
                             name:item.name,
                             is_checked:item.is_checked
                         }
-                        await axios.post('/api/items/',itemPostObject)
+                        await axios.post('/api/items',itemPostObject)
                     }
                     
                     //状態を1:実行中で登録

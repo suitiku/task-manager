@@ -51546,7 +51546,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
                                 _context7.prev = 3;
                                 _context7.next = 6;
-                                return axios.post('/api/tasks/', postObject);
+                                return axios.post('/api/tasks', postObject);
 
                             case 6:
                                 result = _context7.sent;
@@ -51625,7 +51625,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     is_checked: item.is_checked
                                 };
                                 _context7.next = 41;
-                                return axios.post('/api/items/', itemPostObject);
+                                return axios.post('/api/items', itemPostObject);
 
                             case 41:
                                 _iteratorNormalCompletion3 = true;
