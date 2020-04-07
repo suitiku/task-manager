@@ -49539,11 +49539,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            modal: false,
+            newProjectModal: false,
             projects: [],
             newProject: {}
         };
@@ -49642,9 +49648,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchProjects;
         }(),
-        addProject: function addProject() {
-            this.$refs.form.resetForm();
-            this.$refs.modal.openModal();
+        showNewProjectModal: function showNewProjectModal() {
+            // リセット
+            this.newProject = {
+                user_id: this.user_id,
+                name: '',
+                overview: '',
+                dead_line: ''
+                //モーダルを開く
+            };this.$refs.newProjectModal.openModal();
         }
     }
 });
@@ -50438,27 +50450,85 @@ var render = function() {
       _c(
         "modal",
         {
-          ref: "modal",
+          ref: "newProjectModal",
           model: {
-            value: _vm.modal,
+            value: _vm.newProjectModal,
             callback: function($$v) {
-              _vm.modal = $$v
+              _vm.newProjectModal = $$v
             },
-            expression: "modal"
+            expression: "newProjectModal"
           }
         },
         [
-          _c("versatile-form", {
-            ref: "form",
-            attrs: { table: "projects" },
-            model: {
-              value: _vm.newProject,
-              callback: function($$v) {
-                _vm.newProject = $$v
-              },
-              expression: "newProject"
-            }
-          })
+          _c(
+            "versatile-form",
+            {
+              attrs: { table: "projects" },
+              model: {
+                value: _vm.newProject,
+                callback: function($$v) {
+                  _vm.newProject = $$v
+                },
+                expression: "newProject"
+              }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.newProject.name,
+                    expression: "newProject.name"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "プロジェクト名" },
+                domProps: { value: _vm.newProject.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.newProject, "name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.newProject.overview,
+                    expression: "newProject.overview"
+                  }
+                ],
+                attrs: { placeholder: "概要" },
+                domProps: { value: _vm.newProject.overview },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.newProject, "overview", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", [_vm._v("プロジェクトの最終締切")]),
+              _vm._v(" "),
+              _c("date-picker", {
+                model: {
+                  value: _vm.newProject.dead_line,
+                  callback: function($$v) {
+                    _vm.$set(_vm.newProject, "dead_line", $$v)
+                  },
+                  expression: "newProject.dead_line"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       ),
@@ -50468,7 +50538,11 @@ var render = function() {
           "button",
           {
             staticClass: "btn btn-outline-primary d-block",
-            on: { click: _vm.addProject }
+            on: {
+              click: function($event) {
+                return _vm.showNewProjectModal()
+              }
+            }
           },
           [_vm._v("プロジェクトを追加")]
         )
@@ -51336,7 +51410,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchProjects;
         }(),
-        addTask: function addTask() {
+        showNewTaskModal: function showNewTaskModal() {
             // リセット
             this.newTask = {
                 user_id: this.user_id,
@@ -52301,7 +52375,7 @@ var render = function() {
             staticClass: "btn btn-primary mx-auto d-block",
             on: {
               click: function($event) {
-                return _vm.addTask()
+                return _vm.showNewTaskModal()
               }
             }
           },

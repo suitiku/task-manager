@@ -1,11 +1,16 @@
 <!--プロジェクト一覧ページ-->
 <template>
     <div class="container">
-        <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newProject" ref="form" table="projects" />
+        <modal ref="newProjectModal" v-model="newProjectModal">
+            <versatile-form v-model="newProject" table="projects">
+                <input v-model="newProject.name" type="text" placeholder="プロジェクト名">
+                <textarea v-model="newProject.overview" placeholder="概要" />
+                <span>プロジェクトの最終締切</span>
+                <date-picker v-model="newProject.dead_line" />
+            </versatile-form>
         </modal>
         <div class="add-project-button">
-            <button class="btn btn-outline-primary d-block" v-on:click="addProject">プロジェクトを追加</button>
+            <button class="btn btn-outline-primary d-block" v-on:click="showNewProjectModal()">プロジェクトを追加</button>
         </div>
         <div v-for="(project,index) in projects" v-bind:key="index" class="project">
             <project v-if="project.id != 1" v-bind:project="project" />
@@ -17,7 +22,7 @@
     export default {
         data:function(){
             return {
-                modal:false,
+                newProjectModal:false,
                 projects:[],
                 newProject:{}
             }  
@@ -58,9 +63,16 @@
                                             })
                 this.projects = result.data
             },
-            addProject:function(){
-                this.$refs.form.resetForm()
-                this.$refs.modal.openModal()
+            showNewProjectModal:function(){
+                // リセット
+                this.newProject = {
+                    user_id:this.user_id,
+                    name:'',
+                    overview:'',
+                    dead_line:'',
+                }
+                //モーダルを開く
+                this.$refs.newProjectModal.openModal()
             }
         }
     }

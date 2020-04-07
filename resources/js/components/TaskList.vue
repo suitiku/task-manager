@@ -72,7 +72,7 @@
         <!--タスク追加エリア（固定）-->
         <div class="add-task-area">
             <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
-            <button class="btn btn-primary mx-auto d-block" v-on:click="addTask()">詳細登録</button>
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showNewTaskModal()">詳細登録</button>
             <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
         </div>
         
@@ -203,7 +203,7 @@
                 //「所属なし」プロジェクトのidを設定（一番若いやつ？）
                 this.defaultProjectId = result.data[0].id
             },
-            addTask:function(){
+            showNewTaskModal:function(){
                 // リセット
                 this.newTask = {
                     user_id:this.user_id,
