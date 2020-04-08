@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         
-        <task-log v-bind:task="task" />
+        <task-list v-bind:taskIds="taskIds" />        
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -21,6 +21,7 @@
                 modal:false,
                 test:'',
                 hoge:'',
+                taskIds:[1,3,5],
                 tasks:'',
                 task:{},
                 tags:[],

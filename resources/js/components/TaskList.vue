@@ -69,13 +69,6 @@
             </div>
         </modal>
         
-        <!--タスク追加エリア（固定）-->
-        <div class="add-task-area">
-            <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
-            <button class="btn btn-primary mx-auto d-block" v-on:click="showNewTaskModal()">詳細登録</button>
-            <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
-        </div>
-        
         <div class="filter-and-sort">
             <!--フィルター-->
             <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
@@ -91,6 +84,13 @@
             <div v-if="task" class="control-buttons">
                 <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
             </div>
+        </div>
+        
+        <!--タスク追加エリア-->
+        <div v-bind:class="addTaskArea">
+            <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showNewTaskModal()">詳細登録</button>
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
         </div>
     </div>
 </template>
@@ -131,23 +131,44 @@
                 //テンプレート関連
                 templateTasks:[], //テンプレートタスク一覧
                 templateModal:false,
-                selectedTemplateTask:''
+                selectedTemplateTask:'',
+                
             }  
         },
         props:{
-            user_id:{
+            userId:{
                 type:[String,Number],
                 required:false,
-            }  
+            },
+            projectId:{
+                type:[String,Number],
+                required:false
+            },
+            taskIds:{
+                type:[Array,String],
+                required:false
+            }
         },
         mounted() {
         },
         created() {
             this.fetchTasks()
-            // this.fetchTags()
             this.fetchProjects()
         },
+        computed:{
+             // タスク追加部分のclass設定
+            addTaskArea:function(){
+                if(this.projectId){
+                    return 'add-task-area'
+                }else{
+                    return 'add-task-area fixed'
+                }
+            }  
+        },
         watch: {
+            taskIds:async function(){
+                this.fetchTasks()
+            },
             tasks:async function(){
                 // タスクが削除された際にインデックスを詰める
                 for(let index in this.tasks){
@@ -178,25 +199,40 @@
                 // 初期化
                 this.tasks = []
                 
-                // タスクの取得（ユーザーIDでフィルター）
-                if(!this.user_id){return }
-                let result = await axios.get('/api/mytasks',{
-                                                params:{user_id:this.user_id,}
-                                            })
-                //テンプレートファイル以外を表示
-                this.tasks = result.data.filter(task => {
-                    return task.is_template == false
-                })
-                
-                //テンプレートタスクリスト
-                this.templateTasks = result.data.filter(task => {
-                    return task.is_template == true
-                })
+                if(this.taskIds && this.taskIds.length > 0){
+                    let result
+                    for(let taskId of this.taskIds){
+                        result = await axios.get('/api/tasks/' + taskId)
+                        if(result.data.is_template == false){
+                            this.tasks.push(result.data)
+                        }else{
+                            this.templateTasks.push(result.data)
+                        }
+                    }
+                }else{
+                    if(this.projectId)return
+                    // タスクの取得（ユーザーIDでフィルター）
+                    let result = await axios.get('/api/mytasks',{
+                                                    params:{user_id:this.userId,}
+                                                })
+                    //テンプレートファイル以外を表示
+                    this.tasks = result.data.filter(task => {
+                        return task.is_template == false
+                    })
+                    
+                    //テンプレートタスクリスト
+                    this.templateTasks = result.data.filter(task => {
+                        return task.is_template == true
+                    })
+                }
             },
             fetchProjects:async function(){
+                // projectIdが設定されている場合は飛ばす
+                if(this.projectId)return
+                
                 // プロジェクトの取得
                 let result = await axios.get('/api/myprojects',{
-                                                params:{user_id:this.user_id,}
+                                                params:{user_id:this.userId,}
                                             })
                 this.projects = result.data
                 
@@ -206,7 +242,7 @@
             showNewTaskModal:function(){
                 // リセット
                 this.newTask = {
-                    user_id:this.user_id,
+                    user_id:this.userId,
                     project_id:'',
                     name:'',
                     overview:'',
@@ -216,7 +252,7 @@
                     dead_line:'',
                     is_template:false,
                 }
-                this.selectedTags = []
+                this.items = []
                 this.$refs.newTaskModal.openModal()
             },
             addItems:async function(){
@@ -237,12 +273,14 @@
             },
             addQuickTask:async function(){
                 if(event.keyCode == 13){ //変換終了時のenterではなく、かつenterキーの場合
+                    // プロジェクトの下にある場合はprojectIdを使う。ない場合は「所属なし」
+                    let project_id = this.projectId || this.defaultProjectId
                     try{
                         let currentDatetime = new Date()
                         let deadLine = new Date(currentDatetime.getTime() + 43200000) //デフォルトの締切は12時間後
                         let postObject = {
-                            user_id:this.user_id,
-                            project_id:this.defaultProjectId, //デフォルトのプロジェクトは無し
+                            user_id:this.userId,
+                            project_id:project_id,
                             name:this.quickTask,
                             overview:null,
                             priority:3, //デフォルトは3
@@ -355,7 +393,7 @@
             createTag:async function(){
                 if(event.keyCode == 13){
                     let postObject = {
-                        user_id:this.user_id,
+                        user_id:this.userId,
                         name:event.target.value,
                         color:'#ef857d'
                     }
@@ -378,7 +416,7 @@
                     let currentDatetime = new Date()
                     let deadLine = new Date(currentDatetime.getTime() + 604800000) //デフォルトの締切は一週間後
                     let postObject = {
-                        user_id:this.user_id,
+                        user_id:this.userId,
                         name:event.target.value,
                         dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
                     }
@@ -425,8 +463,11 @@
     input {
         margin:0 0.3em;
     }
-    .add-task-area {
+    .fixed {
         position:fixed;
+    }
+    .add-task-area {
+        /*position:fixed;*/
         display:flex;
         z-index:5;
         right:3em;

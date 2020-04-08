@@ -13,7 +13,7 @@
             <button class="btn btn-outline-primary d-block" v-on:click="showNewProjectModal()">プロジェクトを追加</button>
         </div>
         <div v-for="(project,index) in projects" v-bind:key="index" class="project">
-            <project v-if="project.id != 1" v-bind:project="project" />
+            <project v-bind:project="project" />
         </div>
     </div>
 </template>

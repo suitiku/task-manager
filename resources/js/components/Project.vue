@@ -2,9 +2,41 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="container">
-        <modal ref="modal" v-model="modal">
-            <versatile-form v-model="newTask" ref="form" table="tasks" v-bind:column_override="override" />
-        </modal>
+        <!--新規タスク追加用モーダル-->
+        <!--<modal ref="newTaskModal" v-model="newTaskModal">-->
+        <!--    <versatile-form v-model="newTask" table="tasks">-->
+        <!--        <input v-model="newTask.name" type="text" placeholder="タスク名">-->
+        <!--        <textarea v-model="newTask.overview" placeholder="概要" />-->
+        <!--        <div class="inline">-->
+        <!--            <span>優先度</span>-->
+        <!--            <star-range v-model="newTask.priority" />-->
+        <!--        </div>-->
+        <!--        <div class="inline">-->
+        <!--            <span>難易度</span>-->
+        <!--            <star-range v-model="newTask.difficulty" />-->
+        <!--        </div>-->
+        <!--        <span>開始日</span>-->
+        <!--        <date-picker v-model="newTask.start_date" />-->
+        <!--        <span>締切</span>-->
+        <!--        <date-picker v-model="newTask.dead_line" />-->
+        <!--        <span>プロジェクトを選択してください</span>-->
+        <!--        <list-box v-model="newTask.project_id" ref="projectsListbox" table="projects" />-->
+        <!--        <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />-->
+        <!--    </versatile-form>-->
+        <!--    <div v-show="newTask.id" class="tags-and-items">-->
+                <!--タグ登録-->
+        <!--        <p>タグを追加します。</p>-->
+        <!--        <tag-list v-bind:taskId="newTask.id" />-->
+                <!--アイテム登録-->
+        <!--        <div>-->
+        <!--            <p>改行区切りでアイテムリストを作成します</p>-->
+        <!--            <text-spliter v-model="items" />-->
+        <!--            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems()">アイテムリストを追加</button>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--</modal>-->
+        
+        <!--表示部-->
         <div class="project-wrapper">
             <div class="info"><i class="far fa-clock"></i>　{{project.dead_line}}</div>
             <div class="project-content-wrapper">
@@ -21,12 +53,13 @@
                     <div class="overview">{{project.overview}}</div>
                     
                     <!--タスクリスト-->
-                    <div class="tasks">
+                    <!--<div class="tasks">-->
                         <!--<task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index"/>-->
-                        <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:taskId="task.id" v-bind:key="index"/>
-                        <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>
-                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>
-                    </div>
+                    <!--    <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
+                    <!--    <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>-->
+                    <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>-->
+                    <!--</div>-->
+                    <task-list v-bind:taskIds="taskIds" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
                     
                     <!--ガントチャート-->
                     
@@ -42,8 +75,10 @@
     export default {
         data:function(){
             return {
-                modal:false,
-                newTask:{},
+                // newTaskModal:false,
+                // newTask:{},
+                // items:[],
+                taskIds:[],
                 denominotor:0,
                 numerator:0,
                 detail:'project-detail-close'
@@ -79,6 +114,7 @@
             
         },
         mounted() {
+            this.getTaskIds()
             this.setProgress()
         },
         computed:{
@@ -87,9 +123,28 @@
             }
         },
         methods: {
-            addTask:function(){
-                this.$refs.form.resetForm()
-                this.$refs.modal.openModal()
+            // showNewTaskModal:function(){
+            //     // リセット
+            //     this.newTask = {
+            //         user_id:this.user_id,
+            //         project_id:'',
+            //         name:'',
+            //         overview:'',
+            //         priority:1,
+            //         difficulty:1,
+            //         start_date:'',
+            //         dead_line:'',
+            //         is_template:false,
+            //     }
+            //     this.items = []
+            //     this.$refs.newTaskModal.openModal()
+            // },
+            getTaskIds:function(){
+                this.taskIds = []
+                if(this.project.tasks.length == 0)return 
+                for(let task of this.project.tasks){
+                    this.taskIds.push(task.id)
+                }
             },
             openDetail:function(){
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
@@ -139,7 +194,7 @@
     }
     .project-detail-open {
         position:relative;
-        max-height:500px;
+        max-height:1000px;
         transition:all 0.3s;
     }
     .overview {
