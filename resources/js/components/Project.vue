@@ -2,40 +2,6 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="container">
-        <!--新規タスク追加用モーダル-->
-        <!--<modal ref="newTaskModal" v-model="newTaskModal">-->
-        <!--    <versatile-form v-model="newTask" table="tasks">-->
-        <!--        <input v-model="newTask.name" type="text" placeholder="タスク名">-->
-        <!--        <textarea v-model="newTask.overview" placeholder="概要" />-->
-        <!--        <div class="inline">-->
-        <!--            <span>優先度</span>-->
-        <!--            <star-range v-model="newTask.priority" />-->
-        <!--        </div>-->
-        <!--        <div class="inline">-->
-        <!--            <span>難易度</span>-->
-        <!--            <star-range v-model="newTask.difficulty" />-->
-        <!--        </div>-->
-        <!--        <span>開始日</span>-->
-        <!--        <date-picker v-model="newTask.start_date" />-->
-        <!--        <span>締切</span>-->
-        <!--        <date-picker v-model="newTask.dead_line" />-->
-        <!--        <span>プロジェクトを選択してください</span>-->
-        <!--        <list-box v-model="newTask.project_id" ref="projectsListbox" table="projects" />-->
-        <!--        <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />-->
-        <!--    </versatile-form>-->
-        <!--    <div v-show="newTask.id" class="tags-and-items">-->
-                <!--タグ登録-->
-        <!--        <p>タグを追加します。</p>-->
-        <!--        <tag-list v-bind:taskId="newTask.id" />-->
-                <!--アイテム登録-->
-        <!--        <div>-->
-        <!--            <p>改行区切りでアイテムリストを作成します</p>-->
-        <!--            <text-spliter v-model="items" />-->
-        <!--            <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems()">アイテムリストを追加</button>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</modal>-->
-        
         <!--表示部-->
         <div class="project-wrapper">
             <div class="info"><i class="far fa-clock"></i>　{{project.dead_line}}</div>
@@ -53,12 +19,6 @@
                     <div class="overview">{{project.overview}}</div>
                     
                     <!--タスクリスト-->
-                    <!--<div class="tasks">-->
-                        <!--<task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:task="task" v-bind:key="index"/>-->
-                    <!--    <task v-model="project.tasks[index]" v-for="(task,index) in project.tasks" v-bind:taskId="task.id" v-bind:key="index"/>-->
-                    <!--    <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>-->
-                    <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>-->
-                    <!--</div>-->
                     <task-list v-model="tasks" v-bind:taskIds="taskIds" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
                     
                     <!--ガントチャート-->
@@ -75,9 +35,6 @@
     export default {
         data:function(){
             return {
-                // newTaskModal:false,
-                // newTask:{},
-                // items:[],
                 taskIds:[],
                 tasks:[], //変更監視用
                 denominotor:0,
@@ -93,25 +50,8 @@
             }  
         },
         watch:{
-            // newTask:async function(newVal,oldVal){
-            //     if(!newVal.id){return } //newValにidがなければ終了
-            //     let result = await axios.get('/api/tasks/' + newVal.id)
-            //     delete result.data.project
-            //     this.project.tasks.push(result.data)
-            // },
-            'project.tasks': {
-                handler: function(newVal,oldVal){
-                    // プロジェクトラベルの削除
-                    for(let value of this.project.tasks){
-                        delete value.project
-                    }
-                    //プログレスバーの設定
-                    this.setProgress() 
-                },
-                deep:true
-            },
             tasks:function(){
-                console.log(this.tasks)
+                this.setProgress() 
             }
         },
         created(){
@@ -127,22 +67,6 @@
             }
         },
         methods: {
-            // showNewTaskModal:function(){
-            //     // リセット
-            //     this.newTask = {
-            //         user_id:this.user_id,
-            //         project_id:'',
-            //         name:'',
-            //         overview:'',
-            //         priority:1,
-            //         difficulty:1,
-            //         start_date:'',
-            //         dead_line:'',
-            //         is_template:false,
-            //     }
-            //     this.items = []
-            //     this.$refs.newTaskModal.openModal()
-            // },
             getTaskIds:function(){
                 this.taskIds = []
                 if(this.project.tasks.length == 0)return 
@@ -154,16 +78,17 @@
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
             },
             setProgress:function(){
-                //タスクが登録されていない場合は終了
-                if(this.project.tasks.length == 0){
+                if(this.tasks.length == 0){
                     this.denominotor = 0
                     return
                 }
                 
-                this.denominotor = this.project.tasks.length
+                this.denominotor = this.tasks.length
                 let numerator = 0
-                for(let task of this.project.tasks){
-                    if(task.state_id == 2){
+                for(let task of this.tasks){
+                    // 最新の状態を取得
+                    let lastTaskStatusId = task.states[task.states.length -1].id
+                    if(lastTaskStatusId == 2){
                         numerator ++
                     }
                 }

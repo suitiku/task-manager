@@ -71,7 +71,6 @@
         
         <!--リスト表示部-->
         <div class="task-list-container">
-            <p>FLEXテスト</p>
             <div class="filter-and-sort">
                 <!--フィルター-->
                 <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />

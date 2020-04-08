@@ -50699,53 +50699,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            // newTaskModal:false,
-            // newTask:{},
-            // items:[],
             taskIds: [],
             tasks: [], //変更監視用
             denominotor: 0,
@@ -50761,47 +50718,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     watch: {
-        // newTask:async function(newVal,oldVal){
-        //     if(!newVal.id){return } //newValにidがなければ終了
-        //     let result = await axios.get('/api/tasks/' + newVal.id)
-        //     delete result.data.project
-        //     this.project.tasks.push(result.data)
-        // },
-        'project.tasks': {
-            handler: function handler(newVal, oldVal) {
-                // プロジェクトラベルの削除
-                var _iteratorNormalCompletion = true;
-                var _didIteratorError = false;
-                var _iteratorError = undefined;
-
-                try {
-                    for (var _iterator = this.project.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                        var value = _step.value;
-
-                        delete value.project;
-                    }
-                    //プログレスバーの設定
-                } catch (err) {
-                    _didIteratorError = true;
-                    _iteratorError = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion && _iterator.return) {
-                            _iterator.return();
-                        }
-                    } finally {
-                        if (_didIteratorError) {
-                            throw _iteratorError;
-                        }
-                    }
-                }
-
-                this.setProgress();
-            },
-            deep: true
-        },
         tasks: function tasks() {
-            console.log(this.tasks);
+            this.setProgress();
         }
     },
     created: function created() {},
@@ -50816,34 +50734,58 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        // showNewTaskModal:function(){
-        //     // リセット
-        //     this.newTask = {
-        //         user_id:this.user_id,
-        //         project_id:'',
-        //         name:'',
-        //         overview:'',
-        //         priority:1,
-        //         difficulty:1,
-        //         start_date:'',
-        //         dead_line:'',
-        //         is_template:false,
-        //     }
-        //     this.items = []
-        //     this.$refs.newTaskModal.openModal()
-        // },
         getTaskIds: function getTaskIds() {
             this.taskIds = [];
             if (this.project.tasks.length == 0) return;
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.project.tasks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var task = _step.value;
+
+                    this.taskIds.push(task.id);
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        },
+        openDetail: function openDetail() {
+            this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close';
+        },
+        setProgress: function setProgress() {
+            if (this.tasks.length == 0) {
+                this.denominotor = 0;
+                return;
+            }
+
+            this.denominotor = this.tasks.length;
+            var numerator = 0;
             var _iteratorNormalCompletion2 = true;
             var _didIteratorError2 = false;
             var _iteratorError2 = undefined;
 
             try {
-                for (var _iterator2 = this.project.tasks[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                for (var _iterator2 = this.tasks[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                     var task = _step2.value;
 
-                    this.taskIds.push(task.id);
+                    // 最新の状態を取得
+                    var lastTaskStatusId = task.states[task.states.length - 1].id;
+                    if (lastTaskStatusId == 2) {
+                        numerator++;
+                    }
                 }
             } catch (err) {
                 _didIteratorError2 = true;
@@ -50856,45 +50798,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 } finally {
                     if (_didIteratorError2) {
                         throw _iteratorError2;
-                    }
-                }
-            }
-        },
-        openDetail: function openDetail() {
-            this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close';
-        },
-        setProgress: function setProgress() {
-            //タスクが登録されていない場合は終了
-            if (this.project.tasks.length == 0) {
-                this.denominotor = 0;
-                return;
-            }
-
-            this.denominotor = this.project.tasks.length;
-            var numerator = 0;
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
-
-            try {
-                for (var _iterator3 = this.project.tasks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var task = _step3.value;
-
-                    if (task.state_id == 2) {
-                        numerator++;
-                    }
-                }
-            } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
-                    }
-                } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
                     }
                 }
             }
@@ -51086,7 +50989,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
 //
 //
 //
@@ -52476,8 +52378,6 @@ var render = function() {
         "div",
         { staticClass: "task-list-container" },
         [
-          _c("p", [_vm._v("FLEXテスト")]),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "filter-and-sort" },
