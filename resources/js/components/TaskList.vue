@@ -1,7 +1,7 @@
 <!--タスク一覧表示用コンポーネント-->
 <!--今後の改修ポイント-->
 <template>
-    <div class="container">
+    <div class="task-list-wrapper">
         <!--通知-->
         <notice ref="notice" />
         
@@ -23,9 +23,9 @@
                 <date-picker v-model="newTask.start_date" />
                 <span>締切</span>
                 <date-picker v-model="newTask.dead_line" />
-                <span>プロジェクトを選択してください</span>
-                <list-box v-model="newTask.project_id" ref="projectsListbox" table="projects" />
-                <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                <span v-if="!projectId">プロジェクトを選択してください</span>
+                <list-box v-if="!projectId" v-model="newTask.project_id" ref="projectsListbox" table="projects" />
+                <input v-if="!projectId" class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
             </versatile-form>
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
@@ -69,28 +69,32 @@
             </div>
         </modal>
         
-        <div class="filter-and-sort">
-            <!--フィルター-->
-            <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
-            <!--ソート-->
-            <sort-box v-model="sortedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
-            <!--ステースタフィルター-->
-            <filter-status v-model="displayedTasks" v-bind:originalArray="sortedTasks" />
-        </div>
-        
-        <!--リスト表示-->
-        <div v-for="(task,index) in displayedTasks" class="task">
-            <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:taskId="task.id" v-bind:key="index"/>
-            <div v-if="task" class="control-buttons">
-                <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
+        <!--リスト表示部-->
+        <div class="task-list-container">
+            <p>FLEXテスト</p>
+            <div class="filter-and-sort">
+                <!--フィルター-->
+                <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+                <!--ソート-->
+                <sort-box v-model="sortedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
+                <!--ステースタフィルター-->
+                <filter-status v-model="displayedTasks" v-bind:originalArray="sortedTasks" />
             </div>
-        </div>
-        
-        <!--タスク追加エリア-->
-        <div v-bind:class="addTaskArea">
-            <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
-            <button class="btn btn-primary mx-auto d-block" v-on:click="showNewTaskModal()">詳細登録</button>
-            <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
+            
+            <!--リスト表示-->
+            <div v-for="(task,index) in displayedTasks" class="task">
+                <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:taskId="task.id" v-bind:key="index"/>
+                <div v-if="task" class="control-buttons">
+                    <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
+                </div>
+            </div>
+            
+            <!--タスク追加エリア-->
+            <div v-bind:class="addTaskArea">
+                <input v-model="quickTask" type="text" placeholder="簡単登録" v-on:keydown="addQuickTask()">
+                <button class="btn btn-primary mx-auto d-block" v-on:click="showNewTaskModal()">詳細登録</button>
+                <button class="btn btn-primary mx-auto d-block" v-on:click="showTemplateModal()">テンプレートから作成</button>
+            </div>
         </div>
     </div>
 </template>
@@ -171,11 +175,13 @@
             },
             tasks:async function(){
                 // タスクが削除された際にインデックスを詰める
+                //変更された際に上部に送出
                 for(let index in this.tasks){
                     if(this.tasks[index] == ''){
                         this.tasks.splice(index,1)
                     }
                 }
+                this.$emit('input',this.tasks)
             },
             
             //新規タスク登録モーダルを閉じた際にtasksに追加
@@ -439,18 +445,22 @@
     }
 </script>
 <style scoped>
-    .container {
+    .task-list-container {
+        display:flex;
+        flex-direction:column;
+        /*justify-content:center;*/
+        align-items:center;
         position:relative;
         width: 100%;
     }
     .sortBox {
-        margin:1em;
+        margin:1em 0;
         display:flex;
         justify-content:center;
     }
     .filter-box {
         width:100%;
-        margin:1em;
+        margin:1em 0;
         padding:1em;
         border:2px solid grey;
     }
@@ -463,21 +473,22 @@
     input {
         margin:0 0.3em;
     }
-    .fixed {
-        position:fixed;
-    }
     .add-task-area {
-        /*position:fixed;*/
+        margin:1em 0;
+        width:75%;
         display:flex;
-        z-index:5;
-        right:3em;
-        bottom:0;
         background:orange;
-        opacity:0.7;
         padding:1em;
     }
-    
-    .add-task-area:hover{
+    .fixed {
+        width:50%;
+        right:3em;
+        bottom:0;
+        opacity:0.7;
+        position:fixed;
+        z-index:5;
+    }
+    .fixed:hover{
         opacity:1.0;
     }
     .add-task-area input {
@@ -489,6 +500,7 @@
         margin:1em 2em;
     }
     .task {
+        width:100%;
         display:flex;
         align-items:center;
     }

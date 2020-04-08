@@ -50666,12 +50666,6 @@ exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:rel
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
-
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 //
 //
 //
@@ -50753,6 +50747,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             // newTask:{},
             // items:[],
             taskIds: [],
+            tasks: [], //変更監視用
             denominotor: 0,
             numerator: 0,
             detail: 'project-detail-close'
@@ -50766,44 +50761,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        newTask: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
-                var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                if (newVal.id) {
-                                    _context.next = 2;
-                                    break;
-                                }
-
-                                return _context.abrupt('return');
-
-                            case 2:
-                                _context.next = 4;
-                                return axios.get('/api/tasks/' + newVal.id);
-
-                            case 4:
-                                result = _context.sent;
-
-                                delete result.data.project;
-                                this.project.tasks.push(result.data);
-
-                            case 7:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
-
-            function newTask(_x, _x2) {
-                return _ref.apply(this, arguments);
-            }
-
-            return newTask;
-        }(),
+        // newTask:async function(newVal,oldVal){
+        //     if(!newVal.id){return } //newValにidがなければ終了
+        //     let result = await axios.get('/api/tasks/' + newVal.id)
+        //     delete result.data.project
+        //     this.project.tasks.push(result.data)
+        // },
         'project.tasks': {
             handler: function handler(newVal, oldVal) {
                 // プロジェクトラベルの削除
@@ -50836,6 +50799,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.setProgress();
             },
             deep: true
+        },
+        tasks: function tasks() {
+            console.log(this.tasks);
         }
     },
     created: function created() {},
@@ -50914,7 +50880,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator3 = this.project.tasks[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                     var task = _step3.value;
 
-                    if (task.state_id == 3) {
+                    if (task.state_id == 2) {
                         numerator++;
                     }
                 }
@@ -50989,6 +50955,13 @@ var render = function() {
                   taskIds: _vm.taskIds,
                   projectId: _vm.project.id,
                   userId: _vm.project.user_id
+                },
+                model: {
+                  value: _vm.tasks,
+                  callback: function($$v) {
+                    _vm.tasks = $$v
+                  },
+                  expression: "tasks"
                 }
               })
             ],
@@ -51096,7 +51069,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-0afd8bae] {\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.fixed[data-v-0afd8bae] {\n    position:fixed;\n}\n.add-task-area[data-v-0afd8bae] {\n    /*position:fixed;*/\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    z-index:5;\n    right:3em;\n    bottom:0;\n    background:orange;\n    opacity:0.7;\n    padding:1em;\n}\n.add-task-area[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.task-list-container[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    /*justify-content:center;*/\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    position:relative;\n    width: 100%;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em 0;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    margin:1em 0;\n    width:75%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:orange;\n    padding:1em;\n}\n.fixed[data-v-0afd8bae] {\n    width:50%;\n    right:3em;\n    bottom:0;\n    opacity:0.7;\n    position:fixed;\n    z-index:5;\n}\n.fixed[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -51113,6 +51086,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -51300,13 +51277,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 // タスクが削除された際にインデックスを詰める
+                                //変更された際に上部に送出
                                 for (index in this.tasks) {
                                     if (this.tasks[index] == '') {
                                         this.tasks.splice(index, 1);
                                     }
                                 }
+                                this.$emit('input', this.tasks);
 
-                            case 1:
+                            case 2:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -52121,7 +52100,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "task-list-wrapper" },
     [
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -52255,30 +52234,39 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("span", [_vm._v("プロジェクトを選択してください")]),
+              !_vm.projectId
+                ? _c("span", [_vm._v("プロジェクトを選択してください")])
+                : _vm._e(),
               _vm._v(" "),
-              _c("list-box", {
-                ref: "projectsListbox",
-                attrs: { table: "projects" },
-                model: {
-                  value: _vm.newTask.project_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.newTask, "project_id", $$v)
-                  },
-                  expression: "newTask.project_id"
-                }
-              }),
+              !_vm.projectId
+                ? _c("list-box", {
+                    ref: "projectsListbox",
+                    attrs: { table: "projects" },
+                    model: {
+                      value: _vm.newTask.project_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.newTask, "project_id", $$v)
+                      },
+                      expression: "newTask.project_id"
+                    }
+                  })
+                : _vm._e(),
               _vm._v(" "),
-              _c("input", {
-                ref: "newProject",
-                staticClass: "input-inline",
-                attrs: { type: "text", placeholder: "プロジェクトを新規登録" },
-                on: {
-                  keydown: function($event) {
-                    return _vm.createProject()
-                  }
-                }
-              })
+              !_vm.projectId
+                ? _c("input", {
+                    ref: "newProject",
+                    staticClass: "input-inline",
+                    attrs: {
+                      type: "text",
+                      placeholder: "プロジェクトを新規登録"
+                    },
+                    on: {
+                      keydown: function($event) {
+                        return _vm.createProject()
+                      }
+                    }
+                  })
+                : _vm._e()
             ],
             1
           ),
@@ -52486,139 +52474,148 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filter-and-sort" },
+        { staticClass: "task-list-container" },
         [
-          _c("filter-box", {
-            attrs: {
-              originalArray: _vm.tasks,
-              filterOptions: _vm.filterOptions
-            },
-            model: {
-              value: _vm.filteredTasks,
-              callback: function($$v) {
-                _vm.filteredTasks = $$v
-              },
-              expression: "filteredTasks"
-            }
-          }),
+          _c("p", [_vm._v("FLEXテスト")]),
           _vm._v(" "),
-          _c("sort-box", {
-            attrs: {
-              originalArray: _vm.filteredTasks,
-              columns: _vm.sortColumns
-            },
-            model: {
-              value: _vm.sortedTasks,
-              callback: function($$v) {
-                _vm.sortedTasks = $$v
-              },
-              expression: "sortedTasks"
-            }
-          }),
+          _c(
+            "div",
+            { staticClass: "filter-and-sort" },
+            [
+              _c("filter-box", {
+                attrs: {
+                  originalArray: _vm.tasks,
+                  filterOptions: _vm.filterOptions
+                },
+                model: {
+                  value: _vm.filteredTasks,
+                  callback: function($$v) {
+                    _vm.filteredTasks = $$v
+                  },
+                  expression: "filteredTasks"
+                }
+              }),
+              _vm._v(" "),
+              _c("sort-box", {
+                attrs: {
+                  originalArray: _vm.filteredTasks,
+                  columns: _vm.sortColumns
+                },
+                model: {
+                  value: _vm.sortedTasks,
+                  callback: function($$v) {
+                    _vm.sortedTasks = $$v
+                  },
+                  expression: "sortedTasks"
+                }
+              }),
+              _vm._v(" "),
+              _c("filter-status", {
+                attrs: { originalArray: _vm.sortedTasks },
+                model: {
+                  value: _vm.displayedTasks,
+                  callback: function($$v) {
+                    _vm.displayedTasks = $$v
+                  },
+                  expression: "displayedTasks"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("filter-status", {
-            attrs: { originalArray: _vm.sortedTasks },
-            model: {
-              value: _vm.displayedTasks,
-              callback: function($$v) {
-                _vm.displayedTasks = $$v
-              },
-              expression: "displayedTasks"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.displayedTasks, function(task, index) {
-        return _c(
-          "div",
-          { staticClass: "task" },
-          [
-            task
-              ? _c("task", {
-                  key: index,
-                  attrs: { taskId: task.id },
-                  model: {
-                    value: _vm.tasks[_vm.getTasksIndex(task.id)],
-                    callback: function($$v) {
-                      _vm.$set(_vm.tasks, _vm.getTasksIndex(task.id), $$v)
-                    },
-                    expression: "tasks[getTasksIndex(task.id)]"
-                  }
-                })
-              : _vm._e(),
-            _vm._v(" "),
-            task
-              ? _c("div", { staticClass: "control-buttons" }, [
-                  _c("i", {
-                    staticClass: "fas fa-copy",
-                    on: {
-                      click: function($event) {
-                        return _vm.showCopyTaskModal(task)
+          _vm._l(_vm.displayedTasks, function(task, index) {
+            return _c(
+              "div",
+              { staticClass: "task" },
+              [
+                task
+                  ? _c("task", {
+                      key: index,
+                      attrs: { taskId: task.id },
+                      model: {
+                        value: _vm.tasks[_vm.getTasksIndex(task.id)],
+                        callback: function($$v) {
+                          _vm.$set(_vm.tasks, _vm.getTasksIndex(task.id), $$v)
+                        },
+                        expression: "tasks[getTasksIndex(task.id)]"
                       }
-                    }
-                  })
-                ])
-              : _vm._e()
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
-      _c("div", { class: _vm.addTaskArea }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.quickTask,
-              expression: "quickTask"
-            }
-          ],
-          attrs: { type: "text", placeholder: "簡単登録" },
-          domProps: { value: _vm.quickTask },
-          on: {
-            keydown: function($event) {
-              return _vm.addQuickTask()
-            },
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                task
+                  ? _c("div", { staticClass: "control-buttons" }, [
+                      _c("i", {
+                        staticClass: "fas fa-copy",
+                        on: {
+                          click: function($event) {
+                            return _vm.showCopyTaskModal(task)
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e()
+              ],
+              1
+            )
+          }),
+          _vm._v(" "),
+          _c("div", { class: _vm.addTaskArea }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.quickTask,
+                  expression: "quickTask"
+                }
+              ],
+              attrs: { type: "text", placeholder: "簡単登録" },
+              domProps: { value: _vm.quickTask },
+              on: {
+                keydown: function($event) {
+                  return _vm.addQuickTask()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.quickTask = $event.target.value
+                }
               }
-              _vm.quickTask = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary mx-auto d-block",
-            on: {
-              click: function($event) {
-                return _vm.showNewTaskModal()
-              }
-            }
-          },
-          [_vm._v("詳細登録")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary mx-auto d-block",
-            on: {
-              click: function($event) {
-                return _vm.showTemplateModal()
-              }
-            }
-          },
-          [_vm._v("テンプレートから作成")]
-        )
-      ])
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mx-auto d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.showNewTaskModal()
+                  }
+                }
+              },
+              [_vm._v("詳細登録")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mx-auto d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.showTemplateModal()
+                  }
+                }
+              },
+              [_vm._v("テンプレートから作成")]
+            )
+          ])
+        ],
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []

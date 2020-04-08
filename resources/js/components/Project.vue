@@ -59,7 +59,7 @@
                     <!--    <p v-if="project.tasks == ''" class="task">タスクが登録されていません！</p>-->
                     <!--    <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addTask">プロジェクトにタスクを追加</button>-->
                     <!--</div>-->
-                    <task-list v-bind:taskIds="taskIds" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
+                    <task-list v-model="tasks" v-bind:taskIds="taskIds" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
                     
                     <!--ガントチャート-->
                     
@@ -79,6 +79,7 @@
                 // newTask:{},
                 // items:[],
                 taskIds:[],
+                tasks:[], //変更監視用
                 denominotor:0,
                 numerator:0,
                 detail:'project-detail-close'
@@ -92,12 +93,12 @@
             }  
         },
         watch:{
-            newTask:async function(newVal,oldVal){
-                if(!newVal.id){return } //newValにidがなければ終了
-                let result = await axios.get('/api/tasks/' + newVal.id)
-                delete result.data.project
-                this.project.tasks.push(result.data)
-            },
+            // newTask:async function(newVal,oldVal){
+            //     if(!newVal.id){return } //newValにidがなければ終了
+            //     let result = await axios.get('/api/tasks/' + newVal.id)
+            //     delete result.data.project
+            //     this.project.tasks.push(result.data)
+            // },
             'project.tasks': {
                 handler: function(newVal,oldVal){
                     // プロジェクトラベルの削除
@@ -108,6 +109,9 @@
                     this.setProgress() 
                 },
                 deep:true
+            },
+            tasks:function(){
+                console.log(this.tasks)
             }
         },
         created(){
@@ -159,7 +163,7 @@
                 this.denominotor = this.project.tasks.length
                 let numerator = 0
                 for(let task of this.project.tasks){
-                    if(task.state_id == 3){
+                    if(task.state_id == 2){
                         numerator ++
                     }
                 }
