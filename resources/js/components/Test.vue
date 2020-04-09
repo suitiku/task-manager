@@ -1,8 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        
-        <task-list v-bind:taskIds="taskIds" />        
+        <div class="button" v-on:click="changeTask()">タスク切換え</div>
+        <task v-model="task" /> 
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -53,7 +53,6 @@
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
             this.task = this.tasks[1]
-            console.log(this.tasks)
             
             //タグ全取得
             let tagsResult = await axios.get('/api/tags')
@@ -92,11 +91,20 @@
             sortArray:function(){
                 console.log('hoge')
                 this.$refs.sortArrayComponent.sortArray()
+            },
+            changeTask:function(){
+                this.task = this.tasks[2]
             }
         },
     }
 </script>
 <style>
+    .button {
+        cursor:pointer;
+        padding:0.5em;
+        border:1px solid grey;
+        border-radius:0.2em;
+    }
     .hoge {
         display:flex;
     }

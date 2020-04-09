@@ -46,7 +46,7 @@
         watch:{
             openLog:function(){
                 if(this.openLog){
-                    let lineNum = this.task.states.length + 3
+                    let lineNum = this.task.states.length * 2.0 + 2.0
                     this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease'
                 }else{
                     this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease'

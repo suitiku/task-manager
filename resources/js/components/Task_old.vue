@@ -1,8 +1,9 @@
 <!--タスク単体を表示するデザインコンポーネント-->
 <!--編集、状態の変化で上部に送出-->
 <!--4 ステッカー（新規作成にNew!、締切間近にDANGER!など-->
+<!--5 ログ表示-->
 <template>
-    <div v-if="task" class="container">
+    <div class="container">
         <!--通知-->
         <notice ref="notice" />
         
@@ -38,7 +39,7 @@
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグの付替えを行います</p>
-            <tag-list v-bind:taskId="task.id" />
+            <tag-list v-bind:taskId="taskId" />
         </modal>
         
         <!--編集用モーダル-->
@@ -78,7 +79,7 @@
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
-            <div v-bind:class="maskClass" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
+            <div v-bind:class="mask_class" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
             <!--<div class="state-icon" v-show="checkbox || notActive">-->
             <div class="state-icon" v-show="checkbox || notActive">
                 <div>
@@ -153,7 +154,7 @@
                     <!--アイテムの追加処理セクション-->
                     <div class="editable">
                         <text-spliter v-model="items" />
-                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems()">アイテムを追加</button>
+                        <button class="btn btn-outline-primary mx-auto d-block" v-on:click="addItems">アイテムを追加</button>
                     </div>
                 </div>
                 <!--ログ-->
@@ -169,7 +170,7 @@
             return {
                 task:{},
                 wrapper_class:'task-wrapper',
-                maskClass:'mask',
+                mask_class:'mask',
                 mask:false,
                 checkbox:false,
                 notActive:false, //実行状態ではない場合のフラグ
@@ -187,6 +188,7 @@
                 editItemMode:[],
                 items:[],
                 editTagModal:false,
+                tags:[],
                 editStatusModal:false,
                 selectedStatus:{
                     id:'',
@@ -195,24 +197,22 @@
             }  
         },
         props:{
-            value: {
-                type:[String,Number,Object],
+            taskId: {
+                type:[String,Number],
                 required:true,
             }
         },
         watch:{
-            value:{
-                handler:async function() {
-                    this.setTask()
-                    this.updateData()
-                },
-                deep:true,
+            taskId:async function() {
+                await this.fetchTask()
+                this.updateData()
             },
             //編集用モーダルを閉じたときにアップデート
             editModal:async function(newVal,oldVal){
                 if(newVal == false){
                     await this.fetchTask()
                     this.updateData()
+                    this.$emit('input',this.task)
                 }
             },
             // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
@@ -220,19 +220,22 @@
                 if(newVal == false){
                     this.isEditedTags = false
                     await this.fetchTask()
+                    this.$emit('input',this.task)
                 }
             }
         },
         created:async function(){
-            if(this.value){
-                this.setTask()
+            if(this.taskId){
+                await this.fetchTask()
                 this.updateData()
+                this.fetchTags()
             }
         },
         mounted:async function(){
-            if(this.value && !this.task){
-                this.setTask()
+            if(this.taskId && !this.task){
+                await this.fetchTask()
                 this.updateData()
+                this.fetchTags()
             }
         },
         computed:{
@@ -252,30 +255,42 @@
         },
         methods: {
             fetchTask:async function(){
-                let result = await axios.get('/api/tasks/' + this.task.id)
+                let result = await axios.get('/api/tasks/' + this.taskId)
                 this.task = result.data
-                this.$emit('input',this.task)
-            },
-            setTask:async function(){
-                //表示用データ作成
-                this.task = JSON.parse(JSON.stringify(this.value))
                 //編集モーダル用のデータ作成
                 this.editedTask = {
-                    id:this.task.id,
-                    user_id:this.task.user_id,
-                    project_id:this.task.project_id,
-                    name:this.task.name,
-                    overview:this.task.overview,
-                    priority:this.task.priority,
-                    difficulty:this.task.difficulty,
-                    start_date:this.task.start_date,
-                    dead_line:this.task.dead_line,
-                    is_template:this.task.is_template,
+                    id:result.data.id,
+                    user_id:result.data.user_id,
+                    project_id:result.data.project.id,
+                    name:result.data.name,
+                    overview:result.data.overview,
+                    priority:result.data.priority,
+                    difficulty:result.data.difficulty,
+                    start_date:result.data.start_date,
+                    dead_line:result.data.dead_line,
+                    is_template:result.data.is_template,
                 }
                 //子アイテムの編集モード管理配列
                 this.editItemMode = []
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
+                }
+                //設定済みのタグの取得
+                this.selectedTags = []
+                for(let tag of this.task.tags){
+                    this.selectedTags.push(tag.id)
+                }
+            },
+            fetchTags: async function(){
+                 // タグの取得
+                 let result = await axios.get('/api/mytags',{
+                                                params:{user_id:this.task.user_id,}
+                                            })
+                let tagsResult = result.data
+                
+                //tag-cloudに投入できる形に整形
+                for(let index of Object.keys(tagsResult)){
+                    this.tags.push({label:tagsResult[index].name,value:tagsResult[index].id})
                 }
             },
             openDetail: function(){
@@ -286,7 +301,7 @@
                 let check = event
                 if(event.target.checked == true){
                     let postObject = {
-                        task_id:this.task.id,
+                        task_id:this.taskId,
                         state_id:2,
                     }
                     
@@ -319,7 +334,7 @@
             updateData:function(){
                 if(!this.task.id){return }
                 // 各種パラメータをリセット
-                this.maskClass = 'mask'
+                this.mask_class = 'mask'
                 this.checkbox = false
                 this.notActive = false
                 this.stateDetail = ''
@@ -331,48 +346,43 @@
                 
                 let current_datetime = new Date()
                 let task_datetime = new Date(this.task.start_date)
-                
                 //statesの最後の状態を取得
-                // let lastStateIndex = this.task.states.length - 1
-                let states = this.sortStatus()
-                // let lastStateIndex = states[states.length -1]
+                let lastStateIndex = this.task.states.length - 1
                 
-                if(states[states.length -1].id == 2){ //完了タスク
-                    this.maskClass = 'mask mask-active'
+                if(this.task.states[lastStateIndex].id == 2){ //完了タスク
+                    this.mask_class = 'mask mask-active'
                     this.checkbox = true
                     check.checked = 'checked'
                     check.disabled = true
                 }else if(current_datetime < task_datetime){ //開始前タスク
-                    this.maskClass = 'mask mask-active'
+                    this.mask_class = 'mask mask-active'
                     this.notActive = true
                     check.disabled = true
                     this.stateDetail = '開始前タスクです'
-                }else if(states[states.length -1].id != 1){ //実行状態でも完了でもないタスク
-                    this.maskClass = 'mask mask-active'
+                }else if(this.task.states[lastStateIndex].id != 1){ //実行状態でも完了でもないタスク
+                    this.mask_class = 'mask mask-active'
                     this.notActive = true
                     check.disabled = true
-                    this.stateDetail = states[states.length -1].pivot.state_detail
+                    this.stateDetail = this.task.states[lastStateIndex].pivot.state_detail
                 }
             },
             showDeleteTaskDialog:function(){
                 this.$refs.deleteModal.openModal()
             },
             deleteTask:async function(){
-                try{
-                    // API経由で削除
-                    // 返り値はboolean
-                    let result = await axios.delete('/api/tasks/' + this.task.id)
+                // API経由で削除
+                // 返り値はboolean
+                let result = await axios.delete('/api/tasks/' + this.task.id)
+                if(result.data){
                     // 削除が成功した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('タスクを削除しました')
                     // 通知が終わった後に自らを削除（不可視化）
-                    this.task = {}
                     this.$emit('input','')
-                }catch(error){
+                }else{
                     // 削除が失敗した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('タスクの削除に失敗しました')
-                    console.log(error)
                 }
                 this.$refs.deleteModal.closeModal()
             },
@@ -385,20 +395,19 @@
                 this.$refs.deleteItemModal.openModal()
             },
             deleteItem:async function(){
-                try{
-                    // API経由で削除
-                    // 返り値はboolean
-                    let result = await axios.delete('/api/items/' + this.targetItemId)
+                // API経由で削除
+                // 返り値はboolean
+                let result = await axios.delete('/api/items/' + this.targetItemId)
+                if(result.data){
                     // 削除が成功した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('アイテムを削除しました')
                     // 通知が終わった後に自らを削除（不可視化）
                     this.inactivateItem[this.targetItemId] = {display:'none'}
-                }catch(error){
+                }else{
                     // 削除失敗した場合
                     // noticeで通知
                     this.$refs.notice.showNotice('アイテムの削除に失敗しました')
-                    console.log(error)
                 }
                 this.$refs.deleteItemModal.closeModal()
             },
@@ -457,15 +466,10 @@
             showEditStatusDialog:function(){
                 this.$refs.editStatusModal.openModal()
             },
-            sortStatus:function(){
-                if(!this.task)return
-                return this.task.states.sort((a,b) => {
-                    if(a.pivot.created_at < b.pivot.created_at)return -1
-                    if(a.pivot.created_at > b.pivot.created_at)return 1
-                    return 0
-                })
-            },
             changeStatus:async function(){
+                // 現在の状態を取得
+                let lastStateIndex = this.task.states.length - 1
+                let currentStatus = this.task.states[lastStateIndex]
                 // Statusが選択されていない
                 if(!this.selectedStatus.id){
                     return 
@@ -575,7 +579,7 @@
         
     }
     .detail-active {
-        max-height:2000px;
+        max-height:500px;
         transition:all 1.0s ease;
     }
     .editable {

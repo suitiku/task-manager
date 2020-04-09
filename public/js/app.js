@@ -52614,7 +52614,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:500px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -52796,14 +52796,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             task: {},
             wrapper_class: 'task-wrapper',
-            mask_class: 'mask',
+            maskClass: 'mask',
             mask: false,
             checkbox: false,
             notActive: false, //実行状態ではない場合のフラグ
@@ -52821,7 +52820,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             editItemMode: [],
             items: [],
             editTagModal: false,
-            tags: [],
             editStatusModal: false,
             selectedStatus: {
                 id: '',
@@ -52830,38 +52828,38 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         };
     },
     props: {
-        taskId: {
-            type: [String, Number],
+        value: {
+            type: [String, Number, Object],
             required: true
         }
     },
     watch: {
-        taskId: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.fetchTask();
+        value: {
+            handler: function () {
+                var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                        while (1) {
+                            switch (_context.prev = _context.next) {
+                                case 0:
+                                    this.setTask();
+                                    this.updateData();
 
-                            case 2:
-                                this.updateData();
-
-                            case 3:
-                            case 'end':
-                                return _context.stop();
+                                case 2:
+                                case 'end':
+                                    return _context.stop();
+                            }
                         }
-                    }
-                }, _callee, this);
-            }));
+                    }, _callee, this);
+                }));
 
-            function taskId() {
-                return _ref.apply(this, arguments);
-            }
+                function handler() {
+                    return _ref.apply(this, arguments);
+                }
 
-            return taskId;
-        }(),
+                return handler;
+            }(),
+            deep: true
+        },
         //編集用モーダルを閉じたときにアップデート
         editModal: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(newVal, oldVal) {
@@ -52870,7 +52868,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!(newVal == false)) {
-                                    _context2.next = 5;
+                                    _context2.next = 4;
                                     break;
                                 }
 
@@ -52879,9 +52877,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 3:
                                 this.updateData();
-                                this.$emit('input', this.task);
 
-                            case 5:
+                            case 4:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -52903,7 +52900,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context3.prev = _context3.next) {
                             case 0:
                                 if (!(newVal == false)) {
-                                    _context3.next = 5;
+                                    _context3.next = 4;
                                     break;
                                 }
 
@@ -52912,9 +52909,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return this.fetchTask();
 
                             case 4:
-                                this.$emit('input', this.task);
-
-                            case 5:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -52935,19 +52929,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
-                            if (!this.taskId) {
-                                _context4.next = 5;
-                                break;
+                            if (this.value) {
+                                this.setTask();
+                                this.updateData();
                             }
 
-                            _context4.next = 3;
-                            return this.fetchTask();
-
-                        case 3:
-                            this.updateData();
-                            this.fetchTags();
-
-                        case 5:
+                        case 1:
                         case 'end':
                             return _context4.stop();
                     }
@@ -52967,19 +52954,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context5.prev = _context5.next) {
                         case 0:
-                            if (!(this.taskId && !this.task)) {
-                                _context5.next = 5;
-                                break;
+                            if (this.value && !this.task) {
+                                this.setTask();
+                                this.updateData();
                             }
 
-                            _context5.next = 3;
-                            return this.fetchTask();
-
-                        case 3:
-                            this.updateData();
-                            this.fetchTags();
-
-                        case 5:
+                        case 1:
                         case 'end':
                             return _context5.stop();
                     }
@@ -53012,86 +52992,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     methods: {
         fetchTask: function () {
             var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
-                var result, index, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
-
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
                         switch (_context6.prev = _context6.next) {
                             case 0:
                                 _context6.next = 2;
-                                return axios.get('/api/tasks/' + this.taskId);
+                                return axios.get('/api/tasks/' + this.task.id);
 
                             case 2:
                                 result = _context6.sent;
 
                                 this.task = result.data;
-                                //編集モーダル用のデータ作成
-                                this.editedTask = {
-                                    id: result.data.id,
-                                    user_id: result.data.user_id,
-                                    project_id: result.data.project.id,
-                                    name: result.data.name,
-                                    overview: result.data.overview,
-                                    priority: result.data.priority,
-                                    difficulty: result.data.difficulty,
-                                    start_date: result.data.start_date,
-                                    dead_line: result.data.dead_line,
-                                    is_template: result.data.is_template
-                                    //子アイテムの編集モード管理配列
-                                };this.editItemMode = [];
-                                for (index in this.task.items) {
-                                    this.editItemMode.push(false);
-                                }
-                                //設定済みのタグの取得
-                                this.selectedTags = [];
-                                _iteratorNormalCompletion = true;
-                                _didIteratorError = false;
-                                _iteratorError = undefined;
-                                _context6.prev = 11;
-                                for (_iterator = this.task.tags[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                                    tag = _step.value;
+                                this.$emit('input', this.task);
 
-                                    this.selectedTags.push(tag.id);
-                                }
-                                _context6.next = 19;
-                                break;
-
-                            case 15:
-                                _context6.prev = 15;
-                                _context6.t0 = _context6['catch'](11);
-                                _didIteratorError = true;
-                                _iteratorError = _context6.t0;
-
-                            case 19:
-                                _context6.prev = 19;
-                                _context6.prev = 20;
-
-                                if (!_iteratorNormalCompletion && _iterator.return) {
-                                    _iterator.return();
-                                }
-
-                            case 22:
-                                _context6.prev = 22;
-
-                                if (!_didIteratorError) {
-                                    _context6.next = 25;
-                                    break;
-                                }
-
-                                throw _iteratorError;
-
-                            case 25:
-                                return _context6.finish(22);
-
-                            case 26:
-                                return _context6.finish(19);
-
-                            case 27:
+                            case 5:
                             case 'end':
                                 return _context6.stop();
                         }
                     }
-                }, _callee6, this, [[11, 15, 19, 27], [20,, 22, 26]]);
+                }, _callee6, this);
             }));
 
             function fetchTask() {
@@ -53100,80 +53020,46 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTask;
         }(),
-        fetchTags: function () {
+        setTask: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
-                var result, tagsResult, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, index;
-
+                var index;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
                         switch (_context7.prev = _context7.next) {
                             case 0:
-                                _context7.next = 2;
-                                return axios.get('/api/mytags', {
-                                    params: { user_id: this.task.user_id }
-                                });
-
-                            case 2:
-                                result = _context7.sent;
-                                tagsResult = result.data;
-
-                                //tag-cloudに投入できる形に整形
-
-                                _iteratorNormalCompletion2 = true;
-                                _didIteratorError2 = false;
-                                _iteratorError2 = undefined;
-                                _context7.prev = 7;
-                                for (_iterator2 = Object.keys(tagsResult)[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                    index = _step2.value;
-
-                                    this.tags.push({ label: tagsResult[index].name, value: tagsResult[index].id });
-                                }
-                                _context7.next = 15;
-                                break;
-
-                            case 11:
-                                _context7.prev = 11;
-                                _context7.t0 = _context7['catch'](7);
-                                _didIteratorError2 = true;
-                                _iteratorError2 = _context7.t0;
-
-                            case 15:
-                                _context7.prev = 15;
-                                _context7.prev = 16;
-
-                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                    _iterator2.return();
+                                //表示用データ作成
+                                this.task = JSON.parse(JSON.stringify(this.value));
+                                //編集モーダル用のデータ作成
+                                this.editedTask = {
+                                    id: this.task.id,
+                                    user_id: this.task.user_id,
+                                    project_id: this.task.project_id,
+                                    name: this.task.name,
+                                    overview: this.task.overview,
+                                    priority: this.task.priority,
+                                    difficulty: this.task.difficulty,
+                                    start_date: this.task.start_date,
+                                    dead_line: this.task.dead_line,
+                                    is_template: this.task.is_template
+                                    //子アイテムの編集モード管理配列
+                                };this.editItemMode = [];
+                                for (index in this.task.items) {
+                                    this.editItemMode.push(false);
                                 }
 
-                            case 18:
-                                _context7.prev = 18;
-
-                                if (!_didIteratorError2) {
-                                    _context7.next = 21;
-                                    break;
-                                }
-
-                                throw _iteratorError2;
-
-                            case 21:
-                                return _context7.finish(18);
-
-                            case 22:
-                                return _context7.finish(15);
-
-                            case 23:
+                            case 4:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this, [[7, 11, 15, 23], [16,, 18, 22]]);
+                }, _callee7, this);
             }));
 
-            function fetchTags() {
+            function setTask() {
                 return _ref7.apply(this, arguments);
             }
 
-            return fetchTags;
+            return setTask;
         }(),
         openDetail: function openDetail() {
             this.detail = !this.detail;
@@ -53194,7 +53080,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 }
 
                                 postObject = {
-                                    task_id: this.taskId,
+                                    task_id: this.task.id,
                                     state_id: 2
                                 };
                                 _context8.prev = 3;
@@ -53277,7 +53163,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return;
             }
             // 各種パラメータをリセット
-            this.mask_class = 'mask';
+            this.maskClass = 'mask';
             this.checkbox = false;
             this.notActive = false;
             this.stateDetail = '';
@@ -53289,27 +53175,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
-            //statesの最後の状態を取得
-            var lastStateIndex = this.task.states.length - 1;
 
-            if (this.task.states[lastStateIndex].id == 2) {
+            //statesの最後の状態を取得
+            // let lastStateIndex = this.task.states.length - 1
+            var states = this.sortStatus();
+            // let lastStateIndex = states[states.length -1]
+
+            if (states[states.length - 1].id == 2) {
                 //完了タスク
-                this.mask_class = 'mask mask-active';
+                this.maskClass = 'mask mask-active';
                 this.checkbox = true;
                 check.checked = 'checked';
                 check.disabled = true;
             } else if (current_datetime < task_datetime) {
                 //開始前タスク
-                this.mask_class = 'mask mask-active';
+                this.maskClass = 'mask mask-active';
                 this.notActive = true;
                 check.disabled = true;
                 this.stateDetail = '開始前タスクです';
-            } else if (this.task.states[lastStateIndex].id != 1) {
+            } else if (states[states.length - 1].id != 1) {
                 //実行状態でも完了でもないタスク
-                this.mask_class = 'mask mask-active';
+                this.maskClass = 'mask mask-active';
                 this.notActive = true;
                 check.disabled = true;
-                this.stateDetail = this.task.states[lastStateIndex].pivot.state_detail;
+                this.stateDetail = states[states.length - 1].pivot.state_detail;
             }
         },
         showDeleteTaskDialog: function showDeleteTaskDialog() {
@@ -53322,31 +53211,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context10.prev = _context10.next) {
                             case 0:
-                                _context10.next = 2;
+                                _context10.prev = 0;
+                                _context10.next = 3;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
-                            case 2:
+                            case 3:
                                 result = _context10.sent;
 
-                                if (result.data) {
-                                    // 削除が成功した場合
-                                    // noticeで通知
-                                    this.$refs.notice.showNotice('タスクを削除しました');
-                                    // 通知が終わった後に自らを削除（不可視化）
-                                    this.$emit('input', '');
-                                } else {
-                                    // 削除が失敗した場合
-                                    // noticeで通知
-                                    this.$refs.notice.showNotice('タスクの削除に失敗しました');
-                                }
+                                // 削除が成功した場合
+                                // noticeで通知
+                                this.$refs.notice.showNotice('タスクを削除しました');
+                                // 通知が終わった後に自らを削除（不可視化）
+                                this.task = {};
+                                this.$emit('input', '');
+                                _context10.next = 13;
+                                break;
+
+                            case 9:
+                                _context10.prev = 9;
+                                _context10.t0 = _context10['catch'](0);
+
+                                // 削除が失敗した場合
+                                // noticeで通知
+                                this.$refs.notice.showNotice('タスクの削除に失敗しました');
+                                console.log(_context10.t0);
+
+                            case 13:
                                 this.$refs.deleteModal.closeModal();
 
-                            case 5:
+                            case 14:
                             case 'end':
                                 return _context10.stop();
                         }
                     }
-                }, _callee10, this);
+                }, _callee10, this, [[0, 9]]);
             }));
 
             function deleteTask() {
@@ -53389,31 +53287,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context12.prev = _context12.next) {
                             case 0:
-                                _context12.next = 2;
+                                _context12.prev = 0;
+                                _context12.next = 3;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
-                            case 2:
+                            case 3:
                                 result = _context12.sent;
 
-                                if (result.data) {
-                                    // 削除が成功した場合
-                                    // noticeで通知
-                                    this.$refs.notice.showNotice('アイテムを削除しました');
-                                    // 通知が終わった後に自らを削除（不可視化）
-                                    this.inactivateItem[this.targetItemId] = { display: 'none' };
-                                } else {
-                                    // 削除失敗した場合
-                                    // noticeで通知
-                                    this.$refs.notice.showNotice('アイテムの削除に失敗しました');
-                                }
+                                // 削除が成功した場合
+                                // noticeで通知
+                                this.$refs.notice.showNotice('アイテムを削除しました');
+                                // 通知が終わった後に自らを削除（不可視化）
+                                this.inactivateItem[this.targetItemId] = { display: 'none' };
+                                _context12.next = 12;
+                                break;
+
+                            case 8:
+                                _context12.prev = 8;
+                                _context12.t0 = _context12['catch'](0);
+
+                                // 削除失敗した場合
+                                // noticeで通知
+                                this.$refs.notice.showNotice('アイテムの削除に失敗しました');
+                                console.log(_context12.t0);
+
+                            case 12:
                                 this.$refs.deleteItemModal.closeModal();
 
-                            case 5:
+                            case 13:
                             case 'end':
                                 return _context12.stop();
                         }
                     }
-                }, _callee12, this);
+                }, _callee12, this, [[0, 8]]);
             }));
 
             function deleteItem() {
@@ -53474,25 +53380,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         addItems: function () {
             var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
-                var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, postItem;
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
                         switch (_context14.prev = _context14.next) {
                             case 0:
-                                _iteratorNormalCompletion3 = true;
-                                _didIteratorError3 = false;
-                                _iteratorError3 = undefined;
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
                                 _context14.prev = 3;
-                                _iterator3 = this.items[Symbol.iterator]();
+                                _iterator = this.items[Symbol.iterator]();
 
                             case 5:
-                                if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+                                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
                                     _context14.next = 23;
                                     break;
                                 }
 
-                                item = _step3.value;
+                                item = _step.value;
                                 postItem = {
                                     task_id: this.task.id,
                                     name: item,
@@ -53517,7 +53423,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 console.log(_context14.t0);
 
                             case 20:
-                                _iteratorNormalCompletion3 = true;
+                                _iteratorNormalCompletion = true;
                                 _context14.next = 5;
                                 break;
 
@@ -53528,26 +53434,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 25:
                                 _context14.prev = 25;
                                 _context14.t1 = _context14['catch'](3);
-                                _didIteratorError3 = true;
-                                _iteratorError3 = _context14.t1;
+                                _didIteratorError = true;
+                                _iteratorError = _context14.t1;
 
                             case 29:
                                 _context14.prev = 29;
                                 _context14.prev = 30;
 
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
                                 }
 
                             case 32:
                                 _context14.prev = 32;
 
-                                if (!_didIteratorError3) {
+                                if (!_didIteratorError) {
                                     _context14.next = 35;
                                     break;
                                 }
 
-                                throw _iteratorError3;
+                                throw _iteratorError;
 
                             case 35:
                                 return _context14.finish(32);
@@ -53588,60 +53494,63 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         showEditStatusDialog: function showEditStatusDialog() {
             this.$refs.editStatusModal.openModal();
         },
+        sortStatus: function sortStatus() {
+            if (!this.task) return;
+            return this.task.states.sort(function (a, b) {
+                if (a.pivot.created_at < b.pivot.created_at) return -1;
+                if (a.pivot.created_at > b.pivot.created_at) return 1;
+                return 0;
+            });
+        },
         changeStatus: function () {
             var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
-                var lastStateIndex, currentStatus, postObject;
+                var postObject;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
                         switch (_context15.prev = _context15.next) {
                             case 0:
-                                // 現在の状態を取得
-                                lastStateIndex = this.task.states.length - 1;
-                                currentStatus = this.task.states[lastStateIndex];
-                                // Statusが選択されていない
-
                                 if (this.selectedStatus.id) {
-                                    _context15.next = 6;
+                                    _context15.next = 4;
                                     break;
                                 }
 
                                 return _context15.abrupt('return');
 
-                            case 6:
+                            case 4:
                                 postObject = {
                                     task_id: this.task.id,
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context15.prev = 7;
-                                _context15.next = 10;
+                                _context15.prev = 5;
+                                _context15.next = 8;
                                 return axios.post('/api/state_task', postObject);
 
-                            case 10:
+                            case 8:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context15.next = 13;
+                                _context15.next = 11;
                                 return this.fetchTask();
 
-                            case 13:
+                            case 11:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context15.next = 22;
+                                _context15.next = 20;
                                 break;
 
-                            case 18:
-                                _context15.prev = 18;
-                                _context15.t0 = _context15['catch'](7);
+                            case 16:
+                                _context15.prev = 16;
+                                _context15.t0 = _context15['catch'](5);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
                                 console.log(_context15.t0);
 
-                            case 22:
+                            case 20:
                             case 'end':
                                 return _context15.stop();
                         }
                     }
-                }, _callee15, this, [[7, 18]]);
+                }, _callee15, this, [[5, 16]]);
             }));
 
             function changeStatus() {
@@ -53661,700 +53570,718 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("notice", { ref: "notice" }),
-      _vm._v(" "),
-      _c("tool-tip", { ref: "toolTip" }, [
-        _c("div", { staticClass: "tool-tip-content" }, [
-          _vm._v("\n            " + _vm._s(_vm.toolTipContent) + "\n        ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "deleteModal",
-          model: {
-            value: _vm.deleteModal,
-            callback: function($$v) {
-              _vm.deleteModal = $$v
-            },
-            expression: "deleteModal"
-          }
-        },
+  return _vm.task
+    ? _c(
+        "div",
+        { staticClass: "container" },
         [
-          _c("b", [
-            _vm._v("タスク「" + _vm._s(_vm.task.name) + "」を削除します。")
-          ]),
+          _c("notice", { ref: "notice" }),
           _vm._v(" "),
-          _c("b", [_vm._v("この処理は取り消しできません。")]),
-          _vm._v(" "),
-          _c("b", [_vm._v("よろしいですか？")]),
-          _vm._v(" "),
-          _c("p"),
-          _vm._v(" "),
-          _c("div", { staticClass: "buttons" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger d-block",
-                on: {
-                  click: function($event) {
-                    return _vm.deleteTask()
-                  }
-                }
-              },
-              [_vm._v("タスクを削除")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary d-block",
-                on: {
-                  click: function($event) {
-                    return _vm.cancelDialog()
-                  }
-                }
-              },
-              [_vm._v("キャンセル")]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "editStatusModal",
-          model: {
-            value: _vm.editStatusModal,
-            callback: function($$v) {
-              _vm.editStatusModal = $$v
-            },
-            expression: "editStatusModal"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "edit-status-modal" },
-            [
-              _c("p", [_vm._v("状態を変更します")]),
-              _vm._v(" "),
-              _c("list-box", {
-                attrs: { table: "states", columns: ["name"] },
-                model: {
-                  value: _vm.selectedStatus.id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.selectedStatus, "id", $$v)
-                  },
-                  expression: "selectedStatus.id"
-                }
-              }),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.selectedStatus.state_detail,
-                    expression: "selectedStatus.state_detail"
-                  }
-                ],
-                attrs: { type: "text", placeholder: "コメント（null可）" },
-                domProps: { value: _vm.selectedStatus.state_detail },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.selectedStatus,
-                      "state_detail",
-                      $event.target.value
-                    )
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary d-block mx-auto",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeStatus()
-                    }
-                  }
-                },
-                [_vm._v("状態を変更")]
+          _c("tool-tip", { ref: "toolTip" }, [
+            _c("div", { staticClass: "tool-tip-content" }, [
+              _vm._v(
+                "\n            " + _vm._s(_vm.toolTipContent) + "\n        "
               )
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "editTagModal",
-          model: {
-            value: _vm.editTagModal,
-            callback: function($$v) {
-              _vm.editTagModal = $$v
-            },
-            expression: "editTagModal"
-          }
-        },
-        [
-          _c("p", [_vm._v("タグの付替えを行います")]),
-          _vm._v(" "),
-          _c("tag-list", { attrs: { taskId: _vm.taskId } })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "editModal",
-          model: {
-            value: _vm.editModal,
-            callback: function($$v) {
-              _vm.editModal = $$v
-            },
-            expression: "editModal"
-          }
-        },
-        [
-          _c(
-            "versatile-form",
-            {
-              attrs: { table: "tasks" },
-              model: {
-                value: _vm.editedTask,
-                callback: function($$v) {
-                  _vm.editedTask = $$v
-                },
-                expression: "editedTask"
-              }
-            },
-            [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.editedTask.name,
-                    expression: "editedTask.name"
-                  }
-                ],
-                attrs: { type: "text", placeholder: "タスク名" },
-                domProps: { value: _vm.editedTask.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.editedTask, "name", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.editedTask.overview,
-                    expression: "editedTask.overview"
-                  }
-                ],
-                attrs: { placeholder: "概要" },
-                domProps: { value: _vm.editedTask.overview },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.editedTask, "overview", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "inline" },
-                [
-                  _c("span", [_vm._v("優先度")]),
-                  _vm._v(" "),
-                  _c("star-range", {
-                    model: {
-                      value: _vm.editedTask.priority,
-                      callback: function($$v) {
-                        _vm.$set(_vm.editedTask, "priority", $$v)
-                      },
-                      expression: "editedTask.priority"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "inline" },
-                [
-                  _c("span", [_vm._v("難易度")]),
-                  _vm._v(" "),
-                  _c("star-range", {
-                    model: {
-                      value: _vm.editedTask.difficulty,
-                      callback: function($$v) {
-                        _vm.$set(_vm.editedTask, "difficulty", $$v)
-                      },
-                      expression: "editedTask.difficulty"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("span", [_vm._v("開始日")]),
-              _vm._v(" "),
-              _c("date-picker", {
-                model: {
-                  value: _vm.editedTask.start_date,
-                  callback: function($$v) {
-                    _vm.$set(_vm.editedTask, "start_date", $$v)
-                  },
-                  expression: "editedTask.start_date"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", [_vm._v("締切")]),
-              _vm._v(" "),
-              _c("date-picker", {
-                model: {
-                  value: _vm.editedTask.dead_line,
-                  callback: function($$v) {
-                    _vm.$set(_vm.editedTask, "dead_line", $$v)
-                  },
-                  expression: "editedTask.dead_line"
-                }
-              }),
-              _vm._v(" "),
-              _c("span", [_vm._v("プロジェクトを選択してください")]),
-              _vm._v(" "),
-              _c("list-box", {
-                attrs: { table: "projects" },
-                model: {
-                  value: _vm.editedTask.project_id,
-                  callback: function($$v) {
-                    _vm.$set(_vm.editedTask, "project_id", $$v)
-                  },
-                  expression: "editedTask.project_id"
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "modal",
-        {
-          ref: "deleteItemModal",
-          model: {
-            value: _vm.deleteItemModal,
-            callback: function($$v) {
-              _vm.deleteItemModal = $$v
-            },
-            expression: "deleteItemModal"
-          }
-        },
-        [
-          _c("b", [
-            _vm._v(
-              "アイテム「" + _vm._s(_vm.targetItemName) + "」を削除します。"
-            )
-          ]),
-          _vm._v(" "),
-          _c("b", [_vm._v("この処理は取り消しできません。")]),
-          _vm._v(" "),
-          _c("b", [_vm._v("よろしいですか？")]),
-          _vm._v(" "),
-          _c("p"),
-          _vm._v(" "),
-          _c("div", { staticClass: "buttons" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger d-block",
-                on: {
-                  click: function($event) {
-                    return _vm.deleteItem()
-                  }
-                }
-              },
-              [_vm._v("アイテムを削除")]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary d-block",
-                on: {
-                  click: function($event) {
-                    return _vm.cancelDialog()
-                  }
-                }
-              },
-              [_vm._v("キャンセル")]
-            )
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { class: _vm.wrapper_class, style: _vm.inactivateTask }, [
-        _c("div", {
-          class: _vm.mask_class,
-          on: {
-            click: function($event) {
-              return _vm.openDetail()
-            },
-            mouseover: function($event) {
-              return _vm.showToolTip()
-            },
-            mouseout: function($event) {
-              return _vm.hideToolTip()
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.checkbox || _vm.notActive,
-                expression: "checkbox || notActive"
-              }
-            ],
-            staticClass: "state-icon"
-          },
-          [
-            _c("div", [
-              _c("i", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.checkbox,
-                    expression: "checkbox"
-                  }
-                ],
-                staticClass: "far fa-2x fa-check-circle"
-              }),
-              _vm._v(" "),
-              _c("i", {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: _vm.notActive,
-                    expression: "notActive"
-                  }
-                ],
-                staticClass: "fas fa-2x fa-exclamation-circle"
-              })
-            ]),
-            _vm._v(" "),
-            _c("span", [_vm._v(_vm._s(_vm.stateDetail))])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "task-label" }, [
-          _c("div", { staticClass: "headline" }, [
-            _c("div", { staticClass: "headline-icons" }, [
-              _c("i", { staticClass: "fas fa-fire", style: _vm.fire })
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              ref: "checkbox",
-              staticClass: "checkbox",
-              attrs: { type: "checkbox" },
-              on: {
-                change: function($event) {
-                  return _vm.checkTask(_vm.task.id)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("div", [
-              _vm.task.project && _vm.task.project.id != 1
-                ? _c("div", { staticClass: "project-label" }, [
-                    _vm._v(_vm._s(_vm.task.project.name))
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("span", { staticClass: "task-headline" }, [
-                _vm._v(_vm._s(_vm.task.name))
-              ])
             ])
           ]),
           _vm._v(" "),
-          _c("div", [
-            _c("i", { staticClass: "far fa-clock" }),
-            _vm._v(" "),
-            _c("span", { staticClass: "dead-line" }, [
-              _vm._v(_vm._s(_vm.task.dead_line))
-            ]),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "far fa-check-square task-icon",
-              on: {
-                click: function($event) {
-                  return _vm.showEditStatusDialog()
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "fas fa-tag task-icon",
-              on: {
-                click: function($event) {
-                  return _vm.showEditTagDialog()
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "far fa-edit task-icon",
-              on: {
-                click: function($event) {
-                  return _vm.showEditTaskDialog()
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "fas fa-trash task-icon",
-              on: {
-                click: function($event) {
-                  return _vm.showDeleteTaskDialog()
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "detail" },
-          [
-            _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
-            _vm._v(" "),
-            _c("star-range", {
+          _c(
+            "modal",
+            {
+              ref: "deleteModal",
               model: {
-                value: _vm.task.priority,
+                value: _vm.deleteModal,
                 callback: function($$v) {
-                  _vm.$set(_vm.task, "priority", $$v)
+                  _vm.deleteModal = $$v
                 },
-                expression: "task.priority"
+                expression: "deleteModal"
               }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
-            _vm._v(" "),
-            _c("star-range", {
+            },
+            [
+              _c("b", [
+                _vm._v("タスク「" + _vm._s(_vm.task.name) + "」を削除します。")
+              ]),
+              _vm._v(" "),
+              _c("b", [_vm._v("この処理は取り消しできません。")]),
+              _vm._v(" "),
+              _c("b", [_vm._v("よろしいですか？")]),
+              _vm._v(" "),
+              _c("p"),
+              _vm._v(" "),
+              _c("div", { staticClass: "buttons" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger d-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteTask()
+                      }
+                    }
+                  },
+                  [_vm._v("タスクを削除")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary d-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.cancelDialog()
+                      }
+                    }
+                  },
+                  [_vm._v("キャンセル")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              ref: "editStatusModal",
               model: {
-                value: _vm.task.difficulty,
+                value: _vm.editStatusModal,
                 callback: function($$v) {
-                  _vm.$set(_vm.task, "difficulty", $$v)
+                  _vm.editStatusModal = $$v
                 },
-                expression: "task.difficulty"
+                expression: "editStatusModal"
               }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "tags" },
-              _vm._l(_vm.task.tags, function(tag, index) {
-                return _c("div", { staticClass: "tag" }, [
-                  _c("i", {
-                    staticClass: "fas fa-tag",
-                    style: { color: tag.color }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "edit-status-modal" },
+                [
+                  _c("p", [_vm._v("状態を変更します")]),
+                  _vm._v(" "),
+                  _c("list-box", {
+                    attrs: { table: "states", columns: ["name"] },
+                    model: {
+                      value: _vm.selectedStatus.id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.selectedStatus, "id", $$v)
+                      },
+                      expression: "selectedStatus.id"
+                    }
                   }),
                   _vm._v(" "),
-                  _c("span", [_vm._v(_vm._s(tag.name))])
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedStatus.state_detail,
+                        expression: "selectedStatus.state_detail"
+                      }
+                    ],
+                    attrs: { type: "text", placeholder: "コメント（null可）" },
+                    domProps: { value: _vm.selectedStatus.state_detail },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.selectedStatus,
+                          "state_detail",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary d-block mx-auto",
+                      on: {
+                        click: function($event) {
+                          return _vm.changeStatus()
+                        }
+                      }
+                    },
+                    [_vm._v("状態を変更")]
+                  )
+                ],
+                1
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              ref: "editTagModal",
+              model: {
+                value: _vm.editTagModal,
+                callback: function($$v) {
+                  _vm.editTagModal = $$v
+                },
+                expression: "editTagModal"
+              }
+            },
+            [
+              _c("p", [_vm._v("タグの付替えを行います")]),
+              _vm._v(" "),
+              _c("tag-list", { attrs: { taskId: _vm.task.id } })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              ref: "editModal",
+              model: {
+                value: _vm.editModal,
+                callback: function($$v) {
+                  _vm.editModal = $$v
+                },
+                expression: "editModal"
+              }
+            },
+            [
+              _c(
+                "versatile-form",
+                {
+                  attrs: { table: "tasks" },
+                  model: {
+                    value: _vm.editedTask,
+                    callback: function($$v) {
+                      _vm.editedTask = $$v
+                    },
+                    expression: "editedTask"
+                  }
+                },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editedTask.name,
+                        expression: "editedTask.name"
+                      }
+                    ],
+                    attrs: { type: "text", placeholder: "タスク名" },
+                    domProps: { value: _vm.editedTask.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.editedTask, "name", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editedTask.overview,
+                        expression: "editedTask.overview"
+                      }
+                    ],
+                    attrs: { placeholder: "概要" },
+                    domProps: { value: _vm.editedTask.overview },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.editedTask,
+                          "overview",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "inline" },
+                    [
+                      _c("span", [_vm._v("優先度")]),
+                      _vm._v(" "),
+                      _c("star-range", {
+                        model: {
+                          value: _vm.editedTask.priority,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedTask, "priority", $$v)
+                          },
+                          expression: "editedTask.priority"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "inline" },
+                    [
+                      _c("span", [_vm._v("難易度")]),
+                      _vm._v(" "),
+                      _c("star-range", {
+                        model: {
+                          value: _vm.editedTask.difficulty,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedTask, "difficulty", $$v)
+                          },
+                          expression: "editedTask.difficulty"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("開始日")]),
+                  _vm._v(" "),
+                  _c("date-picker", {
+                    model: {
+                      value: _vm.editedTask.start_date,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editedTask, "start_date", $$v)
+                      },
+                      expression: "editedTask.start_date"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("締切")]),
+                  _vm._v(" "),
+                  _c("date-picker", {
+                    model: {
+                      value: _vm.editedTask.dead_line,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editedTask, "dead_line", $$v)
+                      },
+                      expression: "editedTask.dead_line"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("プロジェクトを選択してください")]),
+                  _vm._v(" "),
+                  _c("list-box", {
+                    attrs: { table: "projects" },
+                    model: {
+                      value: _vm.editedTask.project_id,
+                      callback: function($$v) {
+                        _vm.$set(_vm.editedTask, "project_id", $$v)
+                      },
+                      expression: "editedTask.project_id"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "modal",
+            {
+              ref: "deleteItemModal",
+              model: {
+                value: _vm.deleteItemModal,
+                callback: function($$v) {
+                  _vm.deleteItemModal = $$v
+                },
+                expression: "deleteItemModal"
+              }
+            },
+            [
+              _c("b", [
+                _vm._v(
+                  "アイテム「" + _vm._s(_vm.targetItemName) + "」を削除します。"
+                )
+              ]),
+              _vm._v(" "),
+              _c("b", [_vm._v("この処理は取り消しできません。")]),
+              _vm._v(" "),
+              _c("b", [_vm._v("よろしいですか？")]),
+              _vm._v(" "),
+              _c("p"),
+              _vm._v(" "),
+              _c("div", { staticClass: "buttons" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger d-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteItem()
+                      }
+                    }
+                  },
+                  [_vm._v("アイテムを削除")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary d-block",
+                    on: {
+                      click: function($event) {
+                        return _vm.cancelDialog()
+                      }
+                    }
+                  },
+                  [_vm._v("キャンセル")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { class: _vm.wrapper_class, style: _vm.inactivateTask }, [
+            _c("div", {
+              class: _vm.maskClass,
+              on: {
+                click: function($event) {
+                  return _vm.openDetail()
+                },
+                mouseover: function($event) {
+                  return _vm.showToolTip()
+                },
+                mouseout: function($event) {
+                  return _vm.hideToolTip()
+                }
+              }
+            }),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "items" },
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: _vm.checkbox || _vm.notActive,
+                    expression: "checkbox || notActive"
+                  }
+                ],
+                staticClass: "state-icon"
+              },
               [
-                _vm._l(_vm.task.items, function(item, itemIndex) {
-                  return _c(
-                    "p",
-                    {
-                      class: _vm.setItemClass(item.is_checked),
-                      style: _vm.inactivateItem[item.id]
+                _c("div", [
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.checkbox,
+                        expression: "checkbox"
+                      }
+                    ],
+                    staticClass: "far fa-2x fa-check-circle"
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.notActive,
+                        expression: "notActive"
+                      }
+                    ],
+                    staticClass: "fas fa-2x fa-exclamation-circle"
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(_vm.stateDetail))])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "task-label" }, [
+              _c("div", { staticClass: "headline" }, [
+                _c("div", { staticClass: "headline-icons" }, [
+                  _c("i", { staticClass: "fas fa-fire", style: _vm.fire })
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  ref: "checkbox",
+                  staticClass: "checkbox",
+                  attrs: { type: "checkbox" },
+                  on: {
+                    change: function($event) {
+                      return _vm.checkTask(_vm.task.id)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", [
+                  _vm.task.project && _vm.task.project.id != 1
+                    ? _c("div", { staticClass: "project-label" }, [
+                        _vm._v(_vm._s(_vm.task.project.name))
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "task-headline" }, [
+                    _vm._v(_vm._s(_vm.task.name))
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("i", { staticClass: "far fa-clock" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "dead-line" }, [
+                  _vm._v(_vm._s(_vm.task.dead_line))
+                ]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "far fa-check-square task-icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.showEditStatusDialog()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-tag task-icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.showEditTagDialog()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "far fa-edit task-icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.showEditTaskDialog()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-trash task-icon",
+                  on: {
+                    click: function($event) {
+                      return _vm.showDeleteTaskDialog()
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "detail" },
+              [
+                _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
+                _vm._v(" "),
+                _c("star-range", {
+                  model: {
+                    value: _vm.task.priority,
+                    callback: function($$v) {
+                      _vm.$set(_vm.task, "priority", $$v)
                     },
-                    [
-                      _c(
-                        "span",
+                    expression: "task.priority"
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "label" }, [_vm._v("難易度")]),
+                _vm._v(" "),
+                _c("star-range", {
+                  model: {
+                    value: _vm.task.difficulty,
+                    callback: function($$v) {
+                      _vm.$set(_vm.task, "difficulty", $$v)
+                    },
+                    expression: "task.difficulty"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tags" },
+                  _vm._l(_vm.task.tags, function(tag, index) {
+                    return _c("div", { staticClass: "tag" }, [
+                      _c("i", {
+                        staticClass: "fas fa-tag",
+                        style: { color: tag.color }
+                      }),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(tag.name))])
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "items" },
+                  [
+                    _vm._l(_vm.task.items, function(item, itemIndex) {
+                      return _c(
+                        "p",
                         {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: !_vm.editItemMode[itemIndex],
-                              expression: "!editItemMode[itemIndex]"
-                            }
-                          ]
+                          class: _vm.setItemClass(item.is_checked),
+                          style: _vm.inactivateItem[item.id]
                         },
                         [
-                          _c("input", {
-                            staticClass: "checkbox",
-                            attrs: {
-                              type: "checkbox",
-                              disabled: _vm.setItemDisabled(item.is_checked)
+                          _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: !_vm.editItemMode[itemIndex],
+                                  expression: "!editItemMode[itemIndex]"
+                                }
+                              ]
                             },
-                            domProps: { checked: item.is_checked },
+                            [
+                              _c("input", {
+                                staticClass: "checkbox",
+                                attrs: {
+                                  type: "checkbox",
+                                  disabled: _vm.setItemDisabled(item.is_checked)
+                                },
+                                domProps: { checked: item.is_checked },
+                                on: {
+                                  change: function($event) {
+                                    return _vm.checkItem(item.id)
+                                  }
+                                }
+                              }),
+                              _vm._v(
+                                " " +
+                                  _vm._s(item.name) +
+                                  "\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.editItemMode[itemIndex],
+                                  expression: "editItemMode[itemIndex]"
+                                }
+                              ]
+                            },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.task.items[itemIndex].name,
+                                    expression: "task.items[itemIndex].name"
+                                  }
+                                ],
+                                staticClass: "editable",
+                                attrs: { type: "text" },
+                                domProps: {
+                                  value: _vm.task.items[itemIndex].name
+                                },
+                                on: {
+                                  keydown: function($event) {
+                                    return _vm.updateItem(itemIndex)
+                                  },
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.task.items[itemIndex],
+                                      "name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "far fa-edit task-icon",
                             on: {
-                              change: function($event) {
-                                return _vm.checkItem(item.id)
+                              click: function($event) {
+                                return _vm.toggleEditMode(itemIndex)
                               }
                             }
                           }),
-                          _vm._v(
-                            " " +
-                              _vm._s(item.name) +
-                              "\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm.editItemMode[itemIndex],
-                              expression: "editItemMode[itemIndex]"
-                            }
-                          ]
-                        },
-                        [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.task.items[itemIndex].name,
-                                expression: "task.items[itemIndex].name"
-                              }
-                            ],
-                            staticClass: "editable",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.task.items[itemIndex].name },
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fas fa-trash task-icon",
                             on: {
-                              keydown: function($event) {
-                                return _vm.updateItem(itemIndex)
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.task.items[itemIndex],
-                                  "name",
-                                  $event.target.value
+                              click: function($event) {
+                                return _vm.showDeleteItemDialog(
+                                  item.id,
+                                  item.name
                                 )
                               }
                             }
                           })
                         ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "far fa-edit task-icon",
-                        on: {
-                          click: function($event) {
-                            return _vm.toggleEditMode(itemIndex)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-trash task-icon",
-                        on: {
-                          click: function($event) {
-                            return _vm.showDeleteItemDialog(item.id, item.name)
-                          }
-                        }
-                      })
-                    ]
-                  )
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "editable" },
-                  [
-                    _c("text-spliter", {
-                      model: {
-                        value: _vm.items,
-                        callback: function($$v) {
-                          _vm.items = $$v
-                        },
-                        expression: "items"
-                      }
+                      )
                     }),
                     _vm._v(" "),
                     _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-outline-primary mx-auto d-block",
-                        on: { click: _vm.addItems }
-                      },
-                      [_vm._v("アイテムを追加")]
+                      "div",
+                      { staticClass: "editable" },
+                      [
+                        _c("text-spliter", {
+                          model: {
+                            value: _vm.items,
+                            callback: function($$v) {
+                              _vm.items = $$v
+                            },
+                            expression: "items"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass:
+                              "btn btn-outline-primary mx-auto d-block",
+                            on: {
+                              click: function($event) {
+                                return _vm.addItems()
+                              }
+                            }
+                          },
+                          [_vm._v("アイテムを追加")]
+                        )
+                      ],
+                      1
                     )
                   ],
-                  1
-                )
+                  2
+                ),
+                _vm._v(" "),
+                _c("task-log", {
+                  staticClass: "editable",
+                  attrs: { task: _vm.task }
+                })
               ],
-              2
-            ),
-            _vm._v(" "),
-            _c("task-log", {
-              staticClass: "editable",
-              attrs: { task: _vm.task }
-            })
-          ],
-          1
-        )
-      ])
-    ],
-    1
-  )
+              1
+            )
+          ])
+        ],
+        1
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -54766,7 +54693,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
 
 // exports
 
@@ -54836,18 +54763,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             this.tasks = result.data;
                             this.task = this.tasks[1];
-                            console.log(this.tasks);
 
                             //タグ全取得
-                            _context.next = 8;
+                            _context.next = 7;
                             return axios.get('/api/tags');
 
-                        case 8:
+                        case 7:
                             tagsResult = _context.sent;
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context.prev = 12;
+                            _context.prev = 11;
 
                             for (_iterator = tagsResult.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                 tag = _step.value;
@@ -54855,48 +54781,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.tags.push({ label: tag.name, value: tag.id });
                             }
 
-                            _context.next = 20;
+                            _context.next = 19;
                             break;
 
-                        case 16:
-                            _context.prev = 16;
-                            _context.t0 = _context['catch'](12);
+                        case 15:
+                            _context.prev = 15;
+                            _context.t0 = _context['catch'](11);
                             _didIteratorError = true;
                             _iteratorError = _context.t0;
 
-                        case 20:
+                        case 19:
+                            _context.prev = 19;
                             _context.prev = 20;
-                            _context.prev = 21;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 23:
-                            _context.prev = 23;
+                        case 22:
+                            _context.prev = 22;
 
                             if (!_didIteratorError) {
-                                _context.next = 26;
+                                _context.next = 25;
                                 break;
                             }
 
                             throw _iteratorError;
 
+                        case 25:
+                            return _context.finish(22);
+
                         case 26:
-                            return _context.finish(23);
+                            return _context.finish(19);
 
                         case 27:
-                            return _context.finish(20);
-
-                        case 28:
                             this.addFilters(); //状態を追加
 
-                        case 29:
+                        case 28:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[12, 16, 20, 28], [21,, 23, 27]]);
+            }, _callee, this, [[11, 15, 19, 27], [20,, 22, 26]]);
         }));
 
         function created() {
@@ -55015,6 +54941,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         sortArray: function sortArray() {
             console.log('hoge');
             this.$refs.sortArrayComponent.sortArray();
+        },
+        changeTask: function changeTask() {
+            this.task = this.tasks[2];
         }
     }
 });
@@ -55031,7 +54960,28 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("task-list", { attrs: { taskIds: _vm.taskIds } }),
+      _c(
+        "div",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.changeTask()
+            }
+          }
+        },
+        [_vm._v("タスク切換え")]
+      ),
+      _vm._v(" "),
+      _c("task", {
+        model: {
+          value: _vm.task,
+          callback: function($$v) {
+            _vm.task = $$v
+          },
+          expression: "task"
+        }
+      }),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -63569,7 +63519,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         openLog: function openLog() {
             if (this.openLog) {
-                var lineNum = this.task.states.length + 3;
+                var lineNum = this.task.states.length * 2.0 + 2.0;
                 this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease';
             } else {
                 this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease';
