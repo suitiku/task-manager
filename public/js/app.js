@@ -52432,7 +52432,6 @@ var render = function() {
                 task
                   ? _c("task", {
                       key: index,
-                      attrs: { taskId: task.id },
                       model: {
                         value: _vm.tasks[_vm.getTasksIndex(task.id)],
                         callback: function($$v) {
@@ -52614,7 +52613,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    /*border-radius:0.2em;*/\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -52929,12 +52928,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
-                            if (this.value) {
-                                this.setTask();
-                                this.updateData();
-                            }
-
-                        case 1:
                         case 'end':
                             return _context4.stop();
                     }
@@ -52954,12 +52947,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context5.prev = _context5.next) {
                         case 0:
-                            if (this.value && !this.task) {
-                                this.setTask();
-                                this.updateData();
-                            }
+                            this.setTask();
+                            this.updateData();
 
-                        case 1:
+                        case 2:
                         case 'end':
                             return _context5.stop();
                     }
@@ -53177,9 +53168,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var task_datetime = new Date(this.task.start_date);
 
             //statesの最後の状態を取得
-            // let lastStateIndex = this.task.states.length - 1
             var states = this.sortStatus();
-            // let lastStateIndex = states[states.length -1]
 
             if (states[states.length - 1].id == 2) {
                 //完了タスク
@@ -54733,7 +54722,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             test: '',
             hoge: '',
-            taskIds: [1, 3, 5],
+            taskIds: [4, 8, 9],
             tasks: '',
             task: {},
             tags: [],
@@ -54973,13 +54962,14 @@ var render = function() {
         [_vm._v("タスク切換え")]
       ),
       _vm._v(" "),
-      _c("task", {
+      _c("task-list", {
+        attrs: { taskIds: _vm.taskIds, userId: "1" },
         model: {
-          value: _vm.task,
+          value: _vm.tasks,
           callback: function($$v) {
-            _vm.task = $$v
+            _vm.tasks = $$v
           },
-          expression: "task"
+          expression: "tasks"
         }
       }),
       _vm._v(" "),

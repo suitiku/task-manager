@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         <div class="button" v-on:click="changeTask()">タスク切換え</div>
-        <task v-model="task" /> 
+        <task-list v-model="tasks" v-bind:taskIds="taskIds" userId="1" /> 
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -21,7 +21,7 @@
                 modal:false,
                 test:'',
                 hoge:'',
-                taskIds:[1,3,5],
+                taskIds:[4,8,9],
                 tasks:'',
                 task:{},
                 tags:[],

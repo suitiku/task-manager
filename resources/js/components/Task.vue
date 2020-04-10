@@ -224,16 +224,10 @@
             }
         },
         created:async function(){
-            if(this.value){
-                this.setTask()
-                this.updateData()
-            }
         },
         mounted:async function(){
-            if(this.value && !this.task){
-                this.setTask()
-                this.updateData()
-            }
+            this.setTask()
+            this.updateData()
         },
         computed:{
             // 炎上中マーク
@@ -333,9 +327,7 @@
                 let task_datetime = new Date(this.task.start_date)
                 
                 //statesの最後の状態を取得
-                // let lastStateIndex = this.task.states.length - 1
                 let states = this.sortStatus()
-                // let lastStateIndex = states[states.length -1]
                 
                 if(states[states.length -1].id == 2){ //完了タスク
                     this.maskClass = 'mask mask-active'
@@ -502,7 +494,6 @@
         max-height:3.0em;
         overflow:hidden;
         border:1px solid grey;
-        /*border-radius:0.2em;*/
         transition:all 1.0s ease;
     }
     .task-wrapper:hover {

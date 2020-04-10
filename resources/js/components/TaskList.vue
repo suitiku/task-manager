@@ -82,7 +82,7 @@
             
             <!--リスト表示-->
             <div v-for="(task,index) in displayedTasks" class="task">
-                <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:taskId="task.id" v-bind:key="index"/>
+                <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:key="index"/>
                 <div v-if="task" class="control-buttons">
                     <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
                 </div>
