@@ -61,6 +61,7 @@
                 let result = await axios.get('/api/myprojects',{
                                                 params:{user_id:this.user_id,}
                                             })
+                result.data.splice(0,1)
                 this.projects = result.data
             },
             showNewProjectModal:function(){

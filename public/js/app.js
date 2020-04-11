@@ -49631,9 +49631,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context2.sent;
 
+                                result.data.splice(0, 1);
                                 this.projects = result.data;
 
-                            case 6:
+                            case 7:
                             case 'end':
                                 return _context2.stop();
                         }
