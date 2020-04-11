@@ -473,8 +473,8 @@
         margin:0 0.3em;
     }
     .add-task-area {
-        margin:1em 0;
-        width:75%;
+        margin:1em 2em;
+        width:100%;
         display:flex;
         background:orange;
         padding:1em;
