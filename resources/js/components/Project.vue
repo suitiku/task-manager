@@ -19,7 +19,7 @@
                     <div class="overview">{{project.overview}}</div>
                     
                     <!--タスクリスト-->
-                    <task-list v-model="tasks" v-bind:taskIds="taskIds" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
+                    <task-list v-model="tasks" v-bind:projectId="project.id" v-bind:userId="project.user_id" />
                     
                     <!--ガントチャート-->
                     
@@ -50,15 +50,24 @@
             }  
         },
         watch:{
-            tasks:function(){
-                this.setProgress() 
+            'project.tasks':{
+                handler:function(){
+                    this.setTasks()
+                },
+                deep:true
+            },
+            tasks:{
+                handler:function(){
+                    this.setProgress() 
+                },
+                deep:true
             }
         },
         created(){
             
         },
         mounted() {
-            this.getTaskIds()
+            this.setTasks()
             this.setProgress()
         },
         computed:{
@@ -67,25 +76,28 @@
             }
         },
         methods: {
-            getTaskIds:function(){
-                this.taskIds = []
-                if(this.project.tasks.length == 0)return 
-                for(let task of this.project.tasks){
-                    this.taskIds.push(task.id)
-                }
+            setTasks:function(){
+                if(!this.project.tasks)return 
+                let allTasks = JSON.parse(JSON.stringify(this.project.tasks))  
+                this.tasks = allTasks.filter(task => {
+                    return task.is_template == false
+                })
             },
             openDetail:function(){
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
             },
             setProgress:function(){
-                if(this.tasks.length == 0){
+                let meterTasks = this.tasks.filter(task => {
+                    return task != ''
+                })
+                if(meterTasks.length == 0){
                     this.denominotor = 0
                     return
                 }
                 
-                this.denominotor = this.tasks.length
+                this.denominotor = meterTasks.length
                 let numerator = 0
-                for(let task of this.tasks){
+                for(let task of meterTasks){
                     // 最新の状態を取得
                     let lastTaskStatusId = task.states[task.states.length -1].id
                     if(lastTaskStatusId == 2){
@@ -93,7 +105,7 @@
                     }
                 }
                 this.numerator = numerator
-            }
+            },
         }
     }
 </script>

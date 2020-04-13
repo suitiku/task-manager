@@ -1,8 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div class="button" v-on:click="changeTask()">タスク切換え</div>
-        <task-list v-model="tasks" v-bind:taskIds="taskIds" userId="1" /> 
+        <!--<task-list v-model="tasks" userId="1" /> -->
+        <project v-bind:project="project" />
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -21,8 +21,9 @@
                 modal:false,
                 test:'',
                 hoge:'',
+                project:{},
                 taskIds:[4,8,9],
-                tasks:'',
+                tasks:[],
                 task:{},
                 tags:[],
                 selectedTagId:0,
@@ -49,6 +50,10 @@
             }  
         },
         created:async function(){
+            //プロジェクト
+            let projectResult = await axios.get('/api/projects/1')
+            this.project = projectResult.data
+            
             //タスク全取得
             let result = await axios.get('/api/tasks')
             this.tasks = result.data

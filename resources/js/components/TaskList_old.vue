@@ -57,9 +57,9 @@
             <div class="task-copy-dialog">
                 <p>生成元のテンプレートを選択してください</p>
                 <div class="template-list">
-                    <div v-for="(templateTask,templateIndex) in tasks">
-                        <input v-if="templateTask && templateTask.is_template" type="radio" v-model="selectedTemplateTask" v-bind:value="templateTask">
-                        <span v-if="templateTask && templateTask.is_template">{{templateTask.name}}</span>
+                    <div v-for="(templateTask,templateIndex) in templateTasks">
+                        <input type="radio" v-model="selectedTemplateTask" v-bind:value="templateTask">
+                        <span>{{templateTask.name}}</span>
                     </div>
                 </div>
                 <div>
@@ -82,8 +82,8 @@
             
             <!--リスト表示-->
             <div v-for="(task,index) in displayedTasks" class="task">
-                <task v-if="task && !task.is_template" v-model="tasks[getTasksIndex(task.id)]" v-bind:key="index"/>
-                <div v-if="task && !task.is_template" class="control-buttons">
+                <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:key="index"/>
+                <div v-if="task" class="control-buttons">
                     <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
                 </div>
             </div>
@@ -100,12 +100,10 @@
 
 <script>
     export default {
-        model:{
-            prop:'tasks'
-        },
         data:function(){
             return {
                 newTaskModal:false,
+                tasks:[], //tasksから取得したオリジナルの配列
                 filteredTasks:[], //フィルターしたタスク配列
                 sortedTasks:[], //ソートしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
@@ -134,6 +132,7 @@
                 copyModal:false,
                 
                 //テンプレート関連
+                templateTasks:[], //テンプレートタスク一覧
                 templateModal:false,
                 selectedTemplateTask:'',
                 
@@ -148,13 +147,20 @@
                 type:[String,Number],
                 required:false
             },
-            tasks:{
-                type:[String,Array],
+            taskIds:{
+                type:[Array,String],
+                required:false
+            },
+            value:{
+                type:[String,Array,Object],
+                required:false
             }
         },
         mounted() {
         },
         created() {
+            // this.setTasks()
+            this.fetchTasks()
             this.fetchProjects()
         },
         computed:{
@@ -168,12 +174,24 @@
             }  
         },
         watch: {
-            //変更された際に上部に送出            
-            tasks:{
-                handler:function(){
-                    this.$emit('input',this.tasks)
+            value:{
+                handler:async function() {
+                    this.setTasks()
                 },
-                deep:true
+                deep:true,
+            },
+            taskIds:async function(){
+                this.fetchTasks()
+            },
+            tasks:async function(){
+                // タスクが削除された際にインデックスを詰める
+                //変更された際に上部に送出
+                for(let index in this.tasks){
+                    if(this.tasks[index] == ''){
+                        this.tasks.splice(index,1)
+                    }
+                }
+                this.$emit('input',this.tasks)
             },
             
             //新規タスク登録モーダルを閉じた際にtasksに追加
@@ -193,11 +211,43 @@
             }
         },
         methods: {
+            setTasks:function(){
+                this.tasks = JSON.parse(JSON.stringify(this.value))
+            },
+            fetchTasks: async function(){
+                // 初期化
+                this.tasks = []
+                
+                if(this.taskIds && this.taskIds.length > 0){
+                    let result
+                    for(let taskId of this.taskIds){
+                        result = await axios.get('/api/tasks/' + taskId)
+                        if(result.data.is_template == false){
+                            this.tasks.push(result.data)
+                        }else{
+                            this.templateTasks.push(result.data)
+                        }
+                    }
+                }else{
+                    if(this.projectId)return
+                    // タスクの取得（ユーザーIDでフィルター）
+                    let result = await axios.get('/api/mytasks',{
+                                                    params:{user_id:this.userId,}
+                                                })
+                    //テンプレートファイル以外を表示
+                    this.tasks = result.data.filter(task => {
+                        return task.is_template == false
+                    })
+                    
+                    //テンプレートタスクリスト
+                    this.templateTasks = result.data.filter(task => {
+                        return task.is_template == true
+                    })
+                }
+            },
             fetchProjects:async function(){
                 // projectIdが設定されている場合は飛ばす
                 if(this.projectId)return
-                // userIdがない場合は飛ばす
-                if(!this.userId)return
                 
                 // プロジェクトの取得
                 let result = await axios.get('/api/myprojects',{
@@ -337,11 +387,7 @@
                     //終了処理
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをテンプレートにしました')
-                    
-                    this.tasks[this.getTasksIndex(taskId)].is_template = true
-                    this.$emit('input',this.tasks)
-                    // this.setTasks()
-                    // this.fetchTasks()
+                    this.fetchTasks()
                 }catch(error){
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました')
@@ -355,7 +401,7 @@
                 this.$refs.templateModal.closeModal()
             },
             addTemplateTask:async function(){
-                this.copyTargetTask = JSON.parse(JSON.stringify(this.selectedTemplateTask))
+                this.copyTargetTask = this.selectedTemplateTask
                 this.copyTargetTask.is_template = false
                 this.copyTask()
                 this.$refs.templateModal.closeModal()
@@ -415,10 +461,10 @@
     .task-list-container {
         display:flex;
         flex-direction:column;
+        /*justify-content:center;*/
         align-items:center;
         position:relative;
         width: 100%;
-        padding-bottom:3em;
     }
     .sortBox {
         margin:1em 0;

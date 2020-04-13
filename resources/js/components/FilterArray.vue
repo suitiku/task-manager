@@ -97,7 +97,7 @@
             
         },
         mounted:function(){
-            
+            this.filterArray()
         },
         methods: {
             showFilterModal:function(){
@@ -126,7 +126,7 @@
                 this.filteredArray = []
                 
                 //フィルターが設定されていない場合は全部出力
-                if(!this.filters || this.filters.length == 0){ 
+                if(!this.filters || this.filters.length == 0){
                     this.$emit('input',this.targetArray)   
                     return
                 }

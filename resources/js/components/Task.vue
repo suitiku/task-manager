@@ -197,7 +197,7 @@
         props:{
             value: {
                 type:[String,Number,Object],
-                required:true,
+                required:false,
             }
         },
         watch:{
