@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call(StatesTableSeeder::class);
         
         // 本番環境では以下は無効
-        // $this->call(UsersTableSeeder::class);
-        // $this->call(TagsTableSeeder::class);
-        // $this->call(ProjectsTableSeeder::class);
-        // $this->call(TasksTableSeeder::class);
-        // $this->call(ItemsTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
+        $this->call(TasksTableSeeder::class);
+        $this->call(ItemsTableSeeder::class);
     }
 }

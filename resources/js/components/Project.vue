@@ -76,19 +76,33 @@
             }
         },
         methods: {
-            setTasks:function(){
+            setTasks:async function(){
                 if(!this.project.tasks)return 
+                
+                //プロジェクトに付随するタスクをセット
                 let allTasks = JSON.parse(JSON.stringify(this.project.tasks))  
                 this.tasks = allTasks.filter(task => {
                     return task.is_template == false
                 })
+                
+                // ユーザーの持つテンプレート化されたタスクを取得
+                let result = await axios.get('/api/mytasks',{
+                                                params:{user_id:this.project.user_id,}
+                                            })
+                let templateTasks = result.data.filter(task => {
+                    return task.is_template == true
+                })
+                
+                this.tasks = Array.from(new Set(this.tasks.concat(templateTasks)))
+                
+                
             },
             openDetail:function(){
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
             },
             setProgress:function(){
                 let meterTasks = this.tasks.filter(task => {
-                    return task != ''
+                    return task != '' && !task.is_template
                 })
                 if(meterTasks.length == 0){
                     this.denominotor = 0

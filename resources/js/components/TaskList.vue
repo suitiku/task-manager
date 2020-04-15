@@ -272,7 +272,11 @@
                 }
             },
             showCopyTaskModal:function(task){
-                this.copyTargetTask = task
+                this.copyTargetTask = JSON.parse(JSON.stringify(task))
+                if(this.projectId){
+                    this.copyTargetTask.project_id = this.projectId
+                }
+                console.log(this.copyTargetTask)
                 this.$refs.copyTaskModal.openModal()
             },
             hidecopyTaskModal:function(){
@@ -280,7 +284,6 @@
             },
             copyTask:async function(){
                 let copiedTask
-                this.$refs.copyTaskModal.closeModal()
                 let postObject = {
                     user_id:this.copyTargetTask.user_id,
                     project_id:this.copyTargetTask.project_id,
@@ -323,6 +326,7 @@
                     // this.fetchTasks()
                     let task = await axios.get('/api/tasks/' + copiedTask.id)
                     this.tasks.push(task.data)
+                    this.$refs.copyTaskModal.closeModal()
                 }catch(error){
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのコピーに失敗しました')
@@ -357,6 +361,9 @@
             addTemplateTask:async function(){
                 this.copyTargetTask = JSON.parse(JSON.stringify(this.selectedTemplateTask))
                 this.copyTargetTask.is_template = false
+                 if(this.projectId){
+                    this.copyTargetTask.project_id = this.projectId
+                }
                 this.copyTask()
                 this.$refs.templateModal.closeModal()
             },
