@@ -344,8 +344,6 @@
                     
                     this.tasks[this.getTasksIndex(taskId)].is_template = true
                     this.$emit('input',this.tasks)
-                    // this.setTasks()
-                    // this.fetchTasks()
                 }catch(error){
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのテンプレート化に失敗しました')

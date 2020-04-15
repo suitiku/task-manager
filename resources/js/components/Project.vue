@@ -57,7 +57,15 @@
                 deep:true
             },
             tasks:{
-                handler:function(){
+                handler:async function(){
+                    //下部のTaskListが更新された場合、プロジェクトが変更されたものがあったばあい、ProjectList.vueのfetchProjectsを実行して画面を更新
+                    let result = this.tasks.some(task => {
+                        return task.project_id != this.project.id && !task.is_template
+                    })
+                    if(result){
+                        await this.$parent.fetchProjects()
+                    }
+                    // プログレスバーをセット
                     this.setProgress() 
                 },
                 deep:true
@@ -94,8 +102,6 @@
                 })
                 
                 this.tasks = Array.from(new Set(this.tasks.concat(templateTasks)))
-                
-                
             },
             openDetail:function(){
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
