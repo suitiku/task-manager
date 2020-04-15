@@ -15,7 +15,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return Project::with(['tasks.states'])->get();
+        return Project::with(['tasks.states','tasks.items','tasks.tags'])->get();
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        return Project::with(['tasks.states'])->find($id);
+        return Project::with(['tasks.states','tasks.items','tasks.tags'])->find($id);
     }
 
     /**
@@ -90,6 +90,6 @@ class ProjectsController extends Controller
     
     // ユーザーIDで検索
     public function getProjectsByUserId(Request $request){
-        return Project::where('user_id',$request->user_id)->with(['tasks.states'])->get();
+        return Project::where('user_id',$request->user_id)->with(['tasks.states','tasks.items','tasks.tags'])->get();
     }
 }

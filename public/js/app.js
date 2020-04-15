@@ -51747,11 +51747,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (this.projectId) {
                                     this.copyTargetTask.project_id = this.projectId;
                                 }
-                                console.log(this.copyTargetTask);
                                 this.copyTask();
                                 this.$refs.templateModal.closeModal();
 
-                            case 6:
+                            case 5:
                             case 'end':
                                 return _context7.stop();
                         }
