@@ -44,8 +44,9 @@
                 this.content = contentName
             },
             fetchTasks: async function(){
-                // プロジェクトの取得（ユーザーIDでフィルター）
+                // タスクの取得（ユーザーIDでフィルター）
                 if(!this.user){return }
+                this.tasks = []
                 let result = await axios.get('/api/mytasks',{
                                                 params:{user_id:this.user.id,}
                                             })

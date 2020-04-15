@@ -50741,6 +50741,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         while (1) {
                             switch (_context.prev = _context.next) {
                                 case 0:
+                                    //下部のTaskListが更新された場合、プロジェクトが変更されたものがあったばあい、ProjectList.vueのfetchProjectsを実行して画面を更新
                                     result = this.tasks.some(function (task) {
                                         return task.project_id != _this.project.id && !task.is_template;
                                     });
@@ -50754,6 +50755,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     return this.$parent.fetchProjects();
 
                                 case 4:
+                                    // プログレスバーをセット
                                     this.setProgress();
 
                                 case 5:
@@ -56208,17 +56210,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context2.abrupt('return');
 
                             case 2:
-                                _context2.next = 4;
+                                this.tasks = [];
+                                _context2.next = 5;
                                 return axios.get('/api/mytasks', {
                                     params: { user_id: this.user.id }
                                 });
 
-                            case 4:
+                            case 5:
                                 result = _context2.sent;
 
                                 this.tasks = result.data;
 
-                            case 6:
+                            case 7:
                             case 'end':
                                 return _context2.stop();
                         }
