@@ -52725,6 +52725,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53178,9 +53179,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context11.prev = _context11.next) {
                             case 0:
+                                this.$refs.projectsListbox.init();
                                 this.$refs.editModal.openModal();
 
-                            case 1:
+                            case 2:
                             case 'end':
                                 return _context11.stop();
                         }
@@ -53401,6 +53403,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         showEditTagDialog: function showEditTagDialog() {
             this.$refs.editTagModal.openModal();
+            this.$refs.tagList.fetchTags();
             this.isEditedTags = true;
         },
         showToolTip: function showToolTip() {
@@ -53482,6 +53485,60 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return changeStatus;
+        }(),
+        createProject: function () {
+            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
+                var currentDatetime, deadLine, postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
+                    while (1) {
+                        switch (_context16.prev = _context16.next) {
+                            case 0:
+                                if (!(event.keyCode == 13)) {
+                                    _context16.next = 16;
+                                    break;
+                                }
+
+                                currentDatetime = new Date();
+                                deadLine = new Date(currentDatetime.getTime() + 604800000); //デフォルトの締切は一週間後
+
+                                postObject = {
+                                    user_id: this.task.user_id,
+                                    name: event.target.value,
+                                    dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                                };
+                                _context16.prev = 4;
+                                _context16.next = 7;
+                                return axios.post('/api/projects', postObject);
+
+                            case 7:
+                                this.$refs.notice.showNotice('プロジェクトを追加しました');
+                                //プロジェクトを再取得
+                                this.$refs.projectsListbox.init();
+                                // インプットをリセット
+                                this.$refs.newProject.value = '';
+                                _context16.next = 16;
+                                break;
+
+                            case 12:
+                                _context16.prev = 12;
+                                _context16.t0 = _context16['catch'](4);
+
+                                this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
+                                console.log(_context16.t0);
+
+                            case 16:
+                            case 'end':
+                                return _context16.stop();
+                        }
+                    }
+                }, _callee16, this, [[4, 12]]);
+            }));
+
+            function createProject() {
+                return _ref16.apply(this, arguments);
+            }
+
+            return createProject;
         }()
     }
 });
@@ -53650,7 +53707,7 @@ var render = function() {
             [
               _c("p", [_vm._v("タグの付替えを行います")]),
               _vm._v(" "),
-              _c("tag-list", { attrs: { taskId: _vm.task.id } })
+              _c("tag-list", { ref: "tagList", attrs: { taskId: _vm.task.id } })
             ],
             1
           ),
@@ -53792,6 +53849,7 @@ var render = function() {
                   _c("span", [_vm._v("プロジェクトを選択してください")]),
                   _vm._v(" "),
                   _c("list-box", {
+                    ref: "projectsListbox",
                     attrs: { table: "projects" },
                     model: {
                       value: _vm.editedTask.project_id,
@@ -53799,6 +53857,20 @@ var render = function() {
                         _vm.$set(_vm.editedTask, "project_id", $$v)
                       },
                       expression: "editedTask.project_id"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "newProject",
+                    staticClass: "input-inline",
+                    attrs: {
+                      type: "text",
+                      placeholder: "プロジェクトを新規登録"
+                    },
+                    on: {
+                      keydown: function($event) {
+                        return _vm.createProject()
+                      }
                     }
                   })
                 ],

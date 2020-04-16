@@ -38,7 +38,7 @@
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグの付替えを行います</p>
-            <tag-list v-bind:taskId="task.id" />
+            <tag-list ref="tagList" v-bind:taskId="task.id" />
         </modal>
         
         <!--編集用モーダル-->
@@ -59,7 +59,8 @@
                 <span>締切</span>
                 <date-picker v-model="editedTask.dead_line" />
                 <span>プロジェクトを選択してください</span>
-                <list-box v-model="editedTask.project_id" table="projects" />
+                <list-box v-model="editedTask.project_id" ref="projectsListbox" table="projects" />
+                <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
             </versatile-form>
         </modal>
         
@@ -369,6 +370,7 @@
                 this.$refs.deleteModal.closeModal()
             },
             showEditTaskDialog:async function(){
+                this.$refs.projectsListbox.init()
                 this.$refs.editModal.openModal()
             },
             showDeleteItemDialog:function(id,name){
@@ -435,6 +437,7 @@
             },
             showEditTagDialog:function(){
                 this.$refs.editTagModal.openModal()
+                this.$refs.tagList.fetchTags()
                 this.isEditedTags = true
             },
             showToolTip:function(){
@@ -480,7 +483,30 @@
                         console.log(error)
                     }
                 }
-            }
+            },
+            createProject:async function(){
+                if(event.keyCode == 13){
+                    let currentDatetime = new Date()
+                    let deadLine = new Date(currentDatetime.getTime() + 604800000) //デフォルトの締切は一週間後
+                    let postObject = {
+                        user_id:this.task.user_id,
+                        name:event.target.value,
+                        dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
+                    }
+                    try{
+                        await axios.post('/api/projects',postObject)
+                        this.$refs.notice.showNotice('プロジェクトを追加しました')
+                        //プロジェクトを再取得
+                        this.$refs.projectsListbox.init()
+                        // インプットをリセット
+                        this.$refs.newProject.value = ''
+                    }catch(error){
+                        this.$refs.notice.showNotice('プロジェクトの追加に失敗しました')
+                        console.log(error)
+                    }
+                    
+                }
+            },
         }
     }
 </script>
