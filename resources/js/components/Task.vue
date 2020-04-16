@@ -422,15 +422,16 @@
                         is_checked:false
                     }
                     try{
-                        await axios.post('/api/items',postItem)
-                        this.items = []
+                        let result = await axios.post('/api/items',postItem)
+                        this.task.items.push(result.data)
                         this.$refs.notice.showNotice('タスクにアイテムを追加しました')
-                        this.fetchTask()
                     }catch(error){
                         this.$refs.notice.showNotice('アイテムの追加に失敗しました')
                         console.log(error)
                     }
                 }
+                this.$emit('input',this.task)
+                this.items = []
             },
             showEditTagDialog:function(){
                 this.$refs.editTagModal.openModal()

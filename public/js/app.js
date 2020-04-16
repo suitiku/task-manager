@@ -53299,7 +53299,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         addItems: function () {
             var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
-                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem;
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem, result;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
@@ -53328,9 +53328,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return axios.post('/api/items', postItem);
 
                             case 11:
-                                this.items = [];
+                                result = _context14.sent;
+
+                                this.task.items.push(result.data);
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
-                                this.fetchTask();
                                 _context14.next = 20;
                                 break;
 
@@ -53381,6 +53382,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context14.finish(29);
 
                             case 37:
+                                this.$emit('input', this.task);
+                                this.items = [];
+
+                            case 39:
                             case 'end':
                                 return _context14.stop();
                         }
@@ -59842,7 +59847,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59889,11 +59894,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // 結果を送出
             this.$emit('input', this.result);
         },
-        value: function value() {
+        value: function value(newVal, oldVal) {
             //初回のみ初期値をセット
             if (!this.isInit) {
                 this.text = this.value.join('\n');
                 this.isInit = true;
+            }
+            if (newVal == '') {
+                this.text = '';
             }
         }
     },

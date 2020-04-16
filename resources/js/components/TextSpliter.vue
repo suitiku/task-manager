@@ -32,11 +32,14 @@
                 // 結果を送出
                 this.$emit('input',this.result)
             },
-            value:function(){
+            value:function(newVal,oldVal){
                 //初回のみ初期値をセット
                 if(!this.isInit){
                     this.text = this.value.join('\n')
                     this.isInit = true
+                }
+                if(newVal == ''){
+                    this.text = ''
                 }
             }
         },
