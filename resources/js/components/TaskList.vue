@@ -283,6 +283,11 @@
                 this.$refs.copyTaskModal.closeModal()
             },
             copyTask:async function(){
+                let currentDatetime = new Date()
+                let copiedStartDateTime = new Date(this.copyTargetTask.start_date)
+                let copiedDeadLine = new Date(this.copyTargetTask.dead_line)
+                let diffSeconds = copiedDeadLine.getTime() - copiedStartDateTime.getTime()
+                let deadLine = new Date(currentDatetime.getTime() + diffSeconds)
                 let copiedTask
                 let postObject = {
                     user_id:this.copyTargetTask.user_id,
@@ -290,10 +295,11 @@
                     name:this.copyTargetTask.name + '（コピー）',
                     priority:this.copyTargetTask.priority,
                     difficulty:this.copyTargetTask.difficulty,
-                    start_date:this.copyTargetTask.start_date,
-                    dead_line:this.copyTargetTask.dead_line,
+                    start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
+                    dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' '),
                     is_template:this.copyTargetTask.is_template,
                 }
+                console.log(postObject)
                 try{
                     //タスク本体を登録
                     let result = await axios.post('/api/tasks',postObject)
