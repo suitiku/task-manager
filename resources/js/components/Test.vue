@@ -1,16 +1,18 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        <waiting v-model="waiting" ref="waiting" />
         <!--<task-list v-model="tasks" userId="1" /> -->
-        <project v-bind:project="project" />
+        <!--<project v-bind:project="project" />-->
+        <div class="wall">あ</div>
         
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
         </modal>
-        <button class="button" v-on:click="showModal()">modal</button>
-        <button class="button" v-on:click="showNotice()">Notice</button>
-        <!--<button class="button" v-on:click="showNotice()">notice</button>-->
+        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
+        <button class="button" v-on:click="toggleWaiting()">notice</button>
     </div>
 </template>
 
@@ -47,6 +49,7 @@
                 ],
                 colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
                 userId:1,
+                waiting:false,
             }  
         },
         created:async function(){
@@ -99,6 +102,13 @@
             },
             changeTask:function(){
                 this.task = this.tasks[2]
+            },
+            toggleWaiting:function(){
+                if(!this.waiting){
+                    this.$refs.waiting.enableWaiting('現在処理中です')
+                }else{
+                    this.$refs.waiting.disableWaiting()
+                }
             }
         },
     }
@@ -122,10 +132,16 @@
         position:fixed;
         top:0;
         left:0;
+        z-index:30;
     }
     .tool-tip-area {
         width:50%;
         height:200px;
         background:grey;
+    }
+    .wall {
+        width:100%;
+        height:5000px;
+        background:orange;
     }
 </style>

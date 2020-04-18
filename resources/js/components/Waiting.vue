@@ -1,0 +1,127 @@
+<!--ウェイティング画面の表示-->
+<!--今後の改修ポイント-->
+<!--①デザイン-->
+<template>
+    <div v-bind:class="waitingRoot">
+        <div class="waiting-background"></div>
+        <div class="waiting-content">
+            <div class="waiting-circle"></div>
+            <div class="waiting-message">{{message}}</div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data:function(){
+            return {
+                waitingRoot:'waiting-root',
+                message:''
+            }  
+        },
+        props: {
+            
+        },
+        watch:{
+            
+        },
+        created:function(){
+            
+        },
+        mounted:function(){
+            
+        },
+        methods: {
+            enableWaiting:function(message){
+                this.message = message
+                this.waitingRoot = 'waiting-root waiting-root-active'
+                this.$emit('input',true)
+            },
+            disableWaiting:function(){
+                this.message = ''
+                this.waitingRoot = 'waiting-root'
+                this.$emit('input',false)
+            }
+        }
+    }
+</script>
+<style scoped>
+    .waiting-root {
+        position:fixed;
+        overflow-y:auto;
+        
+        z-index:20;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        padding:3em 0em;
+        display:flex;
+        justify-content:center;
+        width:100%;
+        transition:opacity 0.7s,visibility 0.7s;
+        opacity:0;
+        visibility:hidden;
+    }
+    .waiting-root-active {
+        opacity:1.0;
+        visibility:visible;
+        transition:opacity 0.7s,visibility 0.7s;
+    }
+    .waiting-background {
+        position:fixed;
+        top:0;
+        left:0;
+        height:100%;
+        width:100%;
+        background:grey;
+        opacity:0.5;
+    }
+    .waiting-content {
+        position:fixed;
+        z-index:21;
+        top:40%;
+    }
+    .waiting-circle {
+        width:100px;
+        height:100px;
+        /*border:20px solid white;*/
+        border:1px solid white;
+        background:white;
+        border-radius:50%;
+        animation:waiting-circle 1s infinite linear;
+        /*transform-origin:center center;*/
+    }
+    .waiting-circle::after {
+        transform-origin: center center;
+        content:'';
+        /*width:10px;*/
+        position:absolute;
+        top:50%;
+        left:50%;
+        /*left:50%;*/
+        height:50px;
+        border:3px solid grey;
+        border-radius:1px;
+    }
+    @keyframes waiting-circle {
+        0% {
+            transform:rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+    .waiting-message {
+        margin-top:1em;
+        animation:waiting-message 0.5s infinite alternate;
+    }
+    @keyframes waiting-message {
+        0% {
+            opacity: 0
+        }
+        100% {
+            opacity: 1.0
+        }
+    }
+</style>

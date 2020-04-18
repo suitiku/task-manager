@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(237);
+module.exports = __webpack_require__(242);
 
 
 /***/ }),
@@ -14689,6 +14689,7 @@ Vue.component('tool-tip', __webpack_require__(217));
 Vue.component('tag-management', __webpack_require__(222));
 Vue.component('color-picker', __webpack_require__(227));
 Vue.component('task-log', __webpack_require__(232));
+Vue.component('waiting', __webpack_require__(237));
 
 var app = new Vue({
   el: '#app'
@@ -54696,7 +54697,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:30;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n", ""]);
 
 // exports
 
@@ -54713,6 +54714,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -54748,7 +54751,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
             filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }],
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
-            userId: 1
+            userId: 1,
+            waiting: false
         };
     },
     created: function () {
@@ -54957,6 +54961,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         changeTask: function changeTask() {
             this.task = this.tasks[2];
+        },
+        toggleWaiting: function toggleWaiting() {
+            if (!this.waiting) {
+                this.$refs.waiting.enableWaiting('現在処理中です');
+            } else {
+                this.$refs.waiting.disableWaiting();
+            }
         }
     }
 });
@@ -54973,7 +54984,18 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("project", { attrs: { project: _vm.project } }),
+      _c("waiting", {
+        ref: "waiting",
+        model: {
+          value: _vm.waiting,
+          callback: function($$v) {
+            _vm.waiting = $$v
+          },
+          expression: "waiting"
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "wall" }, [_vm._v("あ")]),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -54994,24 +55016,11 @@ var render = function() {
           staticClass: "button",
           on: {
             click: function($event) {
-              return _vm.showModal()
+              return _vm.toggleWaiting()
             }
           }
         },
-        [_vm._v("modal")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          on: {
-            click: function($event) {
-              return _vm.showNotice()
-            }
-          }
-        },
-        [_vm._v("Notice")]
+        [_vm._v("notice")]
       )
     ],
     1
@@ -63679,6 +63688,170 @@ if (false) {
 
 /***/ }),
 /* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(238)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(240)
+/* template */
+var __vue_template__ = __webpack_require__(241)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-189e5d9c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Waiting.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-189e5d9c", Component.options)
+  } else {
+    hotAPI.reload("data-v-189e5d9c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(239);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("2947255b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-189e5d9c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Waiting.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-189e5d9c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Waiting.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:20;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.waiting-root-active[data-v-189e5d9c] {\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.waiting-background[data-v-189e5d9c] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n}\n.waiting-content[data-v-189e5d9c] {\n    position:fixed;\n    z-index:21;\n    top:40%;\n}\n.waiting-circle[data-v-189e5d9c] {\n    width:100px;\n    height:100px;\n    /*border:20px solid white;*/\n    border:1px solid white;\n    background:white;\n    border-radius:50%;\n    -webkit-animation:waiting-circle-data-v-189e5d9c 1s infinite linear;\n            animation:waiting-circle-data-v-189e5d9c 1s infinite linear;\n    /*transform-origin:center center;*/\n}\n.waiting-circle[data-v-189e5d9c]::after {\n    -webkit-transform-origin: center center;\n            transform-origin: center center;\n    content:'';\n    /*width:10px;*/\n    position:absolute;\n    top:50%;\n    left:50%;\n    /*left:50%;*/\n    height:50px;\n    border:3px solid grey;\n    border-radius:1px;\n}\n@-webkit-keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n@keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n.waiting-message[data-v-189e5d9c] {\n    margin-top:1em;\n    -webkit-animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n            animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n}\n@-webkit-keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n@keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            waitingRoot: 'waiting-root',
+            message: ''
+        };
+    },
+    props: {},
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        enableWaiting: function enableWaiting(message) {
+            this.message = message;
+            this.waitingRoot = 'waiting-root waiting-root-active';
+            this.$emit('input', true);
+        },
+        disableWaiting: function disableWaiting() {
+            this.message = '';
+            this.waitingRoot = 'waiting-root';
+            this.$emit('input', false);
+        }
+    }
+});
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.waitingRoot }, [
+    _c("div", { staticClass: "waiting-background" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "waiting-content" }, [
+      _c("div", { staticClass: "waiting-circle" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "waiting-message" }, [
+        _vm._v(_vm._s(_vm.message))
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-189e5d9c", module.exports)
+  }
+}
+
+/***/ }),
+/* 242 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
