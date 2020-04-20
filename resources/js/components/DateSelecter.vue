@@ -1,29 +1,11 @@
 <!--日時選択コンポーネント-->
 <!--YYYY-MM-DD hh:mm:ssの形式で返却-->
+<!--今後の改修ポイント-->
+<!--①一部を入力して補完する-->
 <template>
     <div class="date-selecter-root-wrapper">
         <div class="date-selecter-wrapper">
-            <div class="date-set">
-                <span>20</span>
-                <input v-model="datetime.year" type="text" placeholder="年" class="date-selecter" >
-                <span>年</span>
-            </div>
-            <div class="date-set">
-                <input v-model="datetime.month" type="text" placeholder="月" class="date-selecter" >
-                <span>月</span>
-            </div>
-            <div class="date-set">
-                <input v-model="datetime.day" type="text" placeholder="日" class="date-selecter" >
-                <span>日</span>
-            </div>
-            <div class="date-set">
-                <input v-model="datetime.hour" type="text" placeholder="時" class="date-selecter" >
-                <span>時</span>
-            </div>
-            <div class="date-set">
-                <input v-model="datetime.minute" type="text" placeholder="分" class="date-selecter" >
-                <span>分</span>
-            </div>
+            <input type="text" v-model="datetime" placeholder="例）2001-01-01 12:30" class="date-selecter">
         </div>
     </div>
 </template>
@@ -32,20 +14,7 @@
     export default {
         data:function(){
             return {
-                datetime:{
-                    year:'',
-                    month:'',
-                    day:'',
-                    hour:'',
-                    minute:''
-                },
-                result:{
-                    year:'',
-                    month:'',
-                    day:'',
-                    hour:'',
-                    minute:''
-                },
+                datetime:''
             }  
         },
         props: {
@@ -68,33 +37,51 @@
         methods: {
             createDatetime:function(){
                 let currentDatetime = new Date()
-                for(let key of Object.keys(this.datetime)){
-                    switch(key){
-                        case 'year':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getFullYear() : '20' + this.datetime[key]
-                            break
-                        case 'month':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getMonth() : this.datetime[key] - 1
-                            break
-                        case 'day':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getDate() : this.datetime[key]
-                            break
-                        case 'hour':
-                            this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key]
-                            break
-                        case 'minute':
-                            this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key]
-                    }
+                switch(true){
+                    case /\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}/.test(this.datetime):
+                        let result = this.validateDatetime(this.datetime)
+                        this.$emit('input',result)
+                        break
+                    default:
+                        this.$emit('input','')
                 }
-                let convertedDateTime = new Date(this.result.year,this.result.month,this.result.day,this.result.hour,this.result.minute,'00')
-                let year = convertedDateTime.getFullYear()
-                let month = convertedDateTime.getMonth() + 1
-                let day = convertedDateTime.getDate()
-                let hour = convertedDateTime.getHours()
-                let minute = convertedDateTime.getMinutes()
-                let second = convertedDateTime.getSeconds()
-                let resultDatetime = year + '-' + month + '-' + day + ' ' + hour +':' + minute + ':' + second
-                this.$emit('input',resultDatetime)
+            },
+            validateDatetime:function(){
+                let result = this.datetime.match(/(\d{4})-(\d{1,2})-(\d{1,2})\s(\d{1,2}):(\d{1,2})/)
+                let year = Number(result[1])
+                let month = Number(result[2])
+                let day = Number(result[3])
+                let hour = Number(result[4])
+                let minute = Number(result[5])
+                let longDayMonths = [1,3,5,7,8,10,12]
+                
+                //月
+                if(month > 13){
+                    month = 12
+                }
+                //日
+                if(month == 2){
+                    if(year % 4 != 0){
+                        if(day > 28){day = 28}
+                    }else if(year % 100 != 0){
+                        if(day > 29){day = 29}
+                    }else if(year % 400 != 0){
+                        if(day > 28){day = 28}
+                    }else{
+                        if(day > 29){day = 29}
+                    }
+                }else if(longDayMonths.indexOf(month) == -1){
+                    if(day > 30){day = 30}
+                }else{
+                    if(day > 31){day = 31}
+                }
+                //時
+                if(hour > 23){hour = 23}
+                //分
+                if(minute > 59){minute = 59}
+                
+                //結果返却
+                return year + '-' + month + '-' + day + ' ' + hour + ':' + minute
             }
         }
     }
@@ -120,7 +107,7 @@
         padding:0.5em;
     }
     .date-selecter {
-        width:3em;
+        width:12em;
         text-align:center;
         border:1px solid grey;
         border-radius:0.3em;

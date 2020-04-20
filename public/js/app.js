@@ -51169,6 +51169,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -51532,7 +51535,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (this.projectId) {
                 this.copyTargetTask.project_id = this.projectId;
             }
-            console.log(this.copyTargetTask);
             this.$refs.copyTaskModal.openModal();
         },
         hidecopyTaskModal: function hidecopyTaskModal() {
@@ -51546,6 +51548,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
+                                this.$refs.waiting.enableWaiting('タスクをコピーしています');
                                 currentDatetime = new Date();
                                 copiedStartDateTime = new Date(this.copyTargetTask.start_date);
                                 copiedDeadLine = new Date(this.copyTargetTask.dead_line);
@@ -51562,8 +51565,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' '),
                                     is_template: this.copyTargetTask.is_template
                                 };
-
-                                console.log(postObject);
                                 _context5.prev = 8;
                                 _context5.next = 11;
                                 return axios.post('/api/tasks', postObject);
@@ -51693,34 +51694,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 65:
 
                                 //終了処理
+                                this.$refs.waiting.disableWaiting();
                                 this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをコピーしました');
                                 // this.fetchTasks()
-                                _context5.next = 69;
+                                _context5.next = 70;
                                 return axios.get('/api/tasks/' + copiedTask.id);
 
-                            case 69:
+                            case 70:
                                 task = _context5.sent;
 
                                 this.tasks.push(task.data);
                                 this.$refs.copyTaskModal.closeModal();
-                                _context5.next = 79;
+                                _context5.next = 81;
                                 break;
 
-                            case 74:
-                                _context5.prev = 74;
+                            case 75:
+                                _context5.prev = 75;
                                 _context5.t2 = _context5['catch'](8);
 
+                                this.$refs.waiting.disableWaiting();
                                 this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
                                 console.log(_context5.t2);
 
-                            case 79:
+                            case 81:
                             case 'end':
                                 return _context5.stop();
                         }
                     }
-                }, _callee5, this, [[8, 74], [17, 21, 25, 33], [26,, 28, 32], [39, 51, 55, 63], [56,, 58, 62]]);
+                }, _callee5, this, [[8, 75], [17, 21, 25, 33], [26,, 28, 32], [39, 51, 55, 63], [56,, 58, 62]]);
             }));
 
             function copyTask() {
@@ -51935,6 +51938,8 @@ var render = function() {
     "div",
     { staticClass: "task-list-wrapper" },
     [
+      _c("waiting", { ref: "waiting" }),
+      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(
@@ -54730,8 +54735,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54984,18 +54987,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("waiting", {
-        ref: "waiting",
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c("date-selecter", {
         model: {
-          value: _vm.waiting,
+          value: _vm.test,
           callback: function($$v) {
-            _vm.waiting = $$v
+            _vm.test = $$v
           },
-          expression: "waiting"
+          expression: "test"
         }
       }),
-      _vm._v(" "),
-      _c("div", { staticClass: "wall" }, [_vm._v("あ")]),
       _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
@@ -57847,7 +57848,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:3em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.date-set[data-v-afcfce3c] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:end;\n        -ms-flex-align:end;\n            align-items:flex-end;\n     margin:0 0.6em;\n}\nspan[data-v-afcfce3c] {\n    font-size:60%;\n}\n.date-selecter-wrapper span[data-v-afcfce3c]:first-child {\n    font-size:100%;\n}\n\n", ""]);
+exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:12em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.date-set[data-v-afcfce3c] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:end;\n        -ms-flex-align:end;\n            align-items:flex-end;\n     margin:0 0.6em;\n}\nspan[data-v-afcfce3c] {\n    font-size:60%;\n}\n.date-selecter-wrapper span[data-v-afcfce3c]:first-child {\n    font-size:100%;\n}\n\n", ""]);
 
 // exports
 
@@ -57888,24 +57889,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            datetime: {
-                year: '',
-                month: '',
-                day: '',
-                hour: '',
-                minute: ''
-            },
-            result: {
-                year: '',
-                month: '',
-                day: '',
-                hour: '',
-                minute: ''
-            }
+            datetime: ''
+            // datetime:{
+            //     year:'',
+            //     month:'',
+            //     day:'',
+            //     hour:'',
+            //     minute:''
+            // },
+            // result:{
+            //     year:'',
+            //     month:'',
+            //     day:'',
+            //     hour:'',
+            //     minute:''
+            // },
         };
     },
     props: {},
@@ -57922,55 +57925,93 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         createDatetime: function createDatetime() {
             var currentDatetime = new Date();
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            switch (true) {
+                case /\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}/.test(this.datetime):
+                    var result = this.validateDatetime(this.datetime);
+                    this.$emit('input', result);
+                    break;
 
-            try {
-                for (var _iterator = Object.keys(this.datetime)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
+            }
+            // for(let key of Object.keys(this.datetime)){
+            //     switch(key){
+            //         case 'year':
+            //             this.result[key] = this.datetime[key] == '' ? currentDatetime.getFullYear() : '20' + this.datetime[key]
+            //             break
+            //         case 'month':
+            //             this.result[key] = this.datetime[key] == '' ? currentDatetime.getMonth() : this.datetime[key] - 1
+            //             break
+            //         case 'day':
+            //             this.result[key] = this.datetime[key] == '' ? currentDatetime.getDate() : this.datetime[key]
+            //             break
+            //         case 'hour':
+            //             this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key]
+            //             break
+            //         case 'minute':
+            //             this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key]
+            //     }
+            // }
+            // let convertedDateTime = new Date(this.result.year,this.result.month,this.result.day,this.result.hour,this.result.minute,'00')
+            // let year = convertedDateTime.getFullYear()
+            // let month = convertedDateTime.getMonth() + 1
+            // let day = convertedDateTime.getDate()
+            // let hour = convertedDateTime.getHours()
+            // let minute = convertedDateTime.getMinutes()
+            // let second = convertedDateTime.getSeconds()
+            // let resultDatetime = year + '-' + month + '-' + day + ' ' + hour +':' + minute + ':' + second
+            // this.$emit('input',resultDatetime)
+        },
+        validateDatetime: function validateDatetime() {
+            var result = this.datetime.match(/(\d{4})-(\d{1,2})-(\d{1,2})\s(\d{1,2}):(\d{1,2})/);
+            var year = Number(result[1]);
+            var month = Number(result[2]);
+            var day = Number(result[3]);
+            var hour = Number(result[4]);
+            var minute = Number(result[5]);
+            var longDayMonths = [1, 3, 5, 7, 8, 10, 12];
 
-                    switch (key) {
-                        case 'year':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getFullYear() : '20' + this.datetime[key];
-                            break;
-                        case 'month':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getMonth() : this.datetime[key] - 1;
-                            break;
-                        case 'day':
-                            this.result[key] = this.datetime[key] == '' ? currentDatetime.getDate() : this.datetime[key];
-                            break;
-                        case 'hour':
-                            this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key];
-                            break;
-                        case 'minute':
-                            this.result[key] = this.datetime[key] == '' ? '1' : this.datetime[key];
+            //月
+            if (month > 13) {
+                month = 12;
+            }
+            //日
+            if (month == 2) {
+                if (year % 4 != 0) {
+                    if (day > 28) {
+                        day = 28;
+                    }
+                } else if (year % 100 != 0) {
+                    if (day > 29) {
+                        day = 29;
+                    }
+                } else if (year % 400 != 0) {
+                    if (day > 28) {
+                        day = 28;
+                    }
+                } else {
+                    if (day > 29) {
+                        day = 29;
                     }
                 }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
+            } else if (longDayMonths.indexOf(month) == -1) {
+                if (day > 30) {
+                    day = 30;
+                }
+            } else {
+                if (day > 31) {
+                    day = 31;
                 }
             }
+            //時
+            if (hour > 23) {
+                hour = 23;
+            }
+            //分
+            if (minute > 59) {
+                minute = 59;
+            }
 
-            var convertedDateTime = new Date(this.result.year, this.result.month, this.result.day, this.result.hour, this.result.minute, '00');
-            var year = convertedDateTime.getFullYear();
-            var month = convertedDateTime.getMonth() + 1;
-            var day = convertedDateTime.getDate();
-            var hour = convertedDateTime.getHours();
-            var minute = convertedDateTime.getMinutes();
-            var second = convertedDateTime.getSeconds();
-            var resultDatetime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
-            this.$emit('input', resultDatetime);
+            //結果返却
+            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
         }
     }
 });
@@ -57985,137 +58026,27 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-selecter-root-wrapper" }, [
     _c("div", { staticClass: "date-selecter-wrapper" }, [
-      _c("div", { staticClass: "date-set" }, [
-        _c("span", [_vm._v("20")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.datetime.year,
-              expression: "datetime.year"
-            }
-          ],
-          staticClass: "date-selecter",
-          attrs: { type: "text", placeholder: "年" },
-          domProps: { value: _vm.datetime.year },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.datetime, "year", $event.target.value)
-            }
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.datetime,
+            expression: "datetime"
           }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("年")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "date-set" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.datetime.month,
-              expression: "datetime.month"
+        ],
+        staticClass: "date-selecter",
+        attrs: { type: "text", placeholder: "例）2001-01-01 12:30" },
+        domProps: { value: _vm.datetime },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
             }
-          ],
-          staticClass: "date-selecter",
-          attrs: { type: "text", placeholder: "月" },
-          domProps: { value: _vm.datetime.month },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.datetime, "month", $event.target.value)
-            }
+            _vm.datetime = $event.target.value
           }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("月")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "date-set" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.datetime.day,
-              expression: "datetime.day"
-            }
-          ],
-          staticClass: "date-selecter",
-          attrs: { type: "text", placeholder: "日" },
-          domProps: { value: _vm.datetime.day },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.datetime, "day", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("日")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "date-set" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.datetime.hour,
-              expression: "datetime.hour"
-            }
-          ],
-          staticClass: "date-selecter",
-          attrs: { type: "text", placeholder: "時" },
-          domProps: { value: _vm.datetime.hour },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.datetime, "hour", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("時")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "date-set" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.datetime.minute,
-              expression: "datetime.minute"
-            }
-          ],
-          staticClass: "date-selecter",
-          attrs: { type: "text", placeholder: "分" },
-          domProps: { value: _vm.datetime.minute },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.datetime, "minute", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("span", [_vm._v("分")])
-      ])
+        }
+      })
     ])
   ])
 }
@@ -63783,6 +63714,8 @@ exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //

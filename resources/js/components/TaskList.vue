@@ -2,6 +2,9 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="task-list-wrapper">
+        <!--ウェイティング画面-->
+        <waiting ref="waiting" />
+        
         <!--通知-->
         <notice ref="notice" />
         
@@ -276,13 +279,13 @@
                 if(this.projectId){
                     this.copyTargetTask.project_id = this.projectId
                 }
-                console.log(this.copyTargetTask)
                 this.$refs.copyTaskModal.openModal()
             },
             hidecopyTaskModal:function(){
                 this.$refs.copyTaskModal.closeModal()
             },
             copyTask:async function(){
+                this.$refs.waiting.enableWaiting('タスクをコピーしています')
                 let currentDatetime = new Date()
                 let copiedStartDateTime = new Date(this.copyTargetTask.start_date)
                 let copiedDeadLine = new Date(this.copyTargetTask.dead_line)
@@ -299,7 +302,6 @@
                     dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' '),
                     is_template:this.copyTargetTask.is_template,
                 }
-                console.log(postObject)
                 try{
                     //タスク本体を登録
                     let result = await axios.post('/api/tasks',postObject)
@@ -327,6 +329,7 @@
                     await axios.post('/api/state_task',{task_id:copiedTask.id,state_id:1})
                     
                     //終了処理
+                    this.$refs.waiting.disableWaiting()
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをコピーしました')
                     // this.fetchTasks()
@@ -334,6 +337,7 @@
                     this.tasks.push(task.data)
                     this.$refs.copyTaskModal.closeModal()
                 }catch(error){
+                    this.$refs.waiting.disableWaiting()
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクのコピーに失敗しました')
                     console.log(error)

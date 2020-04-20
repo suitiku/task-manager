@@ -1,10 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <waiting v-model="waiting" ref="waiting" />
-        <!--<task-list v-model="tasks" userId="1" /> -->
-        <!--<project v-bind:project="project" />-->
-        <div class="wall">あ</div>
+        {{test}}
+        <date-selecter v-model="test" />        
         
         <notice ref="notice" />
         <!--モーダル-->
