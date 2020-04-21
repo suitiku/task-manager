@@ -37,6 +37,7 @@ Vue.component('date-selecter', require('./components/DateSelecter.vue'));
 Vue.component('notice', require('./components/Notice.vue'));
 Vue.component('toggle-switch', require('./components/ToggleSwitch.vue'));
 Vue.component('date-picker', require('./components/DatePicker.vue'));
+Vue.component('slider', require('./components/Slider.vue'));
 Vue.component('content-frame', require('./components/ContentFrame.vue'));
 Vue.component('progress-circle', require('./components/ProgressCircle.vue'));
 Vue.component('custom-button', require('./components/CustomButton.vue'));

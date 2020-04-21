@@ -1,8 +1,11 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        
+        <div class="slider-area">
+            <slider v-model="test" v-bind:items="items" />
+        </div>
         {{test}}
-        <date-selecter v-model="test" />        
         
         <notice ref="notice" />
         <!--モーダル-->
@@ -48,6 +51,12 @@
                 colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
                 userId:1,
                 waiting:false,
+                items:[
+                    {label:'りんご',value:'apple'},
+                    {label:'バナナ',value:'banana'},
+                    {label:'ドラゴンフルーツ',value:'dragon fruit'},
+                    {label:'アンデスメロン',value:'andes melon'}
+                ]
             }  
         },
         created:async function(){
@@ -141,5 +150,8 @@
         width:100%;
         height:5000px;
         background:orange;
+    }
+    .slider-area {
+        width:50%;
     }
 </style>
