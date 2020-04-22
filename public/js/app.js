@@ -58748,7 +58748,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         };
     },
     props: {},
-    watch: {},
+    watch: {
+        date: function date() {
+            // if(this.date != '' && this.time != ''){
+            this.emit();
+            // }
+        },
+        time: function time() {
+            // if(this.date != '' && this.time != ''){
+            this.emit();
+            // }
+        }
+    },
     created: function created() {},
     mounted: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -58805,7 +58816,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
         },
         setSliderPosition: function setSliderPosition() {
-            this.$refs.timeSlider.scrollSlider(3);
+            var currentDateTime = new Date();
+            var hour = currentDateTime.getHours();
+            var minute = currentDateTime.getMinutes();
+            var targetIndex = hour * 2 + 1;
+            if (minute > 30) {
+                targetIndex++;
+            }
+            this.$refs.timeSlider.scrollSlider(targetIndex);
+        },
+        emit: function emit() {
+            if (this.date == '' || this.time == '') return;
+            var result = this.date + ' ' + this.time + ':00';
+            this.$emit('input', result);
         }
     }
 });
@@ -58837,11 +58860,11 @@ var render = function() {
         ref: "timeSlider",
         attrs: { items: _vm.timeOptions },
         model: {
-          value: _vm.date,
+          value: _vm.time,
           callback: function($$v) {
-            _vm.date = $$v
+            _vm.time = $$v
           },
-          expression: "date"
+          expression: "time"
         }
       })
     ],
