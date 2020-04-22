@@ -2,9 +2,7 @@
 <template>
     <div class="container">
         
-        <div class="slider-area">
-            <slider v-model="test" v-bind:items="items" />
-        </div>
+        <date-slider v-model="test" />
         {{test}}
         
         <notice ref="notice" />

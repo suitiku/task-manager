@@ -61,6 +61,15 @@
                     }
                     event.target.classList.add('selected')
                 }
+            },
+            //インデックス位置までスクロールさせる
+            scrollSlider:function(index){
+                //remのピクセル数を取得
+                let fontSize = Number((getComputedStyle(document.documentElement).fontSize).substr(0,2))
+                
+                //インデックス要素の位置を取得
+                let leftPosition = this.$refs.slideEl[index].offsetLeft
+                this.$refs.slider.style.left = (-leftPosition + fontSize) + 'px'
             }
         }
     }
