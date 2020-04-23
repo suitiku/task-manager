@@ -14668,7 +14668,7 @@ Vue.component('tag-cloud', __webpack_require__(112));
 Vue.component('array-filter', __webpack_require__(117));
 Vue.component('tag', __webpack_require__(122));
 Vue.component('tag-list', __webpack_require__(127));
-Vue.component('date-selecter', __webpack_require__(132));
+Vue.component('date-input', __webpack_require__(132));
 Vue.component('notice', __webpack_require__(137));
 Vue.component('toggle-switch', __webpack_require__(142));
 Vue.component('date-picker', __webpack_require__(147));
@@ -57784,7 +57784,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-afcfce3c"
+var __vue_scopeId__ = "data-v-0df7fe3e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -57795,7 +57795,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/js/components/DateSelecter.vue"
+Component.options.__file = "resources/js/components/DateInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -57804,9 +57804,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-afcfce3c", Component.options)
+    hotAPI.createRecord("data-v-0df7fe3e", Component.options)
   } else {
-    hotAPI.reload("data-v-afcfce3c", Component.options)
+    hotAPI.reload("data-v-0df7fe3e", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -57827,13 +57827,13 @@ var content = __webpack_require__(134);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(1)("d148ecbe", content, false, {});
+var update = __webpack_require__(1)("fcdcada2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-afcfce3c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateSelecter.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-afcfce3c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateSelecter.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -57851,7 +57851,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-afcfce3c] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-afcfce3c] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-afcfce3c] {\n    width:12em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-afcfce3c] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.date-set[data-v-afcfce3c] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:end;\n        -ms-flex-align:end;\n            align-items:flex-end;\n     margin:0 0.6em;\n}\nspan[data-v-afcfce3c] {\n    font-size:60%;\n}\n.date-selecter-wrapper span[data-v-afcfce3c]:first-child {\n    font-size:100%;\n}\n\n", ""]);
+exports.push([module.i, "\n.date-selecter-root-wrapper[data-v-0df7fe3e] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    margin:1em;\n}\n.date-selecter-wrapper[data-v-0df7fe3e] {\n    width:100%;\n    min-height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.date-selecter[data-v-0df7fe3e] {\n    width:12em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    margin:0 0.5em;\n}\n.result-display[data-v-0df7fe3e] {\n    width:14em;\n    height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.date-set[data-v-0df7fe3e] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:end;\n        -ms-flex-align:end;\n            align-items:flex-end;\n     margin:0 0.6em;\n}\nspan[data-v-0df7fe3e] {\n    font-size:60%;\n}\n.date-selecter-wrapper span[data-v-0df7fe3e]:first-child {\n    font-size:100%;\n}\n\n", ""]);
 
 // exports
 
@@ -58000,7 +58000,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-afcfce3c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-0df7fe3e", module.exports)
   }
 }
 
@@ -58451,7 +58451,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:2px solid grey;\n    background:whitesmoke;\n    border-radius:0.3em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    /*max-width:22em;*/\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:1px solid grey;\n    /*background:whitesmoke;*/\n    border-radius:0.3em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:1.0em;\n    padding:1.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    max-width:100%;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:3px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n.change-result[data-v-fa816ef2] {\n    -webkit-animation:change-data-v-fa816ef2 0.5s;\n            animation:change-data-v-fa816ef2 0.5s;\n}\n@-webkit-keyframes change-data-v-fa816ef2 {\n0% {\n        border:3px solid grey;\n        background:inherit;\n        opacity:1.0;\n}\n25% {\n        border:3px solid orange;\n        background:orange;\n        opacity:0.5;\n}\n100% {\n        border:3px solid grey;\n        background:inherit;\n        opacity:1.0;\n}\n}\n@keyframes change-data-v-fa816ef2 {\n0% {\n        border:3px solid grey;\n        background:inherit;\n        opacity:1.0;\n}\n25% {\n        border:3px solid orange;\n        background:orange;\n        opacity:0.5;\n}\n100% {\n        border:3px solid grey;\n        background:inherit;\n        opacity:1.0;\n}\n}\n", ""]);
 
 // exports
 
@@ -58485,7 +58485,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: [{ label: 'スライダー', value: 'dateSlider' }, { label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
+            options: [{ label: 'スライダー', value: 'dateSlider' }, { label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateInput' }],
             selectedOption: 'dateSlider',
             deadLine: false,
             result: '',
@@ -58504,6 +58504,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var date = new Date(this.result);
                 this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
                 this.$emit('input', this.result);
+                this.changeNotification();
             }
         },
         selectedOption: function selectedOption() {
@@ -58526,6 +58527,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         setCurrentDatetime: function setCurrentDatetime() {
+            if (this.result) {
+                this.changeNotification();
+            }
             var currentDatetime = new Date();
             var year = currentDatetime.getFullYear();
             var month = currentDatetime.getMonth() + 1;
@@ -58535,6 +58539,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var result = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':00';
             this.japaneseDatetime = year + '年' + month + '月' + day + '日 ' + hour + '時' + minute + '分';
             this.$emit('input', result);
+        },
+        //変更を視覚的に示すメソッド
+        changeNotification: function changeNotification() {
+            var resultDisplay = this.$refs.resultDisplay;
+            resultDisplay.classList.add('change-result');
+            resultDisplay.addEventListener('animationend', function () {
+                resultDisplay.classList.remove('change-result');
+            });
         }
     }
 });
@@ -58548,7 +58560,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "date-picker-wrapper" }, [
-    _c("div", { staticClass: "result-display" }, [
+    _c("div", { ref: "resultDisplay", staticClass: "result-display" }, [
       _vm._v(_vm._s(_vm.japaneseDatetime))
     ]),
     _vm._v(" "),
@@ -58574,13 +58586,13 @@ var render = function() {
       "div",
       { staticClass: "component-wrapper" },
       [
-        _c("date-selecter", {
+        _c("date-input", {
           directives: [
             {
               name: "show",
               rawName: "v-show",
-              value: _vm.selectedOption == "dateSelecter",
-              expression: "selectedOption == 'dateSelecter'"
+              value: _vm.selectedOption == "dateInput",
+              expression: "selectedOption == 'dateInput'"
             }
           ],
           model: {

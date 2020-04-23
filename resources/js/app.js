@@ -33,7 +33,7 @@ Vue.component('tag-cloud', require('./components/TagCloud.vue'));
 Vue.component('array-filter', require('./components/ArrayFilter.vue'));
 Vue.component('tag', require('./components/Tag.vue'));
 Vue.component('tag-list', require('./components/TagList.vue'));
-Vue.component('date-selecter', require('./components/DateSelecter.vue'));
+Vue.component('date-input', require('./components/DateInput.vue'));
 Vue.component('notice', require('./components/Notice.vue'));
 Vue.component('toggle-switch', require('./components/ToggleSwitch.vue'));
 Vue.component('date-picker', require('./components/DatePicker.vue'));
