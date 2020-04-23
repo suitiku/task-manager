@@ -54991,7 +54991,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("date-slider", {
+      _c("date-picker", {
         model: {
           value: _vm.test,
           callback: function($$v) {
@@ -58451,7 +58451,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:2px solid grey;\n    background:whitesmoke;\n    border-radius:0.3em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    max-width:22em;\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
+exports.push([module.i, "\n.date-picker-wrapper[data-v-fa816ef2] {\n    position:relative;\n    border:2px solid grey;\n    background:whitesmoke;\n    border-radius:0.3em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.5em;\n    padding:0.5em;\n}\n.select-option-wrapper[data-v-fa816ef2] {\n    /*max-width:22em;*/\n}\n.toggle span[data-v-fa816ef2] {\n    margin-right:1em;\n}\n.component-wrapper[data-v-fa816ef2] {\n    max-width:35em;\n    min-height:7em;\n    margin-top:1em;\n}\n.result-display[data-v-fa816ef2] {\n    width:14em;\n    min-height:2.0em;\n    margin:0.5em 0;\n    border:1px solid grey;\n    padding:0.3em;\n    border-radius:0.3em;\n    text-align:center;\n}\n", ""]);
 
 // exports
 
@@ -58480,12 +58480,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: [{ label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
-            selectedOption: 'current',
+            options: [{ label: 'スライダー', value: 'dateSlider' }, { label: '現在時刻', value: 'current' }, { label: 'シメキリ', value: 'deadLine' }, { label: '数字入力', value: 'dateSelecter' }],
+            selectedOption: 'dateSlider',
             deadLine: false,
             result: '',
             japaneseDatetime: ''
@@ -58508,6 +58509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         selectedOption: function selectedOption() {
             if (this.selectedOption == 'current') {
                 this.setCurrentDatetime();
+                this.$refs.dateSlider.setSliderPosition();
             }
         }
     },
@@ -58599,6 +58601,25 @@ var render = function() {
               expression: "selectedOption == 'deadLine'"
             }
           ],
+          model: {
+            value: _vm.result,
+            callback: function($$v) {
+              _vm.result = $$v
+            },
+            expression: "result"
+          }
+        }),
+        _vm._v(" "),
+        _c("date-slider", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.selectedOption == "dateSlider",
+              expression: "selectedOption == 'dateSlider'"
+            }
+          ],
+          ref: "dateSlider",
           model: {
             value: _vm.result,
             callback: function($$v) {
@@ -58708,7 +58729,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.date-slider-wrapper[data-v-1964575a] {\n    width:50%;\n}\n", ""]);
+exports.push([module.i, "\n.date-slider-wrapper[data-v-1964575a] {\n    width:100%;\n}\n", ""]);
 
 // exports
 
@@ -58750,14 +58771,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     props: {},
     watch: {
         date: function date() {
-            // if(this.date != '' && this.time != ''){
             this.emit();
-            // }
         },
         time: function time() {
-            // if(this.date != '' && this.time != ''){
             this.emit();
-            // }
         }
     },
     created: function created() {},
@@ -58991,6 +59008,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -59064,6 +59084,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //インデックス要素の位置を取得
             var leftPosition = this.$refs.slideEl[index].offsetLeft;
+
+            //移動
             this.$refs.slider.style.left = -leftPosition + fontSize + 'px';
         }
     }

@@ -11,6 +11,7 @@
         <div class="component-wrapper">
             <date-selecter v-model="result" v-show="selectedOption == 'dateSelecter'" />
             <dead-line v-model="result" v-show="selectedOption == 'deadLine'" />
+            <date-slider ref="dateSlider" v-model="result" v-show="selectedOption == 'dateSlider'" />
         </div>
         
     </div>
@@ -21,11 +22,12 @@
         data:function(){
             return {
                 options: [
+                    {label:'スライダー',value:'dateSlider'},
                     {label:'現在時刻',value:'current'},
                     {label:'シメキリ',value:'deadLine'},
                     {label:'数字入力',value:'dateSelecter'},
                 ],
-                selectedOption:'current',
+                selectedOption:'dateSlider',
                 deadLine:false,
                 result:'',
                 japaneseDatetime:''
@@ -48,6 +50,7 @@
             selectedOption:function(){
                 if(this.selectedOption == 'current'){
                     this.setCurrentDatetime()
+                    this.$refs.dateSlider.setSliderPosition()
                 }
             },
         },
@@ -94,7 +97,7 @@
         padding:0.5em;
     }
     .select-option-wrapper {
-        max-width:22em;
+        /*max-width:22em;*/
     }
     .toggle span {
         margin-right:1em;

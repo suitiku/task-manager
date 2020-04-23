@@ -85,6 +85,6 @@
 </script>
 <style scoped>
     .date-slider-wrapper {
-        width:50%;
+        width:100%;
     }
 </style>

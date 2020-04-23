@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         
-        <date-slider v-model="test" />
+        <date-picker v-model="test" />
         {{test}}
         
         <notice ref="notice" />

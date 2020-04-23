@@ -1,4 +1,7 @@
 <!--スライダーコンポーネント-->
+<!--今後の改修ポイント-->
+<!--①非表示の状態でscrollSliderが実行されると要素の幅とかが0なので初期位置になってしまう-->
+
 <template>
     <div class="wrapper">
         <div class="slide-button" v-on:click="slideContentRight()"><i class="fas fa-chevron-left"></i></div>
@@ -15,7 +18,6 @@
     export default {
         data:function(){
             return {
-
             }  
         },
         props: {
@@ -30,7 +32,6 @@
             
         },
         mounted:function(){
-            
         },
         computed:{
         },
@@ -69,6 +70,8 @@
                 
                 //インデックス要素の位置を取得
                 let leftPosition = this.$refs.slideEl[index].offsetLeft
+                
+                //移動
                 this.$refs.slider.style.left = (-leftPosition + fontSize) + 'px'
             }
         }
