@@ -55,9 +55,9 @@
                     <star-range v-model="editedTask.difficulty" />
                 </div>
                 <span>開始日</span>
-                <date-picker v-model="editedTask.start_date" />
+                <date-picker ref="editTaskStartDate" v-model="editedTask.start_date" />
                 <span>締切</span>
-                <date-picker v-model="editedTask.dead_line" />
+                <date-picker ref="editTaskDeadLine" v-model="editedTask.dead_line" />
                 <span>プロジェクトを選択してください</span>
                 <list-box v-model="editedTask.project_id" ref="projectsListbox" table="projects" />
                 <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
@@ -267,6 +267,7 @@
                     dead_line:this.task.dead_line,
                     is_template:this.task.is_template,
                 }
+                
                 //子アイテムの編集モード管理配列
                 this.editItemMode = []
                 for(let index in this.task.items){
@@ -370,7 +371,12 @@
                 this.$refs.deleteModal.closeModal()
             },
             showEditTaskDialog:async function(){
+                //datepickerの初期値設定
+                this.$refs.editTaskStartDate.init(this.task.start_date)
+                this.$refs.editTaskDeadLine.init(this.task.dead_line)
+                //リストボックスの初期化
                 this.$refs.projectsListbox.init()
+                // モーダル展開
                 this.$refs.editModal.openModal()
             },
             showDeleteItemDialog:function(id,name){

@@ -56,19 +56,30 @@
             },
         },
         created:function(){
-            
         },
         mounted:function(){
-            // 初期値設定
-            if(this.value){
-                this.selectedOption = ''
-                let date = new Date(this.value)
-                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
-            }else{
-                this.setCurrentDatetime()
-            }
+            this.init()
         },
         methods: {
+            init(datetime){
+                //引数を指定して強制的に時間指定する
+                if(datetime){
+                    this.$emit('input',datetime)
+                    this.selectedOption = ''
+                    let date = new Date(datetime)
+                    this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
+                    return
+                }
+                
+                // 初期値設定
+                if(this.value){
+                    this.selectedOption = ''
+                    let date = new Date(this.value)
+                    this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
+                }else{
+                    this.setCurrentDatetime()
+                }
+            },
             setCurrentDatetime:function(){
                 if(this.result){this.changeNotification()}
                 let currentDatetime = new Date()

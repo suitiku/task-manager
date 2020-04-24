@@ -8,7 +8,7 @@
                 <input v-model="editedProject.name" type="text" placeholder="プロジェクト名">
                 <textarea v-model="editedProject.overview" placeholder="概要" />
                 <span>締切</span>
-                <date-picker v-model="editedProject.dead_line" />
+                <date-picker ref="editProjetcDeadLine" v-model="editedProject.dead_line" />
             </versatile-form>
         </modal>
         
@@ -154,6 +154,9 @@
                     overview:this.project.overview,
                     dead_line:this.project.dead_line,
                 }
+                // datepickerの初期値設定
+                this.$refs.editProjetcDeadLine.init(this.project.dead_line)
+                
                 //モーダル展開
                 this.$refs.editModal.openModal()
             }

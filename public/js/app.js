@@ -50914,8 +50914,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 name: this.project.name,
                 overview: this.project.overview,
                 dead_line: this.project.dead_line
-                //モーダル展開
-            };this.$refs.editModal.openModal();
+                // datepickerの初期値設定
+            };this.$refs.editProjetcDeadLine.init(this.project.dead_line);
+
+            //モーダル展開
+            this.$refs.editModal.openModal();
         }
     }
 });
@@ -51003,6 +51006,7 @@ var render = function() {
               _c("span", [_vm._v("締切")]),
               _vm._v(" "),
               _c("date-picker", {
+                ref: "editProjetcDeadLine",
                 model: {
                   value: _vm.editedProject.dead_line,
                   callback: function($$v) {
@@ -53112,6 +53116,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     start_date: this.task.start_date,
                                     dead_line: this.task.dead_line,
                                     is_template: this.task.is_template
+
                                     //子アイテムの編集モード管理配列
                                 };this.editItemMode = [];
                                 for (index in this.task.items) {
@@ -53328,10 +53333,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context11.prev = _context11.next) {
                             case 0:
+                                //datepickerの初期値設定
+                                this.$refs.editTaskStartDate.init(this.task.start_date);
+                                this.$refs.editTaskDeadLine.init(this.task.dead_line);
+                                //リストボックスの初期化
                                 this.$refs.projectsListbox.init();
                                 this.$refs.editModal.openModal();
 
-                            case 2:
+                            case 4:
                             case 'end':
                                 return _context11.stop();
                         }
@@ -53974,6 +53983,7 @@ var render = function() {
                   _c("span", [_vm._v("開始日")]),
                   _vm._v(" "),
                   _c("date-picker", {
+                    ref: "editTaskStartDate",
                     model: {
                       value: _vm.editedTask.start_date,
                       callback: function($$v) {
@@ -53986,6 +53996,7 @@ var render = function() {
                   _c("span", [_vm._v("締切")]),
                   _vm._v(" "),
                   _c("date-picker", {
+                    ref: "editTaskDeadLine",
                     model: {
                       value: _vm.editedTask.dead_line,
                       callback: function($$v) {
@@ -58650,16 +58661,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {},
     mounted: function mounted() {
-        // 初期値設定
-        if (this.value) {
-            this.selectedOption = '';
-            var date = new Date(this.value);
-            this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
-        } else {
-            this.setCurrentDatetime();
-        }
+        this.init();
     },
     methods: {
+        init: function init(datetime) {
+            //引数を指定して強制的に時間指定する
+            if (datetime) {
+                this.$emit('input', datetime);
+                this.selectedOption = '';
+                var date = new Date(datetime);
+                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
+                return;
+            }
+
+            // 初期値設定
+            if (this.value) {
+                this.selectedOption = '';
+                var _date = new Date(this.value);
+                this.japaneseDatetime = _date.getFullYear() + '年' + (_date.getMonth() + 1) + '月' + _date.getDate() + '日 ' + _date.getHours() + '時' + _date.getMinutes() + '分';
+            } else {
+                this.setCurrentDatetime();
+            }
+        },
+
         setCurrentDatetime: function setCurrentDatetime() {
             if (this.result) {
                 this.changeNotification();
