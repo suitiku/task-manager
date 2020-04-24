@@ -2,9 +2,26 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="container">
+        <!--編集用モーダル-->
+        <modal ref="editModal" v-model="editModal">
+            <versatile-form v-model="editedProject" table="projects">
+                <input v-model="editedProject.name" type="text" placeholder="プロジェクト名">
+                <textarea v-model="editedProject.overview" placeholder="概要" />
+                <span>締切</span>
+                <date-picker v-model="editedProject.dead_line" />
+            </versatile-form>
+        </modal>
+        
         <!--表示部-->
         <div class="project-wrapper">
-            <div class="info"><i class="far fa-clock"></i>　{{project.dead_line}}</div>
+            <div class="info">
+                <div>
+                    <i class="far fa-clock"></i>　{{project.dead_line}}
+                </div>
+                <div>
+                    <i class="far fa-edit edit-icon" v-on:click="showEditProjectModal()"></i>
+                </div>
+            </div>
             <div class="project-content-wrapper">
                 <h3>{{project.name}}</h3>
                 <progress-bar v-bind:denominotor="denominotor" v-bind:numerator="numerator" />
@@ -39,7 +56,9 @@
                 tasks:[], //変更監視用
                 denominotor:0,
                 numerator:0,
-                detail:'project-detail-close'
+                detail:'project-detail-close',
+                editModal:false,
+                editedProject:{},
             }  
         },
         props: {
@@ -126,6 +145,18 @@
                 }
                 this.numerator = numerator
             },
+            showEditProjectModal:function(){
+                //編集モーダル用のデータ作成
+                this.editedProject = {
+                    id:this.project.id,
+                    user_id:this.project.user_id,
+                    name:this.project.name,
+                    overview:this.project.overview,
+                    dead_line:this.project.dead_line,
+                }
+                //モーダル展開
+                this.$refs.editModal.openModal()
+            }
         }
     }
 </script>
@@ -146,8 +177,10 @@
         margin-bottom:0.5em;
         padding:0.1em 2em;
         background:orange;
-        color:white;
-        font-size:60%;
+        /*color:white;*/
+        /*font-size:60%;*/
+        display:flex;
+        justify-content:space-between;
     }
     .project-detail-close {
         max-height:0;
@@ -171,5 +204,8 @@
     }
     button {
         margin:0.5em 0;
+    }
+    .edit-icon {
+        cursor:pointer;
     }
 </style>

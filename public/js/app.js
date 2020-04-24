@@ -50659,7 +50659,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    position:relative;\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    color:white;\n    font-size:60%;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    position:relative;\n    max-height:1000px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    position:relative;\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    /*color:white;*/\n    /*font-size:60%;*/\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    position:relative;\n    max-height:1000px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n.edit-icon[data-v-c10f8004] {\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -50709,6 +50709,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50717,7 +50734,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tasks: [], //変更監視用
             denominotor: 0,
             numerator: 0,
-            detail: 'project-detail-close'
+            detail: 'project-detail-close',
+            editModal: false,
+            editedProject: {}
         };
     },
     props: {
@@ -50886,6 +50905,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             this.numerator = numerator;
+        },
+        showEditProjectModal: function showEditProjectModal() {
+            //編集モーダル用のデータ作成
+            this.editedProject = {
+                id: this.project.id,
+                user_id: this.project.user_id,
+                name: this.project.name,
+                overview: this.project.overview,
+                dead_line: this.project.dead_line
+                //モーダル展開
+            };this.$refs.editModal.openModal();
         }
     }
 });
@@ -50898,55 +50928,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "project-wrapper" }, [
-      _c("div", { staticClass: "info" }, [
-        _c("i", { staticClass: "far fa-clock" }),
-        _vm._v("　" + _vm._s(_vm.project.dead_line))
-      ]),
-      _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
       _c(
-        "div",
-        { staticClass: "project-content-wrapper" },
+        "modal",
+        {
+          ref: "editModal",
+          model: {
+            value: _vm.editModal,
+            callback: function($$v) {
+              _vm.editModal = $$v
+            },
+            expression: "editModal"
+          }
+        },
         [
-          _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
-          _vm._v(" "),
-          _c("progress-bar", {
-            attrs: { denominotor: _vm.denominotor, numerator: _vm.numerator }
-          }),
-          _vm._v(" "),
           _c(
-            "button",
+            "versatile-form",
             {
-              staticClass: "btn btn-outline-primary mx-auto d-block",
-              on: { click: _vm.openDetail }
+              attrs: { table: "projects" },
+              model: {
+                value: _vm.editedProject,
+                callback: function($$v) {
+                  _vm.editedProject = $$v
+                },
+                expression: "editedProject"
+              }
             },
             [
-              _vm.detail == "project-detail-close"
-                ? _c("span", [_vm._v("プロジェクト詳細を表示する")])
-                : _c("span", [_vm._v("詳細を隠す")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { class: _vm.detail },
-            [
-              _c("div", { staticClass: "overview" }, [
-                _vm._v(_vm._s(_vm.project.overview))
-              ]),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editedProject.name,
+                    expression: "editedProject.name"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "プロジェクト名" },
+                domProps: { value: _vm.editedProject.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.editedProject, "name", $event.target.value)
+                  }
+                }
+              }),
               _vm._v(" "),
-              _c("task-list", {
-                attrs: {
-                  projectId: _vm.project.id,
-                  userId: _vm.project.user_id
-                },
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.editedProject.overview,
+                    expression: "editedProject.overview"
+                  }
+                ],
+                attrs: { placeholder: "概要" },
+                domProps: { value: _vm.editedProject.overview },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.editedProject, "overview", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", [_vm._v("締切")]),
+              _vm._v(" "),
+              _c("date-picker", {
                 model: {
-                  value: _vm.tasks,
+                  value: _vm.editedProject.dead_line,
                   callback: function($$v) {
-                    _vm.tasks = $$v
+                    _vm.$set(_vm.editedProject, "dead_line", $$v)
                   },
-                  expression: "tasks"
+                  expression: "editedProject.dead_line"
                 }
               })
             ],
@@ -50954,9 +51016,81 @@ var render = function() {
           )
         ],
         1
-      )
-    ])
-  ])
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "project-wrapper" }, [
+        _c("div", { staticClass: "info" }, [
+          _c("div", [
+            _c("i", { staticClass: "far fa-clock" }),
+            _vm._v("　" + _vm._s(_vm.project.dead_line) + "\n            ")
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("i", {
+              staticClass: "far fa-edit edit-icon",
+              on: {
+                click: function($event) {
+                  return _vm.showEditProjectModal()
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "project-content-wrapper" },
+          [
+            _c("h3", [_vm._v(_vm._s(_vm.project.name))]),
+            _vm._v(" "),
+            _c("progress-bar", {
+              attrs: { denominotor: _vm.denominotor, numerator: _vm.numerator }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-primary mx-auto d-block",
+                on: { click: _vm.openDetail }
+              },
+              [
+                _vm.detail == "project-detail-close"
+                  ? _c("span", [_vm._v("プロジェクト詳細を表示する")])
+                  : _c("span", [_vm._v("詳細を隠す")])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { class: _vm.detail },
+              [
+                _c("div", { staticClass: "overview" }, [
+                  _vm._v(_vm._s(_vm.project.overview))
+                ]),
+                _vm._v(" "),
+                _c("task-list", {
+                  attrs: {
+                    projectId: _vm.project.id,
+                    userId: _vm.project.user_id
+                  },
+                  model: {
+                    value: _vm.tasks,
+                    callback: function($$v) {
+                      _vm.tasks = $$v
+                    },
+                    expression: "tasks"
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
