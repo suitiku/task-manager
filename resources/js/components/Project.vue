@@ -2,6 +2,9 @@
 <!--今後の改修ポイント-->
 <template>
     <div class="container">
+        <!--通知-->
+        <notice ref="notice" />
+        
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
             <versatile-form v-model="editedProject" table="projects">
@@ -12,6 +15,18 @@
             </versatile-form>
         </modal>
         
+        <!--削除確認モーダル-->
+        <modal ref="deleteModal" v-model="deleteModal">
+            <b>プロジェクト「{{project.name}}」を削除します。</b>
+            <b>この処理は取り消しできません。</b>
+            <b>よろしいですか？</b>
+            <p>　</p>
+            <div class="buttons">
+                <button class="btn btn-danger d-block" v-on:click="deleteProject()">プロジェクトを削除</button>
+                <button class="btn btn-secondary d-block" v-on:click="closeModal()">キャンセル</button>
+            </div>
+        </modal>
+        
         <!--表示部-->
         <div class="project-wrapper">
             <div class="info">
@@ -19,7 +34,10 @@
                     <i class="far fa-clock"></i>　{{project.dead_line}}
                 </div>
                 <div>
-                    <i class="far fa-edit edit-icon" v-on:click="showEditProjectModal()"></i>
+                    <!--編集ボタン-->
+                    <i class="far fa-edit icon" v-on:click="showEditProjectModal()"></i>
+                    <!--削除ボタン-->
+                    <i class="fas fa-trash icon" v-on:click="showDeleteProjectModal()"></i>
                 </div>
             </div>
             <div class="project-content-wrapper">
@@ -59,6 +77,7 @@
                 detail:'project-detail-close',
                 editModal:false,
                 editedProject:{},
+                deleteModal:false,
             }  
         },
         props: {
@@ -164,7 +183,24 @@
                 
                 //モーダル展開
                 this.$refs.editModal.openModal()
-            }
+            },
+            showDeleteProjectModal:function(){
+                this.$refs.deleteModal.openModal()    
+            },
+            closeModal:function(){
+                this.$refs.deleteModal.closeModal()
+            },
+            deleteProject:async function(){
+                try{
+                    this.$refs.deleteModal.closeModal()
+                    await axios.delete('/api/projects/' + this.project.id)
+                    this.$refs.notice.showNotice('プロジェクトを削除しました')
+                    this.$parent.fetchProjects()
+                }catch(error){
+                    this.$refs.notice.showNotice('プロジェクトを削除しました')
+                    console.log(error)
+                }
+            },
         }
     }
 </script>
@@ -213,7 +249,7 @@
     button {
         margin:0.5em 0;
     }
-    .edit-icon {
+    .icon {
         cursor:pointer;
     }
 </style>

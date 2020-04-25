@@ -50659,7 +50659,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    position:relative;\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    /*color:white;*/\n    /*font-size:60%;*/\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    position:relative;\n    max-height:1000px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n.edit-icon[data-v-c10f8004] {\n    cursor:pointer;\n}\n", ""]);
+exports.push([module.i, "\n.project-wrapper[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    border:3px solid grey;\n    border-radius:0.2em;\n}\n.project-content-wrapper[data-v-c10f8004] {\n    position:relative;\n    padding:1em;\n    overflow:hidden;\n}\n.info[data-v-c10f8004] {\n    width:100%;\n    margin-bottom:0.5em;\n    padding:0.1em 2em;\n    background:orange;\n    /*color:white;*/\n    /*font-size:60%;*/\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-detail-close[data-v-c10f8004] {\n    max-height:0;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.project-detail-open[data-v-c10f8004] {\n    position:relative;\n    max-height:1000px;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.overview[data-v-c10f8004] {\n    margin:0.5em 1em;\n    padding:1em;\n    border-radius:0.2em;\n    background:gainsboro;\n}\n.tasks[data-v-c10f8004] {\n    position:relative;\n    width:100%;\n    margin:1em 0;\n}\nbutton[data-v-c10f8004] {\n    margin:0.5em 0;\n}\n.icon[data-v-c10f8004] {\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -50726,6 +50726,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50736,7 +50754,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             numerator: 0,
             detail: 'project-detail-close',
             editModal: false,
-            editedProject: {}
+            editedProject: {},
+            deleteModal: false
         };
     },
     props: {
@@ -50947,7 +50966,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             //モーダル展開
             this.$refs.editModal.openModal();
-        }
+        },
+        showDeleteProjectModal: function showDeleteProjectModal() {
+            this.$refs.deleteModal.openModal();
+        },
+        closeModal: function closeModal() {
+            this.$refs.deleteModal.closeModal();
+        },
+        deleteProject: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.prev = 0;
+
+                                this.$refs.deleteModal.closeModal();
+                                _context4.next = 4;
+                                return axios.delete('/api/projects/' + this.project.id);
+
+                            case 4:
+                                this.$refs.notice.showNotice('プロジェクトを削除しました');
+                                this.$parent.fetchProjects();
+                                _context4.next = 12;
+                                break;
+
+                            case 8:
+                                _context4.prev = 8;
+                                _context4.t0 = _context4['catch'](0);
+
+                                this.$refs.notice.showNotice('プロジェクトを削除しました');
+                                console.log(_context4.t0);
+
+                            case 12:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[0, 8]]);
+            }));
+
+            function deleteProject() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return deleteProject;
+        }()
     }
 });
 
@@ -50963,6 +51027,8 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("notice", { ref: "notice" }),
+      _vm._v(" "),
       _c(
         "modal",
         {
@@ -51050,6 +51116,61 @@ var render = function() {
         1
       ),
       _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "deleteModal",
+          model: {
+            value: _vm.deleteModal,
+            callback: function($$v) {
+              _vm.deleteModal = $$v
+            },
+            expression: "deleteModal"
+          }
+        },
+        [
+          _c("b", [
+            _vm._v(
+              "プロジェクト「" + _vm._s(_vm.project.name) + "」を削除します。"
+            )
+          ]),
+          _vm._v(" "),
+          _c("b", [_vm._v("この処理は取り消しできません。")]),
+          _vm._v(" "),
+          _c("b", [_vm._v("よろしいですか？")]),
+          _vm._v(" "),
+          _c("p"),
+          _vm._v(" "),
+          _c("div", { staticClass: "buttons" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.deleteProject()
+                  }
+                }
+              },
+              [_vm._v("プロジェクトを削除")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary d-block",
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal()
+                  }
+                }
+              },
+              [_vm._v("キャンセル")]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
       _c("div", { staticClass: "project-wrapper" }, [
         _c("div", { staticClass: "info" }, [
           _c("div", [
@@ -51059,10 +51180,19 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("i", {
-              staticClass: "far fa-edit edit-icon",
+              staticClass: "far fa-edit icon",
               on: {
                 click: function($event) {
                   return _vm.showEditProjectModal()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-trash icon",
+              on: {
+                click: function($event) {
+                  return _vm.showDeleteProjectModal()
                 }
               }
             })
