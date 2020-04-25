@@ -69,6 +69,11 @@
             }  
         },
         watch:{
+            editModal:async function(newVal,oldVal){
+                if(newVal == false){
+                    await this.$parent.fetchProjects()
+                }  
+            },
             'project.tasks':{
                 handler:function(){
                     this.setTasks()

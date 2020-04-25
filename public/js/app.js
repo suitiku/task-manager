@@ -50747,6 +50747,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
+        editModal: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                if (!(newVal == false)) {
+                                    _context.next = 3;
+                                    break;
+                                }
+
+                                _context.next = 3;
+                                return this.$parent.fetchProjects();
+
+                            case 3:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function editModal(_x, _x2) {
+                return _ref.apply(this, arguments);
+            }
+
+            return editModal;
+        }(),
         'project.tasks': {
             handler: function handler() {
                 this.setTasks();
@@ -50755,13 +50783,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         tasks: {
             handler: function () {
-                var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                     var _this = this;
 
                     var result;
-                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                         while (1) {
-                            switch (_context.prev = _context.next) {
+                            switch (_context2.prev = _context2.next) {
                                 case 0:
                                     //下部のTaskListが更新された場合、プロジェクトが変更されたものがあったばあい、ProjectList.vueのfetchProjectsを実行して画面を更新
                                     result = this.tasks.some(function (task) {
@@ -50769,11 +50797,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     });
 
                                     if (!result) {
-                                        _context.next = 4;
+                                        _context2.next = 4;
                                         break;
                                     }
 
-                                    _context.next = 4;
+                                    _context2.next = 4;
                                     return this.$parent.fetchProjects();
 
                                 case 4:
@@ -50782,14 +50810,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 case 5:
                                 case 'end':
-                                    return _context.stop();
+                                    return _context2.stop();
                             }
                         }
-                    }, _callee, this);
+                    }, _callee2, this);
                 }));
 
                 function handler() {
-                    return _ref.apply(this, arguments);
+                    return _ref2.apply(this, arguments);
                 }
 
                 return handler;
@@ -50810,18 +50838,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     methods: {
         setTasks: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var allTasks, result, templateTasks;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
                                 if (this.project.tasks) {
-                                    _context2.next = 2;
+                                    _context3.next = 2;
                                     break;
                                 }
 
-                                return _context2.abrupt('return');
+                                return _context3.abrupt('return');
 
                             case 2:
 
@@ -50833,13 +50861,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 });
 
                                 // ユーザーの持つテンプレート化されたタスクを取得
-                                _context2.next = 6;
+                                _context3.next = 6;
                                 return axios.get('/api/mytasks', {
                                     params: { user_id: this.project.user_id }
                                 });
 
                             case 6:
-                                result = _context2.sent;
+                                result = _context3.sent;
                                 templateTasks = result.data.filter(function (task) {
                                     return task.is_template == true;
                                 });
@@ -50849,14 +50877,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 9:
                             case 'end':
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee3, this);
             }));
 
             function setTasks() {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return setTasks;
@@ -53338,6 +53366,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.$refs.editTaskDeadLine.init(this.task.dead_line);
                                 //リストボックスの初期化
                                 this.$refs.projectsListbox.init();
+                                // モーダル展開
                                 this.$refs.editModal.openModal();
 
                             case 4:
