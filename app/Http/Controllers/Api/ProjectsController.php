@@ -92,4 +92,9 @@ class ProjectsController extends Controller
     public function getProjectsByUserId(Request $request){
         return Project::where('user_id',$request->user_id)->with(['tasks.states','tasks.items','tasks.tags'])->get();
     }
+    
+    public function copy($id){
+        $project = Project::with(['tasks.states','tasks.items','tasks.tags'])->find($id);
+        return $project;
+    }
 }

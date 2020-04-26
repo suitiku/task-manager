@@ -43,3 +43,7 @@ Route::get('mytags','Api\TagsController@getTagsByUserId');
 
 //メール送信テスト
 Route::get('mail/send','Api\MailController@sendMail');
+
+//コピー
+Route::post('tasks/copy/{id}','Api\TasksController@copy');
+Route::post('projects/copy/{id}','Api\ProjectsController@copy');

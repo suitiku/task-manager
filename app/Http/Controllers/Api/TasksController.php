@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Task;
+use App\Item;
+use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
 {
@@ -54,12 +56,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::with([
-                        'project',
-                        'items',
-                        'states',
-                        'tags'
-                    ])->find($id);
+        return Task::with(['project','items','states','tags'])->find($id);
     }
 
     /**
@@ -135,5 +132,61 @@ class TasksController extends Controller
     // ユーザーIDで検索
     public function getTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)->with(['project','items','states','tags'])->get();
+    }
+    
+    //コピー
+    public function copy($id){
+        //コピー元タスクを取得
+        $originalTask = Task::with(['project','items','states','tags'])->find($id);
+        
+        //分解
+        //task本体
+        $task = [
+            'user_id' => $originalTask['user_id'],
+            'project_id' => $originalTask['project_id'],
+            'name' => $originalTask['name'],
+            'priority' => $originalTask['priority'],
+            'difficulty' => $originalTask['difficulty'],
+            'start_date' => $originalTask['start_date'],
+            'dead_line' => $originalTask['dead_line'],
+            'is_template' => $originalTask['is_template']
+        ];
+        
+        //items
+        $items = [];
+        foreach($originalTask['items'] as $item){
+            $items[] = ['name' => $item->name,'is_checked' => $item->is_checked];
+        }
+        
+        //tags
+        $tags = [];
+        foreach($originalTask->tags as $tag){
+            $tags[] = $tag->id;
+        }
+        
+        //トランザクション
+        $newTask = DB::transaction(function() use($task,$items,$tags){
+            //コピー先タスクインスタンスを作成
+            $newTask = new Task;
+            
+            //本体をコピー
+            $newTask->fill($task)->save();
+            
+            //状態を設定
+            $newTask->states()->attach(1,['state_detail' => '作成']);
+            
+            //items
+            foreach($items as $item){
+                $item['task_id'] = $newTask['id'];
+                $itemInstance = new Item;
+                $itemInstance->fill($item)->save();
+            }
+            
+            //tags
+            $newTask->tags()->sync($tags);
+            
+            return $newTask;
+        });
+        return Task::with(['project','items','states','tags'])->find($newTask['id']);
     }
 }

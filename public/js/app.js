@@ -50744,6 +50744,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -50755,7 +50770,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             detail: 'project-detail-close',
             editModal: false,
             editedProject: {},
-            deleteModal: false
+            deleteModal: false,
+            copyModal: false
+
         };
     },
     props: {
@@ -50972,6 +50989,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         closeModal: function closeModal() {
             this.$refs.deleteModal.closeModal();
+            this.$refs.copyModal.closeModal();
         },
         deleteProject: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
@@ -50995,7 +51013,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _context4.prev = 8;
                                 _context4.t0 = _context4['catch'](0);
 
-                                this.$refs.notice.showNotice('プロジェクトを削除しました');
+                                this.$refs.notice.showNotice('プロジェクトの削除に失敗しました');
                                 console.log(_context4.t0);
 
                             case 12:
@@ -51011,6 +51029,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return deleteProject;
+        }(),
+        showCopyProjectModal: function showCopyProjectModal() {
+            this.$refs.copyModal.openModal();
+        },
+        copyProject: function () {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                console.log(this.project);
+                                // let currentDatetime = new Date()
+                                // let postProject = {
+                                //     user_id:this.project.user_id,
+                                //     name:this.project.name,
+                                //     overview:this.project.overview,
+                                //     dead_line:this.project.dead_line
+                                // }
+                                // let postTasks = []
+                                // for(let task of this.project.tasks){
+                                //     postTasks.push({
+
+                                //     })
+                                // }
+                                try {} catch (error) {
+                                    this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました');
+                                    console.log(error);
+                                }
+
+                            case 2:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+
+            function copyProject() {
+                return _ref5.apply(this, arguments);
+            }
+
+            return copyProject;
         }()
     }
 });
@@ -51171,6 +51231,59 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "copyModal",
+          model: {
+            value: _vm.copyModal,
+            callback: function($$v) {
+              _vm.copyModal = $$v
+            },
+            expression: "copyModal"
+          }
+        },
+        [
+          _c("p", [
+            _vm._v(
+              "タスク「" +
+                _vm._s(_vm.project.name) +
+                "」をコピー／テンプレートにします。"
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.copyProject()
+                  }
+                }
+              },
+              [_vm._v("コピーする")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.closeModal()
+                  }
+                }
+              },
+              [_vm._v("キャンセル")]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
       _c("div", { staticClass: "project-wrapper" }, [
         _c("div", { staticClass: "info" }, [
           _c("div", [
@@ -51193,6 +51306,15 @@ var render = function() {
               on: {
                 click: function($event) {
                   return _vm.showDeleteProjectModal()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-copy",
+              on: {
+                click: function($event) {
+                  return _vm.showCopyProjectModal()
                 }
               }
             })
@@ -52871,6 +52993,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //

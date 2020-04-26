@@ -1,5 +1,6 @@
 <!--プロジェクト単体表示コンポーネント-->
 <!--今後の改修ポイント-->
+<!--①更新系の際に親コンポーネント（ProjectList.vue）があるのが前提となっているのでスタンドアローンでも動くように改修する-->
 <template>
     <div class="container">
         <!--通知-->
@@ -27,6 +28,18 @@
             </div>
         </modal>
         
+        <!--タスクコピー確認用モーダル-->
+        <modal ref="copyModal" v-model="copyModal">
+            <!--<div>-->
+                <p>タスク「{{project.name}}」をコピー／テンプレートにします。</p>
+                <div>
+                    <button type="button" class="btn btn-primary" v-on:click="copyProject()">コピーする</button>
+                    <!--<button type="button" class="btn btn-primary" v-on:click="templateProject()">テンプレートにする</button>-->
+                    <button type="button" class="btn btn-secondary" v-on:click="closeModal()">キャンセル</button>
+                </div>
+            <!--</div>-->
+        </modal>
+        
         <!--表示部-->
         <div class="project-wrapper">
             <div class="info">
@@ -38,6 +51,8 @@
                     <i class="far fa-edit icon" v-on:click="showEditProjectModal()"></i>
                     <!--削除ボタン-->
                     <i class="fas fa-trash icon" v-on:click="showDeleteProjectModal()"></i>
+                    <!--コピーボタン-->
+                    <i class="fas fa-copy" v-on:click="showCopyProjectModal()"></i>
                 </div>
             </div>
             <div class="project-content-wrapper">
@@ -78,6 +93,8 @@
                 editModal:false,
                 editedProject:{},
                 deleteModal:false,
+                copyModal:false,
+                
             }  
         },
         props: {
@@ -185,10 +202,11 @@
                 this.$refs.editModal.openModal()
             },
             showDeleteProjectModal:function(){
-                this.$refs.deleteModal.openModal()    
+                this.$refs.deleteModal.openModal()
             },
             closeModal:function(){
                 this.$refs.deleteModal.closeModal()
+                this.$refs.copyModal.closeModal()
             },
             deleteProject:async function(){
                 try{
@@ -197,10 +215,35 @@
                     this.$refs.notice.showNotice('プロジェクトを削除しました')
                     this.$parent.fetchProjects()
                 }catch(error){
-                    this.$refs.notice.showNotice('プロジェクトを削除しました')
+                    this.$refs.notice.showNotice('プロジェクトの削除に失敗しました')
                     console.log(error)
                 }
             },
+            showCopyProjectModal:function(){
+                this.$refs.copyModal.openModal()
+            },
+            copyProject:async function(){
+                console.log(this.project)
+                // let currentDatetime = new Date()
+                // let postProject = {
+                //     user_id:this.project.user_id,
+                //     name:this.project.name,
+                //     overview:this.project.overview,
+                //     dead_line:this.project.dead_line
+                // }
+                // let postTasks = []
+                // for(let task of this.project.tasks){
+                //     postTasks.push({
+                        
+                //     })
+                // }
+                try{
+                    
+                }catch(error){
+                    this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました')
+                    console.log(error)
+                }
+            }
         }
     }
 </script>
