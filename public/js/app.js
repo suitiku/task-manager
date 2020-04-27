@@ -51962,188 +51962,57 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         copyTask: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-                var currentDatetime, copiedStartDateTime, copiedDeadLine, diffSeconds, deadLine, copiedTask, postObject, result, tags, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, tag, tagsPostObject, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item, itemPostObject, task;
-
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
                                 this.$refs.waiting.enableWaiting('タスクをコピーしています');
-                                currentDatetime = new Date();
-                                copiedStartDateTime = new Date(this.copyTargetTask.start_date);
-                                copiedDeadLine = new Date(this.copyTargetTask.dead_line);
-                                diffSeconds = copiedDeadLine.getTime() - copiedStartDateTime.getTime();
-                                deadLine = new Date(currentDatetime.getTime() + diffSeconds);
-                                copiedTask = void 0;
-                                postObject = {
-                                    user_id: this.copyTargetTask.user_id,
-                                    project_id: this.copyTargetTask.project_id,
-                                    name: this.copyTargetTask.name + '（コピー）',
-                                    priority: this.copyTargetTask.priority,
-                                    difficulty: this.copyTargetTask.difficulty,
-                                    start_date: currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
-                                    dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' '),
-                                    is_template: this.copyTargetTask.is_template
-                                };
-                                _context5.prev = 8;
-                                _context5.next = 11;
-                                return axios.post('/api/tasks', postObject);
+                                // let currentDatetime = new Date()
+                                // let copiedStartDateTime = new Date(this.copyTargetTask.start_date)
+                                // let copiedDeadLine = new Date(this.copyTargetTask.dead_line)
+                                // let diffSeconds = copiedDeadLine.getTime() - copiedStartDateTime.getTime()
+                                // let deadLine = new Date(currentDatetime.getTime() + diffSeconds)
+                                // let copiedTask
+                                // let postObject = {
+                                //     user_id:this.copyTargetTask.user_id,
+                                //     project_id:this.copyTargetTask.project_id,
+                                //     name:this.copyTargetTask.name + '（コピー）',
+                                //     priority:this.copyTargetTask.priority,
+                                //     difficulty:this.copyTargetTask.difficulty,
+                                //     start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
+                                //     dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' '),
+                                //     is_template:this.copyTargetTask.is_template,
+                                // }
+                                _context5.prev = 1;
+                                _context5.next = 4;
+                                return axios.post('/api/tasks/copy/' + this.copyTargetTask.id);
 
-                            case 11:
+                            case 4:
                                 result = _context5.sent;
 
-                                copiedTask = result.data;
-
-                                //タグを登録
-                                tags = [];
-                                _iteratorNormalCompletion2 = true;
-                                _didIteratorError2 = false;
-                                _iteratorError2 = undefined;
-                                _context5.prev = 17;
-
-                                for (_iterator2 = this.copyTargetTask.tags[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                                    tag = _step2.value;
-
-                                    tags.push(tag.id);
-                                }
-                                _context5.next = 25;
-                                break;
-
-                            case 21:
-                                _context5.prev = 21;
-                                _context5.t0 = _context5['catch'](17);
-                                _didIteratorError2 = true;
-                                _iteratorError2 = _context5.t0;
-
-                            case 25:
-                                _context5.prev = 25;
-                                _context5.prev = 26;
-
-                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                    _iterator2.return();
-                                }
-
-                            case 28:
-                                _context5.prev = 28;
-
-                                if (!_didIteratorError2) {
-                                    _context5.next = 31;
-                                    break;
-                                }
-
-                                throw _iteratorError2;
-
-                            case 31:
-                                return _context5.finish(28);
-
-                            case 32:
-                                return _context5.finish(25);
-
-                            case 33:
-                                tagsPostObject = { task_id: copiedTask.id, tag_ids: tags };
-                                _context5.next = 36;
-                                return axios.put('/api/tag_task', tagsPostObject);
-
-                            case 36:
-
-                                //アイテムを登録
-                                _iteratorNormalCompletion3 = true;
-                                _didIteratorError3 = false;
-                                _iteratorError3 = undefined;
-                                _context5.prev = 39;
-                                _iterator3 = this.copyTargetTask.items[Symbol.iterator]();
-
-                            case 41:
-                                if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
-                                    _context5.next = 49;
-                                    break;
-                                }
-
-                                item = _step3.value;
-                                itemPostObject = {
-                                    task_id: copiedTask.id,
-                                    name: item.name,
-                                    is_checked: item.is_checked
-                                };
-                                _context5.next = 46;
-                                return axios.post('/api/items', itemPostObject);
-
-                            case 46:
-                                _iteratorNormalCompletion3 = true;
-                                _context5.next = 41;
-                                break;
-
-                            case 49:
-                                _context5.next = 55;
-                                break;
-
-                            case 51:
-                                _context5.prev = 51;
-                                _context5.t1 = _context5['catch'](39);
-                                _didIteratorError3 = true;
-                                _iteratorError3 = _context5.t1;
-
-                            case 55:
-                                _context5.prev = 55;
-                                _context5.prev = 56;
-
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
-                                }
-
-                            case 58:
-                                _context5.prev = 58;
-
-                                if (!_didIteratorError3) {
-                                    _context5.next = 61;
-                                    break;
-                                }
-
-                                throw _iteratorError3;
-
-                            case 61:
-                                return _context5.finish(58);
-
-                            case 62:
-                                return _context5.finish(55);
-
-                            case 63:
-                                _context5.next = 65;
-                                return axios.post('/api/state_task', { task_id: copiedTask.id, state_id: 1 });
-
-                            case 65:
-
-                                //終了処理
+                                this.tasks.push(result.data);
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクをコピーしました');
-                                // this.fetchTasks()
-                                _context5.next = 70;
-                                return axios.get('/api/tasks/' + copiedTask.id);
-
-                            case 70:
-                                task = _context5.sent;
-
-                                this.tasks.push(task.data);
-                                this.$refs.copyTaskModal.closeModal();
-                                _context5.next = 81;
+                                _context5.next = 17;
                                 break;
 
-                            case 75:
-                                _context5.prev = 75;
-                                _context5.t2 = _context5['catch'](8);
+                            case 11:
+                                _context5.prev = 11;
+                                _context5.t0 = _context5['catch'](1);
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.copyTaskModal.closeModal();
                                 this.$refs.notice.showNotice('タスクのコピーに失敗しました');
-                                console.log(_context5.t2);
+                                console.log(_context5.t0);
 
-                            case 81:
+                            case 17:
                             case 'end':
                                 return _context5.stop();
                         }
                     }
-                }, _callee5, this, [[8, 75], [17, 21, 25, 33], [26,, 28, 32], [39, 51, 55, 63], [56,, 58, 62]]);
+                }, _callee5, this, [[1, 11]]);
             }));
 
             function copyTask() {

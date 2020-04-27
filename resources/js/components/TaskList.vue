@@ -286,56 +286,12 @@
             },
             copyTask:async function(){
                 this.$refs.waiting.enableWaiting('タスクをコピーしています')
-                let currentDatetime = new Date()
-                let copiedStartDateTime = new Date(this.copyTargetTask.start_date)
-                let copiedDeadLine = new Date(this.copyTargetTask.dead_line)
-                let diffSeconds = copiedDeadLine.getTime() - copiedStartDateTime.getTime()
-                let deadLine = new Date(currentDatetime.getTime() + diffSeconds)
-                let copiedTask
-                let postObject = {
-                    user_id:this.copyTargetTask.user_id,
-                    project_id:this.copyTargetTask.project_id,
-                    name:this.copyTargetTask.name + '（コピー）',
-                    priority:this.copyTargetTask.priority,
-                    difficulty:this.copyTargetTask.difficulty,
-                    start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
-                    dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' '),
-                    is_template:this.copyTargetTask.is_template,
-                }
                 try{
-                    //タスク本体を登録
-                    let result = await axios.post('/api/tasks',postObject)
-                    copiedTask = result.data
-                    
-                    //タグを登録
-                    let tags = []
-                    for(let tag of this.copyTargetTask.tags){
-                        tags.push(tag.id)
-                    }
-                    let tagsPostObject = {task_id:copiedTask.id,tag_ids:tags}
-                    await axios.put('/api/tag_task',tagsPostObject)
-                    
-                    //アイテムを登録
-                    for(let item of this.copyTargetTask.items){
-                        let itemPostObject = {
-                            task_id:copiedTask.id,
-                            name:item.name,
-                            is_checked:item.is_checked
-                        }
-                        await axios.post('/api/items',itemPostObject)
-                    }
-                    
-                    //状態を1:実行中で登録
-                    await axios.post('/api/state_task',{task_id:copiedTask.id,state_id:1})
-                    
-                    //終了処理
+                    let result = await axios.post('/api/tasks/copy/' + this.copyTargetTask.id)
+                    this.tasks.push(result.data)
                     this.$refs.waiting.disableWaiting()
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをコピーしました')
-                    // this.fetchTasks()
-                    let task = await axios.get('/api/tasks/' + copiedTask.id)
-                    this.tasks.push(task.data)
-                    this.$refs.copyTaskModal.closeModal()
                 }catch(error){
                     this.$refs.waiting.disableWaiting()
                     this.$refs.copyTaskModal.closeModal()
