@@ -51968,22 +51968,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context5.prev = _context5.next) {
                             case 0:
                                 this.$refs.waiting.enableWaiting('タスクをコピーしています');
-                                // let currentDatetime = new Date()
-                                // let copiedStartDateTime = new Date(this.copyTargetTask.start_date)
-                                // let copiedDeadLine = new Date(this.copyTargetTask.dead_line)
-                                // let diffSeconds = copiedDeadLine.getTime() - copiedStartDateTime.getTime()
-                                // let deadLine = new Date(currentDatetime.getTime() + diffSeconds)
-                                // let copiedTask
-                                // let postObject = {
-                                //     user_id:this.copyTargetTask.user_id,
-                                //     project_id:this.copyTargetTask.project_id,
-                                //     name:this.copyTargetTask.name + '（コピー）',
-                                //     priority:this.copyTargetTask.priority,
-                                //     difficulty:this.copyTargetTask.difficulty,
-                                //     start_date:currentDatetime.toISOString().slice(0, 19).replace('T', ' '),
-                                //     dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' '),
-                                //     is_template:this.copyTargetTask.is_template,
-                                // }
                                 _context5.prev = 1;
                                 _context5.next = 4;
                                 return axios.post('/api/tasks/copy/' + this.copyTargetTask.id);
@@ -52021,6 +52005,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return copyTask;
         }(),
+        //タスクをテンプレート化する
         templateTask: function () {
             var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
                 var taskId;
@@ -52073,24 +52058,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         addTemplateTask: function () {
             var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
                         switch (_context7.prev = _context7.next) {
                             case 0:
                                 this.copyTargetTask = JSON.parse(JSON.stringify(this.selectedTemplateTask));
-                                this.copyTargetTask.is_template = false;
-                                if (this.projectId) {
-                                    this.copyTargetTask.project_id = this.projectId;
-                                }
-                                this.copyTask();
-                                this.$refs.templateModal.closeModal();
+                                this.$refs.waiting.enableWaiting('テンプレートからタスクを作成しています');
+                                _context7.prev = 2;
+                                _context7.next = 5;
+                                return axios.post('/api/tasks/template/' + this.copyTargetTask.id);
 
                             case 5:
+                                result = _context7.sent;
+
+                                if (!this.projectId) {
+                                    _context7.next = 10;
+                                    break;
+                                }
+
+                                console.log(result.data.id);
+                                _context7.next = 10;
+                                return axios.put('/api/tasks/' + result.data.id, { project_id: this.projectId });
+
+                            case 10:
+                                this.tasks.push(result.data);
+                                this.$refs.waiting.disableWaiting();
+                                this.$refs.templateModal.closeModal();
+                                this.$refs.notice.showNotice('テンプレートからタスクを作成しました');
+                                _context7.next = 22;
+                                break;
+
+                            case 16:
+                                _context7.prev = 16;
+                                _context7.t0 = _context7['catch'](2);
+
+                                this.$refs.waiting.disableWaiting();
+                                this.$refs.templateModal.closeModal();
+                                this.$refs.notice.showNotice('テンプレートからのタスクの作成に失敗しました');
+                                console.log(_context7.t0);
+
+                            case 22:
                             case 'end':
                                 return _context7.stop();
                         }
                     }
-                }, _callee7, this);
+                }, _callee7, this, [[2, 16]]);
             }));
 
             function addTemplateTask() {

@@ -189,4 +189,59 @@ class TasksController extends Controller
         });
         return Task::with(['project','items','states','tags'])->find($newTask['id']);
     }
+    
+    public function createTaskFromTemplate($id){
+        //テンプレート元タスクを取得
+        $originalTask = Task::with(['project','items','states','tags'])->find($id);
+        
+        //分解
+        //task本体
+        $task = [
+            'user_id' => $originalTask['user_id'],
+            'project_id' => $originalTask['project_id'],
+            'name' => $originalTask['name'],
+            'priority' => $originalTask['priority'],
+            'difficulty' => $originalTask['difficulty'],
+            'start_date' => $originalTask['start_date'],
+            'dead_line' => $originalTask['dead_line'],
+            'is_template' => false
+        ];
+        
+        //items
+        $items = [];
+        foreach($originalTask['items'] as $item){
+            $items[] = ['name' => $item->name,'is_checked' => false]; //アイテムのチェックはリセット
+        }
+        
+        //tags
+        $tags = [];
+        foreach($originalTask->tags as $tag){
+            $tags[] = $tag->id;
+        }
+        
+        //トランザクション
+        $newTask = DB::transaction(function() use($task,$items,$tags){
+            //出力先タスクインスタンスを作成
+            $newTask = new Task;
+            
+            //本体をコピー
+            $newTask->fill($task)->save();
+            
+            //状態を設定
+            $newTask->states()->attach(1,['state_detail' => '作成']);
+            
+            //items
+            foreach($items as $item){
+                $item['task_id'] = $newTask['id'];
+                $itemInstance = new Item;
+                $itemInstance->fill($item)->save();
+            }
+            
+            //tags
+            $newTask->tags()->sync($tags);
+            
+            return $newTask;
+        });
+        return Task::with(['project','items','states','tags'])->find($newTask['id']);
+    }
 }

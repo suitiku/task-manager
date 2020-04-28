@@ -299,6 +299,7 @@
                     console.log(error)
                 }
             },
+            //タスクをテンプレート化する
             templateTask:async function(){
                 let taskId = this.copyTargetTask.id
                 try{
@@ -324,12 +325,24 @@
             },
             addTemplateTask:async function(){
                 this.copyTargetTask = JSON.parse(JSON.stringify(this.selectedTemplateTask))
-                this.copyTargetTask.is_template = false
-                 if(this.projectId){
-                    this.copyTargetTask.project_id = this.projectId
+                this.$refs.waiting.enableWaiting('テンプレートからタスクを作成しています')
+                try{
+                    let result = await axios.post('/api/tasks/template/' + this.copyTargetTask.id)
+                    //Project.vueの下にある場合はproject_idを書き換える
+                    if(this.projectId){
+                        console.log(result.data.id)
+                        await axios.put('/api/tasks/' + result.data.id, {project_id:this.projectId})
+                    }
+                    this.tasks.push(result.data)
+                    this.$refs.waiting.disableWaiting()
+                    this.$refs.templateModal.closeModal()
+                    this.$refs.notice.showNotice('テンプレートからタスクを作成しました')
+                }catch(error){
+                    this.$refs.waiting.disableWaiting()
+                    this.$refs.templateModal.closeModal()
+                    this.$refs.notice.showNotice('テンプレートからのタスクの作成に失敗しました')
+                    console.log(error)
                 }
-                this.copyTask()
-                this.$refs.templateModal.closeModal()
             },
             getTasksIndex:function(id){
                 return this.tasks.findIndex(task => task.id == id)

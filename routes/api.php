@@ -47,3 +47,6 @@ Route::get('mail/send','Api\MailController@sendMail');
 //コピー
 Route::post('tasks/copy/{id}','Api\TasksController@copy');
 Route::post('projects/copy/{id}','Api\ProjectsController@copy');
+
+//テンプレート
+Route::post('tasks/template/{id}','Api\TasksController@createTaskFromTemplate');
