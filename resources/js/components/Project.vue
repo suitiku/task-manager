@@ -3,6 +3,9 @@
 <!--①更新系の際に親コンポーネント（ProjectList.vue）があるのが前提となっているのでスタンドアローンでも動くように改修する-->
 <template>
     <div class="container">
+        <!--ウェイティング-->
+        <waiting ref="waiting" />
+        
         <!--通知-->
         <notice ref="notice" />
         
@@ -52,7 +55,7 @@
                     <!--削除ボタン-->
                     <i class="fas fa-trash icon" v-on:click="showDeleteProjectModal()"></i>
                     <!--コピーボタン-->
-                    <i class="fas fa-copy" v-on:click="showCopyProjectModal()"></i>
+                    <i class="fas fa-copy icon" v-on:click="showCopyProjectModal()"></i>
                 </div>
             </div>
             <div class="project-content-wrapper">
@@ -223,7 +226,6 @@
                 this.$refs.copyModal.openModal()
             },
             copyProject:async function(){
-                console.log(this.project)
                 // let currentDatetime = new Date()
                 // let postProject = {
                 //     user_id:this.project.user_id,
@@ -237,9 +239,15 @@
                         
                 //     })
                 // }
+                this.$refs.waiting.enableWaiting('プロジェクトをコピーしています')
                 try{
-                    
+                    let result = await axios.post('/api/projects/copy/' + this.project.id)
+                    this.$refs.waiting.disableWaiting()
+                    this.$refs.copyModal.closeModal()
+                    this.$refs.notice.showNotice('プロジェクトをコピーしました')
+                    this.$parent.fetchProjects()
                 }catch(error){
+                    this.$refs.copyModal.closeModal()
                     this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました')
                     console.log(error)
                 }

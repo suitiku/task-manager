@@ -50759,6 +50759,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51035,11 +51038,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         copyProject: function () {
             var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                console.log(this.project);
                                 // let currentDatetime = new Date()
                                 // let postProject = {
                                 //     user_id:this.project.user_id,
@@ -51053,17 +51056,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 //     })
                                 // }
-                                try {} catch (error) {
-                                    this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました');
-                                    console.log(error);
-                                }
+                                this.$refs.waiting.enableWaiting('プロジェクトをコピーしています');
+                                _context5.prev = 1;
+                                _context5.next = 4;
+                                return axios.post('/api/projects/copy/' + this.project.id);
 
-                            case 2:
+                            case 4:
+                                result = _context5.sent;
+
+                                this.$refs.waiting.disableWaiting();
+                                this.$refs.copyModal.closeModal();
+                                this.$refs.notice.showNotice('プロジェクトをコピーしました');
+                                this.$parent.fetchProjects();
+                                _context5.next = 16;
+                                break;
+
+                            case 11:
+                                _context5.prev = 11;
+                                _context5.t0 = _context5['catch'](1);
+
+                                this.$refs.copyModal.closeModal();
+                                this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました');
+                                console.log(_context5.t0);
+
+                            case 16:
                             case 'end':
                                 return _context5.stop();
                         }
                     }
-                }, _callee5, this);
+                }, _callee5, this, [[1, 11]]);
             }));
 
             function copyProject() {
@@ -51087,6 +51108,8 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("waiting", { ref: "waiting" }),
+      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c(

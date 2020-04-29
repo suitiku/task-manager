@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Project;
+use App\Task;
+use App\Http\Controllers\Api\TasksController;
+use Illuminate\Support\Facades\DB;
 
 class ProjectsController extends Controller
 {
@@ -94,7 +97,43 @@ class ProjectsController extends Controller
     }
     
     public function copy($id){
-        $project = Project::with(['tasks.states','tasks.items','tasks.tags'])->find($id);
-        return $project;
+        //元のprojectを取得
+        $originalProject = Project::with(['tasks.states','tasks.items','tasks.tags'])->find($id);
+        
+        //プロジェクト本体
+        $project = [
+            'user_id' => $originalProject['user_id'],
+            'name' => $originalProject['name'],
+            'overview' => $originalProject['overview'],
+            'dead_line' => $originalProject['dead_line']
+        ];
+        
+        //tasks
+        $taskIds = [];
+        foreach($originalProject->tasks as $task){
+            $taskIds[] = $task->id;
+        }
+        
+        $newProject = DB::transaction(function() use($project,$taskIds){
+            //コピー先のProjectインスタンスを作成
+            $newProject = new Project;
+            //TasksControllerインスタンスを作成
+            $task = new TasksController;
+            
+            //コピー
+            $newProject->fill($project)->save();
+            $projectIdPostObject = ['project_id' => $newProject->id];
+            
+            foreach($taskIds as $taskId){
+                //タスクをコピー
+                $newTask = $task->copy($taskId);
+                //コピーされたタスクのproject_idを更新
+                $newTask->update($projectIdPostObject);
+            }
+            
+            return $newProject;
+        });
+        
+        return Project::with(['tasks.states','tasks.items','tasks.tags'])->find($newProject->id);
     }
 }
