@@ -2,8 +2,7 @@
 <template>
     <div class="container">
         
-        <date-picker v-model="test" />
-        {{test}}
+        <waiting ref="waiting" v-model="waiting" />
         
         <notice ref="notice" />
         <!--モーダル-->

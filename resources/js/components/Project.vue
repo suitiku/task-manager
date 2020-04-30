@@ -226,19 +226,6 @@
                 this.$refs.copyModal.openModal()
             },
             copyProject:async function(){
-                // let currentDatetime = new Date()
-                // let postProject = {
-                //     user_id:this.project.user_id,
-                //     name:this.project.name,
-                //     overview:this.project.overview,
-                //     dead_line:this.project.dead_line
-                // }
-                // let postTasks = []
-                // for(let task of this.project.tasks){
-                //     postTasks.push({
-                        
-                //     })
-                // }
                 this.$refs.waiting.enableWaiting('プロジェクトをコピーしています')
                 try{
                     let result = await axios.post('/api/projects/copy/' + this.project.id)

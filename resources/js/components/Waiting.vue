@@ -1,6 +1,5 @@
 <!--ウェイティング画面の表示-->
 <!--今後の改修ポイント-->
-<!--①デザイン-->
 <template>
     <div v-bind:class="waitingRoot">
         <div class="waiting-background"></div>
@@ -83,26 +82,31 @@
         top:40%;
     }
     .waiting-circle {
-        width:100px;
-        height:100px;
-        /*border:20px solid white;*/
+        width:7em;
+        height:7em;
+        position:relative;
         border:1px solid white;
         background:white;
         border-radius:50%;
-        animation:waiting-circle 1s infinite linear;
-        /*transform-origin:center center;*/
+        animation:waiting-circle 1.5s infinite linear;
+    }
+    .waiting-circle::before {
+        content:'';
+        position:absolute;
+        width:50%;
+        height:50%;
+        border-radius:100% 25% 0;
+        background:grey;
     }
     .waiting-circle::after {
-        transform-origin: center center;
         content:'';
-        /*width:10px;*/
         position:absolute;
-        top:50%;
-        left:50%;
-        /*left:50%;*/
-        height:50px;
-        border:3px solid grey;
-        border-radius:1px;
+        left:25%;
+        top:25%;
+        width:50%;
+        height:50%;
+        border-radius: 50%;
+        background:white;
     }
     @keyframes waiting-circle {
         0% {
