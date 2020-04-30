@@ -1,8 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        
-        <waiting ref="waiting" v-model="waiting" />
+
+        <template-task-management userId="1" />        
         
         <notice ref="notice" />
         <!--モーダル-->

@@ -197,8 +197,6 @@
         },
         methods: {
             fetchProjects:async function(){
-                // projectIdが設定されている場合は飛ばす
-                if(this.projectId)return
                 // userIdがない場合は飛ばす
                 if(!this.userId)return
                 
@@ -206,10 +204,15 @@
                 let result = await axios.get('/api/myprojects',{
                                                 params:{user_id:this.userId,}
                                             })
-                this.projects = result.data
-                
+                                            
                 //「所属なし」プロジェクトのidを設定（一番若いやつ？）
                 this.defaultProjectId = result.data[0].id
+                
+                // projectIdが設定されている場合は飛ばす
+                if(this.projectId)return
+                
+                //プロジェクトをセット
+                this.projects = result.data
             },
             showNewTaskModal:function(){
                 // リセット
@@ -304,7 +307,7 @@
                 let taskId = this.copyTargetTask.id
                 try{
                     //taskのis_templateをtrueに
-                    await axios.put('/api/tasks/' + taskId,{is_template:true})
+                    await axios.put('/api/tasks/' + taskId,{project_id:this.defaultProjectId,is_template:true})
                     //終了処理
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをテンプレートにしました')
