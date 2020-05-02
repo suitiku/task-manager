@@ -182,16 +182,8 @@
             //新規タスク登録モーダルを閉じた際にtasksに追加
             newTaskModal:async function(newVal,oldVal){
                 if(newVal == false){
-                    // await this.fetchTasks()
                     if(!this.newTask.id){return }
-                    try{
-                        //statusを1：実行中で登録
-                        await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
-                        let resultTask = await axios.get('/api/tasks/' + this.newTask.id)
-                        this.tasks.push(resultTask.data)
-                    }catch(error){
-                        console.log(error)
-                    }
+                    this.tasks.push(this.newTask)
                 }
             }
         },
@@ -264,12 +256,9 @@
                             dead_line:deadLine.toISOString().slice(0, 19).replace('T', ' ')
                         }
                         let result = await axios.post('/api/tasks',postObject)
-                        //1:実行中でstate_taskテーブルに登録
-                        await axios.post('/api/state_task',{task_id:result.data.id,state_id:1})
+                        this.tasks.push(result.data)
                         //通知処理
                         this.$refs.notice.showNotice('タスクを追加しました')
-                        let task = await axios.get('/api/tasks/' + result.data.id)
-                        this.tasks.push(task.data)
                         this.quickTask = ''
                     }catch(error){
                         this.$refs.notice.showNotice('タスクの追加に失敗しました')

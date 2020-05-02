@@ -43,8 +43,16 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        $task = new Task;
-        $task->fill($request->all())->save();
+        $task = DB::transaction(function() use($request){
+            $task = new Task;
+            $task->fill($request->all())->save();
+        
+            //状態を「実行中」で登録
+            $task->states()->attach(1,['state_detail' => 'タスクが作成されました。']);
+            $task = $task->with(['project','items','states','tags'])->find($task->id);
+            return $task;
+        });
+        
         return $task;
     }
 

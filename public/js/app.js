@@ -51674,13 +51674,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         //新規タスク登録モーダルを閉じた際にtasksに追加
         newTaskModal: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
-                var resultTask;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 if (!(newVal == false)) {
-                                    _context.next = 15;
+                                    _context.next = 4;
                                     break;
                                 }
 
@@ -51692,33 +51691,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context.abrupt('return');
 
                             case 3:
-                                _context.prev = 3;
-                                _context.next = 6;
-                                return axios.post('/api/state_task', { task_id: this.newTask.id, state_id: 1 });
+                                this.tasks.push(this.newTask);
+                                // console.log(this.newTask)
+                                // try{
+                                //     //statusを1：実行中で登録
+                                //     // await axios.post('/api/state_task',{task_id:this.newTask.id,state_id:1})
+                                //     // let resultTask = await axios.get('/api/tasks/' + this.newTask.id)
+                                //     this.tasks.push(resultTask.data)
+                                // }catch(error){
+                                //     console.log(error)
+                                // }
 
-                            case 6:
-                                _context.next = 8;
-                                return axios.get('/api/tasks/' + this.newTask.id);
-
-                            case 8:
-                                resultTask = _context.sent;
-
-                                this.tasks.push(resultTask.data);
-                                _context.next = 15;
-                                break;
-
-                            case 12:
-                                _context.prev = 12;
-                                _context.t0 = _context['catch'](3);
-
-                                console.log(_context.t0);
-
-                            case 15:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[3, 12]]);
+                }, _callee, this);
             }));
 
             function newTaskModal(_x, _x2) {
@@ -51897,13 +51886,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         addQuickTask: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-                var project_id, currentDatetime, deadLine, postObject, result, task;
+                var project_id, currentDatetime, deadLine, postObject, result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
                         switch (_context4.prev = _context4.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context4.next = 23;
+                                    _context4.next = 18;
                                     break;
                                 }
 
@@ -51929,36 +51918,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 8:
                                 result = _context4.sent;
-                                _context4.next = 11;
-                                return axios.post('/api/state_task', { task_id: result.data.id, state_id: 1 });
 
-                            case 11:
+                                this.tasks.push(result.data);
                                 //通知処理
                                 this.$refs.notice.showNotice('タスクを追加しました');
-                                _context4.next = 14;
-                                return axios.get('/api/tasks/' + result.data.id);
-
-                            case 14:
-                                task = _context4.sent;
-
-                                this.tasks.push(task.data);
                                 this.quickTask = '';
-                                _context4.next = 23;
+                                _context4.next = 18;
                                 break;
 
-                            case 19:
-                                _context4.prev = 19;
+                            case 14:
+                                _context4.prev = 14;
                                 _context4.t0 = _context4['catch'](2);
 
                                 this.$refs.notice.showNotice('タスクの追加に失敗しました');
                                 console.log(_context4.t0);
 
-                            case 23:
+                            case 18:
                             case 'end':
                                 return _context4.stop();
                         }
                     }
-                }, _callee4, this, [[2, 19]]);
+                }, _callee4, this, [[2, 14]]);
             }));
 
             function addQuickTask() {
