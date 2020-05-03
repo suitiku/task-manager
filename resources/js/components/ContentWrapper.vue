@@ -6,6 +6,7 @@
             <home v-if="content == 'home'" v-bind:user="user"/>
             <task-list v-else-if="content == 'task'" v-model="tasks" v-bind:userId="user.id"/>
             <project-list v-else-if="content == 'project'" v-bind:user_id="user.id" />
+            <setting v-else-if="content == 'settings'" v-bind:user_id="user.id" />
             <div class="spacer"></div>
         </div>
     </div>

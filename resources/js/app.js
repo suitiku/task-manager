@@ -28,6 +28,7 @@ Vue.component('star-range', require('./components/StarRange.vue'));
 Vue.component('check-box', require('./components/CheckBox.vue')); //未実装
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
+Vue.component('setting', require('./components/Setting.vue'));
 Vue.component('content-wrapper', require('./components/ContentWrapper.vue'));
 Vue.component('dead-line', require('./components/DeadLine.vue'));
 Vue.component('tag-cloud', require('./components/TagCloud.vue'));
