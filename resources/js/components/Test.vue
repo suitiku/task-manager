@@ -2,8 +2,6 @@
 <template>
     <div class="container">
 
-        <template-task-management userId="1" />        
-        
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">

@@ -1,9 +1,9 @@
 <!--単一ファイルコンポーネントのテンプレートファイル-->
 <template>
     <div class="container">
-        <h2>テンプレートの編集</h2>
+        <headline-2>テンプレートの編集</headline-2>
         <template-task-management v-bind:userId="user_id" />
-        <h2>タグの編集</h2>
+        <headline-2>タグの編集</headline-2>
         <tag-management v-bind:user_id="user_id" />
     </div>
 </template>
