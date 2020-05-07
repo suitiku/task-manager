@@ -2,11 +2,12 @@
 <template>
     <div class="container">
 
+        <waiting v-model="waiting" ref="waiting" />
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
         </modal>
-        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <button class="button" v-on:click="showModal()">modal</button>
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <button class="button" v-on:click="toggleWaiting()">notice</button>
     </div>
@@ -117,10 +118,12 @@
 </script>
 <style>
     .button {
+        position:relative;
         cursor:pointer;
         padding:0.5em;
         border:1px solid grey;
         border-radius:0.2em;
+        z-index:30;
     }
     .hoge {
         display:flex;
@@ -129,12 +132,6 @@
         width:100%;
         height:50px;
         border:1px solid black;
-    }
-    .button {
-        position:fixed;
-        top:0;
-        left:0;
-        z-index:30;
     }
     .tool-tip-area {
         width:50%;

@@ -52214,7 +52214,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return createProject;
         }()
-
     }
 });
 
@@ -56283,7 +56282,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.button {\n    position:fixed;\n    top:0;\n    left:0;\n    z-index:30;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    z-index:30;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n", ""]);
 
 // exports
 
@@ -56300,6 +56299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -56567,6 +56567,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c("waiting", {
+        ref: "waiting",
+        model: {
+          value: _vm.waiting,
+          callback: function($$v) {
+            _vm.waiting = $$v
+          },
+          expression: "waiting"
+        }
+      }),
+      _vm._v(" "),
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c("modal", {
@@ -56579,6 +56590,19 @@ var render = function() {
           expression: "modal"
         }
       }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.showModal()
+            }
+          }
+        },
+        [_vm._v("modal")]
+      ),
       _vm._v(" "),
       _c(
         "button",
@@ -66148,7 +66172,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:20;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.waiting-root-active[data-v-189e5d9c] {\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.waiting-background[data-v-189e5d9c] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n}\n.waiting-content[data-v-189e5d9c] {\n    position:fixed;\n    z-index:21;\n    top:40%;\n}\n.waiting-circle[data-v-189e5d9c] {\n    width:7em;\n    height:7em;\n    position:relative;\n    border:1px solid white;\n    background:white;\n    border-radius:50%;\n    -webkit-animation:waiting-circle-data-v-189e5d9c 1.5s infinite linear;\n            animation:waiting-circle-data-v-189e5d9c 1.5s infinite linear;\n}\n.waiting-circle[data-v-189e5d9c]::before {\n    content:'';\n    position:absolute;\n    width:50%;\n    height:50%;\n    border-radius:100% 25% 0;\n    background:grey;\n}\n.waiting-circle[data-v-189e5d9c]::after {\n    content:'';\n    position:absolute;\n    left:25%;\n    top:25%;\n    width:50%;\n    height:50%;\n    border-radius: 50%;\n    background:white;\n}\n@-webkit-keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n@keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n.waiting-message[data-v-189e5d9c] {\n    margin-top:1em;\n    -webkit-animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n            animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n}\n@-webkit-keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n@keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n", ""]);
+exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;\n    overflow-y:auto;\n    z-index:20;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.waiting-root-active[data-v-189e5d9c] {\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n}\n.waiting-background[data-v-189e5d9c] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:100%;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n}\n.waiting-content[data-v-189e5d9c] {\n    border:1px solid red;\n    position:fixed;\n    z-index:21;\n    top:40%;\n}\n.centering[data-v-189e5d9c] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.waiting-circle[data-v-189e5d9c] {\n    width:7em;\n    height:7em;\n    position:relative;\n    border:1px solid white;\n    background:white;\n    border-radius:50%;\n    -webkit-animation:waiting-circle-data-v-189e5d9c 1.5s infinite linear;\n            animation:waiting-circle-data-v-189e5d9c 1.5s infinite linear;\n}\n.waiting-circle[data-v-189e5d9c]::before {\n    content:'';\n    position:absolute;\n    width:50%;\n    height:50%;\n    border-radius:100% 25% 0;\n    background:grey;\n}\n.waiting-circle[data-v-189e5d9c]::after {\n    content:'';\n    position:absolute;\n    left:25%;\n    top:25%;\n    width:50%;\n    height:50%;\n    border-radius: 50%;\n    background:white;\n}\n@-webkit-keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n@keyframes waiting-circle-data-v-189e5d9c {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n}\n100% {\n        -webkit-transform: rotate(360deg);\n                transform: rotate(360deg)\n}\n}\n.waiting-message[data-v-189e5d9c] {\n    margin-top:1em;\n    -webkit-animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n            animation:waiting-message-data-v-189e5d9c 0.5s infinite alternate;\n    color:white;\n    text-align:center;\n}\n@-webkit-keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n@keyframes waiting-message-data-v-189e5d9c {\n0% {\n        opacity: 0\n}\n100% {\n        opacity: 1.0\n}\n}\n", ""]);
 
 // exports
 
@@ -66159,6 +66183,8 @@ exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -66209,10 +66235,12 @@ var render = function() {
     _c("div", { staticClass: "waiting-background" }),
     _vm._v(" "),
     _c("div", { staticClass: "waiting-content" }, [
-      _c("div", { staticClass: "waiting-circle" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "waiting-message" }, [
-        _vm._v(_vm._s(_vm.message))
+      _c("div", { staticClass: "centering" }, [
+        _c("div", { staticClass: "waiting-circle" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "waiting-message" }, [
+          _vm._v(_vm._s(_vm.message))
+        ])
       ])
     ])
   ])

@@ -4,8 +4,10 @@
     <div v-bind:class="waitingRoot">
         <div class="waiting-background"></div>
         <div class="waiting-content">
-            <div class="waiting-circle"></div>
-            <div class="waiting-message">{{message}}</div>
+            <div class="centering">
+                <div class="waiting-circle"></div>
+                <div class="waiting-message">{{message}}</div>
+            </div>
         </div>
     </div>
 </template>
@@ -48,7 +50,6 @@
     .waiting-root {
         position:fixed;
         overflow-y:auto;
-        
         z-index:20;
         top:0;
         left:0;
@@ -80,6 +81,12 @@
         position:fixed;
         z-index:21;
         top:40%;
+    }
+    .centering {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
     }
     .waiting-circle {
         width:7em;
@@ -119,6 +126,8 @@
     .waiting-message {
         margin-top:1em;
         animation:waiting-message 0.5s infinite alternate;
+        color:white;
+        text-align:center;
     }
     @keyframes waiting-message {
         0% {
