@@ -66341,7 +66341,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nh2[data-v-f4658ffa] {\n    position:relative;\n    left:-30%;\n    padding:0.2em 0 0.2em calc(10% + 2em);\n    margin:1em 0;\n    border-radius:0.2em;\n    background:orange;\n    color:white;\n    font-weight:bold;\n    font-style:oblique;\n    font-family: \"\\6E38\\30B4\\30B7\\30C3\\30AF\\4F53\", YuGothic, \"\\6E38\\30B4\\30B7\\30C3\\30AF   Medium\", \"Yu Gothic Medium\";\n}\n", ""]);
+exports.push([module.i, "\nh2[data-v-f4658ffa] {\n    position:relative;\n    /*width:75%;*/\n    height:1.5em;\n    overflow:hidden;\n    word-wrap:normal;\n    padding:0.2em 0 0.2em 1em;\n    margin:1em 0;\n    border-radius:0.1em;\n    background:orange;\n    color:white;\n    font-weight:bold;\n    font-style:oblique;\n    font-family: \"\\6E38\\30B4\\30B7\\30C3\\30AF\\4F53\", YuGothic, \"\\6E38\\30B4\\30B7\\30C3\\30AF   Medium\", \"Yu Gothic Medium\";\n    -webkit-animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n            animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n    -webkit-animation-fill-mode:forwards;\n            animation-fill-mode:forwards;\n}\n@-webkit-keyframes setup-data-v-f4658ffa {\n0% {\n        width:0%;\n}\n90% {\n        width:80%;\n}\n100% {\n        width:75%;\n}\n}\n@keyframes setup-data-v-f4658ffa {\n0% {\n        width:0%;\n}\n90% {\n        width:80%;\n}\n100% {\n        width:75%;\n}\n}\n", ""]);
 
 // exports
 
@@ -66359,6 +66359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66367,8 +66368,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {},
     watch: {},
     created: function created() {},
-    mounted: function mounted() {},
-    methods: {}
+    mounted: function mounted() {
+        var vu = this;
+        this.setPositionLeft();
+
+        window.addEventListener('resize', function () {
+            console.log(this);
+            vu.setPositionLeft();
+        }, false);
+    },
+    computed: {},
+    methods: {
+        setPositionLeft: function setPositionLeft() {
+            this.$refs.headline.style.left = 0;
+            var left = this.$refs.headline.getBoundingClientRect().left + 10;
+            this.$refs.headline.style.left = -left + 'px';
+        }
+    }
 });
 
 /***/ }),
@@ -66379,7 +66395,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h2", [_vm._t("default")], 2)
+  return _c("div", { staticClass: "wrapper" }, [
+    _c("h2", { ref: "headline" }, [_vm._t("default")], 2)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
