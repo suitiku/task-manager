@@ -43,7 +43,6 @@
 <style scoped>
     h2 {
         position:relative;
-        /*width:75%;*/
         height:1.5em;
         overflow:hidden;
         word-wrap:normal;
@@ -53,8 +52,9 @@
         background:orange;
         color:white;
         font-weight:bold;
-        font-style:oblique;
-        font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium";
+        /*font-style:oblique;*/
+        font-style:italic;
+        font-family: 'M PLUS 1p', sans-serif;
         animation:setup 0.8s ease-in-out 1;
         animation-fill-mode:forwards;
     }
@@ -63,10 +63,10 @@
             width:0%;
         }
         90% {
-            width:80%;
+            width:70%;
         }
         100% {
-            width:75%;
+            width:65%;
         }
     }
 </style>
