@@ -25,7 +25,6 @@
             this.setPositionLeft()
             
             window.addEventListener('resize',function(){
-                console.log(this)
                 vu.setPositionLeft()
             },false)
         },

@@ -1,15 +1,17 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-
+        <check-box2 v-model="test" />
+        {{test}}
+        
         <waiting v-model="waiting" ref="waiting" />
         <notice ref="notice" />
         <!--モーダル-->
         <modal ref="modal" v-model="modal">
         </modal>
-        <button class="button" v-on:click="showModal()">modal</button>
+        <!--<button class="button" v-on:click="showModal()">modal</button>-->
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
-        <button class="button" v-on:click="toggleWaiting()">notice</button>
+        <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
 </template>
 
@@ -18,7 +20,7 @@
         data:function(){
             return {
                 modal:false,
-                test:'',
+                test:false,
                 hoge:'',
                 project:{},
                 taskIds:[4,8,9],
