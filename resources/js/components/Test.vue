@@ -1,8 +1,6 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <check-box2 v-model="test" />
-        {{test}}
         
         <waiting v-model="waiting" ref="waiting" />
         <notice ref="notice" />

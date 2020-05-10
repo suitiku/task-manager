@@ -81,7 +81,6 @@
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
             <div v-bind:class="maskClass" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
-            <!--<div class="state-icon" v-show="checkbox || notActive">-->
             <div class="state-icon" v-show="checkbox || notActive">
                 <div>
                     <!--完了マーク-->
@@ -100,7 +99,8 @@
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
                     </div>
-                    <input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">
+                    <check-box class="checkbox" />
+                    <!--<input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">-->
                     <div>
                         <div v-if="task.project && task.project.id != 1" class="project-label">{{task.project.name}}</div>
                         <span class="task-headline">{{task.name}}</span>

@@ -25,8 +25,7 @@ Vue.component('versatile-form', require('./components/VersatileForm.vue'));
 Vue.component('test', require('./components/Test.vue'));
 Vue.component('modal', require('./components/Modal.vue'));
 Vue.component('star-range', require('./components/StarRange.vue'));
-Vue.component('check-box', require('./components/CheckBox.vue')); //未実装
-Vue.component('check-box2', require('./components/CheckBox2.vue')); //未実装
+Vue.component('check-box', require('./components/CheckBox.vue'));
 Vue.component('progress-bar', require('./components/ProgressBar.vue'));
 Vue.component('list-box', require('./components/ListBox.vue'));
 Vue.component('setting', require('./components/Setting.vue'));
