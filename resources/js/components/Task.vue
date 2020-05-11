@@ -81,10 +81,10 @@
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
             <div v-bind:class="maskClass" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
-            <div class="state-icon" v-show="checkbox || notActive">
+            <div class="state-icon" v-show="checked || notActive">
                 <div>
                     <!--完了マーク-->
-                    <i v-show="checkbox" class="far fa-2x fa-check-circle"></i>
+                    <i v-show="checked" class="far fa-2x fa-check-circle"></i>
                     <!--エクスクラメーション-->
                     <i v-show="notActive" class="fas fa-2x fa-exclamation-circle"></i>
                 </div>
@@ -99,7 +99,7 @@
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
                     </div>
-                    <check-box class="checkbox" />
+                    <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
                     <!--<input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">-->
                     <div>
                         <div v-if="task.project && task.project.id != 1" class="project-label">{{task.project.name}}</div>
@@ -173,7 +173,9 @@
                 wrapper_class:'task-wrapper',
                 maskClass:'mask',
                 mask:false,
-                checkbox:false,
+                // checkbox:false,
+                checked:false,
+                checkDisabled:false,
                 notActive:false, //実行状態ではない場合のフラグ
                 stateDetail:'', //状態詳細テキスト（実行可能状態ではない場合に表示）
                 toolTipContent:'',
@@ -222,6 +224,25 @@
                 if(newVal == false){
                     this.isEditedTags = false
                     await this.fetchTask()
+                }
+            },
+            //タスクの完了処理
+            checked:async function(newVal,oldVal){
+                if(newVal == true){
+                    let postObject = {
+                        task_id:this.task.id,
+                        state_id:2,
+                    }
+                    
+                    try{
+                        await axios.post('/api/state_task',postObject)
+                        await this.fetchTask()
+                        this.updateData()
+                        this.$emit('input',this.task)
+                    }catch(error){
+                        this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
+                        console.log(error)
+                    }
                 }
             }
         },
@@ -279,25 +300,6 @@
                 this.detail = !this.detail
                 this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
             },
-            checkTask:async function(){
-                let check = event
-                if(event.target.checked == true){
-                    let postObject = {
-                        task_id:this.task.id,
-                        state_id:2,
-                    }
-                    
-                    try{
-                        await axios.post('/api/state_task',postObject)
-                        await this.fetchTask()
-                        this.updateData()
-                        this.$emit('input',this.task)
-                    }catch(error){
-                        this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
-                        console.log(error)
-                    }
-                }
-            },
             setItemClass:function(is_checked){
                 return is_checked == true ? 'item-completed' : ''
             },
@@ -317,14 +319,9 @@
                 if(!this.task.id){return }
                 // 各種パラメータをリセット
                 this.maskClass = 'mask'
-                this.checkbox = false
                 this.notActive = false
                 this.stateDetail = ''
-                
-                //チェックボックスの要素を取得
-                let check = this.$refs.checkbox
-                check.checked = false
-                check.disabled = false
+                this.checked = false
                 
                 let current_datetime = new Date()
                 let task_datetime = new Date(this.task.start_date)
@@ -334,18 +331,16 @@
                 
                 if(states[states.length -1].id == 2){ //完了タスク
                     this.maskClass = 'mask mask-active'
-                    this.checkbox = true
-                    check.checked = 'checked'
-                    check.disabled = true
+                    this.checked = true
                 }else if(current_datetime < task_datetime){ //開始前タスク
                     this.maskClass = 'mask mask-active'
                     this.notActive = true
-                    check.disabled = true
+                    this.checkDisabled = true
                     this.stateDetail = '開始前タスクです'
                 }else if(states[states.length -1].id != 1){ //実行状態でも完了でもないタスク
                     this.maskClass = 'mask mask-active'
                     this.notActive = true
-                    check.disabled = true
+                    this.checkDisabled = true
                     this.stateDetail = states[states.length -1].pivot.state_detail
                 }
             },
@@ -567,6 +562,7 @@
     .checkbox {
         position:relative;
         z-index:3;
+        margin:0 0.5em;
     }
     .task-headline {
         font-weight:bold;

@@ -52847,7 +52847,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -53039,7 +53039,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             wrapper_class: 'task-wrapper',
             maskClass: 'mask',
             mask: false,
-            checkbox: false,
+            // checkbox:false,
+            checked: false,
+            checkDisabled: false,
             notActive: false, //実行状態ではない場合のフラグ
             stateDetail: '', //状態詳細テキスト（実行可能状態ではない場合に表示）
             toolTipContent: '',
@@ -53156,37 +53158,65 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return editTagModal;
+        }(),
+        checked: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(newVal, oldVal) {
+                var postObject;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                if (!(newVal == true)) {
+                                    _context4.next = 15;
+                                    break;
+                                }
+
+                                postObject = {
+                                    task_id: this.task.id,
+                                    state_id: 2
+                                };
+                                _context4.prev = 2;
+                                _context4.next = 5;
+                                return axios.post('/api/state_task', postObject);
+
+                            case 5:
+                                _context4.next = 7;
+                                return this.fetchTask();
+
+                            case 7:
+                                this.updateData();
+                                this.$emit('input', this.task);
+                                _context4.next = 15;
+                                break;
+
+                            case 11:
+                                _context4.prev = 11;
+                                _context4.t0 = _context4['catch'](2);
+
+                                this.$refs.notice.showNotice('タスクの状態更新に失敗しました');
+                                console.log(_context4.t0);
+
+                            case 15:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[2, 11]]);
+            }));
+
+            function checked(_x5, _x6) {
+                return _ref4.apply(this, arguments);
+            }
+
+            return checked;
         }()
     },
     created: function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-                while (1) {
-                    switch (_context4.prev = _context4.next) {
-                        case 0:
-                        case 'end':
-                            return _context4.stop();
-                    }
-                }
-            }, _callee4, this);
-        }));
-
-        function created() {
-            return _ref4.apply(this, arguments);
-        }
-
-        return created;
-    }(),
-    mounted: function () {
         var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                 while (1) {
                     switch (_context5.prev = _context5.next) {
                         case 0:
-                            this.setTask();
-                            this.updateData();
-
-                        case 2:
                         case 'end':
                             return _context5.stop();
                     }
@@ -53194,8 +53224,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }, _callee5, this);
         }));
 
-        function mounted() {
+        function created() {
             return _ref5.apply(this, arguments);
+        }
+
+        return created;
+    }(),
+    mounted: function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                while (1) {
+                    switch (_context6.prev = _context6.next) {
+                        case 0:
+                            this.setTask();
+                            this.updateData();
+
+                        case 2:
+                        case 'end':
+                            return _context6.stop();
+                    }
+                }
+            }, _callee6, this);
+        }));
+
+        function mounted() {
+            return _ref6.apply(this, arguments);
         }
 
         return mounted;
@@ -53218,41 +53271,41 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     methods: {
         fetchTask: function () {
-            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
                     while (1) {
-                        switch (_context6.prev = _context6.next) {
+                        switch (_context7.prev = _context7.next) {
                             case 0:
-                                _context6.next = 2;
+                                _context7.next = 2;
                                 return axios.get('/api/tasks/' + this.task.id);
 
                             case 2:
-                                result = _context6.sent;
+                                result = _context7.sent;
 
                                 this.task = result.data;
                                 this.$emit('input', this.task);
 
                             case 5:
                             case 'end':
-                                return _context6.stop();
+                                return _context7.stop();
                         }
                     }
-                }, _callee6, this);
+                }, _callee7, this);
             }));
 
             function fetchTask() {
-                return _ref6.apply(this, arguments);
+                return _ref7.apply(this, arguments);
             }
 
             return fetchTask;
         }(),
         setTask: function () {
-            var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee7() {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
                 var index;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee7$(_context7) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
                     while (1) {
-                        switch (_context7.prev = _context7.next) {
+                        switch (_context8.prev = _context8.next) {
                             case 0:
                                 //表示用データ作成
                                 this.task = JSON.parse(JSON.stringify(this.value));
@@ -53277,14 +53330,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                             case 'end':
-                                return _context7.stop();
+                                return _context8.stop();
                         }
                     }
-                }, _callee7, this);
+                }, _callee8, this);
             }));
 
             function setTask() {
-                return _ref7.apply(this, arguments);
+                return _ref8.apply(this, arguments);
             }
 
             return setTask;
@@ -53293,59 +53346,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.detail = !this.detail;
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
-        checkTask: function () {
-            var _ref8 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee8() {
-                var check, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee8$(_context8) {
-                    while (1) {
-                        switch (_context8.prev = _context8.next) {
-                            case 0:
-                                check = event;
+        // checkTask:async function(){
+        //     let check = event
+        //     if(event.target.checked == true){
+        //         let postObject = {
+        //             task_id:this.task.id,
+        //             state_id:2,
+        //         }
 
-                                if (!(event.target.checked == true)) {
-                                    _context8.next = 16;
-                                    break;
-                                }
-
-                                postObject = {
-                                    task_id: this.task.id,
-                                    state_id: 2
-                                };
-                                _context8.prev = 3;
-                                _context8.next = 6;
-                                return axios.post('/api/state_task', postObject);
-
-                            case 6:
-                                _context8.next = 8;
-                                return this.fetchTask();
-
-                            case 8:
-                                this.updateData();
-                                this.$emit('input', this.task);
-                                _context8.next = 16;
-                                break;
-
-                            case 12:
-                                _context8.prev = 12;
-                                _context8.t0 = _context8['catch'](3);
-
-                                this.$refs.notice.showNotice('タスクの状態更新に失敗しました');
-                                console.log(_context8.t0);
-
-                            case 16:
-                            case 'end':
-                                return _context8.stop();
-                        }
-                    }
-                }, _callee8, this, [[3, 12]]);
-            }));
-
-            function checkTask() {
-                return _ref8.apply(this, arguments);
-            }
-
-            return checkTask;
-        }(),
+        //         try{
+        //             await axios.post('/api/state_task',postObject)
+        //             await this.fetchTask()
+        //             this.updateData()
+        //             this.$emit('input',this.task)
+        //         }catch(error){
+        //             this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
+        //             console.log(error)
+        //         }
+        //     }
+        // },
         setItemClass: function setItemClass(is_checked) {
             return is_checked == true ? 'item-completed' : '';
         },
@@ -53380,7 +53399,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee9, this);
             }));
 
-            function checkItem(_x5) {
+            function checkItem(_x7) {
                 return _ref9.apply(this, arguments);
             }
 
@@ -53392,14 +53411,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
             // 各種パラメータをリセット
             this.maskClass = 'mask';
-            this.checkbox = false;
+            // this.checkbox = false
             this.notActive = false;
             this.stateDetail = '';
+            this.checked = false;
 
-            //チェックボックスの要素を取得
-            var check = this.$refs.checkbox;
-            check.checked = false;
-            check.disabled = false;
+            // //チェックボックスの要素を取得
+            // let check = this.$refs.checkbox
+            // check.checked = false
+            // check.disabled = false
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
@@ -53410,20 +53430,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (states[states.length - 1].id == 2) {
                 //完了タスク
                 this.maskClass = 'mask mask-active';
-                this.checkbox = true;
-                check.checked = 'checked';
-                check.disabled = true;
+                this.checked = true;
+                // this.checkbox = true
+                // check.checked = 'checked'
+                // check.disabled = true
             } else if (current_datetime < task_datetime) {
                 //開始前タスク
                 this.maskClass = 'mask mask-active';
                 this.notActive = true;
-                check.disabled = true;
+                this.checkDisabled = true;
                 this.stateDetail = '開始前タスクです';
             } else if (states[states.length - 1].id != 1) {
                 //実行状態でも完了でもないタスク
                 this.maskClass = 'mask mask-active';
                 this.notActive = true;
-                check.disabled = true;
+                this.checkDisabled = true;
                 this.stateDetail = states[states.length - 1].pivot.state_detail;
             }
         },
@@ -53604,7 +53625,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee13, this, [[1, 8]]);
             }));
 
-            function updateItem(_x6) {
+            function updateItem(_x8) {
                 return _ref13.apply(this, arguments);
             }
 
@@ -54271,8 +54292,8 @@ var render = function() {
                   {
                     name: "show",
                     rawName: "v-show",
-                    value: _vm.checkbox || _vm.notActive,
-                    expression: "checkbox || notActive"
+                    value: _vm.checked || _vm.notActive,
+                    expression: "checked || notActive"
                   }
                 ],
                 staticClass: "state-icon"
@@ -54284,8 +54305,8 @@ var render = function() {
                       {
                         name: "show",
                         rawName: "v-show",
-                        value: _vm.checkbox,
-                        expression: "checkbox"
+                        value: _vm.checked,
+                        expression: "checked"
                       }
                     ],
                     staticClass: "far fa-2x fa-check-circle"
@@ -54317,7 +54338,17 @@ var render = function() {
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire })
                   ]),
                   _vm._v(" "),
-                  _c("check-box", { staticClass: "checkbox" }),
+                  _c("check-box", {
+                    staticClass: "checkbox",
+                    attrs: { disabled: _vm.checkDisabled },
+                    model: {
+                      value: _vm.checked,
+                      callback: function($$v) {
+                        _vm.checked = $$v
+                      },
+                      expression: "checked"
+                    }
+                  }),
                   _vm._v(" "),
                   _c("div", [
                     _vm.task.project && _vm.task.project.id != 1
@@ -57075,7 +57106,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.checkarea[data-v-1ae12f8e] {\n    position:relative;\n    width:1.5em;\n    height:1.5em;\n    border-radius:0.2em;\n    border:2px solid grey;\n}\n.unchecked[data-v-1ae12f8e] {\n    -webkit-transform-origin:center center;\n            transform-origin:center center;\n    -webkit-transition:background 5s,border-radius 0.2s,-webkit-transform 5s;\n    transition:background 5s,border-radius 0.2s,-webkit-transform 5s;\n    transition:transform 5s,background 5s,border-radius 0.2s;\n    transition:transform 5s,background 5s,border-radius 0.2s,-webkit-transform 5s;\n}\n.unchecked i[data-v-1ae12f8e] {\n    display:none;\n}\n.process[data-v-1ae12f8e] {\n    border-radius:50%;\n    background:grey;\n    -webkit-transform:scale(0.5,0.5);\n            transform:scale(0.5,0.5);\n}\n.checked[data-v-1ae12f8e] {\n    background:grey;\n    text-align:center;\n    -webkit-animation:pop-effect-data-v-1ae12f8e 0.2s 1;\n            animation:pop-effect-data-v-1ae12f8e 0.2s 1;\n}\n@-webkit-keyframes pop-effect-data-v-1ae12f8e {\n0%{\n        -webkit-transform:scale(1.2,1.2);\n                transform:scale(1.2,1.2);\n}\n100% {\n        -webkit-transform:scale(1.0,1,0);\n                transform:scale(1.0,1,0);\n}\n}\n@keyframes pop-effect-data-v-1ae12f8e {\n0%{\n        -webkit-transform:scale(1.2,1.2);\n                transform:scale(1.2,1.2);\n}\n100% {\n        -webkit-transform:scale(1.0,1,0);\n                transform:scale(1.0,1,0);\n}\n}\n.checked i[data-v-1ae12f8e] {\n    color:white;\n}\n", ""]);
+exports.push([module.i, "\n.checkarea[data-v-1ae12f8e] {\n    position:relative;\n    width:1.5em;\n    height:1.5em;\n    border-radius:0.2em;\n    border:2px solid grey;\n}\n.unchecked[data-v-1ae12f8e] {\n    cursor:pointer;\n    -webkit-transform-origin:center center;\n            transform-origin:center center;\n    -webkit-transition:background 5s,border-radius 0.2s,-webkit-transform 5s;\n    transition:background 5s,border-radius 0.2s,-webkit-transform 5s;\n    transition:transform 5s,background 5s,border-radius 0.2s;\n    transition:transform 5s,background 5s,border-radius 0.2s,-webkit-transform 5s;\n}\n.desabled[data-v-1ae12f8e] {\n    cursor:not-allowed;\n}\n.unchecked i[data-v-1ae12f8e] {\n    display:none;\n}\n.disabled i[data-v-1ae12f8e] {\n    display:none;\n}\n.process[data-v-1ae12f8e] {\n    border-radius:50%;\n    background:grey;\n    -webkit-transform:scale(0.5,0.5);\n            transform:scale(0.5,0.5);\n}\n.checked[data-v-1ae12f8e] {\n    cursor:none;\n    background:grey;\n    text-align:center;\n    -webkit-animation:pop-effect-data-v-1ae12f8e 0.2s 1;\n            animation:pop-effect-data-v-1ae12f8e 0.2s 1;\n}\n@-webkit-keyframes pop-effect-data-v-1ae12f8e {\n0%{\n        -webkit-transform:scale(1.2,1.2);\n                transform:scale(1.2,1.2);\n}\n100% {\n        -webkit-transform:scale(1.0,1,0);\n                transform:scale(1.0,1,0);\n}\n}\n@keyframes pop-effect-data-v-1ae12f8e {\n0%{\n        -webkit-transform:scale(1.2,1.2);\n                transform:scale(1.2,1.2);\n}\n100% {\n        -webkit-transform:scale(1.0,1,0);\n                transform:scale(1.0,1,0);\n}\n}\n.checked i[data-v-1ae12f8e] {\n    color:white;\n}\n", ""]);
 
 // exports
 
@@ -57096,20 +57127,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {};
     },
-    props: {},
-    watch: {},
+    props: {
+        value: {
+            type: [Boolean, String, Number]
+        },
+        disabled: {
+            type: [Boolean, String, Number]
+        }
+    },
+    watch: {
+        value: function value() {
+            if (this.value == true) {
+                this.$refs.cb.classList.remove('unchecked');
+                this.$refs.cb.classList.add('checked');
+            } else {
+                this.$refs.cb.classList.add('unchecked');
+                this.$refs.cb.classList.remove('checked');
+            }
+        },
+        disabled: function disabled() {
+            if (this.disabled == true) {
+                this.$refs.cb.classList.remove('unchecked');
+                this.$refs.cb.classList.add('disabled');
+            } else {
+                this.$refs.cb.classList.remove('disabled');
+                this.$refs.cb.classList.add('unchecked');
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
         startCheck: function startCheck() {
-            if (event.target.classList.contains('checked') || event.target.localName == 'i') return;
+            if (event.target.classList.contains('checked') || event.target.localName == 'i' || this.disabled) return;
             var vue = this;
             this.$refs.cb.classList.add('process');
             setTimeout(function () {
@@ -57138,27 +57193,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      {
-        ref: "cb",
-        staticClass: "checkarea unchecked",
-        on: {
-          mousedown: function($event) {
-            return _vm.startCheck()
-          },
-          mouseup: function($event) {
-            return _vm.stopCheck()
-          },
-          mouseleave: function($event) {
-            return _vm.stopCheck()
-          }
+  return _c(
+    "div",
+    {
+      ref: "cb",
+      staticClass: "checkarea unchecked",
+      on: {
+        mousedown: function($event) {
+          return _vm.startCheck()
+        },
+        mouseup: function($event) {
+          return _vm.stopCheck()
+        },
+        mouseleave: function($event) {
+          return _vm.stopCheck()
         }
-      },
-      [_c("i", { staticClass: "fas fa-check" })]
-    )
-  ])
+      }
+    },
+    [_c("i", { staticClass: "fas fa-check" })]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

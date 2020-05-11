@@ -2,11 +2,10 @@
 <!--今後の改修ポイント-->
 <!--①デザイン-->
 <!--②ソースコードの整理-->
+<!--③disabledの時にcursorが変わらないバグ-->
 <template>
-    <div class="container">
-        <div ref="cb" class="checkarea unchecked" v-on:mousedown="startCheck()" v-on:mouseup="stopCheck()" v-on:mouseleave="stopCheck()">
-            <i class="fas fa-check"></i>
-        </div>
+    <div ref="cb" class="checkarea unchecked" v-on:mousedown="startCheck()" v-on:mouseup="stopCheck()" v-on:mouseleave="stopCheck()">
+        <i class="fas fa-check"></i>
     </div>
 </template>
 
@@ -18,10 +17,32 @@
             }  
         },
         props: {
-            
+            value:{
+                type:[Boolean,String,Number]
+            },
+            disabled:{
+                type:[Boolean,String,Number]
+            }
         },
         watch:{
-            
+            value:function(){
+                if(this.value == true){
+                    this.$refs.cb.classList.remove('unchecked')
+                    this.$refs.cb.classList.add('checked')
+                }else{
+                    this.$refs.cb.classList.add('unchecked')
+                    this.$refs.cb.classList.remove('checked')
+                }
+            },
+            disabled:function(){
+                if(this.disabled == true){
+                    this.$refs.cb.classList.remove('unchecked')
+                    this.$refs.cb.classList.add('disabled')
+                }else{
+                    this.$refs.cb.classList.remove('disabled')
+                    this.$refs.cb.classList.add('unchecked')
+                }
+            }
         },
         created:function(){
             
@@ -31,7 +52,7 @@
         },
         methods: {
             startCheck:function(){
-                if(event.target.classList.contains('checked') || event.target.localName == 'i')return
+                if(event.target.classList.contains('checked') || event.target.localName == 'i' || this.disabled)return
                 let vue = this
                 this.$refs.cb.classList.add('process')
                 setTimeout(function(){
@@ -61,10 +82,17 @@
         border:2px solid grey;
     }
     .unchecked {
+        cursor:pointer;
         transform-origin:center center;
         transition:transform 5s,background 5s,border-radius 0.2s;
     }
+    .desabled {
+        cursor:not-allowed;
+    }
     .unchecked i {
+        display:none;
+    }
+    .disabled i {
         display:none;
     }
     .process {
@@ -73,6 +101,7 @@
         transform:scale(0.5,0.5);
     }
     .checked {
+        cursor:none;
         background:grey;
         text-align:center;
         animation:pop-effect 0.2s 1;
