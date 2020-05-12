@@ -53039,7 +53039,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             wrapper_class: 'task-wrapper',
             maskClass: 'mask',
             mask: false,
-            // checkbox:false,
             checked: false,
             checkDisabled: false,
             notActive: false, //実行状態ではない場合のフラグ
@@ -53158,88 +53157,91 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return editTagModal;
-        }(),
-        checked: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(newVal, oldVal) {
-                var postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-                    while (1) {
-                        switch (_context4.prev = _context4.next) {
-                            case 0:
-                                if (!(newVal == true)) {
-                                    _context4.next = 15;
-                                    break;
-                                }
-
-                                postObject = {
-                                    task_id: this.task.id,
-                                    state_id: 2
-                                };
-                                _context4.prev = 2;
-                                _context4.next = 5;
-                                return axios.post('/api/state_task', postObject);
-
-                            case 5:
-                                _context4.next = 7;
-                                return this.fetchTask();
-
-                            case 7:
-                                this.updateData();
-                                this.$emit('input', this.task);
-                                _context4.next = 15;
-                                break;
-
-                            case 11:
-                                _context4.prev = 11;
-                                _context4.t0 = _context4['catch'](2);
-
-                                this.$refs.notice.showNotice('タスクの状態更新に失敗しました');
-                                console.log(_context4.t0);
-
-                            case 15:
-                            case 'end':
-                                return _context4.stop();
-                        }
-                    }
-                }, _callee4, this, [[2, 11]]);
-            }));
-
-            function checked(_x5, _x6) {
-                return _ref4.apply(this, arguments);
-            }
-
-            return checked;
         }()
+
     },
     created: function () {
-        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                 while (1) {
-                    switch (_context5.prev = _context5.next) {
+                    switch (_context4.prev = _context4.next) {
                         case 0:
                         case 'end':
-                            return _context5.stop();
+                            return _context4.stop();
                     }
                 }
-            }, _callee5, this);
+            }, _callee4, this);
         }));
 
         function created() {
-            return _ref5.apply(this, arguments);
+            return _ref4.apply(this, arguments);
         }
 
         return created;
     }(),
     mounted: function () {
-        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
+            var vue;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                 while (1) {
                     switch (_context6.prev = _context6.next) {
                         case 0:
                             this.setTask();
                             this.updateData();
+                            vue = this;
 
-                        case 2:
+                            this.$watch('checked', function () {
+                                var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5(newVal, oldVal) {
+                                    var postObject;
+                                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                                        while (1) {
+                                            switch (_context5.prev = _context5.next) {
+                                                case 0:
+                                                    if (!(oldVal == false && newVal == true)) {
+                                                        _context5.next = 15;
+                                                        break;
+                                                    }
+
+                                                    postObject = {
+                                                        task_id: vue.task.id,
+                                                        state_id: 2
+                                                    };
+                                                    _context5.prev = 2;
+                                                    _context5.next = 5;
+                                                    return axios.post('/api/state_task', postObject);
+
+                                                case 5:
+                                                    _context5.next = 7;
+                                                    return vue.fetchTask();
+
+                                                case 7:
+                                                    vue.updateData();
+                                                    vue.$emit('input', this.task);
+                                                    // タスク完了お疲れ画面を出す
+                                                    _context5.next = 15;
+                                                    break;
+
+                                                case 11:
+                                                    _context5.prev = 11;
+                                                    _context5.t0 = _context5['catch'](2);
+
+                                                    vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
+                                                    console.log(_context5.t0);
+
+                                                case 15:
+                                                case 'end':
+                                                    return _context5.stop();
+                                            }
+                                        }
+                                    }, _callee5, this, [[2, 11]]);
+                                }));
+
+                                return function (_x5, _x6) {
+                                    return _ref6.apply(this, arguments);
+                                };
+                            }());
+
+                        case 4:
                         case 'end':
                             return _context6.stop();
                     }
@@ -53248,7 +53250,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }));
 
         function mounted() {
-            return _ref6.apply(this, arguments);
+            return _ref5.apply(this, arguments);
         }
 
         return mounted;
@@ -53346,25 +53348,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.detail = !this.detail;
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
-        // checkTask:async function(){
-        //     let check = event
-        //     if(event.target.checked == true){
-        //         let postObject = {
-        //             task_id:this.task.id,
-        //             state_id:2,
-        //         }
-
-        //         try{
-        //             await axios.post('/api/state_task',postObject)
-        //             await this.fetchTask()
-        //             this.updateData()
-        //             this.$emit('input',this.task)
-        //         }catch(error){
-        //             this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
-        //             console.log(error)
-        //         }
-        //     }
-        // },
         setItemClass: function setItemClass(is_checked) {
             return is_checked == true ? 'item-completed' : '';
         },
@@ -53411,15 +53394,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
             // 各種パラメータをリセット
             this.maskClass = 'mask';
-            // this.checkbox = false
             this.notActive = false;
             this.stateDetail = '';
-            this.checked = false;
-
-            // //チェックボックスの要素を取得
-            // let check = this.$refs.checkbox
-            // check.checked = false
-            // check.disabled = false
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
@@ -53431,21 +53407,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 //完了タスク
                 this.maskClass = 'mask mask-active';
                 this.checked = true;
-                // this.checkbox = true
-                // check.checked = 'checked'
-                // check.disabled = true
+            } else if (states[states.length - 1].id == 1) {
+                //実行状態タスク
+                this.checked = false;
             } else if (current_datetime < task_datetime) {
                 //開始前タスク
                 this.maskClass = 'mask mask-active';
                 this.notActive = true;
                 this.checkDisabled = true;
                 this.stateDetail = '開始前タスクです';
+                this.checked = false;
             } else if (states[states.length - 1].id != 1) {
                 //実行状態でも完了でもないタスク
                 this.maskClass = 'mask mask-active';
                 this.notActive = true;
                 this.checkDisabled = true;
                 this.stateDetail = states[states.length - 1].pivot.state_detail;
+                this.checked = false;
             }
         },
         showDeleteTaskDialog: function showDeleteTaskDialog() {
@@ -57117,6 +57095,7 @@ exports.push([module.i, "\n.checkarea[data-v-1ae12f8e] {\n    position:relative;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //

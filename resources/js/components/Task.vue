@@ -173,7 +173,6 @@
                 wrapper_class:'task-wrapper',
                 maskClass:'mask',
                 mask:false,
-                // checkbox:false,
                 checked:false,
                 checkDisabled:false,
                 notActive:false, //実行状態ではない場合のフラグ
@@ -226,31 +225,33 @@
                     await this.fetchTask()
                 }
             },
-            //タスクの完了処理
-            checked:async function(newVal,oldVal){
-                if(newVal == true){
-                    let postObject = {
-                        task_id:this.task.id,
-                        state_id:2,
-                    }
-                    
-                    try{
-                        await axios.post('/api/state_task',postObject)
-                        await this.fetchTask()
-                        this.updateData()
-                        this.$emit('input',this.task)
-                    }catch(error){
-                        this.$refs.notice.showNotice('タスクの状態更新に失敗しました')
-                        console.log(error)
-                    }
-                }
-            }
+            
         },
         created:async function(){
         },
         mounted:async function(){
             this.setTask()
             this.updateData()
+            let vue = this
+            this.$watch('checked',async function(newVal,oldVal){
+                if(oldVal == false && newVal == true){
+                    let postObject = {
+                        task_id:vue.task.id,
+                        state_id:2,
+                    }
+                    
+                    try{
+                        await axios.post('/api/state_task',postObject)
+                        await vue.fetchTask()
+                        vue.updateData()
+                        vue.$emit('input',this.task)
+                        // タスク完了お疲れ画面を出す
+                    }catch(error){
+                        vue.$refs.notice.showNotice('タスクの状態更新に失敗しました')
+                        console.log(error)
+                    }
+                }
+            })
         },
         computed:{
             // 炎上中マーク
@@ -321,7 +322,6 @@
                 this.maskClass = 'mask'
                 this.notActive = false
                 this.stateDetail = ''
-                this.checked = false
                 
                 let current_datetime = new Date()
                 let task_datetime = new Date(this.task.start_date)
@@ -332,16 +332,20 @@
                 if(states[states.length -1].id == 2){ //完了タスク
                     this.maskClass = 'mask mask-active'
                     this.checked = true
+                }else if(states[states.length -1].id == 1){ //実行状態タスク
+                    this.checked = false
                 }else if(current_datetime < task_datetime){ //開始前タスク
                     this.maskClass = 'mask mask-active'
                     this.notActive = true
                     this.checkDisabled = true
                     this.stateDetail = '開始前タスクです'
+                    this.checked = false
                 }else if(states[states.length -1].id != 1){ //実行状態でも完了でもないタスク
                     this.maskClass = 'mask mask-active'
                     this.notActive = true
                     this.checkDisabled = true
                     this.stateDetail = states[states.length -1].pivot.state_detail
+                    this.checked = false
                 }
             },
             showDeleteTaskDialog:function(){
