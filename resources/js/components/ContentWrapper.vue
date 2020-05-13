@@ -58,6 +58,7 @@
 </script>
 <style scoped>
     .contents-wrapper {
+        width:70%;
         position:relative;
     }
     .contents {

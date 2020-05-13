@@ -55,9 +55,14 @@
                     style = {
                         left: String(left)
                     }
-                }else{
+                }else if(((this.numerator / this.denominotor) * 100) < 100){
                     style = {
                         left:'80%',
+                        color:'white'
+                    }
+                }else{
+                    style = {
+                        left:'50%',
                         color:'white'
                     }
                 }
@@ -81,13 +86,15 @@
     }
     .bar {
         height:2em;
-        background:gainsboro;
+        background:orange;
+        opacity:0.8;
         transition:all 1s;
     }
     .char {
         position:relative;
-        top:-1.7em;
-        font-weight:bold;
+        top:-1.8em;
+        font-style:italic;
+        font-family: 'M PLUS 1p', sans-serif;
         transition:all 1s;
     }
 </style>

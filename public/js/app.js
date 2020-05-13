@@ -57288,7 +57288,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid gainsboro;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:gainsboro;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.7em;\n    font-weight:bold;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
+exports.push([module.i, "\n.bar-wrapper[data-v-d4a6a2ea] {\n    position:relative;\n    width:100%;\n    height:2em;\n    border:1px solid gainsboro;\n    border-radius:1em;\n    overflow:hidden;\n}\n.bar[data-v-d4a6a2ea] {\n    height:2em;\n    background:orange;\n    opacity:0.8;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n.char[data-v-d4a6a2ea] {\n    position:relative;\n    top:-1.8em;\n    font-style:italic;\n    font-family: 'M PLUS 1p', sans-serif;\n    -webkit-transition:all 1s;\n    transition:all 1s;\n}\n", ""]);
 
 // exports
 
@@ -57352,9 +57352,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 style = {
                     left: String(left)
                 };
-            } else {
+            } else if (this.numerator / this.denominotor * 100 < 100) {
                 style = {
                     left: '80%',
+                    color: 'white'
+                };
+            } else {
+                style = {
+                    left: '50%',
                     color: 'white'
                 };
             }
@@ -57965,7 +57970,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n    position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n    position:relative;\n    width:100%;\n}\n/*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n    height:5em;\n}\n", ""]);
+exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n    width:70%;\n    position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n    position:relative;\n    width:100%;\n}\n/*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n    height:5em;\n}\n", ""]);
 
 // exports
 
