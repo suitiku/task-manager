@@ -61,6 +61,7 @@ Vue.component('color-picker', require('./components/ColorPicker.vue'));
 Vue.component('task-log', require('./components/TaskLog.vue'));
 Vue.component('waiting', require('./components/Waiting.vue'));
 Vue.component('headline-2', require('./components/Headline2.vue'));
+Vue.component('congratulation', require('./components/Congratulation.vue'));
 
 
 

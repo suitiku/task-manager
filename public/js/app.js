@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(272);
+module.exports = __webpack_require__(277);
 
 
 /***/ }),
@@ -14696,6 +14696,7 @@ Vue.component('color-picker', __webpack_require__(252));
 Vue.component('task-log', __webpack_require__(257));
 Vue.component('waiting', __webpack_require__(262));
 Vue.component('headline-2', __webpack_require__(267));
+Vue.component('congratulation', __webpack_require__(272));
 
 var app = new Vue({
   el: '#app'
@@ -52847,7 +52848,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    font-weight:bold;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    /*font-style:italic;*/\n    font-family: 'M PLUS 1p', sans-serif;\n}\n.dead-line[data-v-e9a53c20] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n    /*background-color:gainsboro;*/\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n    /*transform-origin:center;*/\n    /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -52864,6 +52865,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -53198,7 +53202,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                             switch (_context5.prev = _context5.next) {
                                                 case 0:
                                                     if (!(oldVal == false && newVal == true)) {
-                                                        _context5.next = 15;
+                                                        _context5.next = 16;
                                                         break;
                                                     }
 
@@ -53217,23 +53221,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                 case 7:
                                                     vue.updateData();
                                                     vue.$emit('input', this.task);
-                                                    // タスク完了お疲れ画面を出す
-                                                    _context5.next = 15;
+                                                    vue.$refs.cong.openCong('おつかれさまです！');
+                                                    _context5.next = 16;
                                                     break;
 
-                                                case 11:
-                                                    _context5.prev = 11;
+                                                case 12:
+                                                    _context5.prev = 12;
                                                     _context5.t0 = _context5['catch'](2);
 
                                                     vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
                                                     console.log(_context5.t0);
 
-                                                case 15:
+                                                case 16:
                                                 case 'end':
                                                     return _context5.stop();
                                             }
                                         }
-                                    }, _callee5, this, [[2, 11]]);
+                                    }, _callee5, this, [[2, 12]]);
                                 }));
 
                                 return function (_x5, _x6) {
@@ -53867,6 +53871,8 @@ var render = function() {
         { staticClass: "container" },
         [
           _c("notice", { ref: "notice" }),
+          _vm._v(" "),
+          _c("congratulation", { ref: "cong" }),
           _vm._v(" "),
           _c("tool-tip", { ref: "toolTip" }, [
             _c("div", { staticClass: "tool-tip-content" }, [
@@ -56287,7 +56293,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    z-index:30;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    z-index:30;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n", ""]);
 
 // exports
 
@@ -56304,6 +56310,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -56537,6 +56545,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         showModal: function showModal() {
             this.$refs.modal.openModal();
         },
+        showCong: function showCong() {
+            this.$refs.cong.openCong('お疲れさまです！');
+        },
         showNotice: function showNotice() {
             this.$refs.notice.showNotice('だめです！', 'error');
         },
@@ -56572,18 +56583,16 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("waiting", {
-        ref: "waiting",
+      _c("congratulation", {
+        ref: "cong",
         model: {
-          value: _vm.waiting,
+          value: _vm.test,
           callback: function($$v) {
-            _vm.waiting = $$v
+            _vm.test = $$v
           },
-          expression: "waiting"
+          expression: "test"
         }
       }),
-      _vm._v(" "),
-      _c("notice", { ref: "notice" }),
       _vm._v(" "),
       _c("modal", {
         ref: "modal",
@@ -56594,7 +56603,33 @@ var render = function() {
           },
           expression: "modal"
         }
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.showCong()
+            }
+          }
+        },
+        [_vm._v("congratulation!")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              return _vm.showModal()
+            }
+          }
+        },
+        [_vm._v("modal")]
+      )
     ],
     1
   )
@@ -66420,6 +66455,182 @@ if (false) {
 
 /***/ }),
 /* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(273)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(275)
+/* template */
+var __vue_template__ = __webpack_require__(276)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-7b158809"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Congratulation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7b158809", Component.options)
+  } else {
+    hotAPI.reload("data-v-7b158809", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(274);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("162878fa", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b158809\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Congratulation.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b158809\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Congratulation.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cong-root[data-v-7b158809] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    -webkit-transition:opacity 0.7s,visibility 0.7s;\n    transition:opacity 0.7s,visibility 0.7s;\n    opacity:0;\n    visibility:hidden;\n}\n.cong-root-active[data-v-7b158809] {\n    position:fixed;\n    overflow-y:auto;\n    \n    z-index:9;\n    top:0;\n    left:0;\n    right:0;\n    bottom:0;\n    padding:3em 0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    width:100%;\n    opacity:1.0;\n    visibility:visible;\n    -webkit-transition:opacity 0.2s,visibility 0.2s;\n    transition:opacity 0.2s,visibility 0.2s;\n}\n.cong-content[data-v-7b158809] {\n    position:absolute;\n    top:20%;\n    min-width:20em;\n    min-height:5em;\n    /*border-radius: 50%;*/\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    overflow:hidden;\n    z-index:14;\n    margin-bottom:3em;\n    padding:1em;\n    opacity:0;\n    visibility:hidden;\n    border:1px solid white;\n    background:white;\n    outline:none;\n    -webkit-transition:opacity 0.7s;\n    transition:opacity 0.7s;\n}\n.cong-content-active[data-v-7b158809] {\n    overflow:visible;\n    opacity:1.0;\n    visibility:visible;\n}\n.cong-background[data-v-7b158809] {\n    position:fixed;\n    top:0;\n    left:0;\n    height:5000px;\n    width:100%;\n    background:grey;\n    opacity:0.5;\n    z-index:10;\n}\n.slot-content[data-v-7b158809] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    font-family: 'M PLUS 1p', sans-serif;\n    font-size:1.5em;\n    margin:1em;\n    text-align:center;\n}\ni[data-v-7b158809] {\n    font-size:300%;\n    color:orange;\n    -webkit-transform-origin: center center;\n            transform-origin: center center;\n    -webkit-animation:icon-data-v-7b158809 0.5s infinite;\n            animation:icon-data-v-7b158809 0.5s infinite;\n}\n@-webkit-keyframes icon-data-v-7b158809 {\n0% {\n        -webkit-transform: scale(1.5,1.5);\n                transform: scale(1.5,1.5)\n}\n100% {\n        -webkit-transform: scale(1.0,1.0);\n                transform: scale(1.0,1.0)\n}\n}\n@keyframes icon-data-v-7b158809 {\n0% {\n        -webkit-transform: scale(1.5,1.5);\n                transform: scale(1.5,1.5)\n}\n100% {\n        -webkit-transform: scale(1.0,1.0);\n                transform: scale(1.0,1.0)\n}\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            congClass: 'cong-root',
+            congContentClass: 'cong-content',
+            contentTop: 0,
+            message: ''
+        };
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+
+    computed: {},
+    methods: {
+        openCong: function openCong(message) {
+            this.message = message;
+            this.congContentClass = 'cong-content cong-content-active';
+            this.congClass = 'cong-root-active';
+        },
+        closeCong: function closeCong() {
+            this.message = '';
+            this.contentTop = '0px';
+            this.congContentClass = 'cong-content';
+            this.congClass = 'cong-root';
+        }
+    }
+});
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { class: _vm.congClass }, [
+    _c("div", {
+      staticClass: "cong-background",
+      on: {
+        click: function($event) {
+          return _vm.closeCong()
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("div", { class: _vm.congContentClass }, [
+      _c("div", { staticClass: "slot-content" }, [_vm._v(_vm._s(_vm.message))]),
+      _vm._v(" "),
+      _c("i", { staticClass: "far fa-thumbs-up" })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7b158809", module.exports)
+  }
+}
+
+/***/ }),
+/* 277 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

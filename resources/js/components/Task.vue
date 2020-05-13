@@ -7,6 +7,9 @@
         <!--通知-->
         <notice ref="notice" />
         
+        <!--おつかれ画面-->
+        <congratulation ref="cong" />
+        
          <!--ツールチップ-->
         <tool-tip ref="toolTip">
             <div class="tool-tip-content">
@@ -245,7 +248,7 @@
                         await vue.fetchTask()
                         vue.updateData()
                         vue.$emit('input',this.task)
-                        // タスク完了お疲れ画面を出す
+                        vue.$refs.cong.openCong('おつかれさまです！')
                     }catch(error){
                         vue.$refs.notice.showNotice('タスクの状態更新に失敗しました')
                         console.log(error)
@@ -569,7 +572,8 @@
         margin:0 0.5em;
     }
     .task-headline {
-        font-weight:bold;
+        /*font-style:italic;*/
+        font-family: 'M PLUS 1p', sans-serif;
     }
     .dead-line {
         margin-right:1em;

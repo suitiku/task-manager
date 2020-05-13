@@ -1,13 +1,15 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        <congratulation v-model="test" ref="cong" />
+
         
-        <waiting v-model="waiting" ref="waiting" />
-        <notice ref="notice" />
+        <!--<waiting v-model="waiting" ref="waiting" />-->
+        <!--<notice ref="notice" />-->
         <!--モーダル-->
-        <modal ref="modal" v-model="modal">
-        </modal>
-        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <modal ref="modal" v-model="modal"></modal>
+        <button class="button" v-on:click="showCong()">congratulation!</button>
+        <button class="button" v-on:click="showModal()">modal</button>
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
@@ -93,6 +95,9 @@
             showModal:function(){
                 this.$refs.modal.openModal()
             },
+            showCong:function(){
+                this.$refs.cong.openCong('お疲れさまです！')
+            },
             showNotice:function(){
                 this.$refs.notice.showNotice('だめです！','error')
             },
@@ -145,5 +150,8 @@
     }
     .slider-area {
         width:50%;
+    }
+    .congratulation-content {
+        border:2px solid red;
     }
 </style>
