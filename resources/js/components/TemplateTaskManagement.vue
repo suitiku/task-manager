@@ -26,7 +26,7 @@
             
         },
         mounted:async function(){
-            let result = await axios.get('/api/mytasks/',{params:{user_id:this.userId}})
+            let result = await axios.get('/api/mytasks',{params:{user_id:this.userId}})
             this.templateTasks = result.data.filter(task => {
                 return task.is_template == true
             })
