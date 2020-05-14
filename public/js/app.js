@@ -60660,6 +60660,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (minute > 30) {
                 targetIndex++;
             }
+            if (targetIndex >= 48) {
+                targetIndex = 1;
+            } //23:31-23:59の場合は1にリセット
             this.$refs.timeSlider.scrollSlider(targetIndex);
         },
         emit: function emit() {
