@@ -66427,6 +66427,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         setPositionLeft: function setPositionLeft() {
+            console.log(this.$refs.headline);
             this.$refs.headline.style.left = 0;
             var left = this.$refs.headline.getBoundingClientRect().left + 10;
             this.$refs.headline.style.left = -left + 'px';

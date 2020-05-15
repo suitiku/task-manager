@@ -32,6 +32,7 @@
         },
         methods: {
             setPositionLeft:function(){
+                console.log(this.$refs.headline)
                 this.$refs.headline.style.left = 0
                 let left = this.$refs.headline.getBoundingClientRect().left + 10
                 this.$refs.headline.style.left = -left + 'px'
