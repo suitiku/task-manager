@@ -101,15 +101,15 @@
                     <div class="headline-icons">
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
+                        <!--チェックボックス-->
+                        <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
                     </div>
-                    <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
-                    <!--<input ref="checkbox" class="checkbox" type="checkbox" v-on:change="checkTask(task.id)">-->
-                    <div>
-                        <div v-if="task.project && task.project.id != 1" class="project-label">{{task.project.name}}</div>
-                        <span class="task-headline">{{task.name}}</span>
+                    <div class="task-headline">
+                        <div v-if="task.project && task.project.name != '単体タスク'" class="project-label">{{task.project.name}}</div>
+                        <span class="task-title">{{task.name}}</span>
                     </div>
                 </div>
-                <div>
+                <div class="task-buttons">
                     <!--締切-->
                     <i class="far fa-clock"></i>
                     <span class="dead-line">{{task.dead_line}}</span>
@@ -538,16 +538,13 @@
     .headline {
         display:flex;
         justify-content:flex-start;
-        align-items:center;
     }
     .headline input {
         margin:0 1em;
     }
     .task-label {
         height:3.0em;
-        padding:0.5em;
         display:flex;
-        align-items:center;
         justify-content:space-between;
     }
     .project-label {
@@ -566,17 +563,37 @@
         background:white;
         font-size:75%;
     }
+    .headline-icons {
+        display:flex;
+        align-items:center;
+        margin-left:0.5em;
+    }
     .checkbox {
         position:relative;
         z-index:3;
         margin:0 0.5em;
     }
     .task-headline {
-        /*font-style:italic;*/
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .task-title {
         font-family: 'M PLUS 1p', sans-serif;
+        letter-spacing:0.1em;
+        display:flex;
+        align-items:center;
+        height:3em;
+    }
+    .task-buttons {
+        margin-right:0.5em;
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        min-width:18em;
     }
     .dead-line {
-        margin-right:1em;
+        margin:0 0.5em;
         color:grey;
         font-size:75%;
     }
@@ -600,8 +617,6 @@
     .detail {
         width:100%;
         padding:2em;
-        /*background-color:gainsboro;*/
-        
     }
     .detail-active {
         max-height:2000px;
@@ -611,7 +626,6 @@
         position:relative;
         z-index:3;
     }
-    
     .mask {
         width:120%;
         height:120%;
@@ -642,8 +656,6 @@
         left:calc(50% - 2em);
         z-index:3;
         opacity:1.0;
-        /*transform-origin:center;*/
-        /*animation:icon-before 1s linear 0s 1,icon 0.5s linear 0.5s 1;*/
     }
     .state-icon div {
         transform-origin:center;
