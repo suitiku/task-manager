@@ -51779,8 +51779,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 start_date: '',
                 dead_line: '',
                 is_template: false
-            };
+                //開始と締め切りを現在時刻に合わせる
+            };this.$refs.newTaskStartDate.init();
+            this.$refs.newTaskDeadLine.init();
+            //子アイテムをリセット
             this.items = [];
+            //モーダルを展開
             this.$refs.newTaskModal.openModal();
         },
         addItems: function () {
@@ -52343,6 +52347,7 @@ var render = function() {
               _c("span", [_vm._v("開始日")]),
               _vm._v(" "),
               _c("date-picker", {
+                ref: "newTaskStartDate",
                 model: {
                   value: _vm.newTask.start_date,
                   callback: function($$v) {
@@ -52355,6 +52360,7 @@ var render = function() {
               _c("span", [_vm._v("締切")]),
               _vm._v(" "),
               _c("date-picker", {
+                ref: "newTaskDeadLine",
                 model: {
                   value: _vm.newTask.dead_line,
                   callback: function($$v) {
@@ -60289,7 +60295,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     props: {
         value: {
-            type: String,
+            type: [String, Number],
             required: false
         }
     },

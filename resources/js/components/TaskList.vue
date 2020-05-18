@@ -23,9 +23,9 @@
                     <star-range v-model="newTask.difficulty" />
                 </div>
                 <span>開始日</span>
-                <date-picker v-model="newTask.start_date" />
+                <date-picker v-model="newTask.start_date" ref="newTaskStartDate" />
                 <span>締切</span>
-                <date-picker v-model="newTask.dead_line" />
+                <date-picker v-model="newTask.dead_line" ref="newTaskDeadLine" />
                 <span v-if="!projectId">プロジェクトを選択してください</span>
                 <list-box v-if="!projectId" v-model="newTask.project_id" ref="projectsListbox" table="projects" />
                 <input v-if="!projectId" class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
@@ -219,7 +219,12 @@
                     dead_line:'',
                     is_template:false,
                 }
+                //開始と締め切りを現在時刻に合わせる
+                this.$refs.newTaskStartDate.init()
+                this.$refs.newTaskDeadLine.init()
+                //子アイテムをリセット
                 this.items = []
+                //モーダルを展開
                 this.$refs.newTaskModal.openModal()
             },
             addItems:async function(){
