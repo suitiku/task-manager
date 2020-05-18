@@ -335,8 +335,6 @@
                 if(states[states.length -1].id == 2){ //完了タスク
                     this.maskClass = 'mask mask-active'
                     this.checked = true
-                }else if(states[states.length -1].id == 1){ //実行状態タスク
-                    this.checked = false
                 }else if(current_datetime < task_datetime){ //開始前タスク
                     this.maskClass = 'mask mask-active'
                     this.notActive = true
@@ -348,6 +346,11 @@
                     this.notActive = true
                     this.checkDisabled = true
                     this.stateDetail = states[states.length -1].pivot.state_detail
+                    this.checked = false
+                }
+                
+                //実行状態タスクの場合はチェックを外す
+                if(states[states.length -1].id == 1){ //実行状態タスク
                     this.checked = false
                 }
             },
