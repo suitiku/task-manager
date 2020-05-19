@@ -156,10 +156,16 @@
     .tag {
         margin-right:0.3em;
         display:inline-block;
-        padding:0.5em;
+        min-width:5em;
+        padding:0.3em 0.5em;
         border:1px solid grey;
         border-radius:0.2em;
         opacity:0.9;
+    }
+    .tag span{
+        display:block;
+        width:100%;
+        text-align-last: justify;
     }
     input,textarea {
         width:100%;

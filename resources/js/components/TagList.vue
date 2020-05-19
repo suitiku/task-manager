@@ -128,6 +128,7 @@
         flex-wrap:wrap;
     }
     .tag {
+        min-width:5em;
         color:grey;
         border:1px solid grey;
         border-radius:0.3em;
@@ -138,6 +139,11 @@
         opacity:0.5;
         cursor:pointer;
         transition:opacity 0.3s;
+    }
+    .tag span {
+        display:block;
+        width:100%;
+        text-align-last: justify;
     }
     .selected {
         opacity:1.0;

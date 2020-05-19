@@ -332,6 +332,7 @@
                 //statesの最後の状態を取得
                 let states = this.sortStatus()
                 
+                //マスク
                 if(states[states.length -1].id == 2){ //完了タスク
                     this.maskClass = 'mask mask-active'
                     this.checked = true
@@ -559,6 +560,8 @@
         margin:0.5em 0;
     }
     .tag {
+        min-width:5em;
+        text-align:center;
         border:1px solid grey;
         border-radius:0.3em;
         padding:0.3em;
