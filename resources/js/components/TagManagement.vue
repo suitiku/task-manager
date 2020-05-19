@@ -15,15 +15,25 @@
         </modal>
         
         <!--とりあえず一覧表示（使用数付き）-->
-        <div class="display-tags">
-            <div v-for="(tag,index) in tags" class="tag-wrapper">
-                <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
-                    <span>{{tag.name}}</span>
+        <!--<div class="display-tags">-->
+            <div v-for="(tagColor,colorIndex) in displayedTags" class="display-tags">
+                <div v-for="(tag,index) in tagColor" class="tag-wrapper">
+                    <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
+                        <span>{{tag.name}}</span>
+                    </div>
+                    <span>{{countTasks(tag)}}</span>
                 </div>
-                <span>{{countTasks(tag)}}</span>
             </div>
-            <i class="fas fa-plus-circle" v-on:click="showModal()"></i>
-        </div>
+            
+            <!--<div v-for="(tag,index) in tags" class="tag-wrapper">-->
+            <!--    <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">-->
+            <!--        <span>{{tag.name}}</span>-->
+            <!--    </div>-->
+            <!--    <span>{{countTasks(tag)}}</span>-->
+            <!--    <div v-if="index < tags.length -1 && tag.color != tags[index + 1].color">改行</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <button type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="showModal()">タグを追加する</button>
     </div>
 </template>
 
@@ -32,6 +42,7 @@
         data:function(){
             return {
                 tags:[],
+                displayedTags:{},
                 modal:false,
                 editId:'',
                 editedTag:{},
@@ -70,11 +81,32 @@
                 }
             },
             fetchTags: async function(){
+                //表示用初期化
+                this.displayedTags = {}
+                
                  // タグの取得
                 let result = await axios.get('/api/mytags',{
                                                 params:{user_id:this.user_id,}
                                             })
                 this.tags = result.data
+                this.sortTags()
+            },
+            sortTags:function(){
+                for(let tag of this.tags){
+                    if(this.displayedTags[tag.color] == undefined){
+                        this.$set(this.displayedTags,tag.color,[])
+                        this.displayedTags[tag.color].push(tag)
+                    }else{
+                        this.displayedTags[tag.color].push(tag)
+                    }
+                }
+                for(let tagColor in this.displayedTags){
+                    this.displayedTags[tagColor].sort(function(a,b){
+                        if(a.tasks.length < b.tasks.length)return 1 
+                        if(a.tasks.length > b.tasks.length)return -1
+                        return 0
+                    })
+                }
             },
             countTasks:function(tag){
                 if(!tag.tasks){
@@ -143,11 +175,12 @@
         display:flex;
         flex-wrap:wrap;
         align-items:center;
+        margin-bottom:1em;
     }
     .tag-wrapper {
         display:flex;
         align-items:center;
-        margin:1em;
+        margin:0.3em 1em;
         cursor:pointer;
     }
     .tag-wrapper span {
