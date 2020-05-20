@@ -153,6 +153,7 @@ class TasksController extends Controller
             'user_id' => $originalTask['user_id'],
             'project_id' => $originalTask['project_id'],
             'name' => $originalTask['name'],
+            'overview' => $originalTask['overview'],
             'priority' => $originalTask['priority'],
             'difficulty' => $originalTask['difficulty'],
             'start_date' => $originalTask['start_date'],
