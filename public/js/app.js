@@ -58114,7 +58114,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 this.tasks = [];
                                 _context2.next = 5;
-                                return axios.get('/api/mytasks', {
+                                return axios.get('/api/mytasks/current', {
                                     params: { user_id: this.user.id }
                                 });
 

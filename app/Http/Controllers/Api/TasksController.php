@@ -137,9 +137,27 @@ class TasksController extends Controller
         $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
     }
     
-    // ユーザーIDで検索
-    public function getTasksByUserId(Request $request){
-        return Task::where('user_id',$request->user_id)->with(['project','items','states','tags'])->get();
+    // ユーザーIDで検索／12時間前までに終了したタスクを除外
+    public function getCurrentTasksByUserId(Request $request){
+        $result;
+        $validDatetime = time() - 43200;
+        $tasks = Task::where('user_id',$request->user_id)
+                    ->with(['project','states','items','tags'])
+                    ->get();
+        foreach($tasks as $index => $task){
+            $statesCount = count($task->states);
+            if($task->states[$statesCount -1]->id != 2 || strtotime($task->states[$statesCount -1]->pivot->created_at) >= $validDatetime){
+                $result[] = $task;
+            }
+        }
+        return $result;
+    }
+    
+    //ユーザーIDで過去のものも含めた全タスク取得
+    public function getAllTasksByUserId(Request $request){
+        return Task::where('user_id',$request->user_id)
+                    ->with(['project','items','states','tags'])
+                    ->get();
     }
     
     //コピー

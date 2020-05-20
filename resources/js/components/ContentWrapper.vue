@@ -48,7 +48,7 @@
                 // タスクの取得（ユーザーIDでフィルター）
                 if(!this.user){return }
                 this.tasks = []
-                let result = await axios.get('/api/mytasks',{
+                let result = await axios.get('/api/mytasks/current',{
                                                 params:{user_id:this.user.id,}
                                             })
                 this.tasks = result.data

@@ -38,7 +38,8 @@ Route::post('state_task','Api\TasksController@changeState');
 
 //ユーザー別
 Route::get('myprojects','Api\ProjectsController@getProjectsByUserId');
-Route::get('mytasks','Api\TasksController@getTasksByUserId');
+Route::get('mytasks','Api\TasksController@getAllTasksByUserId');
+Route::get('mytasks/current','Api\TasksController@getCurrentTasksByUserId');
 Route::get('mytags','Api\TagsController@getTagsByUserId');
 
 //メール送信テスト
