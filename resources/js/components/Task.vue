@@ -126,6 +126,8 @@
             </div>
             <!--詳細部分（クリックで開閉）-->
             <div class="detail">
+                <!--概要-->
+                <p class="overview">{{task.overview}}</p>
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
                 <star-range v-model="task.priority" />
@@ -138,8 +140,6 @@
                         <span>{{tag.name}}</span>
                     </div>
                 </div>
-                <!--概要-->
-                <p>{{task.overview}}</p>
                 <!--子アイテム-->
                 <div class="items">
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
@@ -624,6 +624,10 @@
     .detail {
         width:100%;
         padding:2em;
+    }
+    .overview {
+        white-space:pre-wrap;
+        word-wrap:break-word;
     }
     .detail-active {
         max-height:2000px;
