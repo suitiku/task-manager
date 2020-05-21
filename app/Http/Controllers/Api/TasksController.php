@@ -272,4 +272,35 @@ class TasksController extends Controller
         });
         return Task::with(['project','items','states','tags'])->find($newTask['id']);
     }
+    
+    //集計
+    public function aggregate(Request $request){
+        $result = ['byState' => [],'byDate' => []];
+        $tasks = Task::where('user_id',$request->user_id)
+                    ->with(['project','items','states','tags'])
+                    ->get();
+        foreach($tasks as $task){
+            $statesCount = count($task->states);
+            $lastState = $task->states[$statesCount -1];
+            //状態別
+            if(array_key_exists($lastState->name,$result['byState'])){
+                $result['byState'][$lastState->name] += 1;
+            }else{
+                $result['byState'][$lastState->name] = 1;
+            }
+            //完了済み日付別
+            if($lastState->id == 2){
+                $date = substr($lastState->pivot->created_at,0,10);
+                if(array_key_exists($date,$result['byDate'])){
+                    $result['byDate'][$date] += 1;
+                }else{
+                    $result['byDate'][$date] = 1;
+                }
+            }
+            
+        }
+        //日付昇順でソート
+        ksort($result['byDate']);
+        return $result;
+    }
 }

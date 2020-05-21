@@ -51,3 +51,6 @@ Route::post('projects/copy/{id}','Api\ProjectsController@copy');
 
 //テンプレート
 Route::post('tasks/template/{id}','Api\TasksController@createTaskFromTemplate');
+
+//集計系
+Route::get('mytasks/aggregate','Api\TasksController@aggregate');

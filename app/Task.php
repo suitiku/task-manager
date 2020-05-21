@@ -24,4 +24,9 @@ class Task extends Model
     public function states(){
         return $this->belongsToMany('App\State')->withPivot('state_detail')->withTimestamps();
     }
+    
+    //最後の状態を返す
+    public function lastState(){
+        return $this;
+    }
 }
