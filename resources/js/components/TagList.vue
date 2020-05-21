@@ -7,8 +7,8 @@
         <notice ref="notice" />
         
         <!--表示部-->
-        <div class="tag-list-container">
-            <div ref="tag" v-for="(tag,index) in tags" v-bind:class="setClass(index)" v-bind:style="{background:tag.color}" v-on:click="selectTag(tag.id)">
+        <div class="tag-list-container" v-for="(tagColor,colorIndex) in tags">
+            <div ref="tag" v-for="(tag,index) in tagColor" v-bind:class="setClass(colorIndex,index)" v-bind:style="{background:tag.color}" v-on:click="selectTag(tag.id)">
                 <span>{{tag.name}}</span>
             </div>
         </div>
@@ -83,8 +83,8 @@
                                             })
                 this.tags = result.data
             },
-            setClass:function(index){
-                if(this.selectedTags.indexOf(this.tags[index].id) == -1){
+            setClass:function(colorIndex,index){
+                if(this.selectedTags.indexOf(this.tags[colorIndex][index].id) == -1){
                     return 'tag'
                 }else{
                     return 'tag selected'

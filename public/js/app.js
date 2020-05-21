@@ -59440,8 +59440,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTags;
         }(),
-        setClass: function setClass(index) {
-            if (this.selectedTags.indexOf(this.tags[index].id) == -1) {
+        setClass: function setClass(colorIndex, index) {
+            if (this.selectedTags.indexOf(this.tags[colorIndex][index].id) == -1) {
                 return 'tag';
             } else {
                 return 'tag selected';
@@ -59525,28 +59525,30 @@ var render = function() {
     [
       _c("notice", { ref: "notice" }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "tag-list-container" },
-        _vm._l(_vm.tags, function(tag, index) {
-          return _c(
-            "div",
-            {
-              ref: "tag",
-              refInFor: true,
-              class: _vm.setClass(index),
-              style: { background: tag.color },
-              on: {
-                click: function($event) {
-                  return _vm.selectTag(tag.id)
+      _vm._l(_vm.tags, function(tagColor, colorIndex) {
+        return _c(
+          "div",
+          { staticClass: "tag-list-container" },
+          _vm._l(tagColor, function(tag, index) {
+            return _c(
+              "div",
+              {
+                ref: "tag",
+                refInFor: true,
+                class: _vm.setClass(colorIndex, index),
+                style: { background: tag.color },
+                on: {
+                  click: function($event) {
+                    return _vm.selectTag(tag.id)
+                  }
                 }
-              }
-            },
-            [_c("span", [_vm._v(_vm._s(tag.name))])]
-          )
-        }),
-        0
-      ),
+              },
+              [_c("span", [_vm._v(_vm._s(tag.name))])]
+            )
+          }),
+          0
+        )
+      }),
       _vm._v(" "),
       _c("input", {
         ref: "newTag",
@@ -59559,7 +59561,7 @@ var render = function() {
         }
       })
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
