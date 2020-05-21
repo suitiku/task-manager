@@ -325,6 +325,7 @@
                 this.maskClass = 'mask'
                 this.notActive = false
                 this.stateDetail = ''
+                this.checkDisabled = false
                 
                 let current_datetime = new Date()
                 let task_datetime = new Date(this.task.start_date)

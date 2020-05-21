@@ -53406,6 +53406,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.maskClass = 'mask';
             this.notActive = false;
             this.stateDetail = '';
+            this.checkDisabled = false;
 
             var current_datetime = new Date();
             var task_datetime = new Date(this.task.start_date);
