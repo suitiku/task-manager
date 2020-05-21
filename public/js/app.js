@@ -65356,11 +65356,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -65405,22 +65400,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                //表示用初期化
-                                this.displayedTags = {};
-
-                                // タグの取得
-                                _context.next = 3;
+                                _context.next = 2;
                                 return axios.get('/api/mytags', {
                                     params: { user_id: this.user_id }
                                 });
 
-                            case 3:
+                            case 2:
                                 result = _context.sent;
 
                                 this.tags = result.data;
-                                this.sortTags();
 
-                            case 6:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
@@ -65434,45 +65424,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTags;
         }(),
-        sortTags: function sortTags() {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this.tags[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var tag = _step.value;
-
-                    if (this.displayedTags[tag.color] == undefined) {
-                        this.$set(this.displayedTags, tag.color, []);
-                        this.displayedTags[tag.color].push(tag);
-                    } else {
-                        this.displayedTags[tag.color].push(tag);
-                    }
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            for (var tagColor in this.displayedTags) {
-                this.displayedTags[tagColor].sort(function (a, b) {
-                    if (a.tasks.length < b.tasks.length) return 1;
-                    if (a.tasks.length > b.tasks.length) return -1;
-                    return 0;
-                });
-            }
-        },
         countTasks: function countTasks(tag) {
             if (!tag.tasks) {
                 return 0;
@@ -65773,7 +65724,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._l(_vm.displayedTags, function(tagColor, colorIndex) {
+      _vm._l(_vm.tags, function(tagColor, colorIndex) {
         return _c(
           "div",
           { staticClass: "display-tags" },

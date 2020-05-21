@@ -88,8 +88,17 @@ class TagsController extends Controller
         Tag::find($id)->delete();
     }
     
-    // ユーザーIDで検索
+    // ユーザーIDで検索->使用数順にソート->色ごとにグルーピング
     public function getTagsByUserId(Request $request){
-        return Tag::where('user_id',$request->user_id)->with(['tasks'])->get();
+        $result;
+        $tags = Tag::where('user_id',$request->user_id)
+                ->with(['tasks'])
+                ->withCount('tasks')
+                ->orderBy('tasks_count','desc')
+                ->get();
+        foreach($tags as $tag){
+            $result[$tag->color][] = $tag;
+        }
+        return $result;
     }
 }

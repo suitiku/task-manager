@@ -4,11 +4,6 @@
         <!--通知-->
         <notice ref="notice" />
         
-        <!--削除確認モーダル-->
-        <!--<modal ref="deleteDialog" v-model="deleteDialog">-->
-        <!--    <p>このタグを削除します。よろしいですか？</p>-->
-        <!--</modal>-->
-        
         <!--新規／編集用モーダル-->
         <modal ref="modal" v-model="modal">
             <input type="text" v-model="editedTag.name" />
@@ -22,8 +17,8 @@
             </div>
         </modal>
         
-        <!--とりあえず一覧表示（使用数付き）-->
-            <div v-for="(tagColor,colorIndex) in displayedTags" class="display-tags">
+        <!--一覧表示（使用数付き）-->
+            <div v-for="(tagColor,colorIndex) in tags" class="display-tags">
                 <div v-for="(tag,index) in tagColor" class="tag-wrapper">
                     <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
                         <span>{{tag.name}}</span>
@@ -79,32 +74,11 @@
                 }
             },
             fetchTags: async function(){
-                //表示用初期化
-                this.displayedTags = {}
-                
                  // タグの取得
                 let result = await axios.get('/api/mytags',{
                                                 params:{user_id:this.user_id,}
                                             })
                 this.tags = result.data
-                this.sortTags()
-            },
-            sortTags:function(){
-                for(let tag of this.tags){
-                    if(this.displayedTags[tag.color] == undefined){
-                        this.$set(this.displayedTags,tag.color,[])
-                        this.displayedTags[tag.color].push(tag)
-                    }else{
-                        this.displayedTags[tag.color].push(tag)
-                    }
-                }
-                for(let tagColor in this.displayedTags){
-                    this.displayedTags[tagColor].sort(function(a,b){
-                        if(a.tasks.length < b.tasks.length)return 1 
-                        if(a.tasks.length > b.tasks.length)return -1
-                        return 0
-                    })
-                }
             },
             countTasks:function(tag){
                 if(!tag.tasks){
