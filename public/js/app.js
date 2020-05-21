@@ -65307,7 +65307,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-bottom:1em;\n}\n.tag-wrapper[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.3em 1em;\n    cursor:pointer;\n}\n.tag-wrapper span[data-v-6bee1ebc] {\n    font-family: Impact,Charcoal;\n}\n.tag[data-v-6bee1ebc] {\n    margin-right:0.3em;\n    display:inline-block;\n    min-width:5em;\n    padding:0.3em 0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    opacity:0.9;\n}\n.tag span[data-v-6bee1ebc]{\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\ninput[data-v-6bee1ebc],textarea[data-v-6bee1ebc] {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.tag span[data-v-6bee1ebc] {\n    font-weight:bold;\n    letter-spacing:0.1em;\n}\n\n", ""]);
+exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-bottom:1em;\n}\n.tag-wrapper[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin:0.3em 1em;\n    cursor:pointer;\n}\n.tag-wrapper span[data-v-6bee1ebc] {\n    font-family: Impact,Charcoal;\n}\n.tag[data-v-6bee1ebc] {\n    margin-right:0.3em;\n    display:inline-block;\n    min-width:5em;\n    padding:0.3em 0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    opacity:0.9;\n}\n.tag span[data-v-6bee1ebc]{\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\ninput[data-v-6bee1ebc],textarea[data-v-6bee1ebc] {\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.tag span[data-v-6bee1ebc] {\n    font-weight:bold;\n    letter-spacing:0.1em;\n}\n.buttons[data-v-6bee1ebc] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n\n", ""]);
 
 // exports
 
@@ -65324,8 +65324,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -65590,6 +65588,60 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return editTag;
+        }(),
+        deleteTag: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                result = window.confirm('このタグを削除します。\nこの処理は取り消しできません。\nよろしいですか？');
+
+                                if (!result) {
+                                    _context4.next = 16;
+                                    break;
+                                }
+
+                                _context4.prev = 2;
+                                _context4.next = 5;
+                                return axios.delete('/api/tags/' + this.editedTag.id);
+
+                            case 5:
+
+                                //editedTagを初期化
+                                this.init();
+                                this.$refs.modal.closeModal();
+
+                                //終了処理
+                                this.$refs.notice.showNotice('タグを削除しました');
+                                this.fetchTags();
+                                _context4.next = 16;
+                                break;
+
+                            case 11:
+                                _context4.prev = 11;
+                                _context4.t0 = _context4['catch'](2);
+
+                                //editedTagを初期化
+                                this.init();
+
+                                this.$refs.notice.showNotice('タグの削除に失敗しました');
+                                console.log(_context4.t0);
+
+                            case 16:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[2, 11]]);
+            }));
+
+            function deleteTag() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return deleteTag;
         }()
     }
 });
@@ -65672,33 +65724,51 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm.editedTag.id == ""
-            ? _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary mx-auto d-block",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.createTag()
+          _c("div", { staticClass: "buttons" }, [
+            _vm.editedTag.id == ""
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary mx-auto d-block",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.createTag()
+                      }
                     }
-                  }
-                },
-                [_vm._v("登録")]
-              )
-            : _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-primary mx-auto d-block",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.editTag()
+                  },
+                  [_vm._v("登録")]
+                )
+              : _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-primary mx-auto d-block",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.editTag()
+                      }
                     }
-                  }
-                },
-                [_vm._v("編集")]
-              )
+                  },
+                  [_vm._v("編集")]
+                ),
+            _vm._v(" "),
+            _vm.editedTag.id != ""
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-danger mx-auto d-block",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteTag()
+                      }
+                    }
+                  },
+                  [_vm._v("削除")]
+                )
+              : _vm._e()
+          ])
         ],
         1
       ),

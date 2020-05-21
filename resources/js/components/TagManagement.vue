@@ -4,18 +4,25 @@
         <!--通知-->
         <notice ref="notice" />
         
+        <!--削除確認モーダル-->
+        <!--<modal ref="deleteDialog" v-model="deleteDialog">-->
+        <!--    <p>このタグを削除します。よろしいですか？</p>-->
+        <!--</modal>-->
+        
         <!--新規／編集用モーダル-->
         <modal ref="modal" v-model="modal">
             <input type="text" v-model="editedTag.name" />
             <textarea v-model="editedTag.overview" />
             <!--<tag-cloud v-model="editedTag.color" v-bind:options="colorOptions" />-->
             <color-picker v-model="editedTag.color" v-bind:colorOptions="colorOptions" />
-            <button v-if="editedTag.id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createTag()">登録</button>
-            <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editTag()">編集</button>
+            <div class="buttons">
+                <button v-if="editedTag.id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createTag()">登録</button>
+                <button v-else type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="editTag()">編集</button>
+                <button v-if="editedTag.id != ''" type="button" class="btn btn-outline-danger mx-auto d-block" v-on:click="deleteTag()">削除</button>
+            </div>
         </modal>
         
         <!--とりあえず一覧表示（使用数付き）-->
-        <!--<div class="display-tags">-->
             <div v-for="(tagColor,colorIndex) in displayedTags" class="display-tags">
                 <div v-for="(tag,index) in tagColor" class="tag-wrapper">
                     <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
@@ -24,15 +31,6 @@
                     <span>{{countTasks(tag)}}</span>
                 </div>
             </div>
-            
-            <!--<div v-for="(tag,index) in tags" class="tag-wrapper">-->
-            <!--    <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">-->
-            <!--        <span>{{tag.name}}</span>-->
-            <!--    </div>-->
-            <!--    <span>{{countTasks(tag)}}</span>-->
-            <!--    <div v-if="index < tags.length -1 && tag.color != tags[index + 1].color">改行</div>-->
-            <!--</div>-->
-        <!--</div>-->
         <button type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="showModal()">タグを追加する</button>
     </div>
 </template>
@@ -46,7 +44,7 @@
                 modal:false,
                 editId:'',
                 editedTag:{},
-                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc']
+                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
             }  
         },
         props: {
@@ -166,6 +164,28 @@
                     this.$refs.notice.showNotice('タグの編集に失敗しました')
                     console.log(error)
                 }
+            },
+            deleteTag:async function(){
+                let result = window.confirm('このタグを削除します。\nこの処理は取り消しできません。\nよろしいですか？')
+                if(result){
+                    try{
+                        await axios.delete('/api/tags/' + this.editedTag.id)
+                        
+                        //editedTagを初期化
+                        this.init()
+                        this.$refs.modal.closeModal()
+                        
+                        //終了処理
+                        this.$refs.notice.showNotice('タグを削除しました')
+                        this.fetchTags()
+                    }catch(error){
+                        //editedTagを初期化
+                        this.init()
+                        
+                        this.$refs.notice.showNotice('タグの削除に失敗しました')
+                        console.log(error)
+                }
+                }
             }
         }
     }
@@ -212,6 +232,9 @@
     .tag span {
         font-weight:bold;
         letter-spacing:0.1em;
+    }
+    .buttons {
+        display:flex;
     }
     
 </style>
