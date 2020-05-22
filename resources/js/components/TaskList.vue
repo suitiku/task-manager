@@ -185,7 +185,19 @@
                     if(!this.newTask.id){return }
                     this.tasks.push(this.newTask)
                 }
-            }
+            },
+            // sortedTasks:{
+            //     handler:function(){
+            //         this.displayedTasks = []
+            //     },
+            //     deep:true
+            // },
+            // filteredTasks:{
+            //     handler:function(){
+            //         this.sortedTasks = []
+            //     },
+            //     deep:true
+            // }
         },
         methods: {
             fetchProjects:async function(){

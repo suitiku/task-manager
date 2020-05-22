@@ -237,7 +237,7 @@
             this.updateData()
             let vue = this
             this.$watch('checked',async function(newVal,oldVal){
-                if(oldVal == false && newVal == true){
+                if(oldVal == false && newVal == true && this.task.states[this.task.states.length -1].id != 2){
                     let postObject = {
                         task_id:vue.task.id,
                         state_id:2,
@@ -331,7 +331,8 @@
                 let task_datetime = new Date(this.task.start_date)
                 
                 //statesの最後の状態を取得
-                let states = this.sortStatus()
+                // let states = this.sortStatus()
+                let states = this.task.states
                 
                 //マスク
                 if(states[states.length -1].id == 2){ //完了タスク
@@ -466,14 +467,6 @@
             },
             showEditStatusDialog:function(){
                 this.$refs.editStatusModal.openModal()
-            },
-            sortStatus:function(){
-                if(!this.task)return
-                return this.task.states.sort((a,b) => {
-                    if(a.pivot.created_at < b.pivot.created_at)return -1
-                    if(a.pivot.created_at > b.pivot.created_at)return 1
-                    return 0
-                })
             },
             changeStatus:async function(){
                 // Statusが選択されていない

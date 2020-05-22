@@ -51710,6 +51710,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return newTaskModal;
         }()
+        // sortedTasks:{
+        //     handler:function(){
+        //         this.displayedTasks = []
+        //     },
+        //     deep:true
+        // },
+        // filteredTasks:{
+        //     handler:function(){
+        //         this.sortedTasks = []
+        //     },
+        //     deep:true
+        // }
     },
     methods: {
         fetchProjects: function () {
@@ -53207,7 +53219,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         while (1) {
                                             switch (_context5.prev = _context5.next) {
                                                 case 0:
-                                                    if (!(oldVal == false && newVal == true)) {
+                                                    if (!(oldVal == false && newVal == true && this.task.states[this.task.states.length - 1].id != 2)) {
                                                         _context5.next = 16;
                                                         break;
                                                     }
@@ -53412,7 +53424,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var task_datetime = new Date(this.task.start_date);
 
             //statesの最後の状態を取得
-            var states = this.sortStatus();
+            // let states = this.sortStatus()
+            var states = this.task.states;
 
             //マスク
             if (states[states.length - 1].id == 2) {
@@ -53426,6 +53439,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.checkDisabled = true;
                 this.stateDetail = '開始前タスクです';
                 this.checked = false;
+                // this.setWatcher()
             } else if (states[states.length - 1].id != 1) {
                 //実行状態でも完了でもないタスク
                 this.maskClass = 'mask mask-active';
@@ -53433,12 +53447,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.checkDisabled = true;
                 this.stateDetail = states[states.length - 1].pivot.state_detail;
                 this.checked = false;
+                // this.setWatcher()
             }
 
             //実行状態タスクの場合はチェックを外す
             if (states[states.length - 1].id == 1) {
                 //実行状態タスク
                 this.checked = false;
+                // this.setWatcher()
             }
         },
         showDeleteTaskDialog: function showDeleteTaskDialog() {
@@ -53746,14 +53762,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         showEditStatusDialog: function showEditStatusDialog() {
             this.$refs.editStatusModal.openModal();
         },
-        sortStatus: function sortStatus() {
-            if (!this.task) return;
-            return this.task.states.sort(function (a, b) {
-                if (a.pivot.created_at < b.pivot.created_at) return -1;
-                if (a.pivot.created_at > b.pivot.created_at) return 1;
-                return 0;
-            });
-        },
+        // sortStatus:function(){
+        //     if(!this.task)return
+        //     return this.task.states.sort((a,b) => {
+        //         if(a.pivot.created_at < b.pivot.created_at)return -1
+        //         if(a.pivot.created_at > b.pivot.created_at)return 1
+        //         return 0
+        //     })
+        // },
         changeStatus: function () {
             var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var postObject;
@@ -53864,7 +53880,60 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return createProject;
-        }()
+        }(),
+        setWatcher: function setWatcher() {
+            var vue = this;
+            this.$watch('checked', function () {
+                var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17(newVal, oldVal) {
+                    var postObject;
+                    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
+                        while (1) {
+                            switch (_context17.prev = _context17.next) {
+                                case 0:
+                                    if (!(oldVal == false && newVal == true)) {
+                                        _context17.next = 16;
+                                        break;
+                                    }
+
+                                    postObject = {
+                                        task_id: vue.task.id,
+                                        state_id: 2
+                                    };
+                                    _context17.prev = 2;
+                                    _context17.next = 5;
+                                    return axios.post('/api/state_task', postObject);
+
+                                case 5:
+                                    _context17.next = 7;
+                                    return vue.fetchTask();
+
+                                case 7:
+                                    vue.updateData();
+                                    vue.$emit('input', this.task);
+                                    vue.$refs.cong.openCong('おつかれさまです！');
+                                    _context17.next = 16;
+                                    break;
+
+                                case 12:
+                                    _context17.prev = 12;
+                                    _context17.t0 = _context17['catch'](2);
+
+                                    vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
+                                    console.log(_context17.t0);
+
+                                case 16:
+                                case 'end':
+                                    return _context17.stop();
+                            }
+                        }
+                    }, _callee17, this, [[2, 12]]);
+                }));
+
+                return function (_x9, _x10) {
+                    return _ref17.apply(this, arguments);
+                };
+            }());
+        }
     }
 });
 
