@@ -156,7 +156,7 @@ class TasksController extends Controller
     //ユーザーIDで過去のものも含めた全タスク取得
     public function getAllTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)
-                    ->with(['project','items','states','tags'])
+                    ->with(['project','items','tags','states'])
                     ->get();
     }
     
