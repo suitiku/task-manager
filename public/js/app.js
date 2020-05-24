@@ -51781,8 +51781,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 overview: '',
                 priority: 1,
                 difficulty: 1,
-                // start_date:'',
-                // dead_line:'',
                 is_template: false
                 //子アイテムをリセット
             };this.items = [];
@@ -53043,6 +53041,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53368,30 +53368,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         checkItem: function () {
             var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9(itemId) {
-                var el, modifyData, result;
+                var el, modifyData;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
                         switch (_context9.prev = _context9.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
-                                _context9.next = 4;
+                                _context9.prev = 2;
+                                _context9.next = 5;
                                 return axios.put('/api/items/' + itemId, modifyData);
 
-                            case 4:
-                                result = _context9.sent;
+                            case 5:
+                                el.target.disabled = true;
+                                el.target.parentElement.classList.add('item-completed');
+                                _context9.next = 12;
+                                break;
 
-                                if (result.data) {
-                                    el.target.disabled = true;
-                                    el.target.parentElement.className = 'item-completed';
-                                }
+                            case 9:
+                                _context9.prev = 9;
+                                _context9.t0 = _context9['catch'](2);
 
-                            case 6:
+                                console.log(_context9.t0);
+
+                            case 12:
                             case 'end':
                                 return _context9.stop();
                         }
                     }
-                }, _callee9, this);
+                }, _callee9, this, [[2, 9]]);
             }));
 
             function checkItem(_x7) {
@@ -53400,6 +53405,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return checkItem;
         }(),
+        uncheckItem: function () {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(itemId) {
+                var el, modifyData;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                    while (1) {
+                        switch (_context10.prev = _context10.next) {
+                            case 0:
+                                el = event;
+                                modifyData = { is_checked: false };
+                                _context10.prev = 2;
+                                _context10.next = 5;
+                                return axios.put('/api/items/' + itemId, modifyData);
+
+                            case 5:
+                                el.target.parentElement.children[0].children[0].disabled = false;
+                                el.target.parentElement.children[0].children[0].checked = false;
+                                el.target.parentElement.classList.remove('item-completed');
+                                console.log(el.target.parentElement);
+                                _context10.next = 14;
+                                break;
+
+                            case 11:
+                                _context10.prev = 11;
+                                _context10.t0 = _context10['catch'](2);
+
+                                console.log(_context10.t0);
+
+                            case 14:
+                            case 'end':
+                                return _context10.stop();
+                        }
+                    }
+                }, _callee10, this, [[2, 11]]);
+            }));
+
+            function uncheckItem(_x8) {
+                return _ref10.apply(this, arguments);
+            }
+
+            return uncheckItem;
+        }(),
+
         updateData: function updateData() {
             if (!this.task.id) {
                 return;
@@ -53448,18 +53495,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
                     while (1) {
-                        switch (_context10.prev = _context10.next) {
+                        switch (_context11.prev = _context11.next) {
                             case 0:
-                                _context10.prev = 0;
-                                _context10.next = 3;
+                                _context11.prev = 0;
+                                _context11.next = 3;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 3:
-                                result = _context10.sent;
+                                result = _context11.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
@@ -53467,40 +53514,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.task = {};
                                 this.$emit('input', '');
-                                _context10.next = 13;
+                                _context11.next = 13;
                                 break;
 
                             case 9:
-                                _context10.prev = 9;
-                                _context10.t0 = _context10['catch'](0);
+                                _context11.prev = 9;
+                                _context11.t0 = _context11['catch'](0);
 
                                 // 削除が失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('タスクの削除に失敗しました');
-                                console.log(_context10.t0);
+                                console.log(_context11.t0);
 
                             case 13:
                                 this.$refs.deleteModal.closeModal();
 
                             case 14:
                             case 'end':
-                                return _context10.stop();
+                                return _context11.stop();
                         }
                     }
-                }, _callee10, this, [[0, 9]]);
+                }, _callee11, this, [[0, 9]]);
             }));
 
             function deleteTask() {
-                return _ref10.apply(this, arguments);
+                return _ref11.apply(this, arguments);
             }
 
             return deleteTask;
         }(),
         showEditTaskDialog: function () {
-            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
                     while (1) {
-                        switch (_context11.prev = _context11.next) {
+                        switch (_context12.prev = _context12.next) {
                             case 0:
                                 //datepickerの初期値設定
                                 this.$refs.editTaskStartDate.init(this.task.start_date);
@@ -53512,14 +53559,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                             case 'end':
-                                return _context11.stop();
+                                return _context12.stop();
                         }
                     }
-                }, _callee11, this);
+                }, _callee12, this);
             }));
 
             function showEditTaskDialog() {
-                return _ref11.apply(this, arguments);
+                return _ref12.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -53530,49 +53577,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteItemModal.openModal();
         },
         deleteItem: function () {
-            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
                     while (1) {
-                        switch (_context12.prev = _context12.next) {
+                        switch (_context13.prev = _context13.next) {
                             case 0:
-                                _context12.prev = 0;
-                                _context12.next = 3;
+                                _context13.prev = 0;
+                                _context13.next = 3;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
                             case 3:
-                                result = _context12.sent;
+                                result = _context13.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムを削除しました');
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.inactivateItem[this.targetItemId] = { display: 'none' };
-                                _context12.next = 12;
+                                _context13.next = 12;
                                 break;
 
                             case 8:
-                                _context12.prev = 8;
-                                _context12.t0 = _context12['catch'](0);
+                                _context13.prev = 8;
+                                _context13.t0 = _context13['catch'](0);
 
                                 // 削除失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムの削除に失敗しました');
-                                console.log(_context12.t0);
+                                console.log(_context13.t0);
 
                             case 12:
                                 this.$refs.deleteItemModal.closeModal();
 
                             case 13:
                             case 'end':
-                                return _context12.stop();
+                                return _context13.stop();
                         }
                     }
-                }, _callee12, this, [[0, 8]]);
+                }, _callee13, this, [[0, 8]]);
             }));
 
             function deleteItem() {
-                return _ref12.apply(this, arguments);
+                return _ref13.apply(this, arguments);
             }
 
             return deleteItem;
@@ -53586,64 +53633,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
         },
         updateItem: function () {
-            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13(itemIndex) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
-                        switch (_context13.prev = _context13.next) {
+                        switch (_context14.prev = _context14.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context13.next = 12;
+                                    _context14.next = 12;
                                     break;
                                 }
 
-                                _context13.prev = 1;
-                                _context13.next = 4;
+                                _context14.prev = 1;
+                                _context14.next = 4;
                                 return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
 
                             case 4:
                                 this.$refs.notice.showNotice('アイテムを変更しました');
                                 this.fetchTask();
-                                _context13.next = 12;
+                                _context14.next = 12;
                                 break;
 
                             case 8:
-                                _context13.prev = 8;
-                                _context13.t0 = _context13['catch'](1);
+                                _context14.prev = 8;
+                                _context14.t0 = _context14['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context13.t0);
+                                console.log(_context14.t0);
 
                             case 12:
                             case 'end':
-                                return _context13.stop();
+                                return _context14.stop();
                         }
                     }
-                }, _callee13, this, [[1, 8]]);
+                }, _callee14, this, [[1, 8]]);
             }));
 
-            function updateItem(_x8) {
-                return _ref13.apply(this, arguments);
+            function updateItem(_x9) {
+                return _ref14.apply(this, arguments);
             }
 
             return updateItem;
         }(),
         addItems: function () {
-            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem, result;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
-                        switch (_context14.prev = _context14.next) {
+                        switch (_context15.prev = _context15.next) {
                             case 0:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context14.prev = 3;
+                                _context15.prev = 3;
                                 _iterator = this.items[Symbol.iterator]();
 
                             case 5:
                                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                                    _context14.next = 23;
+                                    _context15.next = 23;
                                     break;
                                 }
 
@@ -53653,63 +53700,63 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: item,
                                     is_checked: false
                                 };
-                                _context14.prev = 8;
-                                _context14.next = 11;
+                                _context15.prev = 8;
+                                _context15.next = 11;
                                 return axios.post('/api/items', postItem);
 
                             case 11:
-                                result = _context14.sent;
+                                result = _context15.sent;
 
                                 this.task.items.push(result.data);
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
-                                _context14.next = 20;
+                                _context15.next = 20;
                                 break;
 
                             case 16:
-                                _context14.prev = 16;
-                                _context14.t0 = _context14['catch'](8);
+                                _context15.prev = 16;
+                                _context15.t0 = _context15['catch'](8);
 
                                 this.$refs.notice.showNotice('アイテムの追加に失敗しました');
-                                console.log(_context14.t0);
+                                console.log(_context15.t0);
 
                             case 20:
                                 _iteratorNormalCompletion = true;
-                                _context14.next = 5;
+                                _context15.next = 5;
                                 break;
 
                             case 23:
-                                _context14.next = 29;
+                                _context15.next = 29;
                                 break;
 
                             case 25:
-                                _context14.prev = 25;
-                                _context14.t1 = _context14['catch'](3);
+                                _context15.prev = 25;
+                                _context15.t1 = _context15['catch'](3);
                                 _didIteratorError = true;
-                                _iteratorError = _context14.t1;
+                                _iteratorError = _context15.t1;
 
                             case 29:
-                                _context14.prev = 29;
-                                _context14.prev = 30;
+                                _context15.prev = 29;
+                                _context15.prev = 30;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 32:
-                                _context14.prev = 32;
+                                _context15.prev = 32;
 
                                 if (!_didIteratorError) {
-                                    _context14.next = 35;
+                                    _context15.next = 35;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 35:
-                                return _context14.finish(32);
+                                return _context15.finish(32);
 
                             case 36:
-                                return _context14.finish(29);
+                                return _context15.finish(29);
 
                             case 37:
                                 this.$emit('input', this.task);
@@ -53717,14 +53764,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 39:
                             case 'end':
-                                return _context14.stop();
+                                return _context15.stop();
                         }
                     }
-                }, _callee14, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
+                }, _callee15, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
             }));
 
             function addItems() {
-                return _ref14.apply(this, arguments);
+                return _ref15.apply(this, arguments);
             }
 
             return addItems;
@@ -53750,18 +53797,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.editStatusModal.openModal();
         },
         changeStatus: function () {
-            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
+            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
                 var postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
                     while (1) {
-                        switch (_context15.prev = _context15.next) {
+                        switch (_context16.prev = _context16.next) {
                             case 0:
                                 if (this.selectedStatus.id) {
-                                    _context15.next = 4;
+                                    _context16.next = 4;
                                     break;
                                 }
 
-                                return _context15.abrupt('return');
+                                return _context16.abrupt('return');
 
                             case 4:
                                 postObject = {
@@ -53769,52 +53816,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context15.prev = 5;
-                                _context15.next = 8;
+                                _context16.prev = 5;
+                                _context16.next = 8;
                                 return axios.post('/api/state_task', postObject);
 
                             case 8:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context15.next = 11;
+                                _context16.next = 11;
                                 return this.fetchTask();
 
                             case 11:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context15.next = 20;
+                                _context16.next = 20;
                                 break;
 
                             case 16:
-                                _context15.prev = 16;
-                                _context15.t0 = _context15['catch'](5);
+                                _context16.prev = 16;
+                                _context16.t0 = _context16['catch'](5);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
-                                console.log(_context15.t0);
+                                console.log(_context16.t0);
 
                             case 20:
                             case 'end':
-                                return _context15.stop();
+                                return _context16.stop();
                         }
                     }
-                }, _callee15, this, [[5, 16]]);
+                }, _callee16, this, [[5, 16]]);
             }));
 
             function changeStatus() {
-                return _ref15.apply(this, arguments);
+                return _ref16.apply(this, arguments);
             }
 
             return changeStatus;
         }(),
         createProject: function () {
-            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
+            var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17() {
                 var currentDatetime, deadLine, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
                     while (1) {
-                        switch (_context16.prev = _context16.next) {
+                        switch (_context17.prev = _context17.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context16.next = 16;
+                                    _context17.next = 16;
                                     break;
                                 }
 
@@ -53826,8 +53873,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: event.target.value,
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
                                 };
-                                _context16.prev = 4;
-                                _context16.next = 7;
+                                _context17.prev = 4;
+                                _context17.next = 7;
                                 return axios.post('/api/projects', postObject);
 
                             case 7:
@@ -53836,26 +53883,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.$refs.projectsListbox.init();
                                 // インプットをリセット
                                 this.$refs.newProject.value = '';
-                                _context16.next = 16;
+                                _context17.next = 16;
                                 break;
 
                             case 12:
-                                _context16.prev = 12;
-                                _context16.t0 = _context16['catch'](4);
+                                _context17.prev = 12;
+                                _context17.t0 = _context17['catch'](4);
 
                                 this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
-                                console.log(_context16.t0);
+                                console.log(_context17.t0);
 
                             case 16:
                             case 'end':
-                                return _context16.stop();
+                                return _context17.stop();
                         }
                     }
-                }, _callee16, this, [[4, 12]]);
+                }, _callee17, this, [[4, 12]]);
             }));
 
             function createProject() {
-                return _ref16.apply(this, arguments);
+                return _ref17.apply(this, arguments);
             }
 
             return createProject;
@@ -54557,6 +54604,15 @@ var render = function() {
                                   item.id,
                                   item.name
                                 )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("i", {
+                            staticClass: "fas fa-redo task-icon",
+                            on: {
+                              click: function($event) {
+                                return _vm.uncheckItem(item.id)
                               }
                             }
                           })

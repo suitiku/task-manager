@@ -154,6 +154,8 @@
                             <i class="far fa-edit task-icon" v-on:click="toggleEditMode(itemIndex)"></i>
                             <!--削除ボタン-->
                             <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
+                            <!--チェックの取り消し-->
+                            <i class="fas fa-redo task-icon" v-on:click="uncheckItem(item.id)"></i>
                     </p>
                     <!--アイテムの追加処理セクション-->
                     <div class="editable">
@@ -313,12 +315,28 @@
             checkItem:async function(itemId){
                 let el = event
                 let modifyData = {is_checked:true}
-                let result = await axios.put('/api/items/' + itemId,modifyData)
-                if(result.data){
+                try{
+                    await axios.put('/api/items/' + itemId,modifyData)
                     el.target.disabled = true
-                    el.target.parentElement.className = 'item-completed'
+                    el.target.parentElement.classList.add('item-completed')
+                }catch(error){
+                    console.log(error)
                 }
             },
+            uncheckItem:async function(itemId){
+                let el = event
+                let modifyData = {is_checked:false}
+                try{
+                    await axios.put('/api/items/' + itemId,modifyData)
+                    el.target.parentElement.children[0].children[0].disabled = false
+                    el.target.parentElement.children[0].children[0].checked = false
+                    el.target.parentElement.classList.remove('item-completed')
+                    console.log(el.target.parentElement)
+                }catch(error){
+                    console.log(error)
+                }
+            },
+            
             updateData:function(){
                 if(!this.task.id){return }
                 // 各種パラメータをリセット
