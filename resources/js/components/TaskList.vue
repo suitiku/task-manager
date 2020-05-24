@@ -186,18 +186,6 @@
                     this.tasks.push(this.newTask)
                 }
             },
-            // sortedTasks:{
-            //     handler:function(){
-            //         this.displayedTasks = []
-            //     },
-            //     deep:true
-            // },
-            // filteredTasks:{
-            //     handler:function(){
-            //         this.sortedTasks = []
-            //     },
-            //     deep:true
-            // }
         },
         methods: {
             fetchProjects:async function(){
@@ -219,6 +207,11 @@
                 this.projects = result.data
             },
             showNewTaskModal:function(){
+                //開始と締め切りを現在時刻に合わせる
+                let currentDatetime = new Date()
+                this.$refs.newTaskStartDate.init(currentDatetime)
+                this.$refs.newTaskDeadLine.init(currentDatetime)
+                
                 // リセット
                 this.newTask = {
                     user_id:this.userId,
@@ -227,13 +220,8 @@
                     overview:'',
                     priority:1,
                     difficulty:1,
-                    start_date:'',
-                    dead_line:'',
                     is_template:false,
                 }
-                //開始と締め切りを現在時刻に合わせる
-                this.$refs.newTaskStartDate.init()
-                this.$refs.newTaskDeadLine.init()
                 //子アイテムをリセット
                 this.items = []
                 //モーダルを展開
