@@ -74,6 +74,10 @@
         
         <!--リスト表示部-->
         <div class="task-list-container">
+            <div class="all-task-switch" v-if="!projectId">
+                <span>全タスクを表示</span>
+                <toggle-switch v-model="allTasks" />
+            </div>
             <div class="filter-and-sort">
                 <!--フィルター-->
                 <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
@@ -108,6 +112,7 @@
         },
         data:function(){
             return {
+                allTasks:false,
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
                 sortedTasks:[], //ソートしたタスク配列
@@ -186,8 +191,46 @@
                     this.tasks.push(this.newTask)
                 }
             },
+            //全タスク取得スイッチ
+            allTasks:function(newVal,oldVal){
+                if(newVal == true){
+                    this.fetchAllTasks()
+                }else{
+                    this.fetchCurrentTasks()
+                }
+            }
         },
         methods: {
+            fetchAllTasks:async function(){
+                  this.$refs.waiting.enableWaiting('タスクを読み込んでいます')
+                  try{
+                        let result = await axios.get('/api/mytasks',{
+                                                params:{user_id:this.userId,}
+                                            })
+                        this.$emit('input',result.data)
+                        this.$refs.waiting.disableWaiting()
+                        this.$refs.notice.showNotice('全タスクを取得しました')
+                  }catch(error){
+                      this.$refs.waiting.disableWaiting()
+                      this.$refs.notice.showNotice('タスクの取得に失敗しました')
+                      console.log(error)
+                  }
+            },
+            fetchCurrentTasks:async function(){
+                  this.$refs.waiting.enableWaiting('タスクを読み込んでいます')
+                  try{
+                        let result = await axios.get('/api/mytasks/current',{
+                                                params:{user_id:this.userId,}
+                                            })
+                        this.$emit('input',result.data)
+                        this.$refs.waiting.disableWaiting()
+                        this.$refs.notice.showNotice('タスクを取得しました')
+                  }catch(error){
+                      this.$refs.waiting.disableWaiting()
+                      this.$refs.notice.showNotice('タスクの取得に失敗しました')
+                      console.log(error)
+                  }
+            },
             fetchProjects:async function(){
                 // userIdがない場合は飛ばす
                 if(!this.userId)return
@@ -477,5 +520,12 @@
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
+    }
+    .all-task-switch {
+        display:flex;
+        align-items:center;
+    }
+    .all-task-switch span {
+        margin-right:1em;
     }
 </style>
