@@ -53381,7 +53381,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                                 el.target.disabled = true;
-                                el.target.parentElement.classList.add('item-completed');
+                                el.target.parentElement.parentElement.classList.add('item-completed');
                                 _context9.next = 12;
                                 break;
 
@@ -53422,22 +53422,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 el.target.parentElement.children[0].children[0].disabled = false;
                                 el.target.parentElement.children[0].children[0].checked = false;
                                 el.target.parentElement.classList.remove('item-completed');
-                                console.log(el.target.parentElement);
-                                _context10.next = 14;
+                                _context10.next = 13;
                                 break;
 
-                            case 11:
-                                _context10.prev = 11;
+                            case 10:
+                                _context10.prev = 10;
                                 _context10.t0 = _context10['catch'](2);
 
                                 console.log(_context10.t0);
 
-                            case 14:
+                            case 13:
                             case 'end':
                                 return _context10.stop();
                         }
                     }
-                }, _callee10, this, [[2, 11]]);
+                }, _callee10, this, [[2, 10]]);
             }));
 
             function uncheckItem(_x8) {

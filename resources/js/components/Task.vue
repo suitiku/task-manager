@@ -318,7 +318,7 @@
                 try{
                     await axios.put('/api/items/' + itemId,modifyData)
                     el.target.disabled = true
-                    el.target.parentElement.classList.add('item-completed')
+                    el.target.parentElement.parentElement.classList.add('item-completed')
                 }catch(error){
                     console.log(error)
                 }
@@ -331,7 +331,6 @@
                     el.target.parentElement.children[0].children[0].disabled = false
                     el.target.parentElement.children[0].children[0].checked = false
                     el.target.parentElement.classList.remove('item-completed')
-                    console.log(el.target.parentElement)
                 }catch(error){
                     console.log(error)
                 }
