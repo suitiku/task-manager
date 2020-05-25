@@ -1,15 +1,17 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <congratulation v-model="test" ref="cong" />
-
+        <div class="hoge">
+            <p>テスト</p>
+            <toggle-switch v-model="test" />
+        </div>
         
         <!--<waiting v-model="waiting" ref="waiting" />-->
         <!--<notice ref="notice" />-->
         <!--モーダル-->
-        <modal ref="modal" v-model="modal"></modal>
-        <button class="button" v-on:click="showCong()">congratulation!</button>
-        <button class="button" v-on:click="showModal()">modal</button>
+        <!--<modal ref="modal" v-model="modal"></modal>-->
+        <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
+        <!--<button class="button" v-on:click="showModal()">modal</button>-->
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>

@@ -56514,6 +56514,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56766,60 +56768,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c("congratulation", {
-        ref: "cong",
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      }),
-      _vm._v(" "),
-      _c("modal", {
-        ref: "modal",
-        model: {
-          value: _vm.modal,
-          callback: function($$v) {
-            _vm.modal = $$v
-          },
-          expression: "modal"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          on: {
-            click: function($event) {
-              return _vm.showCong()
-            }
+  return _c("div", { staticClass: "container" }, [
+    _c(
+      "div",
+      { staticClass: "hoge" },
+      [
+        _c("p", [_vm._v("テスト")]),
+        _vm._v(" "),
+        _c("toggle-switch", {
+          model: {
+            value: _vm.test,
+            callback: function($$v) {
+              _vm.test = $$v
+            },
+            expression: "test"
           }
-        },
-        [_vm._v("congratulation!")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          on: {
-            click: function($event) {
-              return _vm.showModal()
-            }
-          }
-        },
-        [_vm._v("modal")]
-      )
-    ],
-    1
-  )
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60269,7 +60237,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.click-area[data-v-657420da] {\n    position:absolute;\n    z-index:2;\n    width:2em;\n    height:1em;\n}\n.toggle-switch[data-v-657420da] {\n    position:relative;\n    width:2em;\n    height:1em;\n    border:1px solid grey;\n    overflow:hidden;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-child[data-v-657420da] {\n    position:relative;\n    width:1em;\n    height:calc(1em - 2px);\n    background:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-active[data-v-657420da] {\n    border:1px solid orange;\n}\n.toggle-switch-active .toggle-switch-child[data-v-657420da] {\n    margin-left:1em;\n    width:calc(1em - 2px);\n    height:calc(1em - 2px);\n    background:orange;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.click-area[data-v-657420da] {\n    position:absolute;\n    z-index:2;\n    width:2em;\n    height:1em;\n}\n.toggle-switch[data-v-657420da] {\n    position:relative;\n    width:2em;\n    height:1em;\n    border:1px solid grey;\n    overflow:hidden;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-child[data-v-657420da] {\n    position:relative;\n    width:1em;\n    /*width:calc(1em - 2px);*/\n    width:1em;\n    height:calc(1em - 2px);\n    background:grey;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.toggle-switch-active[data-v-657420da] {\n    border:1px solid orange;\n}\n.toggle-switch-active .toggle-switch-child[data-v-657420da] {\n    margin-left:1em;\n    background:orange;\n}\n\n\n", ""]);
 
 // exports
 

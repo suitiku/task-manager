@@ -60,6 +60,8 @@
     .toggle-switch-child {
         position:relative;
         width:1em;
+        /*width:calc(1em - 2px);*/
+        width:1em;
         height:calc(1em - 2px);
         background:grey;
         transition:all 0.3s;
@@ -69,8 +71,6 @@
     }
     .toggle-switch-active .toggle-switch-child {
         margin-left:1em;
-        width:calc(1em - 2px);
-        height:calc(1em - 2px);
         background:orange;
     }
     
