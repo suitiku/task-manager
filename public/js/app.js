@@ -54498,7 +54498,11 @@ var render = function() {
                   [
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire }),
                     _vm._v(" "),
-                    _c("p", [_vm._v("checked:" + _vm._s(_vm.checked))]),
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(_vm.checked) + ":" + _vm._s(_vm.checkDisabled)
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("check-box", {
                       staticClass: "checkbox",
