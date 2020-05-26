@@ -54498,12 +54498,6 @@ var render = function() {
                   [
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire }),
                     _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        _vm._s(_vm.checked) + ":" + _vm._s(_vm.checkDisabled)
-                      )
-                    ]),
-                    _vm._v(" "),
                     _c("check-box", {
                       staticClass: "checkbox",
                       attrs: { disabled: _vm.checkDisabled },
@@ -57303,6 +57297,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57386,7 +57381,12 @@ var render = function() {
         }
       }
     },
-    [_c("i", { staticClass: "fas fa-check" })]
+    [
+      _vm._v(
+        "\n    " + _vm._s(_vm.value) + ":" + _vm._s(_vm.disabled) + "\n    "
+      ),
+      _c("i", { staticClass: "fas fa-check" })
+    ]
   )
 }
 var staticRenderFns = []

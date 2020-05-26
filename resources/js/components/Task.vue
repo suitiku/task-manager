@@ -102,7 +102,7 @@
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
                         <!--チェックボックス-->
-                        <p>{{checked}}:{{checkDisabled}}</p>
+                        <!--<p>{{checked}}:{{checkDisabled}}</p>-->
                         <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
                     </div>
                     <div class="task-headline">
