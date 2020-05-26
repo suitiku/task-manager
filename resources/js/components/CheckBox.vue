@@ -5,7 +5,6 @@
 <!--③disabledの時にcursorが変わらないバグ-->
 <template>
     <div ref="cb" class="checkarea unchecked" v-on:mousedown="startCheck()" v-on:mouseup="stopCheck()" v-on:mouseleave="stopCheck()">
-        {{value}}:{{disabled}}
         <i class="fas fa-check"></i>
     </div>
 </template>

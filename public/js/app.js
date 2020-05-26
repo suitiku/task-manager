@@ -53167,7 +53167,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57297,7 +57296,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57381,12 +57379,7 @@ var render = function() {
         }
       }
     },
-    [
-      _vm._v(
-        "\n    " + _vm._s(_vm.value) + ":" + _vm._s(_vm.disabled) + "\n    "
-      ),
-      _c("i", { staticClass: "fas fa-check" })
-    ]
+    [_c("i", { staticClass: "fas fa-check" })]
   )
 }
 var staticRenderFns = []
