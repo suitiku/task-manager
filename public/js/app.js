@@ -53167,6 +53167,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54496,6 +54497,8 @@ var render = function() {
                   { staticClass: "headline-icons" },
                   [
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire }),
+                    _vm._v(" "),
+                    _c("p", [_vm._v("checked:" + _vm._s(_vm.checked))]),
                     _vm._v(" "),
                     _c("check-box", {
                       staticClass: "checkbox",
