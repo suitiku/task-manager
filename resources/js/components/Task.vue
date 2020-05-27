@@ -42,8 +42,13 @@
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグの付替えを行います</p>
-            <tag-list ref="tagList" v-bind:taskId="task.id" />
+            <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="task.user_id" />
         </modal>
+        
+        <!--<modal ref="editTagModal" v-model="editTagModal">-->
+        <!--    <p>タグの付替えを行います</p>-->
+        <!--    <tag-list ref="tagList" v-bind:taskId="task.id" />-->
+        <!--</modal>-->
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
@@ -195,6 +200,7 @@
                 editItemMode:[],
                 items:[],
                 editTagModal:false,
+                selectedTagIds:[],
                 editStatusModal:false,
                 selectedStatus:{
                     id:'',
@@ -223,11 +229,29 @@
                     this.updateData()
                 }
             },
-            // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
+            // タグ編集後に閉じたときにタスクを再取得
             editTagModal:async function(newVal,oldVal){
                 if(newVal == false){
-                    this.isEditedTags = false
                     await this.fetchTask()
+                }
+            },
+            selectedTagIds:async function(newVal,oldVal){
+                //モーダルを開いている場合だけタグの変更を有効化
+                if(!this.editTagModal)return
+                
+                // 投入用オブジェクト作成
+                let tagsObject = {
+                    task_id:this.task.id,
+                    tag_ids:this.selectedTagIds
+                }
+                
+                // 書き込み
+                try{
+                    await axios.put('/api/tag_task',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
                 }
             },
             
@@ -247,10 +271,10 @@
                     
                     try{
                         await axios.post('/api/state_task',postObject)
+                        vue.$refs.cong.openCong('おつかれさまです！')
                         await vue.fetchTask()
                         vue.updateData()
                         vue.$emit('input',this.task)
-                        vue.$refs.cong.openCong('おつかれさまです！')
                     }catch(error){
                         vue.$refs.notice.showNotice('タスクの状態更新に失敗しました')
                         console.log(error)
@@ -301,6 +325,9 @@
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
                 }
+                
+                //タグリストのtagIdセット
+                this.selectedTagIds = this.task.tags.map(el => el.id)
             },
             openDetail: function(){
                 this.detail = !this.detail
@@ -469,8 +496,7 @@
             },
             showEditTagDialog:function(){
                 this.$refs.editTagModal.openModal()
-                this.$refs.tagList.fetchTags()
-                this.isEditedTags = true
+                this.$refs.tagList.init()
             },
             showToolTip:function(){
                 if(!this.toolTipContent){return }

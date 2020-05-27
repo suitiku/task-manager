@@ -1,6 +1,6 @@
 <!--タグ付け替えコンポーネント-->
-<!--選択されたタグIDを送出-->
 <!--今後の追加機能-->
+<!--①カラーで並べ替え-->
 <template>
     <div class="container">
         <!--通知-->
@@ -21,35 +21,63 @@
     export default {
         data:function(){
             return {
+                userId:'',
                 tags:[],
-                selectedTags:this.value,
+                selectedTags:[],
             }  
         },
         props: {
-            userId:{
+            //タスク単位のタグを管理する
+            taskId:{
                 type:[String,Number],
-                required:false
-            },
-            value:{
-                type:[String,Number,Array],
                 required:false
             }
         },
         watch:{
+            // 途中でtaskIdが設定されたら初期化
+            taskId:function(){
+                this.init()  
+            },
+            //タグを選択して付け替え
+            selectedTags:async function(newVal,oldVal){
+                // 初回は飛ばす
+                if(oldVal.length == 0){return }
+                
+                // 投入用オブジェクト作成
+                let tagsObject = {
+                    task_id:this.taskId,
+                    tag_ids:this.selectedTags
+                }
+                
+                // 書き込み
+                try{
+                    await axios.put('/api/tag_task',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
+                }
+            },
         },
         created:function(){
         },
         mounted:function(){
-            
+            this.init()
         },
         methods: {
             init:async function(){
-                 // ユーザーに紐付いたタグの取得
+                if(!this.taskId){return }
+                
+                 // タスクに紐付いたタグの取得
+                let result = await axios.get('/api/tasks/' + this.taskId)
+                this.selectedTags = result.data.tags.map(el => el.id)
+                
+                // userIdを設定
+                this.userId = result.data.user_id
+                
                 this.fetchTags()
             },
             fetchTags:async function(){
-                if(!this.userId)return
-                
                 // userIdに基づきすべてタグを取得
                 let result = await axios.get('/api/mytags',{
                                                 params:{user_id:this.userId,}
@@ -57,17 +85,17 @@
                 this.tags = result.data
             },
             setClass:function(colorIndex,index){
-                if(this.value.indexOf(this.tags[colorIndex][index].id) == -1){
+                if(this.selectedTags.indexOf(this.tags[colorIndex][index].id) == -1){
                     return 'tag'
                 }else{
                     return 'tag selected'
                 }
             },
             selectTag:function(id){
-                if(this.value.indexOf(id) == -1){
-                    this.value.push(id)
+                if(this.selectedTags.indexOf(id) == -1){
+                    this.selectedTags.push(id)
                 }else{
-                    this.value.splice(this.value.indexOf(id),1)
+                    this.selectedTags.splice(this.selectedTags.indexOf(id),1)
                 }
             },
             createTag:async function(){

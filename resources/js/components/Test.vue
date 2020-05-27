@@ -1,17 +1,16 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div class="hoge">
-            <p>テスト</p>
-            <toggle-switch v-model="test" />
-        </div>
         
         <!--<waiting v-model="waiting" ref="waiting" />-->
         <!--<notice ref="notice" />-->
         <!--モーダル-->
-        <!--<modal ref="modal" v-model="modal"></modal>-->
+        {{selectedTagIds}}
+        <modal ref="modal" v-model="modal">
+            <tag-list v-model="selectedTagIds" userId="1" />
+        </modal>
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
-        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <button class="button" v-on:click="showModal()">modal</button>
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
@@ -30,6 +29,7 @@
                 task:{},
                 tags:[],
                 selectedTagId:0,
+                selectedTagIds:[1,3,5],
                 filteredTasks:[],
                 selectedColor:'',
                 sortColumns:[
