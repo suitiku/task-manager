@@ -4,20 +4,20 @@
 <!--２．タグの表示を改善-->
 <template>
     <div class="container">
+        <!--モーダル-->
+        <modal ref="tagModal" v-model="tagModal">
+            <p>タグを選択して下さい。</p>
+            <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="userId" />
+        </modal>
+        
         <!--処理部-->
         <div class="filter-container">
             <div v-for="(selectedTagId,index) in selectedTagIds" class="filter-wrapper">
-                <span class="filter-label">{{displayTagName(selectedTagId)}}</span>
+                <span class="filter-label" v-bind:style="getTagColor(selectedTagId)">{{getTagName(selectedTagId)}}</span>
                 <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
             </div>
-            <!--高さ調整用-->
-            <i class="fas fa-plus-circle fa-lg invisible" </i>
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showTagModal()">タグを選択</button>
         </div>
-        <!--タグ一覧表示部分-->
-        <div>
-            <tag-cloud v-model="selectedTagIds" v-bind:options="tags" multiple />
-        </div>
-        
     </div>
 </template>
 
@@ -29,6 +29,8 @@
                 filteredArray:[],
                 filterOperators:[],
                 selectedTagIds:[],
+                tagModal:false,
+                userId:'',
             }
         },
         props: {
@@ -40,20 +42,32 @@
             selectedTagIds:async function(newVal,oldVal){
                 this.filterTag()
             },
-            targetArray:function(){
+            targetArray:function(newVal,oldVal){
+                if(oldVal.length == 0 && newVal.length != 0){
+                    this.userId = this.targetArray[0].user_id
+                    this.fetchTags()
+                }
                 this.filterTag()
             },
         },
         created:function(){
             
         },
-        mounted:async function(){
-            let result = await axios.get('/api/tags')
-            for(let tag of result.data){
-                this.tags.push({label:tag.name,value:tag.id})
-            }
+        mounted:function(){
         },
         methods: {
+            fetchTags:async function(){
+                if(!this.userId)return
+                let result = await axios.get('/api/mytags',{
+                                                    params:{user_id:this.userId,}
+                                                })
+                
+                for(let tagColor in result.data){
+                    for(let tag of result.data[tagColor]){
+                        this.tags.push(tag)
+                    }
+                }
+            },
             filterTag:async function(){
                 //配列リセット
                 this.filteredArray = []
@@ -135,9 +149,17 @@
                 return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or'
             },
             //タグIDからタグ名を取得
-            displayTagName:function(selectedTagId){
-                let tag = this.tags.find(el => el.value == selectedTagId)
-                return tag.label
+            getTagName:function(selectedTagId){
+                let tag = this.tags.find(el => el.id == selectedTagId)
+                return tag.name
+            },
+            getTagColor:function(selectedTagId){
+                let tag = this.tags.find(el => el.id == selectedTagId)
+                return {background:tag.color}
+            },
+            showTagModal:function(){
+                this.$refs.tagList.init()
+                this.$refs.tagModal.openModal()
             }
         }
     }
@@ -169,12 +191,10 @@
         color:red;
     }
     .filter-label {
-        padding:0.3em;
+        display:flex;
+        align-items:center;
+        padding:0.2em;
         border:1px solid gray;
         border-radius:0.2em;
     }
-    .invisible {
-        visibility:hidden;
-    }
-    
 </style>

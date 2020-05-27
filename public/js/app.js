@@ -53270,7 +53270,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return editModal;
         }(),
-        // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
+        // タグ編集後に閉じたときにタスクを再取得
         editTagModal: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(newVal, oldVal) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
@@ -53405,13 +53405,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                     return axios.post('/api/state_task', postObject);
 
                                                 case 5:
-                                                    _context6.next = 7;
+                                                    vue.$refs.cong.openCong('おつかれさまです！');
+                                                    _context6.next = 8;
                                                     return vue.fetchTask();
 
-                                                case 7:
+                                                case 8:
                                                     vue.updateData();
                                                     vue.$emit('input', this.task);
-                                                    vue.$refs.cong.openCong('おつかれさまです！');
                                                     _context6.next = 16;
                                                     break;
 
@@ -59544,28 +59544,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         }
     },
-    watch: {
-        //タグを選択して付け替え
-        // selectedTags:async function(newVal,oldVal){
-        //     // 初回は飛ばす
-        //     if(oldVal.length == 0){return }
-
-        //     // 投入用オブジェクト作成
-        //     let tagsObject = {
-        //         task_id:this.taskId,
-        //         tag_ids:this.selectedTags
-        //     }
-
-        //     // 書き込み
-        //     try{
-        //         await axios.put('/api/tag_task',tagsObject)
-        //         this.$refs.notice.showNotice('タグを変更しました')
-        //     }catch(error){
-        //         this.$refs.notice.showNotice('タグの変更に失敗しました')
-        //         console.log(error)
-        //     }
-        // },
-    },
+    watch: {},
     created: function created() {},
     mounted: function mounted() {},
     methods: {
@@ -59577,9 +59556,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 // ユーザーに紐付いたタグの取得
                                 this.fetchTags();
-
-                                //valueに設定されたIDをselectedTagIdsに設定
-                                // this.selectedTagIds = result.data.tags.map(el => el.id)
 
                             case 1:
                             case 'end':
@@ -63277,7 +63253,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n.invisible[data-v-b08cfbb2] {\n    visibility:hidden;\n}\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0.2em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n.invisible[data-v-b08cfbb2] {\n    visibility:hidden;\n}\n\n", ""]);
 
 // exports
 
@@ -63324,7 +63300,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tags: [],
             filteredArray: [],
             filterOperators: [],
-            selectedTagIds: []
+            selectedTagIds: [],
+            tagModal: false,
+            userId: ''
         };
     },
     props: {
@@ -63355,82 +63333,110 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return selectedTagIds;
         }(),
-        targetArray: function targetArray() {
+        targetArray: function targetArray(newVal, oldVal) {
+            if (oldVal.length == 0 && newVal.length != 0) {
+                this.userId = this.targetArray[0].user_id;
+                this.fetchTags();
+            }
             this.filterTag();
         }
     },
     created: function created() {},
-    mounted: function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
-
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-                while (1) {
-                    switch (_context2.prev = _context2.next) {
-                        case 0:
-                            _context2.next = 2;
-                            return axios.get('/api/tags');
-
-                        case 2:
-                            result = _context2.sent;
-                            _iteratorNormalCompletion = true;
-                            _didIteratorError = false;
-                            _iteratorError = undefined;
-                            _context2.prev = 6;
-
-                            for (_iterator = result.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                                tag = _step.value;
-
-                                this.tags.push({ label: tag.name, value: tag.id });
-                            }
-                            _context2.next = 14;
-                            break;
-
-                        case 10:
-                            _context2.prev = 10;
-                            _context2.t0 = _context2['catch'](6);
-                            _didIteratorError = true;
-                            _iteratorError = _context2.t0;
-
-                        case 14:
-                            _context2.prev = 14;
-                            _context2.prev = 15;
-
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                                _iterator.return();
-                            }
-
-                        case 17:
-                            _context2.prev = 17;
-
-                            if (!_didIteratorError) {
-                                _context2.next = 20;
-                                break;
-                            }
-
-                            throw _iteratorError;
-
-                        case 20:
-                            return _context2.finish(17);
-
-                        case 21:
-                            return _context2.finish(14);
-
-                        case 22:
-                        case 'end':
-                            return _context2.stop();
-                    }
-                }
-            }, _callee2, this, [[6, 10, 14, 22], [15,, 17, 21]]);
-        }));
-
-        function mounted() {
-            return _ref2.apply(this, arguments);
-        }
-
-        return mounted;
-    }(),
+    mounted: function mounted() {},
     methods: {
+        fetchTags: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result, tagColor, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, tag;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                if (this.userId) {
+                                    _context2.next = 2;
+                                    break;
+                                }
+
+                                return _context2.abrupt('return');
+
+                            case 2:
+                                _context2.next = 4;
+                                return axios.get('/api/mytags', {
+                                    params: { user_id: this.userId }
+                                });
+
+                            case 4:
+                                result = _context2.sent;
+                                _context2.t0 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.keys(result.data);
+
+                            case 6:
+                                if ((_context2.t1 = _context2.t0()).done) {
+                                    _context2.next = 29;
+                                    break;
+                                }
+
+                                tagColor = _context2.t1.value;
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context2.prev = 11;
+
+                                for (_iterator = result.data[tagColor][Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    tag = _step.value;
+
+                                    this.tags.push(tag);
+                                }
+                                _context2.next = 19;
+                                break;
+
+                            case 15:
+                                _context2.prev = 15;
+                                _context2.t2 = _context2['catch'](11);
+                                _didIteratorError = true;
+                                _iteratorError = _context2.t2;
+
+                            case 19:
+                                _context2.prev = 19;
+                                _context2.prev = 20;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 22:
+                                _context2.prev = 22;
+
+                                if (!_didIteratorError) {
+                                    _context2.next = 25;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 25:
+                                return _context2.finish(22);
+
+                            case 26:
+                                return _context2.finish(19);
+
+                            case 27:
+                                _context2.next = 6;
+                                break;
+
+                            case 29:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[11, 15, 19, 27], [20,, 22, 26]]);
+            }));
+
+            function fetchTags() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return fetchTags;
+        }(),
         filterTag: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var _this = this;
@@ -63694,11 +63700,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return this.filterOperators[index] == '*' ? 'operator-and' : 'operator-or';
         },
         //タグIDからタグ名を取得
-        displayTagName: function displayTagName(selectedTagId) {
+        getTagName: function getTagName(selectedTagId) {
             var tag = this.tags.find(function (el) {
-                return el.value == selectedTagId;
+                return el.id == selectedTagId;
             });
-            return tag.label;
+            return tag.name;
+        },
+        getTagColor: function getTagColor(selectedTagId) {
+            var tag = this.tags.find(function (el) {
+                return el.id == selectedTagId;
+            });
+            return { background: tag.color };
+        },
+        showTagModal: function showTagModal() {
+            this.$refs.tagList.init();
+            this.$refs.tagModal.openModal();
         }
     }
 });
@@ -63711,50 +63727,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "filter-container" },
-      _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
-        return _c("div", { staticClass: "filter-wrapper" }, [
-          _c("span", { staticClass: "filter-label" }, [
-            _vm._v(_vm._s(_vm.displayTagName(selectedTagId)))
-          ]),
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c(
+        "modal",
+        {
+          ref: "tagModal",
+          model: {
+            value: _vm.tagModal,
+            callback: function($$v) {
+              _vm.tagModal = $$v
+            },
+            expression: "tagModal"
+          }
+        },
+        [
+          _c("p", [_vm._v("タグを選択して下さい。")]),
+          _vm._v(" "),
+          _c("tag-list", {
+            ref: "tagList",
+            attrs: { userId: _vm.userId },
+            model: {
+              value: _vm.selectedTagIds,
+              callback: function($$v) {
+                _vm.selectedTagIds = $$v
+              },
+              expression: "selectedTagIds"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "filter-container" },
+        [
+          _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
+            return _c("div", { staticClass: "filter-wrapper" }, [
+              _c(
+                "span",
+                {
+                  staticClass: "filter-label",
+                  style: _vm.getTagColor(selectedTagId)
+                },
+                [_vm._v(_vm._s(_vm.getTagName(selectedTagId)))]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  class: _vm.setOperatorClass(index),
+                  on: {
+                    click: function($event) {
+                      return _vm.toggleOperator(index)
+                    }
+                  }
+                },
+                [_c("span", [_vm._v("+")])]
+              )
+            ])
+          }),
           _vm._v(" "),
           _c(
-            "div",
+            "button",
             {
-              class: _vm.setOperatorClass(index),
+              staticClass: "btn btn-primary mx-auto d-block",
               on: {
                 click: function($event) {
-                  return _vm.toggleOperator(index)
+                  return _vm.showTagModal()
                 }
               }
             },
-            [_c("span", [_vm._v("+")])]
+            [_vm._v("タグを追加")]
           )
-        ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      [
-        _c("tag-cloud", {
-          attrs: { options: _vm.tags, multiple: "" },
-          model: {
-            value: _vm.selectedTagIds,
-            callback: function($$v) {
-              _vm.selectedTagIds = $$v
-            },
-            expression: "selectedTagIds"
-          }
-        })
-      ],
-      1
-    )
-  ])
+        ],
+        2
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
