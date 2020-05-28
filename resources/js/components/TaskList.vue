@@ -33,7 +33,8 @@
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
                 <p>タグを追加します。</p>
-                <tag-list v-bind:taskId="newTask.id" />
+                <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="userId" />
+                
                 <!--アイテム登録-->
                 <div>
                     <p>改行区切りでアイテムリストを作成します</p>
@@ -118,6 +119,7 @@
                 sortedTasks:[], //ソートしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
                 newTask:{},
+                selectedTagIds:[],
                 projects:[],
                 defaultProjectId:'', //所属なしのproject_id
                 ids:[], //編集確認用のtask.idの配列
@@ -198,7 +200,26 @@
                 }else{
                     this.fetchCurrentTasks()
                 }
-            }
+            },
+            selectedTagIds:async function(){
+                //新規タスクのidが設定されている場合だけタグの変更を有効化
+                if(!this.newTask.id)return
+                
+                // 投入用オブジェクト作成
+                let tagsObject = {
+                    task_id:this.newTask.id,
+                    tag_ids:this.selectedTagIds
+                }
+                
+                // 書き込み
+                try{
+                    await axios.put('/api/tag_task',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
+                }
+            },
         },
         methods: {
             fetchAllTasks:async function(){
@@ -265,6 +286,10 @@
                     difficulty:1,
                     is_template:false,
                 }
+                // タグリストをリセット
+                this.selectedTagIds = []
+                this.$refs.tagList.init()
+                
                 //子アイテムをリセット
                 this.items = []
                 //モーダルを展開
@@ -387,27 +412,27 @@
             getTasksIndex:function(id){
                 return this.tasks.findIndex(task => task.id == id)
             },
-            createTag:async function(){
-                if(event.keyCode == 13){
-                    let postObject = {
-                        user_id:this.userId,
-                        name:event.target.value,
-                        color:'#ef857d'
-                    }
-                    try{
-                        let result = await axios.post('/api/tags',postObject)
-                        this.$refs.notice.showNotice('タグを追加しました')
-                        //tagsに追加
-                        this.tags.push({label:result.data.name,value:result.data.id})
-                        // インプットをリセット
-                        this.$refs.newTag.value = ''
-                    }catch(error){
-                        this.$refs.notice.showNotice('タグの追加に失敗しました')
-                        console.log(error)
-                    }
+            // createTag:async function(){
+            //     if(event.keyCode == 13){
+            //         let postObject = {
+            //             user_id:this.userId,
+            //             name:event.target.value,
+            //             color:'#ef857d'
+            //         }
+            //         try{
+            //             let result = await axios.post('/api/tags',postObject)
+            //             this.$refs.notice.showNotice('タグを追加しました')
+            //             //tagsに追加
+            //             this.tags.push({label:result.data.name,value:result.data.id})
+            //             // インプットをリセット
+            //             this.$refs.newTag.value = ''
+            //         }catch(error){
+            //             this.$refs.notice.showNotice('タグの追加に失敗しました')
+            //             console.log(error)
+            //         }
                     
-                }
-            },
+            //     }
+            // },
             createProject:async function(){
                 if(event.keyCode == 13){
                     let currentDatetime = new Date()

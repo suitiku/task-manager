@@ -137,7 +137,7 @@ class TasksController extends Controller
         $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
     }
     
-    // ユーザーIDで検索／12時間前までに終了したタスクを除外
+    // ユーザーIDで検索／前日までに終了／未完了のタスクを除外
     public function getCurrentTasksByUserId(Request $request){
         $result;
         $validDatetime = time() - 43200;
@@ -146,7 +146,7 @@ class TasksController extends Controller
                     ->get();
         foreach($tasks as $index => $task){
             $statesCount = count($task->states);
-            if($task->states[$statesCount -1]->id != 2 || strtotime($task->states[$statesCount -1]->pivot->created_at) >= $validDatetime){
+            if($task->states[$statesCount -1]->id != 2 || $task->states[$statesCount -1]->id != 5 || strtotime($task->states[$statesCount -1]->pivot->created_at) >= $validDatetime){
                 $result[] = $task;
             }
         }
