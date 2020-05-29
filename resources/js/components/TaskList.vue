@@ -113,6 +113,7 @@
         },
         data:function(){
             return {
+                // tasks:[],
                 allTasks:false,
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
@@ -163,9 +164,14 @@
             }
         },
         mounted() {
+            if(this.projectId)return 
+            
+            this.fetchProjects()
+            this.fetchCurrentTasks()
+            
         },
         created() {
-            this.fetchProjects()
+            
         },
         computed:{
              // タスク追加部分のclass設定
@@ -178,14 +184,6 @@
             }  
         },
         watch: {
-            //変更された際に上部に送出            
-            tasks:{
-                handler:function(){
-                    this.$emit('input',this.tasks)
-                },
-                deep:true
-            },
-            
             //新規タスク登録モーダルを閉じた際にtasksに追加
             newTaskModal:async function(newVal,oldVal){
                 if(newVal == false){
@@ -228,7 +226,10 @@
                         let result = await axios.get('/api/mytasks',{
                                                 params:{user_id:this.userId,}
                                             })
+                                            
                         this.$emit('input',result.data)
+                        // this.tasks = result.data
+                        
                         this.$refs.waiting.disableWaiting()
                         this.$refs.notice.showNotice('全タスクを取得しました')
                   }catch(error){
@@ -243,7 +244,10 @@
                         let result = await axios.get('/api/mytasks/current',{
                                                 params:{user_id:this.userId,}
                                             })
+                                            
                         this.$emit('input',result.data)
+                        // this.tasks = result.data
+                        
                         this.$refs.waiting.disableWaiting()
                         this.$refs.notice.showNotice('タスクを取得しました')
                   }catch(error){
@@ -412,27 +416,6 @@
             getTasksIndex:function(id){
                 return this.tasks.findIndex(task => task.id == id)
             },
-            // createTag:async function(){
-            //     if(event.keyCode == 13){
-            //         let postObject = {
-            //             user_id:this.userId,
-            //             name:event.target.value,
-            //             color:'#ef857d'
-            //         }
-            //         try{
-            //             let result = await axios.post('/api/tags',postObject)
-            //             this.$refs.notice.showNotice('タグを追加しました')
-            //             //tagsに追加
-            //             this.tags.push({label:result.data.name,value:result.data.id})
-            //             // インプットをリセット
-            //             this.$refs.newTag.value = ''
-            //         }catch(error){
-            //             this.$refs.notice.showNotice('タグの追加に失敗しました')
-            //             console.log(error)
-            //         }
-                    
-            //     }
-            // },
             createProject:async function(){
                 if(event.keyCode == 13){
                     let currentDatetime = new Date()

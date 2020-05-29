@@ -39,20 +39,20 @@
         },
         methods: {
             changeContent:function(contentName){
-                if(contentName == 'task'){
-                    this.fetchTasks()
-                }
+                // if(contentName == 'task'){
+                //     this.fetchTasks()
+                // }
                 this.content = contentName
             },
-            fetchTasks: async function(){
-                // タスクの取得（ユーザーIDでフィルター）
-                if(!this.user){return }
-                this.tasks = []
-                let result = await axios.get('/api/mytasks/current',{
-                                                params:{user_id:this.user.id,}
-                                            })
-                this.tasks = result.data
-            },
+            // fetchTasks: async function(){
+            //     // タスクの取得（ユーザーIDでフィルター）
+            //     if(!this.user){return }
+            //     this.tasks = []
+            //     let result = await axios.get('/api/mytasks/current',{
+            //                                     params:{user_id:this.user.id,}
+            //                                 })
+            //     this.tasks = result.data
+            // },
         }
     }
 </script>

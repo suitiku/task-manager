@@ -48,7 +48,7 @@
                 //個別にフィルター
                 for(let selectedStatusId of this.selectedStatusIds){
                     this.filteredArray.push(this.originalArray.filter(el => {
-                        return el.states[el.states.length - 1].id == selectedStatusId
+                        return el && el.states[el.states.length - 1].id == selectedStatusId
                     }))
                     // await this.filterStatus(selectedStatusId)
                 }

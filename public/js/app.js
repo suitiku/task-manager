@@ -51619,6 +51619,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
+            // tasks:[],
             allTasks: false,
             newTaskModal: false,
             filteredTasks: [], //フィルターしたタスク配列
@@ -51657,10 +51658,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             type: [String, Array]
         }
     },
-    mounted: function mounted() {},
-    created: function created() {
+    mounted: function mounted() {
+        if (this.projectId) return;
+
         this.fetchProjects();
+        this.fetchCurrentTasks();
     },
+    created: function created() {},
 
     computed: {
         // タスク追加部分のclass設定
@@ -51673,14 +51677,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {
-        //変更された際に上部に送出            
-        tasks: {
-            handler: function handler() {
-                this.$emit('input', this.tasks);
-            },
-            deep: true
-        },
-
         //新規タスク登録モーダルを閉じた際にtasksに追加
         newTaskModal: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
@@ -51797,7 +51793,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context3.sent;
 
+
                                 this.$emit('input', result.data);
+                                // this.tasks = result.data
+
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('全タスクを取得しました');
                                 _context3.next = 15;
@@ -51842,7 +51841,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context4.sent;
 
+
                                 this.$emit('input', result.data);
+                                // this.tasks = result.data
+
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクを取得しました');
                                 _context4.next = 15;
@@ -52274,27 +52276,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 return task.id == id;
             });
         },
-        // createTag:async function(){
-        //     if(event.keyCode == 13){
-        //         let postObject = {
-        //             user_id:this.userId,
-        //             name:event.target.value,
-        //             color:'#ef857d'
-        //         }
-        //         try{
-        //             let result = await axios.post('/api/tags',postObject)
-        //             this.$refs.notice.showNotice('タグを追加しました')
-        //             //tagsに追加
-        //             this.tags.push({label:result.data.name,value:result.data.id})
-        //             // インプットをリセット
-        //             this.$refs.newTag.value = ''
-        //         }catch(error){
-        //             this.$refs.notice.showNotice('タグの追加に失敗しました')
-        //             console.log(error)
-        //         }
-
-        //     }
-        // },
         createProject: function () {
             var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11() {
                 var currentDatetime, deadLine, postObject;
@@ -53209,6 +53190,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53735,8 +53718,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 // noticeで通知
                                 this.$refs.notice.showNotice('タスクを削除しました');
                                 // 通知が終わった後に自らを削除（不可視化）
-                                this.task = {};
                                 this.$emit('input', '');
+                                this.task = {};
                                 _context12.next = 13;
                                 break;
 
@@ -54765,11 +54748,10 @@ var render = function() {
                                   }
                                 }
                               }),
-                              _vm._v(
-                                " " +
-                                  _vm._s(item.name) +
-                                  "\n                        "
-                              )
+                              _vm._v(" "),
+                              _c("span", { staticClass: "childItem" }, [
+                                _vm._v(_vm._s(item.name))
+                              ])
                             ]
                           ),
                           _vm._v(" "),
@@ -58371,51 +58353,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }(),
     methods: {
         changeContent: function changeContent(contentName) {
-            if (contentName == 'task') {
-                this.fetchTasks();
-            }
+            // if(contentName == 'task'){
+            //     this.fetchTasks()
+            // }
             this.content = contentName;
-        },
-        fetchTasks: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-                    while (1) {
-                        switch (_context2.prev = _context2.next) {
-                            case 0:
-                                if (this.user) {
-                                    _context2.next = 2;
-                                    break;
-                                }
-
-                                return _context2.abrupt('return');
-
-                            case 2:
-                                this.tasks = [];
-                                _context2.next = 5;
-                                return axios.get('/api/mytasks/current', {
-                                    params: { user_id: this.user.id }
-                                });
-
-                            case 5:
-                                result = _context2.sent;
-
-                                this.tasks = result.data;
-
-                            case 7:
-                            case 'end':
-                                return _context2.stop();
-                        }
-                    }
-                }, _callee2, this);
-            }));
-
-            function fetchTasks() {
-                return _ref2.apply(this, arguments);
-            }
-
-            return fetchTasks;
-        }()
+        }
+        // fetchTasks: async function(){
+        //     // タスクの取得（ユーザーIDでフィルター）
+        //     if(!this.user){return }
+        //     this.tasks = []
+        //     let result = await axios.get('/api/mytasks/current',{
+        //                                     params:{user_id:this.user.id,}
+        //                                 })
+        //     this.tasks = result.data
+        // },
     }
 });
 
@@ -63491,7 +63442,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 _loop = function _loop(selectedTagId) {
                                     _this.filteredArray.push(_this.targetArray.filter(function (el) {
-                                        return el.tags.some(function (tag) {
+                                        return el && el.tags.some(function (tag) {
                                             return tag.id == selectedTagId;
                                         });
                                     }));
@@ -64119,7 +64070,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                                 _loop = function _loop(selectedStatusId) {
                                     _this.filteredArray.push(_this.originalArray.filter(function (el) {
-                                        return el.states[el.states.length - 1].id == selectedStatusId;
+                                        return el && el.states[el.states.length - 1].id == selectedStatusId;
                                     }));
                                     // await this.filterStatus(selectedStatusId)
                                 };

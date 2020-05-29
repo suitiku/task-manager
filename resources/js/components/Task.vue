@@ -148,13 +148,15 @@
                 <!--子アイテム-->
                 <div class="items">
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
+                            <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]">
-                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)"> {{item.name}}
+                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
+                                <span class="childItem">{{item.name}}</span>
                             </span>
-                            <!--編集用セクション-->
+                            <!--編集用表示-->
                             <span v-show="editItemMode[itemIndex]">
                                 <input class="editable" type="text" v-model="task.items[itemIndex].name" v-on:keydown="updateItem(itemIndex)">
-                            </span> 
+                            </span>
                             <!--編集ボタン-->
                             <i class="far fa-edit task-icon" v-on:click="toggleEditMode(itemIndex)"></i>
                             <!--削除ボタン-->
@@ -413,8 +415,8 @@
                     // noticeで通知
                     this.$refs.notice.showNotice('タスクを削除しました')
                     // 通知が終わった後に自らを削除（不可視化）
-                    this.task = {}
                     this.$emit('input','')
+                    this.task = {}
                 }catch(error){
                     // 削除が失敗した場合
                     // noticeで通知

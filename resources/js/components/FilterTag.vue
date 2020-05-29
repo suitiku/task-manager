@@ -75,7 +75,7 @@
                 //個別にフィルター
                 for(let selectedTagId of this.selectedTagIds){
                     this.filteredArray.push(this.targetArray.filter(el => {
-                        return el.tags.some(tag => tag.id == selectedTagId)
+                        return el && el.tags.some(tag => tag.id == selectedTagId)
                     }))
                 }
                 
