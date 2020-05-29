@@ -51928,6 +51928,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return fetchProjects;
         }(),
         showNewTaskModal: function showNewTaskModal() {
+            //フォームのpostObjectを初期化
+            this.$refs.newTaskForm.init();
+
             //開始と締め切りを現在時刻に合わせる
             var currentDatetime = new Date();
             this.$refs.newTaskStartDate.init(currentDatetime);
@@ -52365,6 +52368,7 @@ var render = function() {
           _c(
             "versatile-form",
             {
+              ref: "newTaskForm",
               attrs: { table: "tasks" },
               model: {
                 value: _vm.newTask,
@@ -56333,6 +56337,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     watch: {},
     methods: {
+        // postObjectを明示的に初期化
+        init: function init() {
+            this.postObject = {};
+        },
         createRecord: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var key, result;

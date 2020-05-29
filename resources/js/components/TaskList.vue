@@ -11,7 +11,7 @@
         <!--モーダル-->
         <!--新規タスク追加用モーダル-->
         <modal ref="newTaskModal" v-model="newTaskModal">
-            <versatile-form v-model="newTask" table="tasks">
+            <versatile-form ref="newTaskForm" v-model="newTask" table="tasks">
                 <input v-model="newTask.name" type="text" placeholder="タスク名">
                 <textarea v-model="newTask.overview" placeholder="概要" />
                 <div class="inline">
@@ -275,6 +275,9 @@
                 this.projects = result.data
             },
             showNewTaskModal:function(){
+                //フォームのpostObjectを初期化
+                this.$refs.newTaskForm.init()
+                
                 //開始と締め切りを現在時刻に合わせる
                 let currentDatetime = new Date()
                 this.$refs.newTaskStartDate.init(currentDatetime)

@@ -41,6 +41,10 @@
         watch:{
         },
         methods: {
+            // postObjectを明示的に初期化
+            init:function(){
+                this.postObject = {}  
+            },
             createRecord: async function(){
                 //Validation
                 //配列要素を変換
