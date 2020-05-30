@@ -148,6 +148,7 @@
                 <!--子アイテム-->
                 <div class="items">
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
+                            {{item.is_checked}}
                             <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]" class="item-label">
                                 <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
@@ -336,7 +337,7 @@
                 this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
             },
             setItemClass:function(is_checked){
-                return is_checked == true ? 'item-completed' : 'item'
+                return is_checked == true ? 'item item-completed' : 'item'
             },
             setItemDisabled:function(is_checked){
                 return is_checked || false
@@ -739,8 +740,8 @@
         align-items:center;
     }
     .item-completed {
-        display:flex;
-        align-items:center;
+        /*display:flex;*/
+        /*align-items:center;*/
         text-decoration:line-through;
     }
     .item-label {
