@@ -51,8 +51,7 @@
         border-radius:0.1em;
         background:orange;
         color:white;
-        font-weight:bold;
-        /*font-style:oblique;*/
+        font-weight:900;
         font-style:italic;
         font-family: 'M PLUS 1p', sans-serif;
         animation:setup 0.8s ease-in-out 1;

@@ -627,6 +627,7 @@
     }
     .task-title {
         font-family: 'M PLUS 1p', sans-serif;
+        font-weight:700;
         letter-spacing:0.1em;
         display:flex;
         align-items:center;
