@@ -53569,6 +53569,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return setTask;
         }(),
         openDetail: function openDetail() {
+            this.fetchTask();
             this.detail = !this.detail;
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
