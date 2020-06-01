@@ -39,7 +39,7 @@
         <!--メイン表示部-->
         <div class="filter-container">
             <div v-for="(filter,index) in filters" class="filter-wrapper">
-                <span class="filter-label" v-on:click="showDeleteFilterToolTip(index)">{{setLabel(filter)}}</span>
+                <span class="filter-label" v-on:click="showDeleteFilterToolTip(index)" v-on:mouseout="hideDeleteFilterToolTip()">{{setLabel(filter)}}</span>
                 <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
             </div>
             <i class="fas fa-plus-circle fa-lg add-button" 
@@ -271,7 +271,7 @@
                 let timer = window.setTimeout(function(){
                     vue.$refs.toolTipDelete.hideToolTip()
                     this.deleteTargetIndex = ''
-                },2000)
+                },1500)
             },
             deleteFilter:function(){
                 this.filterOperators.splice(this.deleteTargetIndex,1)

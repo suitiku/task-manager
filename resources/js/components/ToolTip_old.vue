@@ -35,7 +35,7 @@
         methods: {
             showToolTip:function(content){
                 this.textContent = content
-                this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 10) + 'px'
+                this.toolTipPosition.top = (event.clientY - this.$refs.toolTip.clientHeight - 30) + 'px'
                 this.toolTipPosition.left = (event.clientX - this.$refs.toolTip.clientWidth / 2) + 'px'
                 this.toolTipRoot = 'tool-tip-show'
             },
@@ -56,17 +56,15 @@
     .tool-tip-hide {
         position:fixed;
         z-index:10;
-        /*transform-origin:bottom center;*/
-        opacity:0;
-        /*transform:rotateX(90deg);*/
-        transition:opacity 0.5s ease;
+        transform-origin:bottom center;
+        transform:rotateX(90deg);
+        transition:opacity,transform 0.5s ease;
     }
     .tool-tip-show {
         position:fixed;
         z-index:10;
-        /*transform-origin:bottom center;*/
-        opacity:1.0;
-        /*transform:rotateX(0deg);*/
+        transform-origin:bottom center;
+        transform:rotateX(0deg);
         transition:opacity,transform 0.5s ease;
     }
     .tool-tip {
@@ -79,11 +77,29 @@
         color: #555;
         font-size: 75%;
         background: #FFF;
-        border: solid 2px #555;
+        border: solid 3px #555;
         box-sizing: border-box;
         text-align:center;
-        border-radius:0.5em;
-        font-family: 'M PLUS 1p', sans-serif;
-        font-weight:300;
+        border-radius:1.0em;
     }
+    .tool-tip:before {
+        content: "";
+        position: absolute;
+        bottom: -24px;
+        left: 50%;
+        margin-left: -15px;
+        border: 12px solid transparent;
+        border-top: 12px solid #FFF;
+        z-index: 2;
+    }
+    .tool-tip:after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 50%;    
+        margin-left: -17px;
+        border: 14px solid transparent;
+        border-top: 14px solid #555;
+        z-index: 1;
+}
 </style>

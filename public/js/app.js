@@ -62976,7 +62976,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var timer = window.setTimeout(function () {
                 vue.$refs.toolTipDelete.hideToolTip();
                 this.deleteTargetIndex = '';
-            }, 2000);
+            }, 1500);
         },
         deleteFilter: function deleteFilter() {
             this.filterOperators.splice(this.deleteTargetIndex, 1);
@@ -63114,6 +63114,9 @@ var render = function() {
                   on: {
                     click: function($event) {
                       return _vm.showDeleteFilterToolTip(index)
+                    },
+                    mouseout: function($event) {
+                      return _vm.hideDeleteFilterToolTip()
                     }
                   }
                 },
@@ -65168,7 +65171,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n        position:fixed;\n        z-index:10;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(90deg);\n                transform:rotateX(90deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip-show[data-v-6cabd7c8] {\n        position:fixed;\n        z-index:10;\n        -webkit-transform-origin:bottom center;\n                transform-origin:bottom center;\n        -webkit-transform:rotateX(0deg);\n                transform:rotateX(0deg);\n        -webkit-transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,-webkit-transform 0.5s ease;\n        transition:opacity,transform 0.5s ease;\n        transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip[data-v-6cabd7c8] {\n        position: relative;\n        display: inline-block;\n        padding: 1.0em 0.5em;\n        max-height:200px;\n        min-width: 5em;\n        max-width: 100%;\n        color: #555;\n        font-size: 75%;\n        background: #FFF;\n        border: solid 3px #555;\n        -webkit-box-sizing: border-box;\n                box-sizing: border-box;\n        text-align:center;\n        border-radius:1.0em;\n}\n.tool-tip[data-v-6cabd7c8]:before {\n        content: \"\";\n        position: absolute;\n        bottom: -24px;\n        left: 50%;\n        margin-left: -15px;\n        border: 12px solid transparent;\n        border-top: 12px solid #FFF;\n        z-index: 2;\n}\n.tool-tip[data-v-6cabd7c8]:after {\n        content: \"\";\n        position: absolute;\n        bottom: -30px;\n        left: 50%;    \n        margin-left: -17px;\n        border: 14px solid transparent;\n        border-top: 14px solid #555;\n        z-index: 1;\n}\n", ""]);
+exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n    position:fixed;\n    z-index:10;\n    /*transform-origin:bottom center;*/\n    opacity:0;\n    /*transform:rotateX(90deg);*/\n    -webkit-transition:opacity 0.5s ease;\n    transition:opacity 0.5s ease;\n}\n.tool-tip-show[data-v-6cabd7c8] {\n    position:fixed;\n    z-index:10;\n    /*transform-origin:bottom center;*/\n    opacity:1.0;\n    /*transform:rotateX(0deg);*/\n    -webkit-transition:opacity,-webkit-transform 0.5s ease;\n    transition:opacity,-webkit-transform 0.5s ease;\n    transition:opacity,transform 0.5s ease;\n    transition:opacity,transform 0.5s ease,-webkit-transform 0.5s ease;\n}\n.tool-tip[data-v-6cabd7c8] {\n    position: relative;\n    display: inline-block;\n    padding: 1.0em 0.5em;\n    max-height:200px;\n    min-width: 5em;\n    max-width: 100%;\n    color: #555;\n    font-size: 75%;\n    background: #FFF;\n    border: solid 2px #555;\n    -webkit-box-sizing: border-box;\n            box-sizing: border-box;\n    text-align:center;\n    border-radius:0.5em;\n    font-family: 'M PLUS 1p', sans-serif;\n    font-weight:300;\n}\n", ""]);
 
 // exports
 
@@ -65208,7 +65211,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         showToolTip: function showToolTip(content) {
             this.textContent = content;
-            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight - 30 + 'px';
+            this.toolTipPosition.top = event.clientY - this.$refs.toolTip.clientHeight - 10 + 'px';
             this.toolTipPosition.left = event.clientX - this.$refs.toolTip.clientWidth / 2 + 'px';
             this.toolTipRoot = 'tool-tip-show';
         },
