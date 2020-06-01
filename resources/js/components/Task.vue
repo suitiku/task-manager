@@ -279,6 +279,7 @@
                         vue.$emit('input',this.task)
                     }catch(error){
                         vue.$refs.notice.showNotice('タスクの状態更新に失敗しました')
+                        this.checked = false
                         console.log(error)
                     }
                 }

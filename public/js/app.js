@@ -53416,7 +53416,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                             switch (_context6.prev = _context6.next) {
                                                 case 0:
                                                     if (!(oldVal == false && newVal == true && this.task.states[this.task.states.length - 1].id != 2)) {
-                                                        _context6.next = 16;
+                                                        _context6.next = 17;
                                                         break;
                                                     }
 
@@ -53436,7 +53436,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                 case 8:
                                                     vue.updateData();
                                                     vue.$emit('input', this.task);
-                                                    _context6.next = 16;
+                                                    _context6.next = 17;
                                                     break;
 
                                                 case 12:
@@ -53444,9 +53444,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                                     _context6.t0 = _context6['catch'](2);
 
                                                     vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
+                                                    this.checked = false;
                                                     console.log(_context6.t0);
 
-                                                case 16:
+                                                case 17:
                                                 case 'end':
                                                     return _context6.stop();
                                             }
