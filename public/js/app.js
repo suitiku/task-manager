@@ -58271,7 +58271,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n        border:1px solid red;\n        /*width:70%;*/\n        position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n        position:relative;\n        width:100%;\n}\n    /*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n        height:5em;\n}\n@media screen and (max-width:480px) {\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:100%;\n        /*animation:setup-mobile 0.8s ease-in-out 1;*/\n}\n}\n@media screen and (min-width:480px){\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:80%;\n        /*animation:setup-pc 0.8s ease-in-out 1;*/\n}\n}\n", ""]);
+exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n        position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n        position:relative;\n        width:100%;\n}\n    /*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n        height:5em;\n}\n@media screen and (max-width:480px) {\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:100%;\n}\n}\n@media screen and (min-width:480px){\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:80%;\n}\n}\n", ""]);
 
 // exports
 
@@ -58346,20 +58346,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     }(),
     methods: {
         changeContent: function changeContent(contentName) {
-            // if(contentName == 'task'){
-            //     this.fetchTasks()
-            // }
             this.content = contentName;
         }
-        // fetchTasks: async function(){
-        //     // タスクの取得（ユーザーIDでフィルター）
-        //     if(!this.user){return }
-        //     this.tasks = []
-        //     let result = await axios.get('/api/mytasks/current',{
-        //                                     params:{user_id:this.user.id,}
-        //                                 })
-        //     this.tasks = result.data
-        // },
     }
 });
 
@@ -66716,7 +66704,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n        height:1.5em;\n        overflow:hidden;\n        word-wrap:normal;\n        padding:0.2em 0 0.2em 1em;\n        margin:1em 0;\n        border-radius:0.1em;\n        background:orange;\n        color:white;\n        font-family: 'M PLUS 1p', sans-serif;\n        font-weight:900;\n        font-style:oblique;\n        /*animation-fill-mode:forwards;*/\n        /*animation:setup 0.8s ease-in-out 1;*/\n}\n@-webkit-keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n/*@keyframes setup-mobile {*/\n/*        0% {*/\n/*            width:0%;*/\n/*        }*/\n/*        90% {*/\n/*            width:110%;*/\n/*        }*/\n/*        100% {*/\n/*            width:100%;*/\n/*        }*/\n/*    }*/\n@media screen and (max-width:480px) {\n.h2[data-v-f4658ffa] {\n        width:120%;\n        /*animation:setup-mobile 0.8s ease-in-out 1;*/\n}\n}\n@media screen and (min-width:480px){\n.h2[data-v-f4658ffa] {\n        /*width:65%;*/\n        -webkit-animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n                animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n        -webkit-animation-fill-mode:forwards;\n                animation-fill-mode:forwards;\n}\n}\n", ""]);
+exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n        height:1.5em;\n        overflow:hidden;\n        word-wrap:normal;\n        padding:0.2em 0 0.2em 1em;\n        margin:1em 0;\n        border-radius:0.1em;\n        background:orange;\n        color:white;\n        font-family: 'M PLUS 1p', sans-serif;\n        font-weight:900;\n        font-style:oblique;\n}\n@-webkit-keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@media screen and (max-width:480px) {\n.h2[data-v-f4658ffa] {\n        width:130%;\n}\n}\n@media screen and (min-width:480px){\n.h2[data-v-f4658ffa] {\n        -webkit-animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n                animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n        -webkit-animation-fill-mode:forwards;\n                animation-fill-mode:forwards;\n}\n}\n", ""]);
 
 // exports
 
