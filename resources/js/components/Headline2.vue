@@ -1,9 +1,8 @@
 <!--見出しコンポーネント-->
 <template>
     <div class="wrapper">
-        <h2 ref="headline"><slot></slot></h2>
+        <h2 class="h2" ref="headline"><slot></slot></h2>
     </div>
-    <!--<h2 ref="headline" v-bind:style="setPositionLeft()"><slot></slot></h2>-->
 </template>
 
 <script>
@@ -41,7 +40,7 @@
     }
 </script>
 <style scoped>
-    h2 {
+    .h2 {
         position:relative;
         height:1.5em;
         overflow:hidden;
@@ -51,13 +50,12 @@
         border-radius:0.1em;
         background:orange;
         color:white;
-        font-weight:900;
-        font-style:italic;
         font-family: 'M PLUS 1p', sans-serif;
-        animation:setup 0.8s ease-in-out 1;
-        animation-fill-mode:forwards;
+        font-weight:900;
+        font-style:oblique;
     }
-    @keyframes setup {
+    
+@keyframes setup {
         0% {
             width:0%;
         }
@@ -68,4 +66,16 @@
             width:65%;
         }
     }
+    
+@media screen and (max-width:480px) { 
+    .h2 {
+        width:130%;
+    }
+}
+@media screen and (min-width:480px){
+    .h2 {
+        animation:setup 0.8s ease-in-out 1;
+        animation-fill-mode:forwards;
+    }
+}
 </style>

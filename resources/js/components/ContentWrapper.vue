@@ -39,26 +39,13 @@
         },
         methods: {
             changeContent:function(contentName){
-                // if(contentName == 'task'){
-                //     this.fetchTasks()
-                // }
                 this.content = contentName
             },
-            // fetchTasks: async function(){
-            //     // タスクの取得（ユーザーIDでフィルター）
-            //     if(!this.user){return }
-            //     this.tasks = []
-            //     let result = await axios.get('/api/mytasks/current',{
-            //                                     params:{user_id:this.user.id,}
-            //                                 })
-            //     this.tasks = result.data
-            // },
         }
     }
 </script>
 <style scoped>
     .contents-wrapper {
-        width:70%;
         position:relative;
     }
     .contents {
@@ -69,4 +56,15 @@
     .spacer {
         height:5em;
     }
+    
+@media screen and (max-width:480px) { 
+    .contents-wrapper {
+        width:100%;
+    }
+}
+@media screen and (min-width:480px){
+    .contents-wrapper {
+        width:80%;
+    }
+}
 </style>

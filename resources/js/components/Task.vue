@@ -88,7 +88,7 @@
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
-            <div v-bind:class="maskClass" v-on:click="openDetail()" v-on:mouseover="showToolTip()" v-on:mouseout="hideToolTip()"></div>
+            <div v-bind:class="maskClass" v-on:click="openDetail()"></div>
             <div class="state-icon" v-show="checked || notActive">
                 <div>
                     <!--完了マーク-->
@@ -502,16 +502,6 @@
                 this.$refs.editTagModal.openModal()
                 this.$refs.tagList.init()
             },
-            showToolTip:function(){
-                if(!this.toolTipContent){return }
-                this.$refs.toolTip.showToolTip()
-            },
-            hideToolTip:function(){
-                let vue = this
-                let timer = window.setTimeout(function(){
-                    vue.$refs.toolTip.hideToolTip()
-                },500)
-            },
             showEditStatusDialog:function(){
                 this.$refs.editStatusModal.openModal()
             },
@@ -627,9 +617,8 @@
         align-items:flex-start;
     }
     .task-title {
-        font-family: 'M PLUS 1p', sans-serif;
-        font-weight:700;
-        letter-spacing:0.1em;
+        font-family: "Hiragino Kaku Gothic ProN","メイリオ", sans-serif;
+        font-weight:bold;
         display:flex;
         align-items:center;
         height:3em;
