@@ -221,6 +221,12 @@ class TasksController extends Controller
         //テンプレート元タスクを取得
         $originalTask = Task::with(['project','items','states','tags'])->find($id);
         
+        //現在時刻を取得
+        $currentDatetime = date('Y-m-d H:i:s',time());
+        
+        //締め切り時間を設定（デフォルトは開始から8時間後）
+        $deadLine = date('Y-m-d H:i:s', strtotime($currentDatetime) + 28800);
+        
         //分解
         //task本体
         $task = [
@@ -230,8 +236,8 @@ class TasksController extends Controller
             'overview' => $originalTask['overview'],
             'priority' => $originalTask['priority'],
             'difficulty' => $originalTask['difficulty'],
-            'start_date' => $originalTask['start_date'],
-            'dead_line' => $originalTask['dead_line'],
+            'start_date' => $currentDatetime,
+            'dead_line' => $deadLine,
             'is_template' => false
         ];
         
