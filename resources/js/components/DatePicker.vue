@@ -62,6 +62,9 @@
         },
         methods: {
             init(datetime){
+                //dateSliderを初期化
+                this.$refs.dateSlider.init()
+                
                 //引数を指定して強制的に時間指定する
                 if(datetime){
                     this.$emit('input',datetime)

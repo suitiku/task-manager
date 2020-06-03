@@ -60478,6 +60478,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         init: function init(datetime) {
+            //dateSliderを初期化
+            this.$refs.dateSlider.init();
+
             //引数を指定して強制的に時間指定する
             if (datetime) {
                 this.$emit('input', datetime);
@@ -60789,6 +60792,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return mounted;
     }(),
     methods: {
+        init: function init() {
+            this.data = '';
+            this.time = '';
+        },
         setDateOptions: function setDateOptions() {
             var dateTimes = [];
             var currentDateTime = new Date();

@@ -40,6 +40,10 @@
             this.setSliderPosition()
         },
         methods: {
+            init:function(){
+                this.data = ''
+                this.time = ''
+            },
             setDateOptions:function(){
                 let dateTimes = []
                 let currentDateTime = new Date()
