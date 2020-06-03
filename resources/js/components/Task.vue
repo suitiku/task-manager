@@ -150,7 +150,7 @@
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
                             <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]" class="item-label">
-                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item.id)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
+                                <input type="checkbox" class="checkbox" v-on:change="checkItem(item)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
                                 <span class="childItem">{{item.name}}</span>
                             </span>
                             <!--編集用表示-->
@@ -343,13 +343,20 @@
             setItemDisabled:function(is_checked){
                 return is_checked || false
             },
-            checkItem:async function(itemId){
+            checkItem:async function(item){
                 let el = event
                 let modifyData = {is_checked:true}
+                let postLogData = {
+                    task_id:this.task.id,
+                    state_id:this.task.states[this.task.states.length -1].id,
+                    state_detail:'「' + item.name + '」を完了しました'
+                }
                 try{
-                    await axios.put('/api/items/' + itemId,modifyData)
+                    await axios.put('/api/items/' + item.id,modifyData)
+                    await axios.post('/api/state_task',postLogData)
                     el.target.disabled = true
                     el.target.parentElement.parentElement.classList.add('item-completed')
+                    this.fetchTask()
                 }catch(error){
                     console.log(error)
                 }

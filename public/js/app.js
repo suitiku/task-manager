@@ -53580,36 +53580,46 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(itemId) {
-                var el, modifyData;
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(item) {
+                var el, modifyData, postLogData;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
                     while (1) {
                         switch (_context10.prev = _context10.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
-                                _context10.prev = 2;
-                                _context10.next = 5;
-                                return axios.put('/api/items/' + itemId, modifyData);
+                                postLogData = {
+                                    task_id: this.task.id,
+                                    state_id: this.task.states[this.task.states.length - 1].id,
+                                    state_detail: '「' + item.name + '」を完了しました'
+                                };
+                                _context10.prev = 3;
+                                _context10.next = 6;
+                                return axios.put('/api/items/' + item.id, modifyData);
 
-                            case 5:
+                            case 6:
+                                _context10.next = 8;
+                                return axios.post('/api/state_task', postLogData);
+
+                            case 8:
                                 el.target.disabled = true;
                                 el.target.parentElement.parentElement.classList.add('item-completed');
-                                _context10.next = 12;
+                                this.fetchTask();
+                                _context10.next = 16;
                                 break;
 
-                            case 9:
-                                _context10.prev = 9;
-                                _context10.t0 = _context10['catch'](2);
+                            case 13:
+                                _context10.prev = 13;
+                                _context10.t0 = _context10['catch'](3);
 
                                 console.log(_context10.t0);
 
-                            case 12:
+                            case 16:
                             case 'end':
                                 return _context10.stop();
                         }
                     }
-                }, _callee10, this, [[2, 9]]);
+                }, _callee10, this, [[3, 13]]);
             }));
 
             function checkItem(_x9) {
@@ -54733,7 +54743,7 @@ var render = function() {
                                 domProps: { checked: item.is_checked },
                                 on: {
                                   change: function($event) {
-                                    return _vm.checkItem(item.id)
+                                    return _vm.checkItem(item)
                                   }
                                 }
                               }),
