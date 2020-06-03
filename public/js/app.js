@@ -66325,6 +66325,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66426,6 +66427,8 @@ var render = function() {
                     staticClass: "fas fa-power-off",
                     style: _vm.setTaskStatus(state)
                   }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("（" + _vm._s(state.name) + "）")]),
                   _vm._v(
                     "\n                    " +
                       _vm._s(state.pivot.state_detail) +

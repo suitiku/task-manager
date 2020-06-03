@@ -22,6 +22,7 @@
                     <span>
                         {{state.pivot.created_at}}
                         <i class="fas fa-power-off" v-bind:style="setTaskStatus(state)"></i>
+                        <span>（{{state.name}}）</span>
                         {{state.pivot.state_detail}}
                     </span>
                 </div>
