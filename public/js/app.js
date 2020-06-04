@@ -51793,27 +51793,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context3.sent;
 
-                                console.log(result.data);
                                 this.$emit('input', result.data);
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('全タスクを取得しました');
-                                _context3.next = 16;
+                                _context3.next = 15;
                                 break;
 
-                            case 11:
-                                _context3.prev = 11;
+                            case 10:
+                                _context3.prev = 10;
                                 _context3.t0 = _context3['catch'](1);
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクの取得に失敗しました');
                                 console.log(_context3.t0);
 
-                            case 16:
+                            case 15:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[1, 11]]);
+                }, _callee3, this, [[1, 10]]);
             }));
 
             function fetchAllTasks() {
@@ -51839,27 +51838,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context4.sent;
 
-                                console.log(result.data);
                                 this.$emit('input', result.data);
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクを取得しました');
-                                _context4.next = 16;
+                                _context4.next = 15;
                                 break;
 
-                            case 11:
-                                _context4.prev = 11;
+                            case 10:
+                                _context4.prev = 10;
                                 _context4.t0 = _context4['catch'](1);
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクの取得に失敗しました');
                                 console.log(_context4.t0);
 
-                            case 16:
+                            case 15:
                             case 'end':
                                 return _context4.stop();
                         }
                     }
-                }, _callee4, this, [[1, 11]]);
+                }, _callee4, this, [[1, 10]]);
             }));
 
             function fetchCurrentTasks() {
@@ -56605,6 +56603,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56846,6 +56848,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             } else {
                 this.$refs.waiting.disableWaiting();
             }
+        },
+        showHeadline: function showHeadline() {
+            this.test = !this.test;
         }
     }
 });
@@ -56862,6 +56867,22 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.test,
+              expression: "test"
+            }
+          ]
+        },
+        [_c("headline-2", [_vm._v("テスト")])],
+        1
+      ),
+      _vm._v(" "),
       _vm._v("\n    " + _vm._s(_vm.selectedTagIds) + "\n    "),
       _c(
         "modal",
@@ -56896,11 +56917,11 @@ var render = function() {
           staticClass: "button",
           on: {
             click: function($event) {
-              return _vm.showModal()
+              return _vm.showHeadline()
             }
           }
         },
-        [_vm._v("modal")]
+        [_vm._v("H2")]
       )
     ],
     1
@@ -58295,12 +58316,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -66754,7 +66769,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n        height:1.5em;\n        overflow:hidden;\n        word-wrap:normal;\n        padding:0.2em 0 0.2em 1em;\n        margin:1em 0;\n        border-radius:0.1em;\n        background:orange;\n        color:white;\n        font-family: 'M PLUS 1p', sans-serif;\n        font-weight:900;\n        font-style:oblique;\n}\n@-webkit-keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@media screen and (max-width:480px) {\n.h2[data-v-f4658ffa] {\n        width:130%;\n}\n}\n@media screen and (min-width:480px){\n.h2[data-v-f4658ffa] {\n        -webkit-animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n                animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n        -webkit-animation-fill-mode:forwards;\n                animation-fill-mode:forwards;\n}\n}\n", ""]);
+exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n        height:1.6em;\n        overflow:hidden;\n        /*word-wrap:normal;*/\n        padding:0.2em 0 0.4em 1em;\n        margin:1em 0;\n        border-radius:0.1em;\n        background:orange;\n        color:white;\n        font-family: 'M PLUS 1p', sans-serif;\n        font-weight:900;\n        font-style:oblique;\n}\n@-webkit-keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@keyframes setup-data-v-f4658ffa {\n0% {\n            width:0%;\n}\n90% {\n            width:70%;\n}\n100% {\n            width:65%;\n}\n}\n@media screen and (max-width:480px) {\n.h2[data-v-f4658ffa] {\n        width:130%;\n}\n}\n@media screen and (min-width:480px){\n.h2[data-v-f4658ffa] {\n        -webkit-animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n                animation:setup-data-v-f4658ffa 0.8s ease-in-out 1;\n        -webkit-animation-fill-mode:forwards;\n                animation-fill-mode:forwards;\n}\n}\n", ""]);
 
 // exports
 
@@ -66772,6 +66787,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66781,7 +66798,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {},
     created: function created() {},
     mounted: function mounted() {
-        console.log(this);
         var vu = this;
         this.setPositionLeft();
 
@@ -66792,7 +66808,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         setPositionLeft: function setPositionLeft() {
-            if (!this.$refs.headline.style.left) return;
+            if (!this.$refs.headline) return;
             this.$refs.headline.style.left = 0;
             var left = this.$refs.headline.getBoundingClientRect().left + 10;
             this.$refs.headline.style.left = -left + 'px';
@@ -66808,7 +66824,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "wrapper" }, [
+  return _c("div", { ref: "wrapper", staticClass: "wrapper" }, [
     _c("h2", { ref: "headline", staticClass: "h2" }, [_vm._t("default")], 2)
   ])
 }

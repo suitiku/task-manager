@@ -1,6 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
+        <div v-show="test">
+            <headline-2>テスト</headline-2>
+        </div>
         
         <!--<waiting v-model="waiting" ref="waiting" />-->
         <!--<notice ref="notice" />-->
@@ -10,7 +13,8 @@
             <tag-list v-model="selectedTagIds" userId="1" />
         </modal>
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
-        <button class="button" v-on:click="showModal()">modal</button>
+        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <button class="button" v-on:click="showHeadline()">H2</button>
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
@@ -119,6 +123,9 @@
                 }else{
                     this.$refs.waiting.disableWaiting()
                 }
+            },
+            showHeadline:function(){
+                this.test = !this.test
             }
         },
     }

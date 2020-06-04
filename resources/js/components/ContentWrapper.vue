@@ -6,14 +6,8 @@
             <home v-show="content == 'home'" v-bind:user="user"/>
             <task-list v-show="content == 'task'" v-model="tasks" v-bind:userId="user.id"/>
             <project-list v-show="content == 'project'" v-bind:user_id="user.id" />
-            <setting v-show="content == 'settings'" v-bind:user_id="user.id" />
+            <setting v-if="content == 'settings'" v-bind:user_id="user.id" />
             <div class="spacer"></div>
-            
-            <!--<home v-if="content == 'home'" v-bind:user="user"/>-->
-            <!--<task-list v-else-if="content == 'task'" v-model="tasks" v-bind:userId="user.id"/>-->
-            <!--<project-list v-else-if="content == 'project'" v-bind:user_id="user.id" />-->
-            <!--<setting v-else-if="content == 'settings'" v-bind:user_id="user.id" />-->
-            <!--<div class="spacer"></div>-->
         </div>
     </div>
 </template>

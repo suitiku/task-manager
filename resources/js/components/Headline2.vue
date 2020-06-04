@@ -1,6 +1,8 @@
 <!--見出しコンポーネント-->
+<!--今後の改修ポイント-->
+<!--１．v-showの下に来た場合（mount時にdsiplay:none）にgetBoundingClientRectが取れないのでどうにかしたい-->
 <template>
-    <div class="wrapper">
+    <div class="wrapper" ref="wrapper">
         <h2 class="h2" ref="headline"><slot></slot></h2>
     </div>
 </template>
@@ -20,19 +22,19 @@
             
         },
         mounted:function(){
-            console.log(this)
             let vu = this
             this.setPositionLeft()
             
             window.addEventListener('resize',function(){
                 vu.setPositionLeft()
             },false)
+            
         },
         computed:{
         },
         methods: {
             setPositionLeft:function(){
-                if(!this.$refs.headline.style.left)return
+                if(!this.$refs.headline)return
                 this.$refs.headline.style.left = 0
                 let left = this.$refs.headline.getBoundingClientRect().left + 10
                 this.$refs.headline.style.left = -left + 'px'
@@ -43,10 +45,9 @@
 <style scoped>
     .h2 {
         position:relative;
-        height:1.5em;
+        height:1.6em;
         overflow:hidden;
-        word-wrap:normal;
-        padding:0.2em 0 0.2em 1em;
+        padding:0.2em 0 0.4em 1em;
         margin:1em 0;
         border-radius:0.1em;
         background:orange;
