@@ -51793,29 +51793,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context3.sent;
 
-
+                                console.log(result.data);
                                 this.$emit('input', result.data);
-                                // this.tasks = result.data
-
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('全タスクを取得しました');
-                                _context3.next = 15;
+                                _context3.next = 16;
                                 break;
 
-                            case 10:
-                                _context3.prev = 10;
+                            case 11:
+                                _context3.prev = 11;
                                 _context3.t0 = _context3['catch'](1);
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクの取得に失敗しました');
                                 console.log(_context3.t0);
 
-                            case 15:
+                            case 16:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[1, 10]]);
+                }, _callee3, this, [[1, 11]]);
             }));
 
             function fetchAllTasks() {
@@ -51841,29 +51839,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context4.sent;
 
-
+                                console.log(result.data);
                                 this.$emit('input', result.data);
-                                // this.tasks = result.data
-
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクを取得しました');
-                                _context4.next = 15;
+                                _context4.next = 16;
                                 break;
 
-                            case 10:
-                                _context4.prev = 10;
+                            case 11:
+                                _context4.prev = 11;
                                 _context4.t0 = _context4['catch'](1);
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.notice.showNotice('タスクの取得に失敗しました');
                                 console.log(_context4.t0);
 
-                            case 15:
+                            case 16:
                             case 'end':
                                 return _context4.stop();
                         }
                     }
-                }, _callee4, this, [[1, 10]]);
+                }, _callee4, this, [[1, 11]]);
             }));
 
             function fetchCurrentTasks() {
@@ -58313,6 +58309,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58374,22 +58376,50 @@ var render = function() {
       "div",
       { staticClass: "contents" },
       [
-        _vm.content == "home"
-          ? _c("home", { attrs: { user: _vm.user } })
-          : _vm.content == "task"
-          ? _c("task-list", {
-              attrs: { userId: _vm.user.id },
-              model: {
-                value: _vm.tasks,
-                callback: function($$v) {
-                  _vm.tasks = $$v
-                },
-                expression: "tasks"
-              }
-            })
-          : _vm.content == "project"
-          ? _c("project-list", { attrs: { user_id: _vm.user.id } })
-          : _vm.content == "settings"
+        _c("home", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.content == "home",
+              expression: "content == 'home'"
+            }
+          ],
+          attrs: { user: _vm.user }
+        }),
+        _vm._v(" "),
+        _c("task-list", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.content == "task",
+              expression: "content == 'task'"
+            }
+          ],
+          attrs: { userId: _vm.user.id },
+          model: {
+            value: _vm.tasks,
+            callback: function($$v) {
+              _vm.tasks = $$v
+            },
+            expression: "tasks"
+          }
+        }),
+        _vm._v(" "),
+        _c("project-list", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.content == "project",
+              expression: "content == 'project'"
+            }
+          ],
+          attrs: { user_id: _vm.user.id }
+        }),
+        _vm._v(" "),
+        _vm.content == "settings"
           ? _c("setting", { attrs: { user_id: _vm.user.id } })
           : _vm._e(),
         _vm._v(" "),
@@ -66751,6 +66781,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {},
     created: function created() {},
     mounted: function mounted() {
+        console.log(this);
         var vu = this;
         this.setPositionLeft();
 
@@ -66761,7 +66792,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     methods: {
         setPositionLeft: function setPositionLeft() {
-            if (!this.$refs.headline) return;
+            if (!this.$refs.headline.style.left) return;
             this.$refs.headline.style.left = 0;
             var left = this.$refs.headline.getBoundingClientRect().left + 10;
             this.$refs.headline.style.left = -left + 'px';

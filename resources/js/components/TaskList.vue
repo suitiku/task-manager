@@ -226,10 +226,7 @@
                         let result = await axios.get('/api/mytasks',{
                                                 params:{user_id:this.userId,}
                                             })
-                                            
                         this.$emit('input',result.data)
-                        // this.tasks = result.data
-                        
                         this.$refs.waiting.disableWaiting()
                         this.$refs.notice.showNotice('全タスクを取得しました')
                   }catch(error){
@@ -244,10 +241,7 @@
                         let result = await axios.get('/api/mytasks/current',{
                                                 params:{user_id:this.userId,}
                                             })
-                                            
                         this.$emit('input',result.data)
-                        // this.tasks = result.data
-                        
                         this.$refs.waiting.disableWaiting()
                         this.$refs.notice.showNotice('タスクを取得しました')
                   }catch(error){

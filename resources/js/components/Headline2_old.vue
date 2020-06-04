@@ -28,11 +28,20 @@
                 vu.setPositionLeft()
             },false)
         },
+        // updated:function(){
+        //     let vu = this
+        //     this.setPositionLeft()
+            
+        //     window.addEventListener('resize',function(){
+        //         vu.setPositionLeft()
+        //     },false)
+        // },
         computed:{
         },
         methods: {
             setPositionLeft:function(){
                 if(!this.$refs.headline.style.left)return
+                console.log('hoge')
                 this.$refs.headline.style.left = 0
                 let left = this.$refs.headline.getBoundingClientRect().left + 10
                 this.$refs.headline.style.left = -left + 'px'
