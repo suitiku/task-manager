@@ -274,10 +274,8 @@
                 
                 //開始と締め切りを現在時刻に合わせる
                 let currentDatetime = new Date()
-                this.$refs.newTaskStartDate.init(currentDatetime)
-                this.$refs.newTaskDeadLine.init(currentDatetime)
                 
-                // リセット
+                 // リセット
                 this.newTask = {
                     user_id:this.userId,
                     project_id:'',
@@ -286,7 +284,14 @@
                     priority:1,
                     difficulty:1,
                     is_template:false,
+                    start_date:currentDatetime,
+                    dead_line:currentDatetime
                 }
+                
+                //DatePickerを初期化
+                this.$refs.newTaskStartDate.init()
+                this.$refs.newTaskDeadLine.init()
+                
                 // タグリストをリセット
                 this.selectedTagIds = []
                 this.$refs.tagList.init()

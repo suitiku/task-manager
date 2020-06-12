@@ -51927,8 +51927,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             //開始と締め切りを現在時刻に合わせる
             var currentDatetime = new Date();
-            this.$refs.newTaskStartDate.init(currentDatetime);
-            this.$refs.newTaskDeadLine.init(currentDatetime);
 
             // リセット
             this.newTask = {
@@ -51938,9 +51936,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 overview: '',
                 priority: 1,
                 difficulty: 1,
-                is_template: false
-                // タグリストをリセット
-            };this.selectedTagIds = [];
+                is_template: false,
+                start_date: currentDatetime,
+                dead_line: currentDatetime
+
+                //DatePickerを初期化
+            };this.$refs.newTaskStartDate.init();
+            this.$refs.newTaskDeadLine.init();
+
+            // タグリストをリセット
+            this.selectedTagIds = [];
             this.$refs.tagList.init();
 
             //子アイテムをリセット
@@ -60497,7 +60502,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     props: {
         value: {
-            type: [String, Number],
+            type: [String, Number, Date],
             required: false
         }
     },
@@ -60513,7 +60518,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         selectedOption: function selectedOption() {
             if (this.selectedOption == 'current') {
                 this.setCurrentDatetime();
-                this.$refs.dateSlider.setSliderPosition();
             }
         }
     },
@@ -60522,26 +60526,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // this.init()
     },
     methods: {
-        init: function init(datetime) {
-            //dateSliderを初期化
-            this.$refs.dateSlider.init();
-
-            //引数を指定して強制的に時間指定する
-            if (datetime) {
-                this.$emit('input', datetime);
-                this.selectedOption = '';
-                var date = new Date(datetime);
-                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
-                return;
-            }
-
+        // init(datetime){
+        init: function init() {
             // 初期値設定
             if (this.value) {
                 this.selectedOption = '';
-                var _date = new Date(this.value);
-                this.japaneseDatetime = _date.getFullYear() + '年' + (_date.getMonth() + 1) + '月' + _date.getDate() + '日 ' + _date.getHours() + '時' + _date.getMinutes() + '分';
+                var date = new Date(this.value);
+                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
             } else {
                 this.setCurrentDatetime();
+            }
+
+            //dateSliderを初期化
+            if (this.$refs.dateSlider) {
+                this.$refs.dateSlider.init();
             }
         },
 
@@ -60605,60 +60603,38 @@ var render = function() {
       "div",
       { staticClass: "component-wrapper" },
       [
-        _c("date-input", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "dateInput",
-              expression: "selectedOption == 'dateInput'"
-            }
-          ],
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        }),
-        _vm._v(" "),
-        _c("dead-line", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "deadLine",
-              expression: "selectedOption == 'deadLine'"
-            }
-          ],
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        }),
-        _vm._v(" "),
-        _c("date-slider", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "dateSlider",
-              expression: "selectedOption == 'dateSlider'"
-            }
-          ],
-          ref: "dateSlider",
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        })
+        _vm.selectedOption == "dateInput"
+          ? _c("date-input", {
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm.selectedOption == "deadLine"
+          ? _c("dead-line", {
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm.selectedOption == "dateSlider"
+          ? _c("date-slider", {
+              ref: "dateSlider",
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm._e()
       ],
       1
     )

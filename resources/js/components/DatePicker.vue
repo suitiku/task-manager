@@ -9,9 +9,9 @@
             <tag-cloud v-model="selectedOption" v-bind:options="options" />
         </div>
         <div class="component-wrapper">
-            <date-input v-model="result" v-show="selectedOption == 'dateInput'" />
-            <dead-line v-model="result" v-show="selectedOption == 'deadLine'" />
-            <date-slider ref="dateSlider" v-model="result" v-show="selectedOption == 'dateSlider'" />
+            <date-input v-model="result" v-if="selectedOption == 'dateInput'" />
+            <dead-line v-model="result" v-else-if="selectedOption == 'deadLine'" />
+            <date-slider ref="dateSlider" v-model="result" v-else-if="selectedOption == 'dateSlider'" />
         </div>
         
     </div>
@@ -35,7 +35,7 @@
         },
         props: {
             value:{
-                type:[String,Number],
+                type:[String,Number,Date],
                 required:false
             }
         },
@@ -51,7 +51,6 @@
             selectedOption:function(){
                 if(this.selectedOption == 'current'){
                     this.setCurrentDatetime()
-                    this.$refs.dateSlider.setSliderPosition()
                 }
             },
         },
@@ -61,19 +60,8 @@
             // this.init()
         },
         methods: {
-            init(datetime){
-                //dateSliderを初期化
-                this.$refs.dateSlider.init()
-                
-                //引数を指定して強制的に時間指定する
-                if(datetime){
-                    this.$emit('input',datetime)
-                    this.selectedOption = ''
-                    let date = new Date(datetime)
-                    this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
-                    return
-                }
-                
+            // init(datetime){
+            init(){
                 // 初期値設定
                 if(this.value){
                     this.selectedOption = ''
@@ -81,6 +69,11 @@
                     this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分'
                 }else{
                     this.setCurrentDatetime()
+                }
+                
+                //dateSliderを初期化
+                if(this.$refs.dateSlider){
+                    this.$refs.dateSlider.init()
                 }
             },
             setCurrentDatetime:function(){
