@@ -60519,7 +60519,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {},
     mounted: function mounted() {
-        this.init();
+        // this.init()
     },
     methods: {
         init: function init(datetime) {
@@ -60840,6 +60840,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         init: function init() {
             this.data = '';
             this.time = '';
+            this.setSliderPosition();
         },
         setDateOptions: function setDateOptions() {
             var dateTimes = [];

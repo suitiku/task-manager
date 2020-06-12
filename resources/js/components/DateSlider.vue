@@ -43,6 +43,7 @@
             init:function(){
                 this.data = ''
                 this.time = ''
+                this.setSliderPosition()
             },
             setDateOptions:function(){
                 let dateTimes = []

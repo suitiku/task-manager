@@ -58,7 +58,7 @@
         created:function(){
         },
         mounted:function(){
-            this.init()
+            // this.init()
         },
         methods: {
             init(datetime){
