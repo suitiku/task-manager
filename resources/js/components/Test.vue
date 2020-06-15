@@ -1,20 +1,19 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div v-show="test">
-            <headline-2>テスト</headline-2>
-        </div>
+        <tag-list v-model="selectedTagIds" ref="tagList" userId="1" />
         
         <!--<waiting v-model="waiting" ref="waiting" />-->
         <!--<notice ref="notice" />-->
         <!--モーダル-->
         {{selectedTagIds}}
-        <modal ref="modal" v-model="modal">
-            <tag-list v-model="selectedTagIds" userId="1" />
-        </modal>
+        <!--<modal ref="modal" v-model="modal">-->
+        <!--    <tag-list v-model="selectedTagIds" userId="1" />-->
+        <!--</modal>-->
+        <button class="button" v-on:click="getTags()">タグを取得</button>
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
-        <button class="button" v-on:click="showHeadline()">H2</button>
+        <!--<button class="button" v-on:click="showHeadline()">H2</button>-->
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
@@ -33,7 +32,7 @@
                 task:{},
                 tags:[],
                 selectedTagId:0,
-                selectedTagIds:[1,3,5],
+                selectedTagIds:[],
                 filteredTasks:[],
                 selectedColor:'',
                 sortColumns:[
@@ -126,6 +125,9 @@
             },
             showHeadline:function(){
                 this.test = !this.test
+            },
+            getTags:function(){
+                this.$refs.tagList.init()
             }
         },
     }

@@ -56611,7 +56611,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56625,7 +56624,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             task: {},
             tags: [],
             selectedTagId: 0,
-            selectedTagIds: [1, 3, 5],
+            selectedTagIds: [],
             filteredTasks: [],
             selectedColor: '',
             sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
@@ -56856,6 +56855,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         showHeadline: function showHeadline() {
             this.test = !this.test;
+        },
+        getTags: function getTags() {
+            this.$refs.tagList.init();
         }
     }
 });
@@ -56872,49 +56874,19 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.test,
-              expression: "test"
-            }
-          ]
-        },
-        [_c("headline-2", [_vm._v("テスト")])],
-        1
-      ),
+      _c("tag-list", {
+        ref: "tagList",
+        attrs: { userId: "1" },
+        model: {
+          value: _vm.selectedTagIds,
+          callback: function($$v) {
+            _vm.selectedTagIds = $$v
+          },
+          expression: "selectedTagIds"
+        }
+      }),
       _vm._v(" "),
       _vm._v("\n    " + _vm._s(_vm.selectedTagIds) + "\n    "),
-      _c(
-        "modal",
-        {
-          ref: "modal",
-          model: {
-            value: _vm.modal,
-            callback: function($$v) {
-              _vm.modal = $$v
-            },
-            expression: "modal"
-          }
-        },
-        [
-          _c("tag-list", {
-            attrs: { userId: "1" },
-            model: {
-              value: _vm.selectedTagIds,
-              callback: function($$v) {
-                _vm.selectedTagIds = $$v
-              },
-              expression: "selectedTagIds"
-            }
-          })
-        ],
-        1
-      ),
       _vm._v(" "),
       _c(
         "button",
@@ -56922,11 +56894,11 @@ var render = function() {
           staticClass: "button",
           on: {
             click: function($event) {
-              return _vm.showHeadline()
+              return _vm.getTags()
             }
           }
         },
-        [_vm._v("H2")]
+        [_vm._v("タグを取得")]
       )
     ],
     1
@@ -59519,7 +59491,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-list-container[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.tag[data-v-4aeb7686] {\n    min-width:5em;\n    color:grey;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.4em;\n    margin:calc(0.2em + 1px) calc(0.3em + 1px);\n    background:white;\n    font-size:75%;\n    opacity:0.5;\n    cursor:pointer;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.tag span[data-v-4aeb7686] {\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\n.selected[data-v-4aeb7686] {\n    opacity:1.0;\n    border:2px solid grey;\n    margin:0.2em 0.3em;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.input-inline[data-v-4aeb7686] {\n    margin:0.5em 0.3em;\n    width:20em;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n\n", ""]);
+exports.push([module.i, "\n.tag-list-container[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.tag[data-v-4aeb7686] {\n    min-width:5em;\n    color:grey;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.4em;\n    margin:calc(0.2em + 1px) calc(0.3em + 1px);\n    background:white;\n    font-size:75%;\n    opacity:0.5;\n    cursor:pointer;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.tag span[data-v-4aeb7686] {\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\n.selected[data-v-4aeb7686] {\n    opacity:1.0;\n    border:2px solid grey;\n    margin:0.2em 0.3em;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.creation-tag-area[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-4aeb7686] {\n    margin:0.5em 0.3em;\n    width:15em;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -59555,12 +59527,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             tags: [],
-            selectedTags: this.value
+            selectedTags: this.value,
+            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
+            newTagColor: '#ef857d'
         };
     },
     props: {
@@ -59668,7 +59645,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 postObject = {
                                     user_id: this.userId,
                                     name: event.target.value,
-                                    color: '#ef857d'
+                                    color: this.newTagColor
                                 };
                                 _context3.prev = 2;
                                 _context3.next = 5;
@@ -59749,16 +59726,34 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _c("input", {
-        ref: "newTag",
-        staticClass: "input-inline",
-        attrs: { type: "text", placeholder: "タグを新規登録" },
-        on: {
-          keydown: function($event) {
-            return _vm.createTag()
-          }
-        }
-      })
+      _c(
+        "div",
+        { staticClass: "creation-tag-area" },
+        [
+          _c("input", {
+            ref: "newTag",
+            staticClass: "input-inline",
+            attrs: { type: "text", placeholder: "タグを新規登録" },
+            on: {
+              keydown: function($event) {
+                return _vm.createTag()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("color-picker", {
+            attrs: { colorOptions: _vm.colorOptions },
+            model: {
+              value: _vm.newTagColor,
+              callback: function($$v) {
+                _vm.newTagColor = $$v
+              },
+              expression: "newTagColor"
+            }
+          })
+        ],
+        1
+      )
     ],
     2
   )

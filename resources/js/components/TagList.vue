@@ -13,7 +13,10 @@
             </div>
         </div>
         <!--追加部分-->
-        <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
+        <div class="creation-tag-area">
+            <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
+            <color-picker v-model="newTagColor" v-bind:colorOptions="colorOptions" />
+        </div>
     </div>
 </template>
 
@@ -23,6 +26,8 @@
             return {
                 tags:[],
                 selectedTags:this.value,
+                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
+                newTagColor:'#ef857d'
             }  
         },
         props: {
@@ -75,7 +80,7 @@
                     let postObject = {
                         user_id:this.userId,
                         name:event.target.value,
-                        color:'#ef857d'
+                        color:this.newTagColor
                     }
                     try{
                         let result = await axios.post('/api/tags',postObject)
@@ -124,13 +129,16 @@
         margin:0.2em 0.3em;
         transition:opacity 0.3s;
     }
+    .creation-tag-area {
+        display:flex;
+        align-items:center;
+    }
     .input-inline {
         margin:0.5em 0.3em;
-        width:20em;
+        width:15em;
         display:block;
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
     }
-    
 </style>
