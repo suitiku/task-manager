@@ -151,7 +151,7 @@
                             <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]" class="item-label">
                                 <input type="checkbox" class="checkbox" v-on:change="checkItem(item)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
-                                <span class="childItem">{{item.name}}</span>
+                                <span>{{item.name}}</span>
                             </span>
                             <!--編集用表示-->
                             <span v-show="editItemMode[itemIndex]">
@@ -745,8 +745,6 @@
         align-items:center;
     }
     .item-completed {
-        /*display:flex;*/
-        /*align-items:center;*/
         text-decoration:line-through;
     }
     .item-label {

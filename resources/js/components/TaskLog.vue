@@ -8,24 +8,13 @@
             <toggle-switch v-model="openLog" />
         </div>
         <div ref="logs" class="logs">
-            <div v-for="(state,index) in task.states">
-                <!--タスク作成時-->
-                <div v-if="index == 0">
-                    <span>
-                        {{state.pivot.created_at}}
-                        <i class="fas fa-power-off" v-bind:style="setTaskStatus(state)"></i>
-                        <span>タスクが作成されました。</span>
-                    </span>
+            <div v-for="(state,index) in task.states" class="log">
+                <div class="state-name">
+                    {{state.pivot.created_at}}
+                    <i class="fas fa-power-off" v-bind:style="setTaskStatus(state)"></i>
+                    （{{state.name}}）
                 </div>
-                <!--作成時以降-->
-                <div v-else >
-                    <span>
-                        {{state.pivot.created_at}}
-                        <i class="fas fa-power-off" v-bind:style="setTaskStatus(state)"></i>
-                        <span>（{{state.name}}）</span>
-                        {{state.pivot.state_detail}}
-                    </span>
-                </div>
+                <div>{{state.pivot.state_detail}}</div>
             </div>
         </div>
     </div>
@@ -46,12 +35,7 @@
         },
         watch:{
             openLog:function(){
-                if(this.openLog){
-                    let lineNum = this.task.states.length * 2.0 + 2.0
-                    this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease'
-                }else{
-                    this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease'
-                }
+                this.$refs.logs.classList.toggle('logs-active')
             }
         },
         created:function(){
@@ -94,13 +78,26 @@
     }
     .logs {
         opacity:0;
-        height:0;
+        max-height:0em;
         margin:1em 0;
         overflow:hidden;
         padding:0 1em;
         border:1px solid grey;
+        transition:all 0.3s ease;
     }
-    .logs div {
-        margin:0.5em 0;
+    .logs-active {
+        max-height:500em;
+        opacity:1.0;
+        transition:all 0.3s ease;
+    }
+    .log {
+        margin:0.6em 0;
+        display:flex;
+        align-items:center;
+        border-bottom:1px dotted grey;
+    }
+    .state-name {
+        white-space: nowrap;
+        margin-left:1em;
     }
 </style>

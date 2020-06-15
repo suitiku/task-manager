@@ -52999,7 +52999,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    /*display:flex;*/\n    /*align-items:center;*/\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -53650,12 +53650,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return axios.post('/api/state_task', postLogData);
 
                             case 8:
-                                //見た目の更新
+                                //タスクの更新
                                 this.fetchTask();
-                                // el.target.parentElement.children[0].children[0].disabled = false
-                                // el.target.parentElement.children[0].children[0].checked = false
-                                // el.target.parentElement.classList.remove('item-completed')
-                                // this.fetchTask()
                                 _context11.next = 14;
                                 break;
 
@@ -54759,9 +54755,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _c("span", { staticClass: "childItem" }, [
-                                _vm._v(_vm._s(item.name))
-                              ])
+                              _c("span", [_vm._v(_vm._s(item.name))])
                             ]
                           ),
                           _vm._v(" "),
@@ -66407,7 +66401,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.log-button[data-v-5c649d64] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.log-button span[data-v-5c649d64] {\n    margin-right:1em;\n}\n.logs[data-v-5c649d64] {\n    opacity:0;\n    height:0;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n}\n.logs div[data-v-5c649d64] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.log-button[data-v-5c649d64] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.log-button span[data-v-5c649d64] {\n    margin-right:1em;\n}\n.logs[data-v-5c649d64] {\n    opacity:0;\n    max-height:0em;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n    -webkit-transition:all 0.3s ease;\n    transition:all 0.3s ease;\n}\n.logs-active[data-v-5c649d64] {\n    max-height:500em;\n    opacity:1.0;\n    -webkit-transition:all 0.3s ease;\n    transition:all 0.3s ease;\n}\n.log[data-v-5c649d64] {\n    margin:0.6em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border-bottom:1px dotted grey;\n}\n.state-name[data-v-5c649d64] {\n    white-space: nowrap;\n    margin-left:1em;\n}\n", ""]);
 
 // exports
 
@@ -66418,17 +66412,6 @@ exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-siz
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -66466,12 +66449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     watch: {
         openLog: function openLog() {
-            if (this.openLog) {
-                var lineNum = this.task.states.length * 2.0 + 2.0;
-                this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease';
-            } else {
-                this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease';
-            }
+            this.$refs.logs.classList.toggle('logs-active');
         }
     },
     created: function created() {},
@@ -66524,43 +66502,23 @@ var render = function() {
       "div",
       { ref: "logs", staticClass: "logs" },
       _vm._l(_vm.task.states, function(state, index) {
-        return _c("div", [
-          index == 0
-            ? _c("div", [
-                _c("span", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.created_at) +
-                      "\n                    "
-                  ),
-                  _c("i", {
-                    staticClass: "fas fa-power-off",
-                    style: _vm.setTaskStatus(state)
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("タスクが作成されました。")])
-                ])
-              ])
-            : _c("div", [
-                _c("span", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.created_at) +
-                      "\n                    "
-                  ),
-                  _c("i", {
-                    staticClass: "fas fa-power-off",
-                    style: _vm.setTaskStatus(state)
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("（" + _vm._s(state.name) + "）")]),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.state_detail) +
-                      "\n                "
-                  )
-                ])
-              ])
+        return _c("div", { staticClass: "log" }, [
+          _c("div", { staticClass: "state-name" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(state.pivot.created_at) +
+                "\n                "
+            ),
+            _c("i", {
+              staticClass: "fas fa-power-off",
+              style: _vm.setTaskStatus(state)
+            }),
+            _vm._v(
+              "\n                （" + _vm._s(state.name) + "）\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(state.pivot.state_detail))])
         ])
       }),
       0
