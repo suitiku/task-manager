@@ -7,6 +7,10 @@
         <notice ref="notice" />
         
         <!--表示部-->
+        <!--検索-->
+        <input v-model="searchKeyword" class="input-inline" ref="searchTag" type="text" placeholder="タグを検索" />
+        
+        <!--一覧表示-->
         <div class="tag-list-container" v-for="(tagColor,colorIndex) in tags">
             <div ref="tag" v-for="(tag,index) in tagColor" v-bind:class="setClass(colorIndex,index)" v-bind:style="{background:tag.color}" v-on:click="selectTag(tag.id)">
                 <span>{{tag.name}}</span>
@@ -27,8 +31,9 @@
                 tags:[],
                 selectedTags:this.value,
                 colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
-                newTagColor:'#ef857d'
-            }  
+                newTagColor:'#ef857d',
+                searchKeyword:'',
+            }
         },
         props: {
             userId:{
@@ -41,6 +46,13 @@
             }
         },
         watch:{
+            searchKeyword:function(newVal,oldVal){
+                if(newVal == ''){
+                    this.fetchTags()
+                }else{
+                    this.searchTags()
+                }
+            }
         },
         created:function(){
         },
@@ -96,6 +108,19 @@
                     
                 }
             },
+            searchTags:async function(){
+                try{
+                    let result = await axios.get('/api/tags/search',{
+                        params:{
+                            user_id:this.userId,
+                            keyword:this.searchKeyword
+                        }
+                    })
+                    this.tags = result.data
+                }catch(error){
+                    console.log(error)
+                }
+            }
             
         }
     }

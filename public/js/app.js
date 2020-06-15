@@ -59530,6 +59530,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -59537,7 +59541,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             tags: [],
             selectedTags: this.value,
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
-            newTagColor: '#ef857d'
+            newTagColor: '#ef857d',
+            searchKeyword: ''
         };
     },
     props: {
@@ -59550,7 +59555,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         }
     },
-    watch: {},
+    watch: {
+        searchKeyword: function searchKeyword(newVal, oldVal) {
+            if (newVal == '') {
+                this.fetchTags();
+            } else {
+                this.searchTags();
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
@@ -59682,6 +59695,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return createTag;
+        }(),
+        searchTags: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.prev = 0;
+                                _context4.next = 3;
+                                return axios.get('/api/tags/search', {
+                                    params: {
+                                        user_id: this.userId,
+                                        keyword: this.searchKeyword
+                                    }
+                                });
+
+                            case 3:
+                                result = _context4.sent;
+
+                                this.tags = result.data;
+                                _context4.next = 10;
+                                break;
+
+                            case 7:
+                                _context4.prev = 7;
+                                _context4.t0 = _context4['catch'](0);
+
+                                console.log(_context4.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[0, 7]]);
+            }));
+
+            function searchTags() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return searchTags;
         }()
 
     }
@@ -59700,6 +59756,29 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("notice", { ref: "notice" }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchKeyword,
+            expression: "searchKeyword"
+          }
+        ],
+        ref: "searchTag",
+        staticClass: "input-inline",
+        attrs: { type: "text", placeholder: "タグを検索" },
+        domProps: { value: _vm.searchKeyword },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchKeyword = $event.target.value
+          }
+        }
+      }),
       _vm._v(" "),
       _vm._l(_vm.tags, function(tagColor, colorIndex) {
         return _c(
