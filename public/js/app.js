@@ -54019,48 +54019,56 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context17.prev = _context17.next) {
                             case 0:
-                                if (this.selectedStatus.id) {
-                                    _context17.next = 4;
+                                if (!(event.type != 'click' && (event.keyCode != 13 || event.ctrlKey != true))) {
+                                    _context17.next = 2;
                                     break;
                                 }
 
                                 return _context17.abrupt('return');
 
-                            case 4:
+                            case 2:
+                                if (this.selectedStatus.id) {
+                                    _context17.next = 6;
+                                    break;
+                                }
+
+                                return _context17.abrupt('return');
+
+                            case 6:
                                 postObject = {
                                     task_id: this.task.id,
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context17.prev = 5;
-                                _context17.next = 8;
+                                _context17.prev = 7;
+                                _context17.next = 10;
                                 return axios.post('/api/state_task', postObject);
 
-                            case 8:
+                            case 10:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context17.next = 11;
+                                _context17.next = 13;
                                 return this.fetchTask();
 
-                            case 11:
+                            case 13:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context17.next = 20;
+                                _context17.next = 22;
                                 break;
 
-                            case 16:
-                                _context17.prev = 16;
-                                _context17.t0 = _context17['catch'](5);
+                            case 18:
+                                _context17.prev = 18;
+                                _context17.t0 = _context17['catch'](7);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
                                 console.log(_context17.t0);
 
-                            case 20:
+                            case 22:
                             case 'end':
                                 return _context17.stop();
                         }
                     }
-                }, _callee17, this, [[5, 16]]);
+                }, _callee17, this, [[7, 18]]);
             }));
 
             function changeStatus() {
@@ -54243,9 +54251,15 @@ var render = function() {
                         expression: "selectedStatus.state_detail"
                       }
                     ],
-                    attrs: { type: "text", placeholder: "コメント（null可）" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "コメント（null可）、CTRL+エンターで状態変更"
+                    },
                     domProps: { value: _vm.selectedStatus.state_detail },
                     on: {
+                      keydown: function($event) {
+                        return _vm.changeStatus()
+                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return

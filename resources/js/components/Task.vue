@@ -34,7 +34,7 @@
             <div class="edit-status-modal">
                 <p>状態を変更します</p>
                 <list-box v-model="selectedStatus.id" table="states" v-bind:columns="['name']" />
-                <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）">
+                <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）、CTRL+エンターで状態変更" v-on:keydown="changeStatus()">
                 <button class="btn btn-primary d-block mx-auto" v-on:click="changeStatus()">状態を変更</button>
             </div>
         </modal>
@@ -520,6 +520,8 @@
                 this.$refs.editStatusModal.openModal()
             },
             changeStatus:async function(){
+                if(event.type != 'click' && (event.keyCode != 13 || event.ctrlKey != true))return
+                
                 // Statusが選択されていない
                 if(!this.selectedStatus.id){
                     return 
