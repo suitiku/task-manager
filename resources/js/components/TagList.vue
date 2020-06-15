@@ -118,6 +118,9 @@
         cursor:pointer;
         transition:opacity 0.3s;
     }
+    .tag:hover {
+        opacity:0.8;
+    }
     .tag span {
         display:block;
         width:100%;
