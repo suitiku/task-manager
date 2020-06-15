@@ -53628,37 +53628,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return checkItem;
         }(),
         uncheckItem: function () {
-            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11(itemId) {
-                var el, modifyData;
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11(item) {
+                var el, modifyData, postLogData;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
                     while (1) {
                         switch (_context11.prev = _context11.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: false };
-                                _context11.prev = 2;
-                                _context11.next = 5;
-                                return axios.put('/api/items/' + itemId, modifyData);
+                                postLogData = {
+                                    task_id: this.task.id,
+                                    state_id: this.task.states[this.task.states.length - 1].id,
+                                    state_detail: '「' + item.name + '」を差し戻しました。'
+                                };
+                                _context11.prev = 3;
+                                _context11.next = 6;
+                                return axios.put('/api/items/' + item.id, modifyData);
 
-                            case 5:
-                                el.target.parentElement.children[0].children[0].disabled = false;
-                                el.target.parentElement.children[0].children[0].checked = false;
-                                el.target.parentElement.classList.remove('item-completed');
-                                _context11.next = 13;
+                            case 6:
+                                _context11.next = 8;
+                                return axios.post('/api/state_task', postLogData);
+
+                            case 8:
+                                //見た目の更新
+                                this.fetchTask();
+                                // el.target.parentElement.children[0].children[0].disabled = false
+                                // el.target.parentElement.children[0].children[0].checked = false
+                                // el.target.parentElement.classList.remove('item-completed')
+                                // this.fetchTask()
+                                _context11.next = 14;
                                 break;
 
-                            case 10:
-                                _context11.prev = 10;
-                                _context11.t0 = _context11['catch'](2);
+                            case 11:
+                                _context11.prev = 11;
+                                _context11.t0 = _context11['catch'](3);
 
                                 console.log(_context11.t0);
 
-                            case 13:
+                            case 14:
                             case 'end':
                                 return _context11.stop();
                         }
                     }
-                }, _callee11, this, [[2, 10]]);
+                }, _callee11, this, [[3, 11]]);
             }));
 
             function uncheckItem(_x10) {
@@ -54824,7 +54836,7 @@ var render = function() {
                             staticClass: "fas fa-redo task-icon",
                             on: {
                               click: function($event) {
-                                return _vm.uncheckItem(item.id)
+                                return _vm.uncheckItem(item)
                               }
                             }
                           })

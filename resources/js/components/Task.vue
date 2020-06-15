@@ -162,7 +162,7 @@
                             <!--削除ボタン-->
                             <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
                             <!--チェックの取り消し-->
-                            <i class="fas fa-redo task-icon" v-on:click="uncheckItem(item.id)"></i>
+                            <i class="fas fa-redo task-icon" v-on:click="uncheckItem(item)"></i>
                     </p>
                     <!--アイテムの追加処理セクション-->
                     <div class="editable">
@@ -361,14 +361,21 @@
                     console.log(error)
                 }
             },
-            uncheckItem:async function(itemId){
+            uncheckItem:async function(item){
                 let el = event
                 let modifyData = {is_checked:false}
+                let postLogData = {
+                    task_id:this.task.id,
+                    state_id:this.task.states[this.task.states.length -1].id,
+                    state_detail:'「' + item.name + '」を差し戻しました。'
+                }
                 try{
-                    await axios.put('/api/items/' + itemId,modifyData)
-                    el.target.parentElement.children[0].children[0].disabled = false
-                    el.target.parentElement.children[0].children[0].checked = false
-                    el.target.parentElement.classList.remove('item-completed')
+                    //アイテムチェックを取り消し
+                    await axios.put('/api/items/' + item.id,modifyData)
+                    //ログに書き込み
+                    await axios.post('/api/state_task',postLogData)
+                    //タスクの更新
+                    this.fetchTask()
                 }catch(error){
                     console.log(error)
                 }
