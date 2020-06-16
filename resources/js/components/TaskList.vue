@@ -81,9 +81,12 @@
             </div>
             <div class="filter-and-sort">
                 <!--フィルター-->
-                <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+                <div class="filter-area">
+                    <filter-array v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+                    <filter-tag v-model="tagFilteredTasks" v-bind:originalArray="filteredTasks" />
+                </div>
                 <!--ソート-->
-                <sort-box v-model="sortedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
+                <sort-box v-model="sortedTasks" v-bind:originalArray="tagFilteredTasks" v-bind:columns="sortColumns" />
                 <!--ステースタフィルター-->
                 <filter-status v-model="displayedTasks" v-bind:originalArray="sortedTasks" />
             </div>
@@ -117,6 +120,7 @@
                 allTasks:false,
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
+                tagFilteredTasks:[], //タグでフィルターしたタスク配列
                 sortedTasks:[], //ソートしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
                 newTask:{},
@@ -498,6 +502,13 @@
     }
     .filter-and-sort {
         margin:1em 2em;
+    }
+    .filter-area {
+        display:flex;
+        justify-content:flex-start;
+    }
+    .filter-area div {
+        margin:0.5em;
     }
     .task {
         width:100%;

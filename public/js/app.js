@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(277);
+module.exports = __webpack_require__(272);
 
 
 /***/ }),
@@ -14686,17 +14686,17 @@ Vue.component('text-spliter', __webpack_require__(202));
 Vue.component('filter-array', __webpack_require__(207));
 Vue.component('filter-tag', __webpack_require__(212));
 Vue.component('filter-status', __webpack_require__(217));
-Vue.component('filter-box', __webpack_require__(222));
-Vue.component('sort-array', __webpack_require__(227));
-Vue.component('sort-box', __webpack_require__(232));
-Vue.component('tool-tip', __webpack_require__(237));
-Vue.component('template-task-management', __webpack_require__(242));
-Vue.component('tag-management', __webpack_require__(247));
-Vue.component('color-picker', __webpack_require__(252));
-Vue.component('task-log', __webpack_require__(257));
-Vue.component('waiting', __webpack_require__(262));
-Vue.component('headline-2', __webpack_require__(267));
-Vue.component('congratulation', __webpack_require__(272));
+// Vue.component('filter-box', require('./components/FilterBox.vue'));
+Vue.component('sort-array', __webpack_require__(222));
+Vue.component('sort-box', __webpack_require__(227));
+Vue.component('tool-tip', __webpack_require__(232));
+Vue.component('template-task-management', __webpack_require__(237));
+Vue.component('tag-management', __webpack_require__(242));
+Vue.component('color-picker', __webpack_require__(247));
+Vue.component('task-log', __webpack_require__(252));
+Vue.component('waiting', __webpack_require__(257));
+Vue.component('headline-2', __webpack_require__(262));
+Vue.component('congratulation', __webpack_require__(267));
 
 var app = new Vue({
   el: '#app'
@@ -51487,7 +51487,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.task-list-container[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    position:relative;\n    width: 100%;\n    padding-bottom:3em;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em 0;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    margin:1em 2em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:orange;\n    padding:1em;\n}\n.fixed[data-v-0afd8bae] {\n    width:50%;\n    right:3em;\n    bottom:0;\n    opacity:0.7;\n    position:fixed;\n    z-index:5;\n}\n.fixed[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.all-task-switch[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.all-task-switch span[data-v-0afd8bae] {\n    margin-right:1em;\n}\n", ""]);
+exports.push([module.i, "\n.task-list-container[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    position:relative;\n    width: 100%;\n    padding-bottom:3em;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em 0;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    margin:1em 2em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:orange;\n    padding:1em;\n}\n.fixed[data-v-0afd8bae] {\n    width:50%;\n    right:3em;\n    bottom:0;\n    opacity:0.7;\n    position:fixed;\n    z-index:5;\n}\n.fixed[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.filter-area[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.filter-area div[data-v-0afd8bae] {\n    margin:0.5em;\n}\n.task[data-v-0afd8bae] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.all-task-switch[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.all-task-switch span[data-v-0afd8bae] {\n    margin-right:1em;\n}\n", ""]);
 
 // exports
 
@@ -51612,6 +51612,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -51623,6 +51626,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             allTasks: false,
             newTaskModal: false,
             filteredTasks: [], //フィルターしたタスク配列
+            tagFilteredTasks: [], //タグでフィルターしたタスク配列
             sortedTasks: [], //ソートしたタスク配列
             displayedTasks: [], //表示用タスクの配列：ステータスフィルター後
             newTask: {},
@@ -52768,23 +52772,41 @@ var render = function() {
             "div",
             { staticClass: "filter-and-sort" },
             [
-              _c("filter-box", {
-                attrs: {
-                  originalArray: _vm.tasks,
-                  filterOptions: _vm.filterOptions
-                },
-                model: {
-                  value: _vm.filteredTasks,
-                  callback: function($$v) {
-                    _vm.filteredTasks = $$v
-                  },
-                  expression: "filteredTasks"
-                }
-              }),
+              _c(
+                "div",
+                { staticClass: "filter-area" },
+                [
+                  _c("filter-array", {
+                    attrs: {
+                      originalArray: _vm.tasks,
+                      filterOptions: _vm.filterOptions
+                    },
+                    model: {
+                      value: _vm.filteredTasks,
+                      callback: function($$v) {
+                        _vm.filteredTasks = $$v
+                      },
+                      expression: "filteredTasks"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("filter-tag", {
+                    attrs: { originalArray: _vm.filteredTasks },
+                    model: {
+                      value: _vm.tagFilteredTasks,
+                      callback: function($$v) {
+                        _vm.tagFilteredTasks = $$v
+                      },
+                      expression: "tagFilteredTasks"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("sort-box", {
                 attrs: {
-                  originalArray: _vm.filteredTasks,
+                  originalArray: _vm.tagFilteredTasks,
                   columns: _vm.sortColumns
                 },
                 model: {
@@ -56624,13 +56646,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56649,7 +56664,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             selectedColor: '',
             sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }],
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
@@ -56680,18 +56695,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             result = _context.sent;
 
                             this.tasks = result.data;
-                            this.task = this.tasks[1];
 
                             //タグ全取得
-                            _context.next = 11;
+                            _context.next = 10;
                             return axios.get('/api/tags');
 
-                        case 11:
+                        case 10:
                             tagsResult = _context.sent;
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context.prev = 15;
+                            _context.prev = 14;
 
                             for (_iterator = tagsResult.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                 tag = _step.value;
@@ -56699,48 +56713,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.tags.push({ label: tag.name, value: tag.id });
                             }
 
-                            _context.next = 23;
+                            _context.next = 22;
                             break;
 
-                        case 19:
-                            _context.prev = 19;
-                            _context.t0 = _context['catch'](15);
+                        case 18:
+                            _context.prev = 18;
+                            _context.t0 = _context['catch'](14);
                             _didIteratorError = true;
                             _iteratorError = _context.t0;
 
-                        case 23:
+                        case 22:
+                            _context.prev = 22;
                             _context.prev = 23;
-                            _context.prev = 24;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 26:
-                            _context.prev = 26;
+                        case 25:
+                            _context.prev = 25;
 
                             if (!_didIteratorError) {
-                                _context.next = 29;
+                                _context.next = 28;
                                 break;
                             }
 
                             throw _iteratorError;
 
+                        case 28:
+                            return _context.finish(25);
+
                         case 29:
-                            return _context.finish(26);
+                            return _context.finish(22);
 
                         case 30:
-                            return _context.finish(23);
-
-                        case 31:
                             this.addFilters(); //状態を追加
 
-                        case 32:
+                        case 31:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[15, 19, 23, 31], [24,, 26, 30]]);
+            }, _callee, this, [[14, 18, 22, 30], [23,, 25, 29]]);
         }));
 
         function created() {
@@ -56894,32 +56908,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("tag-list", {
-        ref: "tagList",
-        attrs: { userId: "1" },
+      _c("filter-array", {
+        attrs: { originalArray: _vm.tasks, filterOptions: _vm.filterOptions },
         model: {
-          value: _vm.selectedTagIds,
+          value: _vm.filteredTasks,
           callback: function($$v) {
-            _vm.selectedTagIds = $$v
+            _vm.filteredTasks = $$v
           },
-          expression: "selectedTagIds"
+          expression: "filteredTasks"
         }
       }),
-      _vm._v(" "),
-      _vm._v("\n    " + _vm._s(_vm.selectedTagIds) + "\n    "),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          on: {
-            click: function($event) {
-              return _vm.getTags()
-            }
-          }
-        },
-        [_vm._v("タグを取得")]
-      )
+      _vm._v("\n    " + _vm._s(_vm.filteredTasks) + "\n    ")
     ],
     1
   )
@@ -62648,7 +62647,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n.filter-button[data-v-21375426] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-21375426] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-21375426] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-21375426]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n\n\n", ""]);
 
 // exports
 
@@ -62659,6 +62658,11 @@ exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-we
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -62728,7 +62732,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     props: {
-        targetArray: {
+        originalArray: {
             type: [Array, String]
         },
         filterOptions: {
@@ -62740,7 +62744,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filters: function filters() {
             this.filterArray();
         },
-        targetArray: function targetArray() {
+        originalArray: function originalArray() {
             this.filterArray();
         },
         columnName: function columnName() {
@@ -62752,7 +62756,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.filterArray();
     },
-    methods: {
+    methods: _defineProperty({
         showFilterModal: function showFilterModal() {
             this.$refs.filterModal.openModal();
         },
@@ -62786,7 +62790,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //フィルターが設定されていない場合は全部出力
             if (!this.filters || this.filters.length == 0) {
-                this.$emit('input', this.targetArray);
+                this.$emit('input', this.originalArray);
+                // ボタンをdeactiveに
+                this.$refs.filterButton.classList.remove('filter-button-active');
                 return;
             }
 
@@ -62796,27 +62802,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //オペレータによって分岐
                 switch (filter.comparisonOperator) {
                     case '<':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] < filter.comparisonValue;
                         }));
                         break;
                     case '<=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] <= filter.comparisonValue;
                         }));
                         break;
                     case '=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] == filter.comparisonValue;
                         }));
                         break;
                     case '>=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] >= filter.comparisonValue;
                         }));
                         break;
                     case '>':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] > filter.comparisonValue;
                         }));
                         break;
@@ -62861,158 +62867,165 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //フィルターの数が0/1の場合
             if (!this.filteredArray || this.filteredArray.length == 0) {
                 //フィルターが設定されていない場合は全部出力
-                this.$emit('input', this.targetArray);
+                this.$emit('input', this.originalArray);
+                // ボタンをdeactiveに
+                this.$refs.filterButton.classList.remove('filter-button-active');
             } else if (this.filteredArray.length == 1) {
                 this.$emit('input', this.filteredArray[0]);
-            }
-
-            for (var index in this.filteredArray) {
-                if (index == 0) {
-                    var _iteratorNormalCompletion2 = true;
-                    var _didIteratorError2 = false;
-                    var _iteratorError2 = undefined;
-
-                    try {
-                        for (var _iterator2 = this.filteredArray[0][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var el = _step2.value;
-
-                            resultIds.push(el.id);
-                            ids.push(el.id);
-                        }
-                    } catch (err) {
-                        _didIteratorError2 = true;
-                        _iteratorError2 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                _iterator2.return();
-                            }
-                        } finally {
-                            if (_didIteratorError2) {
-                                throw _iteratorError2;
-                            }
-                        }
-                    }
-                } else {
-                    if (!this.filteredArray[index].length) {
-                        continue;
-                    }
-                    if (this.filterOperators[index - 1] == '*') {
-                        // 積
-                        resultIds = [];
-                        var _iteratorNormalCompletion3 = true;
-                        var _didIteratorError3 = false;
-                        var _iteratorError3 = undefined;
+                // ボタンをactiveに
+                this.$refs.filterButton.classList.add('filter-button-active');
+            } else {
+                for (var index in this.filteredArray) {
+                    if (index == 0) {
+                        var _iteratorNormalCompletion2 = true;
+                        var _didIteratorError2 = false;
+                        var _iteratorError2 = undefined;
 
                         try {
-                            for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                var _el = _step3.value;
+                            for (var _iterator2 = this.filteredArray[0][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                var el = _step2.value;
 
-                                if (ids.indexOf(_el.id) != -1) {
-                                    resultIds.push(_el.id);
-                                }
+                                resultIds.push(el.id);
+                                ids.push(el.id);
                             }
                         } catch (err) {
-                            _didIteratorError3 = true;
-                            _iteratorError3 = err;
+                            _didIteratorError2 = true;
+                            _iteratorError2 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
                                 }
                             } finally {
-                                if (_didIteratorError3) {
-                                    throw _iteratorError3;
+                                if (_didIteratorError2) {
+                                    throw _iteratorError2;
                                 }
                             }
                         }
                     } else {
-                        // 和
-                        // 追加用id配列
-                        var _iteratorNormalCompletion4 = true;
-                        var _didIteratorError4 = false;
-                        var _iteratorError4 = undefined;
+                        if (!this.filteredArray[index].length) {
+                            continue;
+                        }
+                        if (this.filterOperators[index - 1] == '*') {
+                            // 積
+                            resultIds = [];
+                            var _iteratorNormalCompletion3 = true;
+                            var _didIteratorError3 = false;
+                            var _iteratorError3 = undefined;
 
-                        try {
-                            for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                var _el2 = _step4.value;
-
-                                ids.push(_el2.id);
-                            }
-                            // setオブジェクトを生成
-                        } catch (err) {
-                            _didIteratorError4 = true;
-                            _iteratorError4 = err;
-                        } finally {
                             try {
-                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                    _iterator4.return();
+                                for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                    var _el = _step3.value;
+
+                                    if (ids.indexOf(_el.id) != -1) {
+                                        resultIds.push(_el.id);
+                                    }
                                 }
+                            } catch (err) {
+                                _didIteratorError3 = true;
+                                _iteratorError3 = err;
                             } finally {
-                                if (_didIteratorError4) {
-                                    throw _iteratorError4;
+                                try {
+                                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                        _iterator3.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError3) {
+                                        throw _iteratorError3;
+                                    }
+                                }
+                            }
+                        } else {
+                            // 和
+                            // 追加用id配列
+                            var _iteratorNormalCompletion4 = true;
+                            var _didIteratorError4 = false;
+                            var _iteratorError4 = undefined;
+
+                            try {
+                                for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                    var _el2 = _step4.value;
+
+                                    ids.push(_el2.id);
+                                }
+                                // setオブジェクトを生成
+                            } catch (err) {
+                                _didIteratorError4 = true;
+                                _iteratorError4 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                        _iterator4.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError4) {
+                                        throw _iteratorError4;
+                                    }
+                                }
+                            }
+
+                            var setObj = new Set(ids);
+                            var _iteratorNormalCompletion5 = true;
+                            var _didIteratorError5 = false;
+                            var _iteratorError5 = undefined;
+
+                            try {
+                                for (var _iterator5 = setObj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                    var id = _step5.value;
+
+                                    resultIds.push(id);
+                                }
+                            } catch (err) {
+                                _didIteratorError5 = true;
+                                _iteratorError5 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                        _iterator5.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError5) {
+                                        throw _iteratorError5;
+                                    }
                                 }
                             }
                         }
-
-                        var setObj = new Set(ids);
-                        var _iteratorNormalCompletion5 = true;
-                        var _didIteratorError5 = false;
-                        var _iteratorError5 = undefined;
-
-                        try {
-                            for (var _iterator5 = setObj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                var id = _step5.value;
-
-                                resultIds.push(id);
-                            }
-                        } catch (err) {
-                            _didIteratorError5 = true;
-                            _iteratorError5 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                    _iterator5.return();
-                                }
-                            } finally {
-                                if (_didIteratorError5) {
-                                    throw _iteratorError5;
-                                }
-                            }
-                        }
-                    }
-                    ids = resultIds;
-                }
-            }
-            // idから配列を復元して出力
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
-
-            try {
-                for (var _iterator6 = this.targetArray[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var _el3 = _step6.value;
-
-                    if (resultIds.indexOf(_el3.id) != -1) {
-                        result.push(_el3);
+                        ids = resultIds;
                     }
                 }
-            } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
-            } finally {
+                // idから配列を復元して出力
+                var _iteratorNormalCompletion6 = true;
+                var _didIteratorError6 = false;
+                var _iteratorError6 = undefined;
+
                 try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
+                    for (var _iterator6 = this.originalArray[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                        var _el3 = _step6.value;
+
+                        if (resultIds.indexOf(_el3.id) != -1) {
+                            result.push(_el3);
+                        }
                     }
+                } catch (err) {
+                    _didIteratorError6 = true;
+                    _iteratorError6 = err;
                 } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
+                    try {
+                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                            _iterator6.return();
+                        }
+                    } finally {
+                        if (_didIteratorError6) {
+                            throw _iteratorError6;
+                        }
                     }
                 }
-            }
 
-            this.$emit('input', result);
+                this.$emit('input', result);
+
+                // ボタンをactiveに
+                this.$refs.filterButton.classList.add('filter-button-active');
+            }
         },
         //andとorを切り替え
         toggleOperator: function toggleOperator(index) {
@@ -63087,12 +63100,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.filteredArray.splice(this.deleteTargetIndex, 1);
             this.$refs.toolTipDelete.hideToolTip(); //ツールチップを消す
         },
-        showToolTip: function showToolTip() {
-            this.$refs.toolTip.showToolTip();
-        },
-        hideToolTip: function hideToolTip() {
-            this.$refs.toolTip.hideToolTip();
-        },
         setLabel: function setLabel(filter) {
             var selectedFilterOption = this.filterOptions.find(function (el) {
                 return el.value == filter.columnName;
@@ -63105,7 +63112,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return filter.columnLabel + ' ' + filter.comparisonOperator + ' ' + filter.comparisonValue;
             }
         }
-    }
+    }, 'showFilterModal', function showFilterModal() {
+        this.$refs.filterModal.openModal();
+    })
 });
 
 /***/ }),
@@ -63118,7 +63127,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
       _c("tool-tip", { ref: "toolTipDelete" }, [
         _c("div", { staticClass: "tool-tip-content" }, [
@@ -63137,10 +63145,6 @@ var render = function() {
             [_vm._v("OK")]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("tool-tip", { ref: "toolTip" }, [
-        _c("span", [_vm._v("フィルターを追加します")])
       ]),
       _vm._v(" "),
       _c(
@@ -63199,6 +63203,44 @@ var render = function() {
               }
             },
             [_vm._v("フィルターを追加")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            _vm._l(_vm.filters, function(filter, index) {
+              return _c("div", { staticClass: "filter-wrapper" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "filter-label",
+                    on: {
+                      click: function($event) {
+                        return _vm.showDeleteFilterToolTip(index)
+                      },
+                      mouseout: function($event) {
+                        return _vm.hideDeleteFilterToolTip()
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.setLabel(filter)))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: _vm.setOperatorClass(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOperator(index)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("+")])]
+                )
+              ])
+            }),
+            0
           )
         ],
         1
@@ -63206,57 +63248,20 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filter-container" },
-        [
-          _vm._l(_vm.filters, function(filter, index) {
-            return _c("div", { staticClass: "filter-wrapper" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "filter-label",
-                  on: {
-                    click: function($event) {
-                      return _vm.showDeleteFilterToolTip(index)
-                    },
-                    mouseout: function($event) {
-                      return _vm.hideDeleteFilterToolTip()
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.setLabel(filter)))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: _vm.setOperatorClass(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleOperator(index)
-                    }
-                  }
-                },
-                [_c("span", [_vm._v("+")])]
-              )
-            ])
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-plus-circle fa-lg add-button",
-            on: {
-              click: function($event) {
-                return _vm.showFilterModal()
-              },
-              mouseover: function($event) {
-                return _vm.showToolTip()
-              },
-              mouseout: function($event) {
-                return _vm.hideToolTip()
-              }
+        {
+          ref: "filterButton",
+          staticClass: "filter-button",
+          on: {
+            click: function($event) {
+              return _vm.showFilterModal()
             }
-          })
-        ],
-        2
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-filter" }),
+          _vm._v(" "),
+          _c("span", [_vm._v("フィルター")])
+        ]
       )
     ],
     1
@@ -63358,7 +63363,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0.2em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0.2em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n.filter-button[data-v-b08cfbb2] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-b08cfbb2] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-b08cfbb2] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-b08cfbb2]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -63398,6 +63403,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -63411,7 +63418,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         };
     },
     props: {
-        targetArray: {
+        originalArray: {
             type: [Array, String, Object]
         }
     },
@@ -63438,9 +63445,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return selectedTagIds;
         }(),
-        targetArray: function targetArray(newVal, oldVal) {
+        originalArray: function originalArray(newVal, oldVal) {
             if (oldVal.length == 0 && newVal.length != 0) {
-                this.userId = this.targetArray[0].user_id;
+                this.userId = this.originalArray[0].user_id;
                 this.fetchTags();
             }
             this.filterTag();
@@ -63558,7 +63565,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 //個別にフィルター
 
                                 _loop = function _loop(selectedTagId) {
-                                    _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                                    _this.filteredArray.push(_this.originalArray.filter(function (el) {
                                         return el && el.tags.some(function (tag) {
                                             return tag.id == selectedTagId;
                                         });
@@ -63612,12 +63619,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 21:
                                 if (!this.selectedTagIds || this.selectedTagIds.length == 0) {
                                     //フィルターが設定されていない場合は全部出力
-                                    this.$emit('input', this.targetArray);
+                                    this.$emit('input', this.originalArray);
+                                    // ボタンをdeactiveに
+                                    this.$refs.filterButton.classList.remove('filter-button-active');
                                 } else if (this.selectedTagIds.length == 1) {
                                     this.$emit('input', this.filteredArray[0]);
+                                    //ボタンをアクティブに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
                                 } else {
                                     this.$emit('input', []);
                                     this.operate();
+                                    //ボタンをアクティブに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
                                 }
 
                             case 22:
@@ -63768,7 +63781,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator7 = this.targetArray[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                for (var _iterator7 = this.originalArray[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
                     var _el3 = _step7.value;
 
                     if (resultIds.indexOf(_el3.id) != -1) {
@@ -63834,7 +63847,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
       _c(
         "modal",
@@ -63861,55 +63873,58 @@ var render = function() {
               },
               expression: "selectedTagIds"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
+              return _c("div", { staticClass: "filter-wrapper" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "filter-label",
+                    style: _vm.getTagColor(selectedTagId)
+                  },
+                  [_vm._v(_vm._s(_vm.getTagName(selectedTagId)))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: _vm.setOperatorClass(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOperator(index)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("+")])]
+                )
+              ])
+            }),
+            0
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filter-container" },
+        {
+          ref: "filterButton",
+          staticClass: "filter-button",
+          on: {
+            click: function($event) {
+              return _vm.showTagModal()
+            }
+          }
+        },
         [
-          _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
-            return _c("div", { staticClass: "filter-wrapper" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "filter-label",
-                  style: _vm.getTagColor(selectedTagId)
-                },
-                [_vm._v(_vm._s(_vm.getTagName(selectedTagId)))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: _vm.setOperatorClass(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleOperator(index)
-                    }
-                  }
-                },
-                [_c("span", [_vm._v("+")])]
-              )
-            ])
-          }),
+          _c("i", { staticClass: "fas fa-tag" }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary mx-auto d-block",
-              on: {
-                click: function($event) {
-                  return _vm.showTagModal()
-                }
-              }
-            },
-            [_vm._v("タグを選択")]
-          )
-        ],
-        2
+          _c("span", [_vm._v("タグ")])
+        ]
       )
     ],
     1
@@ -64447,249 +64462,6 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-085cbfd8"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/FilterBox.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-085cbfd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-085cbfd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(224);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("71fa4b05", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 224 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.filter-select[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    padding:1em;\n}\n.filter-select i[data-v-085cbfd8] {\n    font-size:120%;\n    margin-right:0.5em;\n    cursor:pointer;\n}\n.selected[data-v-085cbfd8] {\n    color:orange;\n}\n.disable[data-v-085cbfd8] {\n    display:none;\n}\n.visible[data-v-085cbfd8] {\n    display:block;\n}\n.visible div[data-v-085cbfd8] {\n    margin:0.5em 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 225 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            selectedFilters: [],
-            nomalFilteredArray: [],
-            tagFilteredArray: [],
-            filterClass: 'disable'
-        };
-    },
-    props: {
-        originalArray: {
-            type: [String, Array, Object]
-        },
-        filterOptions: {
-            type: [String, Array, Object]
-        }
-    },
-    watch: {
-        tagFilteredArray: function tagFilteredArray() {
-            this.$emit('input', this.tagFilteredArray);
-        },
-        selectedFilters: function selectedFilters() {
-            this.filterClass = this.selectedFilters.length != 0 ? 'visible' : 'disable';
-        }
-    },
-    created: function created() {},
-    mounted: function mounted() {},
-    methods: {
-        selectFilter: function selectFilter(filterName) {
-            var index = this.selectedFilters.indexOf(filterName);
-            if (index != -1) {
-                this.selectedFilters.splice(index, 1);
-            } else {
-                this.selectedFilters.push(filterName);
-            }
-            event.target.classList.toggle('selected');
-        }
-    }
-});
-
-/***/ }),
-/* 226 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "filter-select" }, [
-      _c("i", {
-        staticClass: "fas fa-filter",
-        on: {
-          click: function($event) {
-            return _vm.selectFilter("normal")
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-tags",
-        on: {
-          click: function($event) {
-            return _vm.selectFilter("tag")
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { class: _vm.filterClass },
-      [
-        _c("filter-array", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedFilters.indexOf("normal") != -1,
-              expression: "selectedFilters.indexOf('normal') != -1"
-            }
-          ],
-          attrs: {
-            targetArray: _vm.originalArray,
-            filterOptions: _vm.filterOptions
-          },
-          model: {
-            value: _vm.nomalFilteredArray,
-            callback: function($$v) {
-              _vm.nomalFilteredArray = $$v
-            },
-            expression: "nomalFilteredArray"
-          }
-        }),
-        _vm._v(" "),
-        _c("filter-tag", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedFilters.indexOf("tag") != -1,
-              expression: "selectedFilters.indexOf('tag') != -1"
-            }
-          ],
-          attrs: { targetArray: _vm.nomalFilteredArray },
-          model: {
-            value: _vm.tagFilteredArray,
-            callback: function($$v) {
-              _vm.tagFilteredArray = $$v
-            },
-            expression: "tagFilteredArray"
-          }
-        })
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-085cbfd8", module.exports)
-  }
-}
-
-/***/ }),
-/* 227 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(228)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(230)
-/* template */
-var __vue_template__ = __webpack_require__(231)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
 var __vue_scopeId__ = "data-v-6b803800"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
@@ -64723,13 +64495,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 228 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(229);
+var content = __webpack_require__(224);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64749,7 +64521,7 @@ if(false) {
 }
 
 /***/ }),
-/* 229 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -64763,7 +64535,7 @@ exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit
 
 
 /***/ }),
-/* 230 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64868,7 +64640,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 231 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64924,19 +64696,19 @@ if (false) {
 }
 
 /***/ }),
-/* 232 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(233)
+  __webpack_require__(228)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(235)
+var __vue_script__ = __webpack_require__(230)
 /* template */
-var __vue_template__ = __webpack_require__(236)
+var __vue_template__ = __webpack_require__(231)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64975,13 +64747,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 233 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(234);
+var content = __webpack_require__(229);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65001,7 +64773,7 @@ if(false) {
 }
 
 /***/ }),
-/* 234 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65015,7 +64787,7 @@ exports.push([module.i, "\n.sort-box-wrapper[data-v-261b7e32] {\n    display:-we
 
 
 /***/ }),
-/* 235 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65122,7 +64894,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 236 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65189,19 +64961,19 @@ if (false) {
 }
 
 /***/ }),
-/* 237 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(238)
+  __webpack_require__(233)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(240)
+var __vue_script__ = __webpack_require__(235)
 /* template */
-var __vue_template__ = __webpack_require__(241)
+var __vue_template__ = __webpack_require__(236)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65240,13 +65012,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 238 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(239);
+var content = __webpack_require__(234);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65266,7 +65038,7 @@ if(false) {
 }
 
 /***/ }),
-/* 239 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65280,7 +65052,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n    position:fixed
 
 
 /***/ }),
-/* 240 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65332,7 +65104,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 241 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65367,19 +65139,19 @@ if (false) {
 }
 
 /***/ }),
-/* 242 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(243)
+  __webpack_require__(238)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(245)
+var __vue_script__ = __webpack_require__(240)
 /* template */
-var __vue_template__ = __webpack_require__(246)
+var __vue_template__ = __webpack_require__(241)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65418,13 +65190,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 243 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(244);
+var content = __webpack_require__(239);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65444,7 +65216,7 @@ if(false) {
 }
 
 /***/ }),
-/* 244 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65458,7 +65230,7 @@ exports.push([module.i, "\n.task[data-v-38d759ed] {\n    width:100%;\n    displa
 
 
 /***/ }),
-/* 245 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65534,7 +65306,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 246 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65577,19 +65349,19 @@ if (false) {
 }
 
 /***/ }),
-/* 247 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(248)
+  __webpack_require__(243)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(250)
+var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(251)
+var __vue_template__ = __webpack_require__(246)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65628,13 +65400,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 248 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(249);
+var content = __webpack_require__(244);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65654,7 +65426,7 @@ if(false) {
 }
 
 /***/ }),
-/* 249 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65668,7 +65440,7 @@ exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit
 
 
 /***/ }),
-/* 250 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65953,7 +65725,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 251 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66134,19 +65906,19 @@ if (false) {
 }
 
 /***/ }),
-/* 252 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(253)
+  __webpack_require__(248)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(255)
+var __vue_script__ = __webpack_require__(250)
 /* template */
-var __vue_template__ = __webpack_require__(256)
+var __vue_template__ = __webpack_require__(251)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66185,13 +65957,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 253 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(254);
+var content = __webpack_require__(249);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66211,7 +65983,7 @@ if(false) {
 }
 
 /***/ }),
-/* 254 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66225,7 +65997,7 @@ exports.push([module.i, "\n.color-wrapper[data-v-023f0f94] {\n    display:-webki
 
 
 /***/ }),
-/* 255 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66292,7 +66064,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 256 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66330,19 +66102,19 @@ if (false) {
 }
 
 /***/ }),
-/* 257 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(258)
+  __webpack_require__(253)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(260)
+var __vue_script__ = __webpack_require__(255)
 /* template */
-var __vue_template__ = __webpack_require__(261)
+var __vue_template__ = __webpack_require__(256)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66381,13 +66153,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 258 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(259);
+var content = __webpack_require__(254);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66407,7 +66179,7 @@ if(false) {
 }
 
 /***/ }),
-/* 259 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66421,7 +66193,7 @@ exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-siz
 
 
 /***/ }),
-/* 260 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66485,7 +66257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 261 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66550,19 +66322,19 @@ if (false) {
 }
 
 /***/ }),
-/* 262 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(263)
+  __webpack_require__(258)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(265)
+var __vue_script__ = __webpack_require__(260)
 /* template */
-var __vue_template__ = __webpack_require__(266)
+var __vue_template__ = __webpack_require__(261)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66601,13 +66373,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 263 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(264);
+var content = __webpack_require__(259);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66627,7 +66399,7 @@ if(false) {
 }
 
 /***/ }),
-/* 264 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66641,7 +66413,7 @@ exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;
 
 
 /***/ }),
-/* 265 */
+/* 260 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66687,7 +66459,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 266 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66719,19 +66491,19 @@ if (false) {
 }
 
 /***/ }),
-/* 267 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(268)
+  __webpack_require__(263)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(270)
+var __vue_script__ = __webpack_require__(265)
 /* template */
-var __vue_template__ = __webpack_require__(271)
+var __vue_template__ = __webpack_require__(266)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66770,13 +66542,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 268 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(269);
+var content = __webpack_require__(264);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66796,7 +66568,7 @@ if(false) {
 }
 
 /***/ }),
-/* 269 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66810,7 +66582,7 @@ exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n 
 
 
 /***/ }),
-/* 270 */
+/* 265 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66852,7 +66624,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 271 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66874,19 +66646,19 @@ if (false) {
 }
 
 /***/ }),
-/* 272 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(273)
+  __webpack_require__(268)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(275)
+var __vue_script__ = __webpack_require__(270)
 /* template */
-var __vue_template__ = __webpack_require__(276)
+var __vue_template__ = __webpack_require__(271)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66925,13 +66697,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 273 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(274);
+var content = __webpack_require__(269);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66951,7 +66723,7 @@ if(false) {
 }
 
 /***/ }),
-/* 274 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66965,7 +66737,7 @@ exports.push([module.i, "\n.cong-root[data-v-7b158809] {\n    position:fixed;\n 
 
 
 /***/ }),
-/* 275 */
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -67015,7 +66787,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 276 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -67050,7 +66822,7 @@ if (false) {
 }
 
 /***/ }),
-/* 277 */
+/* 272 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

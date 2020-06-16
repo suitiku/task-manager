@@ -5,7 +5,7 @@
 <!--３．デザインの修正-->
 <!--４．オプション検索（状態とか）を分離する？-->
 <template>
-    <div>
+    <div class="container">
         <!--ツールチップ-->
         <tool-tip ref="toolTipDelete">
             <div class="tool-tip-content">
@@ -13,8 +13,7 @@
                 <button class="btn btn-sm btn-warning d-block" v-on:click="deleteFilter()">OK</button>
             </div>
         </tool-tip>
-        <!--<tool-tip ref="toolTip"><span>フィルターを追加します</span></tool-tip>-->
-        
+        <tool-tip ref="toolTip"><span>フィルターを追加します</span></tool-tip>
         <!--モーダル-->
         <modal ref="filterModal">
             <!--フィルターするカラム名-->
@@ -36,20 +35,18 @@
             />
             
             <button v-on:click="addFilter()">フィルターを追加</button>
-            
-            <!--メイン表示部-->
-            <div class="filter-container">
-                <div v-for="(filter,index) in filters" class="filter-wrapper">
-                    <span class="filter-label" v-on:click="showDeleteFilterToolTip(index)" v-on:mouseout="hideDeleteFilterToolTip()">{{setLabel(filter)}}</span>
-                    <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
-                </div>
-            </div>
         </modal>
-        
-        <!--表示部-->
-        <div ref="filterButton" class="filter-button" v-on:click="showFilterModal()">
-            <i class="fas fa-filter"></i>
-            <span>フィルター</span>
+        <!--メイン表示部-->
+        <div class="filter-container">
+            <div v-for="(filter,index) in filters" class="filter-wrapper">
+                <span class="filter-label" v-on:click="showDeleteFilterToolTip(index)" v-on:mouseout="hideDeleteFilterToolTip()">{{setLabel(filter)}}</span>
+                <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
+            </div>
+            <i class="fas fa-plus-circle fa-lg add-button" 
+                v-on:click="showFilterModal()" 
+                v-on:mouseover="showToolTip()"
+                v-on:mouseout="hideToolTip()">
+            </i>
         </div>
         
     </div>
@@ -131,8 +128,6 @@
                 //フィルターが設定されていない場合は全部出力
                 if(!this.filters || this.filters.length == 0){
                     this.$emit('input',this.originalArray)   
-                    // ボタンをdeactiveに
-                    this.$refs.filterButton.classList.remove('filter-button-active')
                     return
                 }
                 
@@ -180,55 +175,48 @@
                 //フィルターの数が0/1の場合
                 if(!this.filteredArray || this.filteredArray.length == 0){ //フィルターが設定されていない場合は全部出力
                     this.$emit('input',this.originalArray)
-                    // ボタンをdeactiveに
-                    this.$refs.filterButton.classList.remove('filter-button-active')
                 }else if(this.filteredArray.length == 1){
                     this.$emit('input',this.filteredArray[0])
-                    // ボタンをactiveに
-                    this.$refs.filterButton.classList.add('filter-button-active')
-                }else{
-                    for(let index in this.filteredArray){
-                        if(index == 0){
-                            for(let el of this.filteredArray[0]){
-                                resultIds.push(el.id)
-                                ids.push(el.id)
+                }
+                
+                for(let index in this.filteredArray){
+                    if(index == 0){
+                        for(let el of this.filteredArray[0]){
+                            resultIds.push(el.id)
+                            ids.push(el.id)
+                        }
+                    }else{
+                        if(!this.filteredArray[index].length){continue }
+                        if(this.filterOperators[index - 1] == '*'){
+                            // 積
+                            resultIds = []
+                            for(let el of this.filteredArray[index]){
+                                if(ids.indexOf(el.id) != -1){
+                                    resultIds.push(el.id)
+                                }
                             }
                         }else{
-                            if(!this.filteredArray[index].length){continue }
-                            if(this.filterOperators[index - 1] == '*'){
-                                // 積
-                                resultIds = []
-                                for(let el of this.filteredArray[index]){
-                                    if(ids.indexOf(el.id) != -1){
-                                        resultIds.push(el.id)
-                                    }
-                                }
-                            }else{
-                                // 和
-                                // 追加用id配列
-                                for(let el of this.filteredArray[index]){
-                                    ids.push(el.id)
-                                }
-                                // setオブジェクトを生成
-                                let setObj = new Set(ids)
-                                for(let id of setObj){
-                                    resultIds.push(id)
-                                }
+                            // 和
+                            // 追加用id配列
+                            for(let el of this.filteredArray[index]){
+                                ids.push(el.id)
                             }
-                            ids = resultIds
+                            // setオブジェクトを生成
+                            let setObj = new Set(ids)
+                            for(let id of setObj){
+                                resultIds.push(id)
+                            }
                         }
+                        ids = resultIds
                     }
-                    // idから配列を復元して出力
-                    for(let el of this.originalArray){
-                        if(resultIds.indexOf(el.id) != -1){
-                            result.push(el)
-                        }
-                    }
-                    this.$emit('input',result)
-                    
-                    // ボタンをactiveに
-                    this.$refs.filterButton.classList.add('filter-button-active')
                 }
+                // idから配列を復元して出力
+                for(let el of this.originalArray){
+                    if(resultIds.indexOf(el.id) != -1){
+                        result.push(el)
+                    }
+                }
+                this.$emit('input',result)
             },
             //andとorを切り替え
             toggleOperator:function(index){
@@ -291,6 +279,12 @@
                 this.filteredArray.splice(this.deleteTargetIndex,1)
                 this.$refs.toolTipDelete.hideToolTip() //ツールチップを消す
             },
+            showToolTip:function(){
+                this.$refs.toolTip.showToolTip()
+            },
+            hideToolTip:function(){
+                this.$refs.toolTip.hideToolTip()
+            },
             setLabel:function(filter){
                 let selectedFilterOption = this.filterOptions.find(el => {
                     return el.value == filter.columnName
@@ -302,9 +296,6 @@
                 }else{
                     return filter.columnLabel + ' ' + filter.comparisonOperator + ' ' + filter.comparisonValue
                 }
-            },
-            showFilterModal:function(){
-                this.$refs.filterModal.openModal()
             }
         }
     }
@@ -348,31 +339,6 @@
     }
     .add-button {
         cursor:pointer;
-    }
-    .filter-button {
-        color:white;
-        border:1px solid grey;
-        background:grey;
-        border-radius:0.2em;
-        padding:0.1em 0.6em;
-        display:inline-flex;
-        align-items:center;
-        opacity:0.8;
-        cursor:pointer;
-        transition:all 0.2s ease;
-    }
-    .filter-button span {
-        margin-left:0.2em;
-    }
-    .filter-button-active {
-        border:1px solid orange;
-        background:orange;
-        opacity:1.0;
-    }
-    .filter-button:hover {
-        border:1px solid orange;
-        background:orange;
-        opacity:0.9;
     }
     
     

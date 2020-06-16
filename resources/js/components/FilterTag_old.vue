@@ -1,24 +1,22 @@
 <!--タグフィルターを適用するコンポーネント-->
 <!--今後の改修ポイント-->
 <!--１．「タグなし」のフィルタリング-->
+<!--２．タグの表示を改善-->
 <template>
-    <div>
+    <div class="container">
         <!--モーダル-->
         <modal ref="tagModal" v-model="tagModal">
             <p>タグを選択して下さい。</p>
             <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="userId" />
-            <div class="filter-container">
-                <div v-for="(selectedTagId,index) in selectedTagIds" class="filter-wrapper">
-                    <span class="filter-label" v-bind:style="getTagColor(selectedTagId)">{{getTagName(selectedTagId)}}</span>
-                    <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
-                </div>
-            </div>
         </modal>
         
-        <!--表示部-->
-        <div ref="filterButton" class="filter-button" v-on:click="showTagModal()">
-            <i class="fas fa-tag"></i>
-            <span>タグ</span>
+        <!--処理部-->
+        <div class="filter-container">
+            <div v-for="(selectedTagId,index) in selectedTagIds" class="filter-wrapper">
+                <span class="filter-label" v-bind:style="getTagColor(selectedTagId)">{{getTagName(selectedTagId)}}</span>
+                <div v-bind:class="setOperatorClass(index)" v-on:click="toggleOperator(index)"><span>+</span></div>
+            </div>
+            <button class="btn btn-primary mx-auto d-block" v-on:click="showTagModal()">タグを選択</button>
         </div>
     </div>
 </template>
@@ -36,7 +34,7 @@
             }
         },
         props: {
-            originalArray:{
+            targetArray:{
                 type:[Array,String,Object]
             },
         },
@@ -44,9 +42,9 @@
             selectedTagIds:async function(newVal,oldVal){
                 this.filterTag()
             },
-            originalArray:function(newVal,oldVal){
+            targetArray:function(newVal,oldVal){
                 if(oldVal.length == 0 && newVal.length != 0){
-                    this.userId = this.originalArray[0].user_id
+                    this.userId = this.targetArray[0].user_id
                     this.fetchTags()
                 }
                 this.filterTag()
@@ -76,25 +74,19 @@
                 
                 //個別にフィルター
                 for(let selectedTagId of this.selectedTagIds){
-                    this.filteredArray.push(this.originalArray.filter(el => {
+                    this.filteredArray.push(this.targetArray.filter(el => {
                         return el && el.tags.some(tag => tag.id == selectedTagId)
                     }))
                 }
                 
                 //and/or演算
                 if(!this.selectedTagIds || this.selectedTagIds.length == 0){ //フィルターが設定されていない場合は全部出力
-                    this.$emit('input',this.originalArray)
-                    // ボタンをdeactiveに
-                    this.$refs.filterButton.classList.remove('filter-button-active')
+                    this.$emit('input',this.targetArray)   
                 }else if(this.selectedTagIds.length == 1){
                     this.$emit('input',this.filteredArray[0])
-                    //ボタンをアクティブに
-                    this.$refs.filterButton.classList.add('filter-button-active')
                 }else{
                     this.$emit('input',[])
                     this.operate()
-                    //ボタンをアクティブに
-                    this.$refs.filterButton.classList.add('filter-button-active')
                 }
             },
             // 配列をAnd/Or演算して出力
@@ -137,7 +129,7 @@
                     }
                 }
                 // idから配列を復元して出力
-                for(let el of this.originalArray){
+                for(let el of this.targetArray){
                     if(resultIds.indexOf(el.id) != -1){
                         result.push(el)
                     }
@@ -204,30 +196,5 @@
         padding:0.2em;
         border:1px solid gray;
         border-radius:0.2em;
-    }
-    .filter-button {
-        color:white;
-        border:1px solid grey;
-        background:grey;
-        border-radius:0.2em;
-        padding:0.1em 0.6em;
-        display:inline-flex;
-        align-items:center;
-        opacity:0.8;
-        cursor:pointer;
-        transition:all 0.2s ease;
-    }
-    .filter-button span {
-        margin-left:0.2em;
-    }
-    .filter-button-active {
-        border:1px solid orange;
-        background:orange;
-        opacity:1.0;
-    }
-    .filter-button:hover {
-        border:1px solid orange;
-        background:orange;
-        opacity:0.9;
     }
 </style>

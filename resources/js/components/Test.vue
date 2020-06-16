@@ -1,16 +1,9 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <tag-list v-model="selectedTagIds" ref="tagList" userId="1" />
-        
-        <!--<waiting v-model="waiting" ref="waiting" />-->
-        <!--<notice ref="notice" />-->
-        <!--モーダル-->
-        {{selectedTagIds}}
-        <!--<modal ref="modal" v-model="modal">-->
-        <!--    <tag-list v-model="selectedTagIds" userId="1" />-->
-        <!--</modal>-->
-        <button class="button" v-on:click="getTags()">タグを取得</button>
+        <filter-array v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+        {{filteredTasks}}
+        <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
         <!--<button class="button" v-on:click="showHeadline()">H2</button>-->
@@ -50,6 +43,7 @@
                     {label:'優先度',value:'priority',type:'star'},          
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
+                    {label:'締切',value:'dead_line',type:'date'},
                 ],
                 colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
                 userId:1,
@@ -70,7 +64,6 @@
             //タスク全取得
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
-            this.task = this.tasks[1]
             
             //タグ全取得
             let tagsResult = await axios.get('/api/tags')
