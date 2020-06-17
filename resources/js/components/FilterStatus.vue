@@ -3,8 +3,18 @@
 <!--今後の改修ポイント-->
 
 <template>
-    <div class="filter-container">
-        <tag-cloud v-bind:options="statuses" v-model="selectedStatusIds" multiple/>
+    <div>
+        <!--モーダル-->
+        <modal v-model="filterModal" ref="filterModal">
+            <div class="filter-container">
+                <tag-cloud v-bind:options="statuses" v-model="selectedStatusIds" multiple/>
+            </div>
+        </modal>
+        <!--ボタン部分-->
+        <div ref="filterButton" v-bind:class="buttonClass" v-on:click="showFilterModal()">
+            <i class="fas fa-power-off"></i>
+            <span>状態</span>
+        </div>
     </div>
 </template>
 
@@ -14,7 +24,9 @@
             return {
                 statuses:[],
                 filteredArray:[],
-                selectedStatusIds:[], //デフォルトは1の実行中
+                selectedStatusIds:[1], //デフォルトは1の実行中
+                filterModal:false,
+                // buttonClass:''
             }
         },
         props: {
@@ -25,6 +37,13 @@
         watch:{
             selectedStatusIds:async function(){
                 this.filterStatus()
+                if(this.selectedStatusIds.length > 0){
+                    // ボタンをactiveに
+                    this.$refs.filterButton.classList.add('filter-button-active')
+                }else{
+                    // ボタンをdeactiveに
+                    this.$refs.filterButton.classList.remove('filter-button-active')
+                }
             },
             originalArray:async function(){
                 this.filterStatus()
@@ -39,6 +58,17 @@
             for(let state of result.data){
                 this.statuses.push({label:state.name,value:state.id})
             }
+        },
+        computed:{
+            buttonClass:function(){
+                if(this.selectedStatusIds.length > 0){
+                    // ボタンをactiveに
+                    return 'filter-button filter-button-active'
+                }else{
+                    // ボタンをdeactiveに
+                    return 'filter-button'
+                }
+            }  
         },
         methods: {
             filterStatus:async function(){
@@ -62,12 +92,6 @@
                     this.operate()
                 }
             },
-            // filterStatus:async function(selectedStatusId){
-            //     //フィルター
-            //     this.filteredArray.push(this.originalArray.filter(el => {
-            //         return el.states[el.states.length - 1].id == selectedStatusId
-            //     }))
-            // },
             // 配列をAnd演算して出力
             operate:function(){
                 this.$emit('input',[])
@@ -103,6 +127,9 @@
                 }
                 this.$emit('input',result)
             },
+            showFilterModal:function(){
+                this.$refs.filterModal.openModal()
+            }
         }
     }
 </script>
@@ -112,5 +139,30 @@
         border:1px solid grey;
         border-radius:0.2em;
         padding:0.2em 0.8em;
+    }
+     .filter-button {
+        color:white;
+        border:1px solid grey;
+        background:grey;
+        border-radius:0.2em;
+        padding:0.1em 0.6em;
+        display:inline-flex;
+        align-items:center;
+        opacity:0.8;
+        cursor:pointer;
+        transition:all 0.2s ease;
+    }
+    .filter-button span {
+        margin-left:0.2em;
+    }
+    .filter-button-active {
+        border:1px solid orange;
+        background:orange;
+        opacity:1.0;
+    }
+    .filter-button:hover {
+        border:1px solid orange;
+        background:orange;
+        opacity:0.9;
     }
 </style>

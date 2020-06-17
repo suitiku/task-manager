@@ -374,6 +374,4 @@
         background:orange;
         opacity:0.9;
     }
-    
-    
 </style>

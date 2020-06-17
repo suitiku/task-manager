@@ -51627,8 +51627,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             newTaskModal: false,
             filteredTasks: [], //フィルターしたタスク配列
             tagFilteredTasks: [], //タグでフィルターしたタスク配列
-            sortedTasks: [], //ソートしたタスク配列
-            displayedTasks: [], //表示用タスクの配列：ステータスフィルター後
+            statusFilteredTasks: [], //ステータスフィルターしたタスク配列
+            displayedTasks: [], //表示用タスクの配列：ソート後
             newTask: {},
             selectedTagIds: [],
             projects: [],
@@ -52799,6 +52799,17 @@ var render = function() {
                       },
                       expression: "tagFilteredTasks"
                     }
+                  }),
+                  _vm._v(" "),
+                  _c("filter-status", {
+                    attrs: { originalArray: _vm.tagFilteredTasks },
+                    model: {
+                      value: _vm.statusFilteredTasks,
+                      callback: function($$v) {
+                        _vm.statusFilteredTasks = $$v
+                      },
+                      expression: "statusFilteredTasks"
+                    }
                   })
                 ],
                 1
@@ -52806,20 +52817,9 @@ var render = function() {
               _vm._v(" "),
               _c("sort-box", {
                 attrs: {
-                  originalArray: _vm.tagFilteredTasks,
+                  originalArray: _vm.statusFilteredTasks,
                   columns: _vm.sortColumns
                 },
-                model: {
-                  value: _vm.sortedTasks,
-                  callback: function($$v) {
-                    _vm.sortedTasks = $$v
-                  },
-                  expression: "sortedTasks"
-                }
-              }),
-              _vm._v(" "),
-              _c("filter-status", {
-                attrs: { originalArray: _vm.sortedTasks },
                 model: {
                   value: _vm.displayedTasks,
                   callback: function($$v) {
@@ -62647,7 +62647,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n.filter-button[data-v-21375426] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-21375426] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-21375426] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-21375426]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n.filter-button[data-v-21375426] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-21375426] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-21375426] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-21375426]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -64026,7 +64026,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-5f60ac75] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.2em 0.8em;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-5f60ac75] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.2em 0.8em;\n}\n.filter-button[data-v-5f60ac75] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-5f60ac75] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-5f60ac75] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-5f60ac75]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -64053,13 +64053,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             statuses: [],
             filteredArray: [],
-            selectedStatusIds: [] //デフォルトは1の実行中
+            selectedStatusIds: [1], //デフォルトは1の実行中
+            filterModal: false
+            // buttonClass:''
         };
     },
     props: {
@@ -64075,8 +64087,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 this.filterStatus();
+                                if (this.selectedStatusIds.length > 0) {
+                                    // ボタンをactiveに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
+                                } else {
+                                    // ボタンをdeactiveに
+                                    this.$refs.filterButton.classList.remove('filter-button-active');
+                                }
 
-                            case 1:
+                            case 2:
                             case 'end':
                                 return _context.stop();
                         }
@@ -64184,6 +64203,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         return mounted;
     }(),
+    computed: {
+        buttonClass: function buttonClass() {
+            if (this.selectedStatusIds.length > 0) {
+                // ボタンをactiveに
+                return 'filter-button filter-button-active';
+            } else {
+                // ボタンをdeactiveに
+                return 'filter-button';
+            }
+        }
+    },
     methods: {
         filterStatus: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
@@ -64275,12 +64305,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return filterStatus;
         }(),
-        // filterStatus:async function(selectedStatusId){
-        //     //フィルター
-        //     this.filteredArray.push(this.originalArray.filter(el => {
-        //         return el.states[el.states.length - 1].id == selectedStatusId
-        //     }))
-        // },
         // 配列をAnd演算して出力
         operate: function operate() {
             this.$emit('input', []);
@@ -64403,6 +64427,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             this.$emit('input', result);
+        },
+        showFilterModal: function showFilterModal() {
+            this.$refs.filterModal.openModal();
         }
     }
 });
@@ -64417,18 +64444,57 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "filter-container" },
     [
-      _c("tag-cloud", {
-        attrs: { options: _vm.statuses, multiple: "" },
-        model: {
-          value: _vm.selectedStatusIds,
-          callback: function($$v) {
-            _vm.selectedStatusIds = $$v
-          },
-          expression: "selectedStatusIds"
-        }
-      })
+      _c(
+        "modal",
+        {
+          ref: "filterModal",
+          model: {
+            value: _vm.filterModal,
+            callback: function($$v) {
+              _vm.filterModal = $$v
+            },
+            expression: "filterModal"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            [
+              _c("tag-cloud", {
+                attrs: { options: _vm.statuses, multiple: "" },
+                model: {
+                  value: _vm.selectedStatusIds,
+                  callback: function($$v) {
+                    _vm.selectedStatusIds = $$v
+                  },
+                  expression: "selectedStatusIds"
+                }
+              })
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          ref: "filterButton",
+          class: _vm.buttonClass,
+          on: {
+            click: function($event) {
+              return _vm.showFilterModal()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-power-off" }),
+          _vm._v(" "),
+          _c("span", [_vm._v("状態")])
+        ]
+      )
     ],
     1
   )
