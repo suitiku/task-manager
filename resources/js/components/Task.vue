@@ -266,6 +266,15 @@
             let vue = this
             this.$watch('checked',async function(newVal,oldVal){
                 if(oldVal == false && newVal == true && this.task.states[this.task.states.length -1].id != 2){
+                    //子アイテムが全部終わっていない場合の警告文
+                    if(this.task.items.find(el => el.is_checked == false)){
+                        let result = window.confirm('サブタスクが全てチェックされていませんが完了してよろしいですか？')
+                        if(!result){
+                            this.checked = false
+                            return
+                        }
+                    }
+                    
                     let postObject = {
                         task_id:vue.task.id,
                         state_id:2,

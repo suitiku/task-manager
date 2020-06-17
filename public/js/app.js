@@ -53431,49 +53431,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             this.$watch('checked', function () {
                                 var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(newVal, oldVal) {
-                                    var postObject;
+                                    var result, postObject;
                                     return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                                         while (1) {
                                             switch (_context6.prev = _context6.next) {
                                                 case 0:
                                                     if (!(oldVal == false && newVal == true && this.task.states[this.task.states.length - 1].id != 2)) {
-                                                        _context6.next = 17;
+                                                        _context6.next = 22;
                                                         break;
                                                     }
 
+                                                    if (!this.task.items.find(function (el) {
+                                                        return el.is_checked == false;
+                                                    })) {
+                                                        _context6.next = 6;
+                                                        break;
+                                                    }
+
+                                                    result = window.confirm('サブタスクが全てチェックされていませんが完了してよろしいですか？');
+
+                                                    if (result) {
+                                                        _context6.next = 6;
+                                                        break;
+                                                    }
+
+                                                    this.checked = false;
+                                                    return _context6.abrupt('return');
+
+                                                case 6:
                                                     postObject = {
                                                         task_id: vue.task.id,
                                                         state_id: 2
                                                     };
-                                                    _context6.prev = 2;
-                                                    _context6.next = 5;
+                                                    _context6.prev = 7;
+                                                    _context6.next = 10;
                                                     return axios.post('/api/state_task', postObject);
 
-                                                case 5:
+                                                case 10:
                                                     vue.$refs.cong.openCong('おつかれさまです！');
-                                                    _context6.next = 8;
+                                                    _context6.next = 13;
                                                     return vue.fetchTask();
 
-                                                case 8:
+                                                case 13:
                                                     vue.updateData();
                                                     vue.$emit('input', this.task);
-                                                    _context6.next = 17;
+                                                    _context6.next = 22;
                                                     break;
 
-                                                case 12:
-                                                    _context6.prev = 12;
-                                                    _context6.t0 = _context6['catch'](2);
+                                                case 17:
+                                                    _context6.prev = 17;
+                                                    _context6.t0 = _context6['catch'](7);
 
                                                     vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
                                                     this.checked = false;
                                                     console.log(_context6.t0);
 
-                                                case 17:
+                                                case 22:
                                                 case 'end':
                                                     return _context6.stop();
                                             }
                                         }
-                                    }, _callee6, this, [[2, 12]]);
+                                    }, _callee6, this, [[7, 17]]);
                                 }));
 
                                 return function (_x7, _x8) {
