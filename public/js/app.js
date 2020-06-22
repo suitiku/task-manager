@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(272);
+module.exports = __webpack_require__(277);
 
 
 /***/ }),
@@ -14697,6 +14697,7 @@ Vue.component('task-log', __webpack_require__(252));
 Vue.component('waiting', __webpack_require__(257));
 Vue.component('headline-2', __webpack_require__(262));
 Vue.component('congratulation', __webpack_require__(267));
+Vue.component('circle-meter', __webpack_require__(272));
 
 var app = new Vue({
   el: '#app'
@@ -56664,6 +56665,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -56686,7 +56689,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
-            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }]
+            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }],
+            numerator: 80
         };
     },
     created: function () {
@@ -56926,17 +56930,27 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("filter-array", {
-        attrs: { originalArray: _vm.tasks, filterOptions: _vm.filterOptions },
-        model: {
-          value: _vm.filteredTasks,
-          callback: function($$v) {
-            _vm.filteredTasks = $$v
-          },
-          expression: "filteredTasks"
-        }
+      _c("circle-meter", {
+        attrs: { denominator: "100", numerator: _vm.numerator }
       }),
-      _vm._v("\n    " + _vm._s(_vm.filteredTasks) + "\n    ")
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.numerator,
+            expression: "numerator"
+          }
+        ],
+        attrs: { type: "range", min: "1", max: "100", step: "1" },
+        domProps: { value: _vm.numerator },
+        on: {
+          __r: function($event) {
+            _vm.numerator = $event.target.value
+          }
+        }
+      })
     ],
     1
   )
@@ -66907,6 +66921,195 @@ if (false) {
 
 /***/ }),
 /* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(273)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(275)
+/* template */
+var __vue_template__ = __webpack_require__(276)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2116f204"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CircleMeter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2116f204", Component.options)
+  } else {
+    hotAPI.reload("data-v-2116f204", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(274);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("0562194b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2116f204\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CircleMeter.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2116f204\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CircleMeter.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.circle-background[data-v-2116f204] {\n    position:relative;\n    z-index:1;\n    width:1em;\n    height:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:whitesmoke;\n}\n.circle-right[data-v-2116f204] {\n    position:absolute;\n    display:block;\n    content:'';\n    z-index:2;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    background-color:orange;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n.circle-left[data-v-2116f204] {\n    position:relative;\n    display:block;\n    content:'';\n    z-index:3;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {
+        // 分母
+        denominator: {
+            type: [Number, String],
+            default: 1,
+            required: true
+        },
+        // 分子
+        numerator: {
+            type: [Number, String],
+            default: 0,
+            required: true
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    computed: {
+        circleRightAngle: function circleRightAngle() {
+            // if(this.denominator && this.numerator){
+            var degree = this.numerator / this.denominator * 360;
+            return { transform: 'rotate(' + degree + 'deg)'
+                // }else{
+                // return {transform:'rotate(0deg)'}
+                // }
+            };
+        },
+        circleLeftAngle: function circleLeftAngle() {
+            // if(this.denominator && this.numerator){
+            var degree = this.numerator / this.denominator * 360;
+            if (degree > 180) {
+                return { transform: 'rotate(180deg)', background: 'orange' };
+            } else {
+                return { transform: 'rotate(0deg)', background: 'whitesmoke' };
+            }
+            // }else{
+            //     return {transform:'rotate(0deg)',background:'whitesmoke'}
+            // }
+        }
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { ref: "circleBackground", staticClass: "circle-background" },
+    [
+      _c("div", {
+        ref: "circleLeft",
+        staticClass: "circle-left",
+        style: _vm.circleLeftAngle
+      }),
+      _vm._v(" "),
+      _c("div", {
+        ref: "circleRight",
+        staticClass: "circle-right",
+        style: _vm.circleRightAngle
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2116f204", module.exports)
+  }
+}
+
+/***/ }),
+/* 277 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

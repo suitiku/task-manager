@@ -1,8 +1,10 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <filter-array v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
-        {{filteredTasks}}
+        <circle-meter denominator="100" v-bind:numerator="numerator" />
+        
+        <input type="range" v-model="numerator" min="1" max="100" step="1">
+
         <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
@@ -53,7 +55,8 @@
                     {label:'バナナ',value:'banana'},
                     {label:'ドラゴンフルーツ',value:'dragon fruit'},
                     {label:'アンデスメロン',value:'andes melon'}
-                ]
+                ],
+                numerator:80
             }  
         },
         created:async function(){
