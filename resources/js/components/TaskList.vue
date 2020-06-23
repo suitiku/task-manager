@@ -26,9 +26,12 @@
                 <date-picker v-model="newTask.start_date" ref="newTaskStartDate" />
                 <span>締切</span>
                 <date-picker v-model="newTask.dead_line" ref="newTaskDeadLine" />
-                <span v-if="!projectId">プロジェクトを選択してください</span>
-                <list-box v-if="!projectId" v-model="newTask.project_id" ref="projectsListbox" table="projects" />
-                <input v-if="!projectId" class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                
+                <div v-if="!projectId">
+                    <span>プロジェクトを選択してください（選択しない場合は単体のタスクとなります）</span>
+                    <tag-cloud v-model="newTask.project_id" v-bind:options="projects" v-bind:defaultValue="defaultProjectId"/>
+                    <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                </div>
             </versatile-form>
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
@@ -116,7 +119,6 @@
         },
         data:function(){
             return {
-                // tasks:[],
                 allTasks:false,
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
@@ -170,7 +172,6 @@
         mounted() {
             if(this.projectId)return 
             
-            this.fetchProjects()
             this.fetchCurrentTasks()
             
         },
@@ -271,8 +272,14 @@
                 
                 //プロジェクトをセット
                 this.projects = result.data
+                
+                // デフォルトプロジェクトを削除
+                this.projects.shift()
             },
             showNewTaskModal:function(){
+                //プロジェクトを再取得
+                this.fetchProjects()
+                
                 //フォームのpostObjectを初期化
                 this.$refs.newTaskForm.init()
                 
@@ -282,7 +289,7 @@
                  // リセット
                 this.newTask = {
                     user_id:this.userId,
-                    project_id:'',
+                    project_id:this.defaultProjectId, //デフォルトプロジェクトIDにしておく
                     name:'',
                     overview:'',
                     priority:1,
@@ -435,9 +442,7 @@
                         await axios.post('/api/projects',postObject)
                         this.$refs.notice.showNotice('プロジェクトを追加しました')
                         //プロジェクトを再取得
-                        this.$refs.projectsListbox.init()
-                        // インプットをリセット
-                        this.$refs.newProject.value = ''
+                        this.fetchProjects()
                     }catch(error){
                         this.$refs.notice.showNotice('プロジェクトの追加に失敗しました')
                         console.log(error)

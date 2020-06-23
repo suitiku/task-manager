@@ -1,9 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <circle-meter denominator="100" v-bind:numerator="numerator" />
-        
-        <input type="range" v-model="numerator" min="1" max="100" step="1">
+        <tag-cloud v-model="test" v-bind:options="projects" defaultValue="100" />
+        {{test}}
 
         <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
@@ -19,9 +18,9 @@
         data:function(){
             return {
                 modal:false,
-                test:false,
+                test:'',
                 hoge:'',
-                project:{},
+                projects:[],
                 taskIds:[4,8,9],
                 tasks:[],
                 task:{},
@@ -61,8 +60,8 @@
         },
         created:async function(){
             //プロジェクト
-            let projectResult = await axios.get('/api/projects/1')
-            this.project = projectResult.data
+            let projectResult = await axios.get('/api/projects')
+            this.projects = projectResult.data
             
             //タスク全取得
             let result = await axios.get('/api/tasks')

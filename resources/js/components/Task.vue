@@ -45,11 +45,6 @@
             <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="task.user_id" />
         </modal>
         
-        <!--<modal ref="editTagModal" v-model="editTagModal">-->
-        <!--    <p>タグの付替えを行います</p>-->
-        <!--    <tag-list ref="tagList" v-bind:taskId="task.id" />-->
-        <!--</modal>-->
-        
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
             <versatile-form v-model="editedTask" table="tasks">
@@ -67,9 +62,11 @@
                 <date-picker ref="editTaskStartDate" v-model="editedTask.start_date" />
                 <span>締切</span>
                 <date-picker ref="editTaskDeadLine" v-model="editedTask.dead_line" />
-                <span>プロジェクトを選択してください</span>
-                <list-box v-model="editedTask.project_id" ref="projectsListbox" table="projects" />
-                <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                <div>    
+                    <span>プロジェクトを選択してください（選択しない場合は単体のタスクとなります）</span>
+                    <tag-cloud v-model="editedTask.project_id" v-bind:options="projects" v-bind:defaultValue="defaultProjectId" />
+                    <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                </div>
             </versatile-form>
         </modal>
         
@@ -184,6 +181,8 @@
         data:function(){
             return {
                 task:{},
+                projects:[],
+                defaultProjectId:'',
                 wrapper_class:'task-wrapper',
                 maskClass:'mask',
                 mask:false,
@@ -276,12 +275,10 @@
                             return
                         }
                     }
-                    
                     let postObject = {
                         task_id:vue.task.id,
                         state_id:2,
                     }
-                    
                     try{
                         await axios.post('/api/state_task',postObject)
                         vue.$refs.cong.openCong('おつかれさまです！')
@@ -326,6 +323,21 @@
                 let result = await axios.get('/api/tasks/' + this.task.id)
                 this.task = result.data
                 this.$emit('input',this.task)
+            },
+            fetchProjects:async function(){
+                // プロジェクトの取得
+                let result = await axios.get('/api/myprojects',{
+                                                params:{user_id:this.task.user_id,}
+                                            })
+                                            
+                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                this.defaultProjectId = result.data[0].id
+                
+                //プロジェクトをセット
+                this.projects = result.data
+                
+                // デフォルトプロジェクトを削除
+                this.projects.shift()
             },
             setTask:async function(){
                 //表示用データ作成
@@ -463,11 +475,13 @@
                 this.$refs.deleteModal.closeModal()
             },
             showEditTaskDialog:async function(){
+                //プロジェクトを取得
+                this.fetchProjects()
+                
                 //datepickerの初期値設定
                 this.$refs.editTaskStartDate.init(this.task.start_date)
                 this.$refs.editTaskDeadLine.init(this.task.dead_line)
-                //リストボックスの初期化
-                this.$refs.projectsListbox.init()
+                
                 // モーダル展開
                 this.$refs.editModal.openModal()
             },
@@ -578,7 +592,7 @@
                         await axios.post('/api/projects',postObject)
                         this.$refs.notice.showNotice('プロジェクトを追加しました')
                         //プロジェクトを再取得
-                        this.$refs.projectsListbox.init()
+                        this.fetchProjects()
                         // インプットをリセット
                         this.$refs.newProject.value = ''
                     }catch(error){

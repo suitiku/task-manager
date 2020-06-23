@@ -51616,6 +51616,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -51623,7 +51627,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            // tasks:[],
             allTasks: false,
             newTaskModal: false,
             filteredTasks: [], //フィルターしたタスク配列
@@ -51666,7 +51669,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {
         if (this.projectId) return;
 
-        this.fetchProjects();
         this.fetchCurrentTasks();
     },
     created: function created() {},
@@ -51912,7 +51914,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 //プロジェクトをセット
                                 this.projects = result.data;
 
-                            case 9:
+                                // デフォルトプロジェクトを削除
+                                this.projects.shift();
+
+                            case 10:
                             case 'end':
                                 return _context5.stop();
                         }
@@ -51927,6 +51932,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return fetchProjects;
         }(),
         showNewTaskModal: function showNewTaskModal() {
+            //プロジェクトを再取得
+            this.fetchProjects();
+
             //フォームのpostObjectを初期化
             this.$refs.newTaskForm.init();
 
@@ -51936,7 +51944,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             // リセット
             this.newTask = {
                 user_id: this.userId,
-                project_id: '',
+                project_id: this.defaultProjectId, //デフォルトプロジェクトIDにしておく
                 name: '',
                 overview: '',
                 priority: 1,
@@ -52291,7 +52299,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context11.prev = _context11.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context11.next = 16;
+                                    _context11.next = 15;
                                     break;
                                 }
 
@@ -52310,25 +52318,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 7:
                                 this.$refs.notice.showNotice('プロジェクトを追加しました');
                                 //プロジェクトを再取得
-                                this.$refs.projectsListbox.init();
-                                // インプットをリセット
-                                this.$refs.newProject.value = '';
-                                _context11.next = 16;
+                                this.fetchProjects();
+                                _context11.next = 15;
                                 break;
 
-                            case 12:
-                                _context11.prev = 12;
+                            case 11:
+                                _context11.prev = 11;
                                 _context11.t0 = _context11['catch'](4);
 
                                 this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
                                 console.log(_context11.t0);
 
-                            case 16:
+                            case 15:
                             case 'end':
                                 return _context11.stop();
                         }
                     }
-                }, _callee11, this, [[4, 12]]);
+                }, _callee11, this, [[4, 11]]);
             }));
 
             function createProject() {
@@ -52490,37 +52496,50 @@ var render = function() {
               }),
               _vm._v(" "),
               !_vm.projectId
-                ? _c("span", [_vm._v("プロジェクトを選択してください")])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.projectId
-                ? _c("list-box", {
-                    ref: "projectsListbox",
-                    attrs: { table: "projects" },
-                    model: {
-                      value: _vm.newTask.project_id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.newTask, "project_id", $$v)
-                      },
-                      expression: "newTask.project_id"
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.projectId
-                ? _c("input", {
-                    ref: "newProject",
-                    staticClass: "input-inline",
-                    attrs: {
-                      type: "text",
-                      placeholder: "プロジェクトを新規登録"
-                    },
-                    on: {
-                      keydown: function($event) {
-                        return _vm.createProject()
-                      }
-                    }
-                  })
+                ? _c(
+                    "div",
+                    [
+                      _vm._v(
+                        "\n                " +
+                          _vm._s(_vm.newTask.project_id) +
+                          "\n                "
+                      ),
+                      _c("span", [
+                        _vm._v(
+                          "プロジェクトを選択してください（選択しない場合は単体のタスクとなります）"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tag-cloud", {
+                        attrs: {
+                          options: _vm.projects,
+                          defaultValue: _vm.defaultProjectId
+                        },
+                        model: {
+                          value: _vm.newTask.project_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.newTask, "project_id", $$v)
+                          },
+                          expression: "newTask.project_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "newProject",
+                        staticClass: "input-inline",
+                        attrs: {
+                          type: "text",
+                          placeholder: "プロジェクトを新規登録"
+                        },
+                        on: {
+                          keydown: function($event) {
+                            return _vm.createProject()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 : _vm._e()
             ],
             1
@@ -53217,14 +53236,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             task: {},
+            projects: [],
+            defaultProjectId: '',
             wrapper_class: 'task-wrapper',
             maskClass: 'mask',
             mask: false,
@@ -53575,12 +53593,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTask;
         }(),
-        setTask: function () {
+        fetchProjects: function () {
             var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
-                var index;
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
                         switch (_context9.prev = _context9.next) {
+                            case 0:
+                                _context9.next = 2;
+                                return axios.get('/api/myprojects', {
+                                    params: { user_id: this.task.user_id }
+                                });
+
+                            case 2:
+                                result = _context9.sent;
+
+
+                                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                                this.defaultProjectId = result.data[0].id;
+
+                                //プロジェクトをセット
+                                this.projects = result.data;
+
+                                // デフォルトプロジェクトを削除
+                                this.projects.shift();
+
+                            case 6:
+                            case 'end':
+                                return _context9.stop();
+                        }
+                    }
+                }, _callee9, this);
+            }));
+
+            function fetchProjects() {
+                return _ref9.apply(this, arguments);
+            }
+
+            return fetchProjects;
+        }(),
+        setTask: function () {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
+                var index;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                    while (1) {
+                        switch (_context10.prev = _context10.next) {
                             case 0:
                                 //表示用データ作成
                                 this.task = JSON.parse(JSON.stringify(this.value));
@@ -53610,14 +53667,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context9.stop();
+                                return _context10.stop();
                         }
                     }
-                }, _callee9, this);
+                }, _callee10, this);
             }));
 
             function setTask() {
-                return _ref9.apply(this, arguments);
+                return _ref10.apply(this, arguments);
             }
 
             return setTask;
@@ -53634,55 +53691,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(item) {
-                var el, modifyData, postLogData;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
-                    while (1) {
-                        switch (_context10.prev = _context10.next) {
-                            case 0:
-                                el = event;
-                                modifyData = { is_checked: true };
-                                postLogData = {
-                                    task_id: this.task.id,
-                                    state_id: this.task.states[this.task.states.length - 1].id,
-                                    state_detail: '「' + item.name + '」を完了しました'
-                                };
-                                _context10.prev = 3;
-                                _context10.next = 6;
-                                return axios.put('/api/items/' + item.id, modifyData);
-
-                            case 6:
-                                _context10.next = 8;
-                                return axios.post('/api/state_task', postLogData);
-
-                            case 8:
-                                el.target.disabled = true;
-                                el.target.parentElement.parentElement.classList.add('item-completed');
-                                this.fetchTask();
-                                _context10.next = 16;
-                                break;
-
-                            case 13:
-                                _context10.prev = 13;
-                                _context10.t0 = _context10['catch'](3);
-
-                                console.log(_context10.t0);
-
-                            case 16:
-                            case 'end':
-                                return _context10.stop();
-                        }
-                    }
-                }, _callee10, this, [[3, 13]]);
-            }));
-
-            function checkItem(_x9) {
-                return _ref10.apply(this, arguments);
-            }
-
-            return checkItem;
-        }(),
-        uncheckItem: function () {
             var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11(item) {
                 var el, modifyData, postLogData;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
@@ -53690,11 +53698,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context11.prev = _context11.next) {
                             case 0:
                                 el = event;
-                                modifyData = { is_checked: false };
+                                modifyData = { is_checked: true };
                                 postLogData = {
                                     task_id: this.task.id,
                                     state_id: this.task.states[this.task.states.length - 1].id,
-                                    state_detail: '「' + item.name + '」を差し戻しました。'
+                                    state_detail: '「' + item.name + '」を完了しました'
                                 };
                                 _context11.prev = 3;
                                 _context11.next = 6;
@@ -53705,27 +53713,76 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return axios.post('/api/state_task', postLogData);
 
                             case 8:
-                                //タスクの更新
+                                el.target.disabled = true;
+                                el.target.parentElement.parentElement.classList.add('item-completed');
                                 this.fetchTask();
-                                _context11.next = 14;
+                                _context11.next = 16;
                                 break;
 
-                            case 11:
-                                _context11.prev = 11;
+                            case 13:
+                                _context11.prev = 13;
                                 _context11.t0 = _context11['catch'](3);
 
                                 console.log(_context11.t0);
 
-                            case 14:
+                            case 16:
                             case 'end':
                                 return _context11.stop();
                         }
                     }
-                }, _callee11, this, [[3, 11]]);
+                }, _callee11, this, [[3, 13]]);
+            }));
+
+            function checkItem(_x9) {
+                return _ref11.apply(this, arguments);
+            }
+
+            return checkItem;
+        }(),
+        uncheckItem: function () {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12(item) {
+                var el, modifyData, postLogData;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
+                    while (1) {
+                        switch (_context12.prev = _context12.next) {
+                            case 0:
+                                el = event;
+                                modifyData = { is_checked: false };
+                                postLogData = {
+                                    task_id: this.task.id,
+                                    state_id: this.task.states[this.task.states.length - 1].id,
+                                    state_detail: '「' + item.name + '」を差し戻しました。'
+                                };
+                                _context12.prev = 3;
+                                _context12.next = 6;
+                                return axios.put('/api/items/' + item.id, modifyData);
+
+                            case 6:
+                                _context12.next = 8;
+                                return axios.post('/api/state_task', postLogData);
+
+                            case 8:
+                                //タスクの更新
+                                this.fetchTask();
+                                _context12.next = 14;
+                                break;
+
+                            case 11:
+                                _context12.prev = 11;
+                                _context12.t0 = _context12['catch'](3);
+
+                                console.log(_context12.t0);
+
+                            case 14:
+                            case 'end':
+                                return _context12.stop();
+                        }
+                    }
+                }, _callee12, this, [[3, 11]]);
             }));
 
             function uncheckItem(_x10) {
-                return _ref11.apply(this, arguments);
+                return _ref12.apply(this, arguments);
             }
 
             return uncheckItem;
@@ -53779,18 +53836,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
                     while (1) {
-                        switch (_context12.prev = _context12.next) {
+                        switch (_context13.prev = _context13.next) {
                             case 0:
-                                _context12.prev = 0;
-                                _context12.next = 3;
+                                _context13.prev = 0;
+                                _context13.next = 3;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 3:
-                                result = _context12.sent;
+                                result = _context13.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
@@ -53798,59 +53855,61 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.$emit('input', '');
                                 this.task = {};
-                                _context12.next = 13;
+                                _context13.next = 13;
                                 break;
 
                             case 9:
-                                _context12.prev = 9;
-                                _context12.t0 = _context12['catch'](0);
+                                _context13.prev = 9;
+                                _context13.t0 = _context13['catch'](0);
 
                                 // 削除が失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('タスクの削除に失敗しました');
-                                console.log(_context12.t0);
+                                console.log(_context13.t0);
 
                             case 13:
                                 this.$refs.deleteModal.closeModal();
 
                             case 14:
                             case 'end':
-                                return _context12.stop();
+                                return _context13.stop();
                         }
                     }
-                }, _callee12, this, [[0, 9]]);
+                }, _callee13, this, [[0, 9]]);
             }));
 
             function deleteTask() {
-                return _ref12.apply(this, arguments);
+                return _ref13.apply(this, arguments);
             }
 
             return deleteTask;
         }(),
         showEditTaskDialog: function () {
-            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
-                        switch (_context13.prev = _context13.next) {
+                        switch (_context14.prev = _context14.next) {
                             case 0:
+                                //プロジェクトを取得
+                                this.fetchProjects();
+
                                 //datepickerの初期値設定
                                 this.$refs.editTaskStartDate.init(this.task.start_date);
                                 this.$refs.editTaskDeadLine.init(this.task.dead_line);
-                                //リストボックスの初期化
-                                this.$refs.projectsListbox.init();
+
                                 // モーダル展開
                                 this.$refs.editModal.openModal();
 
                             case 4:
                             case 'end':
-                                return _context13.stop();
+                                return _context14.stop();
                         }
                     }
-                }, _callee13, this);
+                }, _callee14, this);
             }));
 
             function showEditTaskDialog() {
-                return _ref13.apply(this, arguments);
+                return _ref14.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -53861,49 +53920,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteItemModal.openModal();
         },
         deleteItem: function () {
-            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
-                        switch (_context14.prev = _context14.next) {
+                        switch (_context15.prev = _context15.next) {
                             case 0:
-                                _context14.prev = 0;
-                                _context14.next = 3;
+                                _context15.prev = 0;
+                                _context15.next = 3;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
                             case 3:
-                                result = _context14.sent;
+                                result = _context15.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムを削除しました');
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.inactivateItem[this.targetItemId] = { display: 'none' };
-                                _context14.next = 12;
+                                _context15.next = 12;
                                 break;
 
                             case 8:
-                                _context14.prev = 8;
-                                _context14.t0 = _context14['catch'](0);
+                                _context15.prev = 8;
+                                _context15.t0 = _context15['catch'](0);
 
                                 // 削除失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムの削除に失敗しました');
-                                console.log(_context14.t0);
+                                console.log(_context15.t0);
 
                             case 12:
                                 this.$refs.deleteItemModal.closeModal();
 
                             case 13:
                             case 'end':
-                                return _context14.stop();
+                                return _context15.stop();
                         }
                     }
-                }, _callee14, this, [[0, 8]]);
+                }, _callee15, this, [[0, 8]]);
             }));
 
             function deleteItem() {
-                return _ref14.apply(this, arguments);
+                return _ref15.apply(this, arguments);
             }
 
             return deleteItem;
@@ -53917,64 +53976,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
         },
         updateItem: function () {
-            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15(itemIndex) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
+            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
                     while (1) {
-                        switch (_context15.prev = _context15.next) {
+                        switch (_context16.prev = _context16.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context15.next = 12;
+                                    _context16.next = 12;
                                     break;
                                 }
 
-                                _context15.prev = 1;
-                                _context15.next = 4;
+                                _context16.prev = 1;
+                                _context16.next = 4;
                                 return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
 
                             case 4:
                                 this.$refs.notice.showNotice('アイテムを変更しました');
                                 this.fetchTask();
-                                _context15.next = 12;
+                                _context16.next = 12;
                                 break;
 
                             case 8:
-                                _context15.prev = 8;
-                                _context15.t0 = _context15['catch'](1);
+                                _context16.prev = 8;
+                                _context16.t0 = _context16['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context15.t0);
+                                console.log(_context16.t0);
 
                             case 12:
                             case 'end':
-                                return _context15.stop();
+                                return _context16.stop();
                         }
                     }
-                }, _callee15, this, [[1, 8]]);
+                }, _callee16, this, [[1, 8]]);
             }));
 
             function updateItem(_x11) {
-                return _ref15.apply(this, arguments);
+                return _ref16.apply(this, arguments);
             }
 
             return updateItem;
         }(),
         addItems: function () {
-            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
+            var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17() {
                 var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem, result;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
                     while (1) {
-                        switch (_context16.prev = _context16.next) {
+                        switch (_context17.prev = _context17.next) {
                             case 0:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context16.prev = 3;
+                                _context17.prev = 3;
                                 _iterator = this.items[Symbol.iterator]();
 
                             case 5:
                                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                                    _context16.next = 23;
+                                    _context17.next = 23;
                                     break;
                                 }
 
@@ -53984,63 +54043,63 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: item,
                                     is_checked: false
                                 };
-                                _context16.prev = 8;
-                                _context16.next = 11;
+                                _context17.prev = 8;
+                                _context17.next = 11;
                                 return axios.post('/api/items', postItem);
 
                             case 11:
-                                result = _context16.sent;
+                                result = _context17.sent;
 
                                 this.task.items.push(result.data);
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
-                                _context16.next = 20;
+                                _context17.next = 20;
                                 break;
 
                             case 16:
-                                _context16.prev = 16;
-                                _context16.t0 = _context16['catch'](8);
+                                _context17.prev = 16;
+                                _context17.t0 = _context17['catch'](8);
 
                                 this.$refs.notice.showNotice('アイテムの追加に失敗しました');
-                                console.log(_context16.t0);
+                                console.log(_context17.t0);
 
                             case 20:
                                 _iteratorNormalCompletion = true;
-                                _context16.next = 5;
+                                _context17.next = 5;
                                 break;
 
                             case 23:
-                                _context16.next = 29;
+                                _context17.next = 29;
                                 break;
 
                             case 25:
-                                _context16.prev = 25;
-                                _context16.t1 = _context16['catch'](3);
+                                _context17.prev = 25;
+                                _context17.t1 = _context17['catch'](3);
                                 _didIteratorError = true;
-                                _iteratorError = _context16.t1;
+                                _iteratorError = _context17.t1;
 
                             case 29:
-                                _context16.prev = 29;
-                                _context16.prev = 30;
+                                _context17.prev = 29;
+                                _context17.prev = 30;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 32:
-                                _context16.prev = 32;
+                                _context17.prev = 32;
 
                                 if (!_didIteratorError) {
-                                    _context16.next = 35;
+                                    _context17.next = 35;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 35:
-                                return _context16.finish(32);
+                                return _context17.finish(32);
 
                             case 36:
-                                return _context16.finish(29);
+                                return _context17.finish(29);
 
                             case 37:
                                 this.$emit('input', this.task);
@@ -54048,14 +54107,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 39:
                             case 'end':
-                                return _context16.stop();
+                                return _context17.stop();
                         }
                     }
-                }, _callee16, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
+                }, _callee17, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
             }));
 
             function addItems() {
-                return _ref16.apply(this, arguments);
+                return _ref17.apply(this, arguments);
             }
 
             return addItems;
@@ -54068,26 +54127,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.editStatusModal.openModal();
         },
         changeStatus: function () {
-            var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17() {
+            var _ref18 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee18() {
                 var postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee18$(_context18) {
                     while (1) {
-                        switch (_context17.prev = _context17.next) {
+                        switch (_context18.prev = _context18.next) {
                             case 0:
                                 if (!(event.type != 'click' && (event.keyCode != 13 || event.ctrlKey != true))) {
-                                    _context17.next = 2;
+                                    _context18.next = 2;
                                     break;
                                 }
 
-                                return _context17.abrupt('return');
+                                return _context18.abrupt('return');
 
                             case 2:
                                 if (this.selectedStatus.id) {
-                                    _context17.next = 6;
+                                    _context18.next = 6;
                                     break;
                                 }
 
-                                return _context17.abrupt('return');
+                                return _context18.abrupt('return');
 
                             case 6:
                                 postObject = {
@@ -54095,52 +54154,52 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context17.prev = 7;
-                                _context17.next = 10;
+                                _context18.prev = 7;
+                                _context18.next = 10;
                                 return axios.post('/api/state_task', postObject);
 
                             case 10:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context17.next = 13;
+                                _context18.next = 13;
                                 return this.fetchTask();
 
                             case 13:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context17.next = 22;
+                                _context18.next = 22;
                                 break;
 
                             case 18:
-                                _context17.prev = 18;
-                                _context17.t0 = _context17['catch'](7);
+                                _context18.prev = 18;
+                                _context18.t0 = _context18['catch'](7);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
-                                console.log(_context17.t0);
+                                console.log(_context18.t0);
 
                             case 22:
                             case 'end':
-                                return _context17.stop();
+                                return _context18.stop();
                         }
                     }
-                }, _callee17, this, [[7, 18]]);
+                }, _callee18, this, [[7, 18]]);
             }));
 
             function changeStatus() {
-                return _ref17.apply(this, arguments);
+                return _ref18.apply(this, arguments);
             }
 
             return changeStatus;
         }(),
         createProject: function () {
-            var _ref18 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee18() {
+            var _ref19 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee19() {
                 var currentDatetime, deadLine, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee18$(_context18) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee19$(_context19) {
                     while (1) {
-                        switch (_context18.prev = _context18.next) {
+                        switch (_context19.prev = _context19.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context18.next = 16;
+                                    _context19.next = 16;
                                     break;
                                 }
 
@@ -54152,36 +54211,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: event.target.value,
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
                                 };
-                                _context18.prev = 4;
-                                _context18.next = 7;
+                                _context19.prev = 4;
+                                _context19.next = 7;
                                 return axios.post('/api/projects', postObject);
 
                             case 7:
                                 this.$refs.notice.showNotice('プロジェクトを追加しました');
                                 //プロジェクトを再取得
-                                this.$refs.projectsListbox.init();
+                                this.fetchProjects();
                                 // インプットをリセット
                                 this.$refs.newProject.value = '';
-                                _context18.next = 16;
+                                _context19.next = 16;
                                 break;
 
                             case 12:
-                                _context18.prev = 12;
-                                _context18.t0 = _context18['catch'](4);
+                                _context19.prev = 12;
+                                _context19.t0 = _context19['catch'](4);
 
                                 this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
-                                console.log(_context18.t0);
+                                console.log(_context19.t0);
 
                             case 16:
                             case 'end':
-                                return _context18.stop();
+                                return _context19.stop();
                         }
                     }
-                }, _callee18, this, [[4, 12]]);
+                }, _callee19, this, [[4, 12]]);
             }));
 
             function createProject() {
-                return _ref18.apply(this, arguments);
+                return _ref19.apply(this, arguments);
             }
 
             return createProject;
@@ -54512,33 +54571,45 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("プロジェクトを選択してください")]),
-                  _vm._v(" "),
-                  _c("list-box", {
-                    ref: "projectsListbox",
-                    attrs: { table: "projects" },
-                    model: {
-                      value: _vm.editedTask.project_id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.editedTask, "project_id", $$v)
-                      },
-                      expression: "editedTask.project_id"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    ref: "newProject",
-                    staticClass: "input-inline",
-                    attrs: {
-                      type: "text",
-                      placeholder: "プロジェクトを新規登録"
-                    },
-                    on: {
-                      keydown: function($event) {
-                        return _vm.createProject()
-                      }
-                    }
-                  })
+                  _c(
+                    "div",
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "プロジェクトを選択してください（選択しない場合は単体のタスクとなります）"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tag-cloud", {
+                        attrs: {
+                          options: _vm.projects,
+                          defaultValue: _vm.defaultProjectId
+                        },
+                        model: {
+                          value: _vm.editedTask.project_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedTask, "project_id", $$v)
+                          },
+                          expression: "editedTask.project_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "newProject",
+                        staticClass: "input-inline",
+                        attrs: {
+                          type: "text",
+                          placeholder: "プロジェクトを新規登録"
+                        },
+                        on: {
+                          keydown: function($event) {
+                            return _vm.createProject()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -56687,15 +56758,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
-            test: false,
+            test: '',
             hoge: '',
-            project: {},
+            projects: [],
             taskIds: [4, 8, 9],
             tasks: [],
             task: {},
@@ -56723,12 +56793,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return axios.get('/api/projects/1');
+                            return axios.get('/api/projects');
 
                         case 2:
                             projectResult = _context.sent;
 
-                            this.project = projectResult.data;
+                            this.projects = projectResult.data;
 
                             //タスク全取得
                             _context.next = 6;
@@ -56951,27 +57021,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("circle-meter", {
-        attrs: { denominator: "100", numerator: _vm.numerator }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.numerator,
-            expression: "numerator"
-          }
-        ],
-        attrs: { type: "range", min: "1", max: "100", step: "1" },
-        domProps: { value: _vm.numerator },
-        on: {
-          __r: function($event) {
-            _vm.numerator = $event.target.value
-          }
+      _c("tag-cloud", {
+        attrs: { options: _vm.projects, defaultValue: "100" },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
         }
-      })
+      }),
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n\n    ")
     ],
     1
   )
@@ -58869,10 +58929,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            labelArray: ['label', 'name'],
+            valueArray: ['value', 'id'],
+            defaultMode: false,
             result: this.value
         };
     },
@@ -58889,20 +58953,101 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Boolean,
             default: false,
             required: false
+        },
+        defaultValue: {
+            type: [Number, String, Array],
+            required: false
         }
     },
-    watch: {},
+    watch: {
+        value: function value(newVal, oldVal) {
+            if (newVal == '' && this.defaultValue) {
+                this.$emit('input', this.defaultValue);
+                this.defaultMode = true;
+            }
+        },
+        defaultValue: function defaultValue() {
+            if (this.defaultValue && !this.value) {
+                this.$emit('input', this.defaultValue);
+                this.defaultMode = true;
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        selectOption: function selectOption(value) {
+        getLabel: function getLabel(option) {
+            if (!option) return;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.labelArray[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+                    if (option[key]) {
+                        return option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        },
+        selectOption: function selectOption(option) {
+            if (!option) return;
+
+            var resultValue = void 0;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.valueArray[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var key = _step2.value;
+
+                    if (option[key]) {
+                        resultValue = option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
             if (this.multiple) {
-                this.result = this.value;
+                if (!this.value || this.defaultMode) {
+                    this.result = [];
+                    this.defaultMode = false;
+                } else {
+                    this.result = this.value;
+                }
                 if (event.target.className == 'option selected') {
-                    var index = this.result.indexOf(value);
+                    var index = this.result.indexOf(resultValue);
                     this.result.splice(index, 1);
                     event.target.className = 'option';
-                    this.$emit('input', this.result);
                     return;
                 }
             } else {
@@ -58911,11 +59056,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.$emit('input', '');
                     return;
                 }
-                this.$emit('input', value);
+                this.$emit('input', resultValue);
                 return;
             }
 
-            this.result.push(value);
+            this.result.push(resultValue);
             this.$emit('input', this.result);
             event.target.className = 'option selected';
         },
@@ -58928,14 +59073,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         setClass: function setClass(option) {
+            if (!option) return;
+
+            var result = void 0;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this.valueArray[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var key = _step3.value;
+
+                    if (option[key]) {
+                        result = option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
             if (this.multiple) {
-                if (this.value.indexOf(option.value) != -1) {
+                if (this.value.indexOf(result) != -1) {
                     return 'option selected';
                 } else {
                     return 'option';
                 }
             } else {
-                if (this.value == option.value) {
+                if (this.value == result) {
                     return 'option selected';
                 } else {
                     return 'option';
@@ -58964,11 +59139,11 @@ var render = function() {
             class: _vm.setClass(option),
             on: {
               click: function($event) {
-                return _vm.selectOption(option.value)
+                return _vm.selectOption(option)
               }
             }
           },
-          [_vm._v(_vm._s(option.label))]
+          [_vm._v(_vm._s(_vm.getLabel(option)))]
         )
       }),
       0
