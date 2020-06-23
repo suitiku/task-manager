@@ -2,7 +2,8 @@
 <!--今後の改修ポイント-->
 <!--１．大きさを可変にする-->
 <!--２．色の変更-->
-<!--３．アニメーションの実装-->
+<!--３．アニメーションの実装（入力されたらnumeratorの数字を遅延して増減させる形で実装する）-->
+<!--４．真ん中に線が入るやつ修正-->
 <template>
     <div ref="circleBackground" class="circle-background">
         <div ref="circleLeft" v-bind:style="circleLeftAngle" class="circle-left"></div>
@@ -64,6 +65,7 @@
         height:1em;
         display:flex;
         background:whitesmoke;
+        border-radius:50%;
     }
     .circle-right {
         position:absolute;

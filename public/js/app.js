@@ -53022,7 +53022,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\ni[data-v-e9a53c20] {\n    margin:0 0.5em;\n}\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    /*margin-left:0.5em;*/\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -53039,6 +53039,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -53528,6 +53530,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             } else {
                 return { fontSize: '150%', color: 'grey', opacity: '0.3' };
             }
+        },
+        // 進捗メーターの分母
+        denominator: function denominator() {
+            if (!this.task || !this.task.items) return;
+            return this.task.items.length;
+        },
+        // 進捗メーターの分子
+        numerator: function numerator() {
+            if (!this.task || !this.task.items) return;
+            return this.task.items.filter(function (el) {
+                return el.is_checked;
+            }).length;
         }
     },
     methods: {
@@ -54648,6 +54662,13 @@ var render = function() {
                   { staticClass: "headline-icons" },
                   [
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire }),
+                    _vm._v(" "),
+                    _c("circle-meter", {
+                      attrs: {
+                        denominator: _vm.denominator,
+                        numerator: _vm.numerator
+                      }
+                    }),
                     _vm._v(" "),
                     _c("check-box", {
                       staticClass: "checkbox",
@@ -67005,7 +67026,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.circle-background[data-v-2116f204] {\n    position:relative;\n    z-index:1;\n    width:1em;\n    height:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:whitesmoke;\n}\n.circle-right[data-v-2116f204] {\n    position:absolute;\n    display:block;\n    content:'';\n    z-index:2;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    background-color:orange;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n.circle-left[data-v-2116f204] {\n    position:relative;\n    display:block;\n    content:'';\n    z-index:3;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n", ""]);
+exports.push([module.i, "\n.circle-background[data-v-2116f204] {\n    position:relative;\n    z-index:1;\n    width:1em;\n    height:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:whitesmoke;\n    border-radius:50%;\n}\n.circle-right[data-v-2116f204] {\n    position:absolute;\n    display:block;\n    content:'';\n    z-index:2;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    background-color:orange;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n.circle-left[data-v-2116f204] {\n    position:relative;\n    display:block;\n    content:'';\n    z-index:3;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n", ""]);
 
 // exports
 
@@ -67016,6 +67037,11 @@ exports.push([module.i, "\n.circle-background[data-v-2116f204] {\n    position:r
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67048,25 +67074,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {},
     computed: {
         circleRightAngle: function circleRightAngle() {
-            // if(this.denominator && this.numerator){
             var degree = this.numerator / this.denominator * 360;
-            return { transform: 'rotate(' + degree + 'deg)'
-                // }else{
-                // return {transform:'rotate(0deg)'}
-                // }
-            };
+            return { transform: 'rotate(' + degree + 'deg)' };
         },
         circleLeftAngle: function circleLeftAngle() {
-            // if(this.denominator && this.numerator){
             var degree = this.numerator / this.denominator * 360;
             if (degree > 180) {
                 return { transform: 'rotate(180deg)', background: 'orange' };
             } else {
                 return { transform: 'rotate(0deg)', background: 'whitesmoke' };
             }
-            // }else{
-            //     return {transform:'rotate(0deg)',background:'whitesmoke'}
-            // }
         }
     },
     methods: {}

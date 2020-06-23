@@ -106,6 +106,8 @@
                     <div class="headline-icons">
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
+                        <!--進捗メーター-->
+                        <circle-meter v-bind:denominator="denominator" v-bind:numerator="numerator" />
                         <!--チェックボックス-->
                         <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
                     </div>
@@ -308,6 +310,16 @@
                     return {fontSize:'150%',color:'grey',opacity:'0.3'}
                 }
             },
+            // 進捗メーターの分母
+            denominator:function(){
+                if(!this.task || !this.task.items)return
+                return this.task.items.length
+            },
+            // 進捗メーターの分子
+            numerator:function(){
+                if(!this.task || !this.task.items)return
+                return this.task.items.filter(el => el.is_checked).length
+            }
         },
         methods: {
             fetchTask:async function(){
@@ -580,6 +592,9 @@
     }
 </script>
 <style scoped>
+    i {
+        margin:0 0.5em;
+    }
     .container {
         position:relative;
         width:100%;
@@ -662,7 +677,7 @@
     }
     .task-icon {
         cursor:pointer;
-        margin-left:0.5em;
+        /*margin-left:0.5em;*/
         position:relative;
         z-index:3;
         transition:all 0.3s;
