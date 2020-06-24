@@ -111,6 +111,12 @@ class TagsController extends Controller
                 ->withCount('tasks')
                 ->orderBy('tasks_count','desc')
                 ->get();
+        
+        //検索結果がなかった場合
+        if(count($tags) == 0){
+            return [];
+        }
+        
         foreach($tags as $tag){
             $result[$tag->color][] = $tag;
         }
