@@ -51619,7 +51619,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -52499,11 +52498,6 @@ var render = function() {
                 ? _c(
                     "div",
                     [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.newTask.project_id) +
-                          "\n                "
-                      ),
                       _c("span", [
                         _vm._v(
                           "プロジェクトを選択してください（選択しない場合は単体のタスクとなります）"
@@ -59787,7 +59781,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             tags: [],
             selectedTags: this.value,
-            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
+            colorOptions: ['#ef857d', '#89c997', '#82cddd', '#d4d9df', '#fdd35c', '#c7a5cc'],
             newTagColor: '#ef857d',
             searchKeyword: ''
         };
@@ -65776,7 +65770,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -65786,7 +65779,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             editId: '',
             editedTag: {},
-            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc']
+            colorOptions: ['#ef857d', '#89c997', '#82cddd', '#d4d9df', '#fdd35c', '#c7a5cc']
         };
     },
     props: {

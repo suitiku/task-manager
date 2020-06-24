@@ -8,7 +8,6 @@
         <modal ref="modal" v-model="modal">
             <input type="text" v-model="editedTag.name" />
             <textarea v-model="editedTag.overview" />
-            <!--<tag-cloud v-model="editedTag.color" v-bind:options="colorOptions" />-->
             <color-picker v-model="editedTag.color" v-bind:colorOptions="colorOptions" />
             <div class="buttons">
                 <button v-if="editedTag.id == ''" type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="createTag()">登録</button>
@@ -39,7 +38,7 @@
                 modal:false,
                 editId:'',
                 editedTag:{},
-                colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
+                colorOptions:['#ef857d','#89c997','#82cddd','#d4d9df','#fdd35c','#c7a5cc'],
             }  
         },
         props: {
