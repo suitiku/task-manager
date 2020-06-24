@@ -63,6 +63,7 @@ Vue.component('waiting', require('./components/Waiting.vue'));
 Vue.component('headline-2', require('./components/Headline2.vue'));
 Vue.component('congratulation', require('./components/Congratulation.vue'));
 Vue.component('circle-meter', require('./components/CircleMeter.vue'));
+Vue.component('main-title', require('./components/MainTitle.vue'));
 
 
 
