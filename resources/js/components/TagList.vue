@@ -7,13 +7,20 @@
         <notice ref="notice" />
         
         <!--表示部-->
+        <!--検索-->
+        <input v-model="searchKeyword" class="input-inline" ref="searchTag" type="text" placeholder="タグを検索" />
+        
+        <!--一覧表示-->
         <div class="tag-list-container" v-for="(tagColor,colorIndex) in tags">
             <div ref="tag" v-for="(tag,index) in tagColor" v-bind:class="setClass(colorIndex,index)" v-bind:style="{background:tag.color}" v-on:click="selectTag(tag.id)">
                 <span>{{tag.name}}</span>
             </div>
         </div>
         <!--追加部分-->
-        <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
+        <div class="creation-tag-area">
+            <input class="input-inline" ref="newTag" type="text" placeholder="タグを新規登録" v-on:keydown="createTag()" />
+            <color-picker v-model="newTagColor" v-bind:colorOptions="colorOptions" />
+        </div>
     </div>
 </template>
 
@@ -23,7 +30,10 @@
             return {
                 tags:[],
                 selectedTags:this.value,
-            }  
+                colorOptions:['#ef857d','#89c997','#82cddd','#d4d9df','#fdd35c','#c7a5cc'],
+                newTagColor:'#ef857d',
+                searchKeyword:'',
+            }
         },
         props: {
             userId:{
@@ -36,6 +46,13 @@
             }
         },
         watch:{
+            searchKeyword:function(newVal,oldVal){
+                if(newVal == ''){
+                    this.fetchTags()
+                }else{
+                    this.searchTags()
+                }
+            }
         },
         created:function(){
         },
@@ -75,7 +92,7 @@
                     let postObject = {
                         user_id:this.userId,
                         name:event.target.value,
-                        color:'#ef857d'
+                        color:this.newTagColor
                     }
                     try{
                         let result = await axios.post('/api/tags',postObject)
@@ -91,6 +108,19 @@
                     
                 }
             },
+            searchTags:async function(){
+                try{
+                    let result = await axios.get('/api/tags/search',{
+                        params:{
+                            user_id:this.userId,
+                            keyword:this.searchKeyword
+                        }
+                    })
+                    this.tags = result.data
+                }catch(error){
+                    console.log(error)
+                }
+            }
             
         }
     }
@@ -113,6 +143,9 @@
         cursor:pointer;
         transition:opacity 0.3s;
     }
+    .tag:hover {
+        opacity:0.8;
+    }
     .tag span {
         display:block;
         width:100%;
@@ -124,13 +157,16 @@
         margin:0.2em 0.3em;
         transition:opacity 0.3s;
     }
+    .creation-tag-area {
+        display:flex;
+        align-items:center;
+    }
     .input-inline {
         margin:0.5em 0.3em;
-        width:20em;
+        width:15em;
         display:block;
         padding:0.3em;
         border:1px solid grey;
         border-radius:0.3em;
     }
-    
 </style>

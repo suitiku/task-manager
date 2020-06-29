@@ -1,20 +1,13 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <div v-show="test">
-            <headline-2>テスト</headline-2>
-        </div>
-        
-        <!--<waiting v-model="waiting" ref="waiting" />-->
-        <!--<notice ref="notice" />-->
-        <!--モーダル-->
-        {{selectedTagIds}}
-        <modal ref="modal" v-model="modal">
-            <tag-list v-model="selectedTagIds" userId="1" />
-        </modal>
+        <tag-cloud v-model="test" v-bind:options="projects" defaultValue="100" />
+        {{test}}
+
+        <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
-        <button class="button" v-on:click="showHeadline()">H2</button>
+        <!--<button class="button" v-on:click="showHeadline()">H2</button>-->
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
     </div>
@@ -25,15 +18,15 @@
         data:function(){
             return {
                 modal:false,
-                test:false,
+                test:'',
                 hoge:'',
-                project:{},
+                projects:[],
                 taskIds:[4,8,9],
                 tasks:[],
                 task:{},
                 tags:[],
                 selectedTagId:0,
-                selectedTagIds:[1,3,5],
+                selectedTagIds:[],
                 filteredTasks:[],
                 selectedColor:'',
                 sortColumns:[
@@ -51,6 +44,7 @@
                     {label:'優先度',value:'priority',type:'star'},          
                     {label:'難易度',value:'difficulty',type:'star'},            
                     {label:'作成日',value:'start_date',type:'date'},
+                    {label:'締切',value:'dead_line',type:'date'},
                 ],
                 colorOptions:['#ef857d','#89c997','#fdd35c','#82cddd','#d4d9df','#c7a5cc'],
                 userId:1,
@@ -60,18 +54,18 @@
                     {label:'バナナ',value:'banana'},
                     {label:'ドラゴンフルーツ',value:'dragon fruit'},
                     {label:'アンデスメロン',value:'andes melon'}
-                ]
+                ],
+                numerator:80
             }  
         },
         created:async function(){
             //プロジェクト
-            let projectResult = await axios.get('/api/projects/1')
-            this.project = projectResult.data
+            let projectResult = await axios.get('/api/projects')
+            this.projects = projectResult.data
             
             //タスク全取得
             let result = await axios.get('/api/tasks')
             this.tasks = result.data
-            this.task = this.tasks[1]
             
             //タグ全取得
             let tagsResult = await axios.get('/api/tags')
@@ -126,6 +120,9 @@
             },
             showHeadline:function(){
                 this.test = !this.test
+            },
+            getTags:function(){
+                this.$refs.tagList.init()
             }
         },
     }

@@ -14627,7 +14627,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(18);
-module.exports = __webpack_require__(277);
+module.exports = __webpack_require__(282);
 
 
 /***/ }),
@@ -14686,17 +14686,19 @@ Vue.component('text-spliter', __webpack_require__(202));
 Vue.component('filter-array', __webpack_require__(207));
 Vue.component('filter-tag', __webpack_require__(212));
 Vue.component('filter-status', __webpack_require__(217));
-Vue.component('filter-box', __webpack_require__(222));
-Vue.component('sort-array', __webpack_require__(227));
-Vue.component('sort-box', __webpack_require__(232));
-Vue.component('tool-tip', __webpack_require__(237));
-Vue.component('template-task-management', __webpack_require__(242));
-Vue.component('tag-management', __webpack_require__(247));
-Vue.component('color-picker', __webpack_require__(252));
-Vue.component('task-log', __webpack_require__(257));
-Vue.component('waiting', __webpack_require__(262));
-Vue.component('headline-2', __webpack_require__(267));
-Vue.component('congratulation', __webpack_require__(272));
+// Vue.component('filter-box', require('./components/FilterBox.vue'));
+Vue.component('sort-array', __webpack_require__(222));
+Vue.component('sort-box', __webpack_require__(227));
+Vue.component('tool-tip', __webpack_require__(232));
+Vue.component('template-task-management', __webpack_require__(237));
+Vue.component('tag-management', __webpack_require__(242));
+Vue.component('color-picker', __webpack_require__(247));
+Vue.component('task-log', __webpack_require__(252));
+Vue.component('waiting', __webpack_require__(257));
+Vue.component('headline-2', __webpack_require__(262));
+Vue.component('congratulation', __webpack_require__(267));
+Vue.component('circle-meter', __webpack_require__(272));
+Vue.component('main-title', __webpack_require__(277));
 
 var app = new Vue({
   el: '#app'
@@ -51487,7 +51489,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.task-list-container[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    position:relative;\n    width: 100%;\n    padding-bottom:3em;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em 0;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    margin:1em 2em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:orange;\n    padding:1em;\n}\n.fixed[data-v-0afd8bae] {\n    width:50%;\n    right:3em;\n    bottom:0;\n    opacity:0.7;\n    position:fixed;\n    z-index:5;\n}\n.fixed[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.task[data-v-0afd8bae] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.all-task-switch[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.all-task-switch span[data-v-0afd8bae] {\n    margin-right:1em;\n}\n", ""]);
+exports.push([module.i, "\n.task-list-container[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    position:relative;\n    width: 100%;\n    padding-bottom:3em;\n}\n.sortBox[data-v-0afd8bae] {\n    margin:1em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n}\n.filter-box[data-v-0afd8bae] {\n    width:100%;\n    margin:1em 0;\n    padding:1em;\n    border:2px solid grey;\n}\n.filter[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\nspan[data-v-0afd8bae] {\n    margin-right:1em;\n}\ninput[data-v-0afd8bae] {\n    margin:0 0.3em;\n}\n.add-task-area[data-v-0afd8bae] {\n    margin:1em 2em;\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:orange;\n    padding:1em;\n}\n.fixed[data-v-0afd8bae] {\n    width:50%;\n    right:3em;\n    bottom:0;\n    opacity:0.7;\n    position:fixed;\n    z-index:5;\n}\n.fixed[data-v-0afd8bae]:hover{\n    opacity:1.0;\n}\n.add-task-area input[data-v-0afd8bae] {\n    margin:0 0.5em;\n    border: 1px solid #ccc;\n    border-radius:0.3em;\n}\n.filter-and-sort[data-v-0afd8bae] {\n    margin:1em 2em;\n}\n.filter-area[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.filter-area div[data-v-0afd8bae] {\n    margin:0.5em;\n}\n.task[data-v-0afd8bae] {\n    width:100%;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.control-buttons i[data-v-0afd8bae] {\n    cursor:pointer;\n}\n.control-buttons i[data-v-0afd8bae]:hover{\n    color:salmon;\n}\n.task-copy-dialog[data-v-0afd8bae] {\n    text-align:center;\n}\n.template-list[data-v-0afd8bae] {\n    text-align:left;\n}\n.tags-and-items[data-v-0afd8bae] {\n    margin:1.5em 0;\n}\n.tool-tip-content[data-v-0afd8bae]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-0afd8bae] {\n    margin:0.5em 0.3em;\n    width:100%;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n.all-task-switch[data-v-0afd8bae] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.all-task-switch span[data-v-0afd8bae] {\n    margin-right:1em;\n}\n", ""]);
 
 // exports
 
@@ -51612,6 +51614,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -51619,12 +51627,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            // tasks:[],
             allTasks: false,
             newTaskModal: false,
             filteredTasks: [], //フィルターしたタスク配列
-            sortedTasks: [], //ソートしたタスク配列
-            displayedTasks: [], //表示用タスクの配列：ステータスフィルター後
+            tagFilteredTasks: [], //タグでフィルターしたタスク配列
+            statusFilteredTasks: [], //ステータスフィルターしたタスク配列
+            displayedTasks: [], //表示用タスクの配列：ソート後
             newTask: {},
             selectedTagIds: [],
             projects: [],
@@ -51661,7 +51669,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {
         if (this.projectId) return;
 
-        this.fetchProjects();
         this.fetchCurrentTasks();
     },
     created: function created() {},
@@ -51907,7 +51914,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 //プロジェクトをセット
                                 this.projects = result.data;
 
-                            case 9:
+                                // デフォルトプロジェクトを削除
+                                this.projects.shift();
+
+                            case 10:
                             case 'end':
                                 return _context5.stop();
                         }
@@ -51922,25 +51932,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return fetchProjects;
         }(),
         showNewTaskModal: function showNewTaskModal() {
+            //プロジェクトを再取得
+            this.fetchProjects();
+
             //フォームのpostObjectを初期化
             this.$refs.newTaskForm.init();
 
             //開始と締め切りを現在時刻に合わせる
             var currentDatetime = new Date();
-            this.$refs.newTaskStartDate.init(currentDatetime);
-            this.$refs.newTaskDeadLine.init(currentDatetime);
 
             // リセット
             this.newTask = {
                 user_id: this.userId,
-                project_id: '',
+                project_id: this.defaultProjectId, //デフォルトプロジェクトIDにしておく
                 name: '',
                 overview: '',
                 priority: 1,
                 difficulty: 1,
-                is_template: false
-                // タグリストをリセット
-            };this.selectedTagIds = [];
+                is_template: false,
+                start_date: currentDatetime,
+                dead_line: currentDatetime
+
+                //DatePickerを初期化
+            };this.$refs.newTaskStartDate.init();
+            this.$refs.newTaskDeadLine.init();
+
+            // タグリストをリセット
+            this.selectedTagIds = [];
             this.$refs.tagList.init();
 
             //子アイテムをリセット
@@ -52281,7 +52299,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context11.prev = _context11.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context11.next = 16;
+                                    _context11.next = 15;
                                     break;
                                 }
 
@@ -52300,25 +52318,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 7:
                                 this.$refs.notice.showNotice('プロジェクトを追加しました');
                                 //プロジェクトを再取得
-                                this.$refs.projectsListbox.init();
-                                // インプットをリセット
-                                this.$refs.newProject.value = '';
-                                _context11.next = 16;
+                                this.fetchProjects();
+                                _context11.next = 15;
                                 break;
 
-                            case 12:
-                                _context11.prev = 12;
+                            case 11:
+                                _context11.prev = 11;
                                 _context11.t0 = _context11['catch'](4);
 
                                 this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
                                 console.log(_context11.t0);
 
-                            case 16:
+                            case 15:
                             case 'end':
                                 return _context11.stop();
                         }
                     }
-                }, _callee11, this, [[4, 12]]);
+                }, _callee11, this, [[4, 11]]);
             }));
 
             function createProject() {
@@ -52480,37 +52496,45 @@ var render = function() {
               }),
               _vm._v(" "),
               !_vm.projectId
-                ? _c("span", [_vm._v("プロジェクトを選択してください")])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.projectId
-                ? _c("list-box", {
-                    ref: "projectsListbox",
-                    attrs: { table: "projects" },
-                    model: {
-                      value: _vm.newTask.project_id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.newTask, "project_id", $$v)
-                      },
-                      expression: "newTask.project_id"
-                    }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.projectId
-                ? _c("input", {
-                    ref: "newProject",
-                    staticClass: "input-inline",
-                    attrs: {
-                      type: "text",
-                      placeholder: "プロジェクトを新規登録"
-                    },
-                    on: {
-                      keydown: function($event) {
-                        return _vm.createProject()
-                      }
-                    }
-                  })
+                ? _c(
+                    "div",
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "プロジェクトを選択してください（選択しない場合は単体のタスクとなります）"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tag-cloud", {
+                        attrs: {
+                          options: _vm.projects,
+                          defaultValue: _vm.defaultProjectId
+                        },
+                        model: {
+                          value: _vm.newTask.project_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.newTask, "project_id", $$v)
+                          },
+                          expression: "newTask.project_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "newProject",
+                        staticClass: "input-inline",
+                        attrs: {
+                          type: "text",
+                          placeholder: "プロジェクトを新規登録"
+                        },
+                        on: {
+                          keydown: function($event) {
+                            return _vm.createProject()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 : _vm._e()
             ],
             1
@@ -52763,36 +52787,54 @@ var render = function() {
             "div",
             { staticClass: "filter-and-sort" },
             [
-              _c("filter-box", {
-                attrs: {
-                  originalArray: _vm.tasks,
-                  filterOptions: _vm.filterOptions
-                },
-                model: {
-                  value: _vm.filteredTasks,
-                  callback: function($$v) {
-                    _vm.filteredTasks = $$v
-                  },
-                  expression: "filteredTasks"
-                }
-              }),
+              _c(
+                "div",
+                { staticClass: "filter-area" },
+                [
+                  _c("filter-array", {
+                    attrs: {
+                      originalArray: _vm.tasks,
+                      filterOptions: _vm.filterOptions
+                    },
+                    model: {
+                      value: _vm.filteredTasks,
+                      callback: function($$v) {
+                        _vm.filteredTasks = $$v
+                      },
+                      expression: "filteredTasks"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("filter-tag", {
+                    attrs: { originalArray: _vm.filteredTasks },
+                    model: {
+                      value: _vm.tagFilteredTasks,
+                      callback: function($$v) {
+                        _vm.tagFilteredTasks = $$v
+                      },
+                      expression: "tagFilteredTasks"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("filter-status", {
+                    attrs: { originalArray: _vm.tagFilteredTasks },
+                    model: {
+                      value: _vm.statusFilteredTasks,
+                      callback: function($$v) {
+                        _vm.statusFilteredTasks = $$v
+                      },
+                      expression: "statusFilteredTasks"
+                    }
+                  })
+                ],
+                1
+              ),
               _vm._v(" "),
               _c("sort-box", {
                 attrs: {
-                  originalArray: _vm.filteredTasks,
+                  originalArray: _vm.statusFilteredTasks,
                   columns: _vm.sortColumns
                 },
-                model: {
-                  value: _vm.sortedTasks,
-                  callback: function($$v) {
-                    _vm.sortedTasks = $$v
-                  },
-                  expression: "sortedTasks"
-                }
-              }),
-              _vm._v(" "),
-              _c("filter-status", {
-                attrs: { originalArray: _vm.sortedTasks },
                 model: {
                   value: _vm.displayedTasks,
                   callback: function($$v) {
@@ -52994,7 +53036,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    /*display:flex;*/\n    /*align-items:center;*/\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
+exports.push([module.i, "\ni[data-v-e9a53c20] {\n    margin:0 0.5em;\n}\n.container[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-e9a53c20] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.task-wrapper[data-v-e9a53c20]:hover {\n    background:gainsboro;\n}\n.headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n}\n.headline input[data-v-e9a53c20] {\n    margin:0 1em;\n}\n.task-label[data-v-e9a53c20] {\n    height:3.0em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.project-label[data-v-e9a53c20] {\n    font-size:40%;\n}\n.tags[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-e9a53c20] {\n    min-width:5em;\n    text-align:center;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.headline-icons[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    margin-left:0.5em;\n}\n.checkbox[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n    margin:0 0.5em;\n}\n.task-headline[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-orient:vertical;\n    -webkit-box-direction:normal;\n        -ms-flex-direction:column;\n            flex-direction:column;\n    -webkit-box-align:start;\n        -ms-flex-align:start;\n            align-items:flex-start;\n}\n.task-title[data-v-e9a53c20] {\n    font-family: \"Hiragino Kaku Gothic ProN\",\"\\30E1\\30A4\\30EA\\30AA\", sans-serif;\n    font-weight:bold;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    height:3em;\n}\n.task-buttons[data-v-e9a53c20] {\n    margin-right:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:end;\n        -ms-flex-pack:end;\n            justify-content:flex-end;\n    min-width:18em;\n}\n.dead-line[data-v-e9a53c20] {\n    margin:0 0.5em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-e9a53c20] {\n    cursor:pointer;\n    /*margin-left:0.5em;*/\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-e9a53c20]:hover {\n    color:salmon;\n}\n.label[data-v-e9a53c20] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-e9a53c20] {\n    width:100%;\n    padding:2em;\n}\n.overview[data-v-e9a53c20] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n.detail-active[data-v-e9a53c20] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-e9a53c20] {\n    position:relative;\n    z-index:3;\n}\n.mask[data-v-e9a53c20] {\n    width:120%;\n    height:120%;\n    position:absolute;\n    z-index:2;\n    cursor:pointer;\n    background-color:grey;\n    opacity:0;\n}\n.mask-active[data-v-e9a53c20] {\n    opacity:0.5;\n    -webkit-animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n            animation:mask-data-v-e9a53c20 0.3s ease 0s 1;\n}\n@-webkit-keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n@keyframes mask-data-v-e9a53c20 {\n0% {\n        width:0%;\n}\n100% {\n        width:100%;\n}\n}\n.state-icon[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    color:white;\n    position:absolute;\n    top:0.5em;\n    left:calc(50% - 2em);\n    z-index:3;\n    opacity:1.0;\n}\n.state-icon div[data-v-e9a53c20] {\n    -webkit-transform-origin:center;\n            transform-origin:center;\n    -webkit-animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n            animation:icon-before-data-v-e9a53c20 1s linear 0s 1,icon-data-v-e9a53c20 0.5s linear 0.5s 1;\n}\n.state-icon span[data-v-e9a53c20] {\n    margin-left:1em;\n    font-size:75%;\n    -webkit-animation:none;\n            animation:none;\n}\n@-webkit-keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@keyframes icon-before-data-v-e9a53c20 {\n0% {\n        opacity:0;\n}\n100% {\n        opacity:0;\n}\n}\n@-webkit-keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n@keyframes icon-data-v-e9a53c20 {\n0% {\n        -webkit-transform:rotate(0deg);\n                transform:rotate(0deg);\n        opacity:0;\n}\n100% {\n        -webkit-transform:rotate(360deg);\n                transform:rotate(360deg);\n        opacity:1.0;\n}\n}\n.item[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.item-completed[data-v-e9a53c20] {\n    text-decoration:line-through;\n}\n.item-label[data-v-e9a53c20] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.tool-tip-content[data-v-e9a53c20]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.edit-status-modal *[data-v-e9a53c20] {\n    margin:1em 0;\n}\n.edit-status-modal input[data-v-e9a53c20] {\n    text-align:center;\n    width:100%;\n    display:block;\n    margin:0.5em;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -53189,12 +53231,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             task: {},
+            projects: [],
+            defaultProjectId: '',
             wrapper_class: 'task-wrapper',
             maskClass: 'mask',
             mask: false,
@@ -53404,49 +53447,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             this.$watch('checked', function () {
                                 var _ref7 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6(newVal, oldVal) {
-                                    var postObject;
+                                    var result, postObject;
                                     return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                                         while (1) {
                                             switch (_context6.prev = _context6.next) {
                                                 case 0:
                                                     if (!(oldVal == false && newVal == true && this.task.states[this.task.states.length - 1].id != 2)) {
-                                                        _context6.next = 17;
+                                                        _context6.next = 22;
                                                         break;
                                                     }
 
+                                                    if (!this.task.items.find(function (el) {
+                                                        return el.is_checked == false;
+                                                    })) {
+                                                        _context6.next = 6;
+                                                        break;
+                                                    }
+
+                                                    result = window.confirm('サブタスクが全てチェックされていませんが完了してよろしいですか？');
+
+                                                    if (result) {
+                                                        _context6.next = 6;
+                                                        break;
+                                                    }
+
+                                                    this.checked = false;
+                                                    return _context6.abrupt('return');
+
+                                                case 6:
                                                     postObject = {
                                                         task_id: vue.task.id,
                                                         state_id: 2
                                                     };
-                                                    _context6.prev = 2;
-                                                    _context6.next = 5;
+                                                    _context6.prev = 7;
+                                                    _context6.next = 10;
                                                     return axios.post('/api/state_task', postObject);
 
-                                                case 5:
+                                                case 10:
                                                     vue.$refs.cong.openCong('おつかれさまです！');
-                                                    _context6.next = 8;
+                                                    _context6.next = 13;
                                                     return vue.fetchTask();
 
-                                                case 8:
+                                                case 13:
                                                     vue.updateData();
                                                     vue.$emit('input', this.task);
-                                                    _context6.next = 17;
+                                                    _context6.next = 22;
                                                     break;
 
-                                                case 12:
-                                                    _context6.prev = 12;
-                                                    _context6.t0 = _context6['catch'](2);
+                                                case 17:
+                                                    _context6.prev = 17;
+                                                    _context6.t0 = _context6['catch'](7);
 
                                                     vue.$refs.notice.showNotice('タスクの状態更新に失敗しました');
                                                     this.checked = false;
                                                     console.log(_context6.t0);
 
-                                                case 17:
+                                                case 22:
                                                 case 'end':
                                                     return _context6.stop();
                                             }
                                         }
-                                    }, _callee6, this, [[2, 12]]);
+                                    }, _callee6, this, [[7, 17]]);
                                 }));
 
                                 return function (_x7, _x8) {
@@ -53482,6 +53543,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             } else {
                 return { fontSize: '150%', color: 'grey', opacity: '0.3' };
             }
+        },
+        // 進捗メーターの分母
+        denominator: function denominator() {
+            if (!this.task || !this.task.items) return;
+            return this.task.items.length;
+        },
+        // 進捗メーターの分子
+        numerator: function numerator() {
+            if (!this.task || !this.task.items) return;
+            return this.task.items.filter(function (el) {
+                return el.is_checked;
+            }).length;
         }
     },
     methods: {
@@ -53515,12 +53588,51 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTask;
         }(),
-        setTask: function () {
+        fetchProjects: function () {
             var _ref9 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee9() {
-                var index;
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee9$(_context9) {
                     while (1) {
                         switch (_context9.prev = _context9.next) {
+                            case 0:
+                                _context9.next = 2;
+                                return axios.get('/api/myprojects', {
+                                    params: { user_id: this.task.user_id }
+                                });
+
+                            case 2:
+                                result = _context9.sent;
+
+
+                                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                                this.defaultProjectId = result.data[0].id;
+
+                                //プロジェクトをセット
+                                this.projects = result.data;
+
+                                // デフォルトプロジェクトを削除
+                                this.projects.shift();
+
+                            case 6:
+                            case 'end':
+                                return _context9.stop();
+                        }
+                    }
+                }, _callee9, this);
+            }));
+
+            function fetchProjects() {
+                return _ref9.apply(this, arguments);
+            }
+
+            return fetchProjects;
+        }(),
+        setTask: function () {
+            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10() {
+                var index;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                    while (1) {
+                        switch (_context10.prev = _context10.next) {
                             case 0:
                                 //表示用データ作成
                                 this.task = JSON.parse(JSON.stringify(this.value));
@@ -53550,14 +53662,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 5:
                             case 'end':
-                                return _context9.stop();
+                                return _context10.stop();
                         }
                     }
-                }, _callee9, this);
+                }, _callee10, this);
             }));
 
             function setTask() {
-                return _ref9.apply(this, arguments);
+                return _ref10.apply(this, arguments);
             }
 
             return setTask;
@@ -53574,11 +53686,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return is_checked || false;
         },
         checkItem: function () {
-            var _ref10 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee10(item) {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11(item) {
                 var el, modifyData, postLogData;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
                     while (1) {
-                        switch (_context10.prev = _context10.next) {
+                        switch (_context11.prev = _context11.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: true };
@@ -53587,77 +53699,85 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     state_id: this.task.states[this.task.states.length - 1].id,
                                     state_detail: '「' + item.name + '」を完了しました'
                                 };
-                                _context10.prev = 3;
-                                _context10.next = 6;
+                                _context11.prev = 3;
+                                _context11.next = 6;
                                 return axios.put('/api/items/' + item.id, modifyData);
 
                             case 6:
-                                _context10.next = 8;
+                                _context11.next = 8;
                                 return axios.post('/api/state_task', postLogData);
 
                             case 8:
                                 el.target.disabled = true;
                                 el.target.parentElement.parentElement.classList.add('item-completed');
                                 this.fetchTask();
-                                _context10.next = 16;
+                                _context11.next = 16;
                                 break;
 
                             case 13:
-                                _context10.prev = 13;
-                                _context10.t0 = _context10['catch'](3);
+                                _context11.prev = 13;
+                                _context11.t0 = _context11['catch'](3);
 
-                                console.log(_context10.t0);
+                                console.log(_context11.t0);
 
                             case 16:
                             case 'end':
-                                return _context10.stop();
+                                return _context11.stop();
                         }
                     }
-                }, _callee10, this, [[3, 13]]);
+                }, _callee11, this, [[3, 13]]);
             }));
 
             function checkItem(_x9) {
-                return _ref10.apply(this, arguments);
+                return _ref11.apply(this, arguments);
             }
 
             return checkItem;
         }(),
         uncheckItem: function () {
-            var _ref11 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee11(itemId) {
-                var el, modifyData;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee11$(_context11) {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12(item) {
+                var el, modifyData, postLogData;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
                     while (1) {
-                        switch (_context11.prev = _context11.next) {
+                        switch (_context12.prev = _context12.next) {
                             case 0:
                                 el = event;
                                 modifyData = { is_checked: false };
-                                _context11.prev = 2;
-                                _context11.next = 5;
-                                return axios.put('/api/items/' + itemId, modifyData);
+                                postLogData = {
+                                    task_id: this.task.id,
+                                    state_id: this.task.states[this.task.states.length - 1].id,
+                                    state_detail: '「' + item.name + '」を差し戻しました。'
+                                };
+                                _context12.prev = 3;
+                                _context12.next = 6;
+                                return axios.put('/api/items/' + item.id, modifyData);
 
-                            case 5:
-                                el.target.parentElement.children[0].children[0].disabled = false;
-                                el.target.parentElement.children[0].children[0].checked = false;
-                                el.target.parentElement.classList.remove('item-completed');
-                                _context11.next = 13;
+                            case 6:
+                                _context12.next = 8;
+                                return axios.post('/api/state_task', postLogData);
+
+                            case 8:
+                                //タスクの更新
+                                this.fetchTask();
+                                _context12.next = 14;
                                 break;
 
-                            case 10:
-                                _context11.prev = 10;
-                                _context11.t0 = _context11['catch'](2);
+                            case 11:
+                                _context12.prev = 11;
+                                _context12.t0 = _context12['catch'](3);
 
-                                console.log(_context11.t0);
+                                console.log(_context12.t0);
 
-                            case 13:
+                            case 14:
                             case 'end':
-                                return _context11.stop();
+                                return _context12.stop();
                         }
                     }
-                }, _callee11, this, [[2, 10]]);
+                }, _callee12, this, [[3, 11]]);
             }));
 
             function uncheckItem(_x10) {
-                return _ref11.apply(this, arguments);
+                return _ref12.apply(this, arguments);
             }
 
             return uncheckItem;
@@ -53711,18 +53831,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteModal.openModal();
         },
         deleteTask: function () {
-            var _ref12 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee12() {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee12$(_context12) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
                     while (1) {
-                        switch (_context12.prev = _context12.next) {
+                        switch (_context13.prev = _context13.next) {
                             case 0:
-                                _context12.prev = 0;
-                                _context12.next = 3;
+                                _context13.prev = 0;
+                                _context13.next = 3;
                                 return axios.delete('/api/tasks/' + this.task.id);
 
                             case 3:
-                                result = _context12.sent;
+                                result = _context13.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
@@ -53730,59 +53850,61 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.$emit('input', '');
                                 this.task = {};
-                                _context12.next = 13;
+                                _context13.next = 13;
                                 break;
 
                             case 9:
-                                _context12.prev = 9;
-                                _context12.t0 = _context12['catch'](0);
+                                _context13.prev = 9;
+                                _context13.t0 = _context13['catch'](0);
 
                                 // 削除が失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('タスクの削除に失敗しました');
-                                console.log(_context12.t0);
+                                console.log(_context13.t0);
 
                             case 13:
                                 this.$refs.deleteModal.closeModal();
 
                             case 14:
                             case 'end':
-                                return _context12.stop();
+                                return _context13.stop();
                         }
                     }
-                }, _callee12, this, [[0, 9]]);
+                }, _callee13, this, [[0, 9]]);
             }));
 
             function deleteTask() {
-                return _ref12.apply(this, arguments);
+                return _ref13.apply(this, arguments);
             }
 
             return deleteTask;
         }(),
         showEditTaskDialog: function () {
-            var _ref13 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee13() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
                     while (1) {
-                        switch (_context13.prev = _context13.next) {
+                        switch (_context14.prev = _context14.next) {
                             case 0:
+                                //プロジェクトを取得
+                                this.fetchProjects();
+
                                 //datepickerの初期値設定
                                 this.$refs.editTaskStartDate.init(this.task.start_date);
                                 this.$refs.editTaskDeadLine.init(this.task.dead_line);
-                                //リストボックスの初期化
-                                this.$refs.projectsListbox.init();
+
                                 // モーダル展開
                                 this.$refs.editModal.openModal();
 
                             case 4:
                             case 'end':
-                                return _context13.stop();
+                                return _context14.stop();
                         }
                     }
-                }, _callee13, this);
+                }, _callee14, this);
             }));
 
             function showEditTaskDialog() {
-                return _ref13.apply(this, arguments);
+                return _ref14.apply(this, arguments);
             }
 
             return showEditTaskDialog;
@@ -53793,49 +53915,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.deleteItemModal.openModal();
         },
         deleteItem: function () {
-            var _ref14 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee14() {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee14$(_context14) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
                     while (1) {
-                        switch (_context14.prev = _context14.next) {
+                        switch (_context15.prev = _context15.next) {
                             case 0:
-                                _context14.prev = 0;
-                                _context14.next = 3;
+                                _context15.prev = 0;
+                                _context15.next = 3;
                                 return axios.delete('/api/items/' + this.targetItemId);
 
                             case 3:
-                                result = _context14.sent;
+                                result = _context15.sent;
 
                                 // 削除が成功した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムを削除しました');
                                 // 通知が終わった後に自らを削除（不可視化）
                                 this.inactivateItem[this.targetItemId] = { display: 'none' };
-                                _context14.next = 12;
+                                _context15.next = 12;
                                 break;
 
                             case 8:
-                                _context14.prev = 8;
-                                _context14.t0 = _context14['catch'](0);
+                                _context15.prev = 8;
+                                _context15.t0 = _context15['catch'](0);
 
                                 // 削除失敗した場合
                                 // noticeで通知
                                 this.$refs.notice.showNotice('アイテムの削除に失敗しました');
-                                console.log(_context14.t0);
+                                console.log(_context15.t0);
 
                             case 12:
                                 this.$refs.deleteItemModal.closeModal();
 
                             case 13:
                             case 'end':
-                                return _context14.stop();
+                                return _context15.stop();
                         }
                     }
-                }, _callee14, this, [[0, 8]]);
+                }, _callee15, this, [[0, 8]]);
             }));
 
             function deleteItem() {
-                return _ref14.apply(this, arguments);
+                return _ref15.apply(this, arguments);
             }
 
             return deleteItem;
@@ -53849,64 +53971,64 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.editItemMode.splice(itemIndex, 1, !this.editItemMode[itemIndex]);
         },
         updateItem: function () {
-            var _ref15 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee15(itemIndex) {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee15$(_context15) {
+            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16(itemIndex) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
                     while (1) {
-                        switch (_context15.prev = _context15.next) {
+                        switch (_context16.prev = _context16.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context15.next = 12;
+                                    _context16.next = 12;
                                     break;
                                 }
 
-                                _context15.prev = 1;
-                                _context15.next = 4;
+                                _context16.prev = 1;
+                                _context16.next = 4;
                                 return axios.put('/api/items/' + this.task.items[itemIndex].id, this.task.items[itemIndex]);
 
                             case 4:
                                 this.$refs.notice.showNotice('アイテムを変更しました');
                                 this.fetchTask();
-                                _context15.next = 12;
+                                _context16.next = 12;
                                 break;
 
                             case 8:
-                                _context15.prev = 8;
-                                _context15.t0 = _context15['catch'](1);
+                                _context16.prev = 8;
+                                _context16.t0 = _context16['catch'](1);
 
                                 this.$refs.notice.showNotice('アイテムの変更に失敗しました');
-                                console.log(_context15.t0);
+                                console.log(_context16.t0);
 
                             case 12:
                             case 'end':
-                                return _context15.stop();
+                                return _context16.stop();
                         }
                     }
-                }, _callee15, this, [[1, 8]]);
+                }, _callee16, this, [[1, 8]]);
             }));
 
             function updateItem(_x11) {
-                return _ref15.apply(this, arguments);
+                return _ref16.apply(this, arguments);
             }
 
             return updateItem;
         }(),
         addItems: function () {
-            var _ref16 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee16() {
+            var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17() {
                 var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, postItem, result;
 
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee16$(_context16) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
                     while (1) {
-                        switch (_context16.prev = _context16.next) {
+                        switch (_context17.prev = _context17.next) {
                             case 0:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context16.prev = 3;
+                                _context17.prev = 3;
                                 _iterator = this.items[Symbol.iterator]();
 
                             case 5:
                                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                                    _context16.next = 23;
+                                    _context17.next = 23;
                                     break;
                                 }
 
@@ -53916,63 +54038,63 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: item,
                                     is_checked: false
                                 };
-                                _context16.prev = 8;
-                                _context16.next = 11;
+                                _context17.prev = 8;
+                                _context17.next = 11;
                                 return axios.post('/api/items', postItem);
 
                             case 11:
-                                result = _context16.sent;
+                                result = _context17.sent;
 
                                 this.task.items.push(result.data);
                                 this.$refs.notice.showNotice('タスクにアイテムを追加しました');
-                                _context16.next = 20;
+                                _context17.next = 20;
                                 break;
 
                             case 16:
-                                _context16.prev = 16;
-                                _context16.t0 = _context16['catch'](8);
+                                _context17.prev = 16;
+                                _context17.t0 = _context17['catch'](8);
 
                                 this.$refs.notice.showNotice('アイテムの追加に失敗しました');
-                                console.log(_context16.t0);
+                                console.log(_context17.t0);
 
                             case 20:
                                 _iteratorNormalCompletion = true;
-                                _context16.next = 5;
+                                _context17.next = 5;
                                 break;
 
                             case 23:
-                                _context16.next = 29;
+                                _context17.next = 29;
                                 break;
 
                             case 25:
-                                _context16.prev = 25;
-                                _context16.t1 = _context16['catch'](3);
+                                _context17.prev = 25;
+                                _context17.t1 = _context17['catch'](3);
                                 _didIteratorError = true;
-                                _iteratorError = _context16.t1;
+                                _iteratorError = _context17.t1;
 
                             case 29:
-                                _context16.prev = 29;
-                                _context16.prev = 30;
+                                _context17.prev = 29;
+                                _context17.prev = 30;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 32:
-                                _context16.prev = 32;
+                                _context17.prev = 32;
 
                                 if (!_didIteratorError) {
-                                    _context16.next = 35;
+                                    _context17.next = 35;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 35:
-                                return _context16.finish(32);
+                                return _context17.finish(32);
 
                             case 36:
-                                return _context16.finish(29);
+                                return _context17.finish(29);
 
                             case 37:
                                 this.$emit('input', this.task);
@@ -53980,14 +54102,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 39:
                             case 'end':
-                                return _context16.stop();
+                                return _context17.stop();
                         }
                     }
-                }, _callee16, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
+                }, _callee17, this, [[3, 25, 29, 37], [8, 16], [30,, 32, 36]]);
             }));
 
             function addItems() {
-                return _ref16.apply(this, arguments);
+                return _ref17.apply(this, arguments);
             }
 
             return addItems;
@@ -54000,71 +54122,79 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.editStatusModal.openModal();
         },
         changeStatus: function () {
-            var _ref17 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee17() {
+            var _ref18 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee18() {
                 var postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee17$(_context17) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee18$(_context18) {
                     while (1) {
-                        switch (_context17.prev = _context17.next) {
+                        switch (_context18.prev = _context18.next) {
                             case 0:
-                                if (this.selectedStatus.id) {
-                                    _context17.next = 4;
+                                if (!(event.type != 'click' && (event.keyCode != 13 || event.ctrlKey != true))) {
+                                    _context18.next = 2;
                                     break;
                                 }
 
-                                return _context17.abrupt('return');
+                                return _context18.abrupt('return');
 
-                            case 4:
+                            case 2:
+                                if (this.selectedStatus.id) {
+                                    _context18.next = 6;
+                                    break;
+                                }
+
+                                return _context18.abrupt('return');
+
+                            case 6:
                                 postObject = {
                                     task_id: this.task.id,
                                     state_id: this.selectedStatus.id,
                                     state_detail: this.selectedStatus.state_detail
                                 };
-                                _context17.prev = 5;
-                                _context17.next = 8;
+                                _context18.prev = 7;
+                                _context18.next = 10;
                                 return axios.post('/api/state_task', postObject);
 
-                            case 8:
+                            case 10:
                                 this.$refs.notice.showNotice('タスクステータスを更新しました');
-                                _context17.next = 11;
+                                _context18.next = 13;
                                 return this.fetchTask();
 
-                            case 11:
+                            case 13:
                                 this.updateData();
                                 this.selectedStatus = { id: '', state_detail: '' //リセット
                                 };this.$emit('input', this.task);
-                                _context17.next = 20;
+                                _context18.next = 22;
                                 break;
 
-                            case 16:
-                                _context17.prev = 16;
-                                _context17.t0 = _context17['catch'](5);
+                            case 18:
+                                _context18.prev = 18;
+                                _context18.t0 = _context18['catch'](7);
 
                                 this.$refs.notice.showNotice('タスクステータスの更新に失敗しました');
-                                console.log(_context17.t0);
+                                console.log(_context18.t0);
 
-                            case 20:
+                            case 22:
                             case 'end':
-                                return _context17.stop();
+                                return _context18.stop();
                         }
                     }
-                }, _callee17, this, [[5, 16]]);
+                }, _callee18, this, [[7, 18]]);
             }));
 
             function changeStatus() {
-                return _ref17.apply(this, arguments);
+                return _ref18.apply(this, arguments);
             }
 
             return changeStatus;
         }(),
         createProject: function () {
-            var _ref18 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee18() {
+            var _ref19 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee19() {
                 var currentDatetime, deadLine, postObject;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee18$(_context18) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee19$(_context19) {
                     while (1) {
-                        switch (_context18.prev = _context18.next) {
+                        switch (_context19.prev = _context19.next) {
                             case 0:
                                 if (!(event.keyCode == 13)) {
-                                    _context18.next = 16;
+                                    _context19.next = 16;
                                     break;
                                 }
 
@@ -54076,36 +54206,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: event.target.value,
                                     dead_line: deadLine.toISOString().slice(0, 19).replace('T', ' ')
                                 };
-                                _context18.prev = 4;
-                                _context18.next = 7;
+                                _context19.prev = 4;
+                                _context19.next = 7;
                                 return axios.post('/api/projects', postObject);
 
                             case 7:
                                 this.$refs.notice.showNotice('プロジェクトを追加しました');
                                 //プロジェクトを再取得
-                                this.$refs.projectsListbox.init();
+                                this.fetchProjects();
                                 // インプットをリセット
                                 this.$refs.newProject.value = '';
-                                _context18.next = 16;
+                                _context19.next = 16;
                                 break;
 
                             case 12:
-                                _context18.prev = 12;
-                                _context18.t0 = _context18['catch'](4);
+                                _context19.prev = 12;
+                                _context19.t0 = _context19['catch'](4);
 
                                 this.$refs.notice.showNotice('プロジェクトの追加に失敗しました');
-                                console.log(_context18.t0);
+                                console.log(_context19.t0);
 
                             case 16:
                             case 'end':
-                                return _context18.stop();
+                                return _context19.stop();
                         }
                     }
-                }, _callee18, this, [[4, 12]]);
+                }, _callee19, this, [[4, 12]]);
             }));
 
             function createProject() {
-                return _ref18.apply(this, arguments);
+                return _ref19.apply(this, arguments);
             }
 
             return createProject;
@@ -54230,9 +54360,15 @@ var render = function() {
                         expression: "selectedStatus.state_detail"
                       }
                     ],
-                    attrs: { type: "text", placeholder: "コメント（null可）" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "コメント（null可）、CTRL+エンターで状態変更"
+                    },
                     domProps: { value: _vm.selectedStatus.state_detail },
                     on: {
+                      keydown: function($event) {
+                        return _vm.changeStatus()
+                      },
                       input: function($event) {
                         if ($event.target.composing) {
                           return
@@ -54430,33 +54566,45 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("プロジェクトを選択してください")]),
-                  _vm._v(" "),
-                  _c("list-box", {
-                    ref: "projectsListbox",
-                    attrs: { table: "projects" },
-                    model: {
-                      value: _vm.editedTask.project_id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.editedTask, "project_id", $$v)
-                      },
-                      expression: "editedTask.project_id"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    ref: "newProject",
-                    staticClass: "input-inline",
-                    attrs: {
-                      type: "text",
-                      placeholder: "プロジェクトを新規登録"
-                    },
-                    on: {
-                      keydown: function($event) {
-                        return _vm.createProject()
-                      }
-                    }
-                  })
+                  _c(
+                    "div",
+                    [
+                      _c("span", [
+                        _vm._v(
+                          "プロジェクトを選択してください（選択しない場合は単体のタスクとなります）"
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tag-cloud", {
+                        attrs: {
+                          options: _vm.projects,
+                          defaultValue: _vm.defaultProjectId
+                        },
+                        model: {
+                          value: _vm.editedTask.project_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedTask, "project_id", $$v)
+                          },
+                          expression: "editedTask.project_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        ref: "newProject",
+                        staticClass: "input-inline",
+                        attrs: {
+                          type: "text",
+                          placeholder: "プロジェクトを新規登録"
+                        },
+                        on: {
+                          keydown: function($event) {
+                            return _vm.createProject()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -54580,6 +54728,13 @@ var render = function() {
                   { staticClass: "headline-icons" },
                   [
                     _c("i", { staticClass: "fas fa-fire", style: _vm.fire }),
+                    _vm._v(" "),
+                    _c("circle-meter", {
+                      attrs: {
+                        denominator: _vm.denominator,
+                        numerator: _vm.numerator
+                      }
+                    }),
                     _vm._v(" "),
                     _c("check-box", {
                       staticClass: "checkbox",
@@ -54742,9 +54897,7 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _c("span", { staticClass: "childItem" }, [
-                                _vm._v(_vm._s(item.name))
-                              ])
+                              _c("span", [_vm._v(_vm._s(item.name))])
                             ]
                           ),
                           _vm._v(" "),
@@ -54819,7 +54972,7 @@ var render = function() {
                             staticClass: "fas fa-redo task-icon",
                             on: {
                               click: function($event) {
-                                return _vm.uncheckItem(item.id)
+                                return _vm.uncheckItem(item)
                               }
                             }
                           })
@@ -56600,36 +56753,30 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             modal: false,
-            test: false,
+            test: '',
             hoge: '',
-            project: {},
+            projects: [],
             taskIds: [4, 8, 9],
             tasks: [],
             task: {},
             tags: [],
             selectedTagId: 0,
-            selectedTagIds: [1, 3, 5],
+            selectedTagIds: [],
             filteredTasks: [],
             selectedColor: '',
             sortColumns: [{ columnName: 'priority', columnLabel: '優先度' }, { columnName: 'difficulty', columnLabel: '難易度' }],
             testOptions: [{ label: 'test', value: 'hoge' }, { label: 'aaaa', value: 'bbbb' }, { label: 'moge', value: 'moge2' }, { label: 'yamada', value: 'yamada' }, { label: 'yamamoto', value: 'yamada' }],
-            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }],
+            filterOptions: [{ label: '優先度', value: 'priority', type: 'star' }, { label: '難易度', value: 'difficulty', type: 'star' }, { label: '作成日', value: 'start_date', type: 'date' }, { label: '締切', value: 'dead_line', type: 'date' }],
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
-            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }]
+            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }],
+            numerator: 80
         };
     },
     created: function () {
@@ -56641,12 +56788,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             _context.next = 2;
-                            return axios.get('/api/projects/1');
+                            return axios.get('/api/projects');
 
                         case 2:
                             projectResult = _context.sent;
 
-                            this.project = projectResult.data;
+                            this.projects = projectResult.data;
 
                             //タスク全取得
                             _context.next = 6;
@@ -56656,18 +56803,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             result = _context.sent;
 
                             this.tasks = result.data;
-                            this.task = this.tasks[1];
 
                             //タグ全取得
-                            _context.next = 11;
+                            _context.next = 10;
                             return axios.get('/api/tags');
 
-                        case 11:
+                        case 10:
                             tagsResult = _context.sent;
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context.prev = 15;
+                            _context.prev = 14;
 
                             for (_iterator = tagsResult.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                 tag = _step.value;
@@ -56675,48 +56821,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.tags.push({ label: tag.name, value: tag.id });
                             }
 
-                            _context.next = 23;
+                            _context.next = 22;
                             break;
 
-                        case 19:
-                            _context.prev = 19;
-                            _context.t0 = _context['catch'](15);
+                        case 18:
+                            _context.prev = 18;
+                            _context.t0 = _context['catch'](14);
                             _didIteratorError = true;
                             _iteratorError = _context.t0;
 
-                        case 23:
+                        case 22:
+                            _context.prev = 22;
                             _context.prev = 23;
-                            _context.prev = 24;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 26:
-                            _context.prev = 26;
+                        case 25:
+                            _context.prev = 25;
 
                             if (!_didIteratorError) {
-                                _context.next = 29;
+                                _context.next = 28;
                                 break;
                             }
 
                             throw _iteratorError;
 
+                        case 28:
+                            return _context.finish(25);
+
                         case 29:
-                            return _context.finish(26);
+                            return _context.finish(22);
 
                         case 30:
-                            return _context.finish(23);
-
-                        case 31:
                             this.addFilters(); //状態を追加
 
-                        case 32:
+                        case 31:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[15, 19, 23, 31], [24,, 26, 30]]);
+            }, _callee, this, [[14, 18, 22, 30], [23,, 25, 29]]);
         }));
 
         function created() {
@@ -56851,6 +56997,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         showHeadline: function showHeadline() {
             this.test = !this.test;
+        },
+        getTags: function getTags() {
+            this.$refs.tagList.init();
         }
     }
 });
@@ -56867,62 +57016,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.test,
-              expression: "test"
-            }
-          ]
-        },
-        [_c("headline-2", [_vm._v("テスト")])],
-        1
-      ),
-      _vm._v(" "),
-      _vm._v("\n    " + _vm._s(_vm.selectedTagIds) + "\n    "),
-      _c(
-        "modal",
-        {
-          ref: "modal",
-          model: {
-            value: _vm.modal,
-            callback: function($$v) {
-              _vm.modal = $$v
-            },
-            expression: "modal"
-          }
-        },
-        [
-          _c("tag-list", {
-            attrs: { userId: "1" },
-            model: {
-              value: _vm.selectedTagIds,
-              callback: function($$v) {
-                _vm.selectedTagIds = $$v
-              },
-              expression: "selectedTagIds"
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "button",
-          on: {
-            click: function($event) {
-              return _vm.showHeadline()
-            }
-          }
-        },
-        [_vm._v("H2")]
-      )
+      _c("tag-cloud", {
+        attrs: { options: _vm.projects, defaultValue: "100" },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
+      }),
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n\n    ")
     ],
     1
   )
@@ -58820,10 +58924,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            labelArray: ['label', 'name'],
+            valueArray: ['value', 'id'],
+            defaultMode: false,
             result: this.value
         };
     },
@@ -58840,20 +58948,101 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Boolean,
             default: false,
             required: false
+        },
+        defaultValue: {
+            type: [Number, String, Array],
+            required: false
         }
     },
-    watch: {},
+    watch: {
+        value: function value(newVal, oldVal) {
+            if (newVal == '' && this.defaultValue) {
+                this.$emit('input', this.defaultValue);
+                this.defaultMode = true;
+            }
+        },
+        defaultValue: function defaultValue() {
+            if (this.defaultValue && !this.value) {
+                this.$emit('input', this.defaultValue);
+                this.defaultMode = true;
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        selectOption: function selectOption(value) {
+        getLabel: function getLabel(option) {
+            if (!option) return;
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.labelArray[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+                    if (option[key]) {
+                        return option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        },
+        selectOption: function selectOption(option) {
+            if (!option) return;
+
+            var resultValue = void 0;
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.valueArray[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var key = _step2.value;
+
+                    if (option[key]) {
+                        resultValue = option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
             if (this.multiple) {
-                this.result = this.value;
+                if (!this.value || this.defaultMode) {
+                    this.result = [];
+                    this.defaultMode = false;
+                } else {
+                    this.result = this.value;
+                }
                 if (event.target.className == 'option selected') {
-                    var index = this.result.indexOf(value);
+                    var index = this.result.indexOf(resultValue);
                     this.result.splice(index, 1);
                     event.target.className = 'option';
-                    this.$emit('input', this.result);
                     return;
                 }
             } else {
@@ -58862,11 +59051,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.$emit('input', '');
                     return;
                 }
-                this.$emit('input', value);
+                this.$emit('input', resultValue);
                 return;
             }
 
-            this.result.push(value);
+            this.result.push(resultValue);
             this.$emit('input', this.result);
             event.target.className = 'option selected';
         },
@@ -58879,14 +59068,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         setClass: function setClass(option) {
+            if (!option) return;
+
+            var result = void 0;
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this.valueArray[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var key = _step3.value;
+
+                    if (option[key]) {
+                        result = option[key];
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
             if (this.multiple) {
-                if (this.value.indexOf(option.value) != -1) {
+                if (this.value.indexOf(result) != -1) {
                     return 'option selected';
                 } else {
                     return 'option';
                 }
             } else {
-                if (this.value == option.value) {
+                if (this.value == result) {
                     return 'option selected';
                 } else {
                     return 'option';
@@ -58915,11 +59134,11 @@ var render = function() {
             class: _vm.setClass(option),
             on: {
               click: function($event) {
-                return _vm.selectOption(option.value)
+                return _vm.selectOption(option)
               }
             }
           },
-          [_vm._v(_vm._s(option.label))]
+          [_vm._v(_vm._s(_vm.getLabel(option)))]
         )
       }),
       0
@@ -59514,7 +59733,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.tag-list-container[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.tag[data-v-4aeb7686] {\n    min-width:5em;\n    color:grey;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.4em;\n    margin:calc(0.2em + 1px) calc(0.3em + 1px);\n    background:white;\n    font-size:75%;\n    opacity:0.5;\n    cursor:pointer;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.tag span[data-v-4aeb7686] {\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\n.selected[data-v-4aeb7686] {\n    opacity:1.0;\n    border:2px solid grey;\n    margin:0.2em 0.3em;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.input-inline[data-v-4aeb7686] {\n    margin:0.5em 0.3em;\n    width:20em;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n\n", ""]);
+exports.push([module.i, "\n.tag-list-container[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n}\n.tag[data-v-4aeb7686] {\n    min-width:5em;\n    color:grey;\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.4em;\n    margin:calc(0.2em + 1px) calc(0.3em + 1px);\n    background:white;\n    font-size:75%;\n    opacity:0.5;\n    cursor:pointer;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.tag[data-v-4aeb7686]:hover {\n    opacity:0.8;\n}\n.tag span[data-v-4aeb7686] {\n    display:block;\n    width:100%;\n    -moz-text-align-last: justify;\n         text-align-last: justify;\n}\n.selected[data-v-4aeb7686] {\n    opacity:1.0;\n    border:2px solid grey;\n    margin:0.2em 0.3em;\n    -webkit-transition:opacity 0.3s;\n    transition:opacity 0.3s;\n}\n.creation-tag-area[data-v-4aeb7686] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.input-inline[data-v-4aeb7686] {\n    margin:0.5em 0.3em;\n    width:15em;\n    display:block;\n    padding:0.3em;\n    border:1px solid grey;\n    border-radius:0.3em;\n}\n", ""]);
 
 // exports
 
@@ -59550,12 +59769,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             tags: [],
-            selectedTags: this.value
+            selectedTags: this.value,
+            colorOptions: ['#ef857d', '#89c997', '#82cddd', '#d4d9df', '#fdd35c', '#c7a5cc'],
+            newTagColor: '#ef857d',
+            searchKeyword: ''
         };
     },
     props: {
@@ -59568,7 +59797,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         }
     },
-    watch: {},
+    watch: {
+        searchKeyword: function searchKeyword(newVal, oldVal) {
+            if (newVal == '') {
+                this.fetchTags();
+            } else {
+                this.searchTags();
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
@@ -59663,7 +59900,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 postObject = {
                                     user_id: this.userId,
                                     name: event.target.value,
-                                    color: '#ef857d'
+                                    color: this.newTagColor
                                 };
                                 _context3.prev = 2;
                                 _context3.next = 5;
@@ -59700,6 +59937,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return createTag;
+        }(),
+        searchTags: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.prev = 0;
+                                _context4.next = 3;
+                                return axios.get('/api/tags/search', {
+                                    params: {
+                                        user_id: this.userId,
+                                        keyword: this.searchKeyword
+                                    }
+                                });
+
+                            case 3:
+                                result = _context4.sent;
+
+                                this.tags = result.data;
+                                _context4.next = 10;
+                                break;
+
+                            case 7:
+                                _context4.prev = 7;
+                                _context4.t0 = _context4['catch'](0);
+
+                                console.log(_context4.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[0, 7]]);
+            }));
+
+            function searchTags() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return searchTags;
         }()
 
     }
@@ -59718,6 +59998,29 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("notice", { ref: "notice" }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.searchKeyword,
+            expression: "searchKeyword"
+          }
+        ],
+        ref: "searchTag",
+        staticClass: "input-inline",
+        attrs: { type: "text", placeholder: "タグを検索" },
+        domProps: { value: _vm.searchKeyword },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.searchKeyword = $event.target.value
+          }
+        }
+      }),
       _vm._v(" "),
       _vm._l(_vm.tags, function(tagColor, colorIndex) {
         return _c(
@@ -59744,16 +60047,34 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _c("input", {
-        ref: "newTag",
-        staticClass: "input-inline",
-        attrs: { type: "text", placeholder: "タグを新規登録" },
-        on: {
-          keydown: function($event) {
-            return _vm.createTag()
-          }
-        }
-      })
+      _c(
+        "div",
+        { staticClass: "creation-tag-area" },
+        [
+          _c("input", {
+            ref: "newTag",
+            staticClass: "input-inline",
+            attrs: { type: "text", placeholder: "タグを新規登録" },
+            on: {
+              keydown: function($event) {
+                return _vm.createTag()
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("color-picker", {
+            attrs: { colorOptions: _vm.colorOptions },
+            model: {
+              value: _vm.newTagColor,
+              callback: function($$v) {
+                _vm.newTagColor = $$v
+              },
+              expression: "newTagColor"
+            }
+          })
+        ],
+        1
+      )
     ],
     2
   )
@@ -60497,7 +60818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     props: {
         value: {
-            type: [String, Number],
+            type: [String, Number, Date],
             required: false
         }
     },
@@ -60513,35 +60834,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         selectedOption: function selectedOption() {
             if (this.selectedOption == 'current') {
                 this.setCurrentDatetime();
-                this.$refs.dateSlider.setSliderPosition();
             }
         }
     },
     created: function created() {},
     mounted: function mounted() {
-        this.init();
+        // this.init()
     },
     methods: {
-        init: function init(datetime) {
-            //dateSliderを初期化
-            this.$refs.dateSlider.init();
-
-            //引数を指定して強制的に時間指定する
-            if (datetime) {
-                this.$emit('input', datetime);
-                this.selectedOption = '';
-                var date = new Date(datetime);
-                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
-                return;
-            }
-
+        // init(datetime){
+        init: function init() {
             // 初期値設定
             if (this.value) {
                 this.selectedOption = '';
-                var _date = new Date(this.value);
-                this.japaneseDatetime = _date.getFullYear() + '年' + (_date.getMonth() + 1) + '月' + _date.getDate() + '日 ' + _date.getHours() + '時' + _date.getMinutes() + '分';
+                var date = new Date(this.value);
+                this.japaneseDatetime = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日 ' + date.getHours() + '時' + date.getMinutes() + '分';
             } else {
                 this.setCurrentDatetime();
+            }
+
+            //dateSliderを初期化
+            if (this.$refs.dateSlider) {
+                this.$refs.dateSlider.init();
             }
         },
 
@@ -60605,60 +60919,38 @@ var render = function() {
       "div",
       { staticClass: "component-wrapper" },
       [
-        _c("date-input", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "dateInput",
-              expression: "selectedOption == 'dateInput'"
-            }
-          ],
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        }),
-        _vm._v(" "),
-        _c("dead-line", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "deadLine",
-              expression: "selectedOption == 'deadLine'"
-            }
-          ],
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        }),
-        _vm._v(" "),
-        _c("date-slider", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedOption == "dateSlider",
-              expression: "selectedOption == 'dateSlider'"
-            }
-          ],
-          ref: "dateSlider",
-          model: {
-            value: _vm.result,
-            callback: function($$v) {
-              _vm.result = $$v
-            },
-            expression: "result"
-          }
-        })
+        _vm.selectedOption == "dateInput"
+          ? _c("date-input", {
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm.selectedOption == "deadLine"
+          ? _c("dead-line", {
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm.selectedOption == "dateSlider"
+          ? _c("date-slider", {
+              ref: "dateSlider",
+              model: {
+                value: _vm.result,
+                callback: function($$v) {
+                  _vm.result = $$v
+                },
+                expression: "result"
+              }
+            })
+          : _vm._e()
       ],
       1
     )
@@ -60840,6 +61132,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         init: function init() {
             this.data = '';
             this.time = '';
+            this.setSliderPosition();
         },
         setDateOptions: function setDateOptions() {
             var dateTimes = [];
@@ -62577,7 +62870,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n\n\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.filter-label[data-v-21375426] {\n    padding:0.3em;\n    border:1px solid gray;\n    border-radius:0.2em;\n    cursor:pointer;\n}\n.operator-or[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-21375426] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.tool-tip-content[data-v-21375426]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.add-button[data-v-21375426] {\n    cursor:pointer;\n}\n.filter-button[data-v-21375426] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-21375426] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-21375426] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-21375426]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -62588,6 +62881,11 @@ exports.push([module.i, "\n.filter-container[data-v-21375426] {\n    display:-we
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
 //
 //
 //
@@ -62657,7 +62955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     props: {
-        targetArray: {
+        originalArray: {
             type: [Array, String]
         },
         filterOptions: {
@@ -62669,7 +62967,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         filters: function filters() {
             this.filterArray();
         },
-        targetArray: function targetArray() {
+        originalArray: function originalArray() {
             this.filterArray();
         },
         columnName: function columnName() {
@@ -62681,7 +62979,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.filterArray();
     },
-    methods: {
+    methods: _defineProperty({
         showFilterModal: function showFilterModal() {
             this.$refs.filterModal.openModal();
         },
@@ -62715,7 +63013,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             //フィルターが設定されていない場合は全部出力
             if (!this.filters || this.filters.length == 0) {
-                this.$emit('input', this.targetArray);
+                this.$emit('input', this.originalArray);
+                // ボタンをdeactiveに
+                this.$refs.filterButton.classList.remove('filter-button-active');
                 return;
             }
 
@@ -62725,27 +63025,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 //オペレータによって分岐
                 switch (filter.comparisonOperator) {
                     case '<':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] < filter.comparisonValue;
                         }));
                         break;
                     case '<=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] <= filter.comparisonValue;
                         }));
                         break;
                     case '=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] == filter.comparisonValue;
                         }));
                         break;
                     case '>=':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] >= filter.comparisonValue;
                         }));
                         break;
                     case '>':
-                        _this2.filteredArray.push(_this2.targetArray.filter(function (el) {
+                        _this2.filteredArray.push(_this2.originalArray.filter(function (el) {
                             return el[filter.columnName] > filter.comparisonValue;
                         }));
                         break;
@@ -62790,158 +63090,165 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //フィルターの数が0/1の場合
             if (!this.filteredArray || this.filteredArray.length == 0) {
                 //フィルターが設定されていない場合は全部出力
-                this.$emit('input', this.targetArray);
+                this.$emit('input', this.originalArray);
+                // ボタンをdeactiveに
+                this.$refs.filterButton.classList.remove('filter-button-active');
             } else if (this.filteredArray.length == 1) {
                 this.$emit('input', this.filteredArray[0]);
-            }
-
-            for (var index in this.filteredArray) {
-                if (index == 0) {
-                    var _iteratorNormalCompletion2 = true;
-                    var _didIteratorError2 = false;
-                    var _iteratorError2 = undefined;
-
-                    try {
-                        for (var _iterator2 = this.filteredArray[0][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                            var el = _step2.value;
-
-                            resultIds.push(el.id);
-                            ids.push(el.id);
-                        }
-                    } catch (err) {
-                        _didIteratorError2 = true;
-                        _iteratorError2 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                                _iterator2.return();
-                            }
-                        } finally {
-                            if (_didIteratorError2) {
-                                throw _iteratorError2;
-                            }
-                        }
-                    }
-                } else {
-                    if (!this.filteredArray[index].length) {
-                        continue;
-                    }
-                    if (this.filterOperators[index - 1] == '*') {
-                        // 積
-                        resultIds = [];
-                        var _iteratorNormalCompletion3 = true;
-                        var _didIteratorError3 = false;
-                        var _iteratorError3 = undefined;
+                // ボタンをactiveに
+                this.$refs.filterButton.classList.add('filter-button-active');
+            } else {
+                for (var index in this.filteredArray) {
+                    if (index == 0) {
+                        var _iteratorNormalCompletion2 = true;
+                        var _didIteratorError2 = false;
+                        var _iteratorError2 = undefined;
 
                         try {
-                            for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                                var _el = _step3.value;
+                            for (var _iterator2 = this.filteredArray[0][Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                var el = _step2.value;
 
-                                if (ids.indexOf(_el.id) != -1) {
-                                    resultIds.push(_el.id);
-                                }
+                                resultIds.push(el.id);
+                                ids.push(el.id);
                             }
                         } catch (err) {
-                            _didIteratorError3 = true;
-                            _iteratorError3 = err;
+                            _didIteratorError2 = true;
+                            _iteratorError2 = err;
                         } finally {
                             try {
-                                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                                    _iterator3.return();
+                                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                    _iterator2.return();
                                 }
                             } finally {
-                                if (_didIteratorError3) {
-                                    throw _iteratorError3;
+                                if (_didIteratorError2) {
+                                    throw _iteratorError2;
                                 }
                             }
                         }
                     } else {
-                        // 和
-                        // 追加用id配列
-                        var _iteratorNormalCompletion4 = true;
-                        var _didIteratorError4 = false;
-                        var _iteratorError4 = undefined;
+                        if (!this.filteredArray[index].length) {
+                            continue;
+                        }
+                        if (this.filterOperators[index - 1] == '*') {
+                            // 積
+                            resultIds = [];
+                            var _iteratorNormalCompletion3 = true;
+                            var _didIteratorError3 = false;
+                            var _iteratorError3 = undefined;
 
-                        try {
-                            for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                                var _el2 = _step4.value;
-
-                                ids.push(_el2.id);
-                            }
-                            // setオブジェクトを生成
-                        } catch (err) {
-                            _didIteratorError4 = true;
-                            _iteratorError4 = err;
-                        } finally {
                             try {
-                                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                    _iterator4.return();
+                                for (var _iterator3 = this.filteredArray[index][Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                                    var _el = _step3.value;
+
+                                    if (ids.indexOf(_el.id) != -1) {
+                                        resultIds.push(_el.id);
+                                    }
                                 }
+                            } catch (err) {
+                                _didIteratorError3 = true;
+                                _iteratorError3 = err;
                             } finally {
-                                if (_didIteratorError4) {
-                                    throw _iteratorError4;
+                                try {
+                                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                                        _iterator3.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError3) {
+                                        throw _iteratorError3;
+                                    }
+                                }
+                            }
+                        } else {
+                            // 和
+                            // 追加用id配列
+                            var _iteratorNormalCompletion4 = true;
+                            var _didIteratorError4 = false;
+                            var _iteratorError4 = undefined;
+
+                            try {
+                                for (var _iterator4 = this.filteredArray[index][Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                                    var _el2 = _step4.value;
+
+                                    ids.push(_el2.id);
+                                }
+                                // setオブジェクトを生成
+                            } catch (err) {
+                                _didIteratorError4 = true;
+                                _iteratorError4 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                        _iterator4.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError4) {
+                                        throw _iteratorError4;
+                                    }
+                                }
+                            }
+
+                            var setObj = new Set(ids);
+                            var _iteratorNormalCompletion5 = true;
+                            var _didIteratorError5 = false;
+                            var _iteratorError5 = undefined;
+
+                            try {
+                                for (var _iterator5 = setObj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                                    var id = _step5.value;
+
+                                    resultIds.push(id);
+                                }
+                            } catch (err) {
+                                _didIteratorError5 = true;
+                                _iteratorError5 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                                        _iterator5.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError5) {
+                                        throw _iteratorError5;
+                                    }
                                 }
                             }
                         }
-
-                        var setObj = new Set(ids);
-                        var _iteratorNormalCompletion5 = true;
-                        var _didIteratorError5 = false;
-                        var _iteratorError5 = undefined;
-
-                        try {
-                            for (var _iterator5 = setObj[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                                var id = _step5.value;
-
-                                resultIds.push(id);
-                            }
-                        } catch (err) {
-                            _didIteratorError5 = true;
-                            _iteratorError5 = err;
-                        } finally {
-                            try {
-                                if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                                    _iterator5.return();
-                                }
-                            } finally {
-                                if (_didIteratorError5) {
-                                    throw _iteratorError5;
-                                }
-                            }
-                        }
-                    }
-                    ids = resultIds;
-                }
-            }
-            // idから配列を復元して出力
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
-
-            try {
-                for (var _iterator6 = this.targetArray[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var _el3 = _step6.value;
-
-                    if (resultIds.indexOf(_el3.id) != -1) {
-                        result.push(_el3);
+                        ids = resultIds;
                     }
                 }
-            } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
-            } finally {
+                // idから配列を復元して出力
+                var _iteratorNormalCompletion6 = true;
+                var _didIteratorError6 = false;
+                var _iteratorError6 = undefined;
+
                 try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
+                    for (var _iterator6 = this.originalArray[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                        var _el3 = _step6.value;
+
+                        if (resultIds.indexOf(_el3.id) != -1) {
+                            result.push(_el3);
+                        }
                     }
+                } catch (err) {
+                    _didIteratorError6 = true;
+                    _iteratorError6 = err;
                 } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
+                    try {
+                        if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                            _iterator6.return();
+                        }
+                    } finally {
+                        if (_didIteratorError6) {
+                            throw _iteratorError6;
+                        }
                     }
                 }
-            }
 
-            this.$emit('input', result);
+                this.$emit('input', result);
+
+                // ボタンをactiveに
+                this.$refs.filterButton.classList.add('filter-button-active');
+            }
         },
         //andとorを切り替え
         toggleOperator: function toggleOperator(index) {
@@ -63016,12 +63323,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.filteredArray.splice(this.deleteTargetIndex, 1);
             this.$refs.toolTipDelete.hideToolTip(); //ツールチップを消す
         },
-        showToolTip: function showToolTip() {
-            this.$refs.toolTip.showToolTip();
-        },
-        hideToolTip: function hideToolTip() {
-            this.$refs.toolTip.hideToolTip();
-        },
         setLabel: function setLabel(filter) {
             var selectedFilterOption = this.filterOptions.find(function (el) {
                 return el.value == filter.columnName;
@@ -63034,7 +63335,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 return filter.columnLabel + ' ' + filter.comparisonOperator + ' ' + filter.comparisonValue;
             }
         }
-    }
+    }, 'showFilterModal', function showFilterModal() {
+        this.$refs.filterModal.openModal();
+    })
 });
 
 /***/ }),
@@ -63047,7 +63350,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
       _c("tool-tip", { ref: "toolTipDelete" }, [
         _c("div", { staticClass: "tool-tip-content" }, [
@@ -63066,10 +63368,6 @@ var render = function() {
             [_vm._v("OK")]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("tool-tip", { ref: "toolTip" }, [
-        _c("span", [_vm._v("フィルターを追加します")])
       ]),
       _vm._v(" "),
       _c(
@@ -63128,6 +63426,44 @@ var render = function() {
               }
             },
             [_vm._v("フィルターを追加")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            _vm._l(_vm.filters, function(filter, index) {
+              return _c("div", { staticClass: "filter-wrapper" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "filter-label",
+                    on: {
+                      click: function($event) {
+                        return _vm.showDeleteFilterToolTip(index)
+                      },
+                      mouseout: function($event) {
+                        return _vm.hideDeleteFilterToolTip()
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.setLabel(filter)))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: _vm.setOperatorClass(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOperator(index)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("+")])]
+                )
+              ])
+            }),
+            0
           )
         ],
         1
@@ -63135,57 +63471,20 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filter-container" },
-        [
-          _vm._l(_vm.filters, function(filter, index) {
-            return _c("div", { staticClass: "filter-wrapper" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "filter-label",
-                  on: {
-                    click: function($event) {
-                      return _vm.showDeleteFilterToolTip(index)
-                    },
-                    mouseout: function($event) {
-                      return _vm.hideDeleteFilterToolTip()
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.setLabel(filter)))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: _vm.setOperatorClass(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleOperator(index)
-                    }
-                  }
-                },
-                [_c("span", [_vm._v("+")])]
-              )
-            ])
-          }),
-          _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-plus-circle fa-lg add-button",
-            on: {
-              click: function($event) {
-                return _vm.showFilterModal()
-              },
-              mouseover: function($event) {
-                return _vm.showToolTip()
-              },
-              mouseout: function($event) {
-                return _vm.hideToolTip()
-              }
+        {
+          ref: "filterButton",
+          staticClass: "filter-button",
+          on: {
+            click: function($event) {
+              return _vm.showFilterModal()
             }
-          })
-        ],
-        2
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-filter" }),
+          _vm._v(" "),
+          _c("span", [_vm._v("フィルター")])
+        ]
       )
     ],
     1
@@ -63287,7 +63586,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0.2em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.8em;\n}\n.filter-wrapper[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.operator-or[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n}\n.operator-and[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    cursor:pointer;\n    margin:0 0.5em;\n    -webkit-transform:rotate(45deg);\n            transform:rotate(45deg);\n    -webkit-transition:all 0.5s ease;\n    transition:all 0.5s ease;\n    color:red;\n}\n.filter-label[data-v-b08cfbb2] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    padding:0.2em;\n    border:1px solid gray;\n    border-radius:0.2em;\n}\n.filter-button[data-v-b08cfbb2] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-b08cfbb2] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-b08cfbb2] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-b08cfbb2]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -63327,6 +63626,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -63340,7 +63641,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         };
     },
     props: {
-        targetArray: {
+        originalArray: {
             type: [Array, String, Object]
         }
     },
@@ -63367,9 +63668,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return selectedTagIds;
         }(),
-        targetArray: function targetArray(newVal, oldVal) {
+        originalArray: function originalArray(newVal, oldVal) {
             if (oldVal.length == 0 && newVal.length != 0) {
-                this.userId = this.targetArray[0].user_id;
+                this.userId = this.originalArray[0].user_id;
                 this.fetchTags();
             }
             this.filterTag();
@@ -63487,7 +63788,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 //個別にフィルター
 
                                 _loop = function _loop(selectedTagId) {
-                                    _this.filteredArray.push(_this.targetArray.filter(function (el) {
+                                    _this.filteredArray.push(_this.originalArray.filter(function (el) {
                                         return el && el.tags.some(function (tag) {
                                             return tag.id == selectedTagId;
                                         });
@@ -63541,12 +63842,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 21:
                                 if (!this.selectedTagIds || this.selectedTagIds.length == 0) {
                                     //フィルターが設定されていない場合は全部出力
-                                    this.$emit('input', this.targetArray);
+                                    this.$emit('input', this.originalArray);
+                                    // ボタンをdeactiveに
+                                    this.$refs.filterButton.classList.remove('filter-button-active');
                                 } else if (this.selectedTagIds.length == 1) {
                                     this.$emit('input', this.filteredArray[0]);
+                                    //ボタンをアクティブに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
                                 } else {
                                     this.$emit('input', []);
                                     this.operate();
+                                    //ボタンをアクティブに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
                                 }
 
                             case 22:
@@ -63697,7 +64004,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator7 = this.targetArray[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                for (var _iterator7 = this.originalArray[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
                     var _el3 = _step7.value;
 
                     if (resultIds.indexOf(_el3.id) != -1) {
@@ -63763,7 +64070,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
       _c(
         "modal",
@@ -63790,55 +64096,58 @@ var render = function() {
               },
               expression: "selectedTagIds"
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
+              return _c("div", { staticClass: "filter-wrapper" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "filter-label",
+                    style: _vm.getTagColor(selectedTagId)
+                  },
+                  [_vm._v(_vm._s(_vm.getTagName(selectedTagId)))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    class: _vm.setOperatorClass(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleOperator(index)
+                      }
+                    }
+                  },
+                  [_c("span", [_vm._v("+")])]
+                )
+              ])
+            }),
+            0
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "filter-container" },
+        {
+          ref: "filterButton",
+          staticClass: "filter-button",
+          on: {
+            click: function($event) {
+              return _vm.showTagModal()
+            }
+          }
+        },
         [
-          _vm._l(_vm.selectedTagIds, function(selectedTagId, index) {
-            return _c("div", { staticClass: "filter-wrapper" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "filter-label",
-                  style: _vm.getTagColor(selectedTagId)
-                },
-                [_vm._v(_vm._s(_vm.getTagName(selectedTagId)))]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  class: _vm.setOperatorClass(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.toggleOperator(index)
-                    }
-                  }
-                },
-                [_c("span", [_vm._v("+")])]
-              )
-            ])
-          }),
+          _c("i", { staticClass: "fas fa-tag" }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary mx-auto d-block",
-              on: {
-                click: function($event) {
-                  return _vm.showTagModal()
-                }
-              }
-            },
-            [_vm._v("タグを選択")]
-          )
-        ],
-        2
+          _c("span", [_vm._v("タグ")])
+        ]
       )
     ],
     1
@@ -63940,7 +64249,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.filter-container[data-v-5f60ac75] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.2em 0.8em;\n}\n", ""]);
+exports.push([module.i, "\n.filter-container[data-v-5f60ac75] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    border:1px solid grey;\n    border-radius:0.2em;\n    padding:0.2em 0.8em;\n}\n.filter-button[data-v-5f60ac75] {\n    color:white;\n    border:1px solid grey;\n    background:grey;\n    border-radius:0.2em;\n    padding:0.1em 0.6em;\n    display:-webkit-inline-box;\n    display:-ms-inline-flexbox;\n    display:inline-flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    opacity:0.8;\n    cursor:pointer;\n    -webkit-transition:all 0.2s ease;\n    transition:all 0.2s ease;\n}\n.filter-button span[data-v-5f60ac75] {\n    margin-left:0.2em;\n}\n.filter-button-active[data-v-5f60ac75] {\n    border:1px solid orange;\n    background:orange;\n    opacity:1.0;\n}\n.filter-button[data-v-5f60ac75]:hover {\n    border:1px solid orange;\n    background:orange;\n    opacity:0.9;\n}\n", ""]);
 
 // exports
 
@@ -63967,13 +64276,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             statuses: [],
             filteredArray: [],
-            selectedStatusIds: [] //デフォルトは1の実行中
+            selectedStatusIds: [1], //デフォルトは1の実行中
+            filterModal: false
+            // buttonClass:''
         };
     },
     props: {
@@ -63989,8 +64310,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 this.filterStatus();
+                                if (this.selectedStatusIds.length > 0) {
+                                    // ボタンをactiveに
+                                    this.$refs.filterButton.classList.add('filter-button-active');
+                                } else {
+                                    // ボタンをdeactiveに
+                                    this.$refs.filterButton.classList.remove('filter-button-active');
+                                }
 
-                            case 1:
+                            case 2:
                             case 'end':
                                 return _context.stop();
                         }
@@ -64098,6 +64426,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         return mounted;
     }(),
+    computed: {
+        buttonClass: function buttonClass() {
+            if (this.selectedStatusIds.length > 0) {
+                // ボタンをactiveに
+                return 'filter-button filter-button-active';
+            } else {
+                // ボタンをdeactiveに
+                return 'filter-button';
+            }
+        }
+    },
     methods: {
         filterStatus: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
@@ -64189,12 +64528,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return filterStatus;
         }(),
-        // filterStatus:async function(selectedStatusId){
-        //     //フィルター
-        //     this.filteredArray.push(this.originalArray.filter(el => {
-        //         return el.states[el.states.length - 1].id == selectedStatusId
-        //     }))
-        // },
         // 配列をAnd演算して出力
         operate: function operate() {
             this.$emit('input', []);
@@ -64317,6 +64650,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             this.$emit('input', result);
+        },
+        showFilterModal: function showFilterModal() {
+            this.$refs.filterModal.openModal();
         }
     }
 });
@@ -64331,18 +64667,57 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "filter-container" },
     [
-      _c("tag-cloud", {
-        attrs: { options: _vm.statuses, multiple: "" },
-        model: {
-          value: _vm.selectedStatusIds,
-          callback: function($$v) {
-            _vm.selectedStatusIds = $$v
-          },
-          expression: "selectedStatusIds"
-        }
-      })
+      _c(
+        "modal",
+        {
+          ref: "filterModal",
+          model: {
+            value: _vm.filterModal,
+            callback: function($$v) {
+              _vm.filterModal = $$v
+            },
+            expression: "filterModal"
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "filter-container" },
+            [
+              _c("tag-cloud", {
+                attrs: { options: _vm.statuses, multiple: "" },
+                model: {
+                  value: _vm.selectedStatusIds,
+                  callback: function($$v) {
+                    _vm.selectedStatusIds = $$v
+                  },
+                  expression: "selectedStatusIds"
+                }
+              })
+            ],
+            1
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          ref: "filterButton",
+          class: _vm.buttonClass,
+          on: {
+            click: function($event) {
+              return _vm.showFilterModal()
+            }
+          }
+        },
+        [
+          _c("i", { staticClass: "fas fa-power-off" }),
+          _vm._v(" "),
+          _c("span", [_vm._v("状態")])
+        ]
+      )
     ],
     1
   )
@@ -64371,249 +64746,6 @@ var normalizeComponent = __webpack_require__(2)
 var __vue_script__ = __webpack_require__(225)
 /* template */
 var __vue_template__ = __webpack_require__(226)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-085cbfd8"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/FilterBox.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-085cbfd8", Component.options)
-  } else {
-    hotAPI.reload("data-v-085cbfd8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(224);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(1)("71fa4b05", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-085cbfd8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterBox.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 224 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.filter-select[data-v-085cbfd8] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    padding:1em;\n}\n.filter-select i[data-v-085cbfd8] {\n    font-size:120%;\n    margin-right:0.5em;\n    cursor:pointer;\n}\n.selected[data-v-085cbfd8] {\n    color:orange;\n}\n.disable[data-v-085cbfd8] {\n    display:none;\n}\n.visible[data-v-085cbfd8] {\n    display:block;\n}\n.visible div[data-v-085cbfd8] {\n    margin:0.5em 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 225 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            selectedFilters: [],
-            nomalFilteredArray: [],
-            tagFilteredArray: [],
-            filterClass: 'disable'
-        };
-    },
-    props: {
-        originalArray: {
-            type: [String, Array, Object]
-        },
-        filterOptions: {
-            type: [String, Array, Object]
-        }
-    },
-    watch: {
-        tagFilteredArray: function tagFilteredArray() {
-            this.$emit('input', this.tagFilteredArray);
-        },
-        selectedFilters: function selectedFilters() {
-            this.filterClass = this.selectedFilters.length != 0 ? 'visible' : 'disable';
-        }
-    },
-    created: function created() {},
-    mounted: function mounted() {},
-    methods: {
-        selectFilter: function selectFilter(filterName) {
-            var index = this.selectedFilters.indexOf(filterName);
-            if (index != -1) {
-                this.selectedFilters.splice(index, 1);
-            } else {
-                this.selectedFilters.push(filterName);
-            }
-            event.target.classList.toggle('selected');
-        }
-    }
-});
-
-/***/ }),
-/* 226 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "filter-select" }, [
-      _c("i", {
-        staticClass: "fas fa-filter",
-        on: {
-          click: function($event) {
-            return _vm.selectFilter("normal")
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-tags",
-        on: {
-          click: function($event) {
-            return _vm.selectFilter("tag")
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { class: _vm.filterClass },
-      [
-        _c("filter-array", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedFilters.indexOf("normal") != -1,
-              expression: "selectedFilters.indexOf('normal') != -1"
-            }
-          ],
-          attrs: {
-            targetArray: _vm.originalArray,
-            filterOptions: _vm.filterOptions
-          },
-          model: {
-            value: _vm.nomalFilteredArray,
-            callback: function($$v) {
-              _vm.nomalFilteredArray = $$v
-            },
-            expression: "nomalFilteredArray"
-          }
-        }),
-        _vm._v(" "),
-        _c("filter-tag", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.selectedFilters.indexOf("tag") != -1,
-              expression: "selectedFilters.indexOf('tag') != -1"
-            }
-          ],
-          attrs: { targetArray: _vm.nomalFilteredArray },
-          model: {
-            value: _vm.tagFilteredArray,
-            callback: function($$v) {
-              _vm.tagFilteredArray = $$v
-            },
-            expression: "tagFilteredArray"
-          }
-        })
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-085cbfd8", module.exports)
-  }
-}
-
-/***/ }),
-/* 227 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(228)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(230)
-/* template */
-var __vue_template__ = __webpack_require__(231)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64652,13 +64784,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 228 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(229);
+var content = __webpack_require__(224);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64678,7 +64810,7 @@ if(false) {
 }
 
 /***/ }),
-/* 229 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -64692,7 +64824,7 @@ exports.push([module.i, "\n.sort-wrapper[data-v-6b803800] {\n    display:-webkit
 
 
 /***/ }),
-/* 230 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64797,7 +64929,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 231 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -64853,19 +64985,19 @@ if (false) {
 }
 
 /***/ }),
-/* 232 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(233)
+  __webpack_require__(228)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(235)
+var __vue_script__ = __webpack_require__(230)
 /* template */
-var __vue_template__ = __webpack_require__(236)
+var __vue_template__ = __webpack_require__(231)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -64904,13 +65036,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 233 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(234);
+var content = __webpack_require__(229);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -64930,7 +65062,7 @@ if(false) {
 }
 
 /***/ }),
-/* 234 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -64944,7 +65076,7 @@ exports.push([module.i, "\n.sort-box-wrapper[data-v-261b7e32] {\n    display:-we
 
 
 /***/ }),
-/* 235 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65051,7 +65183,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 236 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65118,19 +65250,19 @@ if (false) {
 }
 
 /***/ }),
-/* 237 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(238)
+  __webpack_require__(233)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(240)
+var __vue_script__ = __webpack_require__(235)
 /* template */
-var __vue_template__ = __webpack_require__(241)
+var __vue_template__ = __webpack_require__(236)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65169,13 +65301,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 238 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(239);
+var content = __webpack_require__(234);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65195,7 +65327,7 @@ if(false) {
 }
 
 /***/ }),
-/* 239 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65209,7 +65341,7 @@ exports.push([module.i, "\n.tool-tip-hide[data-v-6cabd7c8] {\n    position:fixed
 
 
 /***/ }),
-/* 240 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65261,7 +65393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 241 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65296,19 +65428,19 @@ if (false) {
 }
 
 /***/ }),
-/* 242 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(243)
+  __webpack_require__(238)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(245)
+var __vue_script__ = __webpack_require__(240)
 /* template */
-var __vue_template__ = __webpack_require__(246)
+var __vue_template__ = __webpack_require__(241)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65347,13 +65479,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 243 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(244);
+var content = __webpack_require__(239);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65373,7 +65505,7 @@ if(false) {
 }
 
 /***/ }),
-/* 244 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65387,7 +65519,7 @@ exports.push([module.i, "\n.task[data-v-38d759ed] {\n    width:100%;\n    displa
 
 
 /***/ }),
-/* 245 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65463,7 +65595,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 246 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -65506,19 +65638,19 @@ if (false) {
 }
 
 /***/ }),
-/* 247 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(248)
+  __webpack_require__(243)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(250)
+var __vue_script__ = __webpack_require__(245)
 /* template */
-var __vue_template__ = __webpack_require__(251)
+var __vue_template__ = __webpack_require__(246)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -65557,13 +65689,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 248 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(249);
+var content = __webpack_require__(244);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -65583,7 +65715,7 @@ if(false) {
 }
 
 /***/ }),
-/* 249 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -65597,7 +65729,7 @@ exports.push([module.i, "\n.display-tags[data-v-6bee1ebc] {\n    display:-webkit
 
 
 /***/ }),
-/* 250 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65639,7 +65771,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -65649,7 +65780,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             editId: '',
             editedTag: {},
-            colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc']
+            colorOptions: ['#ef857d', '#89c997', '#82cddd', '#d4d9df', '#fdd35c', '#c7a5cc']
         };
     },
     props: {
@@ -65882,7 +66013,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 251 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66063,19 +66194,19 @@ if (false) {
 }
 
 /***/ }),
-/* 252 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(253)
+  __webpack_require__(248)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(255)
+var __vue_script__ = __webpack_require__(250)
 /* template */
-var __vue_template__ = __webpack_require__(256)
+var __vue_template__ = __webpack_require__(251)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66114,13 +66245,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 253 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(254);
+var content = __webpack_require__(249);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66140,7 +66271,7 @@ if(false) {
 }
 
 /***/ }),
-/* 254 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66154,7 +66285,7 @@ exports.push([module.i, "\n.color-wrapper[data-v-023f0f94] {\n    display:-webki
 
 
 /***/ }),
-/* 255 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66221,7 +66352,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 256 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66259,19 +66390,19 @@ if (false) {
 }
 
 /***/ }),
-/* 257 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(258)
+  __webpack_require__(253)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(260)
+var __vue_script__ = __webpack_require__(255)
 /* template */
-var __vue_template__ = __webpack_require__(261)
+var __vue_template__ = __webpack_require__(256)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66310,13 +66441,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 258 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(259);
+var content = __webpack_require__(254);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66336,7 +66467,7 @@ if(false) {
 }
 
 /***/ }),
-/* 259 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66344,28 +66475,17 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.log-button[data-v-5c649d64] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.log-button span[data-v-5c649d64] {\n    margin-right:1em;\n}\n.logs[data-v-5c649d64] {\n    opacity:0;\n    height:0;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n}\n.logs div[data-v-5c649d64] {\n    margin:0.5em 0;\n}\n", ""]);
+exports.push([module.i, "\ni[data-v-5c649d64] {\n    margin:0 1em;\n    font-size:1.2em;\n}\n.container[data-v-5c649d64] {\n    margin:1em 0;\n}\n.log-button[data-v-5c649d64] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:center;\n        -ms-flex-pack:center;\n            justify-content:center;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.log-button span[data-v-5c649d64] {\n    margin-right:1em;\n}\n.logs[data-v-5c649d64] {\n    opacity:0;\n    max-height:0em;\n    margin:1em 0;\n    overflow:hidden;\n    padding:0 1em;\n    border:1px solid grey;\n    -webkit-transition:all 0.3s ease;\n    transition:all 0.3s ease;\n}\n.logs-active[data-v-5c649d64] {\n    max-height:500em;\n    opacity:1.0;\n    -webkit-transition:all 0.3s ease;\n    transition:all 0.3s ease;\n}\n.log[data-v-5c649d64] {\n    margin:0.6em 0;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    border-bottom:1px dotted grey;\n}\n.state-name[data-v-5c649d64] {\n    white-space: nowrap;\n    margin-left:1em;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 260 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -66403,12 +66523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     watch: {
         openLog: function openLog() {
-            if (this.openLog) {
-                var lineNum = this.task.states.length * 2.0 + 2.0;
-                this.$refs.logs.style.cssText = 'height:' + lineNum + 'em; opacity:1.0; transition:all 0.3s ease';
-            } else {
-                this.$refs.logs.style.cssText = 'height:0em; opacity:0; transition:all 0.3s ease';
-            }
+            this.$refs.logs.classList.toggle('logs-active');
         }
     },
     created: function created() {},
@@ -66430,7 +66545,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 261 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66461,43 +66576,23 @@ var render = function() {
       "div",
       { ref: "logs", staticClass: "logs" },
       _vm._l(_vm.task.states, function(state, index) {
-        return _c("div", [
-          index == 0
-            ? _c("div", [
-                _c("span", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.created_at) +
-                      "\n                    "
-                  ),
-                  _c("i", {
-                    staticClass: "fas fa-power-off",
-                    style: _vm.setTaskStatus(state)
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("タスクが作成されました。")])
-                ])
-              ])
-            : _c("div", [
-                _c("span", [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.created_at) +
-                      "\n                    "
-                  ),
-                  _c("i", {
-                    staticClass: "fas fa-power-off",
-                    style: _vm.setTaskStatus(state)
-                  }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("（" + _vm._s(state.name) + "）")]),
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(state.pivot.state_detail) +
-                      "\n                "
-                  )
-                ])
-              ])
+        return _c("div", { staticClass: "log" }, [
+          _c("div", { staticClass: "state-name" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(state.pivot.created_at) +
+                "\n                "
+            ),
+            _c("i", {
+              staticClass: "fas fa-power-off",
+              style: _vm.setTaskStatus(state)
+            }),
+            _vm._v(
+              "\n                （" + _vm._s(state.name) + "）\n            "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [_vm._v(_vm._s(state.pivot.state_detail))])
         ])
       }),
       0
@@ -66515,19 +66610,19 @@ if (false) {
 }
 
 /***/ }),
-/* 262 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(263)
+  __webpack_require__(258)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(265)
+var __vue_script__ = __webpack_require__(260)
 /* template */
-var __vue_template__ = __webpack_require__(266)
+var __vue_template__ = __webpack_require__(261)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66566,13 +66661,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 263 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(264);
+var content = __webpack_require__(259);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66592,7 +66687,7 @@ if(false) {
 }
 
 /***/ }),
-/* 264 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66606,7 +66701,7 @@ exports.push([module.i, "\n.waiting-root[data-v-189e5d9c] {\n    position:fixed;
 
 
 /***/ }),
-/* 265 */
+/* 260 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66652,7 +66747,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 266 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66684,19 +66779,19 @@ if (false) {
 }
 
 /***/ }),
-/* 267 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(268)
+  __webpack_require__(263)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(270)
+var __vue_script__ = __webpack_require__(265)
 /* template */
-var __vue_template__ = __webpack_require__(271)
+var __vue_template__ = __webpack_require__(266)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66735,13 +66830,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 268 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(269);
+var content = __webpack_require__(264);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66761,7 +66856,7 @@ if(false) {
 }
 
 /***/ }),
-/* 269 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66775,7 +66870,7 @@ exports.push([module.i, "\n.h2[data-v-f4658ffa] {\n        position:relative;\n 
 
 
 /***/ }),
-/* 270 */
+/* 265 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66817,7 +66912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 271 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -66839,19 +66934,19 @@ if (false) {
 }
 
 /***/ }),
-/* 272 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(273)
+  __webpack_require__(268)
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(275)
+var __vue_script__ = __webpack_require__(270)
 /* template */
-var __vue_template__ = __webpack_require__(276)
+var __vue_template__ = __webpack_require__(271)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -66890,13 +66985,13 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 273 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(274);
+var content = __webpack_require__(269);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -66916,7 +67011,7 @@ if(false) {
 }
 
 /***/ }),
-/* 274 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -66930,7 +67025,7 @@ exports.push([module.i, "\n.cong-root[data-v-7b158809] {\n    position:fixed;\n 
 
 
 /***/ }),
-/* 275 */
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -66980,7 +67075,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 276 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -67015,7 +67110,328 @@ if (false) {
 }
 
 /***/ }),
+/* 272 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(273)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(275)
+/* template */
+var __vue_template__ = __webpack_require__(276)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2116f204"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/CircleMeter.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2116f204", Component.options)
+  } else {
+    hotAPI.reload("data-v-2116f204", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 273 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(274);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("0562194b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2116f204\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CircleMeter.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2116f204\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CircleMeter.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 274 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.circle-background[data-v-2116f204] {\n    position:relative;\n    z-index:1;\n    width:1em;\n    height:1em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    background:whitesmoke;\n    border-radius:50%;\n}\n.circle-right[data-v-2116f204] {\n    position:absolute;\n    display:block;\n    content:'';\n    z-index:2;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    background-color:orange;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n.circle-left[data-v-2116f204] {\n    position:relative;\n    display:block;\n    content:'';\n    z-index:3;\n    width:0.5em;\n    height:1em;\n    border-radius:0.5em 0 0 0.5em;\n    -webkit-transform-origin:right;\n            transform-origin:right;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {
+        // 分母
+        denominator: {
+            type: [Number, String],
+            default: 1,
+            required: true
+        },
+        // 分子
+        numerator: {
+            type: [Number, String],
+            default: 0,
+            required: true
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    computed: {
+        circleRightAngle: function circleRightAngle() {
+            var degree = this.numerator / this.denominator * 360;
+            return { transform: 'rotate(' + degree + 'deg)' };
+        },
+        circleLeftAngle: function circleLeftAngle() {
+            var degree = this.numerator / this.denominator * 360;
+            if (degree > 180) {
+                return { transform: 'rotate(180deg)', background: 'orange' };
+            } else {
+                return { transform: 'rotate(0deg)', background: 'whitesmoke' };
+            }
+        }
+    },
+    methods: {}
+});
+
+/***/ }),
+/* 276 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { ref: "circleBackground", staticClass: "circle-background" },
+    [
+      _c("div", {
+        ref: "circleLeft",
+        staticClass: "circle-left",
+        style: _vm.circleLeftAngle
+      }),
+      _vm._v(" "),
+      _c("div", {
+        ref: "circleRight",
+        staticClass: "circle-right",
+        style: _vm.circleRightAngle
+      })
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2116f204", module.exports)
+  }
+}
+
+/***/ }),
 /* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(278)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(280)
+/* template */
+var __vue_template__ = __webpack_require__(281)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-b1554a78"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/MainTitle.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-b1554a78", Component.options)
+  } else {
+    hotAPI.reload("data-v-b1554a78", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 278 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(279);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("8fd66e24", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b1554a78\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainTitle.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b1554a78\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainTitle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 279 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 280 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {},
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {}
+});
+
+/***/ }),
+/* 281 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("headline-2", [_vm._v("きょうのできごと")])], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-b1554a78", module.exports)
+  }
+}
+
+/***/ }),
+/* 282 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

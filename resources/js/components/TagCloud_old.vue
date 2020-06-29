@@ -6,7 +6,7 @@
 <template>
     <div class="container">
         <div class="option-wrapper">
-            <div v-for="(option,index) in options" v-bind:class="setClass(option)" v-on:click="selectOption(option)">{{getLabel(option)}}</div>
+            <div v-for="(option,index) in options" v-bind:class="setClass(option)" v-on:click="selectOption(option.value)">{{option.label}}</div>
         </div>
     </div>
 </template>
@@ -15,9 +15,6 @@
     export default {
         data:function(){
             return {
-                labelArray:['label','name'],
-                valueArray:['value','id'],
-                defaultMode:false,
                 result:this.value
             }  
         },
@@ -34,76 +31,39 @@
                 type:Boolean,
                 default:false,
                 required:false
-            },
-            defaultValue: {
-                type:[Number,String,Array],
-                required:false
             }
         },
         watch:{
-            value:function(newVal,oldVal){
-                if(newVal == '' && this.defaultValue){
-                    this.$emit('input',this.defaultValue)
-                    this.defaultMode = true
-                }
-            },
-            defaultValue:function(){
-                if(this.defaultValue && !this.value){
-                    this.$emit('input',this.defaultValue)
-                    this.defaultMode = true
-                }
-            }
+            
         },
         created:function(){
             
         },
         mounted:function(){
-            
         },
         methods: {
-            getLabel:function(option){
-                if(!option)return
-                
-                for(let key of this.labelArray){
-                    if(option[key]){
-                        return option[key]
-                    }
-                }
-            },
-            selectOption:function(option){
-                if(!option)return
-                
-                let resultValue
-                for(let key of this.valueArray){
-                    if(option[key]){
-                        resultValue = option[key]
-                    }
-                }
-                
+            selectOption:function(value){
                 if(this.multiple){
-                    if(!this.value || this.defaultMode){
-                        this.result = []
-                        this.defaultMode = false
-                    }else{
-                        this.result = this.value
-                    }
+                    this.result = this.value
                     if(event.target.className == 'option selected'){
-                        let index = this.result.indexOf(resultValue)
+                        let index = this.result.indexOf(value)
                         this.result.splice(index,1)
                         event.target.className = 'option'
+                        this.$emit('input',this.result)
                         return
                     }
+                    
                 }else{
                     if(event.target.className == 'option selected'){
                         event.target.className = 'option'
                         this.$emit('input','')
                         return
                     }
-                    this.$emit('input',resultValue)
+                    this.$emit('input',value)
                     return
                 }
                 
-                this.result.push(resultValue)
+                this.result.push(value)
                 this.$emit('input',this.result)
                 event.target.className = 'option selected'
             },
@@ -116,23 +76,14 @@
                 }
             },
             setClass:function(option){
-                if(!option)return
-                
-                let result
-                for(let key of this.valueArray){
-                    if(option[key]){
-                        result = option[key]
-                    }
-                }
-                
                 if(this.multiple){
-                    if(this.value.indexOf(result) != -1){
+                    if(this.value.indexOf(option.value) != -1){
                         return 'option selected'
                     }else{
                         return 'option'
                     }
                 }else{
-                    if(this.value == result){
+                    if(this.value == option.value){
                         return 'option selected'
                     }else{
                         return 'option'

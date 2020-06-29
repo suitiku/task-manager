@@ -51,7 +51,7 @@ Vue.component('text-spliter', require('./components/TextSpliter.vue'));
 Vue.component('filter-array', require('./components/FilterArray.vue'));
 Vue.component('filter-tag', require('./components/FilterTag.vue'));
 Vue.component('filter-status', require('./components/FilterStatus.vue'));
-Vue.component('filter-box', require('./components/FilterBox.vue'));
+// Vue.component('filter-box', require('./components/FilterBox.vue'));
 Vue.component('sort-array', require('./components/SortArray.vue'));
 Vue.component('sort-box', require('./components/SortBox.vue'));
 Vue.component('tool-tip', require('./components/ToolTip.vue'));
@@ -62,6 +62,8 @@ Vue.component('task-log', require('./components/TaskLog.vue'));
 Vue.component('waiting', require('./components/Waiting.vue'));
 Vue.component('headline-2', require('./components/Headline2.vue'));
 Vue.component('congratulation', require('./components/Congratulation.vue'));
+Vue.component('circle-meter', require('./components/CircleMeter.vue'));
+Vue.component('main-title', require('./components/MainTitle.vue'));
 
 
 

@@ -101,4 +101,25 @@ class TagsController extends Controller
         }
         return $result;
     }
+    
+    //部分一致検索
+    public function getTagsByKeyword(Request $request){
+        $result;
+        $tags = Tag::where('user_id',$request->user_id)
+                ->where('name','like','%'.$request->keyword.'%')
+                ->with(['tasks'])
+                ->withCount('tasks')
+                ->orderBy('tasks_count','desc')
+                ->get();
+        
+        //検索結果がなかった場合
+        if(count($tags) == 0){
+            return [];
+        }
+        
+        foreach($tags as $tag){
+            $result[$tag->color][] = $tag;
+        }
+        return $result;
+    }
 }

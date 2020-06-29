@@ -11,11 +11,14 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
+    if(Auth::user()){
+        return redirect('/home');
+    }
     return view('welcome');
 });
-
-Auth::routes();
 
 //ホーム画面（認証必須）
 Route::get('/home','HomeController@index');

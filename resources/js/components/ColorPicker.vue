@@ -40,7 +40,6 @@
             
         },
         mounted:function(){
-            
         },
         methods: {
             selectColor:function(index){

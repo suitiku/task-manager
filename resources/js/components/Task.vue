@@ -34,7 +34,7 @@
             <div class="edit-status-modal">
                 <p>状態を変更します</p>
                 <list-box v-model="selectedStatus.id" table="states" v-bind:columns="['name']" />
-                <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）">
+                <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）、CTRL+エンターで状態変更" v-on:keydown="changeStatus()">
                 <button class="btn btn-primary d-block mx-auto" v-on:click="changeStatus()">状態を変更</button>
             </div>
         </modal>
@@ -44,11 +44,6 @@
             <p>タグの付替えを行います</p>
             <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="task.user_id" />
         </modal>
-        
-        <!--<modal ref="editTagModal" v-model="editTagModal">-->
-        <!--    <p>タグの付替えを行います</p>-->
-        <!--    <tag-list ref="tagList" v-bind:taskId="task.id" />-->
-        <!--</modal>-->
         
         <!--編集用モーダル-->
         <modal ref="editModal" v-model="editModal">
@@ -67,9 +62,11 @@
                 <date-picker ref="editTaskStartDate" v-model="editedTask.start_date" />
                 <span>締切</span>
                 <date-picker ref="editTaskDeadLine" v-model="editedTask.dead_line" />
-                <span>プロジェクトを選択してください</span>
-                <list-box v-model="editedTask.project_id" ref="projectsListbox" table="projects" />
-                <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                <div>    
+                    <span>プロジェクトを選択してください（選択しない場合は単体のタスクとなります）</span>
+                    <tag-cloud v-model="editedTask.project_id" v-bind:options="projects" v-bind:defaultValue="defaultProjectId" />
+                    <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                </div>
             </versatile-form>
         </modal>
         
@@ -106,6 +103,8 @@
                     <div class="headline-icons">
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
+                        <!--進捗メーター-->
+                        <circle-meter v-bind:denominator="denominator" v-bind:numerator="numerator" />
                         <!--チェックボックス-->
                         <check-box v-model="checked" class="checkbox" v-bind:disabled="checkDisabled" />
                     </div>
@@ -151,7 +150,7 @@
                             <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]" class="item-label">
                                 <input type="checkbox" class="checkbox" v-on:change="checkItem(item)" v-bind:checked="item.is_checked" v-bind:disabled="setItemDisabled(item.is_checked)">
-                                <span class="childItem">{{item.name}}</span>
+                                <span>{{item.name}}</span>
                             </span>
                             <!--編集用表示-->
                             <span v-show="editItemMode[itemIndex]">
@@ -162,7 +161,7 @@
                             <!--削除ボタン-->
                             <i class="fas fa-trash task-icon" v-on:click="showDeleteItemDialog(item.id,item.name)"></i>
                             <!--チェックの取り消し-->
-                            <i class="fas fa-redo task-icon" v-on:click="uncheckItem(item.id)"></i>
+                            <i class="fas fa-redo task-icon" v-on:click="uncheckItem(item)"></i>
                     </p>
                     <!--アイテムの追加処理セクション-->
                     <div class="editable">
@@ -182,6 +181,8 @@
         data:function(){
             return {
                 task:{},
+                projects:[],
+                defaultProjectId:'',
                 wrapper_class:'task-wrapper',
                 maskClass:'mask',
                 mask:false,
@@ -266,11 +267,18 @@
             let vue = this
             this.$watch('checked',async function(newVal,oldVal){
                 if(oldVal == false && newVal == true && this.task.states[this.task.states.length -1].id != 2){
+                    //子アイテムが全部終わっていない場合の警告文
+                    if(this.task.items.find(el => el.is_checked == false)){
+                        let result = window.confirm('サブタスクが全てチェックされていませんが完了してよろしいですか？')
+                        if(!result){
+                            this.checked = false
+                            return
+                        }
+                    }
                     let postObject = {
                         task_id:vue.task.id,
                         state_id:2,
                     }
-                    
                     try{
                         await axios.post('/api/state_task',postObject)
                         vue.$refs.cong.openCong('おつかれさまです！')
@@ -299,12 +307,37 @@
                     return {fontSize:'150%',color:'grey',opacity:'0.3'}
                 }
             },
+            // 進捗メーターの分母
+            denominator:function(){
+                if(!this.task || !this.task.items)return
+                return this.task.items.length
+            },
+            // 進捗メーターの分子
+            numerator:function(){
+                if(!this.task || !this.task.items)return
+                return this.task.items.filter(el => el.is_checked).length
+            }
         },
         methods: {
             fetchTask:async function(){
                 let result = await axios.get('/api/tasks/' + this.task.id)
                 this.task = result.data
                 this.$emit('input',this.task)
+            },
+            fetchProjects:async function(){
+                // プロジェクトの取得
+                let result = await axios.get('/api/myprojects',{
+                                                params:{user_id:this.task.user_id,}
+                                            })
+                                            
+                //「所属なし」プロジェクトのidを設定（一番若いやつ？）
+                this.defaultProjectId = result.data[0].id
+                
+                //プロジェクトをセット
+                this.projects = result.data
+                
+                // デフォルトプロジェクトを削除
+                this.projects.shift()
             },
             setTask:async function(){
                 //表示用データ作成
@@ -361,14 +394,21 @@
                     console.log(error)
                 }
             },
-            uncheckItem:async function(itemId){
+            uncheckItem:async function(item){
                 let el = event
                 let modifyData = {is_checked:false}
+                let postLogData = {
+                    task_id:this.task.id,
+                    state_id:this.task.states[this.task.states.length -1].id,
+                    state_detail:'「' + item.name + '」を差し戻しました。'
+                }
                 try{
-                    await axios.put('/api/items/' + itemId,modifyData)
-                    el.target.parentElement.children[0].children[0].disabled = false
-                    el.target.parentElement.children[0].children[0].checked = false
-                    el.target.parentElement.classList.remove('item-completed')
+                    //アイテムチェックを取り消し
+                    await axios.put('/api/items/' + item.id,modifyData)
+                    //ログに書き込み
+                    await axios.post('/api/state_task',postLogData)
+                    //タスクの更新
+                    this.fetchTask()
                 }catch(error){
                     console.log(error)
                 }
@@ -435,11 +475,13 @@
                 this.$refs.deleteModal.closeModal()
             },
             showEditTaskDialog:async function(){
+                //プロジェクトを取得
+                this.fetchProjects()
+                
                 //datepickerの初期値設定
                 this.$refs.editTaskStartDate.init(this.task.start_date)
                 this.$refs.editTaskDeadLine.init(this.task.dead_line)
-                //リストボックスの初期化
-                this.$refs.projectsListbox.init()
+                
                 // モーダル展開
                 this.$refs.editModal.openModal()
             },
@@ -513,6 +555,8 @@
                 this.$refs.editStatusModal.openModal()
             },
             changeStatus:async function(){
+                if(event.type != 'click' && (event.keyCode != 13 || event.ctrlKey != true))return
+                
                 // Statusが選択されていない
                 if(!this.selectedStatus.id){
                     return 
@@ -548,7 +592,7 @@
                         await axios.post('/api/projects',postObject)
                         this.$refs.notice.showNotice('プロジェクトを追加しました')
                         //プロジェクトを再取得
-                        this.$refs.projectsListbox.init()
+                        this.fetchProjects()
                         // インプットをリセット
                         this.$refs.newProject.value = ''
                     }catch(error){
@@ -562,6 +606,9 @@
     }
 </script>
 <style scoped>
+    i {
+        margin:0 0.5em;
+    }
     .container {
         position:relative;
         width:100%;
@@ -644,7 +691,7 @@
     }
     .task-icon {
         cursor:pointer;
-        margin-left:0.5em;
+        /*margin-left:0.5em;*/
         position:relative;
         z-index:3;
         transition:all 0.3s;
@@ -738,8 +785,6 @@
         align-items:center;
     }
     .item-completed {
-        /*display:flex;*/
-        /*align-items:center;*/
         text-decoration:line-through;
     }
     .item-label {

@@ -26,9 +26,12 @@
                 <date-picker v-model="newTask.start_date" ref="newTaskStartDate" />
                 <span>締切</span>
                 <date-picker v-model="newTask.dead_line" ref="newTaskDeadLine" />
-                <span v-if="!projectId">プロジェクトを選択してください</span>
-                <list-box v-if="!projectId" v-model="newTask.project_id" ref="projectsListbox" table="projects" />
-                <input v-if="!projectId" class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                
+                <div v-if="!projectId">
+                    <span>プロジェクトを選択してください（選択しない場合は単体のタスクとなります）</span>
+                    <tag-cloud v-model="newTask.project_id" v-bind:options="projects" v-bind:defaultValue="defaultProjectId"/>
+                    <input class="input-inline" ref="newProject" type="text" placeholder="プロジェクトを新規登録" v-on:keydown="createProject()" />
+                </div>
             </versatile-form>
             <div v-show="newTask.id" class="tags-and-items">
                 <!--タグ登録-->
@@ -81,11 +84,14 @@
             </div>
             <div class="filter-and-sort">
                 <!--フィルター-->
-                <filter-box v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+                <div class="filter-area">
+                    <filter-array v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
+                    <filter-tag v-model="tagFilteredTasks" v-bind:originalArray="filteredTasks" />
+                    <!--ステースタフィルター-->
+                    <filter-status v-model="statusFilteredTasks" v-bind:originalArray="tagFilteredTasks" />
+                </div>
                 <!--ソート-->
-                <sort-box v-model="sortedTasks" v-bind:originalArray="filteredTasks" v-bind:columns="sortColumns" />
-                <!--ステースタフィルター-->
-                <filter-status v-model="displayedTasks" v-bind:originalArray="sortedTasks" />
+                <sort-box v-model="displayedTasks" v-bind:originalArray="statusFilteredTasks" v-bind:columns="sortColumns" />
             </div>
             
             <!--リスト表示-->
@@ -113,12 +119,12 @@
         },
         data:function(){
             return {
-                // tasks:[],
                 allTasks:false,
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
-                sortedTasks:[], //ソートしたタスク配列
-                displayedTasks:[], //表示用タスクの配列：ステータスフィルター後
+                tagFilteredTasks:[], //タグでフィルターしたタスク配列
+                statusFilteredTasks:[], //ステータスフィルターしたタスク配列
+                displayedTasks:[], //表示用タスクの配列：ソート後
                 newTask:{},
                 selectedTagIds:[],
                 projects:[],
@@ -166,7 +172,6 @@
         mounted() {
             if(this.projectId)return 
             
-            this.fetchProjects()
             this.fetchCurrentTasks()
             
         },
@@ -267,26 +272,37 @@
                 
                 //プロジェクトをセット
                 this.projects = result.data
+                
+                // デフォルトプロジェクトを削除
+                this.projects.shift()
             },
             showNewTaskModal:function(){
+                //プロジェクトを再取得
+                this.fetchProjects()
+                
                 //フォームのpostObjectを初期化
                 this.$refs.newTaskForm.init()
                 
                 //開始と締め切りを現在時刻に合わせる
                 let currentDatetime = new Date()
-                this.$refs.newTaskStartDate.init(currentDatetime)
-                this.$refs.newTaskDeadLine.init(currentDatetime)
                 
-                // リセット
+                 // リセット
                 this.newTask = {
                     user_id:this.userId,
-                    project_id:'',
+                    project_id:this.defaultProjectId, //デフォルトプロジェクトIDにしておく
                     name:'',
                     overview:'',
                     priority:1,
                     difficulty:1,
                     is_template:false,
+                    start_date:currentDatetime,
+                    dead_line:currentDatetime
                 }
+                
+                //DatePickerを初期化
+                this.$refs.newTaskStartDate.init()
+                this.$refs.newTaskDeadLine.init()
+                
                 // タグリストをリセット
                 this.selectedTagIds = []
                 this.$refs.tagList.init()
@@ -426,9 +442,7 @@
                         await axios.post('/api/projects',postObject)
                         this.$refs.notice.showNotice('プロジェクトを追加しました')
                         //プロジェクトを再取得
-                        this.$refs.projectsListbox.init()
-                        // インプットをリセット
-                        this.$refs.newProject.value = ''
+                        this.fetchProjects()
                     }catch(error){
                         this.$refs.notice.showNotice('プロジェクトの追加に失敗しました')
                         console.log(error)
@@ -493,6 +507,13 @@
     }
     .filter-and-sort {
         margin:1em 2em;
+    }
+    .filter-area {
+        display:flex;
+        justify-content:flex-start;
+    }
+    .filter-area div {
+        margin:0.5em;
     }
     .task {
         width:100%;
