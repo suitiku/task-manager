@@ -270,7 +270,7 @@
     }
     .project-detail-open {
         position:relative;
-        max-height:1000px;
+        max-height:5000px;
         transition:all 0.3s;
     }
     .overview {
