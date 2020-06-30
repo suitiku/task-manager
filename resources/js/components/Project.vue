@@ -278,6 +278,8 @@
         padding:1em;
         border-radius:0.2em;
         background:gainsboro;
+        white-space:pre-wrap;
+        word-wrap:break-word;
     }
     .tasks {
         position:relative;
