@@ -19,7 +19,7 @@
         <!--タグ編集用モーダル-->
         <modal ref="editTagModal" v-model="editTagModal">
             <p>タグの付替えを行います</p>
-            <tag-list ref="tagList" v-bind:taskId="task.id" />
+            <tag-list v-model="selectedTagIds" ref="tagList" v-bind:userId="task.user_id" />
         </modal>
         
         <!--編集用モーダル-->
@@ -76,6 +76,9 @@
             </div>
             <!--詳細部分（クリックで開閉）-->
             <div class="detail">
+                <!--概要-->
+                <p class="overview">{{task.overview}}</p>
+                
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
                 <star-range v-model="task.priority" />
@@ -88,8 +91,6 @@
                         <span>{{tag.name}}</span>
                     </div>
                 </div>
-                <!--概要-->
-                <p>{{task.overview}}</p>
                 <!--子アイテム-->
                 <div class="items">
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
@@ -132,6 +133,7 @@
                 editItemMode:[],
                 items:[],
                 editTagModal:false,
+                selectedTagIds:[],
             }  
         },
         props:{
@@ -153,13 +155,25 @@
                     await this.fetchTask()
                 }
             },
-            // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
-            editTagModal:async function(newVal,oldVal){
-                if(newVal == false){
-                    this.isEditedTags = false
-                    await this.fetchTask()
+            selectedTagIds:async function(newVal,oldVal){
+                //モーダルを開いている場合だけタグの変更を有効化
+                if(!this.editTagModal)return
+                
+                // 投入用オブジェクト作成
+                let tagsObject = {
+                    task_id:this.task.id,
+                    tag_ids:this.selectedTagIds
                 }
-            }
+                
+                // 書き込み
+                try{
+                    await axios.put('/api/tag_task',tagsObject)
+                    this.$refs.notice.showNotice('タグを変更しました')
+                }catch(error){
+                    this.$refs.notice.showNotice('タグの変更に失敗しました')
+                    console.log(error)
+                }
+            },
         },
         created:async function(){
         },
@@ -196,8 +210,12 @@
                 for(let index in this.task.items){
                     this.editItemMode.push(false)
                 }
+                
+                //タグリストのtagIdセット
+                this.selectedTagIds = this.task.tags.map(el => el.id)
             },
             openDetail: function(){
+                this.fetchTask()
                 this.detail = !this.detail
                 this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
             },
@@ -342,6 +360,7 @@
     .tags {
         display:flex;
         justify-content:flex-start;
+        flex-wrap:wrap;
         margin:0.5em 0;
     }
     .tag {
@@ -393,5 +412,9 @@
     .tool-tip-content{
         display:flex;
         align-items:center;
+    }
+    .overview {
+        white-space:pre-wrap;
+        word-wrap:break-word;
     }
 </style>

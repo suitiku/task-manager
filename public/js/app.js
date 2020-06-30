@@ -55123,7 +55123,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.container[data-v-5e7f758a] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-5e7f758a] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n    cursor:pointer;\n    z-index:2;\n}\n.task-wrapper[data-v-5e7f758a]:hover {\n    background:gainsboro;\n}\n.headline[data-v-5e7f758a] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-5e7f758a] {\n    margin:0 1em;\n}\n.task-label[data-v-5e7f758a] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.tags[data-v-5e7f758a] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    margin:0.5em 0;\n}\n.tag[data-v-5e7f758a] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.task-headline[data-v-5e7f758a] {\n    font-weight:bold;\n}\n.dead-line[data-v-5e7f758a] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-5e7f758a] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-5e7f758a]:hover {\n    color:salmon;\n}\n.label[data-v-5e7f758a] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-5e7f758a] {\n    width:100%;\n    padding:2em;\n}\n.detail-active[data-v-5e7f758a] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-5e7f758a] {\n    position:relative;\n    z-index:3;\n}\n.tool-tip-content[data-v-5e7f758a]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n", ""]);
+exports.push([module.i, "\n.container[data-v-5e7f758a] {\n    position:relative;\n    width:100%;\n}\n.task-wrapper[data-v-5e7f758a] {\n    position:relative;\n    width:100%;\n    max-height:3.0em;\n    overflow:hidden;\n    border:1px solid grey;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n    cursor:pointer;\n    z-index:2;\n}\n.task-wrapper[data-v-5e7f758a]:hover {\n    background:gainsboro;\n}\n.headline[data-v-5e7f758a] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.headline input[data-v-5e7f758a] {\n    margin:0 1em;\n}\n.task-label[data-v-5e7f758a] {\n    height:3.0em;\n    padding:0.5em;\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n    -webkit-box-pack:justify;\n        -ms-flex-pack:justify;\n            justify-content:space-between;\n}\n.tags[data-v-5e7f758a] {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-pack:start;\n        -ms-flex-pack:start;\n            justify-content:flex-start;\n    -ms-flex-wrap:wrap;\n        flex-wrap:wrap;\n    margin:0.5em 0;\n}\n.tag[data-v-5e7f758a] {\n    border:1px solid grey;\n    border-radius:0.3em;\n    padding:0.3em;\n    margin:0 0.3em;\n    background:white;\n    font-size:75%;\n}\n.task-headline[data-v-5e7f758a] {\n    font-weight:bold;\n}\n.dead-line[data-v-5e7f758a] {\n    margin-right:1em;\n    color:grey;\n    font-size:75%;\n}\n.task-icon[data-v-5e7f758a] {\n    cursor:pointer;\n    margin-left:0.5em;\n    position:relative;\n    z-index:3;\n    -webkit-transition:all 0.3s;\n    transition:all 0.3s;\n}\n.task-icon[data-v-5e7f758a]:hover {\n    color:salmon;\n}\n.label[data-v-5e7f758a] {\n    font-size:50%;\n    border-radius:0.2em;\n    background-color:gainsboro;\n    padding:0.1em;\n    margin-left:1em;\n}\n.detail[data-v-5e7f758a] {\n    width:100%;\n    padding:2em;\n}\n.detail-active[data-v-5e7f758a] {\n    max-height:2000px;\n    -webkit-transition:all 1.0s ease;\n    transition:all 1.0s ease;\n}\n.editable[data-v-5e7f758a] {\n    position:relative;\n    z-index:3;\n}\n.tool-tip-content[data-v-5e7f758a]{\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n    -webkit-box-align:center;\n        -ms-flex-align:center;\n            align-items:center;\n}\n.overview[data-v-5e7f758a] {\n    white-space:pre-wrap;\n    word-wrap:break-word;\n}\n", ""]);
 
 // exports
 
@@ -55140,6 +55140,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -55273,7 +55274,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             targetItemName: '',
             editItemMode: [],
             items: [],
-            editTagModal: false
+            editTagModal: false,
+            selectedTagIds: []
         };
     },
     props: {
@@ -55337,35 +55339,58 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return editModal;
         }(),
-        // タグ編集後に閉じたときはフラグをfalseにしてタスクを再取得
-        editTagModal: function () {
+        selectedTagIds: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(newVal, oldVal) {
+                var tagsObject;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
                             case 0:
-                                if (!(newVal == false)) {
-                                    _context3.next = 4;
+                                if (this.editTagModal) {
+                                    _context3.next = 2;
                                     break;
                                 }
 
-                                this.isEditedTags = false;
-                                _context3.next = 4;
-                                return this.fetchTask();
+                                return _context3.abrupt('return');
 
-                            case 4:
+                            case 2:
+
+                                // 投入用オブジェクト作成
+                                tagsObject = {
+                                    task_id: this.task.id,
+                                    tag_ids: this.selectedTagIds
+
+                                    // 書き込み
+                                };
+                                _context3.prev = 3;
+                                _context3.next = 6;
+                                return axios.put('/api/tag_task', tagsObject);
+
+                            case 6:
+                                this.$refs.notice.showNotice('タグを変更しました');
+                                _context3.next = 13;
+                                break;
+
+                            case 9:
+                                _context3.prev = 9;
+                                _context3.t0 = _context3['catch'](3);
+
+                                this.$refs.notice.showNotice('タグの変更に失敗しました');
+                                console.log(_context3.t0);
+
+                            case 13:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this);
+                }, _callee3, this, [[3, 9]]);
             }));
 
-            function editTagModal(_x3, _x4) {
+            function selectedTagIds(_x3, _x4) {
                 return _ref3.apply(this, arguments);
             }
 
-            return editTagModal;
+            return selectedTagIds;
         }()
     },
     created: function () {
@@ -55469,7 +55494,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.editItemMode.push(false);
                                 }
 
-                            case 4:
+                                //タグリストのtagIdセット
+                                this.selectedTagIds = this.task.tags.map(function (el) {
+                                    return el.id;
+                                });
+
+                            case 5:
                             case 'end':
                                 return _context7.stop();
                         }
@@ -55484,6 +55514,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return setTask;
         }(),
         openDetail: function openDetail() {
+            this.fetchTask();
             this.detail = !this.detail;
             this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper';
         },
@@ -55869,7 +55900,17 @@ var render = function() {
             [
               _c("p", [_vm._v("タグの付替えを行います")]),
               _vm._v(" "),
-              _c("tag-list", { ref: "tagList", attrs: { taskId: _vm.task.id } })
+              _c("tag-list", {
+                ref: "tagList",
+                attrs: { userId: _vm.task.user_id },
+                model: {
+                  value: _vm.selectedTagIds,
+                  callback: function($$v) {
+                    _vm.selectedTagIds = $$v
+                  },
+                  expression: "selectedTagIds"
+                }
+              })
             ],
             1
           ),
@@ -56126,6 +56167,10 @@ var render = function() {
               "div",
               { staticClass: "detail" },
               [
+                _c("p", { staticClass: "overview" }, [
+                  _vm._v(_vm._s(_vm.task.overview))
+                ]),
+                _vm._v(" "),
                 _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
                 _vm._v(" "),
                 _c("star-range", {
@@ -56165,8 +56210,6 @@ var render = function() {
                   }),
                   0
                 ),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(_vm.task.overview))]),
                 _vm._v(" "),
                 _c(
                   "div",
