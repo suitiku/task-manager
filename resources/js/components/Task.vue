@@ -132,6 +132,10 @@
             <div class="detail">
                 <!--概要-->
                 <p class="overview">{{task.overview}}</p>
+                
+                <p>サブタスク総数：{{denominator}}</p>
+                <p>サブタスクチェック済み：{{numerator}}</p>
+                
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
                 <star-range v-model="task.priority" />
@@ -309,13 +313,19 @@
             },
             // 進捗メーターの分母
             denominator:function(){
-                if(!this.task || !this.task.items)return
-                return this.task.items.length
+                if(!this.task || !this.task.items){
+                    return 0
+                }else{
+                    return this.task.items.length
+                }
             },
             // 進捗メーターの分子
             numerator:function(){
-                if(!this.task || !this.task.items)return
-                return this.task.items.filter(el => el.is_checked).length
+                if(!this.task || !this.task.items){
+                    return 0
+                }else{
+                    return this.task.items.filter(el => el.is_checked).length
+                }
             }
         },
         methods: {

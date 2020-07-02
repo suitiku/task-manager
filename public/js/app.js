@@ -53238,6 +53238,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53553,15 +53557,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         // 進捗メーターの分母
         denominator: function denominator() {
-            if (!this.task || !this.task.items) return;
-            return this.task.items.length;
+            if (!this.task || !this.task.items) {
+                return 0;
+            } else {
+                return this.task.items.length;
+            }
         },
         // 進捗メーターの分子
         numerator: function numerator() {
-            if (!this.task || !this.task.items) return;
-            return this.task.items.filter(function (el) {
-                return el.is_checked;
-            }).length;
+            if (!this.task || !this.task.items) {
+                return 0;
+            } else {
+                return this.task.items.filter(function (el) {
+                    return el.is_checked;
+                }).length;
+            }
         }
     },
     methods: {
@@ -54822,6 +54832,12 @@ var render = function() {
               [
                 _c("p", { staticClass: "overview" }, [
                   _vm._v(_vm._s(_vm.task.overview))
+                ]),
+                _vm._v(" "),
+                _c("p", [_vm._v("サブタスク総数：" + _vm._s(_vm.denominator))]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v("サブタスクチェック済み：" + _vm._s(_vm.numerator))
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "label" }, [_vm._v("優先度")]),
@@ -61798,7 +61814,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.circle[data-v-4239ca08] {\n  position: relative;\n  width: 5em;\n  height: 5em;\n  border-radius: 50%;\n  background: red;\n  overflow: hidden;\n}\n.circle[data-v-4239ca08]:before {\n  content: '';\n  position: absolute;\n  display: block;\n  width: 50%;\n  height: 100%;\n  background: grey;\n  -webkit-transform-origin: center right;\n          transform-origin: center right;\n  -webkit-animation: circle-left-data-v-4239ca08 10s linear forwards;\n          animation: circle-left-data-v-4239ca08 10s linear forwards;\n}\n.circle[data-v-4239ca08]:after {\n  content: '';\n  position: absolute;\n  right: 0;\n  display: block;\n  width: 50%;\n  height: 100%;\n  background: grey;\n  -webkit-transform-origin: center left;\n          transform-origin: center left;\n  -webkit-animation: circle-right 10s linear forwards;\n          animation: circle-right 10s linear forwards;\n}\n\n/*@keyframes circle-right {*/\n/*    0% {*/\n/*        transform:rotate(0deg);*/\n/*        background:grey;*/\n/*    }*/\n/*    50% {*/\n/*        transform:rotate(180deg);*/\n/*        background:grey;*/\n/*    }*/\n/*    50.01% {*/\n/*        transform:rotate(360deg);*/\n/*        background:inherit;*/\n/*    }*/\n/*    100% {*/\n/*        transform:rotate(360deg);*/\n/*        background:inherit;*/\n/*    }*/\n/*}*/\n@-webkit-keyframes circle-left-data-v-4239ca08 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n50% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n}\n}\n@keyframes circle-left-data-v-4239ca08 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n50% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n}\n}\n", ""]);
+exports.push([module.i, "\n.circle[data-v-4239ca08] {\n  position: relative;\n  width: 5em;\n  height: 5em;\n  border-radius: 50%;\n  background: red;\n  overflow: hidden;\n}\n.circle[data-v-4239ca08]:before {\n  content: '';\n  position: absolute;\n  display: block;\n  width: 50%;\n  height: 100%;\n  background: grey;\n  -webkit-transform-origin: center right;\n          transform-origin: center right;\n  -webkit-animation: circle-left-data-v-4239ca08 10s linear forwards;\n          animation: circle-left-data-v-4239ca08 10s linear forwards;\n}\n.circle[data-v-4239ca08]:after {\n  content: '';\n  position: absolute;\n  right: 0;\n  display: block;\n  width: 50%;\n  height: 100%;\n  background: grey;\n  -webkit-transform-origin: center left;\n          transform-origin: center left;\n  -webkit-animation: circle-right 10s linear forwards;\n          animation: circle-right 10s linear forwards;\n}\n@-webkit-keyframes circle-left-data-v-4239ca08 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n50% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n}\n}\n@keyframes circle-left-data-v-4239ca08 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n50% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n}\n}\n", ""]);
 
 // exports
 
@@ -61846,9 +61862,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {},
     created: function created() {},
     mounted: function mounted() {
-        var circle = this.$refs.circle;
-        var before = window.getComputedStyle(circle, '::before');
-        console.log(before);
+        // let circle = this.$refs.circle
+        // let before = window.getComputedStyle(circle,'::before')
     },
     computed: {},
     methods: {}
@@ -67278,7 +67293,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // 分母
         denominator: {
             type: [Number, String],
-            default: 1,
+            default: 0,
             required: true
         },
         // 分子
@@ -67294,11 +67309,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {
         circleRightAngle: function circleRightAngle() {
             var degree = this.numerator / this.denominator * 360;
-            return { transform: 'rotate(' + degree + 'deg)' };
+            if (isNaN(degree)) {
+                return { transform: 'rotate(0deg)' };
+            } else {
+                return { transform: 'rotate(' + degree + 'deg)' };
+            }
         },
         circleLeftAngle: function circleLeftAngle() {
             var degree = this.numerator / this.denominator * 360;
-            if (degree > 180) {
+            if (isNaN(degree)) {
+                return { transform: 'rotate(0deg)', background: 'whitesmoke' };
+            } else if (degree > 180) {
                 return { transform: 'rotate(180deg)', background: 'orange' };
             } else {
                 return { transform: 'rotate(0deg)', background: 'whitesmoke' };

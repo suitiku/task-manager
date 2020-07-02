@@ -41,9 +41,8 @@
             
         },
         mounted:function(){
-            let circle = this.$refs.circle
-            let before = window.getComputedStyle(circle,'::before')
-            console.log(before)
+            // let circle = this.$refs.circle
+            // let before = window.getComputedStyle(circle,'::before')
         },
         computed:{
         },
@@ -82,24 +81,6 @@
         transform-origin:center left;
         animation:circle-right 10s linear forwards;
     }
-    /*@keyframes circle-right {*/
-    /*    0% {*/
-    /*        transform:rotate(0deg);*/
-    /*        background:grey;*/
-    /*    }*/
-    /*    50% {*/
-    /*        transform:rotate(180deg);*/
-    /*        background:grey;*/
-    /*    }*/
-    /*    50.01% {*/
-    /*        transform:rotate(360deg);*/
-    /*        background:inherit;*/
-    /*    }*/
-    /*    100% {*/
-    /*        transform:rotate(360deg);*/
-    /*        background:inherit;*/
-    /*    }*/
-    /*}*/
     @keyframes circle-left {
         0%{transform:rotate(0deg);}
         50%{transform:rotate(0deg);}

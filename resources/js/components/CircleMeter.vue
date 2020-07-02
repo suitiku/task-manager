@@ -21,7 +21,7 @@
             // 分母
             denominator:{
                 type:[Number,String],
-                default:1,
+                default:0,
                 required:true
             },
             // 分子
@@ -42,11 +42,17 @@
         computed:{
             circleRightAngle:function(){
                 let degree = (this.numerator / this.denominator) * 360
-                return {transform:'rotate(' + degree + 'deg)'}
+                if(isNaN(degree)){
+                    return {transform:'rotate(0deg)'}
+                }else{
+                    return {transform:'rotate(' + degree + 'deg)'}
+                }
             },
             circleLeftAngle:function(){
                 let degree = (this.numerator / this.denominator) * 360
-                if(degree > 180){
+                if(isNaN(degree)){
+                    return {transform:'rotate(0deg)',background:'whitesmoke'}
+                }else if(degree > 180){
                     return {transform:'rotate(180deg)',background:'orange'}
                 }else{
                     return {transform:'rotate(0deg)',background:'whitesmoke'}
