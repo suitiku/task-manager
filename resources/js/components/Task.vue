@@ -132,10 +132,6 @@
             <div class="detail">
                 <!--概要-->
                 <p class="overview">{{task.overview}}</p>
-                
-                <p>サブタスク総数：{{denominator}}</p>
-                <p>サブタスクチェック済み：{{numerator}}</p>
-                
                 <!--各種パラメーター-->
                 <span class="label">優先度</span>
                 <star-range v-model="task.priority" />

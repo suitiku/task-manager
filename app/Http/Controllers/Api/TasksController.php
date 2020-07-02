@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Task;
 use App\Item;
+use App\Project;
 use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
@@ -137,11 +138,13 @@ class TasksController extends Controller
         $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
     }
     
-    // ユーザーIDで検索／本日0:00からのタスクのみ
+    // ユーザーIDで検索／本日0:00からのタスクのみ／プロジェクト無しのみ
     public function getCurrentTasksByUserId(Request $request){
         $result;
+        $defaultProjectId = Project::where('user_id',$request->user_id)->first()->id;
         $validDatetime = strtotime(date('Y-m-d'));
         $tasks = Task::where('user_id',$request->user_id)
+                    ->where('project_id',$defaultProjectId)
                     ->with(['project','states','items','tags'])
                     ->get();
         foreach($tasks as $index => $task){
