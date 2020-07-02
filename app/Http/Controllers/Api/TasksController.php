@@ -160,6 +160,14 @@ class TasksController extends Controller
                     ->get();
     }
     
+    // プロジェクトIDでフィルター
+    public function getTasksByProjectIds(Request $request){
+        return Task::where('user_id',$request->user_id)
+                ->whereIn('project_id',$request->project_ids)
+                ->with(['project','items','tags','states'])
+                ->get();
+    }
+    
     //コピー
     public function copy($id){
         //コピー元タスクを取得

@@ -21,6 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // タグ検索
 Route::get('tags/search','Api\TagsController@getTagsByKeyword');
 
+//フィルター
+Route::get('tasks/projects','Api\TasksController@getTasksByProjectIds');
+
 //テーブル情報取得
 Route::get('table_info/{table}','Api\TableInfoController@getTableInfo');
 
@@ -35,8 +38,6 @@ Route::resource('projects','Api\ProjectsController');
 Route::post('tag_task','Api\TasksController@attachTags');
 Route::delete('tag_task','Api\TasksController@detachTags');
 Route::put('tag_task','Api\TasksController@syncTags');
-
-
 
 //状態（state）
 Route::post('state_task','Api\TasksController@changeState');

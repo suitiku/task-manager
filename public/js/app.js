@@ -51687,12 +51687,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         //新規タスク登録モーダルを閉じた際にtasksに追加
         newTaskModal: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
+                var result;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 if (!(newVal == false)) {
-                                    _context.next = 4;
+                                    _context.next = 7;
                                     break;
                                 }
 
@@ -51704,9 +51705,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return _context.abrupt('return');
 
                             case 3:
-                                this.tasks.push(this.newTask);
+                                _context.next = 5;
+                                return axios.get('/api/tasks/' + this.newTask.id);
 
-                            case 4:
+                            case 5:
+                                result = _context.sent;
+
+                                this.tasks.push(result.data);
+
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }

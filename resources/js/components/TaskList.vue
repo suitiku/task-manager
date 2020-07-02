@@ -193,7 +193,8 @@
             newTaskModal:async function(newVal,oldVal){
                 if(newVal == false){
                     if(!this.newTask.id){return }
-                    this.tasks.push(this.newTask)
+                    let result = await axios.get('/api/tasks/' + this.newTask.id)
+                    this.tasks.push(result.data)
                 }
             },
             //全タスク取得スイッチ
