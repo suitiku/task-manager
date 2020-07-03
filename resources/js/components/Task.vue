@@ -85,7 +85,7 @@
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
-            <div v-bind:class="maskClass" v-on:click="openDetail()"></div>
+            <div v-bind:class="maskClass"></div>
             <div class="state-icon" v-show="checked || notActive">
                 <div>
                     <!--完了マーク-->
@@ -114,9 +114,13 @@
                     </div>
                 </div>
                 <div class="task-buttons">
+                    <!--開閉ボタン-->
+                    <i v-if="!detail" class="fas fa-plus-square task-icon" v-on:click="openDetail()"></i>
+                    <i v-else class="fas fa-minus-square task-icon" v-on:click="closeDetail()"></i>
+                    
                     <!--締切-->
-                    <i class="far fa-clock"></i>
-                    <span class="dead-line">{{task.dead_line}}</span>
+                    <!--<i class="far fa-clock"></i>-->
+                    <!--<span class="dead-line">{{task.dead_line}}</span>-->
                     
                     <!--状態編集ボタン-->
                     <i class="far fa-check-square task-icon" v-on:click="showEditStatusDialog()"></i>
@@ -128,7 +132,7 @@
                     <i class="fas fa-trash task-icon" v-on:click="showDeleteTaskDialog()"></i>
                 </div>
             </div>
-            <!--詳細部分（クリックで開閉）-->
+            <!--詳細部分-->
             <div class="detail">
                 <!--概要-->
                 <p class="overview">{{task.overview}}</p>
@@ -171,6 +175,9 @@
                 </div>
                 <!--ログ-->
                 <task-log v-bind:task="task" class="editable" />
+                
+                <!--開閉ボタン-->
+                <i class="fas fa-minus-square task-icon" v-on:click="closeDetail()"></i>
             </div>
         </div>
     </div>
@@ -373,8 +380,12 @@
             },
             openDetail: function(){
                 this.fetchTask()
-                this.detail = !this.detail
-                this.wrapper_class = this.detail ? 'task-wrapper detail-active' : 'task-wrapper'
+                this.detail = true
+                this.wrapper_class = 'task-wrapper detail-active'
+            },
+            closeDetail: function(){
+                this.detail = false
+                this.wrapper_class = 'task-wrapper'
             },
             setItemClass:function(is_checked){
                 return is_checked == true ? 'item item-completed' : 'item'
@@ -730,10 +741,9 @@
     }
     .mask {
         width:120%;
-        height:120%;
+        height:3.0em;
         position:absolute;
         z-index:2;
-        cursor:pointer;
         background-color:grey;
         opacity:0;
     }
