@@ -33,6 +33,7 @@ Route::resource('states','Api\StatesController');
 Route::resource('items','Api\ItemsController');
 Route::resource('tags','Api\TagsController');
 Route::resource('projects','Api\ProjectsController');
+Route::resource('reminders','Api\RemindersController');
 
 //タグ
 Route::post('tag_task','Api\TasksController@attachTags');
@@ -47,6 +48,7 @@ Route::get('myprojects','Api\ProjectsController@getProjectsByUserId');
 Route::get('mytasks','Api\TasksController@getAllTasksByUserId');
 Route::get('mytasks/current','Api\TasksController@getCurrentTasksByUserId');
 Route::get('mytags','Api\TagsController@getTagsByUserId');
+Route::get('myreminders','Api\RemindersController@getRemindersByUserId');
 
 //メール送信テスト
 Route::get('mail/send','Api\MailController@sendMail');
