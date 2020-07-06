@@ -1,8 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <tag-cloud v-model="test" v-bind:options="projects" defaultValue="100" />
-        {{test}}
+        <reminders userId="2" />
 
         <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
