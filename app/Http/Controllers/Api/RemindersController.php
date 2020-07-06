@@ -89,8 +89,13 @@ class RemindersController extends Controller
     }
     
     //ユーザーごとに取得
-    public function getRemindersByUserId(){
-        
+    public function getRemindersByUserId(Request $request){
+        $date = new \DateTime();
+        $currentDatetime = $date->format('Y-m-d H:i:s');
+        return Reminder::where('user_id',$request->user_id)
+                ->where('alert_datetime','<',$currentDatetime)
+                ->with(['task'])
+                ->get();
     }
     
 }
