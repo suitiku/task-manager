@@ -53456,6 +53456,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context7.prev = _context7.next) {
                         case 0:
+                            if (this.value.name) {
+                                _context7.next = 2;
+                                break;
+                            }
+
+                            return _context7.abrupt('return');
+
+                        case 2:
+
                             this.setTask();
                             this.updateData();
                             vue = this;
@@ -53530,7 +53539,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 };
                             }());
 
-                        case 4:
+                        case 6:
                         case 'end':
                             return _context7.stop();
                     }
@@ -67590,7 +67599,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n#reminder-wrapper[data-v-143e2034] {\n  width: 100%;\n  padding: 0.8em;\n  background-color: rgba(255, 165, 0, 0.4);\n  border-radius: 0.2em;\n}\n#reminder-wrapper div span[data-v-143e2034] {\n    margin: 0.3em 1em 0.3em 0em;\n}\n#reminder-wrapper div span[data-v-143e2034]:first-child {\n      font-weight: bold;\n}\n#reminder-wrapper div[data-v-143e2034]:before {\n    content: '\\30FB';\n}\n", ""]);
+exports.push([module.i, "\n.flex[data-v-143e2034] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.center-vertical[data-v-143e2034] {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.child-inline-block *[data-v-143e2034] {\n  display: inline-block;\n}\n.child-margin *[data-v-143e2034] {\n  margin: 0.5em;\n}\n#reminder-wrapper[data-v-143e2034] {\n  width: 100%;\n  padding: 0.8em;\n  background-color: rgba(255, 165, 0, 0.4);\n  border-radius: 0.2em;\n}\n#reminder-wrapper div[data-v-143e2034] {\n    display: inline-block;\n    padding: 0.3em;\n    cursor: pointer;\n    -webkit-transition: all 0.3s ease;\n    transition: all 0.3s ease;\n}\n#reminder-wrapper div span[data-v-143e2034] {\n      margin: 0.3em 1em 0.3em 0em;\n}\n#reminder-wrapper div span[data-v-143e2034]:first-child {\n        font-weight: bold;\n        font-size: 120%;\n}\n#reminder-wrapper div[data-v-143e2034]:before {\n      content: '\\F12A';\n      font-family: \"Font Awesome 5 Free\",\"Font Awesome 5 Brands\";\n      font-weight: 900;\n      margin-right: 1.5em;\n}\n#reminder-wrapper div[data-v-143e2034]:hover {\n      background-color: rgba(191, 191, 191, 0.4);\n}\n", ""]);
 
 // exports
 
@@ -67617,12 +67626,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            reminders: []
+            reminders: [],
+            targetReminderId: '',
+            reminderModal: false,
+            task: {}
         };
     },
     props: {
@@ -67634,24 +67659,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     mounted: function mounted() {
         if (!this.userId) return;
-        this.getReminders();
+        this.fetchReminders();
     },
     watch: {
         userId: function userId() {
             if (!this.userId) return;
-            this.getReminders();
-        }
-    },
-    methods: {
-        getReminders: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var result;
+            this.fetchReminders();
+        },
+        reminderModal: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(newVal, oldVal) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.prev = 0;
-                                _context.next = 3;
+                                if (newVal == false) {
+                                    this.fetchReminders();
+                                }
+
+                            case 1:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function reminderModal(_x, _x2) {
+                return _ref.apply(this, arguments);
+            }
+
+            return reminderModal;
+        }()
+    },
+    methods: {
+        fetchReminders: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+                                _context2.next = 3;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/myreminders', {
                                     params: {
                                         user_id: this.userId
@@ -67659,31 +67708,129 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 });
 
                             case 3:
-                                result = _context.sent;
+                                result = _context2.sent;
 
                                 this.reminders = result.data;
-                                _context.next = 10;
+                                _context2.next = 10;
                                 break;
 
                             case 7:
-                                _context.prev = 7;
-                                _context.t0 = _context['catch'](0);
+                                _context2.prev = 7;
+                                _context2.t0 = _context2['catch'](0);
 
-                                console.log(_context.t0);
+                                console.log(_context2.t0);
 
                             case 10:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[0, 7]]);
+                }, _callee2, this, [[0, 7]]);
             }));
 
-            function getReminders() {
-                return _ref.apply(this, arguments);
+            function fetchReminders() {
+                return _ref2.apply(this, arguments);
             }
 
-            return getReminders;
+            return fetchReminders;
+        }(),
+        showTaskDetail: function showTaskDetail(reminderId, task) {
+            this.targetReminderId = reminderId;
+            this.task = {};
+            this.task = JSON.parse(JSON.stringify(task));
+            this.$refs.reminderModal.openModal();
+        },
+        setReminderLater: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+                var newDatetime, updateObject, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                // 削除しないでalert_datetimeの値をアップデートする
+                                //1日後のdatetimeを設定
+                                newDatetime = new Date(Date.now() + 86400000);
+
+                                // 投入用オブジェクト構築
+
+                                updateObject = {
+                                    alert_datetime: newDatetime
+
+                                    // 書き込み
+                                };
+                                _context3.prev = 2;
+                                _context3.next = 5;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/reminders/' + this.targetReminderId, updateObject);
+
+                            case 5:
+                                result = _context3.sent;
+
+                                this.$refs.reminderModal.closeModal();
+                                console.log(result);
+                                _context3.next = 13;
+                                break;
+
+                            case 10:
+                                _context3.prev = 10;
+                                _context3.t0 = _context3['catch'](2);
+
+                                console.log(_context3.t0);
+
+                            case 13:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[2, 10]]);
+            }));
+
+            function setReminderLater() {
+                return _ref3.apply(this, arguments);
+            }
+
+            return setReminderLater;
+        }(),
+        deleteReminder: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                if (this.targetReminderId) {
+                                    _context4.next = 2;
+                                    break;
+                                }
+
+                                return _context4.abrupt('return');
+
+                            case 2:
+                                _context4.prev = 2;
+                                _context4.next = 5;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/reminders/' + this.targetReminderId);
+
+                            case 5:
+                                _context4.next = 10;
+                                break;
+
+                            case 7:
+                                _context4.prev = 7;
+                                _context4.t0 = _context4['catch'](2);
+
+                                console.log(_context4.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this, [[2, 7]]);
+            }));
+
+            function deleteReminder() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return deleteReminder;
         }()
     }
 });
@@ -67698,15 +67845,100 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { attrs: { id: "reminder-wrapper" } },
-    _vm._l(_vm.reminders, function(reminder, index) {
-      return _c("div", [
-        _c("span", [_vm._v(_vm._s(reminder.task.name))]),
-        _vm._v(" "),
-        _c("span", [_vm._v(_vm._s(reminder.message))])
-      ])
-    }),
-    0
+    [
+      _c(
+        "modal",
+        {
+          ref: "reminderModal",
+          model: {
+            value: _vm.reminderModal,
+            callback: function($$v) {
+              _vm.reminderModal = $$v
+            },
+            expression: "reminderModal"
+          }
+        },
+        [
+          _c("p", [
+            _vm._v(
+              "下記タスクにリマインダーがセットされています。ご確認下さい。"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "flex center-vertical child-inline-block child-margin"
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.setReminderLater()
+                    }
+                  }
+                },
+                [_vm._v("1日後に再通知")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteReminder()
+                    }
+                  }
+                },
+                [_vm._v("確認したのでこのリマインダーを削除する")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("task", {
+            model: {
+              value: _vm.task,
+              callback: function($$v) {
+                _vm.task = $$v
+              },
+              expression: "task"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "reminder-wrapper" } },
+        _vm._l(_vm.reminders, function(reminder, index) {
+          return _c(
+            "div",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.showTaskDetail(reminder.id, reminder.task)
+                }
+              }
+            },
+            [
+              _c("span", [_vm._v(_vm._s(reminder.task.name))]),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(reminder.message))])
+            ]
+          )
+        }),
+        0
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []

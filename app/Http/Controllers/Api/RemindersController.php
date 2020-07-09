@@ -94,8 +94,7 @@ class RemindersController extends Controller
         $currentDatetime = $date->format('Y-m-d H:i:s');
         return Reminder::where('user_id',$request->user_id)
                 ->where('alert_datetime','<',$currentDatetime)
-                ->with(['task'])
+                ->with(['task','task.project','task.items','task.states','task.tags'])
                 ->get();
     }
-    
 }

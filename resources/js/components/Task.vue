@@ -269,6 +269,9 @@
         created:async function(){
         },
         mounted:async function(){
+            // valueが設定されていない場合は終了
+            if(!this.value.name)return
+            
             this.setTask()
             this.updateData()
             let vue = this
