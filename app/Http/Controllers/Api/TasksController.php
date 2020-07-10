@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Task;
 use App\Item;
 use App\Project;
+use App\Reminder;
 use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
@@ -22,7 +23,8 @@ class TasksController extends Controller
                         'project',
                         'items',
                         'states',
-                        'tags'
+                        'tags',
+                        'reminders'
                     ])->get();
     }
 
@@ -50,7 +52,7 @@ class TasksController extends Controller
         
             //状態を「実行中」で登録
             $task->states()->attach(1,['state_detail' => 'タスクが作成されました。']);
-            $task = $task->with(['project','items','states','tags'])->find($task->id);
+            $task = $task->with(['project','items','states','tags','reminders'])->find($task->id);
             return $task;
         });
         
@@ -65,7 +67,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::with(['project','items','states','tags'])->find($id);
+        return Task::with(['project','items','states','tags','reminders'])->find($id);
     }
 
     /**
@@ -135,7 +137,17 @@ class TasksController extends Controller
     //変更
     public function changeState(Request $request){
         $task = Task::find($request->task_id);
-        $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
+        $result = DB::transaction(function() use($task,$request) {
+            $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
+            // 変化先状態が完了／未完了の場合はReminderを削除する
+            if(($request->state_id == 2 || $request->state_id == 5) && $task->reminders){
+                foreach($task->reminders as $index=>$reminder){
+                    $reminderIds[] = $reminder->id;
+                }
+                Reminder::destroy($reminderIds);
+            }
+        });
+        
     }
     
     // ユーザーIDで検索／本日0:00からのタスクのみ／プロジェクト無しのみ
@@ -145,7 +157,7 @@ class TasksController extends Controller
         $validDatetime = strtotime(date('Y-m-d'));
         $tasks = Task::where('user_id',$request->user_id)
                     ->where('project_id',$defaultProjectId)
-                    ->with(['project','states','items','tags'])
+                    ->with(['project','states','items','tags','reminders'])
                     ->get();
         foreach($tasks as $index => $task){
             $statesCount = count($task->states);
@@ -159,7 +171,7 @@ class TasksController extends Controller
     //ユーザーIDで過去のものも含めた全タスク取得
     public function getAllTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)
-                    ->with(['project','items','tags','states'])
+                    ->with(['project','items','tags','states','reminders'])
                     ->get();
     }
     
@@ -167,7 +179,7 @@ class TasksController extends Controller
     public function getTasksByProjectIds(Request $request){
         return Task::where('user_id',$request->user_id)
                 ->whereIn('project_id',$request->project_ids)
-                ->with(['project','items','tags','states'])
+                ->with(['project','items','tags','states','reminders'])
                 ->get();
     }
     
@@ -225,7 +237,7 @@ class TasksController extends Controller
             
             return $newTask;
         });
-        return Task::with(['project','items','states','tags'])->find($newTask['id']);
+        return Task::with(['project','items','states','tags','reminders'])->find($newTask['id']);
     }
     
     public function createTaskFromTemplate($id){
@@ -287,7 +299,7 @@ class TasksController extends Controller
             
             return $newTask;
         });
-        return Task::with(['project','items','states','tags'])->find($newTask['id']);
+        return Task::with(['project','items','states','tags','reminders'])->find($newTask['id']);
     }
     
     //集計

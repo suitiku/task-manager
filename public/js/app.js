@@ -67599,7 +67599,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.flex[data-v-143e2034] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.center-vertical[data-v-143e2034] {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.child-inline-block *[data-v-143e2034] {\n  display: inline-block;\n}\n.child-margin *[data-v-143e2034] {\n  margin: 0.5em;\n}\n#reminder-wrapper[data-v-143e2034] {\n  width: 100%;\n  padding: 0.8em;\n  background-color: rgba(255, 165, 0, 0.4);\n  border-radius: 0.2em;\n}\n#reminder-wrapper div[data-v-143e2034] {\n    display: inline-block;\n    padding: 0.3em;\n    cursor: pointer;\n    -webkit-transition: all 0.3s ease;\n    transition: all 0.3s ease;\n}\n#reminder-wrapper div span[data-v-143e2034] {\n      margin: 0.3em 1em 0.3em 0em;\n}\n#reminder-wrapper div span[data-v-143e2034]:first-child {\n        font-weight: bold;\n        font-size: 120%;\n}\n#reminder-wrapper div[data-v-143e2034]:before {\n      content: '\\F12A';\n      font-family: \"Font Awesome 5 Free\",\"Font Awesome 5 Brands\";\n      font-weight: 900;\n      margin-right: 1.5em;\n}\n#reminder-wrapper div[data-v-143e2034]:hover {\n      background-color: rgba(191, 191, 191, 0.4);\n}\n", ""]);
+exports.push([module.i, "\n.flex[data-v-143e2034] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n.flex-vertical[data-v-143e2034] {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n.flex-center[data-v-143e2034] {\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.child-inline-block *[data-v-143e2034] {\n  display: inline-block;\n}\n.child-margin *[data-v-143e2034] {\n  margin: 0.5em;\n}\n#reminder-wrapper[data-v-143e2034] {\n  width: 100%;\n  padding: 0.8em;\n  background-color: rgba(255, 165, 0, 0.4);\n  border-radius: 0.2em;\n}\n#reminder-wrapper div[data-v-143e2034] {\n    display: inline-block;\n    padding: 0.3em;\n    cursor: pointer;\n    -webkit-transition: all 0.3s ease;\n    transition: all 0.3s ease;\n}\n#reminder-wrapper div span[data-v-143e2034] {\n      margin: 0.3em 1em 0.3em 0em;\n}\n#reminder-wrapper div span[data-v-143e2034]:first-child {\n        font-weight: bold;\n        font-size: 110%;\n}\n#reminder-wrapper div[data-v-143e2034]:before {\n      content: '\\F12A';\n      font-family: \"Font Awesome 5 Free\",\"Font Awesome 5 Brands\";\n      font-weight: 900;\n      margin-right: 1.5em;\n}\n#reminder-wrapper div[data-v-143e2034]:hover {\n      background-color: rgba(191, 191, 191, 0.4);\n}\n", ""]);
 
 // exports
 
@@ -67766,22 +67766,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 result = _context3.sent;
 
                                 this.$refs.reminderModal.closeModal();
-                                console.log(result);
-                                _context3.next = 13;
+                                _context3.next = 12;
                                 break;
 
-                            case 10:
-                                _context3.prev = 10;
+                            case 9:
+                                _context3.prev = 9;
                                 _context3.t0 = _context3['catch'](2);
 
                                 console.log(_context3.t0);
 
-                            case 13:
+                            case 12:
                             case 'end':
                                 return _context3.stop();
                         }
                     }
-                }, _callee3, this, [[2, 10]]);
+                }, _callee3, this, [[2, 9]]);
             }));
 
             function setReminderLater() {
@@ -67869,7 +67868,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "flex center-vertical child-inline-block child-margin"
+                "flex flex-center flex-vertical child-inline-block child-margin"
             },
             [
               _c(
@@ -67917,7 +67916,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { attrs: { id: "reminder-wrapper" } },
+        {
+          staticClass: "flex flex-vertical",
+          attrs: { id: "reminder-wrapper" }
+        },
         _vm._l(_vm.reminders, function(reminder, index) {
           return _c(
             "div",

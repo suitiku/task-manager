@@ -17,8 +17,11 @@ class Task extends Model
     }
     
     public function tags(){
-        // return $this->belongsToMany('App\Tag')->withTimestamps();
         return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+    
+    public function reminders(){
+        return $this->hasMany('App\Reminder');
     }
     
     public function states(){

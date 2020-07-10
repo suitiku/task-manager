@@ -3,7 +3,7 @@
         <!--モーダル-->
         <modal ref="reminderModal" v-model="reminderModal">
             <p>下記タスクにリマインダーがセットされています。ご確認下さい。</p>
-            <div class="flex center-vertical child-inline-block child-margin">
+            <div class="flex flex-center flex-vertical child-inline-block child-margin">
                 <button type="button" class="btn btn-primary" v-on:click="setReminderLater()">1日後に再通知</button>
                 <button type="button" class="btn btn-danger" v-on:click="deleteReminder()">確認したのでこのリマインダーを削除する</button>
             </div>
@@ -11,7 +11,7 @@
         </modal>
         
         <!--表示部分-->
-        <div id="reminder-wrapper">
+        <div id="reminder-wrapper" class="flex flex-vertical">
             <div v-for="(reminder,index) in reminders" v-on:click="showTaskDetail(reminder.id,reminder.task)">
                 <span>{{reminder.task.name}}</span>
                 <span>{{reminder.message}}</span>
@@ -85,7 +85,6 @@
                 try{
                     let result = await axios.put('/api/reminders/' + this.targetReminderId, updateObject)
                     this.$refs.reminderModal.closeModal()
-                    console.log(result)
                 }catch(error){
                     console.log(error)
                 }
@@ -106,8 +105,10 @@
     .flex {
         display: flex;
     }
-    .center-vertical {
+    .flex-vertical {
         flex-direction: column;
+    }
+    .flex-center {
         align-items: center;
     }
     .child-inline-block {
@@ -134,7 +135,7 @@
                 margin:0.3em 1em 0.3em 0em;
                 &:first-child {
                     font-weight: bold;
-                    font-size: 120%;
+                    font-size: 110%;
                 }
             }
             &:before {
