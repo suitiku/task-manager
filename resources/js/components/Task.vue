@@ -82,6 +82,24 @@
             </div>
         </modal>
         
+        <!--リマインダー編集モーダル-->
+        <modal ref="addReminderModal" v-model="addReminderModal">
+            <p>リマインダーを設定します。</p>
+            <versatile-form ref="newReminderForm" v-model="newReminder" table="reminders">
+                <input v-model="newReminder.message" type="text" placeholder="コメント">
+                <div>
+                    <span>画面上でお知らせする</span>
+                    <input v-model="newReminder.is_screen" type="checkbox" id="screen">
+                </div>
+                <div>
+                    <span>メールでお知らせする</span>
+                    <input v-model="newReminder.is_mail" type="checkbox">
+                </div>
+                <span>お知らせする日時</span>
+                <date-picker v-model="newReminder.alert_datetime" />
+            </versatile-form>
+        </modal>
+        
         <!--メインコンテンツ-->
         <div v-bind:class="wrapper_class" v-bind:style="inactivateTask">
             <!--マスク部-->
@@ -118,16 +136,14 @@
                     <i v-if="!detail" class="fas fa-plus-square task-icon" v-on:click="openDetail()"></i>
                     <i v-else class="fas fa-minus-square task-icon" v-on:click="closeDetail()"></i>
                     
-                    <!--締切-->
-                    <!--<i class="far fa-clock"></i>-->
-                    <!--<span class="dead-line">{{task.dead_line}}</span>-->
-                    
-                    <!--状態編集ボタン-->
-                    <i class="far fa-check-square task-icon" v-on:click="showEditStatusDialog()"></i>
-                    <!--タグ編集ボタン-->
-                    <i class="fas fa-tag task-icon" v-on:click="showEditTagDialog()"></i>
                     <!--編集ボタン-->
                     <i class="far fa-edit task-icon" v-on:click="showEditTaskDialog()"></i>
+                    <!--タグ編集ボタン-->
+                    <i class="fas fa-tag task-icon" v-on:click="showEditTagDialog()"></i>
+                    <!--状態編集ボタン-->
+                    <i class="far fa-check-square task-icon" v-on:click="showEditStatusDialog()"></i>
+                    <!--リマインダーセットボタン-->
+                    <i class="fas fa-bell task-icon" v-on:click="showEditRemindersDialog()"></i>
                     <!--削除ボタン-->
                     <i class="fas fa-trash task-icon" v-on:click="showDeleteTaskDialog()"></i>
                 </div>
@@ -137,19 +153,31 @@
                 <!--概要-->
                 <p class="overview">{{task.overview}}</p>
                 <!--各種パラメーター-->
+                <span class="label">開始日</span>
+                <span class="block">{{task.start_date}}</span>
+                <span class="label">締切</span>
+                <span class="block">{{task.dead_line}}</span>
                 <span class="label">優先度</span>
                 <star-range v-model="task.priority" />
                 <span class="label">難易度</span>
                 <star-range v-model="task.difficulty" />
                 <!--タグ-->
+                <span class="label">タグ</span>
                 <div class="tags">
                     <div class="tag" v-for="(tag,index) in task.tags">
                         <i class="fas fa-tag" v-bind:style="{color:tag.color}"></i>
                         <span>{{tag.name}}</span>
                     </div>
                 </div>
-                <!--子アイテム-->
+                <!--リマインダー-->
+                <div>
+                    <span class="label">リマインダー</span>
+                    <p v-for="(reminder,index) in task.reminders">{{reminder.alert_datetime}}　　{{reminder.message}}</p>
+                </div>
+                <!--サブタスク-->
                 <div class="items">
+                    <span class="label">サブタスク</span>
+                    <p>{{numerator}}／{{denominator}}</p>
                     <p v-for="(item,itemIndex) in task.items" v-bind:class="setItemClass(item.is_checked)" v-bind:style="inactivateItem[item.id]">
                             <!--通常表示-->
                             <span v-show="!editItemMode[itemIndex]" class="item-label">
@@ -216,6 +244,8 @@
                     id:'',
                     state_detail:''
                 },
+                addReminderModal:false,
+                newReminder:{}
             }  
         },
         props:{
@@ -277,7 +307,7 @@
             let vue = this
             this.$watch('checked',async function(newVal,oldVal){
                 if(oldVal == false && newVal == true && this.task.states[this.task.states.length -1].id != 2){
-                    //子アイテムが全部終わっていない場合の警告文
+                    //サブタスクが全部終わっていない場合の警告文
                     if(this.task.items.find(el => el.is_checked == false)){
                         let result = window.confirm('サブタスクが全てチェックされていませんが完了してよろしいですか？')
                         if(!result){
@@ -622,10 +652,27 @@
                     
                 }
             },
+            showEditRemindersDialog:function(){
+                // フォームをリセット
+                this.$refs.newReminderForm.init()
+                // v-modelリセット
+                this.newReminder = {
+                    user_id:this.task.user_id,
+                    task_id:this.task.id,
+                    message:'',
+                    is_screen:false,
+                    is_mail:false,
+                    alert_datetime:new Date(),
+                }
+                this.$refs.addReminderModal.openModal()
+            },
         }
     }
 </script>
 <style scoped>
+    .block {
+        display: block;
+    }
     i {
         margin:0 0.5em;
     }
