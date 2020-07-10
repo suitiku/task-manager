@@ -82,6 +82,10 @@
                 <span>全タスクを表示</span>
                 <toggle-switch v-model="allTasks" />
             </div>
+            <!--リマインダー表示部-->
+            <reminders v-bind:userId="userId" />
+            
+            <!--フィルター＆ソート-->
             <div class="filter-and-sort">
                 <!--フィルター-->
                 <div class="filter-area">

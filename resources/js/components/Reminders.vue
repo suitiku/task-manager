@@ -16,6 +16,7 @@
                 <span>{{reminder.task.name}}</span>
                 <span>{{reminder.message}}</span>
             </div>
+            <p v-show="reminders.length == 0">現在設定されているリマインダーはありません。</p>
         </div>
     </div>
 </template>

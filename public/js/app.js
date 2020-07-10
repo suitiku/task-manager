@@ -51621,6 +51621,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     model: {
@@ -52790,6 +52794,8 @@ var render = function() {
                 1
               )
             : _vm._e(),
+          _vm._v(" "),
+          _c("reminders", { attrs: { userId: _vm.userId } }),
           _vm._v(" "),
           _c(
             "div",
@@ -67639,6 +67645,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -67920,24 +67927,41 @@ var render = function() {
           staticClass: "flex flex-vertical",
           attrs: { id: "reminder-wrapper" }
         },
-        _vm._l(_vm.reminders, function(reminder, index) {
-          return _c(
-            "div",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.showTaskDetail(reminder.id, reminder.task)
+        [
+          _vm._l(_vm.reminders, function(reminder, index) {
+            return _c(
+              "div",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.showTaskDetail(reminder.id, reminder.task)
+                  }
                 }
-              }
+              },
+              [
+                _c("span", [_vm._v(_vm._s(reminder.task.name))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(reminder.message))])
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.reminders.length == 0,
+                  expression: "reminders.length == 0"
+                }
+              ]
             },
-            [
-              _c("span", [_vm._v(_vm._s(reminder.task.name))]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(reminder.message))])
-            ]
+            [_vm._v("現在設定されているリマインダーはありません。")]
           )
-        }),
-        0
+        ],
+        2
       )
     ],
     1
