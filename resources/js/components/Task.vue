@@ -32,6 +32,24 @@
         <!--状態編集用モーダル-->
         <modal ref="editStatusModal" v-model="editStatusModal">
             <div class="edit-status-modal">
+                <!--Reminder-->
+                <p>リマインダーを追加する</p>
+                <toggle-switch v-model="addReminder" />
+                <versatile-form ref="newReminderForm" v-model="newReminder" table="reminders" v-show="addReminder">
+                    <input v-model="newReminder.message" type="text" placeholder="コメント">
+                    <div>
+                        <span>画面上でお知らせする</span>
+                        <input v-model="newReminder.is_screen" type="checkbox" id="screen">
+                    </div>
+                    <div>
+                        <span>メールでお知らせする</span>
+                        <input v-model="newReminder.is_mail" type="checkbox">
+                    </div>
+                    <span>お知らせする日時</span>
+                    <date-picker v-model="newReminder.alert_datetime" />
+                </versatile-form>
+                
+                <!--state-->
                 <p>状態を変更します</p>
                 <list-box v-model="selectedStatus.id" table="states" v-bind:columns="['name']" />
                 <input v-model="selectedStatus.state_detail" type="text" placeholder="コメント（null可）、CTRL+エンターで状態変更" v-on:keydown="changeStatus()">
@@ -245,7 +263,8 @@
                     state_detail:''
                 },
                 addReminderModal:false,
-                newReminder:{}
+                newReminder:{},
+                addReminder:false,
             }  
         },
         props:{
@@ -602,6 +621,17 @@
                 this.$refs.tagList.init()
             },
             showEditStatusDialog:function(){
+                // フォームをリセット
+                this.$refs.newReminderForm.init()
+                // Reminderのv-modelリセット
+                this.newReminder = {
+                    user_id:this.task.user_id,
+                    task_id:this.task.id,
+                    message:'',
+                    is_screen:false,
+                    is_mail:false,
+                    alert_datetime:new Date(),
+                }
                 this.$refs.editStatusModal.openModal()
             },
             changeStatus:async function(){

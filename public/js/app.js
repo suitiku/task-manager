@@ -53280,6 +53280,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -53314,7 +53332,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 state_detail: ''
             },
             addReminderModal: false,
-            newReminder: {}
+            newReminder: {},
+            addReminder: false
         };
     },
     props: {
@@ -54189,6 +54208,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.tagList.init();
         },
         showEditStatusDialog: function showEditStatusDialog() {
+            // フォームをリセット
+            this.$refs.newReminderForm.init();
+            // Reminderのv-modelリセット
+            this.newReminder = {
+                user_id: this.task.user_id,
+                task_id: this.task.id,
+                message: '',
+                is_screen: false,
+                is_mail: false,
+                alert_datetime: new Date()
+            };
             this.$refs.editStatusModal.openModal();
         },
         changeStatus: function () {
@@ -54422,6 +54452,182 @@ var render = function() {
                 "div",
                 { staticClass: "edit-status-modal" },
                 [
+                  _c("p", [_vm._v("リマインダーを追加する")]),
+                  _vm._v(" "),
+                  _c("toggle-switch", {
+                    model: {
+                      value: _vm.addReminder,
+                      callback: function($$v) {
+                        _vm.addReminder = $$v
+                      },
+                      expression: "addReminder"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "versatile-form",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.addReminder,
+                          expression: "addReminder"
+                        }
+                      ],
+                      ref: "newReminderForm",
+                      attrs: { table: "reminders" },
+                      model: {
+                        value: _vm.newReminder,
+                        callback: function($$v) {
+                          _vm.newReminder = $$v
+                        },
+                        expression: "newReminder"
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.newReminder.message,
+                            expression: "newReminder.message"
+                          }
+                        ],
+                        attrs: { type: "text", placeholder: "コメント" },
+                        domProps: { value: _vm.newReminder.message },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.newReminder,
+                              "message",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("span", [_vm._v("画面上でお知らせする")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newReminder.is_screen,
+                              expression: "newReminder.is_screen"
+                            }
+                          ],
+                          attrs: { type: "checkbox", id: "screen" },
+                          domProps: {
+                            checked: Array.isArray(_vm.newReminder.is_screen)
+                              ? _vm._i(_vm.newReminder.is_screen, null) > -1
+                              : _vm.newReminder.is_screen
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.newReminder.is_screen,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.newReminder,
+                                      "is_screen",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.newReminder,
+                                      "is_screen",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.newReminder, "is_screen", $$c)
+                              }
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("span", [_vm._v("メールでお知らせする")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.newReminder.is_mail,
+                              expression: "newReminder.is_mail"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(_vm.newReminder.is_mail)
+                              ? _vm._i(_vm.newReminder.is_mail, null) > -1
+                              : _vm.newReminder.is_mail
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.newReminder.is_mail,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.newReminder,
+                                      "is_mail",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.newReminder,
+                                      "is_mail",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.newReminder, "is_mail", $$c)
+                              }
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("お知らせする日時")]),
+                      _vm._v(" "),
+                      _c("date-picker", {
+                        model: {
+                          value: _vm.newReminder.alert_datetime,
+                          callback: function($$v) {
+                            _vm.$set(_vm.newReminder, "alert_datetime", $$v)
+                          },
+                          expression: "newReminder.alert_datetime"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
                   _c("p", [_vm._v("状態を変更します")]),
                   _vm._v(" "),
                   _c("list-box", {
