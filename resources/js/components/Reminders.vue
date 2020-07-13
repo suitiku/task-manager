@@ -124,19 +124,22 @@
     }
     #reminder-wrapper {
         width: 100%;
-        padding: 0.8em;
-        background-color: rgba(255,165,0,0.4);
-        border-radius: 0.2em;
+        padding: 0.2em 0.8em;
+        /*background-color: rgba(orange,0.8);*/
+        border: 1px solid orange;
+        border-radius: 0.4em;
         div {
             display: inline-block;
-            padding: 0.3em;
+            padding: 0em 0.3em;
             cursor: pointer;
-            transition: all 0.3s ease;
+            border-radius:0.2em;
+            transition: all 0.2s ease;
             span {
+                font-size:50%;
                 margin:0.3em 1em 0.3em 0em;
                 &:first-child {
                     font-weight: bold;
-                    font-size: 110%;
+                    font-size: 75%;
                 }
             }
             &:before {
@@ -146,7 +149,8 @@
                 margin-right: 1.5em;
             }
             &:hover {
-                background-color: rgba(191,191,191,0.4);
+                transform:translateX(-0.5em);
+                background-color: rgba(orange,0.8);
             }
         }
     }
