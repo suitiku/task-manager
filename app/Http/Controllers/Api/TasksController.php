@@ -140,7 +140,7 @@ class TasksController extends Controller
         $result = DB::transaction(function() use($task,$request) {
             $task->states()->attach($request->state_id,['state_detail' => $request->state_detail]);
             // 変化先状態が完了／未完了の場合はReminderを削除する
-            if(($request->state_id == 2 || $request->state_id == 5) && $task->reminders){
+            if(($request->state_id == 2 || $request->state_id == 5) && count($task->reminders) != 0){
                 foreach($task->reminders as $index=>$reminder){
                     $reminderIds[] = $reminder->id;
                 }
