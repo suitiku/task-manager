@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 class MailController extends Controller
 {
     public function sendMail(){
-        $message = 'hogehoge';
-        $result = mail('suitiku@gmail.com','testmail',$message);
+        \Mail::raw('hogehoge', function($message) {
+            $message->to('suitiku@gmail.com')->subject('test');
+        });
     }
 }
