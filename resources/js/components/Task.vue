@@ -137,6 +137,9 @@
             <div class="task-label">
                 <div class="headline">
                     <div class="headline-icons">
+                        <!--スター-->
+                        <i class="fas fa-star orange pointer clickable-layer" v-if="task.stared" v-on:click="toggleStared()"></i>
+                        <i class="far fa-star translucent pointer clickable-layer" v-else v-on:click="toggleStared()"></i>
                         <!--炎上マーク（締切24時間以内のタスク）-->
                         <i class="fas fa-fire" v-bind:style="fire"></i>
                         <!--進捗メーター-->
@@ -230,6 +233,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         data:function(){
             return {
@@ -696,10 +700,34 @@
                 }
                 this.$refs.addReminderModal.openModal()
             },
+            // スターの付替
+            toggleStared:async function(){
+                try{
+                    let result = await axios.put('/api/star/' + this.task.id)
+                    let message = result.data.stared ? 'タスクにスターを付けました' : 'タスクからスターを外しました'
+                    this.$refs.notice.showNotice(message)
+                    this.task.stared = result.data.stared
+                }catch(error){
+                    this.$refs.notice.showNotice('スターの付替えに失敗しました')
+                    console.log(error)
+                }
+            }
         }
     }
 </script>
 <style scoped>
+    .orange {
+        color: orange;
+    }
+    .translucent {
+        opacity: 0.5;
+    }
+    .pointer {
+        cursor:pointer;
+    }
+    .clickable-layer {
+        z-index: 3;
+    }
     .block {
         display: block;
     }
@@ -755,7 +783,7 @@
     .headline-icons {
         display:flex;
         align-items:center;
-        margin-left:0.5em;
+        margin-left:0.2em;
     }
     .checkbox {
         position:relative;
@@ -788,7 +816,6 @@
     }
     .task-icon {
         cursor:pointer;
-        /*margin-left:0.5em;*/
         position:relative;
         z-index:3;
         transition:all 0.3s;

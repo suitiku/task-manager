@@ -42,6 +42,8 @@ Route::put('tag_task','Api\TasksController@syncTags');
 
 //状態（state）
 Route::post('state_task','Api\TasksController@changeState');
+// スター
+Route::put('star/{id}','Api\TasksController@changeStared');
 
 //ユーザー別
 Route::get('myprojects','Api\ProjectsController@getProjectsByUserId');

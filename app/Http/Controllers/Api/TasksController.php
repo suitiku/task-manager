@@ -150,6 +150,14 @@ class TasksController extends Controller
         
     }
     
+    //スターをつけたり外したり
+    public function changeStared($id){
+        $task = Task::find($id);
+        $task->stared = !$task->stared;
+        $task->save();
+        return $task;
+    }
+    
     // ユーザーIDで検索／本日0:00からのタスクのみ／プロジェクト無しのみ
     public function getCurrentTasksByUserId(Request $request){
         $result;
@@ -199,7 +207,8 @@ class TasksController extends Controller
             'difficulty' => $originalTask['difficulty'],
             'start_date' => $originalTask['start_date'],
             'dead_line' => $originalTask['dead_line'],
-            'is_template' => $originalTask['is_template']
+            'is_template' => $originalTask['is_template'],
+            'stared' => false,
         ];
         
         //items
@@ -261,7 +270,8 @@ class TasksController extends Controller
             'difficulty' => $originalTask['difficulty'],
             'start_date' => $currentDatetime,
             'dead_line' => $deadLine,
-            'is_template' => false
+            'is_template' => false,
+            'stared' => false,
         ];
         
         //items
