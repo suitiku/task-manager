@@ -91,8 +91,9 @@
                 <div class="filter-area">
                     <filter-array v-model="filteredTasks" v-bind:originalArray="tasks" v-bind:filterOptions="filterOptions" />
                     <filter-tag v-model="tagFilteredTasks" v-bind:originalArray="filteredTasks" />
+                    <filter-stared v-model="staredFilteredTasks" v-bind:originalArray="tagFilteredTasks" />
                     <!--ステースタフィルター-->
-                    <filter-status v-model="statusFilteredTasks" v-bind:originalArray="tagFilteredTasks" />
+                    <filter-status v-model="statusFilteredTasks" v-bind:originalArray="staredFilteredTasks" />
                 </div>
                 <!--ソート-->
                 <sort-box v-model="displayedTasks" v-bind:originalArray="statusFilteredTasks" v-bind:columns="sortColumns" />
@@ -127,6 +128,7 @@
                 newTaskModal:false,
                 filteredTasks:[], //フィルターしたタスク配列
                 tagFilteredTasks:[], //タグでフィルターしたタスク配列
+                staredFilteredTasks:[], //スターでふぃるたしたタスク配列
                 statusFilteredTasks:[], //ステータスフィルターしたタスク配列
                 displayedTasks:[], //表示用タスクの配列：ソート後
                 newTask:{},

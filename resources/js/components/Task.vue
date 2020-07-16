@@ -703,11 +703,12 @@
             // スターの付替
             toggleStared:async function(){
                 try{
+                    this.task.stared = !this.task.stared //書き込み結果が出る前に見た目を変更
                     let result = await axios.put('/api/star/' + this.task.id)
                     let message = result.data.stared ? 'タスクにスターを付けました' : 'タスクからスターを外しました'
                     this.$refs.notice.showNotice(message)
-                    this.task.stared = result.data.stared
                 }catch(error){
+                    this.task.stared = !this.task.stared //エラーが出たらもとに戻す
                     this.$refs.notice.showNotice('スターの付替えに失敗しました')
                     console.log(error)
                 }
