@@ -1,11 +1,16 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <reminders userId="2" />
-
+        <modal ref="modal" v-model="modal">
+            <div class="wall">test</div>
+        </modal>
+        <modal ref="modal2" v-model="modal2">
+            <p>ほげほげ</p>
+        </modal>
         <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
         <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
-        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <button class="button" v-on:click="showModal()">modal</button>
+        <button class="button" v-on:click="showModal2()">modal2</button>
         <!--<button class="button" v-on:click="showHeadline()">H2</button>-->
         <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
         <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
@@ -17,6 +22,7 @@
         data:function(){
             return {
                 modal:false,
+                modal2:false,
                 test:'',
                 hoge:'',
                 projects:[],
@@ -93,6 +99,9 @@
             },
             showModal:function(){
                 this.$refs.modal.openModal()
+            },
+            showModal2:function(){
+                this.$refs.modal2.openModal()
             },
             showCong:function(){
                 this.$refs.cong.openCong('お疲れさまです！')
