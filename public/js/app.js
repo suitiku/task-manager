@@ -54389,26 +54389,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 4:
                                 result = _context20.sent;
+
+                                this.task.stared = result.data.stared;
+                                this.$emit('input', this.task);
                                 message = result.data.stared ? 'タスクにスターを付けました' : 'タスクからスターを外しました';
 
                                 this.$refs.notice.showNotice(message);
-                                _context20.next = 14;
+                                _context20.next = 16;
                                 break;
 
-                            case 9:
-                                _context20.prev = 9;
+                            case 11:
+                                _context20.prev = 11;
                                 _context20.t0 = _context20['catch'](0);
 
                                 this.task.stared = !this.task.stared; //エラーが出たらもとに戻す
                                 this.$refs.notice.showNotice('スターの付替えに失敗しました');
                                 console.log(_context20.t0);
 
-                            case 14:
+                            case 16:
                             case 'end':
                                 return _context20.stop();
                         }
                     }
-                }, _callee20, this, [[0, 9]]);
+                }, _callee20, this, [[0, 11]]);
             }));
 
             function toggleStared() {
@@ -57832,7 +57835,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#modal[data-v-53ab54d2] {\n  position: fixed;\n  overflow-y: auto;\n  z-index: 9;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  padding: 3em 0em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n  -webkit-transition: opacity 0.5s,visibility 0.5s;\n  transition: opacity 0.5s,visibility 0.5s;\n  opacity: 0;\n  visibility: hidden;\n}\n#modal.active[data-v-53ab54d2] {\n    opacity: 1.0;\n    visibility: visible;\n    -webkit-transition: opacity 0.5s,visibility 0.5s;\n    transition: opacity 0.5s,visibility 0.5s;\n}\n#modal .modal-background[data-v-53ab54d2] {\n    position: fixed;\n    top: 0;\n    left: 0;\n    height: 5000px;\n    width: 100%;\n    background: grey;\n    opacity: 0.5;\n    z-index: 10;\n}\n#modal .modal-content[data-v-53ab54d2] {\n    position: absolute;\n    top: 20%;\n    width: 65%;\n    height: auto;\n    /*overflow:hidden;*/\n    z-index: 11;\n    margin-bottom: 3em;\n    padding: 1em;\n    border: 2px solid gray;\n}\n#modal .modal-content .close-button[data-v-53ab54d2] {\n      position: absolute;\n      left: calc(100% - 1em);\n      top: -1em;\n      width: 2em;\n      height: 2em;\n      border-radius: 50%;\n      background-color: white;\n      z-index: 12;\n}\n\n/*.modal-content {*/\n/*    position:absolute;*/\n/*    top:20%;*/\n/*    width:65%;*/\n/*    height:0px;*/\n/*    overflow:hidden;*/\n/*    z-index:14;*/\n/*    margin-bottom:3em;*/\n/*    padding:1em;*/\n/*    opacity:0;*/\n/*    visibility:hidden;*/\n/*    transition:opacity 0.7s;*/\n/*}*/\n/*.modal-content-active {*/\n/*    overflow:visible;*/\n/*    height:auto;*/\n/*    opacity:1.0;*/\n/*    visibility:visible;*/\n/*}*/\n", ""]);
+exports.push([module.i, "\n#modal[data-v-53ab54d2] {\n  position: fixed;\n  overflow-y: auto;\n  z-index: 9;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  padding: 3em 0em;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n  -webkit-transition: opacity 0.5s,visibility 0.5s;\n  transition: opacity 0.5s,visibility 0.5s;\n  opacity: 0;\n  visibility: hidden;\n}\n#modal.active[data-v-53ab54d2] {\n    opacity: 1.0;\n    visibility: visible;\n    -webkit-transition: opacity 0.5s,visibility 0.5s;\n    transition: opacity 0.5s,visibility 0.5s;\n}\n#modal .modal-background[data-v-53ab54d2] {\n    position: fixed;\n    top: 0;\n    left: 0;\n    height: 5000px;\n    width: 100%;\n    background: grey;\n    opacity: 0.5;\n    z-index: 10;\n}\n#modal .modal-content[data-v-53ab54d2] {\n    position: absolute;\n    top: 20%;\n    width: 65%;\n    height: auto;\n    z-index: 11;\n    margin-bottom: 3em;\n    padding: 1em;\n    border: 2px solid gray;\n}\n#modal .modal-content .close-button[data-v-53ab54d2] {\n      position: absolute;\n      left: calc(100% - 1em);\n      top: -1em;\n      width: 2em;\n      height: 2em;\n      border-radius: 50%;\n      background-color: white;\n      z-index: 12;\n}\n", ""]);
 
 // exports
 
@@ -57859,15 +57862,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            modal: true,
-            content_top: 0
+            modal: true
         };
     },
-    watch: {},
-    created: function created() {},
-    mounted: function mounted() {},
-
-    computed: {},
     methods: {
         openModal: function openModal() {
             this.$refs.modal.classList.add('active');

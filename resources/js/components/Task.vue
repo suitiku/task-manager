@@ -705,6 +705,8 @@
                 try{
                     this.task.stared = !this.task.stared //書き込み結果が出る前に見た目を変更
                     let result = await axios.put('/api/star/' + this.task.id)
+                    this.task.stared = result.data.stared
+                    this.$emit('input',this.task)
                     let message = result.data.stared ? 'タスクにスターを付けました' : 'タスクからスターを外しました'
                     this.$refs.notice.showNotice(message)
                 }catch(error){
