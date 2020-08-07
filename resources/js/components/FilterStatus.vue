@@ -54,8 +54,50 @@
         },
         mounted:async function(){
             // ステータス一覧を取得
-            let result = await axios.get('/api/states')
-            for(let state of result.data){
+            // let result = await axios.get('/api/states')
+            // for(let state of result.data){
+            //     this.statuses.push({label:state.name,value:state.id})
+            // }
+            
+            let states = [
+                {
+                    "id": 1,
+                    "name": "実行中",
+                    "overview": "アクティブな状態",
+                    "created_at": "2020-05-14T14:21:25.000000Z",
+                    "updated_at": "2020-05-14T14:21:25.000000Z"
+                },
+                {
+                    "id": 2,
+                    "name": "完了",
+                    "overview": "タスクが完了した状態",
+                    "created_at": "2020-05-14T14:21:25.000000Z",
+                    "updated_at": "2020-05-14T14:21:25.000000Z"
+                },
+                {
+                    "id": 3,
+                    "name": "対応待ち",
+                    "overview": "他者からの反応を待っている状態",
+                    "created_at": "2020-05-14T14:21:25.000000Z",
+                    "updated_at": "2020-05-14T14:21:25.000000Z"
+                },
+                {
+                    "id": 4,
+                    "name": "タスク移動",
+                    "overview": "他の人に投げた状態",
+                    "created_at": "2020-05-14T14:21:25.000000Z",
+                    "updated_at": "2020-05-14T14:21:25.000000Z"
+                },
+                {
+                    "id": 5,
+                    "name": "未完了",
+                    "overview": "完了できずに終了",
+                    "created_at": "2020-05-14T14:21:25.000000Z",
+                    "updated_at": "2020-05-14T14:21:25.000000Z"
+                }
+            ]
+            
+            for(let state of states){
                 this.statuses.push({label:state.name,value:state.id})
             }
         },

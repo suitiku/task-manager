@@ -50874,8 +50874,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     created: function created() {},
     mounted: function mounted() {
-        this.setTasks();
-        this.setProgress();
+        // this.setTasks()
+        // this.setProgress()
     },
 
     computed: {
@@ -50936,9 +50936,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return setTasks;
         }(),
-        openDetail: function openDetail() {
-            this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close';
-        },
+        openDetail: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                _context4.next = 2;
+                                return this.setTasks();
+
+                            case 2:
+                                _context4.next = 4;
+                                return this.setProgress();
+
+                            case 4:
+                                this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close';
+
+                            case 5:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function openDetail() {
+                return _ref4.apply(this, arguments);
+            }
+
+            return openDetail;
+        }(),
         setProgress: function setProgress() {
             var meterTasks = this.tasks.filter(function (task) {
                 return task != '' && !task.is_template;
@@ -51003,40 +51030,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.copyModal.closeModal();
         },
         deleteProject: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
-                        switch (_context4.prev = _context4.next) {
+                        switch (_context5.prev = _context5.next) {
                             case 0:
-                                _context4.prev = 0;
+                                _context5.prev = 0;
 
                                 this.$refs.deleteModal.closeModal();
-                                _context4.next = 4;
+                                _context5.next = 4;
                                 return axios.delete('/api/projects/' + this.project.id);
 
                             case 4:
                                 this.$refs.notice.showNotice('プロジェクトを削除しました');
                                 this.$parent.fetchProjects();
-                                _context4.next = 12;
+                                _context5.next = 12;
                                 break;
 
                             case 8:
-                                _context4.prev = 8;
-                                _context4.t0 = _context4['catch'](0);
+                                _context5.prev = 8;
+                                _context5.t0 = _context5['catch'](0);
 
                                 this.$refs.notice.showNotice('プロジェクトの削除に失敗しました');
-                                console.log(_context4.t0);
+                                console.log(_context5.t0);
 
                             case 12:
                             case 'end':
-                                return _context4.stop();
+                                return _context5.stop();
                         }
                     }
-                }, _callee4, this, [[0, 8]]);
+                }, _callee5, this, [[0, 8]]);
             }));
 
             function deleteProject() {
-                return _ref4.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return deleteProject;
@@ -51045,45 +51072,45 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.copyModal.openModal();
         },
         copyProject: function () {
-            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee6() {
                 var result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee6$(_context6) {
                     while (1) {
-                        switch (_context5.prev = _context5.next) {
+                        switch (_context6.prev = _context6.next) {
                             case 0:
                                 this.$refs.waiting.enableWaiting('プロジェクトをコピーしています');
-                                _context5.prev = 1;
-                                _context5.next = 4;
+                                _context6.prev = 1;
+                                _context6.next = 4;
                                 return axios.post('/api/projects/copy/' + this.project.id);
 
                             case 4:
-                                result = _context5.sent;
+                                result = _context6.sent;
 
                                 this.$refs.waiting.disableWaiting();
                                 this.$refs.copyModal.closeModal();
                                 this.$refs.notice.showNotice('プロジェクトをコピーしました');
                                 this.$parent.fetchProjects();
-                                _context5.next = 16;
+                                _context6.next = 16;
                                 break;
 
                             case 11:
-                                _context5.prev = 11;
-                                _context5.t0 = _context5['catch'](1);
+                                _context6.prev = 11;
+                                _context6.t0 = _context6['catch'](1);
 
                                 this.$refs.copyModal.closeModal();
                                 this.$refs.notice.showNotice('プロジェクトのコピーに失敗しました');
-                                console.log(_context5.t0);
+                                console.log(_context6.t0);
 
                             case 16:
                             case 'end':
-                                return _context5.stop();
+                                return _context6.stop();
                         }
                     }
-                }, _callee5, this, [[1, 11]]);
+                }, _callee6, this, [[1, 11]]);
             }));
 
             function copyProject() {
-                return _ref5.apply(this, arguments);
+                return _ref6.apply(this, arguments);
             }
 
             return copyProject;
@@ -65054,66 +65081,99 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     created: function created() {},
     mounted: function () {
         var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-            var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, state;
+            var states, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, state;
 
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
                         case 0:
-                            _context3.next = 2;
-                            return axios.get('/api/states');
+                            // ステータス一覧を取得
+                            // let result = await axios.get('/api/states')
+                            // for(let state of result.data){
+                            //     this.statuses.push({label:state.name,value:state.id})
+                            // }
 
-                        case 2:
-                            result = _context3.sent;
+                            states = [{
+                                "id": 1,
+                                "name": "実行中",
+                                "overview": "アクティブな状態",
+                                "created_at": "2020-05-14T14:21:25.000000Z",
+                                "updated_at": "2020-05-14T14:21:25.000000Z"
+                            }, {
+                                "id": 2,
+                                "name": "完了",
+                                "overview": "タスクが完了した状態",
+                                "created_at": "2020-05-14T14:21:25.000000Z",
+                                "updated_at": "2020-05-14T14:21:25.000000Z"
+                            }, {
+                                "id": 3,
+                                "name": "対応待ち",
+                                "overview": "他者からの反応を待っている状態",
+                                "created_at": "2020-05-14T14:21:25.000000Z",
+                                "updated_at": "2020-05-14T14:21:25.000000Z"
+                            }, {
+                                "id": 4,
+                                "name": "タスク移動",
+                                "overview": "他の人に投げた状態",
+                                "created_at": "2020-05-14T14:21:25.000000Z",
+                                "updated_at": "2020-05-14T14:21:25.000000Z"
+                            }, {
+                                "id": 5,
+                                "name": "未完了",
+                                "overview": "完了できずに終了",
+                                "created_at": "2020-05-14T14:21:25.000000Z",
+                                "updated_at": "2020-05-14T14:21:25.000000Z"
+                            }];
                             _iteratorNormalCompletion = true;
                             _didIteratorError = false;
                             _iteratorError = undefined;
-                            _context3.prev = 6;
+                            _context3.prev = 4;
 
-                            for (_iterator = result.data[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+
+                            for (_iterator = states[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                 state = _step.value;
 
                                 this.statuses.push({ label: state.name, value: state.id });
                             }
-                            _context3.next = 14;
+                            _context3.next = 12;
                             break;
 
-                        case 10:
-                            _context3.prev = 10;
-                            _context3.t0 = _context3['catch'](6);
+                        case 8:
+                            _context3.prev = 8;
+                            _context3.t0 = _context3['catch'](4);
                             _didIteratorError = true;
                             _iteratorError = _context3.t0;
 
-                        case 14:
-                            _context3.prev = 14;
-                            _context3.prev = 15;
+                        case 12:
+                            _context3.prev = 12;
+                            _context3.prev = 13;
 
                             if (!_iteratorNormalCompletion && _iterator.return) {
                                 _iterator.return();
                             }
 
-                        case 17:
-                            _context3.prev = 17;
+                        case 15:
+                            _context3.prev = 15;
 
                             if (!_didIteratorError) {
-                                _context3.next = 20;
+                                _context3.next = 18;
                                 break;
                             }
 
                             throw _iteratorError;
 
+                        case 18:
+                            return _context3.finish(15);
+
+                        case 19:
+                            return _context3.finish(12);
+
                         case 20:
-                            return _context3.finish(17);
-
-                        case 21:
-                            return _context3.finish(14);
-
-                        case 22:
                         case 'end':
                             return _context3.stop();
                     }
                 }
-            }, _callee3, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+            }, _callee3, this, [[4, 8, 12, 20], [13,, 15, 19]]);
         }));
 
         function mounted() {

@@ -1,6 +1,7 @@
 <!--プロジェクト単体表示コンポーネント-->
 <!--今後の改修ポイント-->
 <!--①更新系の際に親コンポーネント（ProjectList.vue）があるのが前提となっているのでスタンドアローンでも動くように改修する-->
+<!--②データの取得でタイムアウトが発生するのでキューとジョブで修正。現在は詳細を開く際にsetTasksする。setTasksのテンプレートタスク取得がボトルネックっぽい。全体的に後で修正する。2020-08-07-->
 <template>
     <div class="container">
         <!--ウェイティング-->
@@ -138,8 +139,8 @@
             
         },
         mounted() {
-            this.setTasks()
-            this.setProgress()
+            // this.setTasks()
+            // this.setProgress()
         },
         computed:{
             override:function(){
@@ -166,7 +167,9 @@
                 
                 this.tasks = Array.from(new Set(this.tasks.concat(templateTasks)))
             },
-            openDetail:function(){
+            openDetail:async function(){
+                await this.setTasks()
+                await this.setProgress()
                 this.detail = this.detail == 'project-detail-close' ? 'project-detail-open' : 'project-detail-close'  
             },
             setProgress:function(){
