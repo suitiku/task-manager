@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Task;
@@ -19,13 +21,15 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return Task::with([
-                        'project',
-                        'items',
-                        'states',
-                        'tags',
-                        'reminders'
-                    ])->get();
+        return Auth::user();
+        
+        // return Task::with([
+        //                 'project',
+        //                 'items',
+        //                 'states',
+        //                 'tags',
+        //                 'reminders'
+        //             ])->get();
     }
 
     /**

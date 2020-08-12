@@ -33,16 +33,16 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
+                     Left Side Of Navbar 
                     <ul class="navbar-nav mr-auto">
                         @auth
                             <navi-bar />
                         @endauth
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
+                     Right Side Of Navbar 
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                         Authentication Links 
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

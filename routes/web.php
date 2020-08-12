@@ -11,17 +11,21 @@
 |
 */
 
-Auth::routes();
-
-Route::get('/', function () {
-    if(Auth::user()){
-        return redirect('/home');
-    }
-    return view('welcome');
+Route::get('/',function(){
+    return view('spa');
 });
 
-//ホーム画面（認証必須）
-Route::get('/home','HomeController@index');
+// Auth::routes();
+
+// Route::get('/', function () {
+//     if(Auth::user()){
+//         return redirect('/home');
+//     }
+//     return view('welcome');
+// });
+
+// //ホーム画面（認証必須）
+// Route::get('/home','HomeController@index');
 
 
 //テストコンポーネント用test.blade.php
