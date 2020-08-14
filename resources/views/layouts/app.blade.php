@@ -9,6 +9,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
+    <script>
+        window.laravelapitoken = '{{$token ?? null}}'
+    </script>
+    
     <!-- Scripts -->
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
 

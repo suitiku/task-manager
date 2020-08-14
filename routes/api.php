@@ -19,7 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(["middleware" => "api"], function () {
+Route::group(['middleware' => 'auth:api'], function(){
+
+
 
 // タグ検索
 Route::get('tags/search','Api\TagsController@getTagsByKeyword');
@@ -68,6 +70,12 @@ Route::post('tasks/template/{id}','Api\TasksController@createTaskFromTemplate');
 //集計系
 Route::get('mytasks/aggregate','Api\TasksController@aggregate');
 
+<<<<<<< HEAD
 });
 
 
+=======
+
+
+});
+>>>>>>> api-guard-test
