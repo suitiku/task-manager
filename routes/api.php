@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::group(['middleware' => 'auth:api'], function(){
+
+
+
 // タグ検索
 Route::get('tags/search','Api\TagsController@getTagsByKeyword');
 
@@ -64,3 +69,7 @@ Route::post('tasks/template/{id}','Api\TasksController@createTaskFromTemplate');
 
 //集計系
 Route::get('mytasks/aggregate','Api\TasksController@aggregate');
+
+
+
+});

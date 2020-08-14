@@ -24,6 +24,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = \Auth::user(); //ログイン中のユーザー情報を取得
-        return view('home')->with('user',$user);
+        //APIトークン処理
+        $token = str_random(60);
+        // $user->forceFill(['api_token' => hash('sha256',$token)])->save();
+        $user->forceFill(['api_token' => $token])->save();
+        return view('home')->with(['user' => $user, 'token' =>$token]);
     }
 }

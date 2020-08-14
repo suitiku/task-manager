@@ -14741,6 +14741,9 @@ window.axios = __webpack_require__(6);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+// apiトークンセット
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.laravelapitoken;
+
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
