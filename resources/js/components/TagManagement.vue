@@ -22,7 +22,7 @@
                     <div v-bind:style="{background:tag.color}" class="tag" v-on:click="showModal(tag)">
                         <span>{{tag.name}}</span>
                     </div>
-                    <span>{{countTasks(tag)}}</span>
+                    <span>{{tag.tasks_count}}</span>
                 </div>
             </div>
         <button type="button" class="btn btn-outline-primary mx-auto d-block" v-on:click="showModal()">タグを追加する</button>
@@ -78,13 +78,6 @@
                                                 params:{user_id:this.user_id,}
                                             })
                 this.tags = result.data
-            },
-            countTasks:function(tag){
-                if(!tag.tasks){
-                    return 0
-                }else{
-                    return tag.tasks.length
-                }
             },
             showModal:function(tag = null){
                 if(tag && tag.id != ''){

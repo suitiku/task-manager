@@ -66702,9 +66702,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 result = _context.sent;
 
+                                console.log(result.data);
                                 this.tags = result.data;
 
-                            case 4:
+                            case 5:
                             case 'end':
                                 return _context.stop();
                         }
@@ -66718,13 +66719,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTags;
         }(),
-        countTasks: function countTasks(tag) {
-            if (!tag.tasks) {
-                return 0;
-            } else {
-                return tag.tasks.length;
-            }
-        },
+        // countTasks:function(tag){
+        //     if(!tag.tasks){
+        //         return 0
+        //     }else{
+        //         return tag.tasks.length
+        //     }
+        // },
         showModal: function showModal() {
             var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
@@ -67038,7 +67039,7 @@ var render = function() {
                 [_c("span", [_vm._v(_vm._s(tag.name))])]
               ),
               _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.countTasks(tag)))])
+              _c("span", [_vm._v(_vm._s(tag.tasks_count))])
             ])
           }),
           0

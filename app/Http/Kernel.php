@@ -38,7 +38,6 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            \App\Http\Middleware\AjaxOnly::class,
             'throttle:600,1',
             'bindings',
         ],
