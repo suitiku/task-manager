@@ -110,27 +110,12 @@
                             ids.push(el.id)
                         }
                     }else{
-                        // if(!this.filteredArray[index].length){continue }
-                        if(this.filterOperators[index - 1] == '*'){
-                            // 積
-                            resultIds = []
-                            if(!this.filteredArray[index].length){break } //空の要素があったら終了
-                            for(let el of this.filteredArray[index]){
-                                if(ids.indexOf(el.id) != -1){
-                                    resultIds.push(el.id)
-                                }
-                            }
-                        }else{
-                            // 和
-                            if(!this.filteredArray[index].length){continue } //空の要素の場合はループ飛ばす
-                            // 追加用id配列
-                            for(let el of this.filteredArray[index]){
-                                ids.push(el.id)
-                            }
-                            // setオブジェクトを生成
-                            let setObj = new Set(ids)
-                            for(let id of setObj){
-                                resultIds.push(id)
+                        // 積
+                        resultIds = []
+                        if(!this.filteredArray[index].length){break } //空の要素があったら終了
+                        for(let el of this.filteredArray[index]){
+                            if(ids.indexOf(el.id) != -1){
+                                resultIds.push(el.id)
                             }
                         }
                         ids = resultIds
