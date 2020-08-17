@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //トークン形式でAPIアクセスを認証
-// Route::group(['middleware' => 'auth:api'], function(){
+Route::group(['middleware' => 'auth:api'], function(){
 
     // タグ検索
     Route::get('tags/search','Api\TagsController@getTagsByKeyword');
@@ -70,4 +70,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //集計系
     Route::get('mytasks/aggregate','Api\TasksController@aggregate');
 
-// });
+});
