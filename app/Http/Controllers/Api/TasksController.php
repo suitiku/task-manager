@@ -187,7 +187,7 @@ class TasksController extends Controller
     public function getTemplateTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)
                     ->where('is_template',true)
-                    ->with(['items','tags'])
+                    ->with(['project','items','tags'])
                     ->get();
     }
     

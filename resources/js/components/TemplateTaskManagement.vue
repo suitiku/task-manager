@@ -26,10 +26,11 @@
             
         },
         mounted:async function(){
-            let result = await axios.get('/api/mytasks',{params:{user_id:this.userId}})
-            this.templateTasks = result.data.filter(task => {
-                return task.is_template == true
-            })
+            let result = await axios.get('/api/mytemplates',{params:{user_id:this.userId}})
+            this.templateTasks = result.data
+            // this.templateTasks = result.data.filter(task => {
+            //     return task.is_template == true
+            // })
         },
         methods: {
             getTasksIndex:function(id){
