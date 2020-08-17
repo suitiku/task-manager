@@ -52,6 +52,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //ユーザー別
     Route::get('myprojects','Api\ProjectsController@getProjectsByUserId');
     Route::get('mytasks','Api\TasksController@getAllTasksByUserId');
+    Route::get('mytemplates','Api\TasksController@getTemplateTasksByUserId');
     Route::get('mytasks/current','Api\TasksController@getCurrentTasksByUserId');
     Route::get('mytags','Api\TagsController@getTagsByUserId');
     Route::get('myreminders','Api\RemindersController@getRemindersByUserId');

@@ -183,6 +183,14 @@ class TasksController extends Controller
                     ->get();
     }
     
+    //ユーザーIDでテンプレートタスクのみ取得
+    public function getTemplateTasksByUserId(Request $request){
+        return Task::where('user_id',$request->user_id)
+                    ->where('is_template',true)
+                    ->with(['items','tags'])
+                    ->get();
+    }
+    
     // プロジェクトIDでフィルター
     public function getTasksByProjectIds(Request $request){
         return Task::where('user_id',$request->user_id)
