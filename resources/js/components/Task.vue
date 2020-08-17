@@ -317,6 +317,13 @@
                     console.log(error)
                 }
             },
+            // newReminderにidが設定されたらモーダルを閉じる
+            newReminder:function(){
+                if(this.newReminder.id){
+                    this.$refs.notice.showNotice('リマインダーをセットしました')
+                    this.$refs.addReminderModal.closeModal()
+                }
+            }
             
         },
         created:async function(){

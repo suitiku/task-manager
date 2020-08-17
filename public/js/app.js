@@ -53504,7 +53504,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return selectedTagIds;
-        }()
+        }(),
+        // newReminderにidが設定されたらモーダルを閉じる
+        newReminder: function newReminder() {
+            if (this.newReminder.id) {
+                this.$refs.addReminderModal.closeModal();
+            }
+        }
 
     },
     created: function () {
@@ -66702,10 +66708,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 result = _context.sent;
 
-                                console.log(result.data);
                                 this.tags = result.data;
 
-                            case 5:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
@@ -66719,13 +66724,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return fetchTags;
         }(),
-        // countTasks:function(tag){
-        //     if(!tag.tasks){
-        //         return 0
-        //     }else{
-        //         return tag.tasks.length
-        //     }
-        // },
         showModal: function showModal() {
             var tag = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
