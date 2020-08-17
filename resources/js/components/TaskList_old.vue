@@ -65,9 +65,9 @@
             <div class="task-copy-dialog">
                 <p>生成元のテンプレートを選択してください</p>
                 <div class="template-list">
-                    <div v-for="(templateTask,templateIndex) in templateTasks">
-                        <input v-if="templateTask" type="radio" v-model="selectedTemplateTask" v-bind:value="templateTask">
-                        <span v-if="templateTask">{{templateTask.name}}</span>
+                    <div v-for="(templateTask,templateIndex) in tasks">
+                        <input v-if="templateTask && templateTask.is_template" type="radio" v-model="selectedTemplateTask" v-bind:value="templateTask">
+                        <span v-if="templateTask && templateTask.is_template">{{templateTask.name}}</span>
                     </div>
                 </div>
                 <div>
@@ -102,8 +102,8 @@
             
             <!--リスト表示-->
             <div v-for="(task,index) in displayedTasks" class="task">
-                <task v-if="task" v-model="tasks[getTasksIndex(task.id)]" v-bind:key="index"/>
-                <div v-if="task" class="control-buttons">
+                <task v-if="task && !task.is_template" v-model="tasks[getTasksIndex(task.id)]" v-bind:key="index"/>
+                <div v-if="task && !task.is_template" class="control-buttons">
                     <i class="fas fa-copy" v-on:click="showCopyTaskModal(task)"></i>
                 </div>
             </div>
@@ -158,7 +158,6 @@
                 copyModal:false,
                 
                 //テンプレート関連
-                templateTasks:[],
                 templateModal:false,
                 selectedTemplateTask:'',
                 
@@ -181,8 +180,7 @@
             if(this.projectId)return 
             
             this.fetchCurrentTasks()
-            this.fetchTemplateTasks()
-            this.fetchProjects()
+            
         },
         created() {
             
@@ -264,16 +262,6 @@
                       this.$refs.notice.showNotice('タスクの取得に失敗しました')
                       console.log(error)
                   }
-            },
-            fetchTemplateTasks:async function(){
-                try{
-                    let result = await axios.get('/api/mytemplates',{
-                                            params:{user_id:this.userId,}
-                                        })
-                    this.templateTasks = result.data
-              }catch(error){
-                  console.log(error)
-              }
             },
             fetchProjects:async function(){
                 // userIdがない場合は飛ばす
@@ -410,9 +398,8 @@
                     //終了処理
                     this.$refs.copyTaskModal.closeModal()
                     this.$refs.notice.showNotice('タスクをテンプレートにしました')
+                    
                     this.tasks[this.getTasksIndex(taskId)].is_template = true
-                    this.templateTasks.push(this.tasks[this.getTasksIndex(taskId)])
-                    this.tasks.splice(this.getTasksIndex(taskId),1)
                     this.$emit('input',this.tasks)
                 }catch(error){
                     this.$refs.copyTaskModal.closeModal()

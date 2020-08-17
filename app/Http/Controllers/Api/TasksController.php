@@ -165,6 +165,7 @@ class TasksController extends Controller
         $validDatetime = strtotime(date('Y-m-d'));
         $tasks = Task::where('user_id',$request->user_id)
                     ->where('project_id',$defaultProjectId)
+                    ->where('is_template',false)
                     ->with(['project','states','items','tags','reminders'])
                     ->get();
         foreach($tasks as $index => $task){
@@ -179,6 +180,7 @@ class TasksController extends Controller
     //ユーザーIDで過去のものも含めた全タスク取得
     public function getAllTasksByUserId(Request $request){
         return Task::where('user_id',$request->user_id)
+                    ->where('is_template',false)
                     ->with(['project','items','tags','states','reminders'])
                     ->get();
     }
