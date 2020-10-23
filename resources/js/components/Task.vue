@@ -850,6 +850,7 @@
     }
     .detail-active {
         max-height:2000px;
+        overflow-y:scroll;
         transition:all 1.0s ease;
     }
     .editable {
