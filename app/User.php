@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token','api_token'
     ];
+    
+    public function tasks(){
+        return $this->hasMany('App\Task');
+    }
+    
+    public function myLists(){
+        return $this->hasMany('App\MyList');
+    }
 }
