@@ -9,7 +9,8 @@
         <!--</modal>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
         <!--<button class="button" v-on:click="showModal2()">modal2</button>-->
-        <my-list />
+        <my-list ref="mylist" />
+        <button v-on:click="addItem()">行を追加</button>
     </div>
 </template>
 
@@ -127,6 +128,9 @@
             },
             getTags:function(){
                 this.$refs.tagList.init()
+            },
+            addItem:function(){
+                this.$refs.mylist.addItem()
             }
         },
     }

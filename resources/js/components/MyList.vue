@@ -15,9 +15,9 @@
         data:function(){
             return {
                 testDefinition:[
-                    {index:0,name:'品目',type:'Text',suffix:''},
-                    {index:1,name:'価格',type:'Number',suffix:'円'},
-                    {index:2,name:'在庫数',type:'Number',suffix:'個'},
+                    {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
+                    {index:1,name:'価格',type:'Number',suffix:'円',default:0},
+                    {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
                 ],
                 testItems: [
                     [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
@@ -61,14 +61,19 @@
         methods: {
             setColumnLength:function(index){
                 return {width:this.columnLength[index] + 2 + 'em'}
+            },
+            addItem:function(){
+                let addItem = []
+                for(let column of this.testDefinition){
+                    let addColumn = {index:column.index,value:column.default}
+                    addItem.push(addColumn)
+                }
+                this.testItems.push(addItem)
             }
         }
     }
 </script>
 <style scoped>
-    div {
-        /*margin:0.5em;*/
-    }
     span {
         display:inline-block;
         padding:0.5em;

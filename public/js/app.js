@@ -57465,6 +57465,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57643,6 +57644,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         getTags: function getTags() {
             this.$refs.tagList.init();
+        },
+        addItem: function addItem() {
+            this.$refs.mylist.addItem();
         }
     }
 });
@@ -57655,7 +57659,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [_c("my-list")], 1)
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("my-list", { ref: "mylist" }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.addItem()
+            }
+          }
+        },
+        [_vm._v("行を追加")]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -68768,7 +68791,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\ndiv[data-v-33a634d6] {\n    /*margin:0.5em;*/\n}\nspan[data-v-33a634d6] {\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n}\n", ""]);
+exports.push([module.i, "\nspan[data-v-33a634d6] {\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n}\n", ""]);
 
 // exports
 
@@ -68795,7 +68818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            testDefinition: [{ index: 0, name: '品目', type: 'Text', suffix: '' }, { index: 1, name: '価格', type: 'Number', suffix: '円' }, { index: 2, name: '在庫数', type: 'Number', suffix: '個' }],
+            testDefinition: [{ index: 0, name: '品目', type: 'Text', suffix: '', default: 'noitem' }, { index: 1, name: '価格', type: 'Number', suffix: '円', default: 0 }, { index: 2, name: '在庫数', type: 'Number', suffix: '個', default: 0 }],
             testItems: [[{ index: 0, value: 'りんご' }, { index: 1, value: '100' }, { index: 2, value: '10' }], [{ index: 0, value: 'パイナップル' }, { index: 1, value: '200' }, { index: 2, value: '5' }], [{ index: 0, value: 'バナナ' }, { index: 1, value: '40' }, { index: 2, value: '20' }]],
             columnLength: []
         };
@@ -68891,6 +68914,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         setColumnLength: function setColumnLength(index) {
             return { width: this.columnLength[index] + 2 + 'em' };
+        },
+        addItem: function addItem() {
+            var addItem = [];
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+                for (var _iterator4 = this.testDefinition[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var column = _step4.value;
+
+                    var addColumn = { index: column.index, value: column.default };
+                    addItem.push(addColumn);
+                }
+            } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                        _iterator4.return();
+                    }
+                } finally {
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
+                    }
+                }
+            }
+
+            this.testItems.push(addItem);
         }
     }
 });
