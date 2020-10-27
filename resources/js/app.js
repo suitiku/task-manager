@@ -67,6 +67,7 @@ Vue.component('congratulation', require('./components/Congratulation.vue'));
 Vue.component('circle-meter', require('./components/CircleMeter.vue'));
 Vue.component('main-title', require('./components/MainTitle.vue'));
 Vue.component('reminders', require('./components/Reminders.vue'));
+Vue.component('my-list', require('./components/MyList.vue'));
 
 
 

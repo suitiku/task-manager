@@ -1,19 +1,15 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <modal ref="modal" v-model="modal">
-            <div class="wall">test</div>
-        </modal>
-        <modal ref="modal2" v-model="modal2">
-            <p>ほげほげ</p>
-        </modal>
-        <!--<button class="button" v-on:click="getTags()">タグを取得</button>-->
-        <!--<button class="button" v-on:click="showCong()">congratulation!</button>-->
-        <button class="button" v-on:click="showModal()">modal</button>
-        <button class="button" v-on:click="showModal2()">modal2</button>
-        <!--<button class="button" v-on:click="showHeadline()">H2</button>-->
-        <!--<button class="button" v-on:click="showNotice()">Notice</button>-->
-        <!--<button class="button" v-on:click="toggleWaiting()">notice</button>-->
+        <!--<modal ref="modal" v-model="modal">-->
+        <!--    <div class="wall">test</div>-->
+        <!--</modal>-->
+        <!--<modal ref="modal2" v-model="modal2">-->
+        <!--    <p>ほげほげ</p>-->
+        <!--</modal>-->
+        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <!--<button class="button" v-on:click="showModal2()">modal2</button>-->
+        <my-list />
     </div>
 </template>
 
@@ -65,20 +61,20 @@
         },
         created:async function(){
             //プロジェクト
-            let projectResult = await axios.get('/api/projects')
-            this.projects = projectResult.data
+            // let projectResult = await axios.get('/api/projects')
+            // this.projects = projectResult.data
             
             //タスク全取得
-            let result = await axios.get('/api/tasks')
-            this.tasks = result.data
+            // let result = await axios.get('/api/tasks')
+            // this.tasks = result.data
             
             //タグ全取得
-            let tagsResult = await axios.get('/api/tags')
-            for(let tag of tagsResult.data){
-                this.tags.push({label:tag.name,value:tag.id})
-            }
+            // let tagsResult = await axios.get('/api/tags')
+            // for(let tag of tagsResult.data){
+            //     this.tags.push({label:tag.name,value:tag.id})
+            // }
             
-            this.addFilters() //状態を追加
+            // this.addFilters() //状態を追加
         },
         mounted:async function() {
             
