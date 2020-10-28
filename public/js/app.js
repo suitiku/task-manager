@@ -57466,6 +57466,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57647,6 +57649,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         addItem: function addItem() {
             this.$refs.mylist.addItem();
+        },
+        addColumn: function addColumn() {
+            this.$refs.mylist.showAddColumnModal();
+        },
+        saveList: function saveList() {
+            this.$refs.mylist.saveList();
         }
     }
 });
@@ -57675,6 +57683,30 @@ var render = function() {
           }
         },
         [_vm._v("行を追加")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.addColumn()
+            }
+          }
+        },
+        [_vm._v("列を追加")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.saveList()
+            }
+          }
+        },
+        [_vm._v("保存")]
       )
     ],
     1
@@ -68802,6 +68834,29 @@ exports.push([module.i, "\nspan[data-v-33a634d6] {\n    display:inline-block;\n 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -68815,12 +68870,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             testDefinition: [{ index: 0, name: '品目', type: 'Text', suffix: '', default: 'noitem' }, { index: 1, name: '価格', type: 'Number', suffix: '円', default: 0 }, { index: 2, name: '在庫数', type: 'Number', suffix: '個', default: 0 }],
             testItems: [[{ index: 0, value: 'りんご' }, { index: 1, value: '100' }, { index: 2, value: '10' }], [{ index: 0, value: 'パイナップル' }, { index: 1, value: '200' }, { index: 2, value: '5' }], [{ index: 0, value: 'バナナ' }, { index: 1, value: '40' }, { index: 2, value: '20' }]],
-            columnLength: []
+            columnLength: [],
+            newColumnModal: false,
+            newColumn: {
+                name: '',
+                type: '',
+                suffix: '',
+                default: ''
+            }
         };
     },
     props: {
@@ -68944,7 +69007,110 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
 
             this.testItems.push(addItem);
-        }
+        },
+        showAddColumnModal: function showAddColumnModal() {
+            this.$refs.newColumnModal.openModal();
+        },
+        addColumn: function addColumn() {
+            var columnIndex = this.testDefinition.length;
+            this.newColumn.index = columnIndex;
+            this.testDefinition.push(this.newColumn);
+            var addColumn = {
+                index: columnIndex,
+                value: this.newColumn.default
+            };
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
+
+            try {
+                for (var _iterator5 = this.testItems[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var item = _step5.value;
+
+                    item.push(addColumn);
+                }
+                //幅調整
+            } catch (err) {
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
+                    }
+                } finally {
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
+                    }
+                }
+            }
+
+            var width = Math.max(this.newColumn.name.length, this.newColumn.default.length);
+            this.columnLength.push(width);
+        },
+        saveList: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var postData, index, postItem, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                // データを整理
+                                // リスト本体
+                                postData = {
+                                    list: {
+                                        user_id: 1,
+                                        name: 'test',
+                                        description: null,
+                                        column_definitions: JSON.stringify(this.testDefinition),
+                                        type: 'nomal',
+                                        is_stared: false
+                                    },
+                                    items: []
+                                    //アイテム
+                                };
+                                for (index in this.testItems) {
+                                    postItem = {
+                                        index: index,
+                                        values: JSON.stringify(this.testItems[index]),
+                                        is_checked: false,
+                                        is_stared: false
+                                    };
+
+                                    postData.items.push(postItem);
+                                }
+                                console.log(postData);
+                                _context.prev = 3;
+                                _context.next = 6;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
+
+                            case 6:
+                                result = _context.sent;
+
+                                console.log(result.data);
+                                _context.next = 13;
+                                break;
+
+                            case 10:
+                                _context.prev = 10;
+                                _context.t0 = _context['catch'](3);
+
+                                console.log(_context.t0);
+
+                            case 13:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[3, 10]]);
+            }));
+
+            function saveList() {
+                return _ref.apply(this, arguments);
+            }
+
+            return saveList;
+        }()
     }
 });
 
@@ -68959,6 +69125,136 @@ var render = function() {
   return _c(
     "div",
     [
+      _c(
+        "modal",
+        {
+          ref: "newColumnModal",
+          model: {
+            value: _vm.newColumnModal,
+            callback: function($$v) {
+              _vm.newColumnModal = $$v
+            },
+            expression: "newColumnModal"
+          }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newColumn.name,
+                expression: "newColumn.name"
+              }
+            ],
+            attrs: { type: "text", placeholder: "列の名前" },
+            domProps: { value: _vm.newColumn.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.newColumn, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.newColumn.type,
+                  expression: "newColumn.type"
+                }
+              ],
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.newColumn,
+                    "type",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "Number" } }, [_vm._v("数値")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Text" } }, [_vm._v("文字")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Date" } }, [_vm._v("日付")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Boolean" } }, [_vm._v("Yes/No")])
+            ]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newColumn.suffix,
+                expression: "newColumn.suffix"
+              }
+            ],
+            attrs: { type: "text", placeholder: "接尾辞" },
+            domProps: { value: _vm.newColumn.suffix },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.newColumn, "suffix", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.newColumn.default,
+                expression: "newColumn.default"
+              }
+            ],
+            attrs: { type: "text", placeholder: "既定値" },
+            domProps: { value: _vm.newColumn.default },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.newColumn, "default", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.addColumn()
+                }
+              }
+            },
+            [_vm._v("列を追加")]
+          )
+        ]
+      ),
+      _vm._v(" "),
       _c(
         "div",
         _vm._l(_vm.testDefinition, function(columnName, index) {

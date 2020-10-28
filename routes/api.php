@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::resource('tags','Api\TagsController');
     Route::resource('projects','Api\ProjectsController');
     Route::resource('reminders','Api\RemindersController');
+    Route::resource('lists','Api\ListsController');
     
     //タグ
     Route::post('tag_task','Api\TasksController@attachTags');

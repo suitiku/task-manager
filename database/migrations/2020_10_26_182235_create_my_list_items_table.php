@@ -17,7 +17,7 @@ class CreateMyListItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('my_list_id');
             $table->smallInteger('index')->comment('アイテムの位置情報');
-            $table->json('values')->comment('列の内容を示すJSONデータ');
+            $table->text('values')->comment('列の内容を示すJSONデータ');
             $table->boolean('is_checked')->comment('チェックボックス用');
             $table->boolean('is_stared')->comment('スター付ける用');
             $table->timestamps();

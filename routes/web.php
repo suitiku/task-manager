@@ -25,9 +25,7 @@ Route::get('/home','HomeController@index');
 
 
 //テストコンポーネント用test.blade.php
-Route::get('/test',function(){
-    return view('test');
-});
+Route::get('/test','TestController@index');
 
 // メールプレビュー
 Route::get('mailable/preview',function(){

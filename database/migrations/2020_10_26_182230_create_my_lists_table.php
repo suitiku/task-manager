@@ -18,7 +18,7 @@ class CreateMyListsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->json('column_definitions')->comment('テーブル構造');
+            $table->text('column_definitions')->comment('テーブル構造');
             $table->enum('type',['nomal','ranking','checklist']);
             $table->boolean('is_stared')->comment('スターが付いているフラグ');
             $table->timestamps();

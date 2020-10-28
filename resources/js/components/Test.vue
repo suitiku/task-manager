@@ -11,6 +11,8 @@
         <!--<button class="button" v-on:click="showModal2()">modal2</button>-->
         <my-list ref="mylist" />
         <button v-on:click="addItem()">行を追加</button>
+        <button v-on:click="addColumn()">列を追加</button>
+        <button v-on:click="saveList()">保存</button>
     </div>
 </template>
 
@@ -131,6 +133,12 @@
             },
             addItem:function(){
                 this.$refs.mylist.addItem()
+            },
+            addColumn:function(){
+                this.$refs.mylist.showAddColumnModal()
+            },
+            saveList:function(){
+                this.$refs.mylist.saveList()
             }
         },
     }

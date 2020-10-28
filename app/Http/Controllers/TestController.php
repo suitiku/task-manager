@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class TestController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,6 +27,6 @@ class HomeController extends Controller
         //APIトークン処理
         $token = str_random(60);
         $user->forceFill(['api_token' => $token])->save();
-        return view('home')->with(['user' => $user, 'token' =>$token]);
+        return view('test')->with(['user' => $user, 'token' =>$token]);
     }
 }

@@ -1,6 +1,21 @@
 <!--リスト表示コンポーネント-->
 <template>
     <div>
+        <!--列追加用モーダル-->
+        <modal ref="newColumnModal" v-model="newColumnModal">
+            <input type="text" v-model="newColumn.name" placeholder="列の名前">
+            <select v-model="newColumn.type">
+                <option value="Number">数値</option>
+                <option value="Text">文字</option>
+                <option value="Date">日付</option>
+                <option value="Boolean">Yes/No</option>
+            </select>
+            <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >
+            <input type="text" v-model="newColumn.default" placeholder="既定値" >
+            <button v-on:click="addColumn()">列を追加</button>
+        </modal>
+        
+        <!--リスト表示部-->
         <div>
             <span v-for="(columnName,index) in testDefinition" v-bind:style="setColumnLength(index)">{{columnName.name}}</span>
         </div>
@@ -11,6 +26,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         data:function(){
             return {
@@ -24,7 +40,14 @@
                     [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
                     [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
                 ],
-                columnLength:[]
+                columnLength:[],
+                newColumnModal:false,
+                newColumn:{
+                    name:'',
+                    type:'',
+                    suffix:'',
+                    default:'',
+                }
             }  
         },
         props: {
@@ -69,6 +92,57 @@
                     addItem.push(addColumn)
                 }
                 this.testItems.push(addItem)
+            },
+            showAddColumnModal:function(){
+                this.$refs.newColumnModal.openModal()
+            },
+            addColumn:function(){
+                let columnIndex = this.testDefinition.length
+                this.newColumn.index = columnIndex
+                this.testDefinition.push(this.newColumn)
+                let addColumn = {
+                    index:columnIndex,
+                    value:this.newColumn.default
+                }
+                for(let item of this.testItems){
+                    item.push(addColumn)
+                }
+                //幅調整
+                let width = Math.max(this.newColumn.name.length,this.newColumn.default.length)
+                this.columnLength.push(width)
+            },
+            saveList:async function(){
+                // データを整理
+                // リスト本体
+                let postData = {
+                    list:{
+                        user_id:1,
+                        name:'test',
+                        description:null,
+                        column_definitions:JSON.stringify(this.testDefinition),
+                        type:'nomal',
+                        is_stared:false
+                    },
+                    items:[]
+                }
+                //アイテム
+                for(let index in this.testItems){
+                    let postItem = {
+                        index:index,
+                        values:JSON.stringify(this.testItems[index]),
+                        is_checked:false,
+                        is_stared:false,
+                    }
+                    postData.items.push(postItem)
+                }
+                console.log(postData)
+                try{
+                    let result = await axios.post('/api/lists',postData)
+                    console.log(result.data)
+                }catch(error){
+                    console.log(error)
+                }
+                
             }
         }
     }

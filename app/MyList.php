@@ -9,7 +9,7 @@ class MyList extends Model
     protected $guarded = array('id','created_at','updated_at');
     
     public function myListItems(){
-        return $this->hasMany('App\MyListItems');
+        return $this->hasMany('App\MyListItem');
     }
     
     public function tags(){
