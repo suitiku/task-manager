@@ -12,7 +12,7 @@
             </select>
             <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >
             <input type="text" v-model="newColumn.default" placeholder="既定値" >
-            <button v-if="newColumn.index" v-on:click="editColumn()">列を編集</button>
+            <button v-if="typeof newColumn.index === 'number'" v-on:click="editColumn()">列を編集</button>
             <button v-else v-on:click="addColumn()">列を追加</button>
         </modal>
         
@@ -133,7 +133,12 @@
                 this.listDefinition[this.newColumn.index].suffix = this.newColumn.suffix
                 this.listDefinition[this.newColumn.index].default = this.newColumn.default
                 //幅調整
-                let maxWidth = Math.max(this.newColumn.name.length,this.columnWidths[this.newColumn.index])
+                this.columnWidths[this.newColumn.index] = 0 //リセット
+                let maxWidth = 0
+                for(let item of this.listItems){
+                     maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length,maxWidth)
+                }
+                maxWidth = Math.max(this.newColumn.name.length,maxWidth)
                 this.columnWidths.splice(this.newColumn.index,1,maxWidth)
             },
             //保存

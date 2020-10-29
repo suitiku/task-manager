@@ -69148,7 +69148,34 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listDefinition[this.newColumn.index].suffix = this.newColumn.suffix;
             this.listDefinition[this.newColumn.index].default = this.newColumn.default;
             //幅調整
-            var maxWidth = Math.max(this.newColumn.name.length, this.columnWidths[this.newColumn.index]);
+            this.columnWidths[this.newColumn.index] = 0; //リセット
+            var maxWidth = 0;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
+
+            try {
+                for (var _iterator7 = this.listItems[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var item = _step7.value;
+
+                    maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length, maxWidth);
+                }
+            } catch (err) {
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
+                    }
+                } finally {
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
+                    }
+                }
+            }
+
+            maxWidth = Math.max(this.newColumn.name.length, maxWidth);
             this.columnWidths.splice(this.newColumn.index, 1, maxWidth);
         },
         //保存
@@ -69359,7 +69386,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _vm.newColumn.index
+          typeof _vm.newColumn.index === "number"
             ? _c(
                 "button",
                 {
