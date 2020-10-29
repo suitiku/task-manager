@@ -68823,7 +68823,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan[data-v-33a634d6] {\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n}\n", ""]);
+exports.push([module.i, "\nspan[data-v-33a634d6] {\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n}\n.column[data-v-33a634d6] {\n    cursor:pointer;\n}\n", ""]);
 
 // exports
 
@@ -68869,21 +68869,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            // testDefinition:[
-            //     {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
-            //     {index:1,name:'価格',type:'Number',suffix:'円',default:0},
-            //     {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
-            // ],
-            // testItems: [
-            //     [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
-            //     [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
-            //     [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
-            // ],
             listDefinition: [],
             listItems: [],
             columnWidths: [],
@@ -68900,7 +68892,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         listId: {
             type: [Number, String],
             default: 0,
-            required: false //とりあえずfalse
+            required: true
+        },
+        editMode: {
+            type: [Boolean, Number],
+            default: true,
+            required: false
         }
     },
     watch: {},
@@ -68984,21 +68981,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
         return created;
     }(),
-    mounted: function mounted() {
-        // 各カラムの最大幅を求める
-        // for(let column of this.listDefinition){
-        //     if(!this.columnLength[column.index] || this.columnLength[column.index] < column.name.length){
-        //         this.columnLength.splice(column.index,1,column.name.length)
-        //     }
-        // }
-        // for(let item of this.listItems){
-        //     for(let column of item){
-        //         if(!this.columnLength[column.index] || this.columnLength[column.index] < column.value.length){
-        //             this.columnLength.splice(column.index,1,column.value.length)
-        //         }
-        //     }
-        // }
-    },
+    mounted: function mounted() {},
     computed: {},
     methods: {
         getColumnWidths: function getColumnWidths() {
@@ -69089,7 +69072,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _iteratorError5 = undefined;
 
             try {
-                for (var _iterator5 = this.testDefinition[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                for (var _iterator5 = this.listDefinition[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
                     var column = _step5.value;
 
                     var addColumn = { index: column.index, value: column.default };
@@ -69110,12 +69093,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            this.testItems.push(addItem);
+            this.listItems.push(addItem);
         },
         showAddColumnModal: function showAddColumnModal() {
             this.$refs.newColumnModal.openModal();
         },
         addColumn: function addColumn() {
+            //newColumnをリセット
+            this.newColumn = {
+                name: '',
+                type: '',
+                suffix: '',
+                default: ''
+            };
             var columnIndex = this.testDefinition.length;
             this.newColumn.index = columnIndex;
             this.testDefinition.push(this.newColumn);
@@ -69150,8 +69140,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             var width = Math.max(this.newColumn.name.length, this.newColumn.default.length);
-            this.columnLength.push(width);
+            this.columnWidths.push(width);
         },
+        editColumn: function editColumn() {
+            this.listDefinition[this.newColumn.index].name = this.newColumn.name;
+            this.listDefinition[this.newColumn.index].type = this.newColumn.type;
+            this.listDefinition[this.newColumn.index].suffix = this.newColumn.suffix;
+            this.listDefinition[this.newColumn.index].default = this.newColumn.default;
+            //幅調整
+            var maxWidth = Math.max(this.newColumn.name.length, this.columnWidths[this.newColumn.index]);
+            this.columnWidths.splice(this.newColumn.index, 1, maxWidth);
+        },
+        //保存
         saveList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var postData, index, postItem, result;
@@ -69214,7 +69214,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return saveList;
-        }()
+        }(),
+        //カラム名をクリック
+        clickColumn: function clickColumn(index) {
+            if (this.editMode) {
+                //編集モード（編集モーダルを表示）
+                this.newColumn.index = index;
+                this.newColumn.name = this.listDefinition[index].name;
+                this.newColumn.type = this.listDefinition[index].type;
+                this.newColumn.suffix = this.listDefinition[index].suffix;
+                this.newColumn.default = this.listDefinition[index].default;
+                this.$refs.newColumnModal.openModal();
+            } else {//閲覧モード（並び替え）
+
+            }
+        }
     }
 });
 
@@ -69345,26 +69359,48 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c(
-            "button",
-            {
-              on: {
-                click: function($event) {
-                  return _vm.addColumn()
-                }
-              }
-            },
-            [_vm._v("列を追加")]
-          )
+          _vm.newColumn.index
+            ? _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.editColumn()
+                    }
+                  }
+                },
+                [_vm._v("列を編集")]
+              )
+            : _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.addColumn()
+                    }
+                  }
+                },
+                [_vm._v("列を追加")]
+              )
         ]
       ),
       _vm._v(" "),
       _c(
         "div",
         _vm._l(_vm.listDefinition, function(columnName, index) {
-          return _c("span", { style: _vm.setColumnWidth(index) }, [
-            _vm._v(_vm._s(columnName.name))
-          ])
+          return _c(
+            "span",
+            {
+              staticClass: "column",
+              style: _vm.setColumnWidth(index),
+              on: {
+                click: function($event) {
+                  return _vm.clickColumn(index)
+                }
+              }
+            },
+            [_vm._v(_vm._s(columnName.name))]
+          )
         }),
         0
       ),
@@ -69383,7 +69419,8 @@ var render = function() {
           }),
           0
         )
-      })
+      }),
+      _vm._v("\n    " + _vm._s(_vm.columnWidths) + "\n")
     ],
     2
   )

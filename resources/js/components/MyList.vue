@@ -1,7 +1,7 @@
 <!--リスト表示コンポーネント-->
 <template>
     <div>
-        <!--列追加用モーダル-->
+        <!--列追加／編集用モーダル-->
         <modal ref="newColumnModal" v-model="newColumnModal">
             <input type="text" v-model="newColumn.name" placeholder="列の名前">
             <select v-model="newColumn.type">
@@ -12,16 +12,18 @@
             </select>
             <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >
             <input type="text" v-model="newColumn.default" placeholder="既定値" >
-            <button v-on:click="addColumn()">列を追加</button>
+            <button v-if="newColumn.index" v-on:click="editColumn()">列を編集</button>
+            <button v-else v-on:click="addColumn()">列を追加</button>
         </modal>
         
         <!--リスト表示部-->
         <div>
-            <span v-for="(columnName,index) in listDefinition" v-bind:style="setColumnWidth(index)">{{columnName.name}}</span>
+            <span v-for="(columnName,index) in listDefinition" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
         </div>
         <div v-for="(item,index) in listItems">
             <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
         </div>
+        {{columnWidths}}
     </div>
 </template>
 
@@ -30,16 +32,6 @@
     export default {
         data:function(){
             return {
-                // testDefinition:[
-                //     {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
-                //     {index:1,name:'価格',type:'Number',suffix:'円',default:0},
-                //     {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
-                // ],
-                // testItems: [
-                //     [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
-                //     [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
-                //     [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
-                // ],
                 listDefinition:[],
                 listItems:[],
                 columnWidths:[],
@@ -56,7 +48,12 @@
             listId:{
                 type:[Number,String],
                 default:0,
-                required:false, //とりあえずfalse
+                required:true,
+            },
+            editMode:{
+                type:[Boolean,Number],
+                default:true,
+                required:false
             }
         },
         watch:{
@@ -99,16 +96,23 @@
             },
             addItem:function(){
                 let addItem = []
-                for(let column of this.testDefinition){
+                for(let column of this.listDefinition){
                     let addColumn = {index:column.index,value:column.default}
                     addItem.push(addColumn)
                 }
-                this.testItems.push(addItem)
+                this.listItems.push(addItem)
             },
             showAddColumnModal:function(){
                 this.$refs.newColumnModal.openModal()
             },
             addColumn:function(){
+                //newColumnをリセット
+                this.newColumn = {
+                    name:'',
+                    type:'',
+                    suffix:'',
+                    default:'',
+                }
                 let columnIndex = this.testDefinition.length
                 this.newColumn.index = columnIndex
                 this.testDefinition.push(this.newColumn)
@@ -121,8 +125,18 @@
                 }
                 //幅調整
                 let width = Math.max(this.newColumn.name.length,this.newColumn.default.length)
-                this.columnLength.push(width)
+                this.columnWidths.push(width)
             },
+            editColumn:function(){
+                this.listDefinition[this.newColumn.index].name = this.newColumn.name
+                this.listDefinition[this.newColumn.index].type = this.newColumn.type
+                this.listDefinition[this.newColumn.index].suffix = this.newColumn.suffix
+                this.listDefinition[this.newColumn.index].default = this.newColumn.default
+                //幅調整
+                let maxWidth = Math.max(this.newColumn.name.length,this.columnWidths[this.newColumn.index])
+                this.columnWidths.splice(this.newColumn.index,1,maxWidth)
+            },
+            //保存
             saveList:async function(){
                 // データを整理
                 // リスト本体
@@ -155,6 +169,19 @@
                     console.log(error)
                 }
                 
+            },
+            //カラム名をクリック
+            clickColumn:function(index){
+                if(this.editMode){ //編集モード（編集モーダルを表示）
+                    this.newColumn.index = index
+                    this.newColumn.name = this.listDefinition[index].name
+                    this.newColumn.type = this.listDefinition[index].type
+                    this.newColumn.suffix = this.listDefinition[index].suffix
+                    this.newColumn.default = this.listDefinition[index].default
+                    this.$refs.newColumnModal.openModal()
+                }else{ //閲覧モード（並び替え）
+                    
+                }
             }
         }
     }
@@ -164,5 +191,8 @@
         display:inline-block;
         padding:0.5em;
         border:1px solid grey;
+    }
+    .column {
+        cursor:pointer;
     }
 </style>
