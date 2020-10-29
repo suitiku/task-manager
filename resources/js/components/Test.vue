@@ -9,7 +9,7 @@
         <!--</modal>-->
         <!--<button class="button" v-on:click="showModal()">modal</button>-->
         <!--<button class="button" v-on:click="showModal2()">modal2</button>-->
-        <my-list ref="mylist" />
+        <my-list ref="mylist" listId="4" />
         <button v-on:click="addItem()">行を追加</button>
         <button v-on:click="addColumn()">列を追加</button>
         <button v-on:click="saveList()">保存</button>

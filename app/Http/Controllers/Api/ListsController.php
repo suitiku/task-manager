@@ -61,7 +61,7 @@ class ListsController extends Controller
      */
     public function show($id)
     {
-        //
+        return MyList::with('myListItems')->find($id);
     }
 
     /**

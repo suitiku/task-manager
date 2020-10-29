@@ -17,10 +17,10 @@
         
         <!--リスト表示部-->
         <div>
-            <span v-for="(columnName,index) in testDefinition" v-bind:style="setColumnLength(index)">{{columnName.name}}</span>
+            <span v-for="(columnName,index) in listDefinition" v-bind:style="setColumnWidth(index)">{{columnName.name}}</span>
         </div>
-        <div v-for="(item,index) in testItems">
-            <span v-for="(column,columnIndex) in item" v-bind:style="setColumnLength(columnIndex)">{{column.value}} {{testDefinition[columnIndex].suffix}}</span>
+        <div v-for="(item,index) in listItems">
+            <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
         </div>
     </div>
 </template>
@@ -30,17 +30,19 @@
     export default {
         data:function(){
             return {
-                testDefinition:[
-                    {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
-                    {index:1,name:'価格',type:'Number',suffix:'円',default:0},
-                    {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
-                ],
-                testItems: [
-                    [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
-                    [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
-                    [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
-                ],
-                columnLength:[],
+                // testDefinition:[
+                //     {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
+                //     {index:1,name:'価格',type:'Number',suffix:'円',default:0},
+                //     {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
+                // ],
+                // testItems: [
+                //     [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
+                //     [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
+                //     [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
+                // ],
+                listDefinition:[],
+                listItems:[],
+                columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
                     name:'',
@@ -60,30 +62,40 @@
         watch:{
             
         },
-        created:function(){
-            
+        created:async function(){
+            if(this.listId){
+                let result = await axios.get('/api/lists/' + this.listId)
+                console.log(result.data)
+                this.listDefinition = JSON.parse(result.data.column_definitions)
+                for(let item of result.data.my_list_items){
+                    this.listItems.push(JSON.parse(item.values))
+                }
+                this.getColumnWidths()
+            }
         },
         mounted:function(){
-            // 各カラムの最大幅を求める
-            for(let column of this.testDefinition){
-                if(!this.columnLength[column.index] || this.columnLength[column.index] < column.name.length){
-                    this.columnLength.splice(column.index,1,column.name.length)
-                }
-            }
-            for(let item of this.testItems){
-                for(let column of item){
-                    if(!this.columnLength[column.index] || this.columnLength[column.index] < column.value.length){
-                        this.columnLength.splice(column.index,1,column.value.length)
-                    }
-                }
-            }
         },
         computed:{
             
         },
         methods: {
-            setColumnLength:function(index){
-                return {width:this.columnLength[index] + 2 + 'em'}
+            getColumnWidths:function(){
+                // 各カラムの最大幅を求める
+                for(let column of this.listDefinition){
+                    if(!this.columnWidths[column.index] || this.columnWidths[column.index] < column.name.length){
+                        this.columnWidths.splice(column.index,1,column.name.length)
+                    }
+                }
+                for(let item of this.listItems){
+                    for(let column of item){
+                        if(!this.columnWidths[column.index] || this.columnWidths[column.index] < column.value.length){
+                            this.columnWidths.splice(column.index,1,column.value.length)
+                        }
+                    }
+                }
+            },
+            setColumnWidth:function(index){
+                return {width:this.columnWidths[index] + 2 + 'em'}
             },
             addItem:function(){
                 let addItem = []

@@ -57671,7 +57671,7 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("my-list", { ref: "mylist" }),
+      _c("my-list", { ref: "mylist", attrs: { listId: "4" } }),
       _vm._v(" "),
       _c(
         "button",
@@ -68874,9 +68874,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            testDefinition: [{ index: 0, name: '品目', type: 'Text', suffix: '', default: 'noitem' }, { index: 1, name: '価格', type: 'Number', suffix: '円', default: 0 }, { index: 2, name: '在庫数', type: 'Number', suffix: '個', default: 0 }],
-            testItems: [[{ index: 0, value: 'りんご' }, { index: 1, value: '100' }, { index: 2, value: '10' }], [{ index: 0, value: 'パイナップル' }, { index: 1, value: '200' }, { index: 2, value: '5' }], [{ index: 0, value: 'バナナ' }, { index: 1, value: '40' }, { index: 2, value: '20' }]],
-            columnLength: [],
+            // testDefinition:[
+            //     {index:0,name:'品目',type:'Text',suffix:'',default:'noitem'},
+            //     {index:1,name:'価格',type:'Number',suffix:'円',default:0},
+            //     {index:2,name:'在庫数',type:'Number',suffix:'個',default:0},
+            // ],
+            // testItems: [
+            //     [{index:0,value:'りんご'},{index:1,value:'100'},{index:2,value:'10'}],
+            //     [{index:0,value:'パイナップル'},{index:1,value:'200'},{index:2,value:'5'}],
+            //     [{index:0,value:'バナナ'},{index:1,value:'40'},{index:2,value:'20'}],
+            // ],
+            listDefinition: [],
+            listItems: [],
+            columnWidths: [],
             newColumnModal: false,
             newColumn: {
                 name: '',
@@ -68894,114 +68904,208 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     watch: {},
-    created: function created() {},
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
+
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            if (!this.listId) {
+                                _context.next = 26;
+                                break;
+                            }
+
+                            _context.next = 3;
+                            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/lists/' + this.listId);
+
+                        case 3:
+                            result = _context.sent;
+
+                            console.log(result.data);
+                            this.listDefinition = JSON.parse(result.data.column_definitions);
+                            _iteratorNormalCompletion = true;
+                            _didIteratorError = false;
+                            _iteratorError = undefined;
+                            _context.prev = 9;
+                            for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                item = _step.value;
+
+                                this.listItems.push(JSON.parse(item.values));
+                            }
+                            _context.next = 17;
+                            break;
+
+                        case 13:
+                            _context.prev = 13;
+                            _context.t0 = _context['catch'](9);
+                            _didIteratorError = true;
+                            _iteratorError = _context.t0;
+
+                        case 17:
+                            _context.prev = 17;
+                            _context.prev = 18;
+
+                            if (!_iteratorNormalCompletion && _iterator.return) {
+                                _iterator.return();
+                            }
+
+                        case 20:
+                            _context.prev = 20;
+
+                            if (!_didIteratorError) {
+                                _context.next = 23;
+                                break;
+                            }
+
+                            throw _iteratorError;
+
+                        case 23:
+                            return _context.finish(20);
+
+                        case 24:
+                            return _context.finish(17);
+
+                        case 25:
+                            this.getColumnWidths();
+
+                        case 26:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this, [[9, 13, 17, 25], [18,, 20, 24]]);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }(),
     mounted: function mounted() {
         // 各カラムの最大幅を求める
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = this.testDefinition[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var column = _step.value;
-
-                if (!this.columnLength[column.index] || this.columnLength[column.index] < column.name.length) {
-                    this.columnLength.splice(column.index, 1, column.name.length);
-                }
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = this.testItems[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var item = _step2.value;
-                var _iteratorNormalCompletion3 = true;
-                var _didIteratorError3 = false;
-                var _iteratorError3 = undefined;
-
-                try {
-                    for (var _iterator3 = item[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                        var _column = _step3.value;
-
-                        if (!this.columnLength[_column.index] || this.columnLength[_column.index] < _column.value.length) {
-                            this.columnLength.splice(_column.index, 1, _column.value.length);
-                        }
-                    }
-                } catch (err) {
-                    _didIteratorError3 = true;
-                    _iteratorError3 = err;
-                } finally {
-                    try {
-                        if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                            _iterator3.return();
-                        }
-                    } finally {
-                        if (_didIteratorError3) {
-                            throw _iteratorError3;
-                        }
-                    }
-                }
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
-            }
-        }
+        // for(let column of this.listDefinition){
+        //     if(!this.columnLength[column.index] || this.columnLength[column.index] < column.name.length){
+        //         this.columnLength.splice(column.index,1,column.name.length)
+        //     }
+        // }
+        // for(let item of this.listItems){
+        //     for(let column of item){
+        //         if(!this.columnLength[column.index] || this.columnLength[column.index] < column.value.length){
+        //             this.columnLength.splice(column.index,1,column.value.length)
+        //         }
+        //     }
+        // }
     },
     computed: {},
     methods: {
-        setColumnLength: function setColumnLength(index) {
-            return { width: this.columnLength[index] + 2 + 'em' };
+        getColumnWidths: function getColumnWidths() {
+            // 各カラムの最大幅を求める
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = this.listDefinition[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var column = _step2.value;
+
+                    if (!this.columnWidths[column.index] || this.columnWidths[column.index] < column.name.length) {
+                        this.columnWidths.splice(column.index, 1, column.name.length);
+                    }
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this.listItems[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var item = _step3.value;
+                    var _iteratorNormalCompletion4 = true;
+                    var _didIteratorError4 = false;
+                    var _iteratorError4 = undefined;
+
+                    try {
+                        for (var _iterator4 = item[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                            var _column = _step4.value;
+
+                            if (!this.columnWidths[_column.index] || this.columnWidths[_column.index] < _column.value.length) {
+                                this.columnWidths.splice(_column.index, 1, _column.value.length);
+                            }
+                        }
+                    } catch (err) {
+                        _didIteratorError4 = true;
+                        _iteratorError4 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+                                _iterator4.return();
+                            }
+                        } finally {
+                            if (_didIteratorError4) {
+                                throw _iteratorError4;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                        _iterator3.return();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+        },
+        setColumnWidth: function setColumnWidth(index) {
+            return { width: this.columnWidths[index] + 2 + 'em' };
         },
         addItem: function addItem() {
             var addItem = [];
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
 
             try {
-                for (var _iterator4 = this.testDefinition[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var column = _step4.value;
+                for (var _iterator5 = this.testDefinition[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+                    var column = _step5.value;
 
                     var addColumn = { index: column.index, value: column.default };
                     addItem.push(addColumn);
                 }
             } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
+                _didIteratorError5 = true;
+                _iteratorError5 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                        _iterator4.return();
+                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
+                        _iterator5.return();
                     }
                 } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
+                    if (_didIteratorError5) {
+                        throw _iteratorError5;
                     }
                 }
             }
@@ -69019,28 +69123,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 index: columnIndex,
                 value: this.newColumn.default
             };
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator5 = this.testItems[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var item = _step5.value;
+                for (var _iterator6 = this.testItems[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var item = _step6.value;
 
                     item.push(addColumn);
                 }
                 //幅調整
             } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion5 && _iterator5.return) {
-                        _iterator5.return();
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
                     }
                 } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -69049,11 +69153,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.columnLength.push(width);
         },
         saveList: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var postData, index, postItem, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
                                 // データを整理
                                 // リスト本体
@@ -69080,33 +69184,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     postData.items.push(postItem);
                                 }
                                 console.log(postData);
-                                _context.prev = 3;
-                                _context.next = 6;
+                                _context2.prev = 3;
+                                _context2.next = 6;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
 
                             case 6:
-                                result = _context.sent;
+                                result = _context2.sent;
 
                                 console.log(result.data);
-                                _context.next = 13;
+                                _context2.next = 13;
                                 break;
 
                             case 10:
-                                _context.prev = 10;
-                                _context.t0 = _context['catch'](3);
+                                _context2.prev = 10;
+                                _context2.t0 = _context2['catch'](3);
 
-                                console.log(_context.t0);
+                                console.log(_context2.t0);
 
                             case 13:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[3, 10]]);
+                }, _callee2, this, [[3, 10]]);
             }));
 
             function saveList() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return saveList;
@@ -69257,23 +69361,23 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        _vm._l(_vm.testDefinition, function(columnName, index) {
-          return _c("span", { style: _vm.setColumnLength(index) }, [
+        _vm._l(_vm.listDefinition, function(columnName, index) {
+          return _c("span", { style: _vm.setColumnWidth(index) }, [
             _vm._v(_vm._s(columnName.name))
           ])
         }),
         0
       ),
       _vm._v(" "),
-      _vm._l(_vm.testItems, function(item, index) {
+      _vm._l(_vm.listItems, function(item, index) {
         return _c(
           "div",
           _vm._l(item, function(column, columnIndex) {
-            return _c("span", { style: _vm.setColumnLength(columnIndex) }, [
+            return _c("span", { style: _vm.setColumnWidth(columnIndex) }, [
               _vm._v(
                 _vm._s(column.value) +
                   " " +
-                  _vm._s(_vm.testDefinition[columnIndex].suffix)
+                  _vm._s(_vm.listDefinition[columnIndex].suffix)
               )
             ])
           }),
