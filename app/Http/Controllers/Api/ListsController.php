@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\MyList;
+use App\MyListItem;
 
 class ListsController extends Controller
 {
@@ -84,7 +85,30 @@ class ListsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 削除対象のListItemIDを取得
+        $result = MyList::find($id)->myListItems()->get(['id']);
+        $itemIds = [];
+        forEach($result as $index => $value){
+            $itemIds[] = $value->id;
+        }
+        // トランザクション開始
+        $resultList = \DB::transaction(function() use($request,$id,$itemIds){
+            // 既存のリストアイテムを削除
+            MyListItem::destroy($itemIds);
+            
+            // リスト本体を保存
+            $list = MyList::find($id);
+            $list->fill($request->list)->save();
+            
+            // リストアイテムを保存
+            $list->myListItems()->createMany($request->items);
+            
+            //保存したリストを返す
+            $resultList = MyList::with('myListItems')->find($list->id);
+            return $resultList;
+        });
+        
+        return $resultList;
     }
 
     /**

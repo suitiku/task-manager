@@ -68871,6 +68871,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68881,6 +68886,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             columnWidths: [],
             newColumnModal: false,
             newColumn: {
+                index: '',
                 name: '',
                 type: '',
                 suffix: '',
@@ -68892,7 +68898,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         listId: {
             type: [Number, String],
             default: 0,
-            required: true
+            required: false
         },
         editMode: {
             type: [Boolean, Number],
@@ -68910,7 +68916,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     switch (_context.prev = _context.next) {
                         case 0:
                             if (!this.listId) {
-                                _context.next = 26;
+                                _context.next = 28;
                                 break;
                             }
 
@@ -68966,8 +68972,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 25:
                             this.getColumnWidths();
+                            _context.next = 29;
+                            break;
 
-                        case 26:
+                        case 28:
+                            //list_idがない場合は新規作成と解釈してlistを初期化する
+                            this.initList();
+
+                        case 29:
                         case 'end':
                             return _context.stop();
                     }
@@ -68984,6 +68996,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {},
     computed: {},
     methods: {
+        initList: function initList() {
+            this.listDefinition = [];
+            this.listItems = [];
+        },
         getColumnWidths: function getColumnWidths() {
             // 各カラムの最大幅を求める
             var _iteratorNormalCompletion2 = true;
@@ -69096,19 +69112,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems.push(addItem);
         },
         showAddColumnModal: function showAddColumnModal() {
-            this.$refs.newColumnModal.openModal();
-        },
-        addColumn: function addColumn() {
             //newColumnをリセット
             this.newColumn = {
+                index: '',
                 name: '',
                 type: '',
                 suffix: '',
                 default: ''
             };
-            var columnIndex = this.testDefinition.length;
+            this.$refs.newColumnModal.openModal();
+        },
+        addColumn: function addColumn() {
+            var columnIndex = this.listDefinition.length;
             this.newColumn.index = columnIndex;
-            this.testDefinition.push(this.newColumn);
+            this.listDefinition.push(this.newColumn);
             var addColumn = {
                 index: columnIndex,
                 value: this.newColumn.default
@@ -69118,7 +69135,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator6 = this.testItems[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                for (var _iterator6 = this.listItems[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                     var item = _step6.value;
 
                     item.push(addColumn);
@@ -69193,17 +69210,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         user_id: 1,
                                         name: 'test',
                                         description: null,
-                                        column_definitions: JSON.stringify(this.testDefinition),
+                                        column_definitions: JSON.stringify(this.listDefinition),
                                         type: 'nomal',
                                         is_stared: false
                                     },
                                     items: []
                                     //アイテム
                                 };
-                                for (index in this.testItems) {
+                                for (index in this.listItems) {
                                     postItem = {
                                         index: index,
-                                        values: JSON.stringify(this.testItems[index]),
+                                        values: JSON.stringify(this.listItems[index]),
                                         is_checked: false,
                                         is_stared: false
                                     };
@@ -69212,28 +69229,45 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 }
                                 console.log(postData);
                                 _context2.prev = 3;
-                                _context2.next = 6;
-                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
+                                result = void 0;
 
-                            case 6:
+                                if (!this.listId) {
+                                    _context2.next = 11;
+                                    break;
+                                }
+
+                                _context2.next = 8;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/lists/' + this.listId, postData);
+
+                            case 8:
                                 result = _context2.sent;
-
-                                console.log(result.data);
-                                _context2.next = 13;
+                                _context2.next = 14;
                                 break;
 
-                            case 10:
-                                _context2.prev = 10;
+                            case 11:
+                                _context2.next = 13;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
+
+                            case 13:
+                                result = _context2.sent;
+
+                            case 14:
+                                console.log(result.data);
+                                _context2.next = 20;
+                                break;
+
+                            case 17:
+                                _context2.prev = 17;
                                 _context2.t0 = _context2['catch'](3);
 
                                 console.log(_context2.t0);
 
-                            case 13:
+                            case 20:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[3, 10]]);
+                }, _callee2, this, [[3, 17]]);
             }));
 
             function saveList() {
@@ -69252,7 +69286,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.newColumn.suffix = this.listDefinition[index].suffix;
                 this.newColumn.default = this.listDefinition[index].default;
                 this.$refs.newColumnModal.openModal();
-            } else {//閲覧モード（並び替え）
+            } else {//閲覧モード（詳細表示？）
 
             }
         }
@@ -69433,21 +69467,61 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.listItems, function(item, index) {
-        return _c(
-          "div",
-          _vm._l(item, function(column, columnIndex) {
-            return _c("span", { style: _vm.setColumnWidth(columnIndex) }, [
-              _vm._v(
-                _vm._s(column.value) +
-                  " " +
-                  _vm._s(_vm.listDefinition[columnIndex].suffix)
+        return _c("div", [
+          _vm.editMode
+            ? _c(
+                "div",
+                _vm._l(item, function(column, columnIndex) {
+                  return _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.listItems[index][columnIndex].value,
+                        expression: "listItems[index][columnIndex].value"
+                      }
+                    ],
+                    style: _vm.setColumnWidth(columnIndex),
+                    attrs: { type: "text" },
+                    domProps: {
+                      value: _vm.listItems[index][columnIndex].value
+                    },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.listItems[index][columnIndex],
+                          "value",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                }),
+                0
               )
-            ])
-          }),
-          0
-        )
+            : _c(
+                "div",
+                _vm._l(item, function(column, columnIndex) {
+                  return _c(
+                    "span",
+                    { style: _vm.setColumnWidth(columnIndex) },
+                    [
+                      _vm._v(
+                        _vm._s(column.value) +
+                          " " +
+                          _vm._s(_vm.listDefinition[columnIndex].suffix)
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+        ])
       }),
-      _vm._v("\n    " + _vm._s(_vm.columnWidths) + "\n")
+      _vm._v("\n    " + _vm._s(_vm.listItems) + "\n")
     ],
     2
   )

@@ -21,9 +21,14 @@
             <span v-for="(columnName,index) in listDefinition" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
         </div>
         <div v-for="(item,index) in listItems">
-            <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+            <div v-if="editMode">
+                <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+            </div>
+            <div v-else>
+                <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+            </div>
         </div>
-        {{columnWidths}}
+        {{listItems}}
     </div>
 </template>
 
@@ -37,6 +42,7 @@
                 columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
+                    index:'',
                     name:'',
                     type:'',
                     suffix:'',
@@ -48,12 +54,12 @@
             listId:{
                 type:[Number,String],
                 default:0,
-                required:true,
+                required:false,
             },
             editMode:{
                 type:[Boolean,Number],
                 default:true,
-                required:false
+                required:false,
             }
         },
         watch:{
@@ -68,6 +74,8 @@
                     this.listItems.push(JSON.parse(item.values))
                 }
                 this.getColumnWidths()
+            }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
+                this.initList()
             }
         },
         mounted:function(){
@@ -76,6 +84,10 @@
             
         },
         methods: {
+            initList:function(){
+                this.listDefinition = []
+                this.listItems = []
+            },
             getColumnWidths:function(){
                 // 各カラムの最大幅を求める
                 for(let column of this.listDefinition){
@@ -103,24 +115,25 @@
                 this.listItems.push(addItem)
             },
             showAddColumnModal:function(){
-                this.$refs.newColumnModal.openModal()
-            },
-            addColumn:function(){
-                //newColumnをリセット
+                 //newColumnをリセット
                 this.newColumn = {
+                    index:'',
                     name:'',
                     type:'',
                     suffix:'',
                     default:'',
                 }
-                let columnIndex = this.testDefinition.length
+                this.$refs.newColumnModal.openModal()
+            },
+            addColumn:function(){
+                let columnIndex = this.listDefinition.length
                 this.newColumn.index = columnIndex
-                this.testDefinition.push(this.newColumn)
+                this.listDefinition.push(this.newColumn)
                 let addColumn = {
                     index:columnIndex,
                     value:this.newColumn.default
                 }
-                for(let item of this.testItems){
+                for(let item of this.listItems){
                     item.push(addColumn)
                 }
                 //幅調整
@@ -150,17 +163,17 @@
                         user_id:1,
                         name:'test',
                         description:null,
-                        column_definitions:JSON.stringify(this.testDefinition),
+                        column_definitions:JSON.stringify(this.listDefinition),
                         type:'nomal',
                         is_stared:false
                     },
                     items:[]
                 }
                 //アイテム
-                for(let index in this.testItems){
+                for(let index in this.listItems){
                     let postItem = {
                         index:index,
-                        values:JSON.stringify(this.testItems[index]),
+                        values:JSON.stringify(this.listItems[index]),
                         is_checked:false,
                         is_stared:false,
                     }
@@ -168,7 +181,12 @@
                 }
                 console.log(postData)
                 try{
-                    let result = await axios.post('/api/lists',postData)
+                    let result
+                    if(this.listId){ //上書き
+                        result = await axios.put('/api/lists/' + this.listId, postData)
+                    }else{ //新規
+                        result = await axios.post('/api/lists',postData)
+                    }
                     console.log(result.data)
                 }catch(error){
                     console.log(error)
@@ -184,7 +202,7 @@
                     this.newColumn.suffix = this.listDefinition[index].suffix
                     this.newColumn.default = this.listDefinition[index].default
                     this.$refs.newColumnModal.openModal()
-                }else{ //閲覧モード（並び替え）
+                }else{ //閲覧モード（詳細表示？）
                     
                 }
             }
