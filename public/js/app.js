@@ -57468,6 +57468,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57655,6 +57656,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         saveList: function saveList() {
             this.$refs.mylist.saveList();
+        },
+        sortList: function sortList() {
+            this.$refs.mylist.sortList(2);
         }
     }
 });
@@ -57707,6 +57711,18 @@ var render = function() {
           }
         },
         [_vm._v("保存")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.sortList()
+            }
+          }
+        },
+        [_vm._v("ならびかえ")]
       )
     ],
     1
@@ -68799,13 +68815,13 @@ var content = __webpack_require__(294);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(1)("94dc749a", content, false, {});
+var update = __webpack_require__(1)("73eab826", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33a634d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyList.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33a634d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyList.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33a634d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyList.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-33a634d6\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyList.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -68823,7 +68839,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan[data-v-33a634d6] {\n    display:inline-block;\n    padding:0.5em;\n    border:1px solid grey;\n}\n.column[data-v-33a634d6] {\n    cursor:pointer;\n}\n", ""]);
+exports.push([module.i, "\nspan[data-v-33a634d6] {\n  display: inline-block;\n  padding: 0.5em;\n  border: 1px solid grey;\n}\n.column[data-v-33a634d6] {\n  cursor: pointer;\n}\n.selected[data-v-33a634d6] {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n.selected-reverse[data-v-33a634d6] {\n  background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
 
 // exports
 
@@ -68883,6 +68899,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             listDefinition: [],
             listItems: [],
+            originalSortedListItems: [],
             columnWidths: [],
             newColumnModal: false,
             newColumn: {
@@ -68891,7 +68908,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 type: '',
                 suffix: '',
                 default: ''
-            }
+            },
+            sortedIndex: null //現在ソートされているカラムのインデックスを格納
         };
     },
     props: {
@@ -68902,7 +68920,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         editMode: {
             type: [Boolean, Number],
-            default: true,
+            default: false,
             required: false
         }
     },
@@ -68936,6 +68954,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 item = _step.value;
 
                                 this.listItems.push(JSON.parse(item.values));
+                                this.originalSortedListItems.push(JSON.parse(item.values));
                             }
                             _context.next = 17;
                             break;
@@ -69286,9 +69305,59 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.newColumn.suffix = this.listDefinition[index].suffix;
                 this.newColumn.default = this.listDefinition[index].default;
                 this.$refs.newColumnModal.openModal();
-            } else {//閲覧モード（詳細表示？）
-
+            } else {
+                //閲覧モード（並び替え）
+                console.log(Number(this.sortedIndex));
+                //カラムを選択（昇順）→降順→選択解除で推移
+                if (this.sortedIndex == null || Number(this.sortedIndex) != index) {
+                    this.sortList(index);
+                    if (this.$refs.columns[this.sortedIndex]) {
+                        this.$refs.columns[this.sortedIndex].classList = 'column';
+                    }
+                    event.target.classList.add('selected');
+                    this.sortedIndex = index;
+                } else if (event.target.classList.contains('selected-reverse')) {
+                    this.sortListIndex();
+                    event.target.classList.remove('selected');
+                    event.target.classList.remove('selected-reverse');
+                    this.sortedIndex = null;
+                } else if (Number(this.sortedIndex) == index) {
+                    this.sortListReverse(index);
+                    event.target.classList.remove('selected');
+                    event.target.classList.add('selected-reverse');
+                }
             }
+        },
+        // インデックスでソート
+        sortListIndex: function sortListIndex() {
+            this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems));
+        },
+        // ソート
+        sortList: function sortList(columnIndex) {
+            //昇順
+            var vue = this;
+            this.listItems.sort(function (itemA, itemB) {
+                //数値以外
+                if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
+                    return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1;
+                } else {
+                    //数値／日付
+                    return Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1;
+                }
+            });
+        },
+        sortListReverse: function sortListReverse(columnIndex) {
+            //降順
+            var vue = this;
+            this.listItems.sort(function (itemA, itemB) {
+                //数値以外
+                if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
+                    return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1;
+                } else {
+                    //数値／日付
+                    return Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1;
+                }
+            });
         }
     }
 });
@@ -69452,6 +69521,8 @@ var render = function() {
           return _c(
             "span",
             {
+              ref: "columns",
+              refInFor: true,
               staticClass: "column",
               style: _vm.setColumnWidth(index),
               on: {

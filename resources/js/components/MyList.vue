@@ -18,7 +18,7 @@
         
         <!--リスト表示部-->
         <div>
-            <span v-for="(columnName,index) in listDefinition" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
+            <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
         </div>
         <div v-for="(item,index) in listItems">
             <div v-if="editMode">
@@ -39,6 +39,7 @@
             return {
                 listDefinition:[],
                 listItems:[],
+                originalSortedListItems:[],
                 columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
@@ -47,7 +48,8 @@
                     type:'',
                     suffix:'',
                     default:'',
-                }
+                },
+                sortedIndex:null, //現在ソートされているカラムのインデックスを格納
             }  
         },
         props: {
@@ -58,7 +60,7 @@
             },
             editMode:{
                 type:[Boolean,Number],
-                default:true,
+                default:false,
                 required:false,
             }
         },
@@ -72,6 +74,7 @@
                 this.listDefinition = JSON.parse(result.data.column_definitions)
                 for(let item of result.data.my_list_items){
                     this.listItems.push(JSON.parse(item.values))
+                    this.originalSortedListItems.push(JSON.parse(item.values))
                 }
                 this.getColumnWidths()
             }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
@@ -202,14 +205,60 @@
                     this.newColumn.suffix = this.listDefinition[index].suffix
                     this.newColumn.default = this.listDefinition[index].default
                     this.$refs.newColumnModal.openModal()
-                }else{ //閲覧モード（詳細表示？）
+                }else{ //閲覧モード（並び替え）
+                    console.log(Number(this.sortedIndex))
+                    //カラムを選択（昇順）→降順→選択解除で推移
+                    if(this.sortedIndex == null || Number(this.sortedIndex) != index){
+                        this.sortList(index)
+                        if(this.$refs.columns[this.sortedIndex]){
+                            this.$refs.columns[this.sortedIndex].classList = 'column'
+                        }
+                        event.target.classList.add('selected')
+                        this.sortedIndex = index
+                    }else if(event.target.classList.contains('selected-reverse')){
+                        this.sortListIndex()
+                        event.target.classList.remove('selected')
+                        event.target.classList.remove('selected-reverse')
+                        this.sortedIndex = null
+                    }else if(Number(this.sortedIndex) == index){
+                        this.sortListReverse(index)
+                        event.target.classList.remove('selected')
+                        event.target.classList.add('selected-reverse')
+                    }
                     
                 }
+            },
+            // インデックスでソート
+            sortListIndex:function(){
+                this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems))
+            },
+            // ソート
+            sortList:function(columnIndex){ //昇順
+                let vue = this
+                this.listItems.sort(function(itemA,itemB){
+                    //数値以外
+                    if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
+                        return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1
+                    }else{ //数値／日付
+                        return (Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1);
+                    }
+                })
+            },
+            sortListReverse:function(columnIndex){ //降順
+                let vue = this
+                this.listItems.sort(function(itemA,itemB){
+                    //数値以外
+                    if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
+                        return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1
+                    }else{ //数値／日付
+                        return (Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1);
+                    }
+                })
             }
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped>
     span {
         display:inline-block;
         padding:0.5em;
@@ -217,5 +266,11 @@
     }
     .column {
         cursor:pointer;
+    }
+    .selected {
+        background-color:rgba(orange,0.5);
+    }
+    .selected-reverse {
+        background-color:rgba(blue,0.5);
     }
 </style>

@@ -13,6 +13,7 @@
         <button v-on:click="addItem()">行を追加</button>
         <button v-on:click="addColumn()">列を追加</button>
         <button v-on:click="saveList()">保存</button>
+        <button v-on:click="sortList()">ならびかえ</button>
     </div>
 </template>
 
@@ -139,6 +140,9 @@
             },
             saveList:function(){
                 this.$refs.mylist.saveList()
+            },
+            sortList:function(){
+                this.$refs.mylist.sortList(2)
             }
         },
     }

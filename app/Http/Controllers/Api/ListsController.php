@@ -119,6 +119,6 @@ class ListsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return MyList::destroy($id);
     }
 }
