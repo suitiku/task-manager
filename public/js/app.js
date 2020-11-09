@@ -14633,7 +14633,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(297);
+module.exports = __webpack_require__(302);
 
 
 /***/ }),
@@ -14707,6 +14707,7 @@ Vue.component('circle-meter', __webpack_require__(277));
 Vue.component('main-title', __webpack_require__(282));
 Vue.component('reminders', __webpack_require__(287));
 Vue.component('my-list', __webpack_require__(292));
+Vue.component('my-list-collection', __webpack_require__(297));
 
 var app = new Vue({
   el: '#app'
@@ -59120,6 +59121,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -59226,6 +59228,10 @@ var render = function() {
         _vm._v(" "),
         _vm.content == "settings"
           ? _c("setting", { attrs: { user_id: _vm.user.id } })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.content == "list"
+          ? _c("my-list-collection", { attrs: { user_id: _vm.user.id } })
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "spacer" })
@@ -62805,6 +62811,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62915,6 +62925,26 @@ var render = function() {
           expression: "content"
         }
       ],
+      attrs: { type: "radio", name: "content", value: "list", id: "navi-list" },
+      domProps: { checked: _vm._q(_vm.content, "list") },
+      on: {
+        change: function($event) {
+          _vm.content = "list"
+        }
+      }
+    }),
+    _vm._v(" "),
+    _vm._m(3),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.content,
+          expression: "content"
+        }
+      ],
       attrs: {
         type: "radio",
         name: "content",
@@ -62929,7 +62959,7 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _vm._m(3)
+    _vm._m(4)
   ])
 }
 var staticRenderFns = [
@@ -62946,7 +62976,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "navi-task" } }, [
-      _c("i", { staticClass: "fas fa-tasks" })
+      _c("i", { staticClass: "far fa-check-square" })
     ])
   },
   function() {
@@ -62955,6 +62985,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "navi-project" } }, [
       _c("i", { staticClass: "fas fa-project-diagram" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "navi-list" } }, [
+      _c("i", { staticClass: "fas fa-list" })
     ])
   },
   function() {
@@ -68839,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\nspan[data-v-33a634d6] {\n  display: inline-block;\n  padding: 0.5em;\n  border: 1px solid grey;\n}\n.column[data-v-33a634d6] {\n  cursor: pointer;\n}\n.selected[data-v-33a634d6] {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n.selected-reverse[data-v-33a634d6] {\n  background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
+exports.push([module.i, "\n#list-wrapper[data-v-33a634d6] {\n  margin: 1em;\n  padding: 0em 1em;\n  border: 1px solid grey;\n}\n#list-wrapper .row[data-v-33a634d6] {\n    border-bottom: 1px solid grey;\n}\n#list-wrapper span[data-v-33a634d6] {\n    display: inline-block;\n    padding: 0.5em;\n    /*border:1px solid grey;*/\n}\n#list-wrapper .column[data-v-33a634d6] {\n    cursor: pointer;\n}\n#list-wrapper .selected[data-v-33a634d6] {\n    background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper .selected-reverse[data-v-33a634d6] {\n    background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
 
 // exports
 
@@ -68858,6 +68896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -69307,7 +69346,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.$refs.newColumnModal.openModal();
             } else {
                 //閲覧モード（並び替え）
-                console.log(Number(this.sortedIndex));
                 //カラムを選択（昇順）→降順→選択解除で推移
                 if (this.sortedIndex == null || Number(this.sortedIndex) != index) {
                     this.sortList(index);
@@ -69517,84 +69555,91 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        _vm._l(_vm.listDefinition, function(columnName, index) {
-          return _c(
-            "span",
-            {
-              ref: "columns",
-              refInFor: true,
-              staticClass: "column",
-              style: _vm.setColumnWidth(index),
-              on: {
-                click: function($event) {
-                  return _vm.clickColumn(index)
-                }
-              }
-            },
-            [_vm._v(_vm._s(columnName.name))]
-          )
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _vm._l(_vm.listItems, function(item, index) {
-        return _c("div", [
-          _vm.editMode
-            ? _c(
-                "div",
-                _vm._l(item, function(column, columnIndex) {
-                  return _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.listItems[index][columnIndex].value,
-                        expression: "listItems[index][columnIndex].value"
-                      }
-                    ],
-                    style: _vm.setColumnWidth(columnIndex),
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.listItems[index][columnIndex].value
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.listItems[index][columnIndex],
-                          "value",
-                          $event.target.value
-                        )
-                      }
+        { attrs: { id: "list-wrapper" } },
+        [
+          _c(
+            "div",
+            { staticClass: "row" },
+            _vm._l(_vm.listDefinition, function(columnName, index) {
+              return _c(
+                "span",
+                {
+                  ref: "columns",
+                  refInFor: true,
+                  staticClass: "column",
+                  style: _vm.setColumnWidth(index),
+                  on: {
+                    click: function($event) {
+                      return _vm.clickColumn(index)
                     }
-                  })
-                }),
-                0
+                  }
+                },
+                [_vm._v(_vm._s(columnName.name))]
               )
-            : _c(
-                "div",
-                _vm._l(item, function(column, columnIndex) {
-                  return _c(
-                    "span",
-                    { style: _vm.setColumnWidth(columnIndex) },
-                    [
-                      _vm._v(
-                        _vm._s(column.value) +
-                          " " +
-                          _vm._s(_vm.listDefinition[columnIndex].suffix)
-                      )
-                    ]
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.listItems, function(item, index) {
+            return _c("div", { staticClass: "row" }, [
+              _vm.editMode
+                ? _c(
+                    "div",
+                    _vm._l(item, function(column, columnIndex) {
+                      return _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.listItems[index][columnIndex].value,
+                            expression: "listItems[index][columnIndex].value"
+                          }
+                        ],
+                        style: _vm.setColumnWidth(columnIndex),
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.listItems[index][columnIndex].value
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.listItems[index][columnIndex],
+                              "value",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    }),
+                    0
                   )
-                }),
-                0
-              )
-        ])
-      }),
-      _vm._v("\n    " + _vm._s(_vm.listItems) + "\n")
+                : _c(
+                    "div",
+                    _vm._l(item, function(column, columnIndex) {
+                      return _c(
+                        "span",
+                        { style: _vm.setColumnWidth(columnIndex) },
+                        [
+                          _vm._v(
+                            _vm._s(column.value) +
+                              " " +
+                              _vm._s(_vm.listDefinition[columnIndex].suffix)
+                          )
+                        ]
+                      )
+                    }),
+                    0
+                  )
+            ])
+          })
+        ],
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -69609,6 +69654,149 @@ if (false) {
 
 /***/ }),
 /* 297 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(298)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(300)
+/* template */
+var __vue_template__ = __webpack_require__(301)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-6a430913"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/MyListCollection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6a430913", Component.options)
+  } else {
+    hotAPI.reload("data-v-6a430913", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 298 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(299);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("688f9146", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 300 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+    props: {},
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {}
+});
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("p", [_vm._v("リスト一覧")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6a430913", module.exports)
+  }
+}
+
+/***/ }),
+/* 302 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

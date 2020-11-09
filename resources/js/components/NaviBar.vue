@@ -8,11 +8,15 @@
         
         <!--タスク-->
         <input v-model="content" type="radio" name="content" value="task" id="navi-task">
-        <label for="navi-task"><i class="fas fa-tasks"></i></label>
+        <label for="navi-task"><i class="far fa-check-square"></i></label>
         
         <!--プロジェクト-->
         <input v-model="content" type="radio" name="content" value="project" id="navi-project">
         <label for="navi-project"><i class="fas fa-project-diagram"></i></label>
+        
+        <!--リスト-->
+        <input v-model="content" type="radio" name="content" value="list" id="navi-list">
+        <label for="navi-list"><i class="fas fa-list"></i></label>
         
         <!--設定-->
         <input v-model="content" type="radio" name="content" value="settings" id="navi-settings">

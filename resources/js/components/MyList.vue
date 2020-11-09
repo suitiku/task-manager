@@ -17,18 +17,19 @@
         </modal>
         
         <!--リスト表示部-->
-        <div>
-            <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
-        </div>
-        <div v-for="(item,index) in listItems">
-            <div v-if="editMode">
-                <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+        <div id="list-wrapper">
+            <div class="row">
+                <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
             </div>
-            <div v-else>
-                <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+            <div v-for="(item,index) in listItems" class="row">
+                <div v-if="editMode">
+                    <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+                </div>
+                <div v-else>
+                    <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                </div>
             </div>
         </div>
-        {{listItems}}
     </div>
 </template>
 
@@ -206,7 +207,6 @@
                     this.newColumn.default = this.listDefinition[index].default
                     this.$refs.newColumnModal.openModal()
                 }else{ //閲覧モード（並び替え）
-                    console.log(Number(this.sortedIndex))
                     //カラムを選択（昇順）→降順→選択解除で推移
                     if(this.sortedIndex == null || Number(this.sortedIndex) != index){
                         this.sortList(index)
@@ -259,18 +259,26 @@
     }
 </script>
 <style lang="scss" scoped>
-    span {
-        display:inline-block;
-        padding:0.5em;
+    #list-wrapper {
+        margin:1em;
+        padding:0em 1em;
         border:1px solid grey;
-    }
-    .column {
-        cursor:pointer;
-    }
-    .selected {
-        background-color:rgba(orange,0.5);
-    }
-    .selected-reverse {
-        background-color:rgba(blue,0.5);
+        .row {
+            border-bottom:1px solid grey;
+        }
+        span {
+            display:inline-block;
+            padding:0.5em;
+            /*border:1px solid grey;*/
+        }
+        .column {
+            cursor:pointer;
+        }
+        .selected {
+            background-color:rgba(orange,0.5);
+        }
+        .selected-reverse {
+            background-color:rgba(blue,0.5);
+        }
     }
 </style>
