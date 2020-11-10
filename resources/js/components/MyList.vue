@@ -66,21 +66,12 @@
             }
         },
         watch:{
-            
+            listId:function(){
+                this.getList()
+            }
         },
         created:async function(){
-            if(this.listId){
-                let result = await axios.get('/api/lists/' + this.listId)
-                console.log(result.data)
-                this.listDefinition = JSON.parse(result.data.column_definitions)
-                for(let item of result.data.my_list_items){
-                    this.listItems.push(JSON.parse(item.values))
-                    this.originalSortedListItems.push(JSON.parse(item.values))
-                }
-                this.getColumnWidths()
-            }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
-                this.initList()
-            }
+            this.getList()
         },
         mounted:function(){
         },
@@ -88,6 +79,19 @@
             
         },
         methods: {
+            getList:async function(){
+                if(this.listId){
+                    let result = await axios.get('/api/lists/' + this.listId)
+                    this.listDefinition = JSON.parse(result.data.column_definitions)
+                    for(let item of result.data.my_list_items){
+                        this.listItems.push(JSON.parse(item.values))
+                        this.originalSortedListItems.push(JSON.parse(item.values))
+                    }
+                    this.getColumnWidths()
+                }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
+                    this.initList()
+                }
+            },
             initList:function(){
                 this.listDefinition = []
                 this.listItems = []
@@ -230,6 +234,7 @@
             },
             // インデックスでソート
             sortListIndex:function(){
+                this.listItems = []
                 this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems))
             },
             // ソート

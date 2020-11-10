@@ -68963,86 +68963,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             required: false
         }
     },
-    watch: {},
+    watch: {
+        listId: function listId() {
+            this.getList();
+        }
+    },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-            var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
-
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            if (!this.listId) {
-                                _context.next = 28;
-                                break;
-                            }
+                            this.getList();
 
-                            _context.next = 3;
-                            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/lists/' + this.listId);
-
-                        case 3:
-                            result = _context.sent;
-
-                            console.log(result.data);
-                            this.listDefinition = JSON.parse(result.data.column_definitions);
-                            _iteratorNormalCompletion = true;
-                            _didIteratorError = false;
-                            _iteratorError = undefined;
-                            _context.prev = 9;
-                            for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                                item = _step.value;
-
-                                this.listItems.push(JSON.parse(item.values));
-                                this.originalSortedListItems.push(JSON.parse(item.values));
-                            }
-                            _context.next = 17;
-                            break;
-
-                        case 13:
-                            _context.prev = 13;
-                            _context.t0 = _context['catch'](9);
-                            _didIteratorError = true;
-                            _iteratorError = _context.t0;
-
-                        case 17:
-                            _context.prev = 17;
-                            _context.prev = 18;
-
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                                _iterator.return();
-                            }
-
-                        case 20:
-                            _context.prev = 20;
-
-                            if (!_didIteratorError) {
-                                _context.next = 23;
-                                break;
-                            }
-
-                            throw _iteratorError;
-
-                        case 23:
-                            return _context.finish(20);
-
-                        case 24:
-                            return _context.finish(17);
-
-                        case 25:
-                            this.getColumnWidths();
-                            _context.next = 29;
-                            break;
-
-                        case 28:
-                            //list_idがない場合は新規作成と解釈してlistを初期化する
-                            this.initList();
-
-                        case 29:
+                        case 1:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[9, 13, 17, 25], [18,, 20, 24]]);
+            }, _callee, this);
         }));
 
         function created() {
@@ -69054,6 +68993,92 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {},
     computed: {},
     methods: {
+        getList: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                if (!this.listId) {
+                                    _context2.next = 27;
+                                    break;
+                                }
+
+                                _context2.next = 3;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/lists/' + this.listId);
+
+                            case 3:
+                                result = _context2.sent;
+
+                                this.listDefinition = JSON.parse(result.data.column_definitions);
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context2.prev = 8;
+                                for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    item = _step.value;
+
+                                    this.listItems.push(JSON.parse(item.values));
+                                    this.originalSortedListItems.push(JSON.parse(item.values));
+                                }
+                                _context2.next = 16;
+                                break;
+
+                            case 12:
+                                _context2.prev = 12;
+                                _context2.t0 = _context2['catch'](8);
+                                _didIteratorError = true;
+                                _iteratorError = _context2.t0;
+
+                            case 16:
+                                _context2.prev = 16;
+                                _context2.prev = 17;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 19:
+                                _context2.prev = 19;
+
+                                if (!_didIteratorError) {
+                                    _context2.next = 22;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 22:
+                                return _context2.finish(19);
+
+                            case 23:
+                                return _context2.finish(16);
+
+                            case 24:
+                                this.getColumnWidths();
+                                _context2.next = 28;
+                                break;
+
+                            case 27:
+                                //list_idがない場合は新規作成と解釈してlistを初期化する
+                                this.initList();
+
+                            case 28:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[8, 12, 16, 24], [17,, 19, 23]]);
+            }));
+
+            function getList() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return getList;
+        }(),
         initList: function initList() {
             this.listDefinition = [];
             this.listItems = [];
@@ -69255,11 +69280,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         //保存
         saveList: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
                 var postData, index, postItem, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
                                 // データを整理
                                 // リスト本体
@@ -69286,50 +69311,50 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     postData.items.push(postItem);
                                 }
                                 console.log(postData);
-                                _context2.prev = 3;
+                                _context3.prev = 3;
                                 result = void 0;
 
                                 if (!this.listId) {
-                                    _context2.next = 11;
+                                    _context3.next = 11;
                                     break;
                                 }
 
-                                _context2.next = 8;
+                                _context3.next = 8;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/lists/' + this.listId, postData);
 
                             case 8:
-                                result = _context2.sent;
-                                _context2.next = 14;
+                                result = _context3.sent;
+                                _context3.next = 14;
                                 break;
 
                             case 11:
-                                _context2.next = 13;
+                                _context3.next = 13;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
 
                             case 13:
-                                result = _context2.sent;
+                                result = _context3.sent;
 
                             case 14:
                                 console.log(result.data);
-                                _context2.next = 20;
+                                _context3.next = 20;
                                 break;
 
                             case 17:
-                                _context2.prev = 17;
-                                _context2.t0 = _context2['catch'](3);
+                                _context3.prev = 17;
+                                _context3.t0 = _context3['catch'](3);
 
-                                console.log(_context2.t0);
+                                console.log(_context3.t0);
 
                             case 20:
                             case 'end':
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this, [[3, 17]]);
+                }, _callee3, this, [[3, 17]]);
             }));
 
             function saveList() {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return saveList;
@@ -69368,6 +69393,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         // インデックスでソート
         sortListIndex: function sortListIndex() {
+            this.listItems = [];
             this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems));
         },
         // ソート
@@ -69714,13 +69740,13 @@ var content = __webpack_require__(299);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(1)("688f9146", content, false, {});
+var update = __webpack_require__(1)("31bc7c80", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6a430913\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MyListCollection.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -69738,7 +69764,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n#list-wrapper[data-v-6a430913] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n#list-wrapper .list[data-v-6a430913] {\n    width: 10em;\n    border: 1px solid grey;\n    margin: 1em;\n    padding: 1em;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -69749,6 +69775,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69757,15 +69802,68 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            myLists: [],
+            detailModal: false,
+            listId: null,
+            editMode: false
+        };
     },
-    props: {},
-    watch: {},
-    created: function created() {},
+    props: {
+        user_id: {
+            type: [Number, String],
+            default: null,
+            required: true
+        }
+
+    },
+    watch: {
+        detailModal: function detailModal(newVal, oldVal) {
+            if (newVal == false && oldVal == true) {
+                this.listId = null;
+            }
+        }
+    },
+    created: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var result;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            console.log(this.user_id);
+                            _context.next = 3;
+                            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/mylists', { params: { user_id: this.user_id } });
+
+                        case 3:
+                            result = _context.sent;
+
+                            this.myLists = result.data;
+
+                        case 5:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        function created() {
+            return _ref.apply(this, arguments);
+        }
+
+        return created;
+    }(),
     mounted: function mounted() {},
-    methods: {}
+    methods: {
+        showListDetail: function showListDetail(id) {
+            this.listId = id;
+            this.$refs.detailModal.openModal();
+        }
+    }
 });
 
 /***/ }),
@@ -69776,16 +69874,59 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "modal",
+        {
+          ref: "detailModal",
+          model: {
+            value: _vm.detailModal,
+            callback: function($$v) {
+              _vm.detailModal = $$v
+            },
+            expression: "detailModal"
+          }
+        },
+        [
+          _c("my-list", {
+            attrs: { listId: _vm.listId, editMode: _vm.editMode }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("h2", [_vm._v("リスト一覧")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "list-wrapper" } },
+        _vm._l(_vm.myLists, function(myList, index) {
+          return _c(
+            "div",
+            {
+              staticClass: "list",
+              on: {
+                click: function($event) {
+                  return _vm.showListDetail(myList.id)
+                }
+              }
+            },
+            [
+              _c("h3", [_vm._v(_vm._s(myList.name))]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(myList.description))])
+            ]
+          )
+        }),
+        0
+      )
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("リスト一覧")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

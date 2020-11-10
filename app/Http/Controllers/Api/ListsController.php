@@ -16,7 +16,8 @@ class ListsController extends Controller
      */
     public function index()
     {
-        //
+        // 
+        
     }
 
     /**
@@ -120,5 +121,10 @@ class ListsController extends Controller
     public function destroy($id)
     {
         return MyList::destroy($id);
+    }
+    
+    //ユーザーごとにリストコレクションを取得
+    public function getListsCollectionByUserId(Request $request){
+        return MyList::where('user_id',$request->user_id)->get();
     }
 }

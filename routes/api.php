@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('mytasks/current','Api\TasksController@getCurrentTasksByUserId');
     Route::get('mytags','Api\TagsController@getTagsByUserId');
     Route::get('myreminders','Api\RemindersController@getRemindersByUserId');
+    Route::get('mylists','Api\ListsController@getListsCollectionByUserId');
     
     //メール送信テスト
     Route::get('mail/send','Api\MailController@sendMail');
