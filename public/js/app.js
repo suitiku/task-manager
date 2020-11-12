@@ -69002,75 +69002,76 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!this.listId) {
-                                    _context2.next = 27;
+                                    _context2.next = 28;
                                     break;
                                 }
 
-                                _context2.next = 3;
+                                this.initList();
+                                _context2.next = 4;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/api/lists/' + this.listId);
 
-                            case 3:
+                            case 4:
                                 result = _context2.sent;
 
                                 this.listDefinition = JSON.parse(result.data.column_definitions);
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 8;
+                                _context2.prev = 9;
                                 for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     item = _step.value;
 
                                     this.listItems.push(JSON.parse(item.values));
                                     this.originalSortedListItems.push(JSON.parse(item.values));
                                 }
-                                _context2.next = 16;
+                                _context2.next = 17;
                                 break;
 
-                            case 12:
-                                _context2.prev = 12;
-                                _context2.t0 = _context2['catch'](8);
+                            case 13:
+                                _context2.prev = 13;
+                                _context2.t0 = _context2['catch'](9);
                                 _didIteratorError = true;
                                 _iteratorError = _context2.t0;
 
-                            case 16:
-                                _context2.prev = 16;
+                            case 17:
                                 _context2.prev = 17;
+                                _context2.prev = 18;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 19:
-                                _context2.prev = 19;
+                            case 20:
+                                _context2.prev = 20;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 22;
+                                    _context2.next = 23;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 22:
-                                return _context2.finish(19);
-
                             case 23:
-                                return _context2.finish(16);
+                                return _context2.finish(20);
 
                             case 24:
+                                return _context2.finish(17);
+
+                            case 25:
                                 this.getColumnWidths();
-                                _context2.next = 28;
+                                _context2.next = 29;
                                 break;
 
-                            case 27:
+                            case 28:
                                 //list_idがない場合は新規作成と解釈してlistを初期化する
                                 this.initList();
 
-                            case 28:
+                            case 29:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[8, 12, 16, 24], [17,, 19, 23]]);
+                }, _callee2, this, [[9, 13, 17, 25], [18,, 20, 24]]);
             }));
 
             function getList() {
@@ -69277,6 +69278,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             maxWidth = Math.max(this.newColumn.name.length, maxWidth);
             this.columnWidths.splice(this.newColumn.index, 1, maxWidth);
+            this.$refs.newColumnModal.closeModal();
         },
         //保存
         saveList: function () {
@@ -69764,7 +69766,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#list-wrapper[data-v-6a430913] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n#list-wrapper .list[data-v-6a430913] {\n    width: 10em;\n    border: 1px solid grey;\n    margin: 1em;\n    padding: 1em;\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.fixed-bar[data-v-6a430913] {\n  position: fixed;\n  left: calc(50% - 1.7em);\n  top: 3em;\n  z-index: 10;\n  border: 3px solid grey;\n  padding: 0.5em;\n  border-radius: 0.2em;\n  background-color: rgba(255, 255, 255, 0.9);\n}\n.fixed-bar i[data-v-6a430913] {\n    margin: 0.2em;\n    cursor: pointer;\n}\n#list-wrapper[data-v-6a430913] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n#list-wrapper .list[data-v-6a430913] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    width: 10em;\n    border: 3px solid grey;\n    border-radius: 0.5em;\n    margin: 1em;\n    padding: 1em;\n}\n#list-wrapper .list h3[data-v-6a430913] {\n      font-family: 'M PLUS 1p', sans-serif;\n      font-weight: 900;\n}\n#list-wrapper .list .icons i[data-v-6a430913] {\n      margin: 0.2em;\n      cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -69801,6 +69803,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69808,8 +69828,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             myLists: [],
             detailModal: false,
-            listId: null,
-            editMode: false
+            editModal: false,
+            listId: null
         };
     },
     props: {
@@ -69822,6 +69842,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     watch: {
         detailModal: function detailModal(newVal, oldVal) {
+            if (newVal == false && oldVal == true) {
+                this.listId = null;
+            }
+        },
+        editModal: function editModal(newVal, oldVal) {
             if (newVal == false && oldVal == true) {
                 this.listId = null;
             }
@@ -69862,6 +69887,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         showListDetail: function showListDetail(id) {
             this.listId = id;
             this.$refs.detailModal.openModal();
+        },
+        showEditModal: function showEditModal(id) {
+            this.listId = id;
+            this.$refs.editModal.openModal();
+        },
+        addItem: function addItem() {
+            this.$refs.editingList.addItem();
+        },
+        addColumn: function addColumn() {
+            this.$refs.editingList.addColumn();
+        },
+        saveList: function saveList() {
+            this.$refs.editingList.saveList();
         }
     }
 });
@@ -69889,9 +69927,55 @@ var render = function() {
             expression: "detailModal"
           }
         },
+        [_c("my-list", { attrs: { listId: _vm.listId, editMode: false } })],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          ref: "editModal",
+          model: {
+            value: _vm.editModal,
+            callback: function($$v) {
+              _vm.editModal = $$v
+            },
+            expression: "editModal"
+          }
+        },
         [
+          _c("div", { staticClass: "fixed-bar" }, [
+            _c("i", {
+              staticClass: "fas fa-arrow-circle-right fa-lg",
+              on: {
+                click: function($event) {
+                  return _vm.addColumn()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-arrow-circle-down fa-lg",
+              on: {
+                click: function($event) {
+                  return _vm.addItem()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "far fa-save fa-lg",
+              on: {
+                click: function($event) {
+                  return _vm.saveList()
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c("my-list", {
-            attrs: { listId: _vm.listId, editMode: _vm.editMode }
+            ref: "editingList",
+            attrs: { listId: _vm.listId, editMode: true }
           })
         ],
         1
@@ -69903,22 +69987,33 @@ var render = function() {
         "div",
         { attrs: { id: "list-wrapper" } },
         _vm._l(_vm.myLists, function(myList, index) {
-          return _c(
-            "div",
-            {
-              staticClass: "list",
-              on: {
-                click: function($event) {
-                  return _vm.showListDetail(myList.id)
+          return _c("div", { staticClass: "list" }, [
+            _c("h3", [_vm._v(_vm._s(myList.name))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(myList.description))]),
+            _vm._v(" "),
+            _c("div", { staticClass: "icons" }, [
+              _c("i", {
+                staticClass: "far fa-list-alt fa-lg",
+                on: {
+                  click: function($event) {
+                    return _vm.showListDetail(myList.id)
+                  }
                 }
-              }
-            },
-            [
-              _c("h3", [_vm._v(_vm._s(myList.name))]),
+              }),
               _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(myList.description))])
-            ]
-          )
+              _c("i", {
+                staticClass: "far fa-edit fa-lg",
+                on: {
+                  click: function($event) {
+                    return _vm.showEditModal(myList.id)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-info-circle fa-lg" })
+            ])
+          ])
         }),
         0
       )

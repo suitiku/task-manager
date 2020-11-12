@@ -81,6 +81,7 @@
         methods: {
             getList:async function(){
                 if(this.listId){
+                    this.initList()
                     let result = await axios.get('/api/lists/' + this.listId)
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
@@ -161,6 +162,7 @@
                 }
                 maxWidth = Math.max(this.newColumn.name.length,maxWidth)
                 this.columnWidths.splice(this.newColumn.index,1,maxWidth)
+                this.$refs.newColumnModal.closeModal()
             },
             //保存
             saveList:async function(){

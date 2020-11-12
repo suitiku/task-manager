@@ -3,14 +3,32 @@
     <div>
         <!--詳細表示用モーダル-->
         <modal ref="detailModal" v-model="detailModal">
-            <my-list v-bind:listId="listId" v-bind:editMode="editMode" />
+            <my-list v-bind:listId="listId" v-bind:editMode="false" />
         </modal>
+        
+        <!--編集用モーダル-->
+        <modal ref="editModal" v-model="editModal">
+            <!--編集用コントロールパネル-->
+            <div class="fixed-bar">
+                <i class="fas fa-arrow-circle-right fa-lg" v-on:click="addColumn()"></i>
+                <i class="fas fa-arrow-circle-down fa-lg" v-on:click="addItem()"></i>
+                <i class="far fa-save fa-lg" v-on:click="saveList()"></i>
+            </div>
+            <my-list v-bind:listId="listId" v-bind:editMode="true" ref="editingList" />
+        </modal>
+        
+        <!--リスト情報表示用モーダル-->
         
         <h2>リスト一覧</h2>
         <div id="list-wrapper">
-            <div v-for="(myList,index) in myLists" class="list" v-on:click="showListDetail(myList.id)">
+            <div v-for="(myList,index) in myLists" class="list">
                 <h3>{{myList.name}}</h3>
                 <p>{{myList.description}}</p>
+                <div class="icons">
+                    <i class="far fa-list-alt fa-lg" v-on:click="showListDetail(myList.id)"></i>
+                    <i class="far fa-edit fa-lg" v-on:click="showEditModal(myList.id)"></i>
+                    <i class="fas fa-info-circle fa-lg"></i>
+                </div>
             </div>
         </div>
     </div>
@@ -23,8 +41,8 @@
             return {
                 myLists:[],
                 detailModal:false,
+                editModal:false,
                 listId:null,
-                editMode:false
             }  
         },
         props: {
@@ -37,6 +55,11 @@
         },
         watch:{
             detailModal:function(newVal,oldVal){
+                if(newVal == false && oldVal == true){
+                    this.listId = null
+                }
+            },
+            editModal:function(newVal,oldVal){
                 if(newVal == false && oldVal == true){
                     this.listId = null
                 }
@@ -54,19 +77,59 @@
             showListDetail:function(id){
                 this.listId = id
                 this.$refs.detailModal.openModal()
-            }
+            },
+            showEditModal:function(id){
+                this.listId = id
+                this.$refs.editModal.openModal()
+            },
+            addItem:function(){
+                this.$refs.editingList.addItem()
+            },
+            addColumn:function(){
+                this.$refs.editingList.addColumn()
+            },
+            saveList:function(){
+                this.$refs.editingList.saveList()
+            },
         }
     }
 </script>
 <style lang="scss" scoped>
+    .fixed-bar {
+        position:fixed;
+        left:calc(50% - 1.7em);
+        top:3em;
+        z-index:10;
+        border:3px solid grey;
+        padding:0.5em;
+        border-radius:0.2em;
+        background-color:rgba(white,0.9);
+        i {
+            margin:0.2em;
+            cursor:pointer;
+        }
+    }
     #list-wrapper {
         display:flex;
         .list {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
             width:10em;
-            border:1px solid grey;
+            border:3px solid grey;
+            border-radius:0.5em;
             margin:1em;
             padding:1em;
-            cursor:pointer;
+            h3 {
+                font-family: 'M PLUS 1p', sans-serif;
+                font-weight:900;
+            }
+            .icons {
+                i {
+                    margin:0.2em;
+                    cursor:pointer;
+                }
+            }
         }
     }
 </style>
