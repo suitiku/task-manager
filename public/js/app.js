@@ -68877,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#list-wrapper[data-v-33a634d6] {\n  margin: 1em;\n  padding: 0em 1em;\n  border: 1px solid grey;\n}\n#list-wrapper .row[data-v-33a634d6] {\n    border-bottom: 1px solid grey;\n}\n#list-wrapper span[data-v-33a634d6] {\n    display: inline-block;\n    padding: 0.5em;\n    /*border:1px solid grey;*/\n}\n#list-wrapper .column[data-v-33a634d6] {\n    cursor: pointer;\n}\n#list-wrapper .selected[data-v-33a634d6] {\n    background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper .selected-reverse[data-v-33a634d6] {\n    background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
+exports.push([module.i, "\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  margin: 1em;\n  padding: 0em 1em;\n  border: 1px solid grey;\n}\n#list-wrapper .row[data-v-33a634d6] {\n    border-bottom: 1px solid grey;\n}\n#list-wrapper span[data-v-33a634d6] {\n    display: inline-block;\n    padding: 0.5em;\n}\n#list-wrapper .column[data-v-33a634d6] {\n    cursor: pointer;\n}\n#list-wrapper .selected[data-v-33a634d6] {\n    background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper .selected-reverse[data-v-33a634d6] {\n    background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
 
 // exports
 
@@ -68931,11 +68931,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            myList: {}, //取得したリストをそのまま入れておく
             listDefinition: [],
             listItems: [],
             originalSortedListItems: [],
@@ -69002,7 +69007,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!this.listId) {
-                                    _context2.next = 28;
+                                    _context2.next = 29;
                                     break;
                                 }
 
@@ -69013,65 +69018,66 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 4:
                                 result = _context2.sent;
 
+                                this.myList = result.data;
                                 this.listDefinition = JSON.parse(result.data.column_definitions);
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 9;
+                                _context2.prev = 10;
                                 for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     item = _step.value;
 
                                     this.listItems.push(JSON.parse(item.values));
                                     this.originalSortedListItems.push(JSON.parse(item.values));
                                 }
-                                _context2.next = 17;
+                                _context2.next = 18;
                                 break;
 
-                            case 13:
-                                _context2.prev = 13;
-                                _context2.t0 = _context2['catch'](9);
+                            case 14:
+                                _context2.prev = 14;
+                                _context2.t0 = _context2['catch'](10);
                                 _didIteratorError = true;
                                 _iteratorError = _context2.t0;
 
-                            case 17:
-                                _context2.prev = 17;
+                            case 18:
                                 _context2.prev = 18;
+                                _context2.prev = 19;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 20:
-                                _context2.prev = 20;
+                            case 21:
+                                _context2.prev = 21;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 23;
+                                    _context2.next = 24;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 23:
-                                return _context2.finish(20);
-
                             case 24:
-                                return _context2.finish(17);
+                                return _context2.finish(21);
 
                             case 25:
+                                return _context2.finish(18);
+
+                            case 26:
                                 this.getColumnWidths();
-                                _context2.next = 29;
+                                _context2.next = 30;
                                 break;
 
-                            case 28:
+                            case 29:
                                 //list_idがない場合は新規作成と解釈してlistを初期化する
                                 this.initList();
 
-                            case 29:
+                            case 30:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[9, 13, 17, 25], [18,, 20, 24]]);
+                }, _callee2, this, [[10, 14, 18, 26], [19,, 21, 25]]);
             }));
 
             function getList() {
@@ -69195,6 +69201,61 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             this.listItems.push(addItem);
         },
+        deleteItem: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(index) {
+                var confirmResult, itemId, result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                confirmResult = confirm('行を削除します。よろしいですか？');
+
+                                if (confirmResult) {
+                                    _context3.next = 3;
+                                    break;
+                                }
+
+                                return _context3.abrupt('return');
+
+                            case 3:
+                                itemId = this.myList.my_list_items[index].id;
+                                _context3.prev = 4;
+                                _context3.next = 7;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/list_items/' + itemId);
+
+                            case 7:
+                                result = _context3.sent;
+
+                                if (result.data) {
+                                    this.listItems.splice(index, 1);
+                                    this.$refs.notice.showNotice('リストアイテムを削除しました');
+                                } else {
+                                    this.$refs.notice.showNotice('リストアイテムの削除に失敗しました');
+                                }
+                                _context3.next = 15;
+                                break;
+
+                            case 11:
+                                _context3.prev = 11;
+                                _context3.t0 = _context3['catch'](4);
+
+                                console.log(_context3.t0);
+                                this.$refs.notice.showNotice('リストアイテムの削除に失敗しました');
+
+                            case 15:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[4, 11]]);
+            }));
+
+            function deleteItem(_x) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return deleteItem;
+        }(),
         showAddColumnModal: function showAddColumnModal() {
             //newColumnをリセット
             this.newColumn = {
@@ -69282,11 +69343,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         //保存
         saveList: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
                 var postData, index, postItem, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 // データを整理
                                 // リスト本体
@@ -69313,50 +69374,50 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     postData.items.push(postItem);
                                 }
                                 console.log(postData);
-                                _context3.prev = 3;
+                                _context4.prev = 3;
                                 result = void 0;
 
                                 if (!this.listId) {
-                                    _context3.next = 11;
+                                    _context4.next = 11;
                                     break;
                                 }
 
-                                _context3.next = 8;
+                                _context4.next = 8;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/lists/' + this.listId, postData);
 
                             case 8:
-                                result = _context3.sent;
-                                _context3.next = 14;
+                                result = _context4.sent;
+                                _context4.next = 14;
                                 break;
 
                             case 11:
-                                _context3.next = 13;
+                                _context4.next = 13;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
 
                             case 13:
-                                result = _context3.sent;
+                                result = _context4.sent;
 
                             case 14:
                                 console.log(result.data);
-                                _context3.next = 20;
+                                _context4.next = 20;
                                 break;
 
                             case 17:
-                                _context3.prev = 17;
-                                _context3.t0 = _context3['catch'](3);
+                                _context4.prev = 17;
+                                _context4.t0 = _context4['catch'](3);
 
-                                console.log(_context3.t0);
+                                console.log(_context4.t0);
 
                             case 20:
                             case 'end':
-                                return _context3.stop();
+                                return _context4.stop();
                         }
                     }
-                }, _callee3, this, [[3, 17]]);
+                }, _callee4, this, [[3, 17]]);
             }));
 
             function saveList() {
-                return _ref3.apply(this, arguments);
+                return _ref4.apply(this, arguments);
             }
 
             return saveList;
@@ -69439,6 +69500,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("notice", { ref: "notice" }),
+      _vm._v(" "),
       _c(
         "modal",
         {
@@ -69613,36 +69676,47 @@ var render = function() {
               _vm.editMode
                 ? _c(
                     "div",
-                    _vm._l(item, function(column, columnIndex) {
-                      return _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.listItems[index][columnIndex].value,
-                            expression: "listItems[index][columnIndex].value"
-                          }
-                        ],
-                        style: _vm.setColumnWidth(columnIndex),
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.listItems[index][columnIndex].value
-                        },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-minus-circle rotate",
                         on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.listItems[index][columnIndex],
-                              "value",
-                              $event.target.value
-                            )
+                          click: function($event) {
+                            return _vm.deleteItem(index)
                           }
                         }
+                      }),
+                      _vm._v(" "),
+                      _vm._l(item, function(column, columnIndex) {
+                        return _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.listItems[index][columnIndex].value,
+                              expression: "listItems[index][columnIndex].value"
+                            }
+                          ],
+                          style: _vm.setColumnWidth(columnIndex),
+                          attrs: { type: "text" },
+                          domProps: {
+                            value: _vm.listItems[index][columnIndex].value
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.listItems[index][columnIndex],
+                                "value",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
                       })
-                    }),
-                    0
+                    ],
+                    2
                   )
                 : _c(
                     "div",

@@ -1,6 +1,9 @@
 <!--リスト表示コンポーネント-->
 <template>
     <div>
+        <!--通知-->
+        <notice ref="notice" />
+        
         <!--列追加／編集用モーダル-->
         <modal ref="newColumnModal" v-model="newColumnModal">
             <input type="text" v-model="newColumn.name" placeholder="列の名前">
@@ -23,6 +26,7 @@
             </div>
             <div v-for="(item,index) in listItems" class="row">
                 <div v-if="editMode">
+                    <i class="fas fa-minus-circle rotate" v-on:click="deleteItem(index)"></i>
                     <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
                 </div>
                 <div v-else>
@@ -38,6 +42,7 @@
     export default {
         data:function(){
             return {
+                myList:{}, //取得したリストをそのまま入れておく
                 listDefinition:[],
                 listItems:[],
                 originalSortedListItems:[],
@@ -83,6 +88,7 @@
                 if(this.listId){
                     this.initList()
                     let result = await axios.get('/api/lists/' + this.listId)
+                    this.myList = result.data
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
                         this.listItems.push(JSON.parse(item.values))
@@ -122,6 +128,24 @@
                     addItem.push(addColumn)
                 }
                 this.listItems.push(addItem)
+            },
+            deleteItem:async function(index){
+                let confirmResult = confirm('行を削除します。よろしいですか？')
+                if(!confirmResult)return
+                
+                let itemId = this.myList.my_list_items[index].id
+                try{
+                    let result = await axios.delete('/api/list_items/' + itemId)
+                    if(result.data){
+                        this.listItems.splice(index,1)
+                        this.$refs.notice.showNotice('リストアイテムを削除しました')
+                    }else{
+                        this.$refs.notice.showNotice('リストアイテムの削除に失敗しました')
+                    }
+                }catch(error){
+                    console.log(error)
+                    this.$refs.notice.showNotice('リストアイテムの削除に失敗しました')
+                }  
             },
             showAddColumnModal:function(){
                  //newColumnをリセット
@@ -266,6 +290,21 @@
     }
 </script>
 <style lang="scss" scoped>
+    .rotate {
+        margin-left:0.1em;
+        cursor:pointer;
+        &:hover {
+            animation:rotate 1s linear infinite;
+        }
+    }
+    @keyframes rotate {
+        0% {
+            transform:rotate(0deg);
+        }
+        100% {
+            transform:rotate(360deg);
+        }
+    }
     #list-wrapper {
         margin:1em;
         padding:0em 1em;
@@ -276,7 +315,6 @@
         span {
             display:inline-block;
             padding:0.5em;
-            /*border:1px solid grey;*/
         }
         .column {
             cursor:pointer;
