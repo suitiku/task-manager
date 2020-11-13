@@ -45,7 +45,6 @@
                 myList:{}, //取得したリストをそのまま入れておく
                 listDefinition:[],
                 listItems:[],
-                originalSortedListItems:[],
                 columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
@@ -92,7 +91,6 @@
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
                         this.listItems.push(JSON.parse(item.values))
-                        this.originalSortedListItems.push(JSON.parse(item.values))
                     }
                     this.getColumnWidths()
                 }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
@@ -261,7 +259,9 @@
             // インデックスでソート
             sortListIndex:function(){
                 this.listItems = []
-                this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems))
+                for(let item of this.myList.my_list_items){
+                    this.listItems.push(JSON.parse(item.values))
+                }
             },
             // ソート
             sortList:function(columnIndex){ //昇順

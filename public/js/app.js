@@ -69457,7 +69457,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // インデックスでソート
         sortListIndex: function sortListIndex() {
             this.listItems = [];
-            this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems));
+            // this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems))
+            var _iteratorNormalCompletion8 = true;
+            var _didIteratorError8 = false;
+            var _iteratorError8 = undefined;
+
+            try {
+                for (var _iterator8 = this.myList.my_list_items[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+                    var item = _step8.value;
+
+                    this.listItems.push(JSON.parse(item.values));
+                }
+            } catch (err) {
+                _didIteratorError8 = true;
+                _iteratorError8 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
+                        _iterator8.return();
+                    }
+                } finally {
+                    if (_didIteratorError8) {
+                        throw _iteratorError8;
+                    }
+                }
+            }
         },
         // ソート
         sortList: function sortList(columnIndex) {
