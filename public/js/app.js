@@ -68935,6 +68935,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68943,7 +68948,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             myList: {}, //取得したリストをそのまま入れておく
             listDefinition: [],
             listItems: [],
-            originalSortedListItems: [],
             columnWidths: [],
             newColumnModal: false,
             newColumn: {
@@ -69028,7 +69032,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     item = _step.value;
 
                                     this.listItems.push(JSON.parse(item.values));
-                                    this.originalSortedListItems.push(JSON.parse(item.values));
                                 }
                                 _context2.next = 18;
                                 break;
@@ -69341,6 +69344,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.columnWidths.splice(this.newColumn.index, 1, maxWidth);
             this.$refs.newColumnModal.closeModal();
         },
+        deleteColumn: function deleteColumn() {
+            var confirmResult = confirm('この列を削除します。よろしいですか？');
+            if (!confirmResult) return;
+
+            this.listDefinition.splice(this.newColumn.index, 1);
+            for (var index in this.listItems) {
+                this.listItems[index].splice(this.newColumn.index, 1);
+            }
+            this.$refs.newColumnModal.closeModal();
+            this.$refs.notice.showNotice('列を削除しました');
+        },
         //保存
         saveList: function () {
             var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
@@ -69457,7 +69471,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // インデックスでソート
         sortListIndex: function sortListIndex() {
             this.listItems = [];
-            // this.listItems = JSON.parse(JSON.stringify(this.originalSortedListItems))
             var _iteratorNormalCompletion8 = true;
             var _didIteratorError8 = false;
             var _iteratorError8 = undefined;
@@ -69643,28 +69656,44 @@ var render = function() {
           }),
           _vm._v(" "),
           typeof _vm.newColumn.index === "number"
-            ? _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.editColumn()
+            ? _c("div", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.editColumn()
+                      }
                     }
-                  }
-                },
-                [_vm._v("列を編集")]
-              )
-            : _c(
-                "button",
-                {
-                  on: {
-                    click: function($event) {
-                      return _vm.addColumn()
+                  },
+                  [_vm._v("列を編集")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteColumn()
+                      }
                     }
-                  }
-                },
-                [_vm._v("列を追加")]
-              )
+                  },
+                  [_vm._v("列を削除")]
+                )
+              ])
+            : _c("div", [
+                _c(
+                  "button",
+                  {
+                    on: {
+                      click: function($event) {
+                        return _vm.addColumn()
+                      }
+                    }
+                  },
+                  [_vm._v("列を追加")]
+                )
+              ])
         ]
       ),
       _vm._v(" "),

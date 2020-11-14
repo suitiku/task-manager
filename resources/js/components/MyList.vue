@@ -15,8 +15,13 @@
             </select>
             <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >
             <input type="text" v-model="newColumn.default" placeholder="既定値" >
-            <button v-if="typeof newColumn.index === 'number'" v-on:click="editColumn()">列を編集</button>
-            <button v-else v-on:click="addColumn()">列を追加</button>
+            <div v-if="typeof newColumn.index === 'number'">
+                <button v-on:click="editColumn()">列を編集</button>
+                <button v-on:click="deleteColumn()">列を削除</button>
+            </div>
+            <div v-else>
+                <button v-on:click="addColumn()">列を追加</button>
+            </div>
         </modal>
         
         <!--リスト表示部-->
@@ -185,6 +190,17 @@
                 maxWidth = Math.max(this.newColumn.name.length,maxWidth)
                 this.columnWidths.splice(this.newColumn.index,1,maxWidth)
                 this.$refs.newColumnModal.closeModal()
+            },
+            deleteColumn:function(){
+                let confirmResult = confirm('この列を削除します。よろしいですか？')
+                if(!confirmResult)return
+                
+                this.listDefinition.splice(this.newColumn.index,1)
+                for(let index in this.listItems){
+                    this.listItems[index].splice(this.newColumn.index,1)
+                }
+                this.$refs.newColumnModal.closeModal()
+                this.$refs.notice.showNotice('列を削除しました')
             },
             //保存
             saveList:async function(){
