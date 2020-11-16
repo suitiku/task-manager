@@ -30,6 +30,9 @@
                     <i class="fas fa-info-circle fa-lg"></i>
                 </div>
             </div>
+            <div class="list">
+                <i class="fas fa-plus-circle fa-lg" v-on:click="showNewListModal()"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -86,11 +89,16 @@
                 this.$refs.editingList.addItem()
             },
             addColumn:function(){
-                this.$refs.editingList.addColumn()
+                this.$refs.editingList.showAddColumnModal()
             },
             saveList:function(){
                 this.$refs.editingList.saveList()
             },
+            showNewListModal:function(){
+                this.listId = null
+                this.$refs.editingList.createNewList()
+                this.$refs.editModal.openModal()
+            }
         }
     }
 </script>

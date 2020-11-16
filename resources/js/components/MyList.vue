@@ -24,18 +24,25 @@
             </div>
         </modal>
         
+        
         <!--リスト表示部-->
         <div id="list-wrapper">
-            <div class="row">
-                <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
-            </div>
-            <div v-for="(item,index) in listItems" class="row">
-                <div v-if="editMode">
-                    <i class="fas fa-minus-circle rotate" v-on:click="deleteItem(index)"></i>
-                    <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+            <!--リスト本体-->
+            <div id="list">
+                <div class="row">
+                    <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
                 </div>
-                <div v-else>
-                    <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                <div v-for="(item,index) in listItems" class="row">
+                    <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index)"></i>
+                    <i v-else>{{index}}</i>
+                    <div>
+                        <div v-if="editMode">
+                            <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+                        </div>
+                        <div v-else>
+                            <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -301,6 +308,12 @@
                         return (Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1);
                     }
                 })
+            },
+            createNewList:function(){
+                this.listDefinition = [
+                    {name:'no title',type:'Text',suffix:null,default:null}    
+                ]
+                this.addItem()
             }
         }
     }
@@ -322,24 +335,36 @@
         }
     }
     #list-wrapper {
-        margin:1em;
-        padding:0em 1em;
-        border:1px solid grey;
-        .row {
-            border-bottom:1px solid grey;
-        }
-        span {
-            display:inline-block;
-            padding:0.5em;
-        }
-        .column {
-            cursor:pointer;
-        }
-        .selected {
-            background-color:rgba(orange,0.5);
-        }
-        .selected-reverse {
-            background-color:rgba(blue,0.5);
+        display:flex;
+        #list {
+            margin:1em;
+            padding:0em 1em;
+            .row {
+                
+                > span {
+                    position:relative;
+                    left:1.0em;
+                }
+            }
+            span {
+                display:inline-block;
+                padding:0.5em;
+            }
+            .column {
+                cursor:pointer;
+            }
+            .selected {
+                background-color:rgba(orange,0.5);
+            }
+            .selected-reverse {
+                background-color:rgba(blue,0.5);
+            }
+            i {
+                position:relative;
+                left:-1.0em;
+                top:0.5em;
+            }
         }
     }
+    
 </style>

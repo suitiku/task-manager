@@ -68877,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  margin: 1em;\n  padding: 0em 1em;\n  border: 1px solid grey;\n}\n#list-wrapper .row[data-v-33a634d6] {\n    border-bottom: 1px solid grey;\n}\n#list-wrapper span[data-v-33a634d6] {\n    display: inline-block;\n    padding: 0.5em;\n}\n#list-wrapper .column[data-v-33a634d6] {\n    cursor: pointer;\n}\n#list-wrapper .selected[data-v-33a634d6] {\n    background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper .selected-reverse[data-v-33a634d6] {\n    background-color: rgba(0, 0, 255, 0.5);\n}\n", ""]);
+exports.push([module.i, "\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    margin: 1em;\n    padding: 0em 1em;\n}\n#list-wrapper #list .row > span[data-v-33a634d6] {\n      position: relative;\n      left: 1.0em;\n}\n#list-wrapper #list span[data-v-33a634d6] {\n      display: inline-block;\n      padding: 0.5em;\n}\n#list-wrapper #list .column[data-v-33a634d6] {\n      cursor: pointer;\n}\n#list-wrapper #list .selected[data-v-33a634d6] {\n      background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .selected-reverse[data-v-33a634d6] {\n      background-color: rgba(0, 0, 255, 0.5);\n}\n#list-wrapper #list i[data-v-33a634d6] {\n      position: relative;\n      left: -1.0em;\n      top: 0.5em;\n}\n", ""]);
 
 // exports
 
@@ -68896,6 +68896,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69522,6 +69529,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1;
                 }
             });
+        },
+        createNewList: function createNewList() {
+            this.listDefinition = [{ name: 'no title', type: 'Text', suffix: null, default: null }];
+            this.addItem();
         }
     }
 });
@@ -69697,102 +69708,107 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { attrs: { id: "list-wrapper" } },
-        [
-          _c(
-            "div",
-            { staticClass: "row" },
-            _vm._l(_vm.listDefinition, function(columnName, index) {
-              return _c(
-                "span",
-                {
-                  ref: "columns",
-                  refInFor: true,
-                  staticClass: "column",
-                  style: _vm.setColumnWidth(index),
-                  on: {
-                    click: function($event) {
-                      return _vm.clickColumn(index)
+      _c("div", { attrs: { id: "list-wrapper" } }, [
+        _c(
+          "div",
+          { attrs: { id: "list" } },
+          [
+            _c(
+              "div",
+              { staticClass: "row" },
+              _vm._l(_vm.listDefinition, function(columnName, index) {
+                return _c(
+                  "span",
+                  {
+                    ref: "columns",
+                    refInFor: true,
+                    staticClass: "column",
+                    style: _vm.setColumnWidth(index),
+                    on: {
+                      click: function($event) {
+                        return _vm.clickColumn(index)
+                      }
                     }
-                  }
-                },
-                [_vm._v(_vm._s(columnName.name))]
-              )
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.listItems, function(item, index) {
-            return _c("div", { staticClass: "row" }, [
-              _vm.editMode
-                ? _c(
-                    "div",
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-minus-circle rotate",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteItem(index)
-                          }
+                  },
+                  [_vm._v(_vm._s(columnName.name))]
+                )
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.listItems, function(item, index) {
+              return _c("div", { staticClass: "row" }, [
+                _vm.editMode
+                  ? _c("i", {
+                      staticClass: "fas fa-minus-circle rotate",
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteItem(index)
                         }
-                      }),
-                      _vm._v(" "),
-                      _vm._l(item, function(column, columnIndex) {
-                        return _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.listItems[index][columnIndex].value,
-                              expression: "listItems[index][columnIndex].value"
-                            }
-                          ],
-                          style: _vm.setColumnWidth(columnIndex),
-                          attrs: { type: "text" },
-                          domProps: {
-                            value: _vm.listItems[index][columnIndex].value
-                          },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                      }
+                    })
+                  : _c("i", [_vm._v(_vm._s(index))]),
+                _vm._v(" "),
+                _c("div", [
+                  _vm.editMode
+                    ? _c(
+                        "div",
+                        _vm._l(item, function(column, columnIndex) {
+                          return _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.listItems[index][columnIndex].value,
+                                expression:
+                                  "listItems[index][columnIndex].value"
                               }
-                              _vm.$set(
-                                _vm.listItems[index][columnIndex],
-                                "value",
-                                $event.target.value
-                              )
+                            ],
+                            style: _vm.setColumnWidth(columnIndex),
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.listItems[index][columnIndex].value
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.listItems[index][columnIndex],
+                                  "value",
+                                  $event.target.value
+                                )
+                              }
                             }
-                          }
-                        })
-                      })
-                    ],
-                    2
-                  )
-                : _c(
-                    "div",
-                    _vm._l(item, function(column, columnIndex) {
-                      return _c(
-                        "span",
-                        { style: _vm.setColumnWidth(columnIndex) },
-                        [
-                          _vm._v(
-                            _vm._s(column.value) +
-                              " " +
-                              _vm._s(_vm.listDefinition[columnIndex].suffix)
-                          )
-                        ]
+                          })
+                        }),
+                        0
                       )
-                    }),
-                    0
-                  )
-            ])
-          })
-        ],
-        2
-      )
+                    : _c(
+                        "div",
+                        _vm._l(item, function(column, columnIndex) {
+                          return _c(
+                            "span",
+                            { style: _vm.setColumnWidth(columnIndex) },
+                            [
+                              _vm._v(
+                                _vm._s(column.value) +
+                                  " " +
+                                  _vm._s(_vm.listDefinition[columnIndex].suffix)
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                ])
+              ])
+            })
+          ],
+          2
+        )
+      ])
     ],
     1
   )
@@ -69948,6 +69964,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -70023,10 +70042,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.$refs.editingList.addItem();
         },
         addColumn: function addColumn() {
-            this.$refs.editingList.addColumn();
+            this.$refs.editingList.showAddColumnModal();
         },
         saveList: function saveList() {
             this.$refs.editingList.saveList();
+        },
+        showNewListModal: function showNewListModal() {
+            this.listId = null;
+            this.$refs.editingList.createNewList();
+            this.$refs.editModal.openModal();
         }
     }
 });
@@ -70113,36 +70137,49 @@ var render = function() {
       _c(
         "div",
         { attrs: { id: "list-wrapper" } },
-        _vm._l(_vm.myLists, function(myList, index) {
-          return _c("div", { staticClass: "list" }, [
-            _c("h3", [_vm._v(_vm._s(myList.name))]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(myList.description))]),
-            _vm._v(" "),
-            _c("div", { staticClass: "icons" }, [
-              _c("i", {
-                staticClass: "far fa-list-alt fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.showListDetail(myList.id)
-                  }
-                }
-              }),
+        [
+          _vm._l(_vm.myLists, function(myList, index) {
+            return _c("div", { staticClass: "list" }, [
+              _c("h3", [_vm._v(_vm._s(myList.name))]),
               _vm._v(" "),
-              _c("i", {
-                staticClass: "far fa-edit fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.showEditModal(myList.id)
-                  }
-                }
-              }),
+              _c("p", [_vm._v(_vm._s(myList.description))]),
               _vm._v(" "),
-              _c("i", { staticClass: "fas fa-info-circle fa-lg" })
+              _c("div", { staticClass: "icons" }, [
+                _c("i", {
+                  staticClass: "far fa-list-alt fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.showListDetail(myList.id)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "far fa-edit fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.showEditModal(myList.id)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "fas fa-info-circle fa-lg" })
+              ])
             ])
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "list" }, [
+            _c("i", {
+              staticClass: "fas fa-plus-circle fa-lg",
+              on: {
+                click: function($event) {
+                  return _vm.showNewListModal()
+                }
+              }
+            })
           ])
-        }),
-        0
+        ],
+        2
       )
     ],
     1
