@@ -27,6 +27,11 @@
         
         <!--リスト表示部-->
         <div id="list-wrapper">
+            <!--メタデータ編集部分-->
+            <div v-if="editMode">
+                <input type="text" v-model="listMetaData.name" />
+                <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
+            </div>
             <!--リスト本体-->
             <div id="list">
                 <div class="row">
@@ -55,8 +60,9 @@
         data:function(){
             return {
                 myList:{}, //取得したリストをそのまま入れておく
-                listDefinition:[],
-                listItems:[],
+                listMetaData:{}, //タイトルや説明など
+                listDefinition:[], //列の定義
+                listItems:[], //行
                 columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
@@ -70,6 +76,11 @@
             }  
         },
         props: {
+            userId:{
+                type:[Number,String],
+                default:null,
+                required:false
+            },
             listId:{
                 type:[Number,String],
                 default:0,
@@ -100,6 +111,11 @@
                     this.initList()
                     let result = await axios.get('/api/lists/' + this.listId)
                     this.myList = result.data
+                    this.listMetaData = {
+                        name:result.data.name,
+                        description:result.data.description,
+                        type:result.data.type
+                    }
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
                         this.listItems.push(JSON.parse(item.values))
@@ -215,9 +231,9 @@
                 // リスト本体
                 let postData = {
                     list:{
-                        user_id:1,
-                        name:'test',
-                        description:null,
+                        user_id:this.userId,
+                        name:this.listMetaData.name,
+                        description:this.listMetaData.description,
                         column_definitions:JSON.stringify(this.listDefinition),
                         type:'nomal',
                         is_stared:false
@@ -241,6 +257,7 @@
                         result = await axios.put('/api/lists/' + this.listId, postData)
                     }else{ //新規
                         result = await axios.post('/api/lists',postData)
+                        this.$emit('input',result.data)
                     }
                     console.log(result.data)
                 }catch(error){
@@ -310,6 +327,12 @@
                 })
             },
             createNewList:function(){
+                this.listMetaData = {
+                    name:'NO TITLE',
+                    description:'Insert Description!'
+                }
+                this.listDefinition = []
+                this.listItems = []
                 this.listDefinition = [
                     {name:'no title',type:'Text',suffix:null,default:null}    
                 ]
@@ -336,11 +359,11 @@
     }
     #list-wrapper {
         display:flex;
+        flex-direction:column;
         #list {
             margin:1em;
             padding:0em 1em;
             .row {
-                
                 > span {
                     position:relative;
                     left:1.0em;

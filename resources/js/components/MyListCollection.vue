@@ -1,9 +1,12 @@
 <!--リスト一覧-->
 <template>
     <div>
+        <!--通知-->
+        <notice ref="notice" />
+        
         <!--詳細表示用モーダル-->
         <modal ref="detailModal" v-model="detailModal">
-            <my-list v-bind:listId="listId" v-bind:editMode="false" />
+            <my-list v-bind:userId="user_id" v-bind:listId="listId" v-bind:editMode="false" />
         </modal>
         
         <!--編集用モーダル-->
@@ -13,8 +16,9 @@
                 <i class="fas fa-arrow-circle-right fa-lg" v-on:click="addColumn()"></i>
                 <i class="fas fa-arrow-circle-down fa-lg" v-on:click="addItem()"></i>
                 <i class="far fa-save fa-lg" v-on:click="saveList()"></i>
+                <i class="fas fa-trash fa-lg" v-on:click="deleteList()"></i>
             </div>
-            <my-list v-bind:listId="listId" v-bind:editMode="true" ref="editingList" />
+            <my-list v-model="editedList" v-bind:userId="user_id" v-bind:listId="listId" v-bind:editMode="true" ref="editingList" />
         </modal>
         
         <!--リスト情報表示用モーダル-->
@@ -26,7 +30,7 @@
                 <p>{{myList.description}}</p>
                 <div class="icons">
                     <i class="far fa-list-alt fa-lg" v-on:click="showListDetail(myList.id)"></i>
-                    <i class="far fa-edit fa-lg" v-on:click="showEditModal(myList.id)"></i>
+                    <i class="far fa-edit fa-lg" v-on:click="showEditModal(myList.id,index)"></i>
                     <i class="fas fa-info-circle fa-lg"></i>
                 </div>
             </div>
@@ -46,13 +50,15 @@
                 detailModal:false,
                 editModal:false,
                 listId:null,
+                targetIndex:null,
+                editedList:{} //編集／新規のList（v-model）
             }  
         },
         props: {
             user_id:{
                 type:[Number,String],
                 default:null,
-                required:true
+                required:false
             }
             
         },
@@ -60,29 +66,48 @@
             detailModal:function(newVal,oldVal){
                 if(newVal == false && oldVal == true){
                     this.listId = null
+                    this.targetIndex = null
                 }
             },
             editModal:function(newVal,oldVal){
                 if(newVal == false && oldVal == true){
                     this.listId = null
+                    this.targetIndex = null
+                }
+            },
+            editedList:function(newVal,oldVal){
+                if(newVal && oldVal == {}){
+                    console.log('ついか')
+                    this.myLists.unshift(this.editedList)
                 }
             }
         },
-        created:async function(){
-            console.log(this.user_id)
-            let result = await axios.get('/api/mylists', {params:{user_id:this.user_id}})
-            this.myLists = result.data
+        created:function(){
+            this.getLists()
         },
         mounted:function(){
             
         },
         methods: {
+            //ユーザーIDを基準に全リストを取得
+            getLists:async function(){
+                let result = await axios.get('/api/mylists', {params:{user_id:this.user_id}})
+                this.myLists = result.data
+            },
+            //リストIDを基準に取得
+            getList:async function(id){
+                let result = await axios.get('/api/mylists/' + id)
+            },
+            updateLists:function(id,index){
+                let list =  this.getList(id)
+            },
             showListDetail:function(id){
                 this.listId = id
                 this.$refs.detailModal.openModal()
             },
-            showEditModal:function(id){
+            showEditModal:function(id,index){
                 this.listId = id
+                this.targetIndex = index
                 this.$refs.editModal.openModal()
             },
             addItem:function(){
@@ -96,8 +121,28 @@
             },
             showNewListModal:function(){
                 this.listId = null
+                this.editedList = {}
                 this.$refs.editingList.createNewList()
                 this.$refs.editModal.openModal()
+            },
+            deleteList:async function(){
+                let confirmResult = confirm('このリストを削除します。よろしいですか？')
+                if(!confirmResult)return
+                    
+                try{
+                    let result = await axios.delete('/api/lists/' + this.listId)
+                    if(result.data){
+                        this.$refs.notice.showNotice('リストを削除しました')
+                        this.myLists.splice(this.targetIndex,1)
+                        this.listId = null
+                        this.targetIndex = null
+                        this.$refs.editModal.closeModal()
+                    }
+                }catch(error){
+                    this.$refs.notice.showNotice('リストの削除に失敗しました')
+                    console.log(error)
+                }
+                
             }
         }
     }
@@ -119,6 +164,7 @@
     }
     #list-wrapper {
         display:flex;
+        flex-wrap:wrap;
         .list {
             display:flex;
             flex-direction:column;

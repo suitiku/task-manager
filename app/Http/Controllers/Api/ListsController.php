@@ -125,6 +125,6 @@ class ListsController extends Controller
     
     //ユーザーごとにリストコレクションを取得
     public function getListsCollectionByUserId(Request $request){
-        return MyList::where('user_id',$request->user_id)->get();
+        return MyList::where('user_id',$request->user_id)->orderBy('created_at','desc')->get();
     }
 }
