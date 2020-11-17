@@ -138,7 +138,7 @@
                 }
                 for(let item of this.listItems){
                     for(let column of item){
-                        if(!this.columnWidths[column.index] || this.columnWidths[column.index] < column.value.length){
+                        if(column.value && this.columnWidths[column.index] < column.value.length){
                             this.columnWidths.splice(column.index,1,column.value.length)
                         }
                     }
@@ -208,9 +208,11 @@
                 this.columnWidths[this.newColumn.index] = 0 //リセット
                 let maxWidth = 0
                 for(let item of this.listItems){
-                     maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length,maxWidth)
+                    let valueLength = item[this.newColumn.index].value ? item[this.newColumn.index].value.length : 0
+                    let suffixLength = this.newColumn.suffix ? this.newColumn.suffix.length : 0
+                     maxWidth = Math.max( valueLength + suffixLength, maxWidth)
                 }
-                maxWidth = Math.max(this.newColumn.name.length,maxWidth)
+                maxWidth = Math.max(this.newColumn.name.length, maxWidth)
                 this.columnWidths.splice(this.newColumn.index,1,maxWidth)
                 this.$refs.newColumnModal.closeModal()
             },

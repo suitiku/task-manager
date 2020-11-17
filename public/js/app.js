@@ -69160,9 +69160,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         for (var _iterator4 = item[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                             var _column = _step4.value;
 
-                            if (!this.columnWidths[_column.index] || this.columnWidths[_column.index] < _column.value.length) {
+                            if (_column.value && this.columnWidths[_column.index] < _column.value.length) {
                                 this.columnWidths.splice(_column.index, 1, _column.value.length);
                             }
+                            // if(!this.columnWidths[column.index] || this.columnWidths[column.index] < column.value.length){
+                            //     this.columnWidths.splice(column.index,1,column.value.length)
+                            // }
                         }
                     } catch (err) {
                         _didIteratorError4 = true;
@@ -69346,7 +69349,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator7 = this.listItems[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
                     var item = _step7.value;
 
-                    maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length, maxWidth);
+                    var valueLength = item[this.newColumn.index].value ? item[this.newColumn.index].value.length : 0;
+                    var suffixLength = this.newColumn.suffix ? this.newColumn.suffix.length : 0;
+                    maxWidth = Math.max(valueLength + suffixLength, maxWidth);
+                    //  maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length,maxWidth)
                 }
             } catch (err) {
                 _didIteratorError7 = true;
