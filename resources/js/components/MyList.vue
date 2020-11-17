@@ -188,12 +188,11 @@
                 let columnIndex = this.listDefinition.length
                 this.newColumn.index = columnIndex
                 this.listDefinition.push(this.newColumn)
-                let addColumn = {
-                    index:columnIndex,
-                    value:this.newColumn.default
-                }
-                for(let item of this.listItems){
-                    item.push(addColumn)
+                for(let index in this.listItems){
+                    this.listItems[index].push({
+                        index:columnIndex,
+                        value:this.newColumn.default
+                    })
                 }
                 //幅調整
                 let width = Math.max(this.newColumn.name.length,this.newColumn.default.length)

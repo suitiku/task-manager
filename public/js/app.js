@@ -69163,9 +69163,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             if (_column.value && this.columnWidths[_column.index] < _column.value.length) {
                                 this.columnWidths.splice(_column.index, 1, _column.value.length);
                             }
-                            // if(!this.columnWidths[column.index] || this.columnWidths[column.index] < column.value.length){
-                            //     this.columnWidths.splice(column.index,1,column.value.length)
-                            // }
                         }
                     } catch (err) {
                         _didIteratorError4 = true;
@@ -69300,36 +69297,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             var columnIndex = this.listDefinition.length;
             this.newColumn.index = columnIndex;
             this.listDefinition.push(this.newColumn);
-            var addColumn = {
-                index: columnIndex,
-                value: this.newColumn.default
-            };
-            var _iteratorNormalCompletion6 = true;
-            var _didIteratorError6 = false;
-            var _iteratorError6 = undefined;
-
-            try {
-                for (var _iterator6 = this.listItems[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var item = _step6.value;
-
-                    item.push(addColumn);
-                }
-                //幅調整
-            } catch (err) {
-                _didIteratorError6 = true;
-                _iteratorError6 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
-                        _iterator6.return();
-                    }
-                } finally {
-                    if (_didIteratorError6) {
-                        throw _iteratorError6;
-                    }
-                }
+            // let addColumn = {
+            //     index:columnIndex,
+            //     value:this.newColumn.default
+            // }
+            for (var index in this.listItems) {
+                this.listItems[index].push({
+                    index: columnIndex,
+                    value: this.newColumn.default
+                });
             }
-
+            //幅調整
             var width = Math.max(this.newColumn.name.length, this.newColumn.default.length);
             this.columnWidths.push(width);
         },
@@ -69341,30 +69319,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             //幅調整
             this.columnWidths[this.newColumn.index] = 0; //リセット
             var maxWidth = 0;
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator7 = this.listItems[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var item = _step7.value;
+                for (var _iterator6 = this.listItems[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var item = _step6.value;
 
                     var valueLength = item[this.newColumn.index].value ? item[this.newColumn.index].value.length : 0;
                     var suffixLength = this.newColumn.suffix ? this.newColumn.suffix.length : 0;
                     maxWidth = Math.max(valueLength + suffixLength, maxWidth);
-                    //  maxWidth = Math.max(item[this.newColumn.index].value.length + this.newColumn.suffix.length,maxWidth)
                 }
             } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
-                        _iterator7.return();
+                    if (!_iteratorNormalCompletion6 && _iterator6.return) {
+                        _iterator6.return();
                     }
                 } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -69502,27 +69479,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // インデックスでソート
         sortListIndex: function sortListIndex() {
             this.listItems = [];
-            var _iteratorNormalCompletion8 = true;
-            var _didIteratorError8 = false;
-            var _iteratorError8 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator8 = this.myList.my_list_items[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-                    var item = _step8.value;
+                for (var _iterator7 = this.myList.my_list_items[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var item = _step7.value;
 
                     this.listItems.push(JSON.parse(item.values));
                 }
             } catch (err) {
-                _didIteratorError8 = true;
-                _iteratorError8 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion8 && _iterator8.return) {
-                        _iterator8.return();
+                    if (!_iteratorNormalCompletion7 && _iterator7.return) {
+                        _iterator7.return();
                     }
                 } finally {
-                    if (_didIteratorError8) {
-                        throw _iteratorError8;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }
