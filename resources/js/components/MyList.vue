@@ -137,9 +137,9 @@
                     }
                 }
                 for(let item of this.listItems){
-                    for(let column of item){
-                        if(column.value && this.columnWidths[column.index] < column.value.length){
-                            this.columnWidths.splice(column.index,1,column.value.length)
+                    for(let index in item){
+                        if(item[index].value && this.columnWidths[index] < item[index].value.length){
+                            this.columnWidths.splice(index,1,item[index].value.length)
                         }
                     }
                 }
