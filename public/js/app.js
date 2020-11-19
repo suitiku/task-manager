@@ -68877,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    margin: 1em;\n    padding: 0em 1em;\n}\n#list-wrapper #list .row > span[data-v-33a634d6] {\n      position: relative;\n      left: 1.0em;\n}\n#list-wrapper #list span[data-v-33a634d6] {\n      display: inline-block;\n      padding: 0.5em;\n}\n#list-wrapper #list .column[data-v-33a634d6] {\n      cursor: pointer;\n}\n#list-wrapper #list .selected[data-v-33a634d6] {\n      background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .selected-reverse[data-v-33a634d6] {\n      background-color: rgba(0, 0, 255, 0.5);\n}\n#list-wrapper #list i[data-v-33a634d6] {\n      position: relative;\n      left: -1.0em;\n      top: 0.5em;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        cursor: pointer;\n}\n#list-wrapper #list .row .selected[data-v-33a634d6] {\n        background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row .selected-reverse[data-v-33a634d6] {\n        background-color: rgba(0, 0, 255, 0.5);\n}\n\n/*装飾用クラス*/\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n.highlight-odd .row-data div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n.invisible[data-v-33a634d6] {\n  visibility: hidden;\n}\n", ""]);
 
 // exports
 
@@ -68896,6 +68896,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69020,6 +69036,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     mounted: function mounted() {},
     computed: {},
     methods: {
+        initList: function initList() {
+            this.listDefinition = [];
+            this.listItems = [];
+        },
         getList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
                 var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
@@ -69112,10 +69132,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return getList;
         }(),
-        initList: function initList() {
-            this.listDefinition = [];
-            this.listItems = [];
-        },
         getColumnWidths: function getColumnWidths() {
             // 各カラムの最大幅を求める
             var _iteratorNormalCompletion2 = true;
@@ -69154,7 +69170,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     var item = _step3.value;
 
                     for (var index in item) {
-                        console.log(this.columnWidths[index], item[index].value.length);
                         if (item[index].value && this.columnWidths[index] < item[index].value.length) {
                             this.columnWidths.splice(index, 1, item[index].value.length);
                         }
@@ -69177,6 +69192,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         setColumnWidth: function setColumnWidth(index) {
             return { width: this.columnWidths[index] + 2 + 'em' };
+        },
+        changeListAppearance: function changeListAppearance(className) {
+            this.$refs.list.classList.add(className);
         },
         addItem: function addItem() {
             var addItem = [];
@@ -69745,49 +69763,103 @@ var render = function() {
                 [_vm._v(_vm._s(_vm.listMetaData.description))]
               )
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { attrs: { id: "list" } },
-          [
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.listDefinition, function(columnName, index) {
-                return _c(
-                  "span",
-                  {
-                    ref: "columns",
-                    refInFor: true,
-                    staticClass: "column",
-                    style: _vm.setColumnWidth(index),
-                    on: {
-                      click: function($event) {
-                        return _vm.clickColumn(index)
-                      }
+          : _c("div", { staticClass: "fixed right" }, [
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("simple-border")
                     }
-                  },
-                  [_vm._v(_vm._s(columnName.name))]
-                )
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _vm._l(_vm.listItems, function(item, index) {
+                  }
+                },
+                [_vm._v("枠線を付ける")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("simple-border-bottom")
+                    }
+                  }
+                },
+                [_vm._v("下線を付ける")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("highlight-odd")
+                    }
+                  }
+                },
+                [_vm._v("交互にハイライト")]
+              )
+            ]),
+        _vm._v(" "),
+        _c("div", { ref: "list", attrs: { id: "list" } }, [
+          _c(
+            "div",
+            { staticClass: "row-meta" },
+            _vm._l(_vm.listItems.length + 1, function(index) {
               return _c("div", { staticClass: "row" }, [
-                _vm.editMode
-                  ? _c("i", {
-                      staticClass: "fas fa-minus-circle rotate",
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteItem(index)
-                        }
-                      }
-                    })
-                  : _c("i", [_vm._v(_vm._s(index))]),
+                index == 1
+                  ? _c("div")
+                  : _c("div", [
+                      _vm.editMode
+                        ? _c("i", {
+                            staticClass: "fas fa-minus-circle rotate",
+                            on: {
+                              click: function($event) {
+                                return _vm.deleteItem(index - 2)
+                              }
+                            }
+                          })
+                        : _c("i", [_vm._v(_vm._s(index - 1))])
+                    ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row-data" },
+            _vm._l(_vm.listItems, function(item, index) {
+              return _c("div", [
+                index == 0
+                  ? _c(
+                      "div",
+                      { staticClass: "row" },
+                      _vm._l(_vm.listDefinition, function(
+                        columnName,
+                        columnIndex
+                      ) {
+                        return _c(
+                          "span",
+                          {
+                            ref: "columns",
+                            refInFor: true,
+                            staticClass: "column",
+                            style: _vm.setColumnWidth(columnIndex),
+                            on: {
+                              click: function($event) {
+                                return _vm.clickColumn(columnIndex)
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(columnName.name))]
+                        )
+                      }),
+                      0
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
-                _c("div", [
+                _c("div", { staticClass: "row" }, [
                   _vm.editMode
                     ? _c(
                         "div",
@@ -69842,10 +69914,10 @@ var render = function() {
                       )
                 ])
               ])
-            })
-          ],
-          2
-        )
+            }),
+            0
+          )
+        ])
       ])
     ],
     1
@@ -70045,7 +70117,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         editedList: function editedList(newVal, oldVal) {
             if (this.editedList.id) {
-                console.log('ついか');
                 this.myLists.unshift(this.editedList);
             }
         }

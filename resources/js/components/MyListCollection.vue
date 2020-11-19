@@ -77,7 +77,6 @@
             },
             editedList:function(newVal,oldVal){
                 if(this.editedList.id){
-                    console.log('ついか')
                     this.myLists.unshift(this.editedList)
                 }
             }

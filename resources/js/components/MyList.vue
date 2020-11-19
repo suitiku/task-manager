@@ -32,20 +32,36 @@
                 <input type="text" v-model="listMetaData.name" />
                 <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
             </div>
+            <!--リスト外見変更-->
+            <div v-else class="fixed right">
+                <button v-on:click="changeListAppearance('simple-border')">枠線を付ける</button>
+                <button v-on:click="changeListAppearance('simple-border-bottom')">下線を付ける</button>
+                <button v-on:click="changeListAppearance('highlight-odd')">交互にハイライト</button>
+            </div>
+            
             <!--リスト本体-->
-            <div id="list">
-                <div class="row">
-                    <span v-for="(columnName,index) in listDefinition" ref="columns" v-bind:style="setColumnWidth(index)" v-on:click="clickColumn(index)" class="column">{{columnName.name}}</span>
-                </div>
-                <div v-for="(item,index) in listItems" class="row">
-                    <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index)"></i>
-                    <i v-else>{{index}}</i>
-                    <div>
-                        <div v-if="editMode">
-                            <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
-                        </div>
+            <div id="list" ref="list">
+                <div class="row-meta">
+                    <div v-for="index in listItems.length + 1" class="row">
+                        <div v-if="index == 1"></div>
                         <div v-else>
-                            <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                            <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index - 2)"></i>
+                            <i v-else>{{index - 1}}</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-data">
+                    <div v-for="(item,index) in listItems">
+                        <div v-if="index == 0" class="row">
+                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" v-on:click="clickColumn(columnIndex)" class="column">{{columnName.name}}</span>
+                        </div>
+                        <div class="row">
+                            <div v-if="editMode">
+                                <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+                            </div>
+                            <div v-else>
+                                <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,6 +122,10 @@
             
         },
         methods: {
+            initList:function(){
+                this.listDefinition = []
+                this.listItems = []
+            },
             getList:async function(){
                 if(this.listId){
                     this.initList()
@@ -125,10 +145,6 @@
                     this.initList()
                 }
             },
-            initList:function(){
-                this.listDefinition = []
-                this.listItems = []
-            },
             getColumnWidths:function(){
                 // 各カラムの最大幅を求める
                 for(let column of this.listDefinition){
@@ -146,6 +162,9 @@
             },
             setColumnWidth:function(index){
                 return {width:this.columnWidths[index] + 2 + 'em'}
+            },
+            changeListAppearance:function(className){
+                this.$refs.list.classList.add(className)
             },
             addItem:function(){
                 let addItem = []
@@ -358,37 +377,82 @@
             transform:rotate(360deg);
         }
     }
+    
     #list-wrapper {
         display:flex;
         flex-direction:column;
         #list {
+            display:flex;
             margin:1em;
-            padding:0em 1em;
-            .row {
-                > span {
-                    position:relative;
-                    left:1.0em;
+            .row-meta {
+                margin-right:1.0em;
+                .row {
+                    div {
+                        height:100%;
+                        i {
+                            display:inline-block;
+                            height:100%;
+                            padding:0.2em;
+                        }
+                    }
                 }
             }
-            span {
-                display:inline-block;
-                padding:0.5em;
+            .row-data {
+                
             }
-            .column {
-                cursor:pointer;
-            }
-            .selected {
-                background-color:rgba(orange,0.5);
-            }
-            .selected-reverse {
-                background-color:rgba(blue,0.5);
-            }
-            i {
-                position:relative;
-                left:-1.0em;
-                top:0.5em;
+            .row {
+                margin:0em 0em;
+                padding:0em 0em;
+                min-height:1.8em;
+                
+                div {
+                    display:flex;
+                    span {
+                        display:inline-block;
+                        height:100%;
+                        margin:0em 0em;
+                        padding:0.2em;
+                        
+                    }
+                    input {
+                        display:inline-block;
+                        height:calc(100% - 2px);
+                        margin:0em 0em;
+                        padding:0em;
+                    }
+                }
+                
+                .column {
+                    cursor:pointer;
+                }
+                .selected {
+                    background-color:rgba(orange,0.5);
+                }
+                .selected-reverse {
+                    background-color:rgba(blue,0.5);
+                }
             }
         }
+    }
+    
+    /*装飾用クラス*/
+    .simple-border {
+        span {
+            border:1px solid grey;
+        }
+    }
+    .simple-border-bottom {
+        .row {
+            border-bottom:1px solid grey;
+        }
+    }
+    .highlight-odd {
+        .row-data div:nth-child(even){
+            background-color:rgba(orange,0.5)
+        }
+    }
+    .invisible {
+        visibility:hidden;
     }
     
 </style>
