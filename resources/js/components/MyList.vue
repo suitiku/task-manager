@@ -33,10 +33,11 @@
                 <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
             </div>
             <!--リスト外見変更-->
-            <div v-else class="fixed right">
-                <button v-on:click="changeListAppearance('simple-border')">枠線を付ける</button>
-                <button v-on:click="changeListAppearance('simple-border-bottom')">下線を付ける</button>
-                <button v-on:click="changeListAppearance('highlight-odd')">交互にハイライト</button>
+            <div v-else class="fixed-bar-right">
+                <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
+                <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>
+                <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
+                <i class="fas fa-list-ol fa-lg" v-on:click="changeListAppearance('meta-visible')"></i>
             </div>
             
             <!--リスト本体-->
@@ -141,6 +142,12 @@
                         this.listItems.push(JSON.parse(item.values))
                     }
                     this.getColumnWidths()
+                    
+                    //閲覧モードのときはメタデータを不可視化
+                    if(!this.editMode){
+                        this.$refs.list.classList.add('meta-invisible')
+                    }
+                    
                 }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
                     this.initList()
                 }
@@ -164,7 +171,12 @@
                 return {width:this.columnWidths[index] + 2 + 'em'}
             },
             changeListAppearance:function(className){
-                this.$refs.list.classList.add(className)
+                if(event.target.classList.contains('selected')){
+                    this.$refs.list.classList.remove(className)
+                }else{
+                    this.$refs.list.classList.add(className)
+                }
+                event.target.classList.toggle('selected')
             },
             addItem:function(){
                 let addItem = []
@@ -435,24 +447,77 @@
         }
     }
     
+    /*外見変更用のコントロールパネル（右固定）*/
+    .fixed-bar-right {
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        position:fixed;
+        right:2em;
+        width:5em;
+        top:3em;
+        z-index:10;
+        border:1px solid white;
+        background-color:white;
+        border-radius:0.2em;
+        i {
+            color:grey;
+            display:inline-block;
+            margin:0.5em;
+            cursor:pointer;
+            transition:all 0.2s ease;
+        }
+        i:hover {
+            text-shadow: 0 0 5px orange;
+        }
+        .selected{
+            text-shadow: 0 0 5px orange;
+        }
+    }
+    
     /*装飾用クラス*/
+    /*ボーダー系*/
     .simple-border {
+        .row-meta {
+            .row {
+                border:1px solid transparent;
+            }
+        }
         span {
             border:1px solid grey;
         }
     }
     .simple-border-bottom {
-        .row {
-            border-bottom:1px solid grey;
+        .row-meta {
+            .row {
+                border-bottom:1px solid transparent;
+            }
+        }
+        .row-data{
+            .row {
+                border-bottom:1px solid grey;
+            }
         }
     }
+    
+    /*ハイライト系*/
     .highlight-odd {
-        .row-data div:nth-child(even){
+        .row-data > div:nth-child(even){
             background-color:rgba(orange,0.5)
         }
     }
-    .invisible {
-        visibility:hidden;
+    
+    /*行頭系*/
+    .meta-invisible {
+        .row-meta {
+            visibility:hidden;
+        }
+    }
+    .meta-visible {
+        .row-meta{
+            visibility:visible;
+        }
     }
     
 </style>
