@@ -54,7 +54,9 @@
                 <div class="row-data">
                     <div v-for="(item,index) in listItems">
                         <div v-if="index == 0" class="row">
-                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" v-on:click="clickColumn(columnIndex)" class="column">{{columnName.name}}</span>
+                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" v-on:click="clickColumn(columnIndex)" class="column">
+                                {{columnName.name}}
+                            </span>
                         </div>
                         <div class="row">
                             <div v-if="editMode">
@@ -168,7 +170,7 @@
                 }
             },
             setColumnWidth:function(index){
-                return {width:this.columnWidths[index] + 2 + 'em'}
+                return {width:this.columnWidths[index] + 2.5 + 'em'}
             },
             changeListAppearance:function(className){
                 if(event.target.classList.contains('selected')){
@@ -398,6 +400,7 @@
             margin:1em;
             .row-meta {
                 margin-right:1.0em;
+                padding-top:0.4em;
                 .row {
                     div {
                         height:100%;
@@ -436,12 +439,17 @@
                 
                 .column {
                     cursor:pointer;
+                    padding:0.2em;
                 }
-                .selected {
-                    background-color:rgba(orange,0.5);
+                .column.selected::after {
+                    content:"　\f162";
+                    font-family: FontAwesome;
+                    color:orange;
                 }
-                .selected-reverse {
-                    background-color:rgba(blue,0.5);
+                .column.selected-reverse::after {
+                    content:"　\f163";
+                    font-family: FontAwesome;
+                    color:blue;
                 }
             }
         }
