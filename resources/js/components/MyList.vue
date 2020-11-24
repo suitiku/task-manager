@@ -422,12 +422,15 @@
                 
                 div {
                     display:flex;
+                    transition:all 0.2s ease;
+                    &:hover {
+                        background-color:rgba(orange,0.5);
+                    }
                     span {
                         display:inline-block;
                         height:100%;
                         margin:0em 0em;
                         padding:0.2em;
-                        
                     }
                     input {
                         display:inline-block;
