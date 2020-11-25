@@ -40,6 +40,9 @@
                 <i class="fas fa-list-ol fa-lg" v-on:click="changeListAppearance('meta-visible')"></i>
             </div>
             
+            <!--絞り込み検索窓-->
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRows()" placeholder="しぼりこみ">
+            
             <!--リスト本体-->
             <div id="list" ref="list">
                 <div class="row-meta">
@@ -82,6 +85,8 @@
                 listMetaData:{}, //タイトルや説明など
                 listDefinition:[], //列の定義
                 listItems:[], //行
+                originalListItems:[], //ベースとなる行リスト
+                sortedListItems:[], //ソートされた行リストを保存
                 columnWidths:[],
                 newColumnModal:false,
                 newColumn:{
@@ -92,6 +97,7 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
+                filterWord:'' //フィルター用
             }  
         },
         props: {
@@ -128,6 +134,7 @@
             initList:function(){
                 this.listDefinition = []
                 this.listItems = []
+                this.sortedListItems = []
             },
             getList:async function(){
                 if(this.listId){
@@ -142,14 +149,15 @@
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
                         this.listItems.push(JSON.parse(item.values))
+                        this.sortedListItems.push(JSON.parse(item.values))
                     }
+                    
                     this.getColumnWidths()
                     
                     //閲覧モードのときはメタデータを不可視化
                     if(!this.editMode){
                         this.$refs.list.classList.add('meta-invisible')
                     }
-                    
                 }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
                     this.initList()
                 }
@@ -170,7 +178,7 @@
                 }
             },
             setColumnWidth:function(index){
-                return {width:this.columnWidths[index] + 2.5 + 'em'}
+                return {width:this.columnWidths[index] + 3.0 + 'em'}
             },
             changeListAppearance:function(className){
                 if(event.target.classList.contains('selected')){
@@ -336,11 +344,13 @@
                 for(let item of this.myList.my_list_items){
                     this.listItems.push(JSON.parse(item.values))
                 }
+                this.sortedListItems = this.listItems
+                this.filterRows()
             },
             // ソート
             sortList:function(columnIndex){ //昇順
                 let vue = this
-                this.listItems.sort(function(itemA,itemB){
+                this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
                     if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
                         return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1
@@ -348,10 +358,12 @@
                         return (Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1);
                     }
                 })
+                // this.sortedListItems = this.listItems
+                this.filterRows()
             },
             sortListReverse:function(columnIndex){ //降順
                 let vue = this
-                this.listItems.sort(function(itemA,itemB){
+                this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
                     if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
                         return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1
@@ -359,6 +371,8 @@
                         return (Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1);
                     }
                 })
+                // this.sortedListItems = this.listItems
+                this.filterRows()
             },
             createNewList:function(){
                 this.listMetaData = {
@@ -371,6 +385,18 @@
                     {name:'no title',type:'Text',suffix:null,default:null}    
                 ]
                 this.addItem()
+            },
+            filterRows:function(){
+                this.listItems = []
+                if(this.filterWord == ''){
+                    this.listItems = this.sortedListItems
+                }
+                let result = this.sortedListItems.filter(item => {
+                    return item.some(column => {
+                        return String(column.value).indexOf(this.filterWord) != -1
+                    })
+                })
+                this.listItems = result
             }
         }
     }

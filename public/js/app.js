@@ -68971,6 +68971,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68980,6 +68983,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             listMetaData: {}, //タイトルや説明など
             listDefinition: [], //列の定義
             listItems: [], //行
+            originalListItems: [], //ベースとなる行リスト
+            sortedListItems: [], //ソートされた行リストを保存
             columnWidths: [],
             newColumnModal: false,
             newColumn: {
@@ -68989,7 +68994,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 suffix: '',
                 default: ''
             },
-            sortedIndex: null //現在ソートされているカラムのインデックスを格納
+            sortedIndex: null, //現在ソートされているカラムのインデックスを格納
+            filterWord: '' //フィルター用
         };
     },
     props: {
@@ -69042,6 +69048,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         initList: function initList() {
             this.listDefinition = [];
             this.listItems = [];
+            this.sortedListItems = [];
         },
         getList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -69078,7 +69085,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     item = _step.value;
 
                                     this.listItems.push(JSON.parse(item.values));
+                                    this.sortedListItems.push(JSON.parse(item.values));
                                 }
+
                                 _context2.next = 19;
                                 break;
 
@@ -69119,7 +69128,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (!this.editMode) {
                                     this.$refs.list.classList.add('meta-invisible');
                                 }
-
                                 _context2.next = 32;
                                 break;
 
@@ -69200,7 +69208,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
         },
         setColumnWidth: function setColumnWidth(index) {
-            return { width: this.columnWidths[index] + 2.5 + 'em' };
+            return { width: this.columnWidths[index] + 3.0 + 'em' };
         },
         changeListAppearance: function changeListAppearance(className) {
             if (event.target.classList.contains('selected')) {
@@ -69512,12 +69520,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     }
                 }
             }
+
+            this.sortedListItems = this.listItems;
+            this.filterRows();
         },
         // ソート
         sortList: function sortList(columnIndex) {
             //昇順
             var vue = this;
-            this.listItems.sort(function (itemA, itemB) {
+            this.sortedListItems.sort(function (itemA, itemB) {
                 //数値以外
                 if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
                     return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1;
@@ -69526,11 +69537,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1;
                 }
             });
+            // this.sortedListItems = this.listItems
+            this.filterRows();
         },
         sortListReverse: function sortListReverse(columnIndex) {
             //降順
             var vue = this;
-            this.listItems.sort(function (itemA, itemB) {
+            this.sortedListItems.sort(function (itemA, itemB) {
                 //数値以外
                 if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
                     return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1;
@@ -69539,6 +69552,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1;
                 }
             });
+            // this.sortedListItems = this.listItems
+            this.filterRows();
         },
         createNewList: function createNewList() {
             this.listMetaData = {
@@ -69549,6 +69564,20 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems = [];
             this.listDefinition = [{ name: 'no title', type: 'Text', suffix: null, default: null }];
             this.addItem();
+        },
+        filterRows: function filterRows() {
+            var _this = this;
+
+            this.listItems = [];
+            if (this.filterWord == '') {
+                this.listItems = this.sortedListItems;
+            }
+            var result = this.sortedListItems.filter(function (item) {
+                return item.some(function (column) {
+                    return String(column.value).indexOf(_this.filterWord) != -1;
+                });
+            });
+            this.listItems = result;
         }
     }
 });
@@ -69814,6 +69843,34 @@ var render = function() {
                 }
               })
             ]),
+        _vm._v(" "),
+        !_vm.editMode
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.filterWord,
+                  expression: "filterWord"
+                }
+              ],
+              attrs: { type: "text", placeholder: "しぼりこみ" },
+              domProps: { value: _vm.filterWord },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.filterWord = $event.target.value
+                  },
+                  function($event) {
+                    return _vm.filterRows()
+                  }
+                ]
+              }
+            })
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(
