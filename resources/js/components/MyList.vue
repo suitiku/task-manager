@@ -57,8 +57,9 @@
                 <div class="row-data">
                     <div v-for="(item,index) in listItems">
                         <div v-if="index == 0" class="row">
-                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" v-on:click="clickColumn(columnIndex)" class="column">
-                                {{columnName.name}}
+                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">
+                                <span v-on:dblclick="showFilterInuput(columnIndex)">{{columnName.name}}</span>
+                                <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>
                             </span>
                         </div>
                         <div class="row">
@@ -97,6 +98,7 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
+                // sortState:null, //現在のソートの状態
                 filterWord:'' //フィルター用
             }  
         },
@@ -316,26 +318,29 @@
                     this.newColumn.suffix = this.listDefinition[index].suffix
                     this.newColumn.default = this.listDefinition[index].default
                     this.$refs.newColumnModal.openModal()
-                }else{ //閲覧モード（並び替え）
-                    //カラムを選択（昇順）→降順→選択解除で推移
-                    if(this.sortedIndex == null || Number(this.sortedIndex) != index){
-                        this.sortList(index)
-                        if(this.$refs.columns[this.sortedIndex]){
-                            this.$refs.columns[this.sortedIndex].classList = 'column'
-                        }
-                        event.target.classList.add('selected')
-                        this.sortedIndex = index
-                    }else if(event.target.classList.contains('selected-reverse')){
-                        this.sortListIndex()
-                        event.target.classList.remove('selected')
-                        event.target.classList.remove('selected-reverse')
-                        this.sortedIndex = null
-                    }else if(Number(this.sortedIndex) == index){
-                        this.sortListReverse(index)
-                        event.target.classList.remove('selected')
-                        event.target.classList.add('selected-reverse')
-                    }
-                    
+                }
+            },
+            // ソートボタンをクリック
+            clickSortButton:function(columnIndex){
+                // 他のカラムが選択されていたらリセット
+                if(this.sortedIndex != null && this.sortedIndex != columnIndex){
+                    this.$refs.columns[this.sortedIndex].children[1].className = 'fas fa-sort-amount-down-alt'
+                    this.sortedIndex = null
+                }
+                
+                if(this.sortedIndex == null){
+                    event.target.classList.add('selected')
+                    this.sortedIndex = columnIndex
+                    this.sortListASC(columnIndex)
+                }else if(event.target.classList.contains('selected')){
+                    event.target.classList.remove('fa-sort-amount-down-alt','selected')
+                    event.target.classList.add('fa-sort-amount-down','selected-alt')
+                    this.sortListDESC(columnIndex)
+                }else if(event.target.classList.contains('selected-alt')){
+                    event.target.classList.add('fa-sort-amount-down-alt')
+                    event.target.classList.remove('fa-sort-amount-down','selected-alt')
+                    this.sortedIndex = null
+                    this.sortListIndex()
                 }
             },
             // インデックスでソート
@@ -348,7 +353,7 @@
                 this.filterRows()
             },
             // ソート
-            sortList:function(columnIndex){ //昇順
+            sortListASC:function(columnIndex){ //昇順
                 let vue = this
                 this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
@@ -361,7 +366,7 @@
                 // this.sortedListItems = this.listItems
                 this.filterRows()
             },
-            sortListReverse:function(columnIndex){ //降順
+            sortListDESC:function(columnIndex){ //降順
                 let vue = this
                 this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
@@ -397,6 +402,9 @@
                     })
                 })
                 this.listItems = result
+            },
+            showFilterInuput:function(columnIndex){
+                console.log(columnIndex)
             }
         }
     }
@@ -467,19 +475,44 @@
                 }
                 
                 .column {
+                    user-select:none;
                     cursor:pointer;
-                    padding:0.2em;
+                    padding:0.3em 1.2em 0.3em 0.3em;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    span {
+                        border:none;
+                    }
+                    i {
+                        display:inline-block;
+                        height:1em;
+                        vertical-align: middle;
+                        color:grey;
+                        opacity:0.6;
+                    }
+                    i:hover {
+                        color:orange;
+                    }
+                    i.selected {
+                        color:orange;
+                        opacity:1.0;
+                    }
+                    i.selected-alt {
+                        color:blue;
+                        opacity:1.0;
+                    }
                 }
-                .column.selected::after {
-                    content:"　\f162";
-                    font-family: FontAwesome;
-                    color:orange;
-                }
-                .column.selected-reverse::after {
-                    content:"　\f163";
-                    font-family: FontAwesome;
-                    color:blue;
-                }
+                /*.column.selected::after {*/
+                /*    content:"　\f162";*/
+                /*    font-family: FontAwesome;*/
+                /*    color:orange;*/
+                /*}*/
+                /*.column.selected-reverse::after {*/
+                /*    content:"　\f163";*/
+                /*    font-family: FontAwesome;*/
+                /*    color:blue;*/
+                /*}*/
             }
         }
     }
@@ -554,6 +587,15 @@
     .meta-visible {
         .row-meta{
             visibility:visible;
+        }
+    }
+    
+    /*インターフェース系*/
+    .invisible-sort {
+        .column {
+            i {
+                display:none;
+            }
         }
     }
     

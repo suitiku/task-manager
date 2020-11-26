@@ -68877,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        cursor: pointer;\n        padding: 0.2em;\n}\n#list-wrapper #list .row .column.selected[data-v-33a634d6]::after {\n        content: \"\\3000\\F162\";\n        font-family: FontAwesome;\n        color: orange;\n}\n#list-wrapper #list .row .column.selected-reverse[data-v-33a634d6]::after {\n        content: \"\\3000\\F163\";\n        font-family: FontAwesome;\n        color: blue;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n}\n.fixed-bar-right i[data-v-33a634d6] {\n    color: grey;\n    display: inline-block;\n    margin: 0.5em;\n    cursor: pointer;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n}\n.fixed-bar-right i[data-v-33a634d6]:hover {\n    text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .selected[data-v-33a634d6] {\n    text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n      /*.column.selected::after {*/\n      /*    content:\"　\\f162\";*/\n      /*    font-family: FontAwesome;*/\n      /*    color:orange;*/\n      /*}*/\n      /*.column.selected-reverse::after {*/\n      /*    content:\"　\\f163\";*/\n      /*    font-family: FontAwesome;*/\n      /*    color:blue;*/\n      /*}*/\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n}\n.fixed-bar-right i[data-v-33a634d6] {\n    color: grey;\n    display: inline-block;\n    margin: 0.5em;\n    cursor: pointer;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n}\n.fixed-bar-right i[data-v-33a634d6]:hover {\n    text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .selected[data-v-33a634d6] {\n    text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -68896,6 +68896,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -68995,6 +68996,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 default: ''
             },
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
+            // sortState:null, //現在のソートの状態
             filterWord: '' //フィルター用
         };
     },
@@ -69471,26 +69473,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.newColumn.suffix = this.listDefinition[index].suffix;
                 this.newColumn.default = this.listDefinition[index].default;
                 this.$refs.newColumnModal.openModal();
-            } else {
-                //閲覧モード（並び替え）
-                //カラムを選択（昇順）→降順→選択解除で推移
-                if (this.sortedIndex == null || Number(this.sortedIndex) != index) {
-                    this.sortList(index);
-                    if (this.$refs.columns[this.sortedIndex]) {
-                        this.$refs.columns[this.sortedIndex].classList = 'column';
-                    }
-                    event.target.classList.add('selected');
-                    this.sortedIndex = index;
-                } else if (event.target.classList.contains('selected-reverse')) {
-                    this.sortListIndex();
-                    event.target.classList.remove('selected');
-                    event.target.classList.remove('selected-reverse');
-                    this.sortedIndex = null;
-                } else if (Number(this.sortedIndex) == index) {
-                    this.sortListReverse(index);
-                    event.target.classList.remove('selected');
-                    event.target.classList.add('selected-reverse');
-                }
+            }
+        },
+        // ソートボタンをクリック
+        clickSortButton: function clickSortButton(columnIndex) {
+            // 他のカラムが選択されていたらリセット
+            if (this.sortedIndex != null && this.sortedIndex != columnIndex) {
+                this.$refs.columns[this.sortedIndex].children[1].className = 'fas fa-sort-amount-down-alt';
+                this.sortedIndex = null;
+            }
+
+            if (this.sortedIndex == null) {
+                event.target.classList.add('selected');
+                this.sortedIndex = columnIndex;
+                this.sortListASC(columnIndex);
+            } else if (event.target.classList.contains('selected')) {
+                event.target.classList.remove('fa-sort-amount-down-alt', 'selected');
+                event.target.classList.add('fa-sort-amount-down', 'selected-alt');
+                this.sortListDESC(columnIndex);
+            } else if (event.target.classList.contains('selected-alt')) {
+                event.target.classList.add('fa-sort-amount-down-alt');
+                event.target.classList.remove('fa-sort-amount-down', 'selected-alt');
+                this.sortedIndex = null;
+                this.sortListIndex();
             }
         },
         // インデックスでソート
@@ -69525,7 +69530,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.filterRows();
         },
         // ソート
-        sortList: function sortList(columnIndex) {
+        sortListASC: function sortListASC(columnIndex) {
             //昇順
             var vue = this;
             this.sortedListItems.sort(function (itemA, itemB) {
@@ -69540,7 +69545,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             // this.sortedListItems = this.listItems
             this.filterRows();
         },
-        sortListReverse: function sortListReverse(columnIndex) {
+        sortListDESC: function sortListDESC(columnIndex) {
             //降順
             var vue = this;
             this.sortedListItems.sort(function (itemA, itemB) {
@@ -69578,6 +69583,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 });
             });
             this.listItems = result;
+        },
+        showFilterInuput: function showFilterInuput(columnIndex) {
+            console.log(columnIndex);
         }
     }
 });
@@ -69916,19 +69924,29 @@ var render = function() {
                             ref: "columns",
                             refInFor: true,
                             staticClass: "column",
-                            style: _vm.setColumnWidth(columnIndex),
-                            on: {
-                              click: function($event) {
-                                return _vm.clickColumn(columnIndex)
-                              }
-                            }
+                            style: _vm.setColumnWidth(columnIndex)
                           },
                           [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(columnName.name) +
-                                "\n                        "
-                            )
+                            _c(
+                              "span",
+                              {
+                                on: {
+                                  dblclick: function($event) {
+                                    return _vm.showFilterInuput(columnIndex)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(columnName.name))]
+                            ),
+                            _vm._v(" "),
+                            _c("i", {
+                              staticClass: "fas fa-sort-amount-down-alt",
+                              on: {
+                                click: function($event) {
+                                  return _vm.clickSortButton(columnIndex)
+                                }
+                              }
+                            })
                           ]
                         )
                       }),
