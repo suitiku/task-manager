@@ -68877,7 +68877,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n      /*.column.selected::after {*/\n      /*    content:\"　\\f162\";*/\n      /*    font-family: FontAwesome;*/\n      /*    color:orange;*/\n      /*}*/\n      /*.column.selected-reverse::after {*/\n      /*    content:\"　\\f163\";*/\n      /*    font-family: FontAwesome;*/\n      /*    color:blue;*/\n      /*}*/\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n}\n.fixed-bar-right i[data-v-33a634d6] {\n    color: grey;\n    display: inline-block;\n    margin: 0.5em;\n    cursor: pointer;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n}\n.fixed-bar-right i[data-v-33a634d6]:hover {\n    text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .selected[data-v-33a634d6] {\n    text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n.filter-window[data-v-33a634d6] {\n  visibility: hidden;\n  position: relative;\n  width: 10em;\n  height: 2em;\n  padding: 0.2em;\n  border: 2px solid grey;\n  border-radius: 0.5em;\n  background-color: grey;\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n}\n.filter-window.visible[data-v-33a634d6] {\n    visibility: visible;\n}\n.filter-window input[data-v-33a634d6] {\n    width: 100%;\n    border-radius: 0.5em;\n    /*background-color:grey;*/\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n}\n.fixed-bar-right i[data-v-33a634d6] {\n    color: grey;\n    display: inline-block;\n    margin: 0.5em;\n    cursor: pointer;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n}\n.fixed-bar-right i[data-v-33a634d6]:hover {\n    text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .selected[data-v-33a634d6] {\n    text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -68896,6 +68896,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -68996,8 +69000,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 default: ''
             },
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
-            // sortState:null, //現在のソートの状態
-            filterWord: '' //フィルター用
+            filterWord: '', //フィルター用
+            filterIndex: null, //フィルターされているカラムのインデックス
+            initialPositionLeft: 0 //カラム別フィルターの移動位置記憶用
         };
     },
     props: {
@@ -69585,8 +69590,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems = result;
         },
         showFilterInuput: function showFilterInuput(columnIndex) {
-            console.log(columnIndex);
-        }
+            if (this.filterIndex == null) {
+                // 表示位置を計算
+                this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20;
+                // let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.$refs.filterWindow.offsetLeft -20
+                var filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft;
+                this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px';
+                this.$refs.filterWindow.classList.add('visible');
+                this.filterIndex = columnIndex;
+                console.log(filterWindowLeftPosition);
+            } else if (this.filterIndex == columnIndex) {
+                //要素を不可視化
+                this.$refs.filterWindow.classList.remove('visible');
+                this.$refs.filterWindow.style.left = '0px';
+                this.filterIndex = null;
+            } else {
+                var _filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft;
+                console.log(this.initialPositionLeft);
+                this.$refs.filterWindow.style.left = _filterWindowLeftPosition + 'px';
+                this.filterIndex = columnIndex;
+            }
+        },
+        getInputLeft: function getInputLeft() {}
     }
 });
 
@@ -69879,6 +69904,10 @@ var render = function() {
               }
             })
           : _vm._e(),
+        _vm._v(" "),
+        _c("div", { ref: "filterWindow", staticClass: "filter-window" }, [
+          _c("input", { attrs: { type: "text" } })
+        ]),
         _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(

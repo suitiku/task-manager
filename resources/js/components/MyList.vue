@@ -24,7 +24,6 @@
             </div>
         </modal>
         
-        
         <!--リスト表示部-->
         <div id="list-wrapper">
             <!--メタデータ編集部分-->
@@ -43,6 +42,10 @@
             <!--絞り込み検索窓-->
             <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRows()" placeholder="しぼりこみ">
             
+            <!--カラムごとの絞り込みポップアップ-->
+            <div class="filter-window" ref="filterWindow">
+                <input type="text" >
+            </div>
             <!--リスト本体-->
             <div id="list" ref="list">
                 <div class="row-meta">
@@ -57,6 +60,7 @@
                 <div class="row-data">
                     <div v-for="(item,index) in listItems">
                         <div v-if="index == 0" class="row">
+                            <!--カラム表示-->
                             <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">
                                 <span v-on:dblclick="showFilterInuput(columnIndex)">{{columnName.name}}</span>
                                 <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>
@@ -98,8 +102,9 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
-                // sortState:null, //現在のソートの状態
-                filterWord:'' //フィルター用
+                filterWord:'', //フィルター用
+                filterIndex:null,  //フィルターされているカラムのインデックス
+                initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
             }  
         },
         props: {
@@ -404,8 +409,27 @@
                 this.listItems = result
             },
             showFilterInuput:function(columnIndex){
-                console.log(columnIndex)
-            }
+                if(this.filterIndex == null){
+                    // 表示位置を計算
+                    this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
+                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
+                    this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+                    this.$refs.filterWindow.classList.add('visible')
+                    this.filterIndex = columnIndex
+                    console.log(filterWindowLeftPosition)
+                }
+                else if(this.filterIndex == columnIndex){
+                    //要素を不可視化
+                    this.$refs.filterWindow.classList.remove('visible')
+                    this.$refs.filterWindow.style.left = '0px'
+                    this.filterIndex = null
+                }else{
+                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
+                    console.log(this.initialPositionLeft)
+                    this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+                    this.filterIndex = columnIndex
+                }
+            },
         }
     }
 </script>
@@ -423,6 +447,26 @@
         }
         100% {
             transform:rotate(360deg);
+        }
+    }
+    
+    .filter-window {
+        visibility:hidden;
+        position:relative;
+        width:10em;
+        height:2em;
+        padding:0.2em;
+        border:2px solid grey;
+        border-radius:0.5em;
+        background-color:grey;
+        transition:all 0.2s ease;
+        &.visible {
+            visibility:visible;
+        }
+        input {
+            width:100%;
+            border-radius:0.5em;
+            /*background-color:grey;*/
         }
     }
     
@@ -503,16 +547,6 @@
                         opacity:1.0;
                     }
                 }
-                /*.column.selected::after {*/
-                /*    content:"　\f162";*/
-                /*    font-family: FontAwesome;*/
-                /*    color:orange;*/
-                /*}*/
-                /*.column.selected-reverse::after {*/
-                /*    content:"　\f163";*/
-                /*    font-family: FontAwesome;*/
-                /*    color:blue;*/
-                /*}*/
             }
         }
     }
