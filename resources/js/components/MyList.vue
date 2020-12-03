@@ -43,8 +43,13 @@
             <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRows()" placeholder="しぼりこみ">
             
             <!--カラムごとの絞り込みポップアップ-->
-            <div class="filter-window" ref="filterWindow">
-                <input type="text" >
+            <div v-if="!editMode" class="filter-window" ref="filterWindow">
+                <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">
+                    <input type="text" >
+                </div>
+                <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">
+                    <input type="number" >
+                </div>
             </div>
             <!--リスト本体-->
             <div id="list" ref="list">

@@ -69,6 +69,7 @@ Vue.component('main-title', require('./components/MainTitle.vue'));
 Vue.component('reminders', require('./components/Reminders.vue'));
 Vue.component('my-list', require('./components/MyList.vue'));
 Vue.component('my-list-collection', require('./components/MyListCollection.vue'));
+Vue.component('range-number', require('./components/RangeNumber.vue'));
 
 
 

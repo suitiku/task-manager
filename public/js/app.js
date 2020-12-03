@@ -14633,7 +14633,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(302);
+module.exports = __webpack_require__(307);
 
 
 /***/ }),
@@ -14708,6 +14708,7 @@ Vue.component('main-title', __webpack_require__(282));
 Vue.component('reminders', __webpack_require__(287));
 Vue.component('my-list', __webpack_require__(292));
 Vue.component('my-list-collection', __webpack_require__(297));
+Vue.component('range-number', __webpack_require__(302));
 
 var app = new Vue({
   el: '#app'
@@ -57464,12 +57465,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57477,7 +57472,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             modal: false,
             modal2: false,
             test: '',
-            hoge: '',
+            hoge: 0,
             projects: [],
             taskIds: [4, 8, 9],
             tasks: [],
@@ -57676,55 +57671,17 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("my-list", { ref: "mylist", attrs: { listId: "4" } }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.addItem()
-            }
-          }
-        },
-        [_vm._v("行を追加")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.addColumn()
-            }
-          }
-        },
-        [_vm._v("列を追加")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.saveList()
-            }
-          }
-        },
-        [_vm._v("保存")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              return _vm.sortList()
-            }
-          }
-        },
-        [_vm._v("ならびかえ")]
-      )
+      _c("range-number", {
+        model: {
+          value: _vm.hoge,
+          callback: function($$v) {
+            _vm.hoge = $$v
+          },
+          expression: "hoge"
+        }
+      }),
+      _vm._v("\n    " + _vm._s(_vm.hoge) + "\n    "),
+      _c("input", { attrs: { type: "range" } })
     ],
     1
   )
@@ -68979,6 +68936,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69593,7 +69555,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (this.filterIndex == null) {
                 // 表示位置を計算
                 this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20;
-                // let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.$refs.filterWindow.offsetLeft -20
                 var filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft;
                 this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px';
                 this.$refs.filterWindow.classList.add('visible');
@@ -69610,8 +69571,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.$refs.filterWindow.style.left = _filterWindowLeftPosition + 'px';
                 this.filterIndex = columnIndex;
             }
-        },
-        getInputLeft: function getInputLeft() {}
+        }
     }
 });
 
@@ -69905,9 +69865,45 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        _c("div", { ref: "filterWindow", staticClass: "filter-window" }, [
-          _c("input", { attrs: { type: "text" } })
-        ]),
+        !_vm.editMode
+          ? _c("div", { ref: "filterWindow", staticClass: "filter-window" }, [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value:
+                        _vm.listDefinition[_vm.filterIndex] &&
+                        _vm.listDefinition[_vm.filterIndex].type == "Text",
+                      expression:
+                        "listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'"
+                    }
+                  ]
+                },
+                [_c("input", { attrs: { type: "text" } })]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value:
+                        _vm.listDefinition[_vm.filterIndex] &&
+                        _vm.listDefinition[_vm.filterIndex].type == "Number",
+                      expression:
+                        "listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'"
+                    }
+                  ]
+                },
+                [_c("input", { attrs: { type: "number" } })]
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(
@@ -70557,6 +70553,204 @@ if (false) {
 
 /***/ }),
 /* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(303)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(305)
+/* template */
+var __vue_template__ = __webpack_require__(306)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-35cc76cb"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/RangeNumber.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-35cc76cb", Component.options)
+  } else {
+    hotAPI.reload("data-v-35cc76cb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 303 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(304);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("0a7c9ed3", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35cc76cb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RangeNumber.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35cc76cb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RangeNumber.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#range-area[data-v-35cc76cb] {\n  width: 9em;\n  height: 2em;\n  border: 1px solid red;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#range-area .line[data-v-35cc76cb] {\n    position: relative;\n    z-index: 2;\n    width: 100%;\n    height: 0.5em;\n    border: 1px solid grey;\n    border-radius: 0.5em;\n}\n#range-area .line .line-active[data-v-35cc76cb] {\n      position: relative;\n      z-index: 1;\n      height: 100%;\n      background-color: orange;\n      -webkit-transition: all 0.2s linear;\n      transition: all 0.2s linear;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 305 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            minValue: 0,
+            maxValue: 50
+        };
+    },
+    props: {
+        min: {
+            type: [Number, String],
+            default: 0,
+            required: false
+        },
+        max: {
+            type: [Number, String],
+            default: 100,
+            required: false
+        }
+    },
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    computed: {
+        setPosition: function setPosition() {
+            var left = this.minValue / this.max; //パーセンテージで算出
+            var width = (this.maxValue - this.minValue) / this.max;
+            return {
+                left: left * 100 + '%',
+                width: width * 100 + '%'
+            };
+        }
+    },
+    methods: {
+        changeValue: function changeValue() {
+            var line = this.$refs.line;
+            var lineRect = line.getBoundingClientRect();
+            var lineActive = this.$refs.lineActive;
+            var lineActiveRect = lineActive.getBoundingClientRect();
+
+            console.log(event);
+            //クリックした位置の値を取得
+            var value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.max;
+            console.log(value);
+            this.maxValue = value;
+            if (event.target.className == 'line') {} else {//event.target.className == 'line-active'
+
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "range-area" } }, [
+    _c(
+      "div",
+      {
+        ref: "line",
+        staticClass: "line",
+        on: {
+          mousedown: function($event) {
+            return _vm.changeValue()
+          }
+        }
+      },
+      [
+        _c("div", {
+          ref: "lineActive",
+          staticClass: "line-active",
+          style: _vm.setPosition
+        })
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-35cc76cb", module.exports)
+  }
+}
+
+/***/ }),
+/* 307 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
