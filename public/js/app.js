@@ -70657,12 +70657,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             minValue: 0,
-            maxValue: 50
+            maxValue: 50,
+            isMouseLeftButton: false //マウスの左ボタンの状態
         };
     },
     props: {
@@ -70679,7 +70683,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     watch: {},
     created: function created() {},
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        // window.onmousedown = this.changeMouseState()
+        // window.onmouseup = this.changeMouseState()
+        var vue = this;
+        window.onmousedown = function () {
+            vue.isMouseLeftButton = true;
+            console.log(vue.isMouseLeftButton);
+        };
+        window.onmouseup = function () {
+            vue.isMouseLeftButton = false;
+            console.log(vue.isMouseLeftButton);
+        };
+    },
     computed: {
         setPosition: function setPosition() {
             var left = this.minValue / this.max; //パーセンテージで算出
@@ -70691,6 +70707,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
+        changeMouseState: function changeMouseState() {
+            this.isMouseLeftButton != this.isMouseLeftButton;
+        },
         changeValue: function changeValue() {
             var line = this.$refs.line;
             var lineRect = line.getBoundingClientRect();
@@ -70705,6 +70724,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (event.target.className == 'line') {} else {//event.target.className == 'line-active'
 
             }
+        },
+        dragBar: function dragBar() {
+            if (this.isMouseLeftButton) {
+                this.changeValue();
+            }
         }
     }
 });
@@ -70717,26 +70741,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "range-area" } }, [
-    _c(
-      "div",
-      {
-        ref: "line",
-        staticClass: "line",
-        on: {
-          mousedown: function($event) {
-            return _vm.changeValue()
+  return _c("div", [
+    _vm._v("\n    " + _vm._s(_vm.isMouseLeftButton) + "\n    "),
+    _c("div", { attrs: { id: "range-area" } }, [
+      _c(
+        "div",
+        {
+          ref: "line",
+          staticClass: "line",
+          on: {
+            mousemove: function($event) {
+              return _vm.dragBar()
+            },
+            mousedown: function($event) {
+              return _vm.changeValue()
+            }
           }
-        }
-      },
-      [
-        _c("div", {
-          ref: "lineActive",
-          staticClass: "line-active",
-          style: _vm.setPosition
-        })
-      ]
-    )
+        },
+        [
+          _c("div", {
+            ref: "lineActive",
+            staticClass: "line-active",
+            style: _vm.setPosition
+          })
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []

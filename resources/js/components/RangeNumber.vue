@@ -1,8 +1,11 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
-    <div id="range-area">
-        <div ref="line" class="line" v-on:mousedown="changeValue()">
-            <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
+    <div>
+        {{isMouseLeftButton}}
+        <div id="range-area">
+            <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
+                <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -13,6 +16,7 @@
             return {
                 minValue:0,
                 maxValue:50,
+                isMouseLeftButton:false, //マウスの左ボタンの状態
             }  
         },
         props: {
@@ -34,7 +38,17 @@
             
         },
         mounted:function(){
-            
+            // window.onmousedown = this.changeMouseState()
+            // window.onmouseup = this.changeMouseState()
+            let vue = this
+            window.onmousedown = function(){
+                vue.isMouseLeftButton = true
+                console.log(vue.isMouseLeftButton)
+            }
+            window.onmouseup = function(){
+                vue.isMouseLeftButton = false
+                console.log(vue.isMouseLeftButton)
+            }
         },
         computed: {
             setPosition:function(){
@@ -47,6 +61,9 @@
             }  
         },
         methods: {
+            changeMouseState:function(){
+                this.isMouseLeftButton != this.isMouseLeftButton
+            },
             changeValue:function(){
                 let line = this.$refs.line
                 let lineRect = line.getBoundingClientRect()
@@ -62,6 +79,11 @@
                     
                 }else{ //event.target.className == 'line-active'
                     
+                }
+            },
+            dragBar:function(){
+                if(this.isMouseLeftButton){
+                    this.changeValue()
                 }
             }
         }
