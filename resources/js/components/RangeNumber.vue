@@ -1,11 +1,8 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
-    <div>
-        {{isMouseLeftButton}}
-        <div id="range-area">
-            <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
-                <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
-            </div>
+    <div id="range-area">
+        <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
+            <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
         </div>
     </div>
 </template>
@@ -74,11 +71,11 @@
                 //クリックした位置の値を取得
                 let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.max
                 console.log(value)
-                this.maxValue = value
-                if(event.target.className == 'line'){
-                    
-                }else{ //event.target.className == 'line-active'
-                    
+                // 最小値と最大値との距離を測る
+                if(Math.abs(this.maxValue - value) >= Math.abs(this.minValue - value)){
+                    this.minValue = value
+                }else{
+                    this.maxValue = value
                 }
             },
             dragBar:function(){
@@ -93,9 +90,10 @@
     #range-area {
         width:9em;
         height:2em;
-        border:1px solid red;
+        /*border:1px solid red;*/
         display:flex;
         align-items:center;
+        cursor:pointer;
         .line {
             position:relative;
             z-index:2;
@@ -108,7 +106,7 @@
                 z-index:1;
                 height:100%;
                 background-color:orange;
-                transition:all 0.2s linear;
+                transition:all 0.1s linear;
             }
         }
     }

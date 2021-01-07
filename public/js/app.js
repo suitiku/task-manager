@@ -70637,7 +70637,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#range-area[data-v-35cc76cb] {\n  width: 9em;\n  height: 2em;\n  border: 1px solid red;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n#range-area .line[data-v-35cc76cb] {\n    position: relative;\n    z-index: 2;\n    width: 100%;\n    height: 0.5em;\n    border: 1px solid grey;\n    border-radius: 0.5em;\n}\n#range-area .line .line-active[data-v-35cc76cb] {\n      position: relative;\n      z-index: 1;\n      height: 100%;\n      background-color: orange;\n      -webkit-transition: all 0.2s linear;\n      transition: all 0.2s linear;\n}\n", ""]);
+exports.push([module.i, "\n#range-area[data-v-35cc76cb] {\n  width: 9em;\n  height: 2em;\n  /*border:1px solid red;*/\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  cursor: pointer;\n}\n#range-area .line[data-v-35cc76cb] {\n    position: relative;\n    z-index: 2;\n    width: 100%;\n    height: 0.5em;\n    border: 1px solid grey;\n    border-radius: 0.5em;\n}\n#range-area .line .line-active[data-v-35cc76cb] {\n      position: relative;\n      z-index: 1;\n      height: 100%;\n      background-color: orange;\n      -webkit-transition: all 0.1s linear;\n      transition: all 0.1s linear;\n}\n", ""]);
 
 // exports
 
@@ -70648,9 +70648,6 @@ exports.push([module.i, "\n#range-area[data-v-35cc76cb] {\n  width: 9em;\n  heig
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -70720,9 +70717,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //クリックした位置の値を取得
             var value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.max;
             console.log(value);
-            this.maxValue = value;
-            if (event.target.className == 'line') {} else {//event.target.className == 'line-active'
-
+            // 最小値と最大値との距離を測る
+            if (Math.abs(this.maxValue - value) >= Math.abs(this.minValue - value)) {
+                this.minValue = value;
+            } else {
+                this.maxValue = value;
             }
         },
         dragBar: function dragBar() {
@@ -70741,32 +70740,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v("\n    " + _vm._s(_vm.isMouseLeftButton) + "\n    "),
-    _c("div", { attrs: { id: "range-area" } }, [
-      _c(
-        "div",
-        {
-          ref: "line",
-          staticClass: "line",
-          on: {
-            mousemove: function($event) {
-              return _vm.dragBar()
-            },
-            mousedown: function($event) {
-              return _vm.changeValue()
-            }
+  return _c("div", { attrs: { id: "range-area" } }, [
+    _c(
+      "div",
+      {
+        ref: "line",
+        staticClass: "line",
+        on: {
+          mousemove: function($event) {
+            return _vm.dragBar()
+          },
+          mousedown: function($event) {
+            return _vm.changeValue()
           }
-        },
-        [
-          _c("div", {
-            ref: "lineActive",
-            staticClass: "line-active",
-            style: _vm.setPosition
-          })
-        ]
-      )
-    ])
+        }
+      },
+      [
+        _c("div", {
+          ref: "lineActive",
+          staticClass: "line-active",
+          style: _vm.setPosition
+        })
+      ]
+    )
   ])
 }
 var staticRenderFns = []
