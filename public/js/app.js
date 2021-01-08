@@ -70657,50 +70657,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            minValue: 0,
-            maxValue: 50,
+            minPercentage: 0,
+            maxPercentage: 50,
             isMouseLeftButton: false //マウスの左ボタンの状態
         };
     },
     props: {
-        min: {
-            type: [Number, String],
-            default: 0,
+        minimumValue: {
+            type: Number,
+            default: 20,
             required: false
         },
-        max: {
-            type: [Number, String],
-            default: 100,
+        maximumValue: {
+            type: Number,
+            default: 300,
+            required: false
+        },
+        validDigits: {
+            type: Number,
+            defalut: 0,
             required: false
         }
     },
     watch: {},
     created: function created() {},
     mounted: function mounted() {
-        // window.onmousedown = this.changeMouseState()
-        // window.onmouseup = this.changeMouseState()
         var vue = this;
         window.onmousedown = function () {
             vue.isMouseLeftButton = true;
-            console.log(vue.isMouseLeftButton);
+            // console.log(vue.isMouseLeftButton)
         };
         window.onmouseup = function () {
             vue.isMouseLeftButton = false;
-            console.log(vue.isMouseLeftButton);
+            // console.log(vue.isMouseLeftButton)
         };
     },
     computed: {
         setPosition: function setPosition() {
-            var left = this.minValue / this.max; //パーセンテージで算出
-            var width = (this.maxValue - this.minValue) / this.max;
+            var left = this.minPercentage / this.maximumValue; //パーセンテージで算出
+            // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
+            var width = (this.maxPercentage - this.minPercentage) / 100;
             return {
-                left: left * 100 + '%',
-                width: width * 100 + '%'
+                // left:left * 100 + '%',
+                left: this.minPercentage + '%',
+                // width:width * 100 + '%'
+                width: this.maxPercentage - this.minPercentage + '%'
             };
+        },
+        minValue: function minValue() {
+            return Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue;
+        },
+        maxValue: function maxValue() {
+            return Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue;
         }
     },
     methods: {
@@ -70714,14 +70730,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var lineActiveRect = lineActive.getBoundingClientRect();
 
             console.log(event);
-            //クリックした位置の値を取得
-            var value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.max;
-            console.log(value);
+            //クリックした位置の値を取得（パーセンテージ）
+            // let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.maximumValue
+            var value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * 100;
+            // console.log(value)
             // 最小値と最大値との距離を測る
-            if (Math.abs(this.maxValue - value) >= Math.abs(this.minValue - value)) {
-                this.minValue = value;
+            if (Math.abs(this.maxPercentage - value) >= Math.abs(this.minPercentage - value)) {
+                this.minPercentage = value;
             } else {
-                this.maxValue = value;
+                this.maxPercentage = value;
             }
         },
         dragBar: function dragBar() {
@@ -70740,29 +70757,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "range-area" } }, [
-    _c(
-      "div",
-      {
-        ref: "line",
-        staticClass: "line",
-        on: {
-          mousemove: function($event) {
-            return _vm.dragBar()
-          },
-          mousedown: function($event) {
-            return _vm.changeValue()
+  return _c("div", [
+    _c("div", [
+      _vm._v(_vm._s(_vm.minValue) + "/" + _vm._s(Math.round(_vm.minPercentage)))
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "range-area" } }, [
+      _c(
+        "div",
+        {
+          ref: "line",
+          staticClass: "line",
+          on: {
+            mousemove: function($event) {
+              return _vm.dragBar()
+            },
+            mousedown: function($event) {
+              return _vm.changeValue()
+            }
           }
-        }
-      },
-      [
-        _c("div", {
-          ref: "lineActive",
-          staticClass: "line-active",
-          style: _vm.setPosition
-        })
-      ]
-    )
+        },
+        [
+          _c("div", {
+            ref: "lineActive",
+            staticClass: "line-active",
+            style: _vm.setPosition
+          })
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _vm._v(_vm._s(_vm.maxValue) + "/" + _vm._s(Math.round(_vm.maxPercentage)))
+    ])
   ])
 }
 var staticRenderFns = []

@@ -1,9 +1,13 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
-    <div id="range-area">
-        <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
-            <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
+    <div>
+        <div>{{minValue}}/{{Math.round(minPercentage)}}</div>
+        <div id="range-area">
+            <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
+                <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
+            </div>
         </div>
+        <div>{{maxValue}}/{{Math.round(maxPercentage)}}</div>
     </div>
 </template>
 
@@ -11,21 +15,26 @@
     export default {
         data:function(){
             return {
-                minValue:0,
-                maxValue:50,
+                minPercentage:0,
+                maxPercentage:50,
                 isMouseLeftButton:false, //マウスの左ボタンの状態
             }  
         },
         props: {
-            min:{
-                type:[Number,String],
-                default:0,
+            minimumValue:{
+                type:Number,
+                default:20,
                 required:false
             },
-            max:{
-                type:[Number,String],
-                default:100,
+            maximumValue:{
+                type:Number,
+                default:300,
                 required:false
+            },
+            validDigits: {
+                type:Number,
+                defalut:0,
+                required:false,
             }
         },
         watch:{
@@ -35,27 +44,34 @@
             
         },
         mounted:function(){
-            // window.onmousedown = this.changeMouseState()
-            // window.onmouseup = this.changeMouseState()
             let vue = this
             window.onmousedown = function(){
                 vue.isMouseLeftButton = true
-                console.log(vue.isMouseLeftButton)
+                // console.log(vue.isMouseLeftButton)
             }
             window.onmouseup = function(){
                 vue.isMouseLeftButton = false
-                console.log(vue.isMouseLeftButton)
+                // console.log(vue.isMouseLeftButton)
             }
         },
         computed: {
             setPosition:function(){
-                let left = this.minValue / this.max //パーセンテージで算出
-                let width = (this.maxValue - this.minValue) / this.max
+                let left = this.minPercentage / this.maximumValue //パーセンテージで算出
+                // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
+                let width = (this.maxPercentage - this.minPercentage) / 100
                 return {
-                    left:left * 100 + '%',
-                    width:width * 100 + '%'
+                    // left:left * 100 + '%',
+                    left:this.minPercentage + '%',
+                    // width:width * 100 + '%'
+                    width:(this.maxPercentage - this.minPercentage) + '%'
                 }
-            }  
+            },
+            minValue:function(){
+                return Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue
+            },
+            maxValue:function(){
+                return Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue
+            }
         },
         methods: {
             changeMouseState:function(){
@@ -68,14 +84,15 @@
                 let lineActiveRect = lineActive.getBoundingClientRect()
                 
                 console.log(event)
-                //クリックした位置の値を取得
-                let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.max
-                console.log(value)
+                //クリックした位置の値を取得（パーセンテージ）
+                // let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.maximumValue
+                let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * 100
+                // console.log(value)
                 // 最小値と最大値との距離を測る
-                if(Math.abs(this.maxValue - value) >= Math.abs(this.minValue - value)){
-                    this.minValue = value
+                if(Math.abs(this.maxPercentage - value) >= Math.abs(this.minPercentage - value)){
+                    this.minPercentage = value
                 }else{
-                    this.maxValue = value
+                    this.maxPercentage = value
                 }
             },
             dragBar:function(){
