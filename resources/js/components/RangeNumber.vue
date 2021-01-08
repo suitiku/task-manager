@@ -1,13 +1,13 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
-    <div>
-        <div>{{minValue}}/{{Math.round(minPercentage)}}</div>
+    <div id="range-number-wrapper">
+        <div class="value-display">{{minValue}}</div>
         <div id="range-area">
             <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
                 <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
             </div>
         </div>
-        <div>{{maxValue}}/{{Math.round(maxPercentage)}}</div>
+        <div class="value-display">{{maxValue}}</div>
     </div>
 </template>
 
@@ -60,9 +60,7 @@
                 // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
                 let width = (this.maxPercentage - this.minPercentage) / 100
                 return {
-                    // left:left * 100 + '%',
                     left:this.minPercentage + '%',
-                    // width:width * 100 + '%'
                     width:(this.maxPercentage - this.minPercentage) + '%'
                 }
             },
@@ -104,28 +102,40 @@
     }
 </script>
 <style lang="scss" scoped>
-    #range-area {
-        width:9em;
-        height:2em;
-        /*border:1px solid red;*/
+    #range-number-wrapper {
         display:flex;
+        justify-content:space-between;
         align-items:center;
-        cursor:pointer;
-        .line {
-            position:relative;
-            z-index:2;
-            width:100%;
-            height:0.5em;
-            border:1px solid grey;
-            border-radius:0.5em;
-            .line-active {
+        /*border:1px solid blue;*/
+        max-width:12em;
+        #range-area {
+            width:9em;
+            height:2em;
+            display:flex;
+            align-items:center;
+            cursor:pointer;
+            .line {
                 position:relative;
-                z-index:1;
-                height:100%;
-                background-color:orange;
-                transition:all 0.1s linear;
+                z-index:2;
+                width:100%;
+                height:0.5em;
+                border:1px solid grey;
+                border-radius:0.5em;
+                .line-active {
+                    position:relative;
+                    z-index:1;
+                    height:100%;
+                    background-color:orange;
+                    transition:all 0.1s linear;
+                }
             }
         }
+        .value-display {
+            /*border:1px solid red;*/
+            width:3em;
+            text-align:center;
+        }
     }
+    
     
 </style>

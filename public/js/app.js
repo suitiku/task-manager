@@ -70637,7 +70637,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#range-area[data-v-35cc76cb] {\n  width: 9em;\n  height: 2em;\n  /*border:1px solid red;*/\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  cursor: pointer;\n}\n#range-area .line[data-v-35cc76cb] {\n    position: relative;\n    z-index: 2;\n    width: 100%;\n    height: 0.5em;\n    border: 1px solid grey;\n    border-radius: 0.5em;\n}\n#range-area .line .line-active[data-v-35cc76cb] {\n      position: relative;\n      z-index: 1;\n      height: 100%;\n      background-color: orange;\n      -webkit-transition: all 0.1s linear;\n      transition: all 0.1s linear;\n}\n", ""]);
+exports.push([module.i, "\n#range-number-wrapper[data-v-35cc76cb] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  /*border:1px solid blue;*/\n  max-width: 12em;\n}\n#range-number-wrapper #range-area[data-v-35cc76cb] {\n    width: 9em;\n    height: 2em;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    cursor: pointer;\n}\n#range-number-wrapper #range-area .line[data-v-35cc76cb] {\n      position: relative;\n      z-index: 2;\n      width: 100%;\n      height: 0.5em;\n      border: 1px solid grey;\n      border-radius: 0.5em;\n}\n#range-number-wrapper #range-area .line .line-active[data-v-35cc76cb] {\n        position: relative;\n        z-index: 1;\n        height: 100%;\n        background-color: orange;\n        -webkit-transition: all 0.1s linear;\n        transition: all 0.1s linear;\n}\n#range-number-wrapper .value-display[data-v-35cc76cb] {\n    /*border:1px solid red;*/\n    width: 3em;\n    text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -70706,9 +70706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
             var width = (this.maxPercentage - this.minPercentage) / 100;
             return {
-                // left:left * 100 + '%',
                 left: this.minPercentage + '%',
-                // width:width * 100 + '%'
                 width: this.maxPercentage - this.minPercentage + '%'
             };
         },
@@ -70757,10 +70755,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _vm._v(_vm._s(_vm.minValue) + "/" + _vm._s(Math.round(_vm.minPercentage)))
-    ]),
+  return _c("div", { attrs: { id: "range-number-wrapper" } }, [
+    _c("div", { staticClass: "value-display" }, [_vm._v(_vm._s(_vm.minValue))]),
     _vm._v(" "),
     _c("div", { attrs: { id: "range-area" } }, [
       _c(
@@ -70787,9 +70783,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", [
-      _vm._v(_vm._s(_vm.maxValue) + "/" + _vm._s(Math.round(_vm.maxPercentage)))
-    ])
+    _c("div", { staticClass: "value-display" }, [_vm._v(_vm._s(_vm.maxValue))])
   ])
 }
 var staticRenderFns = []
