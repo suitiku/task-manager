@@ -70667,7 +70667,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             minPercentage: 0,
             maxPercentage: 50,
-            isMouseLeftButton: false //マウスの左ボタンの状態
+            isMouseLeftButton: false, //マウスの左ボタンの状態
+            emitValue: {
+                min: null,
+                max: null
+            }
         };
     },
     props: {
@@ -70687,23 +70691,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: false
         }
     },
-    watch: {},
+    watch: {
+        emitValue: {
+            handler: function handler() {
+                this.$emit('input', this.emitValue);
+            },
+            deep: true
+        }
+    },
     created: function created() {},
     mounted: function mounted() {
         var vue = this;
         window.onmousedown = function () {
             vue.isMouseLeftButton = true;
-            // console.log(vue.isMouseLeftButton)
         };
         window.onmouseup = function () {
             vue.isMouseLeftButton = false;
-            // console.log(vue.isMouseLeftButton)
         };
     },
     computed: {
         setPosition: function setPosition() {
             var left = this.minPercentage / this.maximumValue; //パーセンテージで算出
-            // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
             var width = (this.maxPercentage - this.minPercentage) / 100;
             return {
                 left: this.minPercentage + '%',
@@ -70711,10 +70719,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
         },
         minValue: function minValue() {
-            return Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue;
+            this.emitValue.min = Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue;
+            return this.emitValue.min;
         },
         maxValue: function maxValue() {
-            return Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue;
+            this.emitValue.max = Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue;
+            return this.emitValue.max;
         }
     },
     methods: {

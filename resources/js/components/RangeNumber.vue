@@ -18,6 +18,10 @@
                 minPercentage:0,
                 maxPercentage:50,
                 isMouseLeftButton:false, //マウスの左ボタンの状態
+                emitValue: {
+                    min:null,
+                    max:null
+                }
             }  
         },
         props: {
@@ -38,7 +42,12 @@
             }
         },
         watch:{
-            
+            emitValue: {
+                handler:function(){
+                    this.$emit('input',this.emitValue)
+                },
+                deep:true
+            }
         },
         created:function(){
             
@@ -47,17 +56,14 @@
             let vue = this
             window.onmousedown = function(){
                 vue.isMouseLeftButton = true
-                // console.log(vue.isMouseLeftButton)
             }
             window.onmouseup = function(){
                 vue.isMouseLeftButton = false
-                // console.log(vue.isMouseLeftButton)
             }
         },
         computed: {
             setPosition:function(){
                 let left = this.minPercentage / this.maximumValue //パーセンテージで算出
-                // let width = (this.maxPercentage - this.minPercentage) / (this.maximumValue - this.minimumValue)
                 let width = (this.maxPercentage - this.minPercentage) / 100
                 return {
                     left:this.minPercentage + '%',
@@ -65,10 +71,12 @@
                 }
             },
             minValue:function(){
-                return Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue
+                this.emitValue.min = Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue
+                return this.emitValue.min
             },
             maxValue:function(){
-                return Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue
+                this.emitValue.max = Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue
+                return this.emitValue.max
             }
         },
         methods: {
