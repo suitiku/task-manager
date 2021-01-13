@@ -70685,9 +70685,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: 300,
             required: false
         },
-        validDigits: {
+        validDigits: { //有効桁数
             type: Number,
-            defalut: 0,
+            default: 1,
             required: false
         }
     },
@@ -70719,11 +70719,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
         },
         minValue: function minValue() {
-            this.emitValue.min = Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) + this.minimumValue;
+            if (this.minPercentage < 0) this.minPercentage = 0;
+            var value = Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage * Math.pow(10, this.validDigits)) / Math.pow(10, this.validDigits) + this.minimumValue;
+            value = this.checkDigits(value); //桁数チェック
+            this.emitValue.min = value;
             return this.emitValue.min;
         },
         maxValue: function maxValue() {
-            this.emitValue.max = Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage) + this.minimumValue;
+            var value = Math.round((this.maximumValue - this.minimumValue) / 100 * this.maxPercentage * Math.pow(10, this.validDigits)) / Math.pow(10, this.validDigits) + this.minimumValue;
+            value = this.checkDigits(value);
+            this.emitValue.max = value;
             return this.emitValue.max;
         }
     },
@@ -70737,11 +70742,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var lineActive = this.$refs.lineActive;
             var lineActiveRect = lineActive.getBoundingClientRect();
 
-            console.log(event);
+            // console.log(event)
             //クリックした位置の値を取得（パーセンテージ）
-            // let value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * this.maximumValue
             var value = (event.pageX - (lineRect.left + window.pageXOffset)) / lineRect.width * 100;
-            // console.log(value)
             // 最小値と最大値との距離を測る
             if (Math.abs(this.maxPercentage - value) >= Math.abs(this.minPercentage - value)) {
                 this.minPercentage = value;
@@ -70753,6 +70756,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.isMouseLeftButton) {
                 this.changeValue();
             }
+        },
+        checkDigits: function checkDigits(value) {
+            var splitedValue = String(value).split('.');
+            if (splitedValue[1] && splitedValue[1].length > this.validDigits) {
+                var decimal = splitedValue[1].slice(0, this.validDigits);
+                value = Number(splitedValue[0] + '.' + decimal);
+            }
+            return value;
         }
     }
 });
