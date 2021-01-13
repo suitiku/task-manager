@@ -1,13 +1,13 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
     <div id="range-number-wrapper">
-        <div class="value-display">{{minValue}}</div>
+        <div class="value-display" v-bind:style="setValueWidth">{{minValue}}</div>
         <div id="range-area">
             <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
                 <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
             </div>
         </div>
-        <div class="value-display">{{maxValue}}</div>
+        <div class="value-display" v-bind:style="setValueWidth">{{maxValue}}</div>
     </div>
 </template>
 
@@ -82,6 +82,12 @@
                 value = this.checkDigits(value)
                 this.emitValue.max = value
                 return this.emitValue.max
+            },
+            setValueWidth:function(){
+                let characterLength = String(this.maximumValue).length + this.validDigits + 2
+                return {
+                    width:characterLength + 'em'
+                }
             }
         },
         methods: {
@@ -150,8 +156,7 @@
             }
         }
         .value-display {
-            /*border:1px solid red;*/
-            width:3em;
+            /*width:3em;*/
             text-align:center;
         }
     }
