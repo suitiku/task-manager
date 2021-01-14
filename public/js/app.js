@@ -70637,7 +70637,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n#range-number-wrapper[data-v-35cc76cb] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  /*border:1px solid blue;*/\n  max-width: 12em;\n}\n#range-number-wrapper #range-area[data-v-35cc76cb] {\n    width: 9em;\n    height: 2em;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    cursor: pointer;\n}\n#range-number-wrapper #range-area .line[data-v-35cc76cb] {\n      position: relative;\n      z-index: 2;\n      width: 100%;\n      height: 0.5em;\n      border: 1px solid grey;\n      border-radius: 0.5em;\n}\n#range-number-wrapper #range-area .line .line-active[data-v-35cc76cb] {\n        position: relative;\n        z-index: 1;\n        height: 100%;\n        background-color: orange;\n        -webkit-transition: all 0.1s linear;\n        transition: all 0.1s linear;\n}\n#range-number-wrapper .value-display[data-v-35cc76cb] {\n    /*width:3em;*/\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n#range-number-wrapper[data-v-35cc76cb] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  max-width: 15em;\n}\n#range-number-wrapper #range-area[data-v-35cc76cb] {\n    width: 9em;\n    height: 2em;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    cursor: pointer;\n}\n#range-number-wrapper #range-area .line[data-v-35cc76cb] {\n      position: relative;\n      z-index: 2;\n      width: 100%;\n      height: 0.5em;\n      border: 1px solid grey;\n      border-radius: 0.5em;\n}\n#range-number-wrapper #range-area .line .line-active[data-v-35cc76cb] {\n        position: relative;\n        z-index: 1;\n        height: 100%;\n        background-color: orange;\n        -webkit-transition: all 0.1s linear;\n        transition: all 0.1s linear;\n}\n#range-number-wrapper .value-display[data-v-35cc76cb] {\n    text-align: center;\n    cursor: pointer;\n    border-radius: 0.3em;\n    margin: 0 0.2em;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n        -ms-user-select: none;\n            user-select: none;\n}\n#range-number-wrapper .value-display[data-v-35cc76cb]:hover {\n      background-color: rgba(255, 165, 0, 0.4);\n}\n", ""]);
 
 // exports
 
@@ -70682,7 +70682,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         maximumValue: {
             type: Number,
-            default: 300,
+            default: 200,
             required: false
         },
         validDigits: { //有効桁数
@@ -70770,6 +70770,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 value = Number(splitedValue[0] + '.' + decimal);
             }
             return value;
+        },
+        subtractMinValue: function subtractMinValue() {
+            this.minPercentage -= 100 / (this.maximumValue - this.minValue) / Math.pow(10, this.validDigits);
+        },
+        addMaxValue: function addMaxValue() {
+            this.maxPercentage += 100 / (this.maximumValue - this.minValue) / Math.pow(10, this.validDigits);
         }
     }
 });
@@ -70783,9 +70789,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "range-number-wrapper" } }, [
-    _c("div", { staticClass: "value-display", style: _vm.setValueWidth }, [
-      _vm._v(_vm._s(_vm.minValue))
-    ]),
+    _c(
+      "div",
+      {
+        staticClass: "value-display",
+        style: _vm.setValueWidth,
+        on: {
+          click: function($event) {
+            return _vm.subtractMinValue()
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.minValue))]
+    ),
     _vm._v(" "),
     _c("div", { attrs: { id: "range-area" } }, [
       _c(
@@ -70812,9 +70828,19 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "value-display", style: _vm.setValueWidth }, [
-      _vm._v(_vm._s(_vm.maxValue))
-    ])
+    _c(
+      "div",
+      {
+        staticClass: "value-display",
+        style: _vm.setValueWidth,
+        on: {
+          click: function($event) {
+            return _vm.addMaxValue()
+          }
+        }
+      },
+      [_vm._v(_vm._s(_vm.maxValue))]
+    )
   ])
 }
 var staticRenderFns = []

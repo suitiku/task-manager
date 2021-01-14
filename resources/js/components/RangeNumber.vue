@@ -1,13 +1,13 @@
 <!--数値範囲を指定するUIコンポーネント-->
 <template>
     <div id="range-number-wrapper">
-        <div class="value-display" v-bind:style="setValueWidth">{{minValue}}</div>
+        <div class="value-display" v-bind:style="setValueWidth" v-on:click="subtractMinValue()">{{minValue}}</div>
         <div id="range-area">
             <div ref="line" class="line" v-on:mousemove="dragBar()" v-on:mousedown="changeValue()">
                 <div ref="lineActive" class="line-active" v-bind:style="setPosition"></div>
             </div>
         </div>
-        <div class="value-display" v-bind:style="setValueWidth">{{maxValue}}</div>
+        <div class="value-display" v-bind:style="setValueWidth" v-on:click="addMaxValue()">{{maxValue}}</div>
     </div>
 </template>
 
@@ -32,7 +32,7 @@
             },
             maximumValue:{
                 type:Number,
-                default:300,
+                default:200,
                 required:false
             },
             validDigits: { //有効桁数
@@ -122,6 +122,12 @@
                     value = Number(splitedValue[0] + '.' + decimal)
                 }
                 return value
+            },
+            subtractMinValue:function(){
+                this.minPercentage -= 100 / (this.maximumValue - this.minValue) / 10 ** this.validDigits
+            },
+            addMaxValue:function(){
+                this.maxPercentage += 100 / (this.maximumValue - this.minValue) / 10 ** this.validDigits
             }
         }
     }
@@ -131,8 +137,7 @@
         display:flex;
         justify-content:space-between;
         align-items:center;
-        /*border:1px solid blue;*/
-        max-width:12em;
+        max-width:15em;
         #range-area {
             width:9em;
             height:2em;
@@ -156,8 +161,15 @@
             }
         }
         .value-display {
-            /*width:3em;*/
             text-align:center;
+            cursor:pointer;
+            border-radius:0.3em;
+            margin:0 0.2em;
+            transition:all 0.2s ease;
+            user-select:none;
+            &:hover {
+                background-color:rgba(orange,0.4);
+            }
         }
     }
     
