@@ -45,10 +45,11 @@
             <!--カラムごとの絞り込みポップアップ-->
             <div v-if="!editMode" class="filter-window" ref="filterWindow">
                 <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">
-                    <input type="text" >
+                    <input v-on:input="filterRows(filterIndex)" v-model="filterWord" type="text" >
                 </div>
                 <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">
-                    <input type="number" >
+                    <!--<input type="number" >-->
+                    <range-number />
                 </div>
             </div>
             <!--リスト本体-->
@@ -107,7 +108,11 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
-                filterWord:'', //フィルター用
+                filterWord:'', //フィルター用（テキスト）
+                filterNumber:{
+                    min:null,
+                    max:null,
+                },
                 filterIndex:null,  //フィルターされているカラムのインデックス
                 initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
             }  
@@ -401,16 +406,23 @@
                 ]
                 this.addItem()
             },
-            filterRows:function(){
+            filterRows:function(index){
                 this.listItems = []
                 if(this.filterWord == ''){
                     this.listItems = this.sortedListItems
                 }
-                let result = this.sortedListItems.filter(item => {
-                    return item.some(column => {
-                        return String(column.value).indexOf(this.filterWord) != -1
+                let result
+                if(typeof index != 'undefined'){ //カラム別に絞り込み
+                    result = this.sortedListItems.filter(item => {
+                        return item[index].value.indexOf(this.filterWord) != -1
                     })
-                })
+                }else{ //全体から絞り込み
+                    result = this.sortedListItems.filter(item => {
+                        return item.some(column => {
+                            return String(column.value).indexOf(this.filterWord) != -1
+                        })
+                    })
+                }
                 this.listItems = result
             },
             showFilterInuput:function(columnIndex){

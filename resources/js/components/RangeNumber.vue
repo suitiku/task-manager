@@ -16,7 +16,7 @@
         data:function(){
             return {
                 minPercentage:0,
-                maxPercentage:50,
+                maxPercentage:100,
                 isMouseLeftButton:false, //マウスの左ボタンの状態
                 emitValue: {
                     min:null,
@@ -27,17 +27,17 @@
         props: {
             minimumValue:{
                 type:Number,
-                default:20,
+                default:0,
                 required:false
             },
             maximumValue:{
                 type:Number,
-                default:200,
+                default:100,
                 required:false
             },
             validDigits: { //有効桁数
                 type:Number,
-                default:1,
+                default:0,
                 required:false,
             }
         },

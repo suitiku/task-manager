@@ -1,7 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <range-number v-model="hoge" />
+        <range-number v-bind:minimumValue="100" v-bind:maximumValue="250" v-bind:validDigits="0" v-model="hoge" />
         {{hoge}}
         <input type="range">
         <!--<modal ref="modal" v-model="modal">-->

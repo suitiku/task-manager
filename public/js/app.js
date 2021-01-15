@@ -57672,6 +57672,7 @@ var render = function() {
     { staticClass: "container" },
     [
       _c("range-number", {
+        attrs: { minimumValue: 100, maximumValue: 250, validDigits: 0 },
         model: {
           value: _vm.hoge,
           callback: function($$v) {
@@ -68941,6 +68942,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68962,7 +68964,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 default: ''
             },
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
-            filterWord: '', //フィルター用
+            filterWord: '', //フィルター用（テキスト）
+            filterNumber: {
+                min: null,
+                max: null
+            },
             filterIndex: null, //フィルターされているカラムのインデックス
             initialPositionLeft: 0 //カラム別フィルターの移動位置記憶用
         };
@@ -69537,18 +69543,27 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listDefinition = [{ name: 'no title', type: 'Text', suffix: null, default: null }];
             this.addItem();
         },
-        filterRows: function filterRows() {
+        filterRows: function filterRows(index) {
             var _this = this;
 
             this.listItems = [];
             if (this.filterWord == '') {
                 this.listItems = this.sortedListItems;
             }
-            var result = this.sortedListItems.filter(function (item) {
-                return item.some(function (column) {
-                    return String(column.value).indexOf(_this.filterWord) != -1;
+            var result = void 0;
+            if (typeof index != 'undefined') {
+                //カラム別に絞り込み
+                result = this.sortedListItems.filter(function (item) {
+                    return item[index].value.indexOf(_this.filterWord) != -1;
                 });
-            });
+            } else {
+                //全体から絞り込み
+                result = this.sortedListItems.filter(function (item) {
+                    return item.some(function (column) {
+                        return String(column.value).indexOf(_this.filterWord) != -1;
+                    });
+                });
+            }
             this.listItems = result;
         },
         showFilterInuput: function showFilterInuput(columnIndex) {
@@ -69882,7 +69897,33 @@ var render = function() {
                     }
                   ]
                 },
-                [_c("input", { attrs: { type: "text" } })]
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.filterWord,
+                        expression: "filterWord"
+                      }
+                    ],
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.filterWord },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.filterWord = $event.target.value
+                        },
+                        function($event) {
+                          return _vm.filterRows(_vm.filterIndex)
+                        }
+                      ]
+                    }
+                  })
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -69900,7 +69941,8 @@ var render = function() {
                     }
                   ]
                 },
-                [_c("input", { attrs: { type: "number" } })]
+                [_c("range-number")],
+                1
               )
             ])
           : _vm._e(),
@@ -70666,7 +70708,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             minPercentage: 0,
-            maxPercentage: 50,
+            maxPercentage: 100,
             isMouseLeftButton: false, //マウスの左ボタンの状態
             emitValue: {
                 min: null,
@@ -70677,17 +70719,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         minimumValue: {
             type: Number,
-            default: 20,
+            default: 0,
             required: false
         },
         maximumValue: {
             type: Number,
-            default: 200,
+            default: 100,
             required: false
         },
         validDigits: { //有効桁数
             type: Number,
-            default: 1,
+            default: 0,
             required: false
         }
     },
