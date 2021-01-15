@@ -40,16 +40,15 @@
             </div>
             
             <!--絞り込み検索窓-->
-            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRows()" placeholder="しぼりこみ">
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="しぼりこみ">
             
             <!--カラムごとの絞り込みポップアップ-->
             <div v-if="!editMode" class="filter-window" ref="filterWindow">
                 <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">
-                    <input v-on:input="filterRows(filterIndex)" v-model="filterWord" type="text" >
+                    <input v-on:input="filterRowsByText(filterIndex)" v-model="filterWord" type="text" >
                 </div>
                 <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">
-                    <!--<input type="number" >-->
-                    <range-number />
+                    <range-number v-model="filterNumber" v-bind:minimumValue="filterNumberSettings.minimum" v-bind:maximumValue="filterNumberSettings.maximum" v-bind:validDigits="filterNumberSettings.validDigits" />
                 </div>
             </div>
             <!--リスト本体-->
@@ -108,10 +107,15 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
-                filterWord:'', //フィルター用（テキスト）
-                filterNumber:{
+                filterWord:'', //フィルター用（Rawテキスト）
+                filterNumber:{ //フィルター用（数値）
                     min:null,
                     max:null,
+                },
+                filterNumberSettings:{
+                    minimum:0,
+                    maximum:100,
+                    validDigits:0,
                 },
                 filterIndex:null,  //フィルターされているカラムのインデックス
                 initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
@@ -365,7 +369,7 @@
                     this.listItems.push(JSON.parse(item.values))
                 }
                 this.sortedListItems = this.listItems
-                this.filterRows()
+                this.filterRowsByText()
             },
             // ソート
             sortListASC:function(columnIndex){ //昇順
@@ -379,7 +383,7 @@
                     }
                 })
                 // this.sortedListItems = this.listItems
-                this.filterRows()
+                this.filterRowsByText()
             },
             sortListDESC:function(columnIndex){ //降順
                 let vue = this
@@ -392,7 +396,7 @@
                     }
                 })
                 // this.sortedListItems = this.listItems
-                this.filterRows()
+                this.filterRowsByText()
             },
             createNewList:function(){
                 this.listMetaData = {
@@ -406,34 +410,39 @@
                 ]
                 this.addItem()
             },
-            filterRows:function(index){
+            filterRowsByText:function(index){
                 this.listItems = []
-                if(this.filterWord == ''){
+                let filterWords = this.filterWord.split(' ').filter(word => {
+                    return word != ''
+                })
+                if(filterWords.length == 0){
                     this.listItems = this.sortedListItems
+                    return
                 }
+                
                 let result
-                if(typeof index != 'undefined'){ //カラム別に絞り込み
-                    result = this.sortedListItems.filter(item => {
-                        return item[index].value.indexOf(this.filterWord) != -1
-                    })
-                }else{ //全体から絞り込み
-                    result = this.sortedListItems.filter(item => {
-                        return item.some(column => {
-                            return String(column.value).indexOf(this.filterWord) != -1
+                
+                //全体から絞り込み
+                result = this.sortedListItems.filter(item => {
+                    return item.some(column => {
+                        return filterWords.some(filterWord => {
+                            return String(column.value).replace(' ','').indexOf(filterWord) != -1
                         })
                     })
-                }
+                })
                 this.listItems = result
+            },
+            filterRowsByNumber:function(index){
+                
             },
             showFilterInuput:function(columnIndex){
                 if(this.filterIndex == null){
                     // 表示位置を計算
                     this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
-                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
+                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
                     this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
                     this.$refs.filterWindow.classList.add('visible')
                     this.filterIndex = columnIndex
-                    console.log(filterWindowLeftPosition)
                 }
                 else if(this.filterIndex == columnIndex){
                     //要素を不可視化
@@ -442,7 +451,6 @@
                     this.filterIndex = null
                 }else{
                     let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
-                    console.log(this.initialPositionLeft)
                     this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
                     this.filterIndex = columnIndex
                 }
@@ -468,20 +476,24 @@
     }
     
     .filter-window {
+        display:inline-block;
         visibility:hidden;
         position:relative;
-        width:10em;
+        width:15em;
         height:2em;
         padding:0.2em;
         border:2px solid grey;
         border-radius:0.5em;
-        background-color:grey;
+        /*background-color:grey;*/
         transition:all 0.2s ease;
+        div {
+            display:inline-block;
+        }
         &.visible {
             visibility:visible;
         }
         input {
-            width:100%;
+            width:15em;
             border-radius:0.5em;
             /*background-color:grey;*/
         }
