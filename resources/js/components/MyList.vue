@@ -31,26 +31,50 @@
                 <input type="text" v-model="listMetaData.name" />
                 <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
             </div>
-            <!--リスト外見変更-->
             <div v-else class="fixed-bar-right">
-                <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
-                <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>
-                <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
-                <i class="fas fa-list-ol fa-lg" v-on:click="changeListAppearance('meta-visible')"></i>
+                <!--リスト外見変更-->
+                <div class="decoration">
+                    <p>decoration</p>
+                    <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
+                    <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>
+                    <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
+                    <i class="fas fa-list-ol fa-lg" v-on:click="changeListAppearance('meta-visible')"></i>
+                </div>
             </div>
             
             <!--絞り込み検索窓-->
-            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="しぼりこみ">
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">
+            
+            <!--フィルター部分-->
+            <div class="filters">
+                <!--{{listDefinition}}-->
+                <div v-for="(column,index) in listDefinition" class="filter">
+                    <span>{{column.name}}</span>
+                    <input v-if="column.type=='Text'" type="text" />
+                    <range-number v-else-if="column.type=='Number'" />
+                </div>
+                <!--{{filters}}-->
+                <!--<div v-for="(filter,index) in filters" class="filter">-->
+                <!--    <select v-model="filters[index].columnIndex">-->
+                <!--        <option v-for="(column,index) in listDefinition" v-bind:value="index">{{column.name}}</option>-->
+                <!--    </select>-->
+                    <!--<div v-show="filters[index].columnIndex != null">-->
+                <!--        <input v-if="listDefinition[filters[index].columnIndex] && listDefinition[filters[index].columnIndex].type == 'text'">-->
+                <!--        <range-number v-else-if="listDefinition[filters[index].columnIndex] && listDefinition[filters[index].columnIndex].type == 'number'" />-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<i class="fas fa-plus-circle fa-2x" v-on:click="addFilter()"></i>-->
+            </div>                
             
             <!--カラムごとの絞り込みポップアップ-->
-            <div v-if="!editMode" class="filter-window" ref="filterWindow">
-                <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">
-                    <input v-on:input="filterRowsByText(filterIndex)" v-model="filterWord" type="text" >
-                </div>
-                <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">
-                    <range-number v-model="filterNumber" v-bind:minimumValue="filterNumberSettings.minimum" v-bind:maximumValue="filterNumberSettings.maximum" v-bind:validDigits="filterNumberSettings.validDigits" />
-                </div>
-            </div>
+            <!--<div v-if="!editMode" class="filter-window" ref="filterWindow">-->
+            <!--    <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">-->
+            <!--        <input v-on:input="filterRowsByText(filterIndex)" v-model="filterWord" type="text" >-->
+            <!--    </div>-->
+            <!--    <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">-->
+            <!--        <range-number v-model="filterNumber" v-bind:minimumValue="filterNumberSettings.minimum" v-bind:maximumValue="filterNumberSettings.maximum" v-bind:validDigits="filterNumberSettings.validDigits" />-->
+            <!--    </div>-->
+            <!--</div>-->
             <!--リスト本体-->
             <div id="list" ref="list">
                 <div class="row-meta">
@@ -67,7 +91,8 @@
                         <div v-if="index == 0" class="row">
                             <!--カラム表示-->
                             <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">
-                                <span v-on:dblclick="showFilterInuput(columnIndex)">{{columnName.name}}</span>
+                                <!--<span v-on:dblclick="showFilterInuput(columnIndex)">{{columnName.name}}</span>-->
+                                <span>{{columnName.name}}</span>
                                 <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>
                             </span>
                         </div>
@@ -107,6 +132,7 @@
                     default:'',
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
+                filters:[],
                 filterWord:'', //フィルター用（Rawテキスト）
                 filterNumber:{ //フィルター用（数値）
                     min:null,
@@ -435,26 +461,29 @@
             filterRowsByNumber:function(index){
                 
             },
-            showFilterInuput:function(columnIndex){
-                if(this.filterIndex == null){
-                    // 表示位置を計算
-                    this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
-                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
-                    this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-                    this.$refs.filterWindow.classList.add('visible')
-                    this.filterIndex = columnIndex
-                }
-                else if(this.filterIndex == columnIndex){
-                    //要素を不可視化
-                    this.$refs.filterWindow.classList.remove('visible')
-                    this.$refs.filterWindow.style.left = '0px'
-                    this.filterIndex = null
-                }else{
-                    let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
-                    this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-                    this.filterIndex = columnIndex
-                }
-            },
+            addFilter:function(){
+                this.filters.push({columnIndex:null})
+            }
+            // showFilterInuput:function(columnIndex){
+            //     if(this.filterIndex == null){
+            //         // 表示位置を計算
+            //         this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
+            //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
+            //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+            //         this.$refs.filterWindow.classList.add('visible')
+            //         this.filterIndex = columnIndex
+            //     }
+            //     else if(this.filterIndex == columnIndex){
+            //         //要素を不可視化
+            //         this.$refs.filterWindow.classList.remove('visible')
+            //         this.$refs.filterWindow.style.left = '0px'
+            //         this.filterIndex = null
+            //     }else{
+            //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
+            //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+            //         this.filterIndex = columnIndex
+            //     }
+            // },
         }
     }
 </script>
@@ -475,29 +504,29 @@
         }
     }
     
-    .filter-window {
-        display:inline-block;
-        visibility:hidden;
-        position:relative;
-        width:15em;
-        height:2em;
-        padding:0.2em;
-        border:2px solid grey;
-        border-radius:0.5em;
+    /*.filter-window {*/
+    /*    display:inline-block;*/
+    /*    visibility:hidden;*/
+    /*    position:relative;*/
+    /*    width:15em;*/
+    /*    height:2em;*/
+    /*    padding:0.2em;*/
+    /*    border:2px solid grey;*/
+    /*    border-radius:0.5em;*/
         /*background-color:grey;*/
-        transition:all 0.2s ease;
-        div {
-            display:inline-block;
-        }
-        &.visible {
-            visibility:visible;
-        }
-        input {
-            width:15em;
-            border-radius:0.5em;
+    /*    transition:all 0.2s ease;*/
+    /*    div {*/
+    /*        display:inline-block;*/
+    /*    }*/
+    /*    &.visible {*/
+    /*        visibility:visible;*/
+    /*    }*/
+    /*    input {*/
+    /*        width:15em;*/
+    /*        border-radius:0.5em;*/
             /*background-color:grey;*/
-        }
-    }
+    /*    }*/
+    /*}*/
     
     #list-wrapper {
         display:flex;
@@ -580,6 +609,20 @@
         }
     }
     
+    /*フィルター部分*/
+    .filters {
+        margin:1em 0;
+        padding:1em;
+        border-radius:0.5em;
+        background-color:rgba(grey,0.3);
+        .filter {
+            display:flex;
+            &>* {
+                margin:0 1em;
+            }
+        }
+    }
+    
     /*外見変更用のコントロールパネル（右固定）*/
     .fixed-bar-right {
         display:flex;
@@ -594,18 +637,35 @@
         border:1px solid white;
         background-color:white;
         border-radius:0.2em;
-        i {
-            color:grey;
-            display:inline-block;
-            margin:0.5em;
-            cursor:pointer;
-            transition:all 0.2s ease;
+        padding:1em;
+        div {
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            i {
+                color:grey;
+                display:inline-block;
+                margin:0.5em;
+                cursor:pointer;
+                transition:all 0.2s ease;
+            }
         }
-        i:hover {
-            text-shadow: 0 0 5px orange;
-        }
-        .selected{
-            text-shadow: 0 0 5px orange;
+        .decoration {
+            margin-bottom:2em;
+            /*i {*/
+            /*    color:grey;*/
+            /*    display:inline-block;*/
+            /*    margin:0.5em;*/
+            /*    cursor:pointer;*/
+            /*    transition:all 0.2s ease;*/
+            /*}*/
+            i:hover {
+                text-shadow: 0 0 5px orange;
+            }
+            .selected{
+                text-shadow: 0 0 5px orange;
+            }
         }
     }
     

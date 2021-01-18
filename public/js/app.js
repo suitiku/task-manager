@@ -68835,7 +68835,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n.filter-window[data-v-33a634d6] {\n  display: inline-block;\n  visibility: hidden;\n  position: relative;\n  width: 15em;\n  height: 2em;\n  padding: 0.2em;\n  border: 2px solid grey;\n  border-radius: 0.5em;\n  /*background-color:grey;*/\n  -webkit-transition: all 0.2s ease;\n  transition: all 0.2s ease;\n}\n.filter-window div[data-v-33a634d6] {\n    display: inline-block;\n}\n.filter-window.visible[data-v-33a634d6] {\n    visibility: visible;\n}\n.filter-window input[data-v-33a634d6] {\n    width: 15em;\n    border-radius: 0.5em;\n    /*background-color:grey;*/\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n}\n.fixed-bar-right i[data-v-33a634d6] {\n    color: grey;\n    display: inline-block;\n    margin: 0.5em;\n    cursor: pointer;\n    -webkit-transition: all 0.2s ease;\n    transition: all 0.2s ease;\n}\n.fixed-bar-right i[data-v-33a634d6]:hover {\n    text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .selected[data-v-33a634d6] {\n    text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n\n/*.filter-window {*/\n/*    display:inline-block;*/\n/*    visibility:hidden;*/\n/*    position:relative;*/\n/*    width:15em;*/\n/*    height:2em;*/\n/*    padding:0.2em;*/\n/*    border:2px solid grey;*/\n/*    border-radius:0.5em;*/\n/*background-color:grey;*/\n/*    transition:all 0.2s ease;*/\n/*    div {*/\n/*        display:inline-block;*/\n/*    }*/\n/*    &.visible {*/\n/*        visibility:visible;*/\n/*    }*/\n/*    input {*/\n/*        width:15em;*/\n/*        border-radius:0.5em;*/\n/*background-color:grey;*/\n/*    }*/\n/*}*/\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*フィルター部分*/\n.filters[data-v-33a634d6] {\n  margin: 1em 0;\n  padding: 1em;\n  border-radius: 0.5em;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.filters .filter[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.filters .filter > *[data-v-33a634d6] {\n      margin: 0 1em;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n  padding: 1em;\n}\n.fixed-bar-right div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.fixed-bar-right div i[data-v-33a634d6] {\n      color: grey;\n      display: inline-block;\n      margin: 0.5em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s ease;\n      transition: all 0.2s ease;\n}\n.fixed-bar-right .decoration[data-v-33a634d6] {\n    margin-bottom: 2em;\n    /*i {*/\n    /*    color:grey;*/\n    /*    display:inline-block;*/\n    /*    margin:0.5em;*/\n    /*    cursor:pointer;*/\n    /*    transition:all 0.2s ease;*/\n    /*}*/\n}\n.fixed-bar-right .decoration i[data-v-33a634d6]:hover {\n      text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .decoration .selected[data-v-33a634d6] {\n      text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -68854,6 +68854,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -68963,6 +68988,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 default: ''
             },
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
+            filters: [],
             filterWord: '', //フィルター用（Rawテキスト）
             filterNumber: { //フィルター用（数値）
                 min: null,
@@ -69559,44 +69585,40 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             var result = void 0;
 
-            // if(typeof index != 'undefined'){ //カラム別に絞り込み
-            //     result = this.sortedListItems.filter(item => {
-            //         return item[index].value.indexOf(this.filterWord) != -1
-            //     })
-            // }else{ 
-
             //全体から絞り込み
             result = this.sortedListItems.filter(function (item) {
                 return item.some(function (column) {
-                    // return String(column.value).replace(' ','').indexOf(this.filterWord) != -1
                     return filterWords.some(function (filterWord) {
                         return String(column.value).replace(' ', '').indexOf(filterWord) != -1;
                     });
                 });
             });
-            // }
             this.listItems = result;
         },
         filterRowsByNumber: function filterRowsByNumber(index) {},
-        showFilterInuput: function showFilterInuput(columnIndex) {
-            if (this.filterIndex == null) {
-                // 表示位置を計算
-                this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20;
-                var filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2;
-                this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px';
-                this.$refs.filterWindow.classList.add('visible');
-                this.filterIndex = columnIndex;
-            } else if (this.filterIndex == columnIndex) {
-                //要素を不可視化
-                this.$refs.filterWindow.classList.remove('visible');
-                this.$refs.filterWindow.style.left = '0px';
-                this.filterIndex = null;
-            } else {
-                var _filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft;
-                this.$refs.filterWindow.style.left = _filterWindowLeftPosition + 'px';
-                this.filterIndex = columnIndex;
-            }
+        addFilter: function addFilter() {
+            this.filters.push({ columnIndex: null });
         }
+        // showFilterInuput:function(columnIndex){
+        //     if(this.filterIndex == null){
+        //         // 表示位置を計算
+        //         this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
+        //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
+        //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+        //         this.$refs.filterWindow.classList.add('visible')
+        //         this.filterIndex = columnIndex
+        //     }
+        //     else if(this.filterIndex == columnIndex){
+        //         //要素を不可視化
+        //         this.$refs.filterWindow.classList.remove('visible')
+        //         this.$refs.filterWindow.style.left = '0px'
+        //         this.filterIndex = null
+        //     }else{
+        //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
+        //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
+        //         this.filterIndex = columnIndex
+        //     }
+        // },
     }
 });
 
@@ -69825,41 +69847,45 @@ var render = function() {
               )
             ])
           : _c("div", { staticClass: "fixed-bar-right" }, [
-              _c("i", {
-                staticClass: "fas fa-border-all fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.changeListAppearance("simple-border")
+              _c("div", { staticClass: "decoration" }, [
+                _c("p", [_vm._v("decoration")]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-border-all fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("simple-border")
+                    }
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-underline fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.changeListAppearance("simple-border-bottom")
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-underline fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("simple-border-bottom")
+                    }
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-highlighter fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.changeListAppearance("highlight-odd")
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-highlighter fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("highlight-odd")
+                    }
                   }
-                }
-              }),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-list-ol fa-lg",
-                on: {
-                  click: function($event) {
-                    return _vm.changeListAppearance("meta-visible")
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-list-ol fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.changeListAppearance("meta-visible")
+                    }
                   }
-                }
-              })
+                })
+              ])
             ]),
         _vm._v(" "),
         !_vm.editMode
@@ -69872,7 +69898,7 @@ var render = function() {
                   expression: "filterWord"
                 }
               ],
-              attrs: { type: "text", placeholder: "しぼりこみ" },
+              attrs: { type: "text", placeholder: "全体からしぼりこみ" },
               domProps: { value: _vm.filterWord },
               on: {
                 input: [
@@ -69890,87 +69916,27 @@ var render = function() {
             })
           : _vm._e(),
         _vm._v(" "),
-        !_vm.editMode
-          ? _c("div", { ref: "filterWindow", staticClass: "filter-window" }, [
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value:
-                        _vm.listDefinition[_vm.filterIndex] &&
-                        _vm.listDefinition[_vm.filterIndex].type == "Text",
-                      expression:
-                        "listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'"
-                    }
-                  ]
-                },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.filterWord,
-                        expression: "filterWord"
-                      }
-                    ],
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.filterWord },
-                    on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.filterWord = $event.target.value
-                        },
-                        function($event) {
-                          return _vm.filterRowsByText(_vm.filterIndex)
-                        }
-                      ]
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value:
-                        _vm.listDefinition[_vm.filterIndex] &&
-                        _vm.listDefinition[_vm.filterIndex].type == "Number",
-                      expression:
-                        "listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'"
-                    }
-                  ]
-                },
-                [
-                  _c("range-number", {
-                    attrs: {
-                      minimumValue: _vm.filterNumberSettings.minimum,
-                      maximumValue: _vm.filterNumberSettings.maximum,
-                      validDigits: _vm.filterNumberSettings.validDigits
-                    },
-                    model: {
-                      value: _vm.filterNumber,
-                      callback: function($$v) {
-                        _vm.filterNumber = $$v
-                      },
-                      expression: "filterNumber"
-                    }
-                  })
-                ],
-                1
-              )
-            ])
-          : _vm._e(),
+        _c(
+          "div",
+          { staticClass: "filters" },
+          _vm._l(_vm.listDefinition, function(column, index) {
+            return _c(
+              "div",
+              { staticClass: "filter" },
+              [
+                _c("span", [_vm._v(_vm._s(column.name))]),
+                _vm._v(" "),
+                column.type == "Text"
+                  ? _c("input", { attrs: { type: "text" } })
+                  : column.type == "Number"
+                  ? _c("range-number")
+                  : _vm._e()
+              ],
+              1
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(
@@ -70019,17 +69985,7 @@ var render = function() {
                             style: _vm.setColumnWidth(columnIndex)
                           },
                           [
-                            _c(
-                              "span",
-                              {
-                                on: {
-                                  dblclick: function($event) {
-                                    return _vm.showFilterInuput(columnIndex)
-                                  }
-                                }
-                              },
-                              [_vm._v(_vm._s(columnName.name))]
-                            ),
+                            _c("span", [_vm._v(_vm._s(columnName.name))]),
                             _vm._v(" "),
                             _c("i", {
                               staticClass: "fas fa-sort-amount-down-alt",
