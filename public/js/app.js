@@ -70743,6 +70743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         minValue: function minValue() {
             if (this.minPercentage < 0) this.minPercentage = 0;
+            if (this.maxPercentage > 100) this.maxPercentage = 100;
             var value = Math.round((this.maximumValue - this.minimumValue) / 100 * this.minPercentage * Math.pow(10, this.validDigits)) / Math.pow(10, this.validDigits) + this.minimumValue;
             value = this.checkDigits(value); //桁数チェック
             this.emitValue.min = value;

@@ -72,6 +72,7 @@
             },
             minValue:function(){
                 if(this.minPercentage < 0)this.minPercentage = 0
+                if(this.maxPercentage > 100)this.maxPercentage = 100
                 let value = Math.round(((this.maximumValue - this.minimumValue) / 100 * this.minPercentage) * 10 ** this.validDigits) / 10 ** this.validDigits + this.minimumValue
                 value = this.checkDigits(value) //桁数チェック
                 this.emitValue.min = value
