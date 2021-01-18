@@ -51,7 +51,7 @@
                 <div v-for="(column,index) in listDefinition" class="filter">
                     <span>{{column.name}}</span>
                     <input v-if="column.type=='Text'" type="text" />
-                    <range-number v-else-if="column.type=='Number'" />
+                    <range-number v-else-if="column.type=='Number'" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
                 </div>
                 <!--{{filters}}-->
                 <!--<div v-for="(filter,index) in filters" class="filter">-->
@@ -461,9 +461,23 @@
             filterRowsByNumber:function(index){
                 
             },
-            addFilter:function(){
-                this.filters.push({columnIndex:null})
+            setMinimumValue:function(index){
+                let valueArray = this.listItems.map(item => {
+                    return Number(item[index].value)
+                })
+                return Math.min.apply(null,valueArray)
+            },
+            setMaximumValue:function(index){
+                let valueArray = this.listItems.map(item => {
+                    return Number(item[index].value)
+                })
+                return Math.max.apply(null,valueArray)
             }
+            
+            
+            // addFilter:function(){
+            //     this.filters.push({columnIndex:null})
+            // }
             // showFilterInuput:function(columnIndex){
             //     if(this.filterIndex == null){
             //         // 表示位置を計算

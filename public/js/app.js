@@ -69596,9 +69596,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems = result;
         },
         filterRowsByNumber: function filterRowsByNumber(index) {},
-        addFilter: function addFilter() {
-            this.filters.push({ columnIndex: null });
+        setMinimumValue: function setMinimumValue(index) {
+            var valueArray = this.listItems.map(function (item) {
+                return Number(item[index].value);
+            });
+            return Math.min.apply(null, valueArray);
+        },
+        setMaximumValue: function setMaximumValue(index) {
+            var valueArray = this.listItems.map(function (item) {
+                return Number(item[index].value);
+            });
+            return Math.max.apply(null, valueArray);
         }
+
+        // addFilter:function(){
+        //     this.filters.push({columnIndex:null})
+        // }
         // showFilterInuput:function(columnIndex){
         //     if(this.filterIndex == null){
         //         // 表示位置を計算
@@ -69929,7 +69942,12 @@ var render = function() {
                 column.type == "Text"
                   ? _c("input", { attrs: { type: "text" } })
                   : column.type == "Number"
-                  ? _c("range-number")
+                  ? _c("range-number", {
+                      attrs: {
+                        minimumValue: _vm.setMinimumValue(index),
+                        maximumValue: _vm.setMaximumValue(index)
+                      }
+                    })
                   : _vm._e()
               ],
               1
