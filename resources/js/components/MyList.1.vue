@@ -31,8 +31,8 @@
                 <input type="text" v-model="listMetaData.name" />
                 <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
             </div>
-            <!--リスト外見変更-->
             <div v-else class="fixed-bar-right">
+                <!--リスト外見変更-->
                 <div class="decoration">
                     <p>decoration</p>
                     <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
@@ -43,17 +43,37 @@
             </div>
             
             <!--絞り込み検索窓-->
-        <!--    <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">-->
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">
             
             <!--フィルター部分-->
-        <!--    <div class="filters">-->
-        <!--        <div v-for="(column,index) in listDefinition" class="filter">-->
-        <!--            <span>{{column.name}}</span>-->
-        <!--            <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />-->
-        <!--            <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />-->
-        <!--        </div>-->
-        <!--    </div>                -->
+            <div class="filters">
+                <div v-for="(column,index) in listDefinition" class="filter">
+                    <span>{{column.name}}</span>
+                    <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
+                    <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
+                </div>
+                <!--{{filters}}-->
+                <!--<div v-for="(filter,index) in filters" class="filter">-->
+                <!--    <select v-model="filters[index].columnIndex">-->
+                <!--        <option v-for="(column,index) in listDefinition" v-bind:value="index">{{column.name}}</option>-->
+                <!--    </select>-->
+                    <!--<div v-show="filters[index].columnIndex != null">-->
+                <!--        <input v-if="listDefinition[filters[index].columnIndex] && listDefinition[filters[index].columnIndex].type == 'text'">-->
+                <!--        <range-number v-else-if="listDefinition[filters[index].columnIndex] && listDefinition[filters[index].columnIndex].type == 'number'" />-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<i class="fas fa-plus-circle fa-2x" v-on:click="addFilter()"></i>-->
+            </div>                
             
+            <!--カラムごとの絞り込みポップアップ-->
+            <!--<div v-if="!editMode" class="filter-window" ref="filterWindow">-->
+            <!--    <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Text'">-->
+            <!--        <input v-on:input="filterRowsByText(filterIndex)" v-model="filterWord" type="text" >-->
+            <!--    </div>-->
+            <!--    <div v-show="listDefinition[filterIndex] && listDefinition[filterIndex].type == 'Number'">-->
+            <!--        <range-number v-model="filterNumber" v-bind:minimumValue="filterNumberSettings.minimum" v-bind:maximumValue="filterNumberSettings.maximum" v-bind:validDigits="filterNumberSettings.validDigits" />-->
+            <!--    </div>-->
+            <!--</div>-->
             <!--リスト本体-->
             <div id="list" ref="list">
                 <div class="row-meta">
@@ -68,19 +88,19 @@
                 <div class="row-data">
                     <div v-for="(item,index) in listItems">
                         <div v-if="index == 0" class="row">
-                            <!--カラム名表示-->
+                            <!--カラム表示-->
                             <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">
-                                <span v-if="editMode" v-on:click="showEditColumnModal(columnIndex)">{{columnName.name}}</span>
-                                <span v-else>{{columnName.name}}</span>
+                                <!--<span v-on:dblclick="showFilterInuput(columnIndex)">{{columnName.name}}</span>-->
+                                <span>{{columnName.name}}</span>
                                 <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>
                             </span>
                         </div>
                         <div class="row">
                             <div v-if="editMode">
-                                <input v-for="(column,columnIndex) in item.values" type="text" v-model="listItems[index].values[columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+                                <input v-for="(column,columnIndex) in item" type="text" v-model="listItems[index][columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
                             </div>
                             <div v-else>
-                                <span v-for="(column,columnIndex) in item.values" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                                <span v-for="(column,columnIndex) in item" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
                             </div>
                         </div>
                     </div>
@@ -147,12 +167,12 @@
             listId:function(){
                 this.getList()
             },
-            // filters:{
-            //     handler:function(newVal,oldVal){
-            //         this.filterRows()
-            //     },
-            //     deep:true
-            // }
+            filters:{
+                handler:function(newVal,oldVal){
+                    this.filterRows()
+                },
+                deep:true
+            }
         },
         created:async function(){
             this.getList()
@@ -181,13 +201,10 @@
                     console.log(this.myList)
                     this.listDefinition = JSON.parse(result.data.column_definitions)
                     for(let item of result.data.my_list_items){
-                        let pushItem = item
-                        pushItem.values = JSON.parse(item.values)
-                        // this.listItems.push(item)
-                        // this.listItems[this.listItems.length - 1].values = JSON.parse(item.values)
-                        this.listItems.push(pushItem)
-                        this.sortedListItems.push(pushItem)
+                        this.listItems.push(JSON.parse(item.values))
+                        this.sortedListItems.push(JSON.parse(item.values))
                     }
+                    
                     this.getColumnWidths()
                     
                     //閲覧モードのときはメタデータを不可視化
@@ -206,9 +223,9 @@
                     }
                 }
                 for(let item of this.listItems){
-                    for(let index in item.values){
-                        if(item.values[index].value && this.columnWidths[index] < item.values[index].value.length){
-                            this.columnWidths.splice(index,1,item.values[index].value.length)
+                    for(let index in item){
+                        if(item[index].value && this.columnWidths[index] < item[index].value.length){
+                            this.columnWidths.splice(index,1,item[index].value.length)
                         }
                     }
                 }
@@ -230,7 +247,7 @@
                     let addColumn = {index:column.index,value:column.default}
                     addItem.push(addColumn)
                 }
-                this.listItems.push({values:addItem})
+                this.listItems.push(addItem)
             },
             deleteItem:async function(index){
                 let confirmResult = confirm('行を削除します。よろしいですか？')
@@ -266,7 +283,7 @@
                 this.newColumn.index = columnIndex
                 this.listDefinition.push(this.newColumn)
                 for(let index in this.listItems){
-                    this.listItems[index].values.push({
+                    this.listItems[index].push({
                         index:columnIndex,
                         value:this.newColumn.default
                     })
@@ -274,16 +291,6 @@
                 //幅調整
                 let width = Math.max(this.newColumn.name.length,this.newColumn.default.length)
                 this.columnWidths.push(width)
-            },
-            showEditColumnModal:function(index){
-                this.newColumn = {
-                    index:index,
-                    name:this.listDefinition[index].name,
-                    type:this.listDefinition[index].type,
-                    suffix:this.listDefinition[index].suffix,
-                    default:this.listDefinition[index].default,
-                }
-                this.$refs.newColumnModal.openModal()
             },
             editColumn:function(){
                 this.listDefinition[this.newColumn.index].name = this.newColumn.name
@@ -294,7 +301,7 @@
                 this.columnWidths[this.newColumn.index] = 0 //リセット
                 let maxWidth = 0
                 for(let item of this.listItems){
-                    let valueLength = item.values[this.newColumn.index].value ? item.values[this.newColumn.index].value.length : 0
+                    let valueLength = item[this.newColumn.index].value ? item[this.newColumn.index].value.length : 0
                     let suffixLength = this.newColumn.suffix ? this.newColumn.suffix.length : 0
                      maxWidth = Math.max( valueLength + suffixLength, maxWidth)
                 }
@@ -308,7 +315,7 @@
                 
                 this.listDefinition.splice(this.newColumn.index,1)
                 for(let index in this.listItems){
-                    this.listItems[index].values.splice(this.newColumn.index,1)
+                    this.listItems[index].splice(this.newColumn.index,1)
                 }
                 this.$refs.newColumnModal.closeModal()
                 this.$refs.notice.showNotice('列を削除しました')
@@ -332,7 +339,7 @@
                 for(let index in this.listItems){
                     let postItem = {
                         index:index,
-                        values:JSON.stringify(this.listItems[index].values),
+                        values:JSON.stringify(this.listItems[index]),
                         is_checked:false,
                         is_stared:false,
                     }
@@ -352,6 +359,17 @@
                     console.log(error)
                 }
                 
+            },
+            //カラム名をクリック
+            clickColumn:function(index){
+                if(this.editMode){ //編集モード（編集モーダルを表示）
+                    this.newColumn.index = index
+                    this.newColumn.name = this.listDefinition[index].name
+                    this.newColumn.type = this.listDefinition[index].type
+                    this.newColumn.suffix = this.listDefinition[index].suffix
+                    this.newColumn.default = this.listDefinition[index].default
+                    this.$refs.newColumnModal.openModal()
+                }
             },
             // ソートボタンをクリック
             clickSortButton:function(columnIndex){

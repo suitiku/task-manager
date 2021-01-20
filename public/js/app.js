@@ -68946,27 +68946,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68989,18 +68968,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             },
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
             filters: [],
-            filterWord: '', //フィルター用（Rawテキスト）
-            filterNumber: { //フィルター用（数値）
-                min: null,
-                max: null
-            },
-            filterNumberSettings: {
-                minimum: 0,
-                maximum: 100,
-                validDigits: 0
-            },
-            filterIndex: null, //フィルターされているカラムのインデックス
-            initialPositionLeft: 0 //カラム別フィルターの移動位置記憶用
+            filterWord: '' //フィルター用（Rawテキスト）
+            // filterNumber:{ //フィルター用（数値）
+            //     min:null,
+            //     max:null,
+            // },
+            // filterNumberSettings:{
+            //     minimum:0,
+            //     maximum:100,
+            //     validDigits:0,
+            // },
+            // filterIndex:null,  //フィルターされているカラムのインデックス
+            // initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
         };
     },
     props: {
@@ -69024,6 +69003,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         listId: function listId() {
             this.getList();
         }
+        // filters:{
+        //     handler:function(newVal,oldVal){
+        //         this.filterRows()
+        //     },
+        //     deep:true
+        // }
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -69057,14 +69042,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         getList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item;
+                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, pushItem;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!this.listId) {
-                                    _context2.next = 31;
+                                    _context2.next = 32;
                                     break;
                                 }
 
@@ -69081,71 +69066,75 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     description: result.data.description,
                                     type: result.data.type
                                 };
+                                console.log(this.myList);
                                 this.listDefinition = JSON.parse(result.data.column_definitions);
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 11;
+                                _context2.prev = 12;
                                 for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     item = _step.value;
+                                    pushItem = item;
 
-                                    this.listItems.push(JSON.parse(item.values));
-                                    this.sortedListItems.push(JSON.parse(item.values));
+                                    pushItem.values = JSON.parse(item.values);
+                                    // this.listItems.push(item)
+                                    // this.listItems[this.listItems.length - 1].values = JSON.parse(item.values)
+                                    this.listItems.push(pushItem);
+                                    this.sortedListItems.push(pushItem);
                                 }
-
-                                _context2.next = 19;
+                                _context2.next = 20;
                                 break;
 
-                            case 15:
-                                _context2.prev = 15;
-                                _context2.t0 = _context2['catch'](11);
+                            case 16:
+                                _context2.prev = 16;
+                                _context2.t0 = _context2['catch'](12);
                                 _didIteratorError = true;
                                 _iteratorError = _context2.t0;
 
-                            case 19:
-                                _context2.prev = 19;
+                            case 20:
                                 _context2.prev = 20;
+                                _context2.prev = 21;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 22:
-                                _context2.prev = 22;
+                            case 23:
+                                _context2.prev = 23;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 25;
+                                    _context2.next = 26;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 25:
-                                return _context2.finish(22);
-
                             case 26:
-                                return _context2.finish(19);
+                                return _context2.finish(23);
 
                             case 27:
+                                return _context2.finish(20);
+
+                            case 28:
                                 this.getColumnWidths();
 
                                 //閲覧モードのときはメタデータを不可視化
                                 if (!this.editMode) {
                                     this.$refs.list.classList.add('meta-invisible');
                                 }
-                                _context2.next = 32;
+                                _context2.next = 33;
                                 break;
 
-                            case 31:
+                            case 32:
                                 //list_idがない場合は新規作成と解釈してlistを初期化する
                                 this.initList();
 
-                            case 32:
+                            case 33:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[11, 15, 19, 27], [20,, 22, 26]]);
+                }, _callee2, this, [[12, 16, 20, 28], [21,, 23, 27]]);
             }));
 
             function getList() {
@@ -69191,9 +69180,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator3 = this.listItems[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
                     var item = _step3.value;
 
-                    for (var index in item) {
-                        if (item[index].value && this.columnWidths[index] < item[index].value.length) {
-                            this.columnWidths.splice(index, 1, item[index].value.length);
+                    for (var index in item.values) {
+                        if (item.values[index].value && this.columnWidths[index] < item.values[index].value.length) {
+                            this.columnWidths.splice(index, 1, item.values[index].value.length);
                         }
                     }
                 }
@@ -69251,7 +69240,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            this.listItems.push(addItem);
+            this.listItems.push({ values: addItem });
         },
         deleteItem: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(index) {
@@ -69324,7 +69313,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.newColumn.index = columnIndex;
             this.listDefinition.push(this.newColumn);
             for (var index in this.listItems) {
-                this.listItems[index].push({
+                this.listItems[index].values.push({
                     index: columnIndex,
                     value: this.newColumn.default
                 });
@@ -69332,6 +69321,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             //幅調整
             var width = Math.max(this.newColumn.name.length, this.newColumn.default.length);
             this.columnWidths.push(width);
+        },
+        showEditColumnModal: function showEditColumnModal(index) {
+            this.newColumn = {
+                index: index,
+                name: this.listDefinition[index].name,
+                type: this.listDefinition[index].type,
+                suffix: this.listDefinition[index].suffix,
+                default: this.listDefinition[index].default
+            };
+            this.$refs.newColumnModal.openModal();
         },
         editColumn: function editColumn() {
             this.listDefinition[this.newColumn.index].name = this.newColumn.name;
@@ -69349,7 +69348,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator5 = this.listItems[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
                     var item = _step5.value;
 
-                    var valueLength = item[this.newColumn.index].value ? item[this.newColumn.index].value.length : 0;
+                    var valueLength = item.values[this.newColumn.index].value ? item.values[this.newColumn.index].value.length : 0;
                     var suffixLength = this.newColumn.suffix ? this.newColumn.suffix.length : 0;
                     maxWidth = Math.max(valueLength + suffixLength, maxWidth);
                 }
@@ -69378,7 +69377,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             this.listDefinition.splice(this.newColumn.index, 1);
             for (var index in this.listItems) {
-                this.listItems[index].splice(this.newColumn.index, 1);
+                this.listItems[index].values.splice(this.newColumn.index, 1);
             }
             this.$refs.newColumnModal.closeModal();
             this.$refs.notice.showNotice('列を削除しました');
@@ -69573,7 +69572,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listDefinition = [{ name: 'no title', type: 'Text', suffix: null, default: null }];
             this.addItem();
         },
-        filterRowsByText: function filterRowsByText(index) {
+        // 全体から絞り込み
+        filterRowsByText: function filterRowsByText() {
             this.listItems = [];
             var filterWords = this.filterWord.split(' ').filter(function (word) {
                 return word != '';
@@ -69582,10 +69582,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.listItems = this.sortedListItems;
                 return;
             }
-
             var result = void 0;
-
-            //全体から絞り込み
             result = this.sortedListItems.filter(function (item) {
                 return item.some(function (column) {
                     return filterWords.some(function (filterWord) {
@@ -69595,15 +69592,53 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             });
             this.listItems = result;
         },
-        filterRowsByNumber: function filterRowsByNumber(index) {},
+        // カラム別フィルター
+        filterRows: function filterRows() {
+            var _this = this;
+
+            var result = [];
+            this.listItems = [];
+
+            var _loop = function _loop(index) {
+                switch (_this.listDefinition[index].type) {
+                    case 'Text':
+                        if (!_this.filters[index]) {
+                            result = _this.sortedListItems;
+                            break;
+                        }
+                        var filterWords = _this.filters[index].split(' ').filter(function (word) {
+                            return word != '';
+                        });
+                        if (filterWords.length == 0) {
+                            result = _this.sortedListItems;
+                            break;
+                        }
+                        result = _this.sortedListItems.filter(function (row) {
+                            return filterWords.some(function (filterWord) {
+                                return String(row[index].value).replace(' ', '').indexOf(filterWord) != -1;
+                            });
+                        });
+                        break;
+                    case 'Number':
+                        break;
+                }
+            };
+
+            for (var index in this.listDefinition) {
+                _loop(index);
+            }
+
+            this.listItems = result;
+        },
+        // RangeNumberの初期値を設定
         setMinimumValue: function setMinimumValue(index) {
-            var valueArray = this.listItems.map(function (item) {
+            var valueArray = this.sortedListItems.map(function (item) {
                 return Number(item[index].value);
             });
             return Math.min.apply(null, valueArray);
         },
         setMaximumValue: function setMaximumValue(index) {
-            var valueArray = this.listItems.map(function (item) {
+            var valueArray = this.sortedListItems.map(function (item) {
                 return Number(item[index].value);
             });
             return Math.max.apply(null, valueArray);
@@ -69901,61 +69936,6 @@ var render = function() {
               ])
             ]),
         _vm._v(" "),
-        !_vm.editMode
-          ? _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filterWord,
-                  expression: "filterWord"
-                }
-              ],
-              attrs: { type: "text", placeholder: "全体からしぼりこみ" },
-              domProps: { value: _vm.filterWord },
-              on: {
-                input: [
-                  function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.filterWord = $event.target.value
-                  },
-                  function($event) {
-                    return _vm.filterRowsByText()
-                  }
-                ]
-              }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "filters" },
-          _vm._l(_vm.listDefinition, function(column, index) {
-            return _c(
-              "div",
-              { staticClass: "filter" },
-              [
-                _c("span", [_vm._v(_vm._s(column.name))]),
-                _vm._v(" "),
-                column.type == "Text"
-                  ? _c("input", { attrs: { type: "text" } })
-                  : column.type == "Number"
-                  ? _c("range-number", {
-                      attrs: {
-                        minimumValue: _vm.setMinimumValue(index),
-                        maximumValue: _vm.setMaximumValue(index)
-                      }
-                    })
-                  : _vm._e()
-              ],
-              1
-            )
-          }),
-          0
-        ),
-        _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(
             "div",
@@ -70003,7 +69983,21 @@ var render = function() {
                             style: _vm.setColumnWidth(columnIndex)
                           },
                           [
-                            _c("span", [_vm._v(_vm._s(columnName.name))]),
+                            _vm.editMode
+                              ? _c(
+                                  "span",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.showEditColumnModal(
+                                          columnIndex
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(columnName.name))]
+                                )
+                              : _c("span", [_vm._v(_vm._s(columnName.name))]),
                             _vm._v(" "),
                             _c("i", {
                               staticClass: "fas fa-sort-amount-down-alt",
@@ -70024,21 +70018,24 @@ var render = function() {
                   _vm.editMode
                     ? _c(
                         "div",
-                        _vm._l(item, function(column, columnIndex) {
+                        _vm._l(item.values, function(column, columnIndex) {
                           return _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.listItems[index][columnIndex].value,
+                                value:
+                                  _vm.listItems[index].values[columnIndex]
+                                    .value,
                                 expression:
-                                  "listItems[index][columnIndex].value"
+                                  "listItems[index].values[columnIndex].value"
                               }
                             ],
                             style: _vm.setColumnWidth(columnIndex),
                             attrs: { type: "text" },
                             domProps: {
-                              value: _vm.listItems[index][columnIndex].value
+                              value:
+                                _vm.listItems[index].values[columnIndex].value
                             },
                             on: {
                               input: function($event) {
@@ -70046,7 +70043,7 @@ var render = function() {
                                   return
                                 }
                                 _vm.$set(
-                                  _vm.listItems[index][columnIndex],
+                                  _vm.listItems[index].values[columnIndex],
                                   "value",
                                   $event.target.value
                                 )
@@ -70058,7 +70055,7 @@ var render = function() {
                       )
                     : _c(
                         "div",
-                        _vm._l(item, function(column, columnIndex) {
+                        _vm._l(item.values, function(column, columnIndex) {
                           return _c(
                             "span",
                             { style: _vm.setColumnWidth(columnIndex) },
