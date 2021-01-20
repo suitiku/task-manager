@@ -183,8 +183,6 @@
                     for(let item of result.data.my_list_items){
                         let pushItem = item
                         pushItem.values = JSON.parse(item.values)
-                        // this.listItems.push(item)
-                        // this.listItems[this.listItems.length - 1].values = JSON.parse(item.values)
                         this.listItems.push(pushItem)
                         this.sortedListItems.push(pushItem)
                     }
@@ -347,9 +345,10 @@
                         result = await axios.post('/api/lists',postData)
                         this.$emit('input',result.data)
                     }
-                    console.log(result.data)
+                    this.$refs.notice.showNotice('リストを保存しました')
                 }catch(error){
                     console.log(error)
+                    this.$refs.notice.showNotice('リストの保存に失敗しました')
                 }
                 
             },
@@ -378,11 +377,10 @@
             },
             // インデックスでソート
             sortListIndex:function(){
-                this.listItems = []
+                this.sortedListItems = []
                 for(let item of this.myList.my_list_items){
-                    this.listItems.push(JSON.parse(item.values))
+                    this.sortedListItems.push(item)
                 }
-                this.sortedListItems = this.listItems
                 this.filterRowsByText()
             },
             // ソート
@@ -391,12 +389,11 @@
                 this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
                     if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
-                        return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1
+                        return itemA.values[columnIndex].value < itemB.values[columnIndex].value ? 1 : -1
                     }else{ //数値／日付
-                        return (Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1);
+                        return (Number(itemA.values[columnIndex].value) < Number(itemB.values[columnIndex].value) ? -1 : 1);
                     }
                 })
-                // this.sortedListItems = this.listItems
                 this.filterRowsByText()
             },
             sortListDESC:function(columnIndex){ //降順
@@ -404,12 +401,11 @@
                 this.sortedListItems.sort(function(itemA,itemB){
                     //数値以外
                     if(vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date'){
-                        return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1
+                        return itemA.values[columnIndex].value > itemB.values[columnIndex].value ? 1 : -1
                     }else{ //数値／日付
-                        return (Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1);
+                        return (Number(itemA.values[columnIndex].value) > Number(itemB.values[columnIndex].value) ? -1 : 1);
                     }
                 })
-                // this.sortedListItems = this.listItems
                 this.filterRowsByText()
             },
             createNewList:function(){
@@ -436,7 +432,7 @@
                 }
                 let result
                 result = this.sortedListItems.filter(item => {
-                    return item.some(column => {
+                    return item.values.some(column => {
                         return filterWords.some(filterWord => {
                             return String(column.value).replace(' ','').indexOf(filterWord) != -1
                         })

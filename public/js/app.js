@@ -69077,8 +69077,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     pushItem = item;
 
                                     pushItem.values = JSON.parse(item.values);
-                                    // this.listItems.push(item)
-                                    // this.listItems[this.listItems.length - 1].values = JSON.parse(item.values)
                                     this.listItems.push(pushItem);
                                     this.sortedListItems.push(pushItem);
                                 }
@@ -69407,7 +69405,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 for (index in this.listItems) {
                                     postItem = {
                                         index: index,
-                                        values: JSON.stringify(this.listItems[index]),
+                                        values: JSON.stringify(this.listItems[index].values),
                                         is_checked: false,
                                         is_stared: false
                                     };
@@ -69441,8 +69439,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.$emit('input', result.data);
 
                             case 15:
-                                console.log(result.data);
-                                _context4.next = 21;
+                                this.$refs.notice.showNotice('リストを保存しました');
+                                _context4.next = 22;
                                 break;
 
                             case 18:
@@ -69450,8 +69448,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 _context4.t0 = _context4['catch'](3);
 
                                 console.log(_context4.t0);
+                                this.$refs.notice.showNotice('リストの保存に失敗しました');
 
-                            case 21:
+                            case 22:
                             case 'end':
                                 return _context4.stop();
                         }
@@ -69465,18 +69464,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
             return saveList;
         }(),
-        //カラム名をクリック
-        clickColumn: function clickColumn(index) {
-            if (this.editMode) {
-                //編集モード（編集モーダルを表示）
-                this.newColumn.index = index;
-                this.newColumn.name = this.listDefinition[index].name;
-                this.newColumn.type = this.listDefinition[index].type;
-                this.newColumn.suffix = this.listDefinition[index].suffix;
-                this.newColumn.default = this.listDefinition[index].default;
-                this.$refs.newColumnModal.openModal();
-            }
-        },
         // ソートボタンをクリック
         clickSortButton: function clickSortButton(columnIndex) {
             // 他のカラムが選択されていたらリセット
@@ -69502,7 +69489,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         // インデックスでソート
         sortListIndex: function sortListIndex() {
-            this.listItems = [];
+            // this.listItems = []
+            this.sortedListItems = [];
             var _iteratorNormalCompletion6 = true;
             var _didIteratorError6 = false;
             var _iteratorError6 = undefined;
@@ -69511,7 +69499,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator6 = this.myList.my_list_items[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                     var item = _step6.value;
 
-                    this.listItems.push(JSON.parse(item.values));
+                    // let pushItem = item
+                    // console.log(item)
+                    // pushItem.values = JSON.parse(item.values)
+                    this.sortedListItems.push(item);
                 }
             } catch (err) {
                 _didIteratorError6 = true;
@@ -69528,7 +69519,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }
             }
 
-            this.sortedListItems = this.listItems;
             this.filterRowsByText();
         },
         // ソート
@@ -69538,10 +69528,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.sortedListItems.sort(function (itemA, itemB) {
                 //数値以外
                 if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
-                    return itemA[columnIndex].value < itemB[columnIndex].value ? 1 : -1;
+                    return itemA.values[columnIndex].value < itemB.values[columnIndex].value ? 1 : -1;
                 } else {
                     //数値／日付
-                    return Number(itemA[columnIndex].value) < Number(itemB[columnIndex].value) ? -1 : 1;
+                    return Number(itemA.values[columnIndex].value) < Number(itemB.values[columnIndex].value) ? -1 : 1;
                 }
             });
             // this.sortedListItems = this.listItems
@@ -69553,10 +69543,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.sortedListItems.sort(function (itemA, itemB) {
                 //数値以外
                 if (vue.listDefinition[columnIndex].type != 'Number' && vue.listDefinition[columnIndex].type != 'Date') {
-                    return itemA[columnIndex].value > itemB[columnIndex].value ? 1 : -1;
+                    return itemA.values[columnIndex].value > itemB.values[columnIndex].value ? 1 : -1;
                 } else {
                     //数値／日付
-                    return Number(itemA[columnIndex].value) > Number(itemB[columnIndex].value) ? -1 : 1;
+                    return Number(itemA.values[columnIndex].value) > Number(itemB.values[columnIndex].value) ? -1 : 1;
                 }
             });
             // this.sortedListItems = this.listItems
@@ -69584,7 +69574,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
             var result = void 0;
             result = this.sortedListItems.filter(function (item) {
-                return item.some(function (column) {
+                return item.values.some(function (column) {
                     return filterWords.some(function (filterWord) {
                         return String(column.value).replace(' ', '').indexOf(filterWord) != -1;
                     });
