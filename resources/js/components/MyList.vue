@@ -48,9 +48,12 @@
             <!--フィルター部分-->
             <div class="filters">
                 <div v-for="(column,index) in listDefinition" class="filter">
-                    <span>{{column.name}}</span>
-                    <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
-                    <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
+                    <div>
+                        <span>{{column.name}}</span>
+                        <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
+                        <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
+                    </div>
+                    <i v-if="index != listDefinition.length -1" class="fas fa-plus operator" v-on:click="toggleFilterOperator"></i>
                 </div>
             </div>                
             
@@ -112,6 +115,7 @@
                 },
                 sortedIndex:null, //現在ソートされているカラムのインデックスを格納
                 filters:[],
+                filterOperators:[], //and/or用の演算子配列
                 filterWord:'', //フィルター用（Rawテキスト）
                 // filterNumber:{ //フィルター用（数値）
                 //     min:null,
@@ -479,6 +483,9 @@
                 
                 this.listItems = result
             },
+            toggleFilterOperator:function(){
+                event.target.classList.toggle('or')  
+            },
             // RangeNumberの初期値を設定
             setMinimumValue:function(index){
                 let valueArray = this.sortedListItems.map(item => {
@@ -600,9 +607,20 @@
         border-radius:0.5em;
         background-color:rgba(grey,0.3);
         .filter {
-            display:flex;
-            &>* {
-                margin:0 1em;
+            div {
+                display:flex;
+                &>* {
+                    margin:0 1em;
+                }
+            }
+        }
+        .operator {
+            margin-left:3em;
+            cursor:pointer;
+            transform:rotate(45deg);
+            transition:all 0.2s;
+            &.or {
+                transform:rotate(90deg);
             }
         }
     }
