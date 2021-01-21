@@ -68835,7 +68835,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n\n/*.filter-window {*/\n/*    display:inline-block;*/\n/*    visibility:hidden;*/\n/*    position:relative;*/\n/*    width:15em;*/\n/*    height:2em;*/\n/*    padding:0.2em;*/\n/*    border:2px solid grey;*/\n/*    border-radius:0.5em;*/\n/*background-color:grey;*/\n/*    transition:all 0.2s ease;*/\n/*    div {*/\n/*        display:inline-block;*/\n/*    }*/\n/*    &.visible {*/\n/*        visibility:visible;*/\n/*    }*/\n/*    input {*/\n/*        width:15em;*/\n/*        border-radius:0.5em;*/\n/*background-color:grey;*/\n/*    }*/\n/*}*/\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*フィルター部分*/\n.filters[data-v-33a634d6] {\n  margin: 1em 0;\n  padding: 1em;\n  border-radius: 0.5em;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.filters .filter[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.filters .filter > *[data-v-33a634d6] {\n      margin: 0 1em;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n  padding: 1em;\n}\n.fixed-bar-right div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.fixed-bar-right div i[data-v-33a634d6] {\n      color: grey;\n      display: inline-block;\n      margin: 0.5em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s ease;\n      transition: all 0.2s ease;\n}\n.fixed-bar-right .decoration[data-v-33a634d6] {\n    margin-bottom: 2em;\n    /*i {*/\n    /*    color:grey;*/\n    /*    display:inline-block;*/\n    /*    margin:0.5em;*/\n    /*    cursor:pointer;*/\n    /*    transition:all 0.2s ease;*/\n    /*}*/\n}\n.fixed-bar-right .decoration i[data-v-33a634d6]:hover {\n      text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .decoration .selected[data-v-33a634d6] {\n      text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*フィルター部分*/\n.filters[data-v-33a634d6] {\n  margin: 1em 0;\n  padding: 1em;\n  border-radius: 0.5em;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.filters .filter[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.filters .filter > *[data-v-33a634d6] {\n      margin: 0 1em;\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n  padding: 1em;\n}\n.fixed-bar-right div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.fixed-bar-right div i[data-v-33a634d6] {\n      color: grey;\n      display: inline-block;\n      margin: 0.5em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s ease;\n      transition: all 0.2s ease;\n}\n.fixed-bar-right .decoration[data-v-33a634d6] {\n    margin-bottom: 2em;\n}\n.fixed-bar-right .decoration i[data-v-33a634d6]:hover {\n      text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .decoration .selected[data-v-33a634d6] {\n      text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -69002,13 +69002,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     watch: {
         listId: function listId() {
             this.getList();
+        },
+        filters: {
+            handler: function handler() {
+                this.filterRows();
+            },
+            deep: true
         }
-        // filters:{
-        //     handler:function(newVal,oldVal){
-        //         this.filterRows()
-        //     },
-        //     deep:true
-        // }
     },
     created: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
@@ -69489,7 +69489,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         // インデックスでソート
         sortListIndex: function sortListIndex() {
-            // this.listItems = []
             this.sortedListItems = [];
             var _iteratorNormalCompletion6 = true;
             var _didIteratorError6 = false;
@@ -69499,9 +69498,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 for (var _iterator6 = this.myList.my_list_items[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                     var item = _step6.value;
 
-                    // let pushItem = item
-                    // console.log(item)
-                    // pushItem.values = JSON.parse(item.values)
                     this.sortedListItems.push(item);
                 }
             } catch (err) {
@@ -69534,7 +69530,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return Number(itemA.values[columnIndex].value) < Number(itemB.values[columnIndex].value) ? -1 : 1;
                 }
             });
-            // this.sortedListItems = this.listItems
             this.filterRowsByText();
         },
         sortListDESC: function sortListDESC(columnIndex) {
@@ -69549,7 +69544,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     return Number(itemA.values[columnIndex].value) > Number(itemB.values[columnIndex].value) ? -1 : 1;
                 }
             });
-            // this.sortedListItems = this.listItems
             this.filterRowsByText();
         },
         createNewList: function createNewList() {
@@ -69605,11 +69599,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         }
                         result = _this.sortedListItems.filter(function (row) {
                             return filterWords.some(function (filterWord) {
-                                return String(row[index].value).replace(' ', '').indexOf(filterWord) != -1;
+                                return String(row.values[index].value).replace(' ', '').indexOf(filterWord) != -1;
                             });
                         });
                         break;
                     case 'Number':
+                        if (!_this.filters[index]) {
+                            result = _this.sortedListItems;
+                            break;
+                        }
+                        result = _this.sortedListItems.filter(function (row) {
+                            return Number(row.values[index].value) >= _this.filters[index].min && Number(row.values[index].value) <= _this.filters[index].max;
+                        });
                         break;
                 }
             };
@@ -69623,40 +69624,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         // RangeNumberの初期値を設定
         setMinimumValue: function setMinimumValue(index) {
             var valueArray = this.sortedListItems.map(function (item) {
-                return Number(item[index].value);
+                return Number(item.values[index].value);
             });
             return Math.min.apply(null, valueArray);
         },
         setMaximumValue: function setMaximumValue(index) {
             var valueArray = this.sortedListItems.map(function (item) {
-                return Number(item[index].value);
+                return Number(item.values[index].value);
             });
             return Math.max.apply(null, valueArray);
         }
-
-        // addFilter:function(){
-        //     this.filters.push({columnIndex:null})
-        // }
-        // showFilterInuput:function(columnIndex){
-        //     if(this.filterIndex == null){
-        //         // 表示位置を計算
-        //         this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
-        //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
-        //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-        //         this.$refs.filterWindow.classList.add('visible')
-        //         this.filterIndex = columnIndex
-        //     }
-        //     else if(this.filterIndex == columnIndex){
-        //         //要素を不可視化
-        //         this.$refs.filterWindow.classList.remove('visible')
-        //         this.$refs.filterWindow.style.left = '0px'
-        //         this.filterIndex = null
-        //     }else{
-        //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
-        //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-        //         this.filterIndex = columnIndex
-        //     }
-        // },
     }
 });
 
@@ -69925,6 +69902,87 @@ var render = function() {
                 })
               ])
             ]),
+        _vm._v(" "),
+        !_vm.editMode
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.filterWord,
+                  expression: "filterWord"
+                }
+              ],
+              attrs: { type: "text", placeholder: "全体からしぼりこみ" },
+              domProps: { value: _vm.filterWord },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.filterWord = $event.target.value
+                  },
+                  function($event) {
+                    return _vm.filterRowsByText()
+                  }
+                ]
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "filters" },
+          _vm._l(_vm.listDefinition, function(column, index) {
+            return _c(
+              "div",
+              { staticClass: "filter" },
+              [
+                _c("span", [_vm._v(_vm._s(column.name))]),
+                _vm._v(" "),
+                column.type == "Text"
+                  ? _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.filters[index],
+                          expression: "filters[index]"
+                        }
+                      ],
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.filters[index] },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.filters, index, $event.target.value)
+                        }
+                      }
+                    })
+                  : column.type == "Number"
+                  ? _c("range-number", {
+                      attrs: {
+                        minimumValue: _vm.setMinimumValue(index),
+                        maximumValue: _vm.setMaximumValue(index)
+                      },
+                      model: {
+                        value: _vm.filters[index],
+                        callback: function($$v) {
+                          _vm.$set(_vm.filters, index, $$v)
+                        },
+                        expression: "filters[index]"
+                      }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          }),
+          0
+        ),
         _vm._v(" "),
         _c("div", { ref: "list", attrs: { id: "list" } }, [
           _c(

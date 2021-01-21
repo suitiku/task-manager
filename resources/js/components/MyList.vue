@@ -43,16 +43,16 @@
             </div>
             
             <!--絞り込み検索窓-->
-        <!--    <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">-->
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">
             
             <!--フィルター部分-->
-        <!--    <div class="filters">-->
-        <!--        <div v-for="(column,index) in listDefinition" class="filter">-->
-        <!--            <span>{{column.name}}</span>-->
-        <!--            <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />-->
-        <!--            <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />-->
-        <!--        </div>-->
-        <!--    </div>                -->
+            <div class="filters">
+                <div v-for="(column,index) in listDefinition" class="filter">
+                    <span>{{column.name}}</span>
+                    <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
+                    <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
+                </div>
+            </div>                
             
             <!--リスト本体-->
             <div id="list" ref="list">
@@ -147,12 +147,12 @@
             listId:function(){
                 this.getList()
             },
-            // filters:{
-            //     handler:function(newVal,oldVal){
-            //         this.filterRows()
-            //     },
-            //     deep:true
-            // }
+            filters:{
+                handler:function(){
+                    this.filterRows()
+                },
+                deep:true
+            }
         },
         created:async function(){
             this.getList()
@@ -460,11 +460,18 @@
                             }
                             result = this.sortedListItems.filter(row => {
                                 return filterWords.some(filterWord => {
-                                    return String(row[index].value).replace(' ','').indexOf(filterWord) != -1
+                                    return String(row.values[index].value).replace(' ','').indexOf(filterWord) != -1
                                 })
                             })
                             break
                         case 'Number':
+                            if(!this.filters[index]){
+                                result = this.sortedListItems
+                                break
+                            }
+                            result = this.sortedListItems.filter(row => {
+                                return Number(row.values[index].value) >= this.filters[index].min && Number(row.values[index].value) <= this.filters[index].max
+                            })
                             break
                     }                    
                     
@@ -475,41 +482,16 @@
             // RangeNumberの初期値を設定
             setMinimumValue:function(index){
                 let valueArray = this.sortedListItems.map(item => {
-                    return Number(item[index].value)
+                    return Number(item.values[index].value)
                 })
                 return Math.min.apply(null,valueArray)
             },
             setMaximumValue:function(index){
                 let valueArray = this.sortedListItems.map(item => {
-                    return Number(item[index].value)
+                    return Number(item.values[index].value)
                 })
                 return Math.max.apply(null,valueArray)
             }
-            
-            
-            // addFilter:function(){
-            //     this.filters.push({columnIndex:null})
-            // }
-            // showFilterInuput:function(columnIndex){
-            //     if(this.filterIndex == null){
-            //         // 表示位置を計算
-            //         this.initialPositionLeft = this.$refs.filterWindow.offsetLeft + 20
-            //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft - windowWidth / 2
-            //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-            //         this.$refs.filterWindow.classList.add('visible')
-            //         this.filterIndex = columnIndex
-            //     }
-            //     else if(this.filterIndex == columnIndex){
-            //         //要素を不可視化
-            //         this.$refs.filterWindow.classList.remove('visible')
-            //         this.$refs.filterWindow.style.left = '0px'
-            //         this.filterIndex = null
-            //     }else{
-            //         let filterWindowLeftPosition = event.target.parentElement.offsetLeft - this.initialPositionLeft
-            //         this.$refs.filterWindow.style.left = filterWindowLeftPosition + 'px'
-            //         this.filterIndex = columnIndex
-            //     }
-            // },
         }
     }
 </script>
@@ -529,30 +511,6 @@
             transform:rotate(360deg);
         }
     }
-    
-    /*.filter-window {*/
-    /*    display:inline-block;*/
-    /*    visibility:hidden;*/
-    /*    position:relative;*/
-    /*    width:15em;*/
-    /*    height:2em;*/
-    /*    padding:0.2em;*/
-    /*    border:2px solid grey;*/
-    /*    border-radius:0.5em;*/
-        /*background-color:grey;*/
-    /*    transition:all 0.2s ease;*/
-    /*    div {*/
-    /*        display:inline-block;*/
-    /*    }*/
-    /*    &.visible {*/
-    /*        visibility:visible;*/
-    /*    }*/
-    /*    input {*/
-    /*        width:15em;*/
-    /*        border-radius:0.5em;*/
-            /*background-color:grey;*/
-    /*    }*/
-    /*}*/
     
     #list-wrapper {
         display:flex;
@@ -679,13 +637,6 @@
         }
         .decoration {
             margin-bottom:2em;
-            /*i {*/
-            /*    color:grey;*/
-            /*    display:inline-block;*/
-            /*    margin:0.5em;*/
-            /*    cursor:pointer;*/
-            /*    transition:all 0.2s ease;*/
-            /*}*/
             i:hover {
                 text-shadow: 0 0 5px orange;
             }
