@@ -172,6 +172,7 @@
                 this.listDefinition = []
                 this.listItems = []
                 this.sortedListItems = []
+                this.filterOperators = []
             },
             getList:async function(){
                 if(this.listId){
@@ -500,7 +501,8 @@
                             return this.filteredArray[Number(index) + 1].indexOf(id) != -1
                         })
                     }else{
-                        result = new Set(result.concat(this.filteredArray[Number(index) + 1]))
+                        let setObject = new Set(result.concat(this.filteredArray[Number(index) + 1]))
+                        result = Array.from(setObject)
                     }
                 }
                 //sortedListItemsのidと突合して復元
@@ -511,6 +513,7 @@
             toggleFilterOperator:function(index){
                 event.target.classList.toggle('or')
                 this.filterOperators.splice(index,1,this.filterOperators[index] == 'and' ? 'or' : 'and')
+                this.applyOperators()
             },
             // RangeNumberの初期値を設定
             setMinimumValue:function(index){

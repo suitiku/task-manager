@@ -69044,6 +69044,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listDefinition = [];
             this.listItems = [];
             this.sortedListItems = [];
+            this.filterOperators = [];
         },
         getList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
@@ -69675,7 +69676,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         return _this2.filteredArray[Number(index) + 1].indexOf(id) != -1;
                     });
                 } else {
-                    result = new Set(result.concat(_this2.filteredArray[Number(index) + 1]));
+                    var setObject = new Set(result.concat(_this2.filteredArray[Number(index) + 1]));
+                    result = Array.from(setObject);
                 }
             };
 
@@ -69690,6 +69692,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         toggleFilterOperator: function toggleFilterOperator(index) {
             event.target.classList.toggle('or');
             this.filterOperators.splice(index, 1, this.filterOperators[index] == 'and' ? 'or' : 'and');
+            this.applyOperators();
         },
         // RangeNumberの初期値を設定
         setMinimumValue: function setMinimumValue(index) {
