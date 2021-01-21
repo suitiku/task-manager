@@ -53,7 +53,7 @@
                         <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
                         <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
                     </div>
-                    <i v-if="index != listDefinition.length -1" class="fas fa-plus operator" v-on:click="toggleFilterOperator"></i>
+                    <i v-model="filterOperators[index]" v-if="index != listDefinition.length -1" class="fas fa-plus operator" v-on:click="toggleFilterOperator(index)"></i>
                 </div>
             </div>                
             
@@ -117,6 +117,7 @@
                 filters:[],
                 filterOperators:[], //and/or用の演算子配列
                 filterWord:'', //フィルター用（Rawテキスト）
+                filteredArray:[], //フィルターされた結果itemsの配列
                 // filterNumber:{ //フィルター用（数値）
                 //     min:null,
                 //     max:null,
@@ -182,8 +183,13 @@
                         description:result.data.description,
                         type:result.data.type
                     }
-                    console.log(this.myList)
+                    // console.log(this.myList)
                     this.listDefinition = JSON.parse(result.data.column_definitions)
+                    //filterOperatorsをセット
+                    for(let index in this.listDefinition){
+                        if(index >= this.listDefinition.length - 1)break
+                        this.filterOperators.push('and')
+                    }
                     for(let item of result.data.my_list_items){
                         let pushItem = item
                         pushItem.values = JSON.parse(item.values)
@@ -446,20 +452,21 @@
             },
             // カラム別フィルター
             filterRows:function(){
-                let result = []
                 this.listItems = []
+                this.filteredArray = []
+                let result
                 for(let index in this.listDefinition){
                     switch(this.listDefinition[index].type) {
                         case 'Text': 
                             if(!this.filters[index]){
-                                result = this.sortedListItems
+                                this.filteredArray.push(this.sortedListItems.map(item => {return item.id}))
                                 break
                             }
                             let filterWords = this.filters[index].split(' ').filter(word => {
                                 return word != ''
                             })
                             if(filterWords.length == 0){
-                                result = this.sortedListItems
+                                this.filteredArray.push(this.sortedListItems.map(item => {return item.id}))
                                 break
                             }
                             result = this.sortedListItems.filter(row => {
@@ -467,24 +474,43 @@
                                     return String(row.values[index].value).replace(' ','').indexOf(filterWord) != -1
                                 })
                             })
+                            this.filteredArray.push(result.map(item => {return item.id}))
                             break
                         case 'Number':
                             if(!this.filters[index]){
-                                result = this.sortedListItems
+                                this.filteredArray.push(this.sortedListItems.map(item => {return item.id}))
                                 break
                             }
                             result = this.sortedListItems.filter(row => {
                                 return Number(row.values[index].value) >= this.filters[index].min && Number(row.values[index].value) <= this.filters[index].max
                             })
+                            this.filteredArray.push(result.map(item => {return item.id}))
                             break
                     }                    
                     
                 }
-                
-                this.listItems = result
+                this.applyOperators()
             },
-            toggleFilterOperator:function(){
-                event.target.classList.toggle('or')  
+            applyOperators:function(){ //and/or演算子をフィルターに適用、idで比較する
+                let result = []
+                for(let index in this.filterOperators){
+                    if(index == 0)result = this.filteredArray[index]
+                    if(this.filterOperators[index] == 'and'){
+                        result = result.filter(id => {
+                            return this.filteredArray[Number(index) + 1].indexOf(id) != -1
+                        })
+                    }else{
+                        result = new Set(result.concat(this.filteredArray[Number(index) + 1]))
+                    }
+                }
+                //sortedListItemsのidと突合して復元
+                this.listItems = this.sortedListItems.filter(item => {
+                    return result.indexOf(item.id) != -1
+                })
+            },
+            toggleFilterOperator:function(index){
+                event.target.classList.toggle('or')
+                this.filterOperators.splice(index,1,this.filterOperators[index] == 'and' ? 'or' : 'and')
             },
             // RangeNumberの初期値を設定
             setMinimumValue:function(index){

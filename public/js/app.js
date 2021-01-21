@@ -68972,7 +68972,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             sortedIndex: null, //現在ソートされているカラムのインデックスを格納
             filters: [],
             filterOperators: [], //and/or用の演算子配列
-            filterWord: '' //フィルター用（Rawテキスト）
+            filterWord: '', //フィルター用（Rawテキスト）
+            filteredArray: [] //フィルターされた結果itemsの配列
             // filterNumber:{ //フィルター用（数値）
             //     min:null,
             //     max:null,
@@ -69046,14 +69047,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         getList: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var result, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, pushItem;
+                var result, index, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, pushItem;
 
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 if (!this.listId) {
-                                    _context2.next = 32;
+                                    _context2.next = 39;
                                     break;
                                 }
 
@@ -69069,13 +69070,37 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     name: result.data.name,
                                     description: result.data.description,
                                     type: result.data.type
-                                };
-                                console.log(this.myList);
-                                this.listDefinition = JSON.parse(result.data.column_definitions);
+                                    // console.log(this.myList)
+                                };this.listDefinition = JSON.parse(result.data.column_definitions);
+                                //filterOperatorsをセット
+                                _context2.t0 = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.keys(this.listDefinition);
+
+                            case 9:
+                                if ((_context2.t1 = _context2.t0()).done) {
+                                    _context2.next = 16;
+                                    break;
+                                }
+
+                                index = _context2.t1.value;
+
+                                if (!(index >= this.listDefinition.length - 1)) {
+                                    _context2.next = 13;
+                                    break;
+                                }
+
+                                return _context2.abrupt('break', 16);
+
+                            case 13:
+                                this.filterOperators.push('and');
+                                _context2.next = 9;
+                                break;
+
+                            case 16:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context2.prev = 12;
+                                _context2.prev = 19;
+
                                 for (_iterator = result.data.my_list_items[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     item = _step.value;
                                     pushItem = item;
@@ -69084,59 +69109,59 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.listItems.push(pushItem);
                                     this.sortedListItems.push(pushItem);
                                 }
-                                _context2.next = 20;
+                                _context2.next = 27;
                                 break;
 
-                            case 16:
-                                _context2.prev = 16;
-                                _context2.t0 = _context2['catch'](12);
+                            case 23:
+                                _context2.prev = 23;
+                                _context2.t2 = _context2['catch'](19);
                                 _didIteratorError = true;
-                                _iteratorError = _context2.t0;
+                                _iteratorError = _context2.t2;
 
-                            case 20:
-                                _context2.prev = 20;
-                                _context2.prev = 21;
+                            case 27:
+                                _context2.prev = 27;
+                                _context2.prev = 28;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
-                            case 23:
-                                _context2.prev = 23;
+                            case 30:
+                                _context2.prev = 30;
 
                                 if (!_didIteratorError) {
-                                    _context2.next = 26;
+                                    _context2.next = 33;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
-                            case 26:
-                                return _context2.finish(23);
+                            case 33:
+                                return _context2.finish(30);
 
-                            case 27:
-                                return _context2.finish(20);
+                            case 34:
+                                return _context2.finish(27);
 
-                            case 28:
+                            case 35:
                                 this.getColumnWidths();
 
                                 //閲覧モードのときはメタデータを不可視化
                                 if (!this.editMode) {
                                     this.$refs.list.classList.add('meta-invisible');
                                 }
-                                _context2.next = 33;
+                                _context2.next = 40;
                                 break;
 
-                            case 32:
+                            case 39:
                                 //list_idがない場合は新規作成と解釈してlistを初期化する
                                 this.initList();
 
-                            case 33:
+                            case 40:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[12, 16, 20, 28], [21,, 23, 27]]);
+                }, _callee2, this, [[19, 23, 27, 35], [28,, 30, 34]]);
             }));
 
             function getList() {
@@ -69584,21 +69609,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         filterRows: function filterRows() {
             var _this = this;
 
-            var result = [];
             this.listItems = [];
+            this.filteredArray = [];
+            var result = void 0;
 
             var _loop = function _loop(index) {
                 switch (_this.listDefinition[index].type) {
                     case 'Text':
                         if (!_this.filters[index]) {
-                            result = _this.sortedListItems;
+                            _this.filteredArray.push(_this.sortedListItems.map(function (item) {
+                                return item.id;
+                            }));
                             break;
                         }
                         var filterWords = _this.filters[index].split(' ').filter(function (word) {
                             return word != '';
                         });
                         if (filterWords.length == 0) {
-                            result = _this.sortedListItems;
+                            _this.filteredArray.push(_this.sortedListItems.map(function (item) {
+                                return item.id;
+                            }));
                             break;
                         }
                         result = _this.sortedListItems.filter(function (row) {
@@ -69606,15 +69636,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 return String(row.values[index].value).replace(' ', '').indexOf(filterWord) != -1;
                             });
                         });
+                        _this.filteredArray.push(result.map(function (item) {
+                            return item.id;
+                        }));
                         break;
                     case 'Number':
                         if (!_this.filters[index]) {
-                            result = _this.sortedListItems;
+                            _this.filteredArray.push(_this.sortedListItems.map(function (item) {
+                                return item.id;
+                            }));
                             break;
                         }
                         result = _this.sortedListItems.filter(function (row) {
                             return Number(row.values[index].value) >= _this.filters[index].min && Number(row.values[index].value) <= _this.filters[index].max;
                         });
+                        _this.filteredArray.push(result.map(function (item) {
+                            return item.id;
+                        }));
                         break;
                 }
             };
@@ -69622,11 +69660,36 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             for (var index in this.listDefinition) {
                 _loop(index);
             }
-
-            this.listItems = result;
+            this.applyOperators();
         },
-        toggleFilterOperator: function toggleFilterOperator() {
+        applyOperators: function applyOperators() {
+            var _this2 = this;
+
+            //and/or演算子をフィルターに適用、idで比較する
+            var result = [];
+
+            var _loop2 = function _loop2(index) {
+                if (index == 0) result = _this2.filteredArray[index];
+                if (_this2.filterOperators[index] == 'and') {
+                    result = result.filter(function (id) {
+                        return _this2.filteredArray[Number(index) + 1].indexOf(id) != -1;
+                    });
+                } else {
+                    result = new Set(result.concat(_this2.filteredArray[Number(index) + 1]));
+                }
+            };
+
+            for (var index in this.filterOperators) {
+                _loop2(index);
+            }
+            //sortedListItemsのidと突合して復元
+            this.listItems = this.sortedListItems.filter(function (item) {
+                return result.indexOf(item.id) != -1;
+            });
+        },
+        toggleFilterOperator: function toggleFilterOperator(index) {
             event.target.classList.toggle('or');
+            this.filterOperators.splice(index, 1, this.filterOperators[index] == 'and' ? 'or' : 'and');
         },
         // RangeNumberの初期値を設定
         setMinimumValue: function setMinimumValue(index) {
@@ -69991,7 +70054,18 @@ var render = function() {
               index != _vm.listDefinition.length - 1
                 ? _c("i", {
                     staticClass: "fas fa-plus operator",
-                    on: { click: _vm.toggleFilterOperator }
+                    on: {
+                      click: function($event) {
+                        return _vm.toggleFilterOperator(index)
+                      }
+                    },
+                    model: {
+                      value: _vm.filterOperators[index],
+                      callback: function($$v) {
+                        _vm.$set(_vm.filterOperators, index, $$v)
+                      },
+                      expression: "filterOperators[index]"
+                    }
                   })
                 : _vm._e()
             ])
