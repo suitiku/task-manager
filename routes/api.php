@@ -72,5 +72,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     
     //集計系
     Route::get('mytasks/aggregate','Api\TasksController@aggregate');
+    
+    //リストの操作
+    Route::put('list_items/star/{id}','Api\ListItemsController@toggleStarState');
 
 });

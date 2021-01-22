@@ -38,7 +38,8 @@
                     <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
                     <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>
                     <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
-                    <i class="fas fa-list-ol fa-lg" v-on:click="changeListAppearance('meta-visible')"></i>
+                    <i class="fas fa-list-ol fa-lg" v-on:click="showCounter()"></i>
+                    <i class="far fa-star fa-lg" v-on:click="showStars()"></i>
                 </div>
             </div>
             
@@ -58,13 +59,20 @@
             </div>                
             
             <!--リスト本体-->
-            <div id="list" ref="list">
+            <div id="list" ref="list" class="star-invisible counter-invisible">
                 <div class="row-meta">
                     <div v-for="index in listItems.length + 1" class="row">
                         <div v-if="index == 1"></div>
                         <div v-else>
                             <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index - 2)"></i>
-                            <i v-else>{{index - 1}}</i>
+                            <div  v-else>
+                                <div class="star" v-on:click="toggleStarState(index -2)">
+                                    <i v-bind:class="setStars(index)"></i>
+                                </div>
+                                <div>
+                                    <i class="counter">{{index - 1}}</i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,17 +126,6 @@
                 filterOperators:[], //and/or用の演算子配列
                 filterWord:'', //フィルター用（Rawテキスト）
                 filteredArray:[], //フィルターされた結果itemsの配列
-                // filterNumber:{ //フィルター用（数値）
-                //     min:null,
-                //     max:null,
-                // },
-                // filterNumberSettings:{
-                //     minimum:0,
-                //     maximum:100,
-                //     validDigits:0,
-                // },
-                // filterIndex:null,  //フィルターされているカラムのインデックス
-                // initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
             }  
         },
         props: {
@@ -203,6 +200,7 @@
                     if(!this.editMode){
                         this.$refs.list.classList.add('meta-invisible')
                     }
+                    // console.log(this.listItems)
                 }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
                     this.initList()
                 }
@@ -225,9 +223,30 @@
             setColumnWidth:function(index){
                 return {width:this.columnWidths[index] + 3.0 + 'em'}
             },
+            setStars:function(index){
+                return this.listItems[index -2].is_stared == true ? 'fas fa-star' : 'far fa-star'  
+            },
+            showStars:function(){
+                this.$refs.list.classList.toggle('star-visible')
+                this.$refs.list.classList.toggle('star-invisible')
+                event.target.classList.toggle('selected')
+            },
+            toggleStarState:async function(index){
+                try{
+                    let result = await axios.put('/api/list_items/star/' + this.listItems[index].id)
+                    this.listItems[index].is_stared = !this.listItems[index].is_stared
+                }catch(error){
+                    console.log(error)
+                }
+            },
+            showCounter:function(){
+                this.$refs.list.classList.toggle('counter-visible')
+                this.$refs.list.classList.toggle('counter-invisible')
+                event.target.classList.toggle('selected')
+            },
             changeListAppearance:function(className){
                 if(event.target.classList.contains('selected')){
-                    this.$refs.list.classList.remove(className)
+                    
                 }else{
                     this.$refs.list.classList.add(className)
                 }
@@ -509,6 +528,7 @@
                 this.listItems = this.sortedListItems.filter(item => {
                     return result.indexOf(item.id) != -1
                 })
+                // console.log(this.listItems)
             },
             toggleFilterOperator:function(index){
                 event.target.classList.toggle('or')
@@ -559,11 +579,22 @@
                 padding-top:0.4em;
                 .row {
                     div {
-                        height:100%;
-                        i {
-                            display:inline-block;
-                            height:100%;
-                            padding:0.2em;
+                        div {
+                            display:flex;
+                            justify-content:center;
+                            align-items:center;
+                            div {
+                                transition:all 0.1s;
+                                cursor:pointer;
+                            }
+                            .star {
+                                color:orange;
+                            }
+                            i {
+                                display:inline-block;
+                                height:100%;
+                                padding:0.2em;
+                            }
                         }
                     }
                 }
@@ -726,16 +757,22 @@
     }
     
     /*行頭系*/
-    .meta-invisible {
-        .row-meta {
-            visibility:hidden;
-        }
+    /*スター*/
+    .star-invisible .star {
+        visibility:hidden;
     }
-    .meta-visible {
-        .row-meta{
-            visibility:visible;
-        }
+    .star-visible .star {
+        visibility:visible;
     }
+    
+    /*カウント*/
+    .counter-invisible .counter {
+        visibility:hidden;
+    }
+    .counter-visible .counter {
+        visibility:visible;
+    }
+    
     
     /*インターフェース系*/
     .invisible-sort {

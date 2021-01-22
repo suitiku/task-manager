@@ -68835,7 +68835,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div[data-v-33a634d6] {\n        height: 100%;\n}\n#list-wrapper #list .row-meta .row div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*フィルター部分*/\n.filters[data-v-33a634d6] {\n  margin: 1em 0;\n  padding: 1em;\n  border-radius: 0.5em;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.filters .filter div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.filters .filter div > *[data-v-33a634d6] {\n      margin: 0 1em;\n}\n.filters .operator[data-v-33a634d6] {\n    margin-left: 3em;\n    cursor: pointer;\n    -webkit-transform: rotate(45deg);\n            transform: rotate(45deg);\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n}\n.filters .operator.or[data-v-33a634d6] {\n      -webkit-transform: rotate(90deg);\n              transform: rotate(90deg);\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n  padding: 1em;\n}\n.fixed-bar-right div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.fixed-bar-right div i[data-v-33a634d6] {\n      color: grey;\n      display: inline-block;\n      margin: 0.5em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s ease;\n      transition: all 0.2s ease;\n}\n.fixed-bar-right .decoration[data-v-33a634d6] {\n    margin-bottom: 2em;\n}\n.fixed-bar-right .decoration i[data-v-33a634d6]:hover {\n      text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .decoration .selected[data-v-33a634d6] {\n      text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n.meta-invisible .row-meta[data-v-33a634d6] {\n  visibility: hidden;\n}\n.meta-visible .row-meta[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n.rotate[data-v-33a634d6] {\n  margin-left: 0.1em;\n  cursor: pointer;\n}\n.rotate[data-v-33a634d6]:hover {\n    -webkit-animation: rotate-data-v-33a634d6 1s linear infinite;\n            animation: rotate-data-v-33a634d6 1s linear infinite;\n}\n@-webkit-keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n@keyframes rotate-data-v-33a634d6 {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n}\n}\n#list-wrapper[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n}\n#list-wrapper #list[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin: 1em;\n}\n#list-wrapper #list .row-meta[data-v-33a634d6] {\n      margin-right: 1.0em;\n      padding-top: 0.4em;\n}\n#list-wrapper #list .row-meta .row div div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row-meta .row div div div[data-v-33a634d6] {\n          -webkit-transition: all 0.1s;\n          transition: all 0.1s;\n          cursor: pointer;\n}\n#list-wrapper #list .row-meta .row div div .star[data-v-33a634d6] {\n          color: orange;\n}\n#list-wrapper #list .row-meta .row div div i[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          padding: 0.2em;\n}\n#list-wrapper #list .row[data-v-33a634d6] {\n      margin: 0em 0em;\n      padding: 0em 0em;\n      min-height: 1.8em;\n}\n#list-wrapper #list .row div[data-v-33a634d6] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-transition: all 0.2s ease;\n        transition: all 0.2s ease;\n}\n#list-wrapper #list .row div[data-v-33a634d6]:hover {\n          background-color: rgba(255, 165, 0, 0.5);\n}\n#list-wrapper #list .row div span[data-v-33a634d6] {\n          display: inline-block;\n          height: 100%;\n          margin: 0em 0em;\n          padding: 0.2em;\n}\n#list-wrapper #list .row div input[data-v-33a634d6] {\n          display: inline-block;\n          height: calc(100% - 2px);\n          margin: 0em 0em;\n          padding: 0em;\n}\n#list-wrapper #list .row .column[data-v-33a634d6] {\n        -webkit-user-select: none;\n           -moz-user-select: none;\n            -ms-user-select: none;\n                user-select: none;\n        cursor: pointer;\n        padding: 0.3em 1.2em 0.3em 0.3em;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n}\n#list-wrapper #list .row .column span[data-v-33a634d6] {\n          border: none;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6] {\n          display: inline-block;\n          height: 1em;\n          vertical-align: middle;\n          color: grey;\n          opacity: 0.6;\n}\n#list-wrapper #list .row .column i[data-v-33a634d6]:hover {\n          color: orange;\n}\n#list-wrapper #list .row .column i.selected[data-v-33a634d6] {\n          color: orange;\n          opacity: 1.0;\n}\n#list-wrapper #list .row .column i.selected-alt[data-v-33a634d6] {\n          color: blue;\n          opacity: 1.0;\n}\n\n/*フィルター部分*/\n.filters[data-v-33a634d6] {\n  margin: 1em 0;\n  padding: 1em;\n  border-radius: 0.5em;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.filters .filter div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n}\n.filters .filter div > *[data-v-33a634d6] {\n      margin: 0 1em;\n}\n.filters .operator[data-v-33a634d6] {\n    margin-left: 3em;\n    cursor: pointer;\n    -webkit-transform: rotate(45deg);\n            transform: rotate(45deg);\n    -webkit-transition: all 0.2s;\n    transition: all 0.2s;\n}\n.filters .operator.or[data-v-33a634d6] {\n      -webkit-transform: rotate(90deg);\n              transform: rotate(90deg);\n}\n\n/*外見変更用のコントロールパネル（右固定）*/\n.fixed-bar-right[data-v-33a634d6] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  position: fixed;\n  right: 2em;\n  width: 5em;\n  top: 3em;\n  z-index: 10;\n  border: 1px solid white;\n  background-color: white;\n  border-radius: 0.2em;\n  padding: 1em;\n}\n.fixed-bar-right div[data-v-33a634d6] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n}\n.fixed-bar-right div i[data-v-33a634d6] {\n      color: grey;\n      display: inline-block;\n      margin: 0.5em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s ease;\n      transition: all 0.2s ease;\n}\n.fixed-bar-right .decoration[data-v-33a634d6] {\n    margin-bottom: 2em;\n}\n.fixed-bar-right .decoration i[data-v-33a634d6]:hover {\n      text-shadow: 0 0 5px orange;\n}\n.fixed-bar-right .decoration .selected[data-v-33a634d6] {\n      text-shadow: 0 0 5px orange;\n}\n\n/*装飾用クラス*/\n/*ボーダー系*/\n.simple-border .row-meta .row[data-v-33a634d6] {\n  border: 1px solid transparent;\n}\n.simple-border span[data-v-33a634d6] {\n  border: 1px solid grey;\n}\n.simple-border-bottom .row-meta .row[data-v-33a634d6] {\n  border-bottom: 1px solid transparent;\n}\n.simple-border-bottom .row-data .row[data-v-33a634d6] {\n  border-bottom: 1px solid grey;\n}\n\n/*ハイライト系*/\n.highlight-odd .row-data > div[data-v-33a634d6]:nth-child(even) {\n  background-color: rgba(255, 165, 0, 0.5);\n}\n\n/*行頭系*/\n/*スター*/\n.star-invisible .star[data-v-33a634d6] {\n  visibility: hidden;\n}\n.star-visible .star[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*カウント*/\n.counter-invisible .counter[data-v-33a634d6] {\n  visibility: hidden;\n}\n.counter-visible .counter[data-v-33a634d6] {\n  visibility: visible;\n}\n\n/*インターフェース系*/\n.invisible-sort .column i[data-v-33a634d6] {\n  display: none;\n}\n", ""]);
 
 // exports
 
@@ -68854,6 +68854,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -68974,17 +68982,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             filterOperators: [], //and/or用の演算子配列
             filterWord: '', //フィルター用（Rawテキスト）
             filteredArray: [] //フィルターされた結果itemsの配列
-            // filterNumber:{ //フィルター用（数値）
-            //     min:null,
-            //     max:null,
-            // },
-            // filterNumberSettings:{
-            //     minimum:0,
-            //     maximum:100,
-            //     validDigits:0,
-            // },
-            // filterIndex:null,  //フィルターされているカラムのインデックス
-            // initialPositionLeft:0, //カラム別フィルターの移動位置記憶用
         };
     },
     props: {
@@ -69150,6 +69147,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (!this.editMode) {
                                     this.$refs.list.classList.add('meta-invisible');
                                 }
+                                // console.log(this.listItems)
                                 _context2.next = 40;
                                 break;
 
@@ -69232,10 +69230,59 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         setColumnWidth: function setColumnWidth(index) {
             return { width: this.columnWidths[index] + 3.0 + 'em' };
         },
+        setStars: function setStars(index) {
+            return this.listItems[index - 2].is_stared == true ? 'fas fa-star' : 'far fa-star';
+        },
+        showStars: function showStars() {
+            this.$refs.list.classList.toggle('star-visible');
+            this.$refs.list.classList.toggle('star-invisible');
+            event.target.classList.toggle('selected');
+        },
+        toggleStarState: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(index) {
+                var result;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.prev = 0;
+                                _context3.next = 3;
+                                return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/list_items/star/' + this.listItems[index].id);
+
+                            case 3:
+                                result = _context3.sent;
+
+                                this.listItems[index].is_stared = !this.listItems[index].is_stared;
+                                _context3.next = 10;
+                                break;
+
+                            case 7:
+                                _context3.prev = 7;
+                                _context3.t0 = _context3['catch'](0);
+
+                                console.log(_context3.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this, [[0, 7]]);
+            }));
+
+            function toggleStarState(_x) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return toggleStarState;
+        }(),
+        showCounter: function showCounter() {
+            this.$refs.list.classList.toggle('counter-visible');
+            this.$refs.list.classList.toggle('counter-invisible');
+            event.target.classList.toggle('selected');
+        },
         changeListAppearance: function changeListAppearance(className) {
-            if (event.target.classList.contains('selected')) {
-                this.$refs.list.classList.remove(className);
-            } else {
+            if (event.target.classList.contains('selected')) {} else {
                 this.$refs.list.classList.add(className);
             }
             event.target.classList.toggle('selected');
@@ -69271,29 +69318,29 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems.push({ values: addItem });
         },
         deleteItem: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(index) {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(index) {
                 var confirmResult, itemId, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 confirmResult = confirm('行を削除します。よろしいですか？');
 
                                 if (confirmResult) {
-                                    _context3.next = 3;
+                                    _context4.next = 3;
                                     break;
                                 }
 
-                                return _context3.abrupt('return');
+                                return _context4.abrupt('return');
 
                             case 3:
                                 itemId = this.myList.my_list_items[index].id;
-                                _context3.prev = 4;
-                                _context3.next = 7;
+                                _context4.prev = 4;
+                                _context4.next = 7;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.delete('/api/list_items/' + itemId);
 
                             case 7:
-                                result = _context3.sent;
+                                result = _context4.sent;
 
                                 if (result.data) {
                                     this.listItems.splice(index, 1);
@@ -69301,26 +69348,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.$refs.notice.showNotice('リストアイテムの削除に失敗しました');
                                 }
-                                _context3.next = 15;
+                                _context4.next = 15;
                                 break;
 
                             case 11:
-                                _context3.prev = 11;
-                                _context3.t0 = _context3['catch'](4);
+                                _context4.prev = 11;
+                                _context4.t0 = _context4['catch'](4);
 
-                                console.log(_context3.t0);
+                                console.log(_context4.t0);
                                 this.$refs.notice.showNotice('リストアイテムの削除に失敗しました');
 
                             case 15:
                             case 'end':
-                                return _context3.stop();
+                                return _context4.stop();
                         }
                     }
-                }, _callee3, this, [[4, 11]]);
+                }, _callee4, this, [[4, 11]]);
             }));
 
-            function deleteItem(_x) {
-                return _ref3.apply(this, arguments);
+            function deleteItem(_x2) {
+                return _ref4.apply(this, arguments);
             }
 
             return deleteItem;
@@ -69412,11 +69459,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         //保存
         saveList: function () {
-            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4() {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
                 var postData, index, postItem, result;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
                     while (1) {
-                        switch (_context4.prev = _context4.next) {
+                        switch (_context5.prev = _context5.next) {
                             case 0:
                                 // データを整理
                                 // リスト本体
@@ -69443,53 +69490,53 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     postData.items.push(postItem);
                                 }
                                 console.log(postData);
-                                _context4.prev = 3;
+                                _context5.prev = 3;
                                 result = void 0;
 
                                 if (!this.listId) {
-                                    _context4.next = 11;
+                                    _context5.next = 11;
                                     break;
                                 }
 
-                                _context4.next = 8;
+                                _context5.next = 8;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('/api/lists/' + this.listId, postData);
 
                             case 8:
-                                result = _context4.sent;
-                                _context4.next = 15;
+                                result = _context5.sent;
+                                _context5.next = 15;
                                 break;
 
                             case 11:
-                                _context4.next = 13;
+                                _context5.next = 13;
                                 return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/api/lists', postData);
 
                             case 13:
-                                result = _context4.sent;
+                                result = _context5.sent;
 
                                 this.$emit('input', result.data);
 
                             case 15:
                                 this.$refs.notice.showNotice('リストを保存しました');
-                                _context4.next = 22;
+                                _context5.next = 22;
                                 break;
 
                             case 18:
-                                _context4.prev = 18;
-                                _context4.t0 = _context4['catch'](3);
+                                _context5.prev = 18;
+                                _context5.t0 = _context5['catch'](3);
 
-                                console.log(_context4.t0);
+                                console.log(_context5.t0);
                                 this.$refs.notice.showNotice('リストの保存に失敗しました');
 
                             case 22:
                             case 'end':
-                                return _context4.stop();
+                                return _context5.stop();
                         }
                     }
-                }, _callee4, this, [[3, 18]]);
+                }, _callee5, this, [[3, 18]]);
             }));
 
             function saveList() {
-                return _ref4.apply(this, arguments);
+                return _ref5.apply(this, arguments);
             }
 
             return saveList;
@@ -69688,6 +69735,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.listItems = this.sortedListItems.filter(function (item) {
                 return result.indexOf(item.id) != -1;
             });
+            // console.log(this.listItems)
         },
         toggleFilterOperator: function toggleFilterOperator(index) {
             event.target.classList.toggle('or');
@@ -69969,7 +70017,16 @@ var render = function() {
                   staticClass: "fas fa-list-ol fa-lg",
                   on: {
                     click: function($event) {
-                      return _vm.changeListAppearance("meta-visible")
+                      return _vm.showCounter()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "far fa-star fa-lg",
+                  on: {
+                    click: function($event) {
+                      return _vm.showStars()
                     }
                   }
                 })
@@ -70076,146 +70133,175 @@ var render = function() {
           0
         ),
         _vm._v(" "),
-        _c("div", { ref: "list", attrs: { id: "list" } }, [
-          _c(
-            "div",
-            { staticClass: "row-meta" },
-            _vm._l(_vm.listItems.length + 1, function(index) {
-              return _c("div", { staticClass: "row" }, [
-                index == 1
-                  ? _c("div")
-                  : _c("div", [
-                      _vm.editMode
-                        ? _c("i", {
-                            staticClass: "fas fa-minus-circle rotate",
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteItem(index - 2)
-                              }
-                            }
-                          })
-                        : _c("i", [_vm._v(_vm._s(index - 1))])
-                    ])
-              ])
-            }),
-            0
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "row-data" },
-            _vm._l(_vm.listItems, function(item, index) {
-              return _c("div", [
-                index == 0
-                  ? _c(
-                      "div",
-                      { staticClass: "row" },
-                      _vm._l(_vm.listDefinition, function(
-                        columnName,
-                        columnIndex
-                      ) {
-                        return _c(
-                          "span",
-                          {
-                            ref: "columns",
-                            refInFor: true,
-                            staticClass: "column",
-                            style: _vm.setColumnWidth(columnIndex)
-                          },
-                          [
-                            _vm.editMode
-                              ? _c(
-                                  "span",
-                                  {
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.showEditColumnModal(
-                                          columnIndex
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(columnName.name))]
-                                )
-                              : _c("span", [_vm._v(_vm._s(columnName.name))]),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass: "fas fa-sort-amount-down-alt",
+        _c(
+          "div",
+          {
+            ref: "list",
+            staticClass: "star-invisible counter-invisible",
+            attrs: { id: "list" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "row-meta" },
+              _vm._l(_vm.listItems.length + 1, function(index) {
+                return _c("div", { staticClass: "row" }, [
+                  index == 1
+                    ? _c("div")
+                    : _c("div", [
+                        _vm.editMode
+                          ? _c("i", {
+                              staticClass: "fas fa-minus-circle rotate",
                               on: {
                                 click: function($event) {
-                                  return _vm.clickSortButton(columnIndex)
+                                  return _vm.deleteItem(index - 2)
                                 }
                               }
                             })
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm.editMode
+                          : _c("div", [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "star",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.toggleStarState(index - 2)
+                                    }
+                                  }
+                                },
+                                [_c("i", { class: _vm.setStars(index) })]
+                              ),
+                              _vm._v(" "),
+                              _c("div", [
+                                _c("i", { staticClass: "counter" }, [
+                                  _vm._v(_vm._s(index - 1))
+                                ])
+                              ])
+                            ])
+                      ])
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row-data" },
+              _vm._l(_vm.listItems, function(item, index) {
+                return _c("div", [
+                  index == 0
                     ? _c(
                         "div",
-                        _vm._l(item.values, function(column, columnIndex) {
-                          return _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value:
-                                  _vm.listItems[index].values[columnIndex]
-                                    .value,
-                                expression:
-                                  "listItems[index].values[columnIndex].value"
-                              }
-                            ],
-                            style: _vm.setColumnWidth(columnIndex),
-                            attrs: { type: "text" },
-                            domProps: {
-                              value:
-                                _vm.listItems[index].values[columnIndex].value
-                            },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.listItems[index].values[columnIndex],
-                                  "value",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        }),
-                        0
-                      )
-                    : _c(
-                        "div",
-                        _vm._l(item.values, function(column, columnIndex) {
+                        { staticClass: "row" },
+                        _vm._l(_vm.listDefinition, function(
+                          columnName,
+                          columnIndex
+                        ) {
                           return _c(
                             "span",
-                            { style: _vm.setColumnWidth(columnIndex) },
+                            {
+                              ref: "columns",
+                              refInFor: true,
+                              staticClass: "column",
+                              style: _vm.setColumnWidth(columnIndex)
+                            },
                             [
-                              _vm._v(
-                                _vm._s(column.value) +
-                                  " " +
-                                  _vm._s(_vm.listDefinition[columnIndex].suffix)
-                              )
+                              _vm.editMode
+                                ? _c(
+                                    "span",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.showEditColumnModal(
+                                            columnIndex
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(columnName.name))]
+                                  )
+                                : _c("span", [_vm._v(_vm._s(columnName.name))]),
+                              _vm._v(" "),
+                              _c("i", {
+                                staticClass: "fas fa-sort-amount-down-alt",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.clickSortButton(columnIndex)
+                                  }
+                                }
+                              })
                             ]
                           )
                         }),
                         0
                       )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _vm.editMode
+                      ? _c(
+                          "div",
+                          _vm._l(item.values, function(column, columnIndex) {
+                            return _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.listItems[index].values[columnIndex]
+                                      .value,
+                                  expression:
+                                    "listItems[index].values[columnIndex].value"
+                                }
+                              ],
+                              style: _vm.setColumnWidth(columnIndex),
+                              attrs: { type: "text" },
+                              domProps: {
+                                value:
+                                  _vm.listItems[index].values[columnIndex].value
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.listItems[index].values[columnIndex],
+                                    "value",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          }),
+                          0
+                        )
+                      : _c(
+                          "div",
+                          _vm._l(item.values, function(column, columnIndex) {
+                            return _c(
+                              "span",
+                              { style: _vm.setColumnWidth(columnIndex) },
+                              [
+                                _vm._v(
+                                  _vm._s(column.value) +
+                                    " " +
+                                    _vm._s(
+                                      _vm.listDefinition[columnIndex].suffix
+                                    )
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                  ])
                 ])
-              ])
-            }),
-            0
-          )
-        ])
+              }),
+              0
+            )
+          ]
+        )
       ])
     ],
     1

@@ -84,4 +84,10 @@ class ListItemsController extends Controller
     {
         return MyListItem::destroy($id);
     }
+    
+    //idを送るとスターの状態を反転
+    public function toggleStarState($id){
+        $item = MyListItem::find($id);
+        MyListItem::find($id)->update(['is_stared' => !$item->is_stared]);
+    }
 }
