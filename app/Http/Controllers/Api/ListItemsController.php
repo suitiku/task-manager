@@ -90,4 +90,10 @@ class ListItemsController extends Controller
         $item = MyListItem::find($id);
         MyListItem::find($id)->update(['is_stared' => !$item->is_stared]);
     }
+    
+    //idを送るとチェックボックスの状態を反転
+    public function toggleCheckState($id){
+        $item = MyListItem::find($id);
+        MyListItem::find($id)->update(['is_checked' => !$item->is_checked]);
+    }
 }

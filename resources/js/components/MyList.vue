@@ -40,6 +40,7 @@
                     <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
                     <i class="fas fa-list-ol fa-lg" v-on:click="showCounter()"></i>
                     <i class="far fa-star fa-lg" v-on:click="showStars()"></i>
+                    <i class="far fa-check-square fa-lg" v-on:click="showCheckbox()"></i>
                 </div>
             </div>
             
@@ -59,7 +60,7 @@
             </div>                
             
             <!--リスト本体-->
-            <div id="list" ref="list" class="star-invisible counter-invisible">
+            <div id="list" ref="list" class="star-invisible check-invisible counter-invisible">
                 <div class="row-meta">
                     <div v-for="index in listItems.length + 1" class="row">
                         <div v-if="index == 1"></div>
@@ -68,6 +69,9 @@
                             <div  v-else>
                                 <div class="star" v-on:click="toggleStarState(index -2)">
                                     <i v-bind:class="setStars(index)"></i>
+                                </div>
+                                <div class="check" v-on:click="toggleCheckState(index -2)">
+                                    <i v-bind:class="setCheckbox(index)"></i>
                                 </div>
                                 <div>
                                     <i class="counter">{{index - 1}}</i>
@@ -235,6 +239,22 @@
                 try{
                     let result = await axios.put('/api/list_items/star/' + this.listItems[index].id)
                     this.listItems[index].is_stared = !this.listItems[index].is_stared
+                }catch(error){
+                    console.log(error)
+                }
+            },
+            setCheckbox:function(index){
+                return this.listItems[index -2].is_checked == true ? 'far fa-check-square' : 'far fa-square'  
+            },
+            showCheckbox:function(){
+                this.$refs.list.classList.toggle('check-visible')
+                this.$refs.list.classList.toggle('check-invisible')
+                event.target.classList.toggle('selected')
+            },
+            toggleCheckState:async function(index){
+                try{
+                    let result = await axios.put('/api/list_items/check/' + this.listItems[index].id)
+                    this.listItems[index].is_checked = !this.listItems[index].is_checked
                 }catch(error){
                     console.log(error)
                 }
@@ -762,6 +782,14 @@
         visibility:hidden;
     }
     .star-visible .star {
+        visibility:visible;
+    }
+    
+    /*チェックボックス*/
+    .check-invisible .check {
+        visibility:hidden;
+    }
+    .check-visible .check {
         visibility:visible;
     }
     
