@@ -265,11 +265,7 @@
                 event.target.classList.toggle('selected')
             },
             changeListAppearance:function(className){
-                if(event.target.classList.contains('selected')){
-                    
-                }else{
-                    this.$refs.list.classList.add(className)
-                }
+                this.$refs.list.classList.toggle(className)
                 event.target.classList.toggle('selected')
             },
             addItem:function(){
@@ -779,23 +775,29 @@
     /*行頭系*/
     /*スター*/
     .star-invisible .star {
-        visibility:hidden;
+        /*visibility:hidden;*/
+        width:0;
+        overflow:hidden;
     }
     .star-visible .star {
-        visibility:visible;
+        /*visibility:visible;*/
     }
     
     /*チェックボックス*/
     .check-invisible .check {
-        visibility:hidden;
+        /*visibility:hidden;*/
+        width:0;
+        overflow:hidden;
     }
     .check-visible .check {
-        visibility:visible;
+        /*visibility:visible;*/
     }
     
     /*カウント*/
     .counter-invisible .counter {
         visibility:hidden;
+        width:0;
+        overflow:hidden;
     }
     .counter-visible .counter {
         visibility:visible;
