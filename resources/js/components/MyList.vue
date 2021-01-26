@@ -41,6 +41,7 @@
                     <i class="fas fa-list-ol fa-lg" v-on:click="showCounter()"></i>
                     <i class="far fa-star fa-lg" v-on:click="showStars()"></i>
                     <i class="far fa-check-square fa-lg" v-on:click="showCheckbox()"></i>
+                    <i class="fas fa-calculator fa-lg" v-on:click="showCalculatorLine()"></i>
                 </div>
             </div>
             
@@ -80,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row-data">
+                <div class="row-data" ref="dataArea">
                     <div v-for="(item,index) in listItems">
                         <div v-if="index == 0" class="row">
                             <!--カラム名表示-->
@@ -98,6 +99,10 @@
                                 <span v-for="(column,columnIndex) in item.values" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
                             </div>
                         </div>
+                    </div>
+                    <!--特殊機能行エリア-->
+                    <div ref="calculator" class="calculator">
+                        <span v-for="(columnName,columnIndex) in listDefinition" v-bind:style="setColumnWidth(columnIndex)" class="column">{{calculteValue(columnIndex)}}</span>
                     </div>
                 </div>
             </div>
@@ -166,7 +171,6 @@
         mounted:function(){
         },
         computed:{
-            
         },
         methods: {
             initList:function(){
@@ -200,11 +204,6 @@
                     }
                     this.getColumnWidths()
                     
-                    //閲覧モードのときはメタデータを不可視化
-                    if(!this.editMode){
-                        this.$refs.list.classList.add('meta-invisible')
-                    }
-                    // console.log(this.listItems)
                 }else{ //list_idがない場合は新規作成と解釈してlistを初期化する
                     this.initList()
                 }
@@ -563,6 +562,19 @@
                     return Number(item.values[index].value)
                 })
                 return Math.max.apply(null,valueArray)
+            },
+            //特殊機能行の値
+            calculteValue:function(index){
+                switch(this.listDefinition[index].type){
+                    case 'Number':
+                        let result = 0
+                        for(let item of this.listItems){
+                            result += Number(item.values[index].value)
+                        }
+                        return result
+                    case 'Text':
+                        return ' '
+                }
             }
         }
     }
@@ -673,6 +685,16 @@
                     }
                 }
             }
+        }
+    }
+    
+    .calculator {
+        position:relative;
+        margin:2em 0;
+        .column {
+            display:inline-block;
+            border:1px solid black;
+            text-align:center;
         }
     }
     
