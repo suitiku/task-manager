@@ -69805,9 +69805,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         //特殊機能行の値
         calculteValue: function calculteValue(index) {
+            var result = void 0;
             switch (this.listDefinition[index].type) {
                 case 'Number':
-                    var result = 0;
+                    // 総合計
+                    result = 0;
                     var _iteratorNormalCompletion7 = true;
                     var _didIteratorError7 = false;
                     var _iteratorError7 = undefined;
@@ -69835,7 +69837,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                     return result;
                 case 'Text':
-                    return ' ';
+                    // カウンター（distinct）
+                    var valueArray = this.listItems.map(function (item) {
+                        return item.values[index].value;
+                    });
+                    return new Set(valueArray).size;
             }
         }
     }

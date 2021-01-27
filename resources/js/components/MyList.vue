@@ -565,15 +565,19 @@
             },
             //特殊機能行の値
             calculteValue:function(index){
+                let result
                 switch(this.listDefinition[index].type){
                     case 'Number':
-                        let result = 0
+                        // 総合計
+                        result = 0
                         for(let item of this.listItems){
                             result += Number(item.values[index].value)
                         }
                         return result
                     case 'Text':
-                        return ' '
+                        // カウンター（distinct）
+                        let valueArray = this.listItems.map(item => item.values[index].value)
+                        return new Set(valueArray).size
                 }
             }
         }
