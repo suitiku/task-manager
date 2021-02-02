@@ -71349,7 +71349,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: hoge-data-v-a5bcf860 0.3s ease 1;\n            animation: hoge-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n.option[data-v-a5bcf860] {\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: hoge-data-v-a5bcf860 0.3s ease 1;\n            animation: hoge-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n.option[data-v-a5bcf860] {\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n", ""]);
 
 // exports
 
@@ -71372,7 +71372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: [{ label: 'test1', value: 0 }, { label: 'test2', value: 1 }, { label: 'test3', value: 2 }, { label: 'test4', value: 3 }]
+            options: [{ label: '俺', value: 0 }, { label: 'お前', value: 1 }, { label: '大五郎', value: 2 }, { label: '部屋', value: 3 }, { label: 'ワイシャツ', value: 4 }, { label: 'わたし', value: 5 }]
         };
     },
     props: {},
@@ -71401,6 +71401,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 for (var index in vue.options) {
                     //表示位置算出
                     var option = vue.$refs.options[index];
+                    option.style.left = x + 'px';
+                    option.style.top = y + 'px';
+
+                    option.classList.toggle('invisible');
+                    option.classList.toggle('visible');
+
                     var optionRect = option.getBoundingClientRect();
 
                     // 基準のY座標算出
@@ -71413,19 +71419,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     if (Number(index) < vue.options.length / 2) {
                         deg = 90 - splitAngle * (Number(index) + 1);
                         option.style.transform = 'rotate(' + deg + 'deg)';
-                        positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width;
-                        positionY = baseY - Math.sin(deg / 180 * Math.PI) * circle.width;
+                        positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
+                        positionY = baseY - Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
                     } else {
                         deg = splitAngle * (Number(index) + 1) - 90;
                         option.style.transform = 'rotate(' + -deg + 'deg)';
-                        positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width;
-                        positionY = baseY + Math.sin(deg / 180 * Math.PI) * circle.width;
+                        positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
+                        positionY = baseY + Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
                     }
 
                     option.style.left = positionX + 'px';
                     option.style.top = positionY + 'px';
-                    option.classList.toggle('invisible');
-                    option.classList.toggle('visible');
+                    // option.classList.toggle('invisible')
+                    // option.classList.toggle('visible')
                 }
             });
         }

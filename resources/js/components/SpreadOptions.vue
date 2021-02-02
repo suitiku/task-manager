@@ -11,10 +11,13 @@
         data:function(){
             return {
                 options:[
-                    {label:'test1',value:0},
-                    {label:'test2',value:1},
-                    {label:'test3',value:2},
-                    {label:'test4',value:3},
+                    {label:'俺',value:0},
+                    {label:'お前',value:1},
+                    {label:'大五郎',value:2},
+                    {label:'部屋',value:3},
+                    {label:'ワイシャツ',value:4},
+                    {label:'わたし',value:5},
+                    // {label:'tes',value:6},
                 ]
             }  
         },
@@ -52,6 +55,12 @@
                     for(let index in vue.options){
                         //表示位置算出
                         let option = vue.$refs.options[index]
+                        option.style.left = x + 'px'
+                        option.style.top = y + 'px'
+                        
+                        option.classList.toggle('invisible')
+                        option.classList.toggle('visible')
+                        
                         let optionRect = option.getBoundingClientRect()
                         
                         // 基準のY座標算出
@@ -64,19 +73,19 @@
                         if(Number(index) < vue.options.length/2){
                             deg = (90 - (splitAngle * (Number(index) + 1)))
                             option.style.transform = 'rotate(' + deg + 'deg)'
-                            positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width
-                            positionY = baseY - Math.sin( deg / 180 * Math.PI) * circle.width
+                            positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
+                            positionY = baseY - Math.sin( deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
                         }else{
                             deg = ((splitAngle * (Number(index) + 1)) -90)
                             option.style.transform = 'rotate(' + -deg + 'deg)'
-                            positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width
-                            positionY = baseY + Math.sin( deg / 180 * Math.PI) * circle.width
+                            positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
+                            positionY = baseY + Math.sin( deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
                         }
                         
                         option.style.left = positionX + 'px'
                         option.style.top = positionY + 'px'
-                        option.classList.toggle('invisible')
-                        option.classList.toggle('visible')
+                        // option.classList.toggle('invisible')
+                        // option.classList.toggle('visible')
                     }
                     
                 })
@@ -115,6 +124,8 @@
         border-radius:0.1em;
         text-align:center;
         padding:0.2em 1em;
+        background-color:white;
+        transition:all 0.3s ease 0.3s;
     }
     
 </style>
