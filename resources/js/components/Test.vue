@@ -1,13 +1,11 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <range-number v-bind:minimumValue="100" v-bind:maximumValue="250" v-bind:validDigits="0" v-model="hoge" />
-        {{hoge}}
-        <input type="range">
+        <spread-options ref="spreadOptions" />
         <!--<modal ref="modal" v-model="modal">-->
         <!--    <div class="wall">test</div>-->
         <!--</modal>-->
-        <!--<button class="button" v-on:click="showModal()">modal</button>-->
+        <button class="button center" v-on:click="spreadOptions()">spread</button>
     </div>
 </template>
 
@@ -137,6 +135,9 @@
             },
             sortList:function(){
                 this.$refs.mylist.sortList(2)
+            },
+            spreadOptions:function(){
+                this.$refs.spreadOptions.expand(event)
             }
         },
     }
@@ -148,7 +149,7 @@
         padding:0.5em;
         border:1px solid grey;
         border-radius:0.2em;
-        z-index:30;
+        /*z-index:30;*/
     }
     .hoge {
         display:flex;
@@ -173,5 +174,10 @@
     }
     .congratulation-content {
         border:2px solid red;
+    }
+    .center {
+        position:relative;
+        left:20em;
+        top:20em;
     }
 </style>

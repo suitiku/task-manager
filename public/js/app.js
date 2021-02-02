@@ -14633,7 +14633,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(19);
-module.exports = __webpack_require__(307);
+module.exports = __webpack_require__(312);
 
 
 /***/ }),
@@ -14709,6 +14709,7 @@ Vue.component('reminders', __webpack_require__(287));
 Vue.component('my-list', __webpack_require__(292));
 Vue.component('my-list-collection', __webpack_require__(297));
 Vue.component('range-number', __webpack_require__(302));
+Vue.component('spread-options', __webpack_require__(307));
 
 var app = new Vue({
   el: '#app'
@@ -57435,7 +57436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    z-index:30;\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:relative;\n    left:20em;\n    top:20em;\n}\n", ""]);
 
 // exports
 
@@ -57452,8 +57453,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-//
-//
 //
 //
 //
@@ -57655,6 +57654,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         sortList: function sortList() {
             this.$refs.mylist.sortList(2);
+        },
+        spreadOptions: function spreadOptions() {
+            this.$refs.spreadOptions.expand(event);
         }
     }
 });
@@ -57671,18 +57673,20 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("range-number", {
-        attrs: { minimumValue: 100, maximumValue: 250, validDigits: 0 },
-        model: {
-          value: _vm.hoge,
-          callback: function($$v) {
-            _vm.hoge = $$v
-          },
-          expression: "hoge"
-        }
-      }),
-      _vm._v("\n    " + _vm._s(_vm.hoge) + "\n    "),
-      _c("input", { attrs: { type: "range" } })
+      _c("spread-options", { ref: "spreadOptions" }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button center",
+          on: {
+            click: function($event) {
+              return _vm.spreadOptions()
+            }
+          }
+        },
+        [_vm._v("spread")]
+      )
     ],
     1
   )
@@ -71261,6 +71265,209 @@ if (false) {
 
 /***/ }),
 /* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(308)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(310)
+/* template */
+var __vue_template__ = __webpack_require__(311)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-a5bcf860"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/SpreadOptions.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a5bcf860", Component.options)
+  } else {
+    hotAPI.reload("data-v-a5bcf860", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(309);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("ec645f08", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a5bcf860\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SpreadOptions.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a5bcf860\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./SpreadOptions.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: hoge-data-v-a5bcf860 0.3s ease 1;\n            animation: hoge-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n.option[data-v-a5bcf860] {\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 310 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            options: [{ label: 'test1', value: 0 }, { label: 'test2', value: 1 }, { label: 'test3', value: 2 }, { label: 'test4', value: 3 }]
+        };
+    },
+    props: {},
+    watch: {},
+    created: function created() {},
+    mounted: function mounted() {},
+    methods: {
+        expand: function expand(event) {
+            //option数で分割角度を算出
+            var splitAngle = 180 / (this.options.length + 1);
+            //表示中心位置を算出
+            var eventTarget = event.target.getBoundingClientRect(); //送信元のボタン等の要素
+            var circle = this.$refs.baseCircle.getBoundingClientRect();
+            var x = eventTarget.x + eventTarget.width / 2 - circle.width / 2;
+            var y = eventTarget.y + eventTarget.height / 2 - circle.height / 2;
+            this.$refs.baseCircle.style.left = x + 'px';
+            this.$refs.baseCircle.style.top = y + 'px';
+            this.$refs.baseCircle.classList.toggle('visible');
+            this.$refs.baseCircle.classList.toggle('expand');
+            this.$refs.baseCircle.classList.toggle('invisible');
+
+            // aimation終了後に選択肢を展開
+            var vue = this;
+            this.$refs.baseCircle.addEventListener('animationend', function () {
+                // 選択肢の表示
+                for (var index in vue.options) {
+                    //表示位置算出
+                    var option = vue.$refs.options[index];
+                    var optionRect = option.getBoundingClientRect();
+
+                    // 基準のY座標算出
+                    var baseY = eventTarget.top + eventTarget.height / 2 - optionRect.height / 2;
+
+                    // indexとsplitAngleからY座標の描画位置を調整
+                    var deg = void 0;
+                    var positionX = void 0;
+                    var positionY = void 0;
+                    if (Number(index) < vue.options.length / 2) {
+                        deg = 90 - splitAngle * (Number(index) + 1);
+                        option.style.transform = 'rotate(' + deg + 'deg)';
+                        positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width;
+                        positionY = baseY - Math.sin(deg / 180 * Math.PI) * circle.width;
+                    } else {
+                        deg = splitAngle * (Number(index) + 1) - 90;
+                        option.style.transform = 'rotate(' + -deg + 'deg)';
+                        positionX = x - Math.cos(deg / 180 * Math.PI) * circle.width;
+                        positionY = baseY + Math.sin(deg / 180 * Math.PI) * circle.width;
+                    }
+
+                    option.style.left = positionX + 'px';
+                    option.style.top = positionY + 'px';
+                    option.classList.toggle('invisible');
+                    option.classList.toggle('visible');
+                }
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { ref: "baseCircle", staticClass: "circle invisible" }),
+      _vm._v(" "),
+      _vm._l(_vm.options, function(option, index) {
+        return _c(
+          "div",
+          { ref: "options", refInFor: true, staticClass: "option invisible" },
+          [_vm._v(_vm._s(option.label))]
+        )
+      })
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a5bcf860", module.exports)
+  }
+}
+
+/***/ }),
+/* 312 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
