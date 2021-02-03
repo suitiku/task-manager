@@ -57436,7 +57436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:relative;\n    left:20em;\n    top:20em;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:relative;\n    left:50%;\n    top:10em;\n}\n", ""]);
 
 // exports
 
@@ -57673,7 +57673,10 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _c("spread-options", { ref: "spreadOptions" }),
+      _c("spread-options", {
+        ref: "spreadOptions",
+        attrs: { options: _vm.items }
+      }),
       _vm._v(" "),
       _c(
         "button",
@@ -71372,10 +71375,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            options: [{ label: '俺', value: 0 }, { label: 'お前', value: 1 }, { label: '大五郎', value: 2 }, { label: '部屋', value: 3 }, { label: 'ワイシャツ', value: 4 }, { label: 'わたし', value: 5 }]
+            // options:[
+            //     {label:'俺',value:0},
+            //     {label:'お前',value:1},
+            //     {label:'大五郎',value:2},
+            //     {label:'部屋',value:3},
+            //     {label:'ワイシャツ',value:4},
+            //     {label:'わたし',value:5},
+            //     // {label:'tes',value:6},
+            // ]
         };
     },
-    props: {},
+    props: {
+        options: {
+            type: [String, Array],
+            default: [],
+            required: false
+        }
+    },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
@@ -71430,8 +71447,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     option.style.left = positionX + 'px';
                     option.style.top = positionY + 'px';
-                    // option.classList.toggle('invisible')
-                    // option.classList.toggle('visible')
                 }
             });
         }

@@ -10,19 +10,23 @@
     export default {
         data:function(){
             return {
-                options:[
-                    {label:'俺',value:0},
-                    {label:'お前',value:1},
-                    {label:'大五郎',value:2},
-                    {label:'部屋',value:3},
-                    {label:'ワイシャツ',value:4},
-                    {label:'わたし',value:5},
-                    // {label:'tes',value:6},
-                ]
+                // options:[
+                //     {label:'俺',value:0},
+                //     {label:'お前',value:1},
+                //     {label:'大五郎',value:2},
+                //     {label:'部屋',value:3},
+                //     {label:'ワイシャツ',value:4},
+                //     {label:'わたし',value:5},
+                //     // {label:'tes',value:6},
+                // ]
             }  
         },
         props: {
-            
+            options:{
+                type:[String,Array],
+                default:[],
+                required:false
+            }
         },
         watch:{
             
@@ -84,8 +88,6 @@
                         
                         option.style.left = positionX + 'px'
                         option.style.top = positionY + 'px'
-                        // option.classList.toggle('invisible')
-                        // option.classList.toggle('visible')
                     }
                     
                 })

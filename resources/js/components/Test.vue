@@ -1,7 +1,7 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <spread-options ref="spreadOptions" />
+        <spread-options ref="spreadOptions" v-bind:options="items" />
         <!--<modal ref="modal" v-model="modal">-->
         <!--    <div class="wall">test</div>-->
         <!--</modal>-->
@@ -177,7 +177,7 @@
     }
     .center {
         position:relative;
-        left:20em;
-        top:20em;
+        left:50%;
+        top:10em;
     }
 </style>
