@@ -57487,7 +57487,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
-            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }],
+            items: [
+            // {label:'りんご',value:'apple'},
+            // {label:'バナナ',value:'banana'},
+            { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }],
             numerator: 80
         };
     },
@@ -71352,7 +71355,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: hoge-data-v-a5bcf860 0.3s ease 1;\n            animation: hoge-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes hoge-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n.option[data-v-a5bcf860] {\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.circle.expand[data-v-a5bcf860] {\n    /*transform:scale(1);*/\n    -webkit-animation: expand-data-v-a5bcf860 1s ease 1;\n            animation: expand-data-v-a5bcf860 1s ease 1;\n}\n.circle.shrink[data-v-a5bcf860] {\n    /*transform:scale(0);*/\n    -webkit-animation: shrink-data-v-a5bcf860 0.3s ease 1;\n            animation: shrink-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n@keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n.option[data-v-a5bcf860] {\n  cursor: pointer;\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.option.selected[data-v-a5bcf860] {\n    /*animation:selected 0.2s ease 1;*/\n    background-color: orange;\n    color: blue;\n}\n\n/*@keyframes selected {*/\n/*    0% {*/\n/*        background-color:white;*/\n/*        color:black;*/\n/*    }*/\n/*    100% {*/\n/*        background-color:orange;*/\n/*        color:blue;*/\n/*    }*/\n/*}*/\n", ""]);
 
 // exports
 
@@ -71375,15 +71378,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            // options:[
-            //     {label:'俺',value:0},
-            //     {label:'お前',value:1},
-            //     {label:'大五郎',value:2},
-            //     {label:'部屋',value:3},
-            //     {label:'ワイシャツ',value:4},
-            //     {label:'わたし',value:5},
-            //     // {label:'tes',value:6},
-            // ]
+            baseX: 0,
+            baseY: 0,
+            eventTarget: {}
         };
     },
     props: {
@@ -71398,57 +71395,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {},
     methods: {
         expand: function expand(event) {
+            // this.baseX = 0
+            // this.baseY = 0
+            // this.eventTarget = {}
+            this.$refs.baseCircle.classList.remove('shrink');
             //option数で分割角度を算出
             var splitAngle = 180 / (this.options.length + 1);
             //表示中心位置を算出
             var eventTarget = event.target.getBoundingClientRect(); //送信元のボタン等の要素
+            this.eventTarget = event.target.getBoundingClientRect(); //送信元のボタン等の要素
             var circle = this.$refs.baseCircle.getBoundingClientRect();
             var x = eventTarget.x + eventTarget.width / 2 - circle.width / 2;
+            this.baseX = x;
             var y = eventTarget.y + eventTarget.height / 2 - circle.height / 2;
+            this.baseY = y;
             this.$refs.baseCircle.style.left = x + 'px';
             this.$refs.baseCircle.style.top = y + 'px';
-            this.$refs.baseCircle.classList.toggle('visible');
-            this.$refs.baseCircle.classList.toggle('expand');
-            this.$refs.baseCircle.classList.toggle('invisible');
+            this.$refs.baseCircle.classList.add('visible');
+            this.$refs.baseCircle.classList.remove('invisible');
+            this.$refs.baseCircle.classList.add('expand');
 
             // aimation終了後に選択肢を展開
             var vue = this;
-            this.$refs.baseCircle.addEventListener('animationend', function () {
-                // 選択肢の表示
-                for (var index in vue.options) {
-                    //表示位置算出
-                    var option = vue.$refs.options[index];
-                    option.style.left = x + 'px';
-                    option.style.top = y + 'px';
 
-                    option.classList.toggle('invisible');
-                    option.classList.toggle('visible');
+            this.$refs.baseCircle.addEventListener('animationend', this.expandOptions);
+        },
+        expandOptions: function expandOptions() {
+            // 選択肢の表示
+            var vue = this;
+            //option数で分割角度を算出
+            var splitAngle = 180 / (this.options.length + 1);
+            var circle = this.$refs.baseCircle.getBoundingClientRect();
+            for (var index in vue.options) {
+                //表示位置算出
+                var option = vue.$refs.options[index];
+                option.style.left = this.baseX + 'px';
+                option.style.top = this.baseY + 'px';
 
-                    var optionRect = option.getBoundingClientRect();
+                option.classList.remove('invisible');
+                option.classList.add('visible');
 
-                    // 基準のY座標算出
-                    var baseY = eventTarget.top + eventTarget.height / 2 - optionRect.height / 2;
+                var optionRect = option.getBoundingClientRect();
 
-                    // indexとsplitAngleからY座標の描画位置を調整
-                    var deg = void 0;
-                    var positionX = void 0;
-                    var positionY = void 0;
-                    if (Number(index) < vue.options.length / 2) {
-                        deg = 90 - splitAngle * (Number(index) + 1);
-                        option.style.transform = 'rotate(' + deg + 'deg)';
-                        positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                        positionY = baseY - Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                    } else {
-                        deg = splitAngle * (Number(index) + 1) - 90;
-                        option.style.transform = 'rotate(' + -deg + 'deg)';
-                        positionX = x - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                        positionY = baseY + Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                    }
+                // 基準のY座標算出
+                var baseY = this.eventTarget.top + this.eventTarget.height / 2 - optionRect.height / 2;
+                console.log(this.eventTarget.height);
 
-                    option.style.left = positionX + 'px';
-                    option.style.top = positionY + 'px';
+                // indexとsplitAngleからY座標の描画位置を調整
+                var deg = void 0;
+                var positionX = void 0;
+                var positionY = void 0;
+                if (Number(index) < vue.options.length / 2) {
+                    deg = 90 - splitAngle * (Number(index) + 1);
+                    option.style.transform = 'rotate(' + deg + 'deg)';
+                    positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
+                    positionY = baseY - Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
+                } else {
+                    deg = splitAngle * (Number(index) + 1) - 90;
+                    option.style.transform = 'rotate(' + -deg + 'deg)';
+                    positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
+                    positionY = baseY + Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
                 }
-            });
+                // console.log(positionX,positionY)
+                option.style.left = positionX + 'px';
+                option.style.top = positionY + 'px';
+            }
+            this.$refs.baseCircle.removeEventListener('animationend', this.expandOptions);
+        },
+        selectOption: function selectOption(index) {
+            this.$refs.options[index].classList.add('selected');
+            this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
+        },
+        shrinkOptions: function shrinkOptions() {
+            for (var optionIndex in this.options) {
+                var option = this.$refs.options[optionIndex];
+                var optionRect = option.getBoundingClientRect();
+                option.style.transform = 'rotate(0deg)';
+                option.style.left = this.baseX + 'px';
+                option.style.top = Number(this.baseY + optionRect.height / 2) + 'px';
+                option.classList.add('invisible');
+                option.classList.remove('visible');
+                option.removeEventListener('transitionend', this.shrinkOptions);
+            }
+            this.$refs.baseCircle.classList.remove('expand');
+            this.$refs.baseCircle.classList.add('shrink');
+            this.$refs.baseCircle.classList.remove('visible');
+            this.$refs.baseCircle.classList.add('invisible');
         }
     }
 });
@@ -71469,7 +71501,16 @@ var render = function() {
       _vm._l(_vm.options, function(option, index) {
         return _c(
           "div",
-          { ref: "options", refInFor: true, staticClass: "option invisible" },
+          {
+            ref: "options",
+            refInFor: true,
+            staticClass: "option invisible",
+            on: {
+              click: function($event) {
+                return _vm.selectOption(index)
+              }
+            }
+          },
           [_vm._v(_vm._s(option.label))]
         )
       })

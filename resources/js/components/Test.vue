@@ -47,10 +47,11 @@
                 userId:1,
                 waiting:false,
                 items:[
-                    {label:'りんご',value:'apple'},
-                    {label:'バナナ',value:'banana'},
+                    // {label:'りんご',value:'apple'},
+                    // {label:'バナナ',value:'banana'},
                     {label:'ドラゴンフルーツ',value:'dragon fruit'},
-                    {label:'アンデスメロン',value:'andes melon'}
+                    {label:'アンデスメロン',value:'andes melon'},
+                    {label:'スイカ',value:'water melon'}
                 ],
                 numerator:80
             }  
