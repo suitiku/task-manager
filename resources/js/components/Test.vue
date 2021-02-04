@@ -1,7 +1,8 @@
 <!--テスト用コンポーネント-->
 <template>
     <div class="container">
-        <spread-options ref="spreadOptions" v-bind:options="items" />
+        <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />
+        {{test}}
         <!--<modal ref="modal" v-model="modal">-->
         <!--    <div class="wall">test</div>-->
         <!--</modal>-->
@@ -47,11 +48,16 @@
                 userId:1,
                 waiting:false,
                 items:[
-                    // {label:'りんご',value:'apple'},
-                    // {label:'バナナ',value:'banana'},
+                    {label:'りんご',value:'apple'},
+                    {label:'バナナ',value:'banana'},
                     {label:'ドラゴンフルーツ',value:'dragon fruit'},
                     {label:'アンデスメロン',value:'andes melon'},
-                    {label:'スイカ',value:'water melon'}
+                    {label:'スイカ',value:'water melon'},
+                    // {label:'りんご',value:'apple'},
+                    // {label:'バナナ',value:'banana'},
+                    // {label:'ドラゴンフルーツ',value:'dragon fruit'},
+                    // {label:'アンデスメロン',value:'andes melon'},
+                    // {label:'スイカ',value:'water melon'}
                 ],
                 numerator:80
             }  
@@ -177,8 +183,8 @@
         border:2px solid red;
     }
     .center {
-        position:relative;
+        position:fixed;
         left:50%;
-        top:10em;
+        top:20em;
     }
 </style>

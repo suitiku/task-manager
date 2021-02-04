@@ -13,6 +13,7 @@
                 baseX:0,
                 baseY:0,
                 eventTarget:{},
+                selectedIndex:'',
             }  
         },
         props: {
@@ -23,7 +24,13 @@
             }
         },
         watch:{
-            
+            selectedIndex:function(){
+                if(this.options[this.selectedIndex]){
+                    this.$emit('input',this.options[this.selectedIndex].value)
+                }else{
+                    this.$emit('input','')
+                }
+            }
         },
         created:function(){
             
@@ -33,9 +40,6 @@
         },
         methods: {
             expand:function(event){
-                // this.baseX = 0
-                // this.baseY = 0
-                // this.eventTarget = {}
                 this.$refs.baseCircle.classList.remove('shrink')
                 //option数で分割角度を算出
                 let splitAngle = 180 / (this.options.length + 1)
@@ -77,7 +81,6 @@
                     
                     // 基準のY座標算出
                     let baseY = this.eventTarget.top + this.eventTarget.height/2 - optionRect.height/2
-                    console.log(this.eventTarget.height)
                     
                     // indexとsplitAngleからY座標の描画位置を調整
                     let deg
@@ -94,15 +97,25 @@
                         positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
                         positionY = baseY + Math.sin( deg / 180 * Math.PI) * (circle.width/2 + optionRect.width)
                     }
-                    // console.log(positionX,positionY)
                     option.style.left = positionX + 'px'
                     option.style.top = positionY + 'px'
                 }
                 this.$refs.baseCircle.removeEventListener('animationend',this.expandOptions)
             },
             selectOption:function(index){
-                this.$refs.options[index].classList.add('selected')
-                this.$refs.options[index].addEventListener('transitionend',this.shrinkOptions)
+                if(this.selectedIndex === ''){
+                    this.selectedIndex = index
+                    this.$refs.options[index].classList.add('selected')
+                    this.$refs.options[index].addEventListener('transitionend',this.shrinkOptions)
+                }else if(index == this.selectedIndex){
+                    this.selectedIndex = ''
+                    this.$refs.options[index].classList.remove('selected')
+                }else{
+                    this.$refs.options[this.selectedIndex].classList.remove('selected')
+                    this.selectedIndex = index
+                    this.$refs.options[index].classList.add('selected')
+                    this.$refs.options[index].addEventListener('transitionend',this.shrinkOptions)
+                }
             },
             shrinkOptions:function(){
                 for(let optionIndex in this.options){
@@ -135,12 +148,10 @@
         background-color:rgba(grey,0.3);
         transition:all 0.3s ease 0.3s;
         &.expand {
-            /*transform:scale(1);*/
-            animation:expand 1s ease 1;
+            animation:expand 1.0s ease 1;
         }
         &.shrink {
-            /*transform:scale(0);*/
-            animation:shrink 0.3s ease 1;
+            animation:shrink 1.0s ease 1;
         }
     }
     @keyframes expand {
@@ -169,22 +180,10 @@
         text-align:center;
         padding:0.2em 1em;
         background-color:white;
-        transition:all 0.3s ease 0.3s;
+        transition:all 0.5s ease 0.2s;
         &.selected {
-            /*animation:selected 0.2s ease 1;*/
             background-color:orange;
-            color:blue;
+            color:white;
         }
     }
-    /*@keyframes selected {*/
-    /*    0% {*/
-    /*        background-color:white;*/
-    /*        color:black;*/
-    /*    }*/
-    /*    100% {*/
-    /*        background-color:orange;*/
-    /*        color:blue;*/
-    /*    }*/
-    /*}*/
-    
 </style>

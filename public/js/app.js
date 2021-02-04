@@ -57436,7 +57436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:relative;\n    left:50%;\n    top:10em;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:fixed;\n    left:50%;\n    top:10em;\n}\n", ""]);
 
 // exports
 
@@ -57453,6 +57453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -57487,10 +57488,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
-            items: [
-            // {label:'りんご',value:'apple'},
-            // {label:'バナナ',value:'banana'},
-            { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }],
+            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }],
             numerator: 80
         };
     },
@@ -57678,8 +57676,16 @@ var render = function() {
     [
       _c("spread-options", {
         ref: "spreadOptions",
-        attrs: { options: _vm.items }
+        attrs: { options: _vm.items },
+        model: {
+          value: _vm.test,
+          callback: function($$v) {
+            _vm.test = $$v
+          },
+          expression: "test"
+        }
       }),
+      _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
       _vm._v(" "),
       _c(
         "button",
@@ -71355,7 +71361,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.circle.expand[data-v-a5bcf860] {\n    /*transform:scale(1);*/\n    -webkit-animation: expand-data-v-a5bcf860 1s ease 1;\n            animation: expand-data-v-a5bcf860 1s ease 1;\n}\n.circle.shrink[data-v-a5bcf860] {\n    /*transform:scale(0);*/\n    -webkit-animation: shrink-data-v-a5bcf860 0.3s ease 1;\n            animation: shrink-data-v-a5bcf860 0.3s ease 1;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n@keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n.option[data-v-a5bcf860] {\n  cursor: pointer;\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.option.selected[data-v-a5bcf860] {\n    /*animation:selected 0.2s ease 1;*/\n    background-color: orange;\n    color: blue;\n}\n\n/*@keyframes selected {*/\n/*    0% {*/\n/*        background-color:white;*/\n/*        color:black;*/\n/*    }*/\n/*    100% {*/\n/*        background-color:orange;*/\n/*        color:blue;*/\n/*    }*/\n/*}*/\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: expand-data-v-a5bcf860 1.0s ease 1;\n            animation: expand-data-v-a5bcf860 1.0s ease 1;\n}\n.circle.shrink[data-v-a5bcf860] {\n    -webkit-animation: shrink-data-v-a5bcf860 1.0s ease 1;\n            animation: shrink-data-v-a5bcf860 1.0s ease 1;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n@keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n.option[data-v-a5bcf860] {\n  cursor: pointer;\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.5s ease 0.2s;\n  transition: all 0.5s ease 0.2s;\n}\n.option.selected[data-v-a5bcf860] {\n    background-color: orange;\n    color: white;\n}\n", ""]);
 
 // exports
 
@@ -71380,7 +71386,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             baseX: 0,
             baseY: 0,
-            eventTarget: {}
+            eventTarget: {},
+            selectedIndex: ''
         };
     },
     props: {
@@ -71390,14 +71397,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             required: false
         }
     },
-    watch: {},
+    watch: {
+        selectedIndex: function selectedIndex() {
+            if (this.options[this.selectedIndex]) {
+                this.$emit('input', this.options[this.selectedIndex].value);
+            } else {
+                this.$emit('input', '');
+            }
+        }
+    },
     created: function created() {},
     mounted: function mounted() {},
     methods: {
         expand: function expand(event) {
-            // this.baseX = 0
-            // this.baseY = 0
-            // this.eventTarget = {}
             this.$refs.baseCircle.classList.remove('shrink');
             //option数で分割角度を算出
             var splitAngle = 180 / (this.options.length + 1);
@@ -71439,7 +71451,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 // 基準のY座標算出
                 var baseY = this.eventTarget.top + this.eventTarget.height / 2 - optionRect.height / 2;
-                console.log(this.eventTarget.height);
 
                 // indexとsplitAngleからY座標の描画位置を調整
                 var deg = void 0;
@@ -71456,15 +71467,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
                     positionY = baseY + Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
                 }
-                // console.log(positionX,positionY)
                 option.style.left = positionX + 'px';
                 option.style.top = positionY + 'px';
             }
             this.$refs.baseCircle.removeEventListener('animationend', this.expandOptions);
         },
         selectOption: function selectOption(index) {
-            this.$refs.options[index].classList.add('selected');
-            this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
+            if (this.selectedIndex === '') {
+                this.selectedIndex = index;
+                this.$refs.options[index].classList.add('selected');
+                this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
+            } else if (index == this.selectedIndex) {
+                this.selectedIndex = '';
+                this.$refs.options[index].classList.remove('selected');
+            } else {
+                this.$refs.options[this.selectedIndex].classList.remove('selected');
+                this.selectedIndex = index;
+                this.$refs.options[index].classList.add('selected');
+                this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
+            }
         },
         shrinkOptions: function shrinkOptions() {
             for (var optionIndex in this.options) {
