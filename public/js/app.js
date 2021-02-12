@@ -57436,7 +57436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:5000px;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:fixed;\n    left:50%;\n    top:10em;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    display:inline-block;\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:20em;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:fixed;\n    left:50%;\n    top:20em;\n}\n", ""]);
 
 // exports
 
@@ -57453,6 +57453,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -57672,32 +57679,46 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
     [
-      _c("spread-options", {
-        ref: "spreadOptions",
-        attrs: { options: _vm.items },
-        model: {
-          value: _vm.test,
-          callback: function($$v) {
-            _vm.test = $$v
-          },
-          expression: "test"
-        }
-      }),
       _vm._v("\n    " + _vm._s(_vm.test) + "\n    "),
+      _c(
+        "modal",
+        {
+          ref: "modal",
+          model: {
+            value: _vm.modal,
+            callback: function($$v) {
+              _vm.modal = $$v
+            },
+            expression: "modal"
+          }
+        },
+        [
+          _c("spread-options", {
+            ref: "spreadOptions",
+            attrs: { options: _vm.items },
+            model: {
+              value: _vm.test,
+              callback: function($$v) {
+                _vm.test = $$v
+              },
+              expression: "test"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "button center",
           on: {
             click: function($event) {
-              return _vm.spreadOptions()
+              return _vm.showModal()
             }
           }
         },
-        [_vm._v("spread")]
+        [_vm._v("modal")]
       )
     ],
     1
@@ -59063,7 +59084,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n        position:relative;\n}\n.contents[data-v-8f0ee7f6] {\n        position:relative;\n        width:100%;\n}\n    /*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n        height:5em;\n}\n@media screen and (max-width:480px) {\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:100%;\n}\n}\n@media screen and (min-width:480px){\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:80%;\n}\n}\n", ""]);
+exports.push([module.i, "\n.contents-wrapper[data-v-8f0ee7f6] {\n        /*position:relative;*/\n}\n.contents[data-v-8f0ee7f6] {\n        /*position:relative;*/\n        width:100%;\n}\n    /*下に余白*/\n.spacer[data-v-8f0ee7f6] {\n        height:5em;\n}\n@media screen and (max-width:480px) {\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:100%;\n}\n}\n@media screen and (min-width:480px){\n.contents-wrapper[data-v-8f0ee7f6] {\n        width:80%;\n}\n}\n", ""]);
 
 // exports
 
@@ -68982,6 +69003,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69006,7 +69033,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             filters: [],
             filterOperators: [], //and/or用の演算子配列
             filterWord: '', //フィルター用（Rawテキスト）
-            filteredArray: [] //フィルターされた結果itemsの配列
+            filteredArray: [], //フィルターされた結果itemsの配列
+            selectedCalculatorType: [],
+            spreadOptions: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }]
         };
     },
     props: {
@@ -69859,6 +69888,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     });
                     return new Set(valueArray).size;
             }
+        },
+        //特殊機能行のタイプ変更
+        selectCalculatorType: function selectCalculatorType() {
+            this.$refs.spreadOptions.expand(event);
         }
     }
 });
@@ -69874,592 +69907,22 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("notice", { ref: "notice" }),
-      _vm._v(" "),
       _c(
-        "modal",
+        "button",
         {
-          ref: "newColumnModal",
-          model: {
-            value: _vm.newColumnModal,
-            callback: function($$v) {
-              _vm.newColumnModal = $$v
-            },
-            expression: "newColumnModal"
+          on: {
+            click: function($event) {
+              return _vm.selectCalculatorType()
+            }
           }
         },
-        [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newColumn.name,
-                expression: "newColumn.name"
-              }
-            ],
-            attrs: { type: "text", placeholder: "列の名前" },
-            domProps: { value: _vm.newColumn.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.newColumn, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "select",
-            {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newColumn.type,
-                  expression: "newColumn.type"
-                }
-              ],
-              on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.newColumn,
-                    "type",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
-                }
-              }
-            },
-            [
-              _c("option", { attrs: { value: "Number" } }, [_vm._v("数値")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Text" } }, [_vm._v("文字")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Date" } }, [_vm._v("日付")]),
-              _vm._v(" "),
-              _c("option", { attrs: { value: "Boolean" } }, [_vm._v("Yes/No")])
-            ]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newColumn.suffix,
-                expression: "newColumn.suffix"
-              }
-            ],
-            attrs: { type: "text", placeholder: "接尾辞" },
-            domProps: { value: _vm.newColumn.suffix },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.newColumn, "suffix", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.newColumn.default,
-                expression: "newColumn.default"
-              }
-            ],
-            attrs: { type: "text", placeholder: "既定値" },
-            domProps: { value: _vm.newColumn.default },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.newColumn, "default", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          typeof _vm.newColumn.index === "number"
-            ? _c("div", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.editColumn()
-                      }
-                    }
-                  },
-                  [_vm._v("列を編集")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.deleteColumn()
-                      }
-                    }
-                  },
-                  [_vm._v("列を削除")]
-                )
-              ])
-            : _c("div", [
-                _c(
-                  "button",
-                  {
-                    on: {
-                      click: function($event) {
-                        return _vm.addColumn()
-                      }
-                    }
-                  },
-                  [_vm._v("列を追加")]
-                )
-              ])
-        ]
+        [_vm._v("test")]
       ),
       _vm._v(" "),
-      _c("div", { attrs: { id: "list-wrapper" } }, [
-        _vm.editMode
-          ? _c("div", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.listMetaData.name,
-                    expression: "listMetaData.name"
-                  }
-                ],
-                attrs: { type: "text" },
-                domProps: { value: _vm.listMetaData.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.listMetaData, "name", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "textarea",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.listMetaData.description,
-                      expression: "listMetaData.description"
-                    }
-                  ],
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.listMetaData.description },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(
-                        _vm.listMetaData,
-                        "description",
-                        $event.target.value
-                      )
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm.listMetaData.description))]
-              )
-            ])
-          : _c("div", { staticClass: "fixed-bar-right" }, [
-              _c("div", { staticClass: "decoration" }, [
-                _c("p", [_vm._v("decoration")]),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-border-all fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeListAppearance("simple-border")
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-underline fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeListAppearance("simple-border-bottom")
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-highlighter fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.changeListAppearance("highlight-odd")
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-list-ol fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.showCounter()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "far fa-star fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.showStars()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "far fa-check-square fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.showCheckbox()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("i", {
-                  staticClass: "fas fa-calculator fa-lg",
-                  on: {
-                    click: function($event) {
-                      return _vm.showCalculatorLine()
-                    }
-                  }
-                })
-              ])
-            ]),
-        _vm._v(" "),
-        !_vm.editMode
-          ? _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.filterWord,
-                  expression: "filterWord"
-                }
-              ],
-              attrs: { type: "text", placeholder: "全体からしぼりこみ" },
-              domProps: { value: _vm.filterWord },
-              on: {
-                input: [
-                  function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.filterWord = $event.target.value
-                  },
-                  function($event) {
-                    return _vm.filterRowsByText()
-                  }
-                ]
-              }
-            })
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "filters" },
-          _vm._l(_vm.listDefinition, function(column, index) {
-            return _c("div", { staticClass: "filter" }, [
-              _c(
-                "div",
-                [
-                  _c("span", [_vm._v(_vm._s(column.name))]),
-                  _vm._v(" "),
-                  column.type == "Text"
-                    ? _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.filters[index],
-                            expression: "filters[index]"
-                          }
-                        ],
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.filters[index] },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.filters, index, $event.target.value)
-                          }
-                        }
-                      })
-                    : column.type == "Number"
-                    ? _c("range-number", {
-                        attrs: {
-                          minimumValue: _vm.setMinimumValue(index),
-                          maximumValue: _vm.setMaximumValue(index)
-                        },
-                        model: {
-                          value: _vm.filters[index],
-                          callback: function($$v) {
-                            _vm.$set(_vm.filters, index, $$v)
-                          },
-                          expression: "filters[index]"
-                        }
-                      })
-                    : _vm._e()
-                ],
-                1
-              ),
-              _vm._v(" "),
-              index != _vm.listDefinition.length - 1
-                ? _c("i", {
-                    staticClass: "fas fa-plus operator",
-                    on: {
-                      click: function($event) {
-                        return _vm.toggleFilterOperator(index)
-                      }
-                    },
-                    model: {
-                      value: _vm.filterOperators[index],
-                      callback: function($$v) {
-                        _vm.$set(_vm.filterOperators, index, $$v)
-                      },
-                      expression: "filterOperators[index]"
-                    }
-                  })
-                : _vm._e()
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            ref: "list",
-            staticClass: "star-invisible check-invisible counter-invisible",
-            attrs: { id: "list" }
-          },
-          [
-            _c(
-              "div",
-              { staticClass: "row-meta" },
-              _vm._l(_vm.listItems.length + 1, function(index) {
-                return _c("div", { staticClass: "row" }, [
-                  index == 1
-                    ? _c("div")
-                    : _c("div", [
-                        _vm.editMode
-                          ? _c("i", {
-                              staticClass: "fas fa-minus-circle rotate",
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteItem(index - 2)
-                                }
-                              }
-                            })
-                          : _c("div", [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "star",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.toggleStarState(index - 2)
-                                    }
-                                  }
-                                },
-                                [_c("i", { class: _vm.setStars(index) })]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "check",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.toggleCheckState(index - 2)
-                                    }
-                                  }
-                                },
-                                [_c("i", { class: _vm.setCheckbox(index) })]
-                              ),
-                              _vm._v(" "),
-                              _c("div", [
-                                _c("i", { staticClass: "counter" }, [
-                                  _vm._v(_vm._s(index - 1))
-                                ])
-                              ])
-                            ])
-                      ])
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { ref: "dataArea", staticClass: "row-data" },
-              [
-                _vm._l(_vm.listItems, function(item, index) {
-                  return _c("div", [
-                    index == 0
-                      ? _c(
-                          "div",
-                          { staticClass: "row" },
-                          _vm._l(_vm.listDefinition, function(
-                            columnName,
-                            columnIndex
-                          ) {
-                            return _c(
-                              "span",
-                              {
-                                ref: "columns",
-                                refInFor: true,
-                                staticClass: "column",
-                                style: _vm.setColumnWidth(columnIndex)
-                              },
-                              [
-                                _vm.editMode
-                                  ? _c(
-                                      "span",
-                                      {
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.showEditColumnModal(
-                                              columnIndex
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [_vm._v(_vm._s(columnName.name))]
-                                    )
-                                  : _c("span", [
-                                      _vm._v(_vm._s(columnName.name))
-                                    ]),
-                                _vm._v(" "),
-                                _c("i", {
-                                  staticClass: "fas fa-sort-amount-down-alt",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.clickSortButton(columnIndex)
-                                    }
-                                  }
-                                })
-                              ]
-                            )
-                          }),
-                          0
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _vm.editMode
-                        ? _c(
-                            "div",
-                            _vm._l(item.values, function(column, columnIndex) {
-                              return _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value:
-                                      _vm.listItems[index].values[columnIndex]
-                                        .value,
-                                    expression:
-                                      "listItems[index].values[columnIndex].value"
-                                  }
-                                ],
-                                style: _vm.setColumnWidth(columnIndex),
-                                attrs: { type: "text" },
-                                domProps: {
-                                  value:
-                                    _vm.listItems[index].values[columnIndex]
-                                      .value
-                                },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.listItems[index].values[columnIndex],
-                                      "value",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            }),
-                            0
-                          )
-                        : _c(
-                            "div",
-                            _vm._l(item.values, function(column, columnIndex) {
-                              return _c(
-                                "span",
-                                { style: _vm.setColumnWidth(columnIndex) },
-                                [
-                                  _vm._v(
-                                    _vm._s(column.value) +
-                                      " " +
-                                      _vm._s(
-                                        _vm.listDefinition[columnIndex].suffix
-                                      )
-                                  )
-                                ]
-                              )
-                            }),
-                            0
-                          )
-                    ])
-                  ])
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { ref: "calculator", staticClass: "calculator" },
-                  _vm._l(_vm.listDefinition, function(columnName, columnIndex) {
-                    return _c(
-                      "span",
-                      {
-                        staticClass: "column",
-                        style: _vm.setColumnWidth(columnIndex)
-                      },
-                      [_vm._v(_vm._s(_vm.calculteValue(columnIndex)))]
-                    )
-                  }),
-                  0
-                )
-              ],
-              2
-            )
-          ]
-        )
-      ])
+      _c("spread-options", {
+        ref: "spreadOptions",
+        attrs: { options: _vm.spreadOptions }
+      })
     ],
     1
   )
@@ -70622,6 +70085,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -70632,7 +70098,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             editModal: false,
             listId: null,
             targetIndex: null,
-            editedList: {} //編集／新規のList（v-model）
+            editedList: {}, //編集／新規のList（v-model）
+            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }]
         };
     },
     props: {
@@ -70806,7 +70273,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return deleteList;
-        }()
+        }(),
+        spreadOptions: function spreadOptions(enent) {
+            this.$refs.spreadOptions.expand(event);
+        }
     }
 });
 
@@ -70822,6 +70292,11 @@ var render = function() {
     "div",
     [
       _c("notice", { ref: "notice" }),
+      _vm._v(" "),
+      _c("spread-options", {
+        ref: "spreadOptions",
+        attrs: { options: _vm.items }
+      }),
       _vm._v(" "),
       _c(
         "modal",
@@ -71361,7 +70836,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n/*visible,invisibleは定義されていないが多分bootstrapに含まれているクラス*/\n.circle[data-v-a5bcf860] {\n  position: absolute;\n  z-index: 5;\n  -webkit-transform: scale(1);\n          transform: scale(1);\n  width: 7em;\n  height: 7em;\n  border-radius: 50%;\n  background-color: rgba(128, 128, 128, 0.3);\n  -webkit-transition: all 0.3s ease 0.3s;\n  transition: all 0.3s ease 0.3s;\n}\n.circle.expand[data-v-a5bcf860] {\n    -webkit-animation: expand-data-v-a5bcf860 1.0s ease 1;\n            animation: expand-data-v-a5bcf860 1.0s ease 1;\n}\n.circle.shrink[data-v-a5bcf860] {\n    -webkit-animation: shrink-data-v-a5bcf860 1.0s ease 1;\n            animation: shrink-data-v-a5bcf860 1.0s ease 1;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@-webkit-keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n@keyframes shrink-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n100% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n}\n.option[data-v-a5bcf860] {\n  cursor: pointer;\n  display: inline-block;\n  position: absolute;\n  border: 1px solid grey;\n  border-radius: 0.1em;\n  text-align: center;\n  padding: 0.2em 1em;\n  background-color: white;\n  -webkit-transition: all 0.5s ease 0.2s;\n  transition: all 0.5s ease 0.2s;\n}\n.option.selected[data-v-a5bcf860] {\n    background-color: orange;\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 6em;\n  height: 2em;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -71383,125 +70858,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {
-            baseX: 0,
-            baseY: 0,
-            eventTarget: {},
-            selectedIndex: ''
-        };
+        return {};
     },
-    props: {
-        options: {
-            type: [String, Array],
-            default: [],
-            required: false
-        }
-    },
-    watch: {
-        selectedIndex: function selectedIndex() {
-            if (this.options[this.selectedIndex]) {
-                this.$emit('input', this.options[this.selectedIndex].value);
-            } else {
-                this.$emit('input', '');
-            }
-        }
-    },
+    props: {},
+    watch: {},
     created: function created() {},
     mounted: function mounted() {},
     methods: {
-        expand: function expand(event) {
-            this.$refs.baseCircle.classList.remove('shrink');
-            //option数で分割角度を算出
-            var splitAngle = 180 / (this.options.length + 1);
-            //表示中心位置を算出
-            var eventTarget = event.target.getBoundingClientRect(); //送信元のボタン等の要素
-            this.eventTarget = event.target.getBoundingClientRect(); //送信元のボタン等の要素
-            var circle = this.$refs.baseCircle.getBoundingClientRect();
-            var x = eventTarget.x + eventTarget.width / 2 - circle.width / 2;
-            this.baseX = x;
-            var y = eventTarget.y + eventTarget.height / 2 - circle.height / 2;
-            this.baseY = y;
-            this.$refs.baseCircle.style.left = x + 'px';
-            this.$refs.baseCircle.style.top = y + 'px';
+        showOptions: function showOptions() {
+            // baseCircleの位置を算出
+            var wrapperRect = this.$refs.optionsWrapper.getBoundingClientRect();
+            var baseCircleRect = this.$refs.baseCircle.getBoundingClientRect();
+            var baseCircleLeft = wrapperRect.width / 2 - baseCircleRect.width / 2;
+            var baseCircleTop = wrapperRect.height / 2 - baseCircleRect.height / 2;
+            this.$refs.baseCircle.style.left = baseCircleLeft + 'px';
+            this.$refs.baseCircle.style.top = baseCircleTop + 'px';
             this.$refs.baseCircle.classList.add('visible');
             this.$refs.baseCircle.classList.remove('invisible');
             this.$refs.baseCircle.classList.add('expand');
-
-            // aimation終了後に選択肢を展開
-            var vue = this;
-
-            this.$refs.baseCircle.addEventListener('animationend', this.expandOptions);
-        },
-        expandOptions: function expandOptions() {
-            // 選択肢の表示
-            var vue = this;
-            //option数で分割角度を算出
-            var splitAngle = 180 / (this.options.length + 1);
-            var circle = this.$refs.baseCircle.getBoundingClientRect();
-            for (var index in vue.options) {
-                //表示位置算出
-                var option = vue.$refs.options[index];
-                option.style.left = this.baseX + 'px';
-                option.style.top = this.baseY + 'px';
-
-                option.classList.remove('invisible');
-                option.classList.add('visible');
-
-                var optionRect = option.getBoundingClientRect();
-
-                // 基準のY座標算出
-                var baseY = this.eventTarget.top + this.eventTarget.height / 2 - optionRect.height / 2;
-
-                // indexとsplitAngleからY座標の描画位置を調整
-                var deg = void 0;
-                var positionX = void 0;
-                var positionY = void 0;
-                if (Number(index) < vue.options.length / 2) {
-                    deg = 90 - splitAngle * (Number(index) + 1);
-                    option.style.transform = 'rotate(' + deg + 'deg)';
-                    positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                    positionY = baseY - Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                } else {
-                    deg = splitAngle * (Number(index) + 1) - 90;
-                    option.style.transform = 'rotate(' + -deg + 'deg)';
-                    positionX = this.baseX - Math.cos(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                    positionY = baseY + Math.sin(deg / 180 * Math.PI) * (circle.width / 2 + optionRect.width);
-                }
-                option.style.left = positionX + 'px';
-                option.style.top = positionY + 'px';
-            }
-            this.$refs.baseCircle.removeEventListener('animationend', this.expandOptions);
-        },
-        selectOption: function selectOption(index) {
-            if (this.selectedIndex === '') {
-                this.selectedIndex = index;
-                this.$refs.options[index].classList.add('selected');
-                this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
-            } else if (index == this.selectedIndex) {
-                this.selectedIndex = '';
-                this.$refs.options[index].classList.remove('selected');
-            } else {
-                this.$refs.options[this.selectedIndex].classList.remove('selected');
-                this.selectedIndex = index;
-                this.$refs.options[index].classList.add('selected');
-                this.$refs.options[index].addEventListener('transitionend', this.shrinkOptions);
-            }
-        },
-        shrinkOptions: function shrinkOptions() {
-            for (var optionIndex in this.options) {
-                var option = this.$refs.options[optionIndex];
-                var optionRect = option.getBoundingClientRect();
-                option.style.transform = 'rotate(0deg)';
-                option.style.left = this.baseX + 'px';
-                option.style.top = Number(this.baseY + optionRect.height / 2) + 'px';
-                option.classList.add('invisible');
-                option.classList.remove('visible');
-                option.removeEventListener('transitionend', this.shrinkOptions);
-            }
-            this.$refs.baseCircle.classList.remove('expand');
-            this.$refs.baseCircle.classList.add('shrink');
-            this.$refs.baseCircle.classList.remove('visible');
-            this.$refs.baseCircle.classList.add('invisible');
         }
     }
 });
@@ -71516,27 +70890,20 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    {
+      ref: "optionsWrapper",
+      staticClass: "options-wrapper",
+      on: {
+        click: function($event) {
+          return _vm.showOptions()
+        }
+      }
+    },
     [
-      _c("div", { ref: "baseCircle", staticClass: "circle invisible" }),
+      _c("span", [_vm._v("テスト")]),
       _vm._v(" "),
-      _vm._l(_vm.options, function(option, index) {
-        return _c(
-          "div",
-          {
-            ref: "options",
-            refInFor: true,
-            staticClass: "option invisible",
-            on: {
-              click: function($event) {
-                return _vm.selectOption(index)
-              }
-            }
-          },
-          [_vm._v(_vm._s(option.label))]
-        )
-      })
-    ],
-    2
+      _c("div", { ref: "baseCircle", staticClass: "base-circle invisible" })
+    ]
   )
 }
 var staticRenderFns = []

@@ -4,9 +4,12 @@
         <!--通知-->
         <notice ref="notice" />
         
+        <spread-options ref="spreadOptions" v-bind:options="items" />
+        
         <!--詳細表示用モーダル-->
         <modal ref="detailModal" v-model="detailModal">
             <my-list v-bind:userId="user_id" v-bind:listId="listId" v-bind:editMode="false" />
+            <!--<button style="position:absolute;" v-on:click="spreadOptions()">spread</button>-->
         </modal>
         
         <!--編集用モーダル-->
@@ -51,7 +54,14 @@
                 editModal:false,
                 listId:null,
                 targetIndex:null,
-                editedList:{} //編集／新規のList（v-model）
+                editedList:{}, //編集／新規のList（v-model）
+                items:[
+                    {label:'りんご',value:'apple'},
+                    {label:'バナナ',value:'banana'},
+                    {label:'ドラゴンフルーツ',value:'dragon fruit'},
+                    {label:'アンデスメロン',value:'andes melon'},
+                    {label:'スイカ',value:'water melon'},    
+                ]
             }  
         },
         props: {
@@ -142,6 +152,9 @@
                     console.log(error)
                 }
                 
+            },
+            spreadOptions:function(enent){
+                this.$refs.spreadOptions.expand(event)
             }
         }
     }

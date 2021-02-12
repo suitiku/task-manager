@@ -1,118 +1,118 @@
 <!--リスト表示コンポーネント-->
 <template>
     <div>
-        <!--<div v-on:click="selectCalculatorType()">test</div>-->
-        <button v-on:click="selectCalculatorType()">test</button>
-        
+        <div style="position:relative;top:10em;left:10em;" v-on:click="selectCalculatorType()">test</div>
         <!--通知-->
-        <!--<notice ref="notice" />-->
+        <notice ref="notice" />
+        
         <spread-options ref="spreadOptions" v-bind:options="spreadOptions" />
+        
         <!--列追加／編集用モーダル-->
-        <!--<modal ref="newColumnModal" v-model="newColumnModal">-->
-        <!--    <input type="text" v-model="newColumn.name" placeholder="列の名前">-->
-        <!--    <select v-model="newColumn.type">-->
-        <!--        <option value="Number">数値</option>-->
-        <!--        <option value="Text">文字</option>-->
-        <!--        <option value="Date">日付</option>-->
-        <!--        <option value="Boolean">Yes/No</option>-->
-        <!--    </select>-->
-        <!--    <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >-->
-        <!--    <input type="text" v-model="newColumn.default" placeholder="既定値" >-->
-        <!--    <div v-if="typeof newColumn.index === 'number'">-->
-        <!--        <button v-on:click="editColumn()">列を編集</button>-->
-        <!--        <button v-on:click="deleteColumn()">列を削除</button>-->
-        <!--    </div>-->
-        <!--    <div v-else>-->
-        <!--        <button v-on:click="addColumn()">列を追加</button>-->
-        <!--    </div>-->
-        <!--</modal>-->
+        <modal ref="newColumnModal" v-model="newColumnModal">
+            <input type="text" v-model="newColumn.name" placeholder="列の名前">
+            <select v-model="newColumn.type">
+                <option value="Number">数値</option>
+                <option value="Text">文字</option>
+                <option value="Date">日付</option>
+                <option value="Boolean">Yes/No</option>
+            </select>
+            <input type="text" v-model="newColumn.suffix" placeholder="接尾辞" >
+            <input type="text" v-model="newColumn.default" placeholder="既定値" >
+            <div v-if="typeof newColumn.index === 'number'">
+                <button v-on:click="editColumn()">列を編集</button>
+                <button v-on:click="deleteColumn()">列を削除</button>
+            </div>
+            <div v-else>
+                <button v-on:click="addColumn()">列を追加</button>
+            </div>
+        </modal>
         
         <!--リスト表示部-->
-        <!--<div id="list-wrapper">-->
+        <div id="list-wrapper">
             
             <!--メタデータ編集部分-->
-        <!--    <div v-if="editMode">-->
-        <!--        <input type="text" v-model="listMetaData.name" />-->
-        <!--        <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>-->
-        <!--    </div>-->
+            <div v-if="editMode">
+                <input type="text" v-model="listMetaData.name" />
+                <textarea type="text" v-model="listMetaData.description">{{listMetaData.description}}</textarea>
+            </div>
             <!--リスト外見変更-->
-        <!--    <div v-else class="fixed-bar-right">-->
-        <!--        <div class="decoration">-->
-        <!--            <p>decoration</p>-->
-        <!--            <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>-->
-        <!--            <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>-->
-        <!--            <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>-->
-        <!--            <i class="fas fa-list-ol fa-lg" v-on:click="showCounter()"></i>-->
-        <!--            <i class="far fa-star fa-lg" v-on:click="showStars()"></i>-->
-        <!--            <i class="far fa-check-square fa-lg" v-on:click="showCheckbox()"></i>-->
-        <!--            <i class="fas fa-calculator fa-lg" v-on:click="showCalculatorLine()"></i>-->
-        <!--        </div>-->
-        <!--    </div>-->
+            <div v-else class="fixed-bar-right">
+                <div class="decoration">
+                    <p>decoration</p>
+                    <i class="fas fa-border-all fa-lg" v-on:click="changeListAppearance('simple-border')"></i>
+                    <i class="fas fa-underline fa-lg" v-on:click="changeListAppearance('simple-border-bottom')"></i>
+                    <i class="fas fa-highlighter fa-lg" v-on:click="changeListAppearance('highlight-odd')"></i>
+                    <i class="fas fa-list-ol fa-lg" v-on:click="showCounter()"></i>
+                    <i class="far fa-star fa-lg" v-on:click="showStars()"></i>
+                    <i class="far fa-check-square fa-lg" v-on:click="showCheckbox()"></i>
+                    <i class="fas fa-calculator fa-lg" v-on:click="showCalculatorLine()"></i>
+                </div>
+            </div>
             
             <!--絞り込み検索窓-->
-        <!--    <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">-->
+            <input v-if="!editMode" type="text" v-model="filterWord" v-on:input="filterRowsByText()" placeholder="全体からしぼりこみ">
             
             <!--フィルター部分-->
-        <!--    <div class="filters">-->
-        <!--        <div v-for="(column,index) in listDefinition" class="filter">-->
-        <!--            <div>-->
-        <!--                <span>{{column.name}}</span>-->
-        <!--                <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />-->
-        <!--                <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />-->
-        <!--            </div>-->
-        <!--            <i v-model="filterOperators[index]" v-if="index != listDefinition.length -1" class="fas fa-plus operator" v-on:click="toggleFilterOperator(index)"></i>-->
-        <!--        </div>-->
-        <!--    </div>                -->
+            <div class="filters">
+                <div v-for="(column,index) in listDefinition" class="filter">
+                    <div>
+                        <span>{{column.name}}</span>
+                        <input v-if="column.type=='Text'" v-model="filters[index]" type="text" />
+                        <range-number v-else-if="column.type=='Number'" v-model="filters[index]" v-bind:minimumValue="setMinimumValue(index)" v-bind:maximumValue="setMaximumValue(index)" />
+                    </div>
+                    <i v-model="filterOperators[index]" v-if="index != listDefinition.length -1" class="fas fa-plus operator" v-on:click="toggleFilterOperator(index)"></i>
+                </div>
+            </div>                
             
             <!--リスト本体-->
-        <!--    <div id="list" ref="list" class="star-invisible check-invisible counter-invisible">-->
-        <!--        <div class="row-meta">-->
-        <!--            <div v-for="index in listItems.length + 1" class="row">-->
-        <!--                <div v-if="index == 1"></div>-->
-        <!--                <div v-else>-->
-        <!--                    <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index - 2)"></i>-->
-        <!--                    <div  v-else>-->
-        <!--                        <div class="star" v-on:click="toggleStarState(index -2)">-->
-        <!--                            <i v-bind:class="setStars(index)"></i>-->
-        <!--                        </div>-->
-        <!--                        <div class="check" v-on:click="toggleCheckState(index -2)">-->
-        <!--                            <i v-bind:class="setCheckbox(index)"></i>-->
-        <!--                        </div>-->
-        <!--                        <div>-->
-        <!--                            <i class="counter">{{index - 1}}</i>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--        <div class="row-data" ref="dataArea">-->
-        <!--            <div v-for="(item,index) in listItems">-->
-        <!--                <div v-if="index == 0" class="row">-->
+            <div id="list" ref="list" class="star-invisible check-invisible counter-invisible">
+                <div class="row-meta">
+                    <div v-for="index in listItems.length + 1" class="row">
+                        <div v-if="index == 1"></div>
+                        <div v-else>
+                            <i v-if="editMode" class="fas fa-minus-circle rotate" v-on:click="deleteItem(index - 2)"></i>
+                            <div  v-else>
+                                <div class="star" v-on:click="toggleStarState(index -2)">
+                                    <i v-bind:class="setStars(index)"></i>
+                                </div>
+                                <div class="check" v-on:click="toggleCheckState(index -2)">
+                                    <i v-bind:class="setCheckbox(index)"></i>
+                                </div>
+                                <div>
+                                    <i class="counter">{{index - 1}}</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-data" ref="dataArea">
+                    <div v-for="(item,index) in listItems">
+                        <div v-if="index == 0" class="row">
                             <!--カラム名表示-->
-        <!--                    <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">-->
-        <!--                        <span v-if="editMode" v-on:click="showEditColumnModal(columnIndex)">{{columnName.name}}</span>-->
-        <!--                        <span v-else>{{columnName.name}}</span>-->
-        <!--                        <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>-->
-        <!--                    </span>-->
-        <!--                </div>-->
-        <!--                <div class="row">-->
-        <!--                    <div v-if="editMode">-->
-        <!--                        <input v-for="(column,columnIndex) in item.values" type="text" v-model="listItems[index].values[columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />-->
-        <!--                    </div>-->
-        <!--                    <div v-else>-->
-        <!--                        <span v-for="(column,columnIndex) in item.values" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
+                            <span v-for="(columnName,columnIndex) in listDefinition" ref="columns" v-bind:style="setColumnWidth(columnIndex)" class="column">
+                                <span v-if="editMode" v-on:click="showEditColumnModal(columnIndex)">{{columnName.name}}</span>
+                                <span v-else>{{columnName.name}}</span>
+                                <i class="fas fa-sort-amount-down-alt" v-on:click="clickSortButton(columnIndex)"></i>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div v-if="editMode">
+                                <input v-for="(column,columnIndex) in item.values" type="text" v-model="listItems[index].values[columnIndex].value" v-bind:style="setColumnWidth(columnIndex)" />
+                            </div>
+                            <div v-else>
+                                <span v-for="(column,columnIndex) in item.values" v-bind:style="setColumnWidth(columnIndex)">{{column.value}} {{listDefinition[columnIndex].suffix}}</span>
+                            </div>
+                        </div>
+                    </div>
                     <!--特殊機能行エリア-->
-        <!--            <div ref="calculator" class="calculator">-->
-        <!--                <span v-for="(columnName,columnIndex) in listDefinition" v-bind:style="setColumnWidth(columnIndex)" class="column">-->
-        <!--                    {{calculteValue(columnIndex)}}-->
-        <!--                </span>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
+                    <div ref="calculator" class="calculator">
+                        <span v-for="(columnName,columnIndex) in listDefinition" v-bind:style="setColumnWidth(columnIndex)" class="column">
+                            {{calculteValue(columnIndex)}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

@@ -1,12 +1,19 @@
 <!--テスト用コンポーネント-->
 <template>
-    <div class="container">
-        <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />
+    <div>
+        <!--<div style="position:relative;left:15em;top:10em;">-->
+        <!--<div>-->
+        <!--    <button class="button" v-on:click="spreadOptions()">spread</button>-->
+        <!--</div>-->
         {{test}}
-        <!--<modal ref="modal" v-model="modal">-->
-        <!--    <div class="wall">test</div>-->
-        <!--</modal>-->
-        <button class="button center" v-on:click="spreadOptions()">spread</button>
+        <modal ref="modal" v-model="modal">
+            <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />
+            <!--<spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />-->
+            <!--<div class="wall">test</div>-->
+            <!--<button class="button center" v-on:click="spreadOptions()">spread</button>-->
+            <!--<button v-on:click="spreadOptions()">spread</button>-->
+        </modal>
+        <button v-on:click="showModal()">modal</button>
     </div>
 </template>
 
@@ -151,6 +158,7 @@
 </script>
 <style>
     .button {
+        display:inline-block;
         position:relative;
         cursor:pointer;
         padding:0.5em;
@@ -173,7 +181,7 @@
     }
     .wall {
         width:100%;
-        height:5000px;
+        height:20em;
         background:orange;
     }
     .slider-area {

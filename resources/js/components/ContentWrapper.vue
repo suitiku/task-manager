@@ -47,10 +47,10 @@
 </script>
 <style scoped>
     .contents-wrapper {
-        position:relative;
+        /*position:relative;*/
     }
     .contents {
-        position:relative;
+        /*position:relative;*/
         width:100%;
     }
     /*下に余白*/
