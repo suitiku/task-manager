@@ -7,6 +7,7 @@
         <!--</div>-->
         {{test}}
         <modal ref="modal" v-model="modal">
+            <div class="wall">test</div>
             <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />
             <!--<spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />-->
             <!--<div class="wall">test</div>-->
@@ -60,11 +61,11 @@
                     {label:'ドラゴンフルーツ',value:'dragon fruit'},
                     {label:'アンデスメロン',value:'andes melon'},
                     {label:'スイカ',value:'water melon'},
-                    // {label:'りんご',value:'apple'},
-                    // {label:'バナナ',value:'banana'},
-                    // {label:'ドラゴンフルーツ',value:'dragon fruit'},
-                    // {label:'アンデスメロン',value:'andes melon'},
-                    // {label:'スイカ',value:'water melon'}
+                    // {label:'test',value:'apple'},
+                    // {label:'tets',value:'banana'},
+                    // {label:'test',value:'dragon fruit'},
+                    // {label:'test',value:'andes melon'},
+                    // {label:'test',value:'water melon'}
                 ],
                 numerator:80
             }  

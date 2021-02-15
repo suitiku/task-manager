@@ -57472,6 +57472,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -57694,6 +57695,8 @@ var render = function() {
           }
         },
         [
+          _c("div", { staticClass: "wall" }, [_vm._v("test")]),
+          _vm._v(" "),
           _c("spread-options", {
             ref: "spreadOptions",
             attrs: { options: _vm.items },
@@ -70836,7 +70839,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 6em;\n  height: 2em;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
+exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 5em;\n  height: 2em;\n  /*border-radius:50%;*/\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    /*display:inline-block;*/\n    border: 1px solid grey;\n    border-radius: 2%;\n    white-space: nowrap;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -70855,12 +70858,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            baseCircleLeft: 0,
+            baseCircleTop: 0
+        };
     },
-    props: {},
+    props: {
+        options: {
+            type: [String, Array],
+            default: [],
+            required: false
+        }
+    },
     watch: {},
     created: function created() {},
     mounted: function mounted() {},
@@ -70869,13 +70882,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             // baseCircleの位置を算出
             var wrapperRect = this.$refs.optionsWrapper.getBoundingClientRect();
             var baseCircleRect = this.$refs.baseCircle.getBoundingClientRect();
-            var baseCircleLeft = wrapperRect.width / 2 - baseCircleRect.width / 2;
-            var baseCircleTop = wrapperRect.height / 2 - baseCircleRect.height / 2;
-            this.$refs.baseCircle.style.left = baseCircleLeft + 'px';
-            this.$refs.baseCircle.style.top = baseCircleTop + 'px';
+            this.baseCircleLeft = wrapperRect.width / 2 - baseCircleRect.width / 2;
+            this.baseCircleTop = wrapperRect.height / 2 - baseCircleRect.height / 2;
+            this.$refs.baseCircle.style.left = this.baseCircleLeft + 'px';
+            this.$refs.baseCircle.style.top = this.baseCircleTop + 'px';
             this.$refs.baseCircle.classList.add('visible');
             this.$refs.baseCircle.classList.remove('invisible');
             this.$refs.baseCircle.classList.add('expand');
+
+            this.$refs.baseCircle.addEventListener('animationend', this.expandOptions);
+        },
+        expandOptions: function expandOptions() {
+            var vue = this;
+            //option数で分割角度を算出
+            var splitAngle = 180 / (this.options.length + 1);
+            var circleRect = this.$refs.baseCircle.getBoundingClientRect();
+            for (var index in vue.options) {
+                //表示位置算出
+                var option = vue.$refs.options[index];
+                var optionRect = option.getBoundingClientRect();
+                var optionBaseTop = Number(this.baseCircleTop + circleRect.height / 2 - optionRect.height / 2);
+                option.style.left = this.baseCircleLeft + 'px';
+                option.style.top = optionBaseTop + 'px';
+
+                option.classList.remove('invisible');
+                option.classList.add('visible');
+
+                // // indexとsplitAngleからY座標の描画位置を調整
+                var deg = void 0;
+                var optionLeft = void 0;
+                var optionTop = void 0;
+                if (Number(index) < vue.options.length / 2) {
+                    deg = 90 - splitAngle * (Number(index) + 1);
+                    option.style.transform = 'rotate(' + deg + 'deg)';
+                    optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width));
+                    optionTop = optionBaseTop - Math.sin(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width);
+                } else {
+                    deg = splitAngle * (Number(index) + 1) - 90;
+                    option.style.transform = 'rotate(' + -deg + 'deg)';
+                    optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width));
+                    optionTop = optionBaseTop + Math.sin(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width);
+                }
+                option.style.left = optionLeft + 'px';
+                option.style.top = optionTop + 'px';
+            }
+            this.$refs.baseCircle.removeEventListener('animationend', this.expandOptions);
         }
     }
 });
@@ -70902,8 +70953,17 @@ var render = function() {
     [
       _c("span", [_vm._v("テスト")]),
       _vm._v(" "),
-      _c("div", { ref: "baseCircle", staticClass: "base-circle invisible" })
-    ]
+      _c("div", { ref: "baseCircle", staticClass: "base-circle invisible" }),
+      _vm._v(" "),
+      _vm._l(_vm.options, function(option, index) {
+        return _c(
+          "div",
+          { ref: "options", refInFor: true, staticClass: "option invisible" },
+          [_vm._v(_vm._s(option.label))]
+        )
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
