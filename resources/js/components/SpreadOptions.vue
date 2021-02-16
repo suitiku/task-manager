@@ -52,31 +52,45 @@
                 //option数で分割角度を算出
                 let splitAngle = 180 / (this.options.length + 1)
                 let circleRect = this.$refs.baseCircle.getBoundingClientRect()
+                console.log(circleRect)
+                console.log(window.outerWidth)
+                console.log(window.outerHeight)
+                //基準のoptionの長さを算出
+                
+                let optionWidthArray = this.$refs.options.map(option => {
+                    return option.getBoundingClientRect().width
+                })
+                let baseAdjustWidth = circleRect.width / 2 //Math.max.apply(null,optionWidthArray)
+                // let baseAdjustWidth = circleRect.width/2 + 20
+                
                 for(let index in vue.options){
                     //表示位置算出
                     let option = vue.$refs.options[index]
                     let optionRect = option.getBoundingClientRect()
                     let optionBaseTop = Number(this.baseCircleTop + circleRect.height/2 - optionRect.height/2)
-                    option.style.left = this.baseCircleLeft + 'px'
+                    
+                    option.style.left = this.baseCircleLeft + circleRect.width/2 + 'px'
                     option.style.top = optionBaseTop + 'px'
                     
                     option.classList.remove('invisible')
                     option.classList.add('visible')
                     
-                    // // indexとsplitAngleからY座標の描画位置を調整
+                    // indexとsplitAngleからY座標の描画位置を調整
                     let deg
                     let optionLeft
                     let optionTop
+                    let adjustWidth = optionRect.width + optionRect.height
+                    let baseAngle = 90
                     if(Number(index) < vue.options.length/2){
-                        deg = (90 - (splitAngle * (Number(index) + 1)))
+                        deg = (baseAngle - (splitAngle * (Number(index) + 1)))
+                        optionLeft = this.baseCircleLeft -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                        optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * adjustWidth)
                         option.style.transform = 'rotate(' + deg + 'deg)'
-                        optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width/2 + optionRect.width))
-                        optionTop = optionBaseTop - Math.sin( deg / 180 * Math.PI) * (circleRect.width/2 + optionRect.width)
                     }else{
-                        deg = ((splitAngle * (Number(index) + 1)) -90)
+                        deg = ((splitAngle * (Number(index) + 1)) - baseAngle)
+                        optionLeft = this.baseCircleLeft-(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                        optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * adjustWidth)
                         option.style.transform = 'rotate(' + -deg + 'deg)'
-                        optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width/2 + optionRect.width))
-                        optionTop = optionBaseTop + Math.sin( deg / 180 * Math.PI) * (circleRect.width/2 + optionRect.width)
                     }
                     option.style.left = optionLeft + 'px'
                     option.style.top = optionTop + 'px'
@@ -92,9 +106,8 @@
         position:relative;
         cursor:pointer;
         border:1px solid red;
-        width:5em;
+        width:3em;
         height:2em;
-        /*border-radius:50%;*/
         span {
             font-size:100%;
         }
@@ -111,12 +124,21 @@
                 animation:expand 1s ease 1 forwards;
             }
         }
+        
         .option {
             position:absolute;
-            /*display:inline-block;*/
-            border:1px solid grey;
-            border-radius:2%;
+            z-index:55;
+            top:0;
+            left:0;
+            display:inline-block;
+            border:1px solid white;
+            border-radius:5%;
             white-space: nowrap;
+            padding:0 0.3em;
+            cursor:pointer;
+            background-color:rgba(white,0.8);
+            text-align:right;
+            transition:all 0.5s ease;
         }
     }
     @keyframes expand {

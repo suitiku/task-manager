@@ -57496,7 +57496,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             colorOptions: ['#ef857d', '#89c997', '#fdd35c', '#82cddd', '#d4d9df', '#c7a5cc'],
             userId: 1,
             waiting: false,
-            items: [{ label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'スイカ', value: 'water melon' }],
+            items: [{ label: 'ドラゴンフルーツ', value: 'dragon fruit' }, { label: 'りんご', value: 'apple' }, { label: 'バナナ', value: 'banana' }, { label: 'アンデスメロン', value: 'andes melon' }, { label: 'ドラゴンフルーツ', value: 'water melon' }],
             numerator: 80
         };
     },
@@ -70839,7 +70839,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 5em;\n  height: 2em;\n  /*border-radius:50%;*/\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    /*display:inline-block;*/\n    border: 1px solid grey;\n    border-radius: 2%;\n    white-space: nowrap;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
+exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 3em;\n  height: 2em;\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 55;\n    top: 0;\n    left: 0;\n    display: inline-block;\n    border: 1px solid white;\n    border-radius: 5%;\n    white-space: nowrap;\n    padding: 0 0.3em;\n    cursor: pointer;\n    background-color: rgba(255, 255, 255, 0.8);\n    text-align: right;\n    -webkit-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -70897,31 +70897,47 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //option数で分割角度を算出
             var splitAngle = 180 / (this.options.length + 1);
             var circleRect = this.$refs.baseCircle.getBoundingClientRect();
+            console.log(circleRect);
+            console.log(window.outerWidth);
+            console.log(window.outerHeight);
+            //基準のoptionの長さを算出
+
+            var optionWidthArray = this.$refs.options.map(function (option) {
+                return option.getBoundingClientRect().width;
+            });
+            var baseAdjustWidth = circleRect.width / 2; //Math.max.apply(null,optionWidthArray)
+            // let baseAdjustWidth = circleRect.width/2 + 20
+
             for (var index in vue.options) {
                 //表示位置算出
                 var option = vue.$refs.options[index];
                 var optionRect = option.getBoundingClientRect();
                 var optionBaseTop = Number(this.baseCircleTop + circleRect.height / 2 - optionRect.height / 2);
-                option.style.left = this.baseCircleLeft + 'px';
+
+                option.style.left = this.baseCircleLeft + circleRect.width / 2 + 'px';
                 option.style.top = optionBaseTop + 'px';
 
                 option.classList.remove('invisible');
                 option.classList.add('visible');
 
-                // // indexとsplitAngleからY座標の描画位置を調整
+                // indexとsplitAngleからY座標の描画位置を調整
                 var deg = void 0;
                 var optionLeft = void 0;
                 var optionTop = void 0;
+                var adjustWidth = optionRect.width + optionRect.height;
+                var baseAngle = 90;
                 if (Number(index) < vue.options.length / 2) {
-                    deg = 90 - splitAngle * (Number(index) + 1);
+                    deg = baseAngle - splitAngle * (Number(index) + 1);
+                    optionLeft = this.baseCircleLeft - Math.cos(deg / 180 * Math.PI) * adjustWidth - optionRect.height;
+                    optionTop = optionBaseTop - Math.sin(deg / 180 * Math.PI) * adjustWidth;
+                    // optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * circleRect.width)
                     option.style.transform = 'rotate(' + deg + 'deg)';
-                    optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width));
-                    optionTop = optionBaseTop - Math.sin(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width);
                 } else {
-                    deg = splitAngle * (Number(index) + 1) - 90;
+                    deg = splitAngle * (Number(index) + 1) - baseAngle;
+                    optionLeft = this.baseCircleLeft - Math.cos(deg / 180 * Math.PI) * adjustWidth - optionRect.height;
+                    optionTop = optionBaseTop + Math.sin(deg / 180 * Math.PI) * adjustWidth;
+                    // optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * circleRect.width)
                     option.style.transform = 'rotate(' + -deg + 'deg)';
-                    optionLeft = -(Math.cos(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width));
-                    optionTop = optionBaseTop + Math.sin(deg / 180 * Math.PI) * (circleRect.width / 2 + optionRect.width);
                 }
                 option.style.left = optionLeft + 'px';
                 option.style.top = optionTop + 'px';
