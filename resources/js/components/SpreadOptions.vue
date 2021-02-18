@@ -50,17 +50,16 @@
             expandOptions:function(){
                 let vue = this
                 //option数で分割角度を算出
-                let splitAngle = 180 / (this.options.length + 1)
+                let baseAngle = 315 //展開を始める角度。0は6時方向で時計回り？
+                let splitAngle = 90 / (this.options.length - 1) //展開範囲
+                // let splitAngle = 90 / this.options.length //展開範囲
                 let circleRect = this.$refs.baseCircle.getBoundingClientRect()
-                console.log(circleRect)
-                console.log(window.outerWidth)
-                console.log(window.outerHeight)
                 //基準のoptionの長さを算出
                 
                 let optionWidthArray = this.$refs.options.map(option => {
                     return option.getBoundingClientRect().width
                 })
-                let baseAdjustWidth = circleRect.width / 2 //Math.max.apply(null,optionWidthArray)
+                let baseAdjustWidth = Math.max.apply(null,optionWidthArray)
                 // let baseAdjustWidth = circleRect.width/2 + 20
                 
                 for(let index in vue.options){
@@ -79,19 +78,48 @@
                     let deg
                     let optionLeft
                     let optionTop
-                    let adjustWidth = optionRect.width + optionRect.height
-                    let baseAngle = 90
-                    if(Number(index) < vue.options.length/2){
-                        deg = (baseAngle - (splitAngle * (Number(index) + 1)))
-                        optionLeft = this.baseCircleLeft -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
-                        optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * adjustWidth)
-                        option.style.transform = 'rotate(' + deg + 'deg)'
+                    // let adjustWidth = optionRect.width + optionRect.height
+                    let adjustWidth = circleRect.width/2 + 30//optionRect.width + optionRect.height + 10
+                    // let adjustWidth
+                    
+                    option.style.width = baseAdjustWidth + 'px'
+                    deg = baseAngle + splitAngle * Number(index)
+                    //X軸方向
+                    if(0 <= deg < 90 || 270 <= deg < 360){
+                        option.style.transformOrigin = 'center right'
+                        // adjustWidth = optionRect.width + optionRect.height
+                        optionLeft = -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - circleRect.width - 30
+                        // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth)
+                        // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.width
+                        // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth)
                     }else{
-                        deg = ((splitAngle * (Number(index) + 1)) - baseAngle)
-                        optionLeft = this.baseCircleLeft-(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
-                        optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * adjustWidth)
-                        option.style.transform = 'rotate(' + -deg + 'deg)'
+                        // optionLeft = this.baseCircleLeft + (Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                        optionLeft = this.baseCircleLeft + (Math.cos(deg / 180 * Math.PI) * adjustWidth)
                     }
+                    //Y軸方向
+                    if(0 <= deg <180){
+                        optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                    }else{
+                        optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                    }
+                    //回転
+                    if(baseAngle > 180){
+                        option.style.transform = 'rotate(' + (deg - 360) + 'deg)'
+                    }else{
+                        option.style.transform = 'rotate(' + deg  + 'deg)'
+                    }    
+                    
+                    // if(Number(index) < vue.options.length/2){
+                    //     deg = (baseAngle - (splitAngle * (Number(index) + 1)))
+                    //     optionLeft = this.baseCircleLeft -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                    //     optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                    //     option.style.transform = 'rotate(' + deg + 'deg)'
+                    // }else{
+                    //     deg = ((splitAngle * (Number(index) + 1)) - baseAngle)
+                    //     optionLeft = this.baseCircleLeft-(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                    //     optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                    //     option.style.transform = 'rotate(' + -deg + 'deg)'
+                    // }
                     option.style.left = optionLeft + 'px'
                     option.style.top = optionTop + 'px'
                 }
@@ -138,6 +166,7 @@
             cursor:pointer;
             background-color:rgba(white,0.8);
             text-align:right;
+            /*transform-origin:center right;*/
             transition:all 0.5s ease;
         }
     }

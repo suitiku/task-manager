@@ -70839,7 +70839,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 3em;\n  height: 2em;\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 55;\n    top: 0;\n    left: 0;\n    display: inline-block;\n    border: 1px solid white;\n    border-radius: 5%;\n    white-space: nowrap;\n    padding: 0 0.3em;\n    cursor: pointer;\n    background-color: rgba(255, 255, 255, 0.8);\n    text-align: right;\n    -webkit-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
+exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 3em;\n  height: 2em;\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 55;\n    top: 0;\n    left: 0;\n    display: inline-block;\n    border: 1px solid white;\n    border-radius: 5%;\n    white-space: nowrap;\n    padding: 0 0.3em;\n    cursor: pointer;\n    background-color: rgba(255, 255, 255, 0.8);\n    text-align: right;\n    /*transform-origin:center right;*/\n    -webkit-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -70895,17 +70895,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         expandOptions: function expandOptions() {
             var vue = this;
             //option数で分割角度を算出
-            var splitAngle = 180 / (this.options.length + 1);
+            var baseAngle = 315; //展開を始める角度。0は6時方向で時計回り？
+            var splitAngle = 90 / (this.options.length - 1); //展開範囲
+            // let splitAngle = 90 / this.options.length //展開範囲
             var circleRect = this.$refs.baseCircle.getBoundingClientRect();
-            console.log(circleRect);
-            console.log(window.outerWidth);
-            console.log(window.outerHeight);
             //基準のoptionの長さを算出
 
             var optionWidthArray = this.$refs.options.map(function (option) {
                 return option.getBoundingClientRect().width;
             });
-            var baseAdjustWidth = circleRect.width / 2; //Math.max.apply(null,optionWidthArray)
+            var baseAdjustWidth = Math.max.apply(null, optionWidthArray);
             // let baseAdjustWidth = circleRect.width/2 + 20
 
             for (var index in vue.options) {
@@ -70924,21 +70923,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var deg = void 0;
                 var optionLeft = void 0;
                 var optionTop = void 0;
-                var adjustWidth = optionRect.width + optionRect.height;
-                var baseAngle = 90;
-                if (Number(index) < vue.options.length / 2) {
-                    deg = baseAngle - splitAngle * (Number(index) + 1);
-                    optionLeft = this.baseCircleLeft - Math.cos(deg / 180 * Math.PI) * adjustWidth - optionRect.height;
-                    optionTop = optionBaseTop - Math.sin(deg / 180 * Math.PI) * adjustWidth;
-                    // optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * circleRect.width)
-                    option.style.transform = 'rotate(' + deg + 'deg)';
+                // let adjustWidth = optionRect.width + optionRect.height
+                var adjustWidth = circleRect.width / 2 + 30; //optionRect.width + optionRect.height + 10
+                // let adjustWidth
+
+                option.style.width = baseAdjustWidth + 'px';
+                deg = baseAngle + splitAngle * Number(index);
+                //X軸方向
+                if (0 <= deg < 90 || 270 <= deg < 360) {
+                    option.style.transformOrigin = 'center right';
+                    // adjustWidth = optionRect.width + optionRect.height
+                    optionLeft = -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - circleRect.width - 30;
+                    // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth)
+                    // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.width
+                    // optionLeft = this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth)
                 } else {
-                    deg = splitAngle * (Number(index) + 1) - baseAngle;
-                    optionLeft = this.baseCircleLeft - Math.cos(deg / 180 * Math.PI) * adjustWidth - optionRect.height;
-                    optionTop = optionBaseTop + Math.sin(deg / 180 * Math.PI) * adjustWidth;
-                    // optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * circleRect.width)
-                    option.style.transform = 'rotate(' + -deg + 'deg)';
+                    // optionLeft = this.baseCircleLeft + (Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                    optionLeft = this.baseCircleLeft + Math.cos(deg / 180 * Math.PI) * adjustWidth;
                 }
+                //Y軸方向
+                if (0 <= deg < 180) {
+                    optionTop = optionBaseTop - Math.sin(deg / 180 * Math.PI) * adjustWidth;
+                } else {
+                    optionTop = optionBaseTop + Math.sin(deg / 180 * Math.PI) * adjustWidth;
+                }
+                //回転
+                if (baseAngle > 180) {
+                    option.style.transform = 'rotate(' + (deg - 360) + 'deg)';
+                } else {
+                    option.style.transform = 'rotate(' + deg + 'deg)';
+                }
+
+                // if(Number(index) < vue.options.length/2){
+                //     deg = (baseAngle - (splitAngle * (Number(index) + 1)))
+                //     optionLeft = this.baseCircleLeft -(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                //     optionTop = optionBaseTop - (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                //     option.style.transform = 'rotate(' + deg + 'deg)'
+                // }else{
+                //     deg = ((splitAngle * (Number(index) + 1)) - baseAngle)
+                //     optionLeft = this.baseCircleLeft-(Math.cos(deg / 180 * Math.PI) * adjustWidth) - optionRect.height
+                //     optionTop = optionBaseTop + (Math.sin( deg / 180 * Math.PI) * adjustWidth)
+                //     option.style.transform = 'rotate(' + -deg + 'deg)'
+                // }
                 option.style.left = optionLeft + 'px';
                 option.style.top = optionTop + 'px';
             }
