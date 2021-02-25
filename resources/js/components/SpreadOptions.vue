@@ -3,7 +3,8 @@
     <div ref="optionsWrapper" class="options-wrapper" v-on:click="showOptions()">
         <span>テスト</span>
         <div ref="baseCircle" class="base-circle invisible"></div>
-        <div v-for="(option,index) in options" ref="options" class="option invisible">{{option.label}}</div>
+        <!--<div v-for="(option,index) in options" ref="options" class="option invisible">{{option.label}}</div>-->
+        <div v-for="(option,index) in options" ref="options" class="option invisible"><span>{{option.label}}</span></div>
     </div>
 </template>
 
@@ -82,6 +83,7 @@
                     
                     option.style.width = baseAdjustWidth + 'px'
                     deg = baseAngle + splitAngle * Number(index)
+                    if(deg >= 360)deg = deg - 360
                     //X軸方向
                     if((0 <= deg && deg <= 90) || 270 < deg){ //&& deg < 360)){
                         option.style.transformOrigin = 'center right'
@@ -89,6 +91,7 @@
                         option.style.transform = 'rotate(' + deg + 'deg)'
                     }else{
                         option.style.transformOrigin = 'center left'
+                        option.style.justifyContent = 'flex-end'
                         optionLeft = -this.baseCircleLeft - (Math.cos(deg / 180 * Math.PI) * adjustWidth)
                         option.style.transform = 'rotate(' + (deg - 180) + 'deg)'
                     }
@@ -133,16 +136,29 @@
             z-index:55;
             top:0;
             left:0;
-            display:inline-block;
-            border:1px solid white;
-            border-radius:5%;
+            display:flex;
+            /*justify-content:flex-end;*/
+            /*display:inline-block;*/
+            /*border:1px solid white;*/
+            /*border-radius:5%;*/
             white-space: nowrap;
             padding:0 0.3em;
-            cursor:pointer;
-            background-color:rgba(white,0.8);
+            /*cursor:pointer;*/
+            /*background-color:rgba(white,0.8);*/
             text-align:right;
-            /*transform-origin:center right;*/
             transition:all 0.5s ease;
+            span {
+                display:inline-block;
+                border:1px solid white;
+                border-radius:5%;
+                background-color:rgba(white,0.8);
+                padding:0.2em;
+                cursor:pointer;
+                transition:all 0.2s;
+                &:hover {
+                    background-color:rgba(orange,0.5);
+                }
+            }
         }
     }
     @keyframes expand {

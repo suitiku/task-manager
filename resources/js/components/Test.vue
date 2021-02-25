@@ -56,15 +56,15 @@
                 userId:1,
                 waiting:false,
                 items:[
-                    // {label:'ドラゴンフ',value:'dragon fruit'},
+                    // {label:'ドラゴンフルーツ',value:'dragon fruit'},
                     // {label:'りんご',value:'apple'},
                     // {label:'バナナ',value:'banana'},
                     // {label:'アンデスメロン',value:'andes melon'},
                     // {label:'ドラゴン',value:'water melon'},
                     
                     // {label:'ドラゴンフルーツ',value:'water melon'},
-                    // {label:'実行中',value:'apple'},
-                    // {label:'完了',value:'banana'},
+                    {label:'実行中',value:'apple'},
+                    {label:'完了',value:'banana'},
                     {label:'未完了',value:'dragon fruit'},
                     {label:'待機中',value:'andes melon'},
                     {label:'その他',value:'water melon'}

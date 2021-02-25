@@ -57497,16 +57497,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             userId: 1,
             waiting: false,
             items: [
-            // {label:'ドラゴンフ',value:'dragon fruit'},
+            // {label:'ドラゴンフルーツ',value:'dragon fruit'},
             // {label:'りんご',value:'apple'},
             // {label:'バナナ',value:'banana'},
             // {label:'アンデスメロン',value:'andes melon'},
             // {label:'ドラゴン',value:'water melon'},
 
             // {label:'ドラゴンフルーツ',value:'water melon'},
-            // {label:'実行中',value:'apple'},
-            // {label:'完了',value:'banana'},
-            { label: '未完了', value: 'dragon fruit' }, { label: '待機中', value: 'andes melon' }, { label: 'その他', value: 'water melon' }],
+            { label: '実行中', value: 'apple' }, { label: '完了', value: 'banana' }, { label: '未完了', value: 'dragon fruit' }, { label: '待機中', value: 'andes melon' }, { label: 'その他', value: 'water melon' }],
             numerator: 80
         };
     },
@@ -70849,7 +70847,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 3em;\n  height: 2em;\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 55;\n    top: 0;\n    left: 0;\n    display: inline-block;\n    border: 1px solid white;\n    border-radius: 5%;\n    white-space: nowrap;\n    padding: 0 0.3em;\n    cursor: pointer;\n    background-color: rgba(255, 255, 255, 0.8);\n    text-align: right;\n    /*transform-origin:center right;*/\n    -webkit-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
+exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inline-block;\n  position: relative;\n  cursor: pointer;\n  border: 1px solid red;\n  width: 3em;\n  height: 2em;\n}\n.options-wrapper span[data-v-a5bcf860] {\n    font-size: 100%;\n}\n.options-wrapper .base-circle[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 50;\n    width: 5em;\n    height: 5em;\n    border-radius: 50%;\n    background-color: rgba(128, 128, 128, 0.5);\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n.options-wrapper .base-circle.expand[data-v-a5bcf860] {\n      -webkit-animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n              animation: expand-data-v-a5bcf860 1s ease 1 forwards;\n}\n.options-wrapper .option[data-v-a5bcf860] {\n    position: absolute;\n    z-index: 55;\n    top: 0;\n    left: 0;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    /*justify-content:flex-end;*/\n    /*display:inline-block;*/\n    /*border:1px solid white;*/\n    /*border-radius:5%;*/\n    white-space: nowrap;\n    padding: 0 0.3em;\n    /*cursor:pointer;*/\n    /*background-color:rgba(white,0.8);*/\n    text-align: right;\n    -webkit-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n.options-wrapper .option span[data-v-a5bcf860] {\n      display: inline-block;\n      border: 1px solid white;\n      border-radius: 5%;\n      background-color: rgba(255, 255, 255, 0.8);\n      padding: 0.2em;\n      cursor: pointer;\n      -webkit-transition: all 0.2s;\n      transition: all 0.2s;\n}\n.options-wrapper .option span[data-v-a5bcf860]:hover {\n        background-color: rgba(255, 165, 0, 0.5);\n}\n@-webkit-keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n@keyframes expand-data-v-a5bcf860 {\n0% {\n    -webkit-transform: scale(0);\n            transform: scale(0);\n}\n100% {\n    -webkit-transform: scale(1);\n            transform: scale(1);\n}\n}\n", ""]);
 
 // exports
 
@@ -70860,6 +70858,7 @@ exports.push([module.i, "\n.options-wrapper[data-v-a5bcf860] {\n  display: inlin
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -70937,6 +70936,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 option.style.width = baseAdjustWidth + 'px';
                 deg = baseAngle + splitAngle * Number(index);
+                if (deg >= 360) deg = deg - 360;
                 //X軸方向
                 if (0 <= deg && deg <= 90 || 270 < deg) {
                     //&& deg < 360)){
@@ -70945,6 +70945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     option.style.transform = 'rotate(' + deg + 'deg)';
                 } else {
                     option.style.transformOrigin = 'center left';
+                    option.style.justifyContent = 'flex-end';
                     optionLeft = -this.baseCircleLeft - Math.cos(deg / 180 * Math.PI) * adjustWidth;
                     option.style.transform = 'rotate(' + (deg - 180) + 'deg)';
                 }
@@ -70987,7 +70988,7 @@ var render = function() {
         return _c(
           "div",
           { ref: "options", refInFor: true, staticClass: "option invisible" },
-          [_vm._v(_vm._s(option.label))]
+          [_c("span", [_vm._v(_vm._s(option.label))])]
         )
       })
     ],
