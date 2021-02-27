@@ -57436,7 +57436,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n.button {\n    display:inline-block;\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    height:20em;\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:fixed;\n    left:50%;\n    top:20em;\n}\n", ""]);
+exports.push([module.i, "\n.button {\n    display:inline-block;\n    position:relative;\n    cursor:pointer;\n    padding:0.5em;\n    border:1px solid grey;\n    border-radius:0.2em;\n    /*z-index:30;*/\n}\n.hoge {\n    display:-webkit-box;\n    display:-ms-flexbox;\n    display:flex;\n}\n.space {\n    width:100%;\n    height:50px;\n    border:1px solid black;\n}\n.tool-tip-area {\n    width:50%;\n    height:200px;\n    background:grey;\n}\n.wall {\n    width:100%;\n    /*height:20em;*/\n    background:orange;\n}\n.slider-area {\n    width:50%;\n}\n.congratulation-content {\n    border:2px solid red;\n}\n.center {\n    position:fixed;\n    left:50%;\n    top:20em;\n}\n", ""]);
 
 // exports
 
@@ -57504,7 +57504,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             // {label:'ドラゴン',value:'water melon'},
 
             // {label:'ドラゴンフルーツ',value:'water melon'},
-            { label: '実行中', value: 'apple' }, { label: '完了', value: 'banana' }, { label: '未完了', value: 'dragon fruit' }, { label: '待機中', value: 'andes melon' }, { label: 'その他', value: 'water melon' }],
+            // {label:'実行中',value:'apple'},
+            { label: '完了', value: 'banana' }, { label: '未完了', value: 'dragon fruit' }, { label: '待機中', value: 'andes melon' }, { label: 'その他', value: 'water melon' }],
             numerator: 80
         };
     },
@@ -57707,7 +57708,7 @@ var render = function() {
           _vm._v(" "),
           _c("spread-options", {
             ref: "spreadOptions",
-            attrs: { options: _vm.items },
+            attrs: { options: _vm.items, spreadDirection: "3" },
             model: {
               value: _vm.test,
               callback: function($$v) {
@@ -70881,6 +70882,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: [String, Array],
             default: [],
             required: false
+        },
+        spreadDirection: {
+            type: [String, Number],
+            default: 2, //右方向
+            required: false
         }
     },
     watch: {},
@@ -70903,13 +70909,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         expandOptions: function expandOptions() {
             var vue = this;
-            //option数で分割角度を算出
-            var baseAngle = 135; //展開を始める角度。0は9時方向で時計回り。
-            var splitAngle = 90 / (this.options.length - 1); //展開範囲
-            // let splitAngle = 90 / this.options.length //展開範囲
             var circleRect = this.$refs.baseCircle.getBoundingClientRect();
-            //基準のoptionの長さを算出
+            //option数で分割角度を算出
+            var splitAngle = this.options.length * 18 / (this.options.length - 1); //展開範囲
 
+            // baseCircleの位置から展開方向を決定
+            // 0-7で展開方向を指定。0が0時方向
+            var baseAngle = this.spreadDirection * 45 + 90 - this.options.length / 2 * 18; //展開を始める角度。0は9時方向で時計回り。
+
+
+            //基準のoptionの長さを算出
             var optionWidthArray = this.$refs.options.map(function (option) {
                 return option.getBoundingClientRect().width;
             });

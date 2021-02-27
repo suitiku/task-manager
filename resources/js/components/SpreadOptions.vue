@@ -21,6 +21,11 @@
                 type:[String,Array],
                 default:[],
                 required:false
+            },
+            spreadDirection:{
+                type:[String,Number],
+                default:2, //右方向
+                required:false,
             }
         },
         watch:{
@@ -50,13 +55,16 @@
             },
             expandOptions:function(){
                 let vue = this
-                //option数で分割角度を算出
-                let baseAngle = 135 //展開を始める角度。0は9時方向で時計回り。
-                let splitAngle = 90 / (this.options.length - 1) //展開範囲
-                // let splitAngle = 90 / this.options.length //展開範囲
                 let circleRect = this.$refs.baseCircle.getBoundingClientRect()
-                //基準のoptionの長さを算出
+                //option数で分割角度を算出
+                let splitAngle = this.options.length * 18 / (this.options.length - 1) //展開範囲
                 
+                // baseCircleの位置から展開方向を決定
+                // 0-7で展開方向を指定。0が0時方向
+                let baseAngle = (this.spreadDirection * 45 + 90) - (this.options.length / 2 * 18) //展開を始める角度。0は9時方向で時計回り。
+                
+                
+                //基準のoptionの長さを算出
                 let optionWidthArray = this.$refs.options.map(option => {
                     return option.getBoundingClientRect().width
                 })

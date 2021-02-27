@@ -8,7 +8,7 @@
         {{test}}
         <modal ref="modal" v-model="modal">
             <div class="wall">test</div>
-            <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />
+            <spread-options ref="spreadOptions" v-model="test" v-bind:options="items" spreadDirection="3" />
             <!--<spread-options ref="spreadOptions" v-model="test" v-bind:options="items" />-->
             <!--<div class="wall">test</div>-->
             <!--<button class="button center" v-on:click="spreadOptions()">spread</button>-->
@@ -63,7 +63,7 @@
                     // {label:'ドラゴン',value:'water melon'},
                     
                     // {label:'ドラゴンフルーツ',value:'water melon'},
-                    {label:'実行中',value:'apple'},
+                    // {label:'実行中',value:'apple'},
                     {label:'完了',value:'banana'},
                     {label:'未完了',value:'dragon fruit'},
                     {label:'待機中',value:'andes melon'},
@@ -184,7 +184,7 @@
     }
     .wall {
         width:100%;
-        height:20em;
+        /*height:20em;*/
         background:orange;
     }
     .slider-area {
